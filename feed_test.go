@@ -13,9 +13,9 @@ func TestRetrieveCastsFromFilters(t *testing.T) {
 	client := NewClient(httpClient,"TEST_API_KEY")
 	res, err := client.Feed.RetrieveCastsFromFilters(context.Background(),RetrieveCastsFromFiltersParams{
 		FeedType:    FeedType("filter"),
-		FilterType:  FilterType("fids"),
+		// FilterType:  FilterType("fids"),
 		// Fid:         123,
-		Fids:        "2",
+		// Fids:        "2",
 		// ParentUrl:   "https://example.com/parent",
 		// ChannelId:   "channel123",
 		// EmbedUrl:    "https://example.com/embed",

@@ -2,7 +2,6 @@ package neynarsdk
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -32,12 +31,13 @@ type RetrieveCastsFromFiltersParams struct {
 type RetrieveCastsFromFiltersResult struct {
 	Casts []Cast `json:"casts"`
 	Next  Next   `json:"next"`
+	ErrorResponse
 }
 
 func (f *FeedService) RetrieveCastsFromFilters(ctx context.Context, params RetrieveCastsFromFiltersParams) (RetrieveCastsFromFiltersResult, error) {
 	var result RetrieveCastsFromFiltersResult
     if params.FeedType == "" {
-        return result, errors.New("feed type must be set")
+        return result, &RequiredFieldError{Field: "FeedType"}
     }
     
     baseURL, err := url.JoinPath(f.client.BaseURL.String(), "v2", "farcaster", "feed")
@@ -86,7 +86,6 @@ func (f *FeedService) RetrieveCastsFromFilters(ctx context.Context, params Retri
     }
     
     u.RawQuery = q.Encode()
-	fmt.Println(u.String())
 	resp, err := f.client.HandleJsonRequest(ctx, "GET",u.String(), nil)
 	
 	if err != nil {
@@ -98,6 +97,9 @@ func (f *FeedService) RetrieveCastsFromFilters(ctx context.Context, params Retri
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	}else{
 		var errorResponse ErrorResponse
@@ -107,9 +109,5 @@ func (f *FeedService) RetrieveCastsFromFilters(ctx context.Context, params Retri
 		}
 		return result, &errorResponse
 	}
-	
-	
-	
-    
-    
+	 
 }

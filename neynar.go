@@ -40,6 +40,13 @@ func (e *ErrorResponse) Error() string {
     return fmt.Sprintf("json error code: %v message: %v property: %v status: %v", e.Code, e.Message, e.Property, e.Status)
 }
 
+type RequiredFieldError struct{
+	Field string
+}
+func (e *RequiredFieldError) Error() string {
+    return fmt.Sprintf("The following field is required: %v", e.Field)
+}
+
 type Client struct{
 	HTTPClient *http.Client
 	BaseURL *url.URL
