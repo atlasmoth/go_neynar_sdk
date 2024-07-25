@@ -8,26 +8,26 @@ import (
 )
 
 func TestRetrieveCastsFromFilters(t *testing.T) {
-	
 	var httpClient *http.Client
-	client := NewClient(httpClient,"TEST_API_KEY")
-	res, err := client.Feed.RetrieveCastsFromFilters(context.Background(),RetrieveCastsFromFiltersParams{
-		FeedType:    FeedType("filter"),
+	client := NewClient(httpClient,"")
+	res, err := client.Feed.RetrieveFeedFromChannelIds(context.Background(),RetrieveFeedFromChannelIdsParams{
+		ChannelIds: "jobs",
+		// FeedType:    FeedType("following"),
 		// FilterType:  FilterType("fids"),
 		// Fid:         123,
 		// Fids:        "2",
 		// ParentUrl:   "https://example.com/parent",
 		// ChannelId:   "channel123",
 		// EmbedUrl:    "https://example.com/embed",
-		OmitRecasts: true,
+		// OmitRecasts: true,
 		Limit:       1,
-		// Cursor:      "abc123",
+		// Cursor:      "eyJ0aW1lc3RhbXAiOiIyMDI0LTA3LTI1IDEwOjExOjAzLjAwMDAwMDAifQ%3D%3D",
 		// ViewerFid:   456,
 	})
 	if err != nil{
 		fmt.Println(err.Error())
 	}else{
-		fmt.Println(res.Casts)
+		fmt.Printf("%+v\n\n", res)
 	}
 	
 }

@@ -64,11 +64,14 @@ func NewClient(httpClient *http.Client,apiKey string) *Client{
 	return c
 }
 
-func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body io.Reader)(*http.Response, error){
+func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body io.Reader, queryParams *string)(*http.Response, error){
 
 	req, err := http.NewRequestWithContext(ctx, method, url, body)
 	if err != nil {
 		return nil, err
+	}
+	if queryParams != nil{
+		req.URL.RawQuery = *queryParams
 	}
 	req.Header.Add("Content-Type", mediaType)
 	req.Header.Add("Accept", mediaType)
@@ -97,4 +100,13 @@ func (c *Client) HandleJsonResponse(r *http.Response, payload any)(error){
 
 }
 
-
+func GetUrlValues(obj map[string]any)url.Values{
+	q := url.Values{}
+	for i, v := range obj {
+		toString := fmt.Sprintf("%v",v)
+		if toString != ""{
+			q.Set(i,toString)
+		}
+	}
+	return q
+}
