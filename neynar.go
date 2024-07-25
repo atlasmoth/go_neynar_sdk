@@ -54,14 +54,17 @@ type Client struct {
 	Feed       FeedService
 }
 
-func NewClient(httpClient *http.Client, apiKey string) *Client {
+func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
-	baseURL, _ := url.Parse(defaultBaseURL)
+	baseURL, err := url.Parse(defaultBaseURL)
+	if err != nil{
+		return nil,err
+	}
 	c := &Client{HTTPClient: httpClient, BaseURL: baseURL, ApiKey: &apiKey}
 	c.Feed = FeedService{client: c}
-	return c
+	return c,nil
 }
 
 func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body io.Reader, queryParams *string) (*http.Response, error) {
