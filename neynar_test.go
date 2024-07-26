@@ -10,9 +10,9 @@ import (
 	"testing"
 )
 
-func newTestClient(handler http.Handler) (*Client, *httptest.Server) {
+func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	server := httptest.NewServer(handler)
-	baseURL, _ := url.Parse(server.URL)
+	baseURL, _ := url.Parse(server.URL + "/")
 	apiKey := "testApiKey"
 	client,_ := NewClient(server.Client(),apiKey)
 	client.BaseURL = baseURL
@@ -45,7 +45,7 @@ func TestHandleJsonRequest(t *testing.T) {
 		}
 		w.WriteHeader(http.StatusOK)
 	})
-	client, server := newTestClient(handler)
+	client, server := NewTestClient(handler)
 	defer server.Close()
 
 	ctx := context.Background()
@@ -64,7 +64,7 @@ func TestHandleJsonResponse(t *testing.T) {
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]string{"key": "value"})
 	})
-	client, server := newTestClient(handler)
+	client, server := NewTestClient(handler)
 	defer server.Close()
 
 	ctx := context.Background()
@@ -132,7 +132,7 @@ func TestHandleJsonRequest_WithQueryParams(t *testing.T) {
 		}
 		w.WriteHeader(http.StatusOK)
 	})
-	client, server := newTestClient(handler)
+	client, server := NewTestClient(handler)
 	defer server.Close()
 
 	ctx := context.Background()
@@ -157,7 +157,7 @@ func TestHandleJsonResponse_Error(t *testing.T) {
 			Status:   400,
 		})
 	})
-	client, server := newTestClient(handler)
+	client, server := NewTestClient(handler)
 	defer server.Close()
 
 	ctx := context.Background()

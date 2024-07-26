@@ -4,21 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
-	"net/http/httptest"
 	"net/url"
 	"reflect"
 	"testing"
 )
 
-func newFeedTestClient(handler http.Handler) (*Client, *httptest.Server) {
-	server := httptest.NewServer(handler)
-	baseURL, _ := url.Parse(server.URL)
-	apiKey := "testApiKey"
-	client,_ := NewClient(server.Client(),apiKey)
-	client.BaseURL = baseURL
-	client.Feed = FeedService{client: client}
-	return client, server
-}
+
 
 
 func mockHandler(t *testing.T, expectedPath string, expectedParams url.Values, responseBody any, responseCode int) http.HandlerFunc {
@@ -35,7 +26,7 @@ func mockHandler(t *testing.T, expectedPath string, expectedParams url.Values, r
 	}
 }
 
-// Test RetrieveCastsFromFilters method
+
 func TestRetrieveCastsFromFilters(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed"
 	expectedParams := url.Values{
@@ -46,8 +37,9 @@ func TestRetrieveCastsFromFilters(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 	
 	params := RetrieveCastsFromFiltersParams{
@@ -67,9 +59,8 @@ func TestRetrieveCastsFromFilters(t *testing.T) {
 	}
 }
 
-// Test RetrieveCastsFromFilters with missing FeedType
 func TestRetrieveCastsFromFilters_MissingFeedType(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := RetrieveCastsFromFiltersParams{}
@@ -84,7 +75,7 @@ func TestRetrieveCastsFromFilters_MissingFeedType(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedFromFollowing method
+
 func TestRetrieveFeedFromFollowing(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/following"
 	expectedParams := url.Values{
@@ -95,8 +86,9 @@ func TestRetrieveFeedFromFollowing(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveCastsFromFiltersParams{
@@ -115,7 +107,7 @@ func TestRetrieveFeedFromFollowing(t *testing.T) {
 
 // Test RetrieveFeedFromFollowing with missing Fid
 func TestRetrieveFeedFromFollowing_MissingFid(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := RetrieveCastsFromFiltersParams{}
@@ -130,7 +122,7 @@ func TestRetrieveFeedFromFollowing_MissingFid(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedForYou method
+
 func TestRetrieveFeedForYou(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/for_you"
 	expectedParams := url.Values{
@@ -141,8 +133,9 @@ func TestRetrieveFeedForYou(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveFeedForYouParams{
@@ -158,9 +151,9 @@ func TestRetrieveFeedForYou(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedForYou with missing Fid
+
 func TestRetrieveFeedForYou_MissingFid(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := RetrieveFeedForYouParams{}
@@ -175,20 +168,22 @@ func TestRetrieveFeedForYou_MissingFid(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedFromChannelIds method
+
 func TestRetrieveFeedFromChannelIds(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/channels"
 	expectedParams := url.Values{
 		"channel_ids": []string{"1"},
 		"with_recasts": []string{"true"},
 		"with_replies": []string{"true"},
+		"should_moderate": []string{"false"},
 	}
 
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveFeedFromChannelIdsParams{
@@ -206,9 +201,9 @@ func TestRetrieveFeedFromChannelIds(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedFromChannelIds with missing ChannelIds
+
 func TestRetrieveFeedFromChannelIds_MissingChannelIds(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := RetrieveFeedFromChannelIdsParams{}
@@ -223,7 +218,7 @@ func TestRetrieveFeedFromChannelIds_MissingChannelIds(t *testing.T) {
 	}
 }
 
-// Test RetrieveFeedWithFrames method
+
 func TestRetrieveFeedWithFrames(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/frames"
 	expectedParams := url.Values{}
@@ -231,8 +226,9 @@ func TestRetrieveFeedWithFrames(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveFeedWithFramesParams{}
@@ -256,8 +252,9 @@ func TestRetrieveRecentRepliesAndRecasts(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveRecentRepliesAndRecastsParams{
@@ -273,9 +270,9 @@ func TestRetrieveRecentRepliesAndRecasts(t *testing.T) {
 	}
 }
 
-// Test RetrieveRecentRepliesAndRecasts with missing Fid
+
 func TestRetrieveRecentRepliesAndRecasts_MissingFid(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := RetrieveRecentRepliesAndRecastsParams{}
@@ -290,7 +287,7 @@ func TestRetrieveRecentRepliesAndRecasts_MissingFid(t *testing.T) {
 	}
 }
 
-// Test Retrieve10PopularCasts method
+
 func TestRetrieve10PopularCasts(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/user/popular"
 	expectedParams := url.Values{
@@ -300,8 +297,9 @@ func TestRetrieve10PopularCasts(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := Retrieve10PopularCastsParams{
@@ -317,9 +315,9 @@ func TestRetrieve10PopularCasts(t *testing.T) {
 	}
 }
 
-// Test Retrieve10PopularCasts with missing Fid
+
 func TestRetrieve10PopularCasts_MissingFid(t *testing.T) {
-	client, server := newFeedTestClient(nil)
+	client, server := NewTestClient(nil)
 	defer server.Close()
 
 	params := Retrieve10PopularCastsParams{}
@@ -334,7 +332,7 @@ func TestRetrieve10PopularCasts_MissingFid(t *testing.T) {
 	}
 }
 
-// Test RetrieveTrendingCasts method
+
 func TestRetrieveTrendingCasts(t *testing.T) {
 	expectedPath := "/v2/farcaster/feed/trending"
 	expectedParams := url.Values{
@@ -344,8 +342,9 @@ func TestRetrieveTrendingCasts(t *testing.T) {
 	mockResponse := RetrieveCastsFromFiltersResult{
 		Casts: []Cast{{Text: "test content" }},
 		Next:  Next{Cursor: "next_cursor"},
+		ErrorResponse: ErrorResponse{},
 	}
-	client, server := newFeedTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := RetrieveTrendingCastsParams{
