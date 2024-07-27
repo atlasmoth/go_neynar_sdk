@@ -187,11 +187,10 @@ type RetrieveCastsFromArrayResult struct {
 }
 
 type RetrieveCastsFromArrayParams struct {
-	Casts string
+	Casts     string
 	ViewerFid uint32
-	SortType string
+	SortType  string
 }
-
 
 func (c *CastService) RetrieveCastsFromArray(ctx context.Context, params RetrieveCastsFromArrayParams) (RetrieveCastsFromArrayResult, error) {
 	var result RetrieveCastsFromArrayResult
@@ -201,8 +200,7 @@ func (c *CastService) RetrieveCastsFromArray(ctx context.Context, params Retriev
 
 	baseURL := c.client.BaseURL.String() + "v2/farcaster/casts"
 
-	values := map[string]any{"casts": params.Casts, "viewer_fid" : params.ViewerFid,"sort_type" : params.SortType}
-
+	values := map[string]any{"casts": params.Casts, "viewer_fid": params.ViewerFid, "sort_type": params.SortType}
 
 	if params.ViewerFid > 0 {
 		values["viewer_fid"] = params.ViewerFid

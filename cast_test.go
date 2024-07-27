@@ -8,8 +8,6 @@ import (
 	"testing"
 )
 
-
-
 func TestRetrieveCastWithHashOrUrl_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/cast"
 	expectedParams := url.Values{
@@ -144,15 +142,12 @@ func TestRetrieveCastWithHashOrUrl_BadRequest(t *testing.T) {
 func TestPostCast_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/cast"
 
-	mockResponse := PostCastResult{
-		
-	}
+	mockResponse := PostCastResult{}
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusOK))
 	defer server.Close()
 
 	params := PostCastParams{
 		SignerUUID: "test-signer-uuid",
-		
 	}
 	ctx := context.Background()
 	result, err := client.Cast.PostCast(ctx, params)
@@ -169,8 +164,7 @@ func TestPostCast_MissingSignerUUID(t *testing.T) {
 	client, server := NewTestClient(nil)
 	defer server.Close()
 
-	params := PostCastParams{
-	}
+	params := PostCastParams{}
 	ctx := context.Background()
 	_, err := client.Cast.PostCast(ctx, params)
 	if err == nil {
@@ -194,7 +188,6 @@ func TestPostCast_ServerError(t *testing.T) {
 
 	params := PostCastParams{
 		SignerUUID: "test-signer-uuid",
-		
 	}
 	ctx := context.Background()
 	_, err := client.Cast.PostCast(ctx, params)
@@ -219,7 +212,6 @@ func TestPostCast_BadRequest(t *testing.T) {
 
 	params := PostCastParams{
 		SignerUUID: "test-signer-uuid",
-		
 	}
 	ctx := context.Background()
 	_, err := client.Cast.PostCast(ctx, params)
@@ -346,20 +338,17 @@ func TestRetrieveCastsFromArray_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/casts"
 
 	expectedParams := url.Values{
-		"casts": []string{"test-casts"},
+		"casts":      []string{"test-casts"},
 		"viewer_fid": []string{"12345"},
-		"sort_type":       []string{"date"},
+		"sort_type":  []string{"date"},
 	}
 	mockResponse := RetrieveCastsFromArrayResult{
-		Casts: []Cast{
-			
-		},
+		Casts: []Cast{},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
 
-	
 	params := RetrieveCastsFromArrayParams{
 		Casts:     "test-casts",
 		ViewerFid: 12345,
@@ -398,9 +387,9 @@ func TestRetrieveCastsFromArray_MissingCasts(t *testing.T) {
 func TestRetrieveCastsFromArray_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/casts"
 	expectedParams := url.Values{
-		"casts": []string{"test-casts"},
+		"casts":      []string{"test-casts"},
 		"viewer_fid": []string{"12345"},
-		"sort_type":       []string{"date"},
+		"sort_type":  []string{"date"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "500",
@@ -428,9 +417,9 @@ func TestRetrieveCastsFromArray_ServerError(t *testing.T) {
 func TestRetrieveCastsFromArray_BadRequest(t *testing.T) {
 	expectedPath := "/v2/farcaster/casts"
 	expectedParams := url.Values{
-		"casts": []string{"test-casts"},
+		"casts":      []string{"test-casts"},
 		"viewer_fid": []string{"12345"},
-		"sort_type":       []string{"date"},
+		"sort_type":  []string{"date"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "400",
