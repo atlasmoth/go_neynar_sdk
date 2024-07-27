@@ -43,8 +43,18 @@ type RequiredFieldError struct {
 	Field string
 }
 
+
 func (e *RequiredFieldError) Error() string {
 	return fmt.Sprintf("The following field is required: %v", e.Field)
+}
+
+type InvalidFieldError struct {
+	Field string
+	Values string
+}
+
+func (e *InvalidFieldError) Error() string {
+	return fmt.Sprintf("The field - %v, can only be one of the following :%v", e.Field, e.Values)
 }
 
 type Client struct {
@@ -52,6 +62,7 @@ type Client struct {
 	BaseURL    *url.URL
 	ApiKey     *string
 	Feed       FeedService
+	Cast       CastService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {

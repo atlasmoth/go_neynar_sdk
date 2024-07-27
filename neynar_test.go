@@ -17,6 +17,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client,_ := NewClient(server.Client(),apiKey)
 	client.BaseURL = baseURL
 	client.Feed = FeedService{client: client}
+	client.Cast = CastService{client: client}
 	return client, server
 }
 
