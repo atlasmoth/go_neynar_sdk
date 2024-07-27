@@ -64,6 +64,7 @@ type Client struct {
 	ApiKey     *string
 	Feed       FeedService
 	Cast       CastService
+	Notification NotificationService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {

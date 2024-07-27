@@ -1,5 +1,7 @@
 package neynarsdk
 
+import "time"
+
 
 
 type Cast struct {
@@ -65,10 +67,7 @@ type Reactions struct {
     Recasts      []User  `json:"recasts"`
 }
 
-type User struct {
-    Fid   uint32    `json:"fid"`
-    Fname string `json:"fname"`
-}
+
 
 type Replies struct {
     Count uint32 `json:"count"`
@@ -83,4 +82,59 @@ type Channel struct {
 
 type Next struct {
     Cursor string `json:"cursor"`
+}
+
+
+
+type UserProfile struct {
+	Bio struct {
+		Text             string   `json:"text"`
+		MentionedProfiles []string `json:"mentioned_profiles"`
+	} `json:"bio"`
+}
+
+type ViewerContext struct {
+	Following  bool `json:"following"`
+	FollowedBy bool `json:"followed_by"`
+}
+
+
+
+type User struct {
+	Object          string           `json:"object"`
+	Fid             int              `json:"fid"`
+	Username        string           `json:"username"`
+	DisplayName     string           `json:"display_name"`
+	CustodyAddress  string           `json:"custody_address"`
+	PfpURL          string           `json:"pfp_url"`
+	Profile         UserProfile      `json:"profile"`
+	FollowerCount   int              `json:"follower_count"`
+	FollowingCount  int              `json:"following_count"`
+	Verifications   []string         `json:"verifications"`
+	VerifiedAddresses VerifiedAddresses `json:"verified_addresses"`
+	ActiveStatus    string           `json:"active_status"`
+	PowerBadge      bool             `json:"power_badge"`
+	ViewerContext   ViewerContext    `json:"viewer_context"`
+    Fname           string           `json:"fname"`
+}
+
+type Follow struct {
+	Object string `json:"object"`
+	User   User   `json:"user"`
+}
+
+
+
+type Reaction struct {
+	Object string `json:"object"`
+	Cast   Cast   `json:"cast"`
+	User   User   `json:"user"`
+}
+
+type Notification struct {
+	Object              string    `json:"object"`
+	MostRecentTimestamp time.Time `json:"most_recent_timestamp"`
+	Type                string    `json:"type"`
+	Follows             []Follow  `json:"follows"`
+	Reactions           []Reaction `json:"reactions"`
 }
