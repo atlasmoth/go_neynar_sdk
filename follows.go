@@ -17,6 +17,14 @@ type RetrieveFollowersParams struct {
 	Cursor    string
 }
 
+
+
+
+type Follower struct {
+	TopRelevantFollowersHydrated  []Follow           `json:"top_relevant_followers_hydrated"`
+	AllRelevantFollowersDehydrated []Follow `json:"all_relevant_followers_dehydrated"`
+}
+
 type RetrieveFollowersResult struct {
 	Users []User `json:"users"`
 	ErrorResponse
@@ -73,8 +81,8 @@ type RetrieveRelevantFollowersParams struct {
 }
 
 type RetrieveRelevantFollowersResult struct {
-	TopRelevantFollowersHydrated   any `json:"top_relevant_followers_hydrated"`
-	AllRelevantFollowersDehydrated any `json:"all_relevant_followers_dehydrated"`
+	TopRelevantFollowersHydrated   []Follower `json:"top_relevant_followers_hydrated"`
+	AllRelevantFollowersDehydrated []Follower `json:"all_relevant_followers_dehydrated"`
 	ErrorResponse
 }
 

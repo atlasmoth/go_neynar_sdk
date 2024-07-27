@@ -95,7 +95,7 @@ func TestRetrieveRelevantFollowers_Success(t *testing.T) {
 		"viewer_fid": []string{"67890"},
 	}
 	mockResponse := RetrieveRelevantFollowersResult{
-		TopRelevantFollowersHydrated: []User{},
+		TopRelevantFollowersHydrated: []Follower{},
 	}
 
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
