@@ -78,7 +78,7 @@ type PostCastMetadata struct {
 }
 
 type PostCastCastId struct {
-	FID  uint32    `json:"fid"`
+	FID  uint32 `json:"fid"`
 	Hash string `json:"hash"`
 }
 
@@ -98,18 +98,64 @@ type PostCastParams struct {
 	ParentAuthorFID int             `json:"parent_author_fid,omitempty"`
 }
 
-
 func (c *CastService) PostCast(ctx context.Context, params PostCastParams) (PostCastResult, error) {
 	var result PostCastResult
-	if params.SignerUUID  == "" {
+	if params.SignerUUID == "" {
 		return result, &RequiredFieldError{Field: "SignerUUID"}
 	}
-	
 
 	baseURL := c.client.BaseURL.String() + "v2/farcaster/cast"
 
-	
 	resp, err := c.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, params, nil)
+
+	if err != nil {
+		return result, err
+	}
+	if resp.StatusCode == http.StatusOK {
+
+		err = c.client.HandleJsonResponse(resp, &result)
+		if err != nil {
+			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
+		return result, nil
+	} else {
+		var errorResponse ErrorResponse
+		err = c.client.HandleJsonResponse(resp, &errorResponse)
+		if err != nil {
+			return result, err
+		}
+		return result, &errorResponse
+	}
+
+}
+
+type DeleteCastResult struct {
+	Message string `json:"message"`
+	ErrorResponse
+	Success bool `json:"success"`
+}
+
+type DeleteCastParams struct {
+	SignerUUID string `json:"signer_uuid"`
+	TargetHash string `json:"target_hash"`
+}
+
+func (c *CastService) DeleteCast(ctx context.Context, params DeleteCastParams) (DeleteCastResult, error) {
+	var result DeleteCastResult
+	if params.SignerUUID == "" {
+		return result, &RequiredFieldError{Field: "SignerUUID"}
+	}
+
+	if params.TargetHash == "" {
+		return result, &RequiredFieldError{Field: "TargetHash"}
+	}
+
+	baseURL := c.client.BaseURL.String() + "v2/farcaster/cast"
+
+	resp, err := c.client.HandleJsonRequest(ctx, http.MethodDelete, baseURL, params, nil)
 
 	if err != nil {
 		return result, err

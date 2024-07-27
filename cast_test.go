@@ -231,3 +231,113 @@ func TestPostCast_BadRequest(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
+
+func TestDeleteCast_Success(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := DeleteCastResult{
+		// fill in the fields as necessary
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	params := DeleteCastParams{
+		SignerUUID: "test-signer-uuid",
+		TargetHash: "test-target-hash",
+	}
+	ctx := context.Background()
+	result, err := client.Cast.DeleteCast(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestDeleteCast_MissingSignerUUID(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := DeleteCastParams{
+		TargetHash: "test-target-hash",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.DeleteCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: SignerUUID"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestDeleteCast_MissingTargetHash(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := DeleteCastParams{
+		SignerUUID: "test-signer-uuid",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.DeleteCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: TargetHash"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestDeleteCast_ServerError(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := ErrorResponse{
+		Code:    "500",
+		Message: "Internal Server Error",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusInternalServerError))
+	defer server.Close()
+
+	params := DeleteCastParams{
+		SignerUUID: "test-signer-uuid",
+		TargetHash: "test-target-hash",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.DeleteCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestDeleteCast_BadRequest(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := ErrorResponse{
+		Code:    "400",
+		Message: "Bad Request",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusBadRequest))
+	defer server.Close()
+
+	params := DeleteCastParams{
+		SignerUUID: "test-signer-uuid",
+		TargetHash: "test-target-hash",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.DeleteCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
