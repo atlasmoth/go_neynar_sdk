@@ -18,6 +18,7 @@ type Cast struct {
     Replies      Replies        `json:"replies"`
     Channel      Channel        `json:"channel"`
     MentionedProfiles []Author  `json:"mentioned_profiles"`
+    DirectReplies  []Cast       `json:"direct_replies"`
 }
 
 type ParentAuthor struct {

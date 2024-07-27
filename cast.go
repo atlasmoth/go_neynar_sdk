@@ -234,3 +234,79 @@ func (c *CastService) RetrieveCastsFromArray(ctx context.Context, params Retriev
 	}
 
 }
+
+type Conversation struct {
+	Cast                     Cast `json:"cast"`
+	ChronologicalParentCasts Cast `json:"chronological_parent_casts"`
+}
+type RetrieveConversationResult struct {
+	Next Next `json:"next"`
+	ErrorResponse
+	Conversation Conversation `json:"conversation"`
+}
+
+type RetrieveConversationParams struct {
+	Type                            string
+	Identifier                      string
+	ReplyDepth                      uint32
+	IncludeChronologicalParentCasts bool
+	Limit                           int
+	Cursor                          string
+	ViewerFid                       int32
+}
+
+func (c *CastService) RetrieveConversation(ctx context.Context, params RetrieveConversationParams) (RetrieveConversationResult, error) {
+	var result RetrieveConversationResult
+	if params.Type == "" {
+		return result, &RequiredFieldError{Field: "Type"}
+	}
+	if params.Identifier == "" {
+		return result, &RequiredFieldError{Field: "Identifier"}
+	}
+
+	if params.ReplyDepth > 5 {
+		return result, &InvalidFieldError{Field: "ReplyDepth", Values:  "0-5"}
+	}
+
+	baseURL := c.client.BaseURL.String() + "v2/farcaster/cast/conversation"
+
+	values := map[string]any{"type": params.Type, "include_chronological_parent_casts": params.IncludeChronologicalParentCasts, "identifier" : params.Identifier,"reply_depth" : params.ReplyDepth}
+
+	
+
+	if params.Limit > 0 {
+		values["limit"] = params.Limit
+	}
+
+	if params.ViewerFid > 0 {
+		values["viewer_fid"] = params.ViewerFid
+	}
+
+	q := GetUrlValues(values)
+
+	rawQuery := q.Encode()
+	resp, err := c.client.HandleJsonRequest(ctx, http.MethodGet, baseURL, nil, &rawQuery)
+
+	if err != nil {
+		return result, err
+	}
+	if resp.StatusCode == http.StatusOK {
+
+		err = c.client.HandleJsonResponse(resp, &result)
+		if err != nil {
+			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
+		return result, nil
+	} else {
+		var errorResponse ErrorResponse
+		err = c.client.HandleJsonResponse(resp, &errorResponse)
+		if err != nil {
+			return result, err
+		}
+		return result, &errorResponse
+	}
+
+}

@@ -443,3 +443,170 @@ func TestRetrieveCastsFromArray_BadRequest(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
+
+
+
+func TestRetrieveConversation_Success(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast/conversation"
+	expectedParams := url.Values{
+		"type":                             []string{"test-type"},
+		"identifier":                       []string{"test-identifier"},
+		"reply_depth":                      []string{"2"},
+		"include_chronological_parent_casts": []string{"true"},
+		"limit":                            []string{"10"},
+		"viewer_fid":                       []string{"12345"},
+	}
+	mockResponse := RetrieveConversationResult{
+		Conversation: Conversation{},
+	}
+
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Type:                            "test-type",
+		Identifier:                      "test-identifier",
+		ReplyDepth:                      2,
+		IncludeChronologicalParentCasts: true,
+		Limit:                           10,
+		Cursor:                          "",
+		ViewerFid:                       12345,
+	}
+	ctx := context.Background()
+	result, err := client.Cast.RetrieveConversation(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestRetrieveConversation_MissingType(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Identifier: "test-identifier",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveConversation(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: Type"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveConversation_MissingIdentifier(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Type: "test-type",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveConversation(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: Identifier"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveConversation_InvalidReplyDepth(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Type:       "test-type",
+		Identifier: "test-identifier",
+		ReplyDepth: 10,
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveConversation(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := InvalidFieldError{Field: "ReplyDepth", Values: "0-5"}
+	if err.Error() != expectedError.Error() {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveConversation_ServerError(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast/conversation"
+	expectedParams := url.Values{
+		"type":                             []string{"test-type"},
+		"identifier":                       []string{"test-identifier"},
+		"reply_depth":                      []string{"2"},
+		"include_chronological_parent_casts": []string{"true"},
+		"limit":                            []string{"10"},
+		"viewer_fid":                       []string{"12345"},
+	}
+	mockResponse := ErrorResponse{
+		Code:    "500",
+		Message: "Internal Server Error",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusInternalServerError))
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Type:                            "test-type",
+		Identifier:                      "test-identifier",
+		ReplyDepth:                      2,
+		IncludeChronologicalParentCasts: true,
+		Limit:                           10,
+		ViewerFid:                       12345,
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveConversation(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveConversation_BadRequest(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast/conversation"
+	expectedParams := url.Values{
+		"type":                             []string{"test-type"},
+		"identifier":                       []string{"test-identifier"},
+		"reply_depth":                      []string{"2"},
+		"include_chronological_parent_casts": []string{"true"},
+		"limit":                            []string{"10"},
+		"viewer_fid":                       []string{"12345"},
+	}
+	mockResponse := ErrorResponse{
+		Code:    "400",
+		Message: "Bad Request",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusBadRequest))
+	defer server.Close()
+
+	params := RetrieveConversationParams{
+		Type:                            "test-type",
+		Identifier:                      "test-identifier",
+		ReplyDepth:                      2,
+		IncludeChronologicalParentCasts: true,
+		Limit:                           10,
+		ViewerFid:                       12345,
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveConversation(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
