@@ -140,3 +140,94 @@ func TestRetrieveCastWithHashOrUrl_BadRequest(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
+
+func TestPostCast_Success(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := PostCastResult{
+		
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	params := PostCastParams{
+		SignerUUID: "test-signer-uuid",
+		
+	}
+	ctx := context.Background()
+	result, err := client.Cast.PostCast(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestPostCast_MissingSignerUUID(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := PostCastParams{
+	}
+	ctx := context.Background()
+	_, err := client.Cast.PostCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: SignerUUID"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestPostCast_ServerError(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := ErrorResponse{
+		Code:    "500",
+		Message: "Internal Server Error",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusInternalServerError))
+	defer server.Close()
+
+	params := PostCastParams{
+		SignerUUID: "test-signer-uuid",
+		
+	}
+	ctx := context.Background()
+	_, err := client.Cast.PostCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestPostCast_BadRequest(t *testing.T) {
+	expectedPath := "/v2/farcaster/cast"
+
+	mockResponse := ErrorResponse{
+		Code:    "400",
+		Message: "Bad Request",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusBadRequest))
+	defer server.Close()
+
+	params := PostCastParams{
+		SignerUUID: "test-signer-uuid",
+		
+	}
+	ctx := context.Background()
+	_, err := client.Cast.PostCast(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}

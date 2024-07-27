@@ -1,6 +1,7 @@
 package neynarsdk
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -78,15 +79,26 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	return c,nil
 }
 
-func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body io.Reader, queryParams *string) (*http.Response, error) {
-
-	req, err := http.NewRequestWithContext(ctx, method, url, body)
+func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body any, queryParams *string) (*http.Response, error) {
+	var requestBody bytes.Buffer
+	if body != nil{
+		// fmt.Printf("%+v\n",body)
+		req, err := json.Marshal(body)
+		if err != nil {
+			return nil,err
+		}
+		requestBody = *bytes.NewBuffer(req)
+	
+	}
+	
+	req, err := http.NewRequestWithContext(ctx, method, url, &requestBody)
 	if err != nil {
 		return nil, err
 	}
 	if queryParams != nil {
 		req.URL.RawQuery = *queryParams
 	}
+	
 	req.Header.Add("Content-Type", mediaType)
 	req.Header.Add("Accept", mediaType)
 	req.Header.Add("api_key", *c.ApiKey)
