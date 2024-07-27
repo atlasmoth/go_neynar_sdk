@@ -180,3 +180,59 @@ func (c *CastService) DeleteCast(ctx context.Context, params DeleteCastParams) (
 	}
 
 }
+
+type RetrieveCastsFromArrayResult struct {
+	Casts []Cast `json:"casts"`
+	ErrorResponse
+}
+
+type RetrieveCastsFromArrayParams struct {
+	Casts string
+	ViewerFid uint32
+	SortType string
+}
+
+
+func (c *CastService) RetrieveCastsFromArray(ctx context.Context, params RetrieveCastsFromArrayParams) (RetrieveCastsFromArrayResult, error) {
+	var result RetrieveCastsFromArrayResult
+	if params.Casts == "" {
+		return result, &RequiredFieldError{Field: "Casts"}
+	}
+
+	baseURL := c.client.BaseURL.String() + "v2/farcaster/casts"
+
+	values := map[string]any{"casts": params.Casts, "viewer_fid" : params.ViewerFid,"sort_type" : params.SortType}
+
+
+	if params.ViewerFid > 0 {
+		values["viewer_fid"] = params.ViewerFid
+	}
+
+	q := GetUrlValues(values)
+
+	rawQuery := q.Encode()
+	resp, err := c.client.HandleJsonRequest(ctx, http.MethodGet, baseURL, nil, &rawQuery)
+
+	if err != nil {
+		return result, err
+	}
+	if resp.StatusCode == http.StatusOK {
+
+		err = c.client.HandleJsonResponse(resp, &result)
+		if err != nil {
+			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
+		return result, nil
+	} else {
+		var errorResponse ErrorResponse
+		err = c.client.HandleJsonResponse(resp, &errorResponse)
+		if err != nil {
+			return result, err
+		}
+		return result, &errorResponse
+	}
+
+}

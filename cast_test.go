@@ -341,3 +341,116 @@ func TestDeleteCast_BadRequest(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
+
+func TestRetrieveCastsFromArray_Success(t *testing.T) {
+	expectedPath := "/v2/farcaster/casts"
+
+	expectedParams := url.Values{
+		"casts": []string{"test-casts"},
+		"viewer_fid": []string{"12345"},
+		"sort_type":       []string{"date"},
+	}
+	mockResponse := RetrieveCastsFromArrayResult{
+		Casts: []Cast{
+			
+		},
+	}
+	
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	
+	params := RetrieveCastsFromArrayParams{
+		Casts:     "test-casts",
+		ViewerFid: 12345,
+		SortType:  "date",
+	}
+	ctx := context.Background()
+	result, err := client.Cast.RetrieveCastsFromArray(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestRetrieveCastsFromArray_MissingCasts(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := RetrieveCastsFromArrayParams{
+		ViewerFid: 12345,
+		SortType:  "date",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveCastsFromArray(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: Casts"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveCastsFromArray_ServerError(t *testing.T) {
+	expectedPath := "/v2/farcaster/casts"
+	expectedParams := url.Values{
+		"casts": []string{"test-casts"},
+		"viewer_fid": []string{"12345"},
+		"sort_type":       []string{"date"},
+	}
+	mockResponse := ErrorResponse{
+		Code:    "500",
+		Message: "Internal Server Error",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusInternalServerError))
+	defer server.Close()
+
+	params := RetrieveCastsFromArrayParams{
+		Casts:     "test-casts",
+		ViewerFid: 12345,
+		SortType:  "date",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveCastsFromArray(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestRetrieveCastsFromArray_BadRequest(t *testing.T) {
+	expectedPath := "/v2/farcaster/casts"
+	expectedParams := url.Values{
+		"casts": []string{"test-casts"},
+		"viewer_fid": []string{"12345"},
+		"sort_type":       []string{"date"},
+	}
+	mockResponse := ErrorResponse{
+		Code:    "400",
+		Message: "Bad Request",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusBadRequest))
+	defer server.Close()
+
+	params := RetrieveCastsFromArrayParams{
+		Casts:     "test-casts",
+		ViewerFid: 12345,
+		SortType:  "date",
+	}
+	ctx := context.Background()
+	_, err := client.Cast.RetrieveCastsFromArray(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
