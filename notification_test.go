@@ -11,8 +11,8 @@ import (
 func TestRetrieveNotificationsForUser_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications"
 	expectedParams := url.Values{
-		"fid":        []string{"12345"},
-		"cursor":     []string{"test-cursor"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
 		"is_priority": []string{"true"},
 	}
 	mockResponse := RetrieveNotificationsForUserResult{
@@ -57,8 +57,8 @@ func TestRetrieveNotificationsForUser_MissingFid(t *testing.T) {
 func TestRetrieveNotificationsForUser_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications"
 	expectedParams := url.Values{
-		"fid":        []string{"12345"},
-		"cursor":     []string{"test-cursor"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
 		"is_priority": []string{"true"},
 	}
 	mockResponse := ErrorResponse{
@@ -87,8 +87,8 @@ func TestRetrieveNotificationsForUser_ServerError(t *testing.T) {
 func TestRetrieveNotificationsForUser_BadRequest(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications"
 	expectedParams := url.Values{
-		"fid":        []string{"12345"},
-		"cursor":     []string{"test-cursor"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
 		"is_priority": []string{"true"},
 	}
 	mockResponse := ErrorResponse{
@@ -117,8 +117,8 @@ func TestRetrieveNotificationsForUser_BadRequest(t *testing.T) {
 func TestRetrieveNotificationsForUser_NonPriority(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications"
 	expectedParams := url.Values{
-		"fid":        []string{"12345"},
-		"cursor":     []string{"test-cursor"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
 		"is_priority": []string{"false"},
 	}
 	mockResponse := RetrieveNotificationsForUserResult{
@@ -127,7 +127,6 @@ func TestRetrieveNotificationsForUser_NonPriority(t *testing.T) {
 
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
 	defer server.Close()
-
 
 	params := RetrieveNotificationsForUserParams{
 		Fid:           12345,
@@ -144,7 +143,6 @@ func TestRetrieveNotificationsForUser_NonPriority(t *testing.T) {
 		t.Errorf("Expected result %v, got %v", mockResponse, result)
 	}
 }
-
 
 func TestRetrieveNotificationsForChannels_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications/channel"
@@ -323,10 +321,10 @@ func TestRetrieveNotificationsForChannels_NonPriority(t *testing.T) {
 func TestRetrieveNotificationsParentUrl_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
-		"fid":          []string{"12345"},
-		"cursor":       []string{"test-cursor"},
-		"is_priority":  []string{"true"},
-		"parent_urls":  []string{"test-url"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
+		"is_priority": []string{"true"},
+		"parent_urls": []string{"test-url"},
 	}
 	mockResponse := RetrieveNotificationsForUserResult{
 		Notifications: []Notification{},
@@ -395,10 +393,10 @@ func TestRetrieveNotificationsParentUrl_MissingParentUrls(t *testing.T) {
 func TestRetrieveNotificationsParentUrl_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
-		"fid":          []string{"12345"},
-		"cursor":       []string{"test-cursor"},
-		"is_priority":  []string{"true"},
-		"parent_urls":  []string{"test-url"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
+		"is_priority": []string{"true"},
+		"parent_urls": []string{"test-url"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "500",
@@ -429,10 +427,10 @@ func TestRetrieveNotificationsParentUrl_ServerError(t *testing.T) {
 func TestRetrieveNotificationsParentUrl_BadRequest(t *testing.T) {
 	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
-		"fid":          []string{"12345"},
-		"cursor":       []string{"test-cursor"},
-		"is_priority":  []string{"true"},
-		"parent_urls":  []string{"test-url"},
+		"fid":         []string{"12345"},
+		"cursor":      []string{"test-cursor"},
+		"is_priority": []string{"true"},
+		"parent_urls": []string{"test-url"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "400",

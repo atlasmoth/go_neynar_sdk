@@ -29,7 +29,7 @@ func (n *NotificationService) RetrieveNotificationsForUser(ctx context.Context, 
 
 	baseURL := n.client.BaseURL.String() + "v2/farcaster/notifications"
 
-	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority" : !params.IsNotPriority}
+	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority": !params.IsNotPriority}
 
 	q := GetUrlValues(values)
 
@@ -59,9 +59,10 @@ func (n *NotificationService) RetrieveNotificationsForUser(ctx context.Context, 
 	}
 
 }
+
 type RetrieveNotificationsForChannelsParams struct {
 	RetrieveNotificationsForUserParams
-	ChannelIds        string
+	ChannelIds string
 }
 
 func (n *NotificationService) RetrieveNotificationsForChannels(ctx context.Context, params RetrieveNotificationsForChannelsParams) (RetrieveNotificationsForUserResult, error) {
@@ -69,13 +70,13 @@ func (n *NotificationService) RetrieveNotificationsForChannels(ctx context.Conte
 	if params.Fid == 0 {
 		return result, &RequiredFieldError{Field: "Fid"}
 	}
-	if params.ChannelIds == ""{
+	if params.ChannelIds == "" {
 		return result, &RequiredFieldError{Field: "ChannelIds"}
 	}
 
 	baseURL := n.client.BaseURL.String() + "v2/farcaster/notifications/channel"
 
-	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority" : !params.IsNotPriority,"channel_ids" : params.ChannelIds}
+	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority": !params.IsNotPriority, "channel_ids": params.ChannelIds}
 
 	q := GetUrlValues(values)
 
@@ -108,7 +109,7 @@ func (n *NotificationService) RetrieveNotificationsForChannels(ctx context.Conte
 
 type RetrieveNotificationsParentUrlParams struct {
 	RetrieveNotificationsForUserParams
-	ParentUrls        string
+	ParentUrls string
 }
 
 func (n *NotificationService) RetrieveNotificationsParentUrl(ctx context.Context, params RetrieveNotificationsParentUrlParams) (RetrieveNotificationsForUserResult, error) {
@@ -116,13 +117,13 @@ func (n *NotificationService) RetrieveNotificationsParentUrl(ctx context.Context
 	if params.Fid == 0 {
 		return result, &RequiredFieldError{Field: "Fid"}
 	}
-	if params.ParentUrls == ""{
+	if params.ParentUrls == "" {
 		return result, &RequiredFieldError{Field: "ParentUrls"}
 	}
 
 	baseURL := n.client.BaseURL.String() + "v2/farcaster/notifications/parent_url"
 
-	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority" : !params.IsNotPriority,"parent_urls" : params.ParentUrls}
+	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority": !params.IsNotPriority, "parent_urls": params.ParentUrls}
 
 	q := GetUrlValues(values)
 

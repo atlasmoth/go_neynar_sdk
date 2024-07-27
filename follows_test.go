@@ -24,10 +24,10 @@ func TestRetrieveFollowers_Success(t *testing.T) {
 	defer server.Close()
 
 	params := RetrieveFollowersParams{
-		Fid:       12345,
-		SortType:  "newest",
-		Limit:     10,
-		Cursor:    "test-cursor",
+		Fid:      12345,
+		SortType: "newest",
+		Limit:    10,
+		Cursor:   "test-cursor",
 	}
 	ctx := context.Background()
 	result, err := client.Follow.RetrieveFollowers(ctx, params)
@@ -72,10 +72,10 @@ func TestRetrieveFollowers_ServerError(t *testing.T) {
 	defer server.Close()
 
 	params := RetrieveFollowersParams{
-		Fid:       12345,
-		SortType:  "newest",
-		Limit:     10,
-		Cursor:    "test-cursor",
+		Fid:      12345,
+		SortType: "newest",
+		Limit:    10,
+		Cursor:   "test-cursor",
 	}
 	ctx := context.Background()
 	_, err := client.Follow.RetrieveFollowers(ctx, params)
@@ -178,10 +178,10 @@ func TestRetrieveFollowing_Success(t *testing.T) {
 	defer server.Close()
 
 	params := RetrieveFollowingParams{
-		Fid:       12345,
-		SortType:  "newest",
-		Limit:     10,
-		Cursor:    "test-cursor",
+		Fid:      12345,
+		SortType: "newest",
+		Limit:    10,
+		Cursor:   "test-cursor",
 	}
 	ctx := context.Background()
 	result, err := client.Follow.RetrieveFollowing(ctx, params)
@@ -226,10 +226,10 @@ func TestRetrieveFollowing_ServerError(t *testing.T) {
 	defer server.Close()
 
 	params := RetrieveFollowingParams{
-		Fid:       12345,
-		SortType:  "newest",
-		Limit:     10,
-		Cursor:    "test-cursor",
+		Fid:      12345,
+		SortType: "newest",
+		Limit:    10,
+		Cursor:   "test-cursor",
 	}
 	ctx := context.Background()
 	_, err := client.Follow.RetrieveFollowing(ctx, params)

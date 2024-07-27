@@ -5,27 +5,23 @@ import (
 	"net/http"
 )
 
-
 type FollowService struct {
 	client *Client
 }
 
-
 type RetrieveFollowersParams struct {
-	Fid        uint32
-	ViewerFid  int32
-	SortType   string
-	Limit      int
-	Cursor     string
+	Fid       uint32
+	ViewerFid int32
+	SortType  string
+	Limit     int
+	Cursor    string
 }
 
-
 type RetrieveFollowersResult struct {
-	Users     []User `json:"users"`
+	Users []User `json:"users"`
 	ErrorResponse
 	Next Next `json:"next"`
 }
-
 
 func (f *FollowService) RetrieveFollowers(ctx context.Context, params RetrieveFollowersParams) (RetrieveFollowersResult, error) {
 	var result RetrieveFollowersResult
@@ -36,10 +32,10 @@ func (f *FollowService) RetrieveFollowers(ctx context.Context, params RetrieveFo
 	baseURL := f.client.BaseURL.String() + "v2/farcaster/followers"
 
 	values := map[string]interface{}{
-		"fid":        params.Fid,
-		"sort_type":  params.SortType,
-		"limit":      params.Limit,
-		"cursor":     params.Cursor,
+		"fid":       params.Fid,
+		"sort_type": params.SortType,
+		"limit":     params.Limit,
+		"cursor":    params.Cursor,
 	}
 
 	if params.ViewerFid > 0 {
@@ -71,19 +67,16 @@ func (f *FollowService) RetrieveFollowers(ctx context.Context, params RetrieveFo
 	}
 }
 
-
 type RetrieveRelevantFollowersParams struct {
-	TargetFid  uint32
-	ViewerFid  uint32
+	TargetFid uint32
+	ViewerFid uint32
 }
 
-
 type RetrieveRelevantFollowersResult struct {
-	TopRelevantFollowersHydrated any `json:"top_relevant_followers_hydrated"`
+	TopRelevantFollowersHydrated   any `json:"top_relevant_followers_hydrated"`
 	AllRelevantFollowersDehydrated any `json:"all_relevant_followers_dehydrated"`
 	ErrorResponse
 }
-
 
 func (f *FollowService) RetrieveRelevantFollowers(ctx context.Context, params RetrieveRelevantFollowersParams) (RetrieveRelevantFollowersResult, error) {
 	var result RetrieveRelevantFollowersResult
@@ -127,22 +120,19 @@ func (f *FollowService) RetrieveRelevantFollowers(ctx context.Context, params Re
 	}
 }
 
-
 type RetrieveFollowingParams struct {
-	Fid        int32
-	ViewerFid  int32
-	SortType   string
-	Limit      int
-	Cursor     string
+	Fid       int32
+	ViewerFid int32
+	SortType  string
+	Limit     int
+	Cursor    string
 }
 
-
 type RetrieveFollowingResult struct {
-	Users     []User `json:"users"`
+	Users []User `json:"users"`
 	ErrorResponse
 	Next Next `json:"next"`
 }
-
 
 func (f *FollowService) RetrieveFollowing(ctx context.Context, params RetrieveFollowingParams) (RetrieveFollowingResult, error) {
 	var result RetrieveFollowingResult
@@ -153,10 +143,10 @@ func (f *FollowService) RetrieveFollowing(ctx context.Context, params RetrieveFo
 	baseURL := f.client.BaseURL.String() + "v2/farcaster/following"
 
 	values := map[string]interface{}{
-		"fid":        params.Fid,
-		"sort_type":  params.SortType,
-		"limit":      params.Limit,
-		"cursor":     params.Cursor,
+		"fid":       params.Fid,
+		"sort_type": params.SortType,
+		"limit":     params.Limit,
+		"cursor":    params.Cursor,
 	}
 
 	if params.ViewerFid > 0 {
