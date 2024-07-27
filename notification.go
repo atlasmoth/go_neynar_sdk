@@ -120,7 +120,7 @@ func (n *NotificationService) RetrieveNotificationsParentUrl(ctx context.Context
 		return result, &RequiredFieldError{Field: "ParentUrls"}
 	}
 
-	baseURL := n.client.BaseURL.String() + "v2/farcaster/notifications/channel"
+	baseURL := n.client.BaseURL.String() + "v2/farcaster/notifications/parent_url"
 
 	values := map[string]any{"fid": params.Fid, "cursor": params.Cursor, "is_priority" : !params.IsNotPriority,"parent_urls" : params.ParentUrls}
 

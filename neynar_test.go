@@ -19,6 +19,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Feed = FeedService{client: client}
 	client.Cast = CastService{client: client}
 	client.Notification = NotificationService{client: client}
+	client.Follow = FollowService{client: client}
 	return client, server
 }
 

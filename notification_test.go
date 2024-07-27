@@ -321,7 +321,7 @@ func TestRetrieveNotificationsForChannels_NonPriority(t *testing.T) {
 }
 
 func TestRetrieveNotificationsParentUrl_Success(t *testing.T) {
-	expectedPath := "/v2/farcaster/notifications/channel"
+	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
 		"fid":          []string{"12345"},
 		"cursor":       []string{"test-cursor"},
@@ -393,7 +393,7 @@ func TestRetrieveNotificationsParentUrl_MissingParentUrls(t *testing.T) {
 }
 
 func TestRetrieveNotificationsParentUrl_ServerError(t *testing.T) {
-	expectedPath := "/v2/farcaster/notifications/channel"
+	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
 		"fid":          []string{"12345"},
 		"cursor":       []string{"test-cursor"},
@@ -427,7 +427,7 @@ func TestRetrieveNotificationsParentUrl_ServerError(t *testing.T) {
 }
 
 func TestRetrieveNotificationsParentUrl_BadRequest(t *testing.T) {
-	expectedPath := "/v2/farcaster/notifications/channel"
+	expectedPath := "/v2/farcaster/notifications/parent_url"
 	expectedParams := url.Values{
 		"fid":          []string{"12345"},
 		"cursor":       []string{"test-cursor"},

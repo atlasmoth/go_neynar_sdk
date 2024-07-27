@@ -65,6 +65,7 @@ type Client struct {
 	Feed       FeedService
 	Cast       CastService
 	Notification NotificationService
+	Follow      FollowService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -77,6 +78,9 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	}
 	c := &Client{HTTPClient: httpClient, BaseURL: baseURL, ApiKey: &apiKey}
 	c.Feed = FeedService{client: c}
+	c.Notification = NotificationService{client: c}
+	c.Cast = CastService{client: c}
+	c.Follow = FollowService{client: c}
 	return c,nil
 }
 
