@@ -23,6 +23,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Webhook = WebhookService{client: client}
 	client.Subscription = SubscriptionService{client: client}
 	client.Storage = StorageService{client: client}
+	client.Mute = MuteService{client: client}
 	return client, server
 }
 

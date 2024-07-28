@@ -1,13 +1,10 @@
 {
-  "/farcaster/storage/allocations": {
+  "/farcaster/mute/list": {
     "get": {
-      "tags": ["Storage"],
-      "summary": "Fetches storage allocations for a given user",
-      "description": "Fetches storage allocations for a given user",
-      "operationId": "storage-allocations",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/storage-allocations"
-      },
+      "tags": ["Mute"],
+      "summary": "Get fids that a user has muted",
+      "description": "Fetches all fids that a user has muted.",
+      "operationId": "mute-list",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
@@ -16,78 +13,64 @@
           "name": "fid",
           "in": "query",
           "required": true,
-          "example": 3,
           "schema": {
             "$ref": "#/components/schemas/Fid"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "A list of storage allocations",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StorageAllocationsResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "$ref": "#/components/responses/400Response"
-        }
-      }
-    }
-  },
-  "/farcaster/storage/usage": {
-    "get": {
-      "tags": ["Storage"],
-      "summary": "Fetches storage usage for a given user",
-      "description": "Fetches storage usage for a given user",
-      "operationId": "storage-usage",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/storage-usage"
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
+          },
+          "description": "The user's fid (identifier)",
+          "example": 194
         },
         {
-          "name": "fid",
+          "name": "limit",
           "in": "query",
-          "required": true,
-          "example": 3,
+          "description": "Number of results to retrieve (default 20, max 100).",
+          "required": false,
           "schema": {
-            "$ref": "#/components/schemas/Fid"
+            "type": "integer",
+            "default": 20,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "example": 20
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "description": "Pagination cursor.",
+          "required": false,
+          "schema": {
+            "type": "string"
           }
         }
       ],
       "responses": {
         "200": {
-          "description": "Details of storage usage",
+          "description": "successful operation",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StorageUsageResponse"
+                "$ref": "#/components/schemas/MuteListResponse"
               }
             }
           }
         },
         "400": {
           "$ref": "#/components/responses/400Response"
+        },
+        "404": {
+          "$ref": "#/components/responses/404Response"
+        },
+        "500": {
+          "$ref": "#/components/responses/500Response"
         }
       }
     }
   },
-  "/farcaster/storage/buy": {
+  "/farcaster/mute": {
     "post": {
-      "tags": ["Storage"],
-      "summary": "Buy storage for an fid",
-      "description": "This api will help you rent units of storage for an year for a specific fid.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.\n",
-      "operationId": "buy-storage",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/buy-storage"
-      },
+      "tags": ["Mute"],
+      "summary": "Adds a mute for a fid",
+      "description": "Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.",
+      "operationId": "add-mute",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
@@ -98,27 +81,69 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/BuyStorageReqBody"
+              "$ref": "#/components/schemas/MuteReqBody"
             }
           }
         }
       },
       "responses": {
         "200": {
-          "description": "Success",
+          "description": "successful operation",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StorageAllocationsResponse"
+                "$ref": "#/components/schemas/MuteResponse"
               }
             }
           }
         },
         "400": {
-          "$ref": "#/components/responses/400ZodResponse"
+          "$ref": "#/components/responses/400Response"
         },
-        "409": {
-          "$ref": "#/components/responses/409Response"
+        "404": {
+          "$ref": "#/components/responses/404Response"
+        },
+        "500": {
+          "$ref": "#/components/responses/500Response"
+        }
+      }
+    },
+    "delete": {
+      "tags": ["Mute"],
+      "summary": "Deletes a mute for a fid",
+      "description": "Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.",
+      "operationId": "delete-mute",
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MuteReqBody"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MuteResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
+        },
+        "404": {
+          "$ref": "#/components/responses/404Response"
         },
         "500": {
           "$ref": "#/components/responses/500Response"
@@ -128,131 +153,6 @@
   },
   "components": {
     "schemas": {
-      "BuyStorageReqBody": {
-        "type": "object",
-        "required": ["fid"],
-        "properties": {
-          "fid": {
-            "type": "integer",
-            "minimum": 1,
-            "example": 1
-          },
-          "units": {
-            "type": "integer",
-            "description": "Number of storage units to buy.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.\n",
-            "minimum": 1,
-            "example": 1
-          },
-          "idem": {
-            "$ref": "#/components/schemas/Idem"
-          }
-        }
-      },
-      "StorageAllocationsResponse": {
-        "type": "object",
-        "properties": {
-          "total_active_units": {
-            "type": "integer",
-            "example": 13
-          },
-          "allocations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StorageAllocation"
-            }
-          }
-        }
-      },
-      "StorageAllocation": {
-        "type": "object",
-        "properties": {
-          "object": {
-            "type": "string",
-            "example": "storage_allocation"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserDehydrated"
-          },
-          "units": {
-            "type": "integer",
-            "example": 10
-          },
-          "expiry": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2024-10-08T22:03:49.000Z"
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-10-09T22:03:49.000Z"
-          }
-        }
-      },
-      "StorageUsageResponse": {
-        "type": "object",
-        "properties": {
-          "object": {
-            "type": "string",
-            "example": "storage_usage"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserDehydrated"
-          },
-          "casts": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "reactions": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "links": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "verified_addresses": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "username_proofs": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "signers": {
-            "$ref": "#/components/schemas/StorageObject"
-          },
-          "total_active_units": {
-            "type": "integer",
-            "example": 2
-          }
-        }
-      },
-      "StorageObject": {
-        "type": "object",
-        "properties": {
-          "object": {
-            "type": "string",
-            "example": "storage"
-          },
-          "used": {
-            "type": "integer",
-            "example": 3659
-          },
-          "capacity": {
-            "type": "integer",
-            "example": 10000
-          }
-        }
-      },
-      "UserDehydrated": {
-        "type": "object",
-        "required": ["object", "fid"],
-        "properties": {
-          "object": {
-            "type": "string",
-            "enum": ["user_dehydrated"]
-          },
-          "fid": {
-            "$ref": "#/components/schemas/Fid"
-          }
-        }
-      },
       "Idem": {
         "type": "string",
         "description": "Idempotency key"
@@ -261,6 +161,62 @@
         "type": "integer",
         "format": "int32",
         "description": "User identifier (unsigned integer)"
+      },
+      "MuteReqBody": {
+        "type": "object",
+        "required": ["fid", "muted_fid"],
+        "properties": {
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "muted_fid": {
+            "$ref": "#/components/schemas/Fid"
+          }
+        }
+      },
+      "MuteListResponse": {
+        "type": "object",
+        "required": ["mutes", "next"],
+        "properties": {
+          "mutes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MuteList"
+            }
+          },
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          }
+        }
+      },
+      "MuteResponse": {
+        "type": "object",
+        "required": ["success"],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MuteList": {
+        "type": "object",
+        "required": ["object", "muted", "timestamp", "muted_at"],
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": ["mute"]
+          },
+          "muted": {
+            "$ref": "#/components/schemas/User"
+          },
+          "muted_at": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        }
       }
     }
   }

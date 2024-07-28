@@ -265,6 +265,7 @@ type StorageUsageResponse struct {
 	UsernameProofs   StorageObject    `json:"username_proofs"`
 	Signers          StorageObject    `json:"signers"`
 	TotalActiveUnits int              `json:"total_active_units"`
+    ErrorResponse
 }
 
 type StorageAllocation struct {
@@ -284,4 +285,10 @@ type StorageObject struct {
 type UserDehydrated struct {
 	Object string `json:"object"`
 	Fid    int32  `json:"fid"`
+}
+
+type MuteList struct {
+	Object   string `json:"object"`
+	Muted    User   `json:"muted"`
+	MutedAt  int64  `json:"muted_at"`
 }

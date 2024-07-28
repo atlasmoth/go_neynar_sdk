@@ -26,6 +26,7 @@ type BuyStorageParams struct {
 type StorageAllocationsResponse struct {
 	TotalActiveUnits int              `json:"total_active_units"`
 	Allocations      []StorageAllocation `json:"allocations"`
+	ErrorResponse
 }
 
 
