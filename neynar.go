@@ -12,6 +12,7 @@ import (
 
 type FilterType string
 type FeedType string
+type SubscriptionProvider string
 
 const (
 	libraryVersion = "0.0.1"
@@ -27,6 +28,8 @@ const (
 	GlobalTrending FilterType = "global_trending"
 	Following      FeedType   = "following"
 	Filter         FeedType   = "filter"
+	FabricStp SubscriptionProvider = "fabric_stp"
+	Paragraph  SubscriptionProvider = "paragraph"
 )
 
 type ErrorResponse struct {

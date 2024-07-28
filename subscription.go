@@ -19,7 +19,7 @@ type RetrieveSubscriptionsCreatedParams struct {
 
 
 type RetrieveSubscriptionsCreatedResult struct {
-	SubscriptionsCreated []Subscription `json:"subscriptions_created"`
+	SubscriptionsCreated []SubscriptionsCreated `json:"subscriptions_created"`
 	ErrorResponse
 }
 
@@ -32,7 +32,7 @@ type RetrieveSubscribedToParams struct {
 
 
 type RetrieveSubscribedToResult struct {
-	SubscribedTo []SubscribedTo `json:"subscribed_to"`
+	SubscribedTo []Subscription `json:"subscribed_to"`
 	ErrorResponse
 }
 
