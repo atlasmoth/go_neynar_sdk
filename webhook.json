@@ -1,13 +1,13 @@
 {
-  "/farcaster/user/subscriptions_created": {
+  "/farcaster/storage/allocations": {
     "get": {
-      "tags": ["Subscribers"],
-      "summary": "Fetch created subscriptions for a given fid",
-      "description": "Fetch created subscriptions for a given fid's.",
+      "tags": ["Storage"],
+      "summary": "Fetches storage allocations for a given user",
+      "description": "Fetches storage allocations for a given user",
+      "operationId": "storage-allocations",
       "externalDocs": {
-        "url": "https://docs.neynar.com/reference/subscriptions-created"
+        "url": "https://docs.neynar.com/reference/storage-allocations"
       },
-      "operationId": "subscriptions-created",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
@@ -16,28 +16,19 @@
           "name": "fid",
           "in": "query",
           "required": true,
-          "example": 528,
+          "example": 3,
           "schema": {
-            "default": 528,
             "$ref": "#/components/schemas/Fid"
-          }
-        },
-        {
-          "name": "subscription_provider",
-          "in": "query",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/SubscriptionProvider"
           }
         }
       ],
       "responses": {
         "200": {
-          "description": "Successful operation.",
+          "description": "A list of storage allocations",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscriptionsResponse"
+                "$ref": "#/components/schemas/StorageAllocationsResponse"
               }
             }
           }
@@ -48,15 +39,15 @@
       }
     }
   },
-  "/farcaster/user/subscribed_to": {
+  "/farcaster/storage/usage": {
     "get": {
-      "tags": ["Subscribers"],
-      "summary": "Fetch what a given fid is subscribed to",
-      "description": "Fetch what fids and contracts a fid is subscribed to.",
+      "tags": ["Storage"],
+      "summary": "Fetches storage usage for a given user",
+      "description": "Fetches storage usage for a given user",
+      "operationId": "storage-usage",
       "externalDocs": {
-        "url": "https://docs.neynar.com/reference/subscribed-to"
+        "url": "https://docs.neynar.com/reference/storage-usage"
       },
-      "operationId": "subscribed-to",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
@@ -65,37 +56,19 @@
           "name": "fid",
           "in": "query",
           "required": true,
-          "example": 3206,
-          "schema": {
-            "default": 3206,
-            "$ref": "#/components/schemas/Fid"
-          }
-        },
-        {
-          "name": "viewer_fid",
-          "in": "query",
-          "required": false,
           "example": 3,
           "schema": {
             "$ref": "#/components/schemas/Fid"
-          }
-        },
-        {
-          "name": "subscription_provider",
-          "in": "query",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/SubscriptionProvider"
           }
         }
       ],
       "responses": {
         "200": {
-          "description": "Successful operation.",
+          "description": "Details of storage usage",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribedToResponse"
+                "$ref": "#/components/schemas/StorageUsageResponse"
               }
             }
           }
@@ -106,346 +79,183 @@
       }
     }
   },
-  "/farcaster/user/subscribers": {
-    "get": {
-      "tags": ["Subscribers"],
-      "summary": "Fetch subscribers for a given fid",
-      "description": "Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.",
+  "/farcaster/storage/buy": {
+    "post": {
+      "tags": ["Storage"],
+      "summary": "Buy storage for an fid",
+      "description": "This api will help you rent units of storage for an year for a specific fid.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.\n",
+      "operationId": "buy-storage",
       "externalDocs": {
-        "url": "https://docs.neynar.com/reference/subscribers"
+        "url": "https://docs.neynar.com/reference/buy-storage"
       },
-      "operationId": "subscribers",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
-        },
-        {
-          "name": "fid",
-          "in": "query",
-          "required": true,
-          "example": 3206,
-          "schema": {
-            "default": 3206,
-            "$ref": "#/components/schemas/Fid"
-          }
-        },
-        {
-          "name": "viewer_fid",
-          "in": "query",
-          "required": false,
-          "example": 3,
-          "schema": {
-            "$ref": "#/components/schemas/Fid"
-          }
-        },
-        {
-          "name": "subscription_provider",
-          "in": "query",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/SubscriptionProviders"
-          }
         }
       ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BuyStorageReqBody"
+            }
+          }
+        }
+      },
       "responses": {
         "200": {
-          "description": "Successful operation.",
+          "description": "Success",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersResponse"
+                "$ref": "#/components/schemas/StorageAllocationsResponse"
               }
             }
           }
         },
         "400": {
-          "$ref": "#/components/responses/400Response"
+          "$ref": "#/components/responses/400ZodResponse"
+        },
+        "409": {
+          "$ref": "#/components/responses/409Response"
+        },
+        "500": {
+          "$ref": "#/components/responses/500Response"
         }
       }
     }
   },
   "components": {
     "schemas": {
-      "SubscriptionProviders": {
-        "type": "string",
-        "enum": ["fabric_stp", "paragraph"],
-        "description": "The provider of the subscription.\n"
-      },
-      "SubscriptionProvider": {
-        "type": "string",
-        "enum": ["fabric_stp"],
-        "description": "The provider of the subscription.\n"
-      },
-      "SubscriptionTier": {
+      "BuyStorageReqBody": {
         "type": "object",
+        "required": ["fid"],
         "properties": {
-          "id": {
+          "fid": {
             "type": "integer",
+            "minimum": 1,
             "example": 1
           },
-          "price": {
-            "type": "object",
-            "properties": {
-              "period_duration_seconds": {
-                "type": "integer",
-                "example": 2592000
-              },
-              "tokens_per_period": {
-                "type": "string",
-                "example": "3000000000000000"
-              },
-              "initial_mint_price": {
-                "type": "string",
-                "example": "0"
-              }
+          "units": {
+            "type": "integer",
+            "description": "Number of storage units to buy.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.\n",
+            "minimum": 1,
+            "example": 1
+          },
+          "idem": {
+            "$ref": "#/components/schemas/Idem"
+          }
+        }
+      },
+      "StorageAllocationsResponse": {
+        "type": "object",
+        "properties": {
+          "total_active_units": {
+            "type": "integer",
+            "example": 13
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StorageAllocation"
             }
           }
         }
       },
-      "SubscribedTo": {
+      "StorageAllocation": {
         "type": "object",
-        "required": [
-          "object",
-          "user",
-          "expires_at",
-          "subscribed_at",
-          "tier",
-          "creator"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Subscription"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "expires_at": {
-                "type": "string",
-                "format": "date-time",
-                "example": "2023-09-13T22:10:22.000Z"
-              },
-              "subscribed_at": {
-                "type": "string",
-                "format": "date-time",
-                "example": "2023-09-13T22:10:22.000Z"
-              },
-              "tier": {
-                "$ref": "#/components/schemas/SubscriptionTier"
-              },
-              "creator": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        ]
-      },
-      "Subscriber": {
-        "type": "object",
-        "required": ["object", "user", "subscribed_to"],
         "properties": {
           "object": {
             "type": "string",
-            "example": "subscriber"
+            "example": "storage_allocation"
           },
           "user": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/UserDehydrated"
           },
-          "subscribed_to": {
-            "$ref": "#/components/schemas/SubscribedToObject"
-          }
-        }
-      },
-      "Subscriptions": {
-        "type": "object",
-        "required": ["object", "subscriptions_created"],
-        "properties": {
-          "object": {
-            "type": "string"
-          },
-          "subscriptions_created": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subscription"
-            }
-          }
-        }
-      },
-      "Subscription": {
-        "type": "object",
-        "required": [
-          "object",
-          "contract_address",
-          "chain",
-          "metadata",
-          "owner_address",
-          "price",
-          "protocol_version",
-          "token"
-        ],
-        "properties": {
-          "object": {
-            "type": "string",
-            "example": "subscription"
-          },
-          "provider_name": {
-            "type": "string",
-            "example": "fabric_stp"
-          },
-          "contract_address": {
-            "type": "string",
-            "example": "0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58"
-          },
-          "chain": {
+          "units": {
             "type": "integer",
-            "example": 8453
+            "example": 10
           },
-          "metadata": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string",
-                "example": "/memes channel sub"
-              },
-              "symbol": {
-                "type": "string",
-                "example": "MMS"
-              },
-              "art_url": {
-                "type": "string",
-                "example": "https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg"
-              }
-            },
-            "required": ["title", "symbol", "art_url"]
-          },
-          "owner_address": {
-            "type": "string",
-            "example": "0xb6f6dce6000ca88cc936b450cedb16a5c15f157f"
-          },
-          "price": {
-            "type": "object",
-            "properties": {
-              "period_duration_seconds": {
-                "type": "integer",
-                "example": 2592000
-              },
-              "tokens_per_period": {
-                "type": "string",
-                "example": "350574998400000"
-              },
-              "initial_mint_price": {
-                "type": "string",
-                "example": "0"
-              }
-            },
-            "required": [
-              "period_duration_seconds",
-              "tokens_per_period",
-              "initial_mint_price"
-            ]
-          },
-          "tiers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubscriptionTier"
-            }
-          },
-          "protocol_version": {
-            "type": "integer",
-            "example": 1
-          },
-          "token": {
-            "type": "object",
-            "properties": {
-              "symbol": {
-                "type": "string",
-                "example": "ETH"
-              },
-              "address": {
-                "type": "string",
-                "nullable": true,
-                "example": null
-              },
-              "decimals": {
-                "type": "integer",
-                "example": 18
-              },
-              "erc20": {
-                "type": "boolean",
-                "example": false
-              }
-            },
-            "required": ["symbol", "address", "decimals", "erc20"]
-          }
-        }
-      },
-      "SubscribedToObject": {
-        "type": "object",
-        "properties": {
-          "object": {
-            "type": "string",
-            "example": "subscription_dehydrated"
-          },
-          "provider_name": {
-            "type": "string",
-            "example": "fabric_stp"
-          },
-          "contract_address": {
-            "type": "string",
-            "example": "0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac"
-          },
-          "chain": {
-            "type": "integer",
-            "example": 8453
-          },
-          "expires_at": {
+          "expiry": {
             "type": "string",
             "format": "date-time",
-            "example": "2023-09-13T22:10:22.000Z"
+            "example": "2024-10-08T22:03:49.000Z"
           },
-          "subscribed_at": {
+          "timestamp": {
             "type": "string",
             "format": "date-time",
-            "example": "2023-09-13T22:10:22.000Z"
-          },
-          "tier_id": {
+            "example": "2023-10-09T22:03:49.000Z"
+          }
+        }
+      },
+      "StorageUsageResponse": {
+        "type": "object",
+        "properties": {
+          "object": {
             "type": "string",
-            "example": "0"
+            "example": "storage_usage"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDehydrated"
+          },
+          "casts": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "reactions": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "links": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "verified_addresses": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "username_proofs": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "signers": {
+            "$ref": "#/components/schemas/StorageObject"
+          },
+          "total_active_units": {
+            "type": "integer",
+            "example": 2
           }
-        },
-        "required": ["object", "provider_name"]
+        }
       },
-      "SubscribersResponse": {
+      "StorageObject": {
         "type": "object",
         "properties": {
-          "subscribers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subscriber"
-            }
+          "object": {
+            "type": "string",
+            "example": "storage"
+          },
+          "used": {
+            "type": "integer",
+            "example": 3659
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 10000
           }
         }
       },
-      "SubscribedToResponse": {
+      "UserDehydrated": {
         "type": "object",
+        "required": ["object", "fid"],
         "properties": {
-          "subscribed_to": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubscribedTo"
-            }
+          "object": {
+            "type": "string",
+            "enum": ["user_dehydrated"]
+          },
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
           }
         }
       },
-      "SubscriptionsResponse": {
-        "type": "object",
-        "properties": {
-          "subscriptions_created": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Subscriptions"
-            }
-          }
-        }
+      "Idem": {
+        "type": "string",
+        "description": "Idempotency key"
       },
       "Fid": {
         "type": "integer",

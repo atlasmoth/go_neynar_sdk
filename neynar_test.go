@@ -22,6 +22,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Follow = FollowService{client: client}
 	client.Webhook = WebhookService{client: client}
 	client.Subscription = SubscriptionService{client: client}
+	client.Storage = StorageService{client: client}
 	return client, server
 }
 

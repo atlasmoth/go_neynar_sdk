@@ -253,3 +253,35 @@ type SubscriptionsCreated struct {
 	Object                string         `json:"object"`
 	SubscriptionsCreated []Subscription `json:"subscriptions_created"`
 }
+
+
+type StorageUsageResponse struct {
+	Object           string           `json:"object"`
+	User             UserDehydrated   `json:"user"`
+	Casts            StorageObject    `json:"casts"`
+	Reactions        StorageObject    `json:"reactions"`
+	Links            StorageObject    `json:"links"`
+	VerifiedAddresses StorageObject   `json:"verified_addresses"`
+	UsernameProofs   StorageObject    `json:"username_proofs"`
+	Signers          StorageObject    `json:"signers"`
+	TotalActiveUnits int              `json:"total_active_units"`
+}
+
+type StorageAllocation struct {
+	Object    string         `json:"object"`
+	User      UserDehydrated `json:"user"`
+	Units     int            `json:"units"`
+	Expiry    string         `json:"expiry"`
+	Timestamp string         `json:"timestamp"`
+}
+
+type StorageObject struct {
+	Object   string `json:"object"`
+	Used     int    `json:"used"`
+	Capacity int    `json:"capacity"`
+}
+
+type UserDehydrated struct {
+	Object string `json:"object"`
+	Fid    int32  `json:"fid"`
+}

@@ -71,6 +71,7 @@ type Client struct {
 	Follow      FollowService
 	Webhook    WebhookService
 	Subscription SubscriptionService
+	Storage     StorageService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -88,6 +89,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Follow = FollowService{client: c}
 	c.Webhook = WebhookService{client: c}
 	c.Subscription = SubscriptionService{client: c}
+	c.Storage = StorageService{client: c}
 	return c,nil
 }
 
