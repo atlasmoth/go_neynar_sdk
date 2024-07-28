@@ -1,0 +1,531 @@
+{
+  "/farcaster/webhook": {
+    "get": {
+      "tags": ["Webhook"],
+      "summary": "Fetch a webhook",
+      "description": "Fetch a webhook",
+      "operationId": "lookup-webhook",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/lookup-webhook"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        },
+        {
+          "name": "webhook_id",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Details of a webhook",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookResponse"
+              }
+            }
+          }
+        },
+        "404": {
+          "$ref": "#/components/responses/404Response"
+        }
+      }
+    },
+    "post": {
+      "tags": ["Webhook"],
+      "summary": "Create a webhook",
+      "description": "Create a webhook",
+      "operationId": "publish-webhook",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/publish-webhook"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WebhookPostReqBody"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Created webhook",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
+        },
+        "404": {
+          "$ref": "#/components/responses/404Response"
+        }
+      }
+    },
+    "patch": {
+      "tags": ["Webhook"],
+      "summary": "Update webhook active status",
+      "description": "Update webhook active status",
+      "operationId": "update-webhook-active-status",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/update-webhook-active-status"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WebhookPatchReqBody"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Updated webhook",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
+        }
+      }
+    },
+    "put": {
+      "tags": ["Webhook"],
+      "summary": "Update a webhook",
+      "description": "Update a webhook",
+      "operationId": "update-webhook",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/update-webhook"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WebhookPutReqBody"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Updated webhook",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
+        }
+      }
+    },
+    "delete": {
+      "tags": ["Webhook"],
+      "summary": "Delete a webhook",
+      "description": "Delete a webhook",
+      "operationId": "delete-webhook",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/delete-webhook"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WebhookDeleteReqBody"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Deleted webhook status message",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookResponse"
+              }
+            }
+          }
+        },
+        "404": {
+          "$ref": "#/components/responses/404Response"
+        }
+      }
+    }
+  },
+  "/farcaster/webhook/list": {
+    "get": {
+      "tags": ["Webhook"],
+      "summary": "Fetch a list of webhooks associated to a user",
+      "description": "Fetch a list of webhooks associated to a user",
+      "operationId": "fetch-webhooks",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/fetch-webhooks"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "List of webhooks",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookListResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WebhookListResponse": {
+        "type": "object",
+        "required": ["webhooks"],
+        "properties": {
+          "webhooks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Webhook"
+            }
+          }
+        }
+      },
+      "WebhookResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "webhook": {
+            "$ref": "#/components/schemas/Webhook"
+          }
+        }
+      },
+      "Webhook": {
+        "type": "object",
+        "required": [
+          "object",
+          "webhook_id",
+          "developer_uuid",
+          "target_url",
+          "title",
+          "secrets",
+          "description",
+          "http_timeout",
+          "rate_limit",
+          "active",
+          "rate_limit_duration",
+          "created_at",
+          "updated_at",
+          "deleted_at"
+        ],
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": ["webhook"]
+          },
+          "webhook_id": {
+            "type": "string"
+          },
+          "developer_uuid": {
+            "type": "string"
+          },
+          "target_url": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "secrets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookSecret"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "http_timeout": {
+            "type": "string"
+          },
+          "rate_limit": {
+            "type": "integer"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "rate_limit_duration": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/WebhookSubscription"
+          }
+        }
+      },
+      "WebhookPostReqBody": {
+        "type": "object",
+        "required": ["name", "url"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFilters"
+          }
+        }
+      },
+      "WebhookPatchReqBody": {
+        "type": "object",
+        "required": ["webhook_id", "active"],
+        "properties": {
+          "webhook_id": {
+            "type": "string"
+          },
+          "active": {
+            "type": "string",
+            "enum": ["true", "false"]
+          }
+        }
+      },
+      "WebhookPutReqBody": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WebhookPostReqBody"
+          },
+          {
+            "required": ["webhook_id"],
+            "properties": {
+              "webhook_id": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "WebhookDeleteReqBody": {
+        "type": "object",
+        "required": ["webhook_id"],
+        "properties": {
+          "webhook_id": {
+            "type": "string"
+          }
+        }
+      },
+      "WebhookSubscription": {
+        "type": "object",
+        "required": [
+          "object",
+          "subscription_id",
+          "filters",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": ["webhook_subscription"]
+          },
+          "subscription_id": {
+            "type": "string"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFilters"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "WebhookSubscriptionFiltersFollow": {
+        "type": "object",
+        "properties": {
+          "fids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "target_fids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "WebhookSubscriptionFiltersReaction": {
+        "type": "object",
+        "properties": {
+          "fids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "target_fids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "WebhookSubscriptionFilters": {
+        "type": "object",
+        "properties": {
+          "cast.created": {
+            "type": "object",
+            "properties": {
+              "exclude_author_fids": {
+                "description": "Exclude casts that matches these authors.\n**Note:**\nThis is applied as an AND operation against rest of the filters.\nRest of the filters are bundled as an OR operation.\n",
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "author_fids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "mentioned_fids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "parent_urls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "root_parent_urls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "parent_author_fids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "text": {
+                "type": "string",
+                "description": "Regex pattern to match the text key of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen\n",
+                "example": "(?i)\\$degen"
+              },
+              "embeds": {
+                "type": "string",
+                "description": "Regex pattern to match the embeded_url (key embeds) of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b\n",
+                "example": "\\b(farcaster|neynar)\\b"
+              }
+            }
+          },
+          "user.created": {
+            "type": "object"
+          },
+          "user.updated": {
+            "type": "object",
+            "properties": {
+              "fids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "follow.created": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
+          },
+          "follow.deleted": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
+          },
+          "reaction.created": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
+          },
+          "reaction.deleted": {
+            "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
+          }
+        }
+      }
+    }
+  }
+}

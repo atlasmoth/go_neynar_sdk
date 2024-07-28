@@ -138,3 +138,30 @@ type Notification struct {
 	Follows             []Follow  `json:"follows"`
 	Reactions           []Reaction `json:"reactions"`
 }
+
+
+type WebhookSecret struct {
+    UID       string    `json:"uid"`
+    Value     string    `json:"value"`
+    ExpiresAt time.Time `json:"expires_at"`
+    CreatedAt time.Time `json:"created_at"`
+    UpdatedAt time.Time `json:"updated_at"`
+    DeletedAt time.Time `json:"deleted_at"`
+}
+type Webhook struct {
+    Object             string               `json:"object"`
+    WebhookID          string               `json:"webhook_id"`
+    DeveloperUUID      string               `json:"developer_uuid"`
+    TargetURL          string               `json:"target_url"`
+    Title              string               `json:"title"`
+    Secrets            []WebhookSecret      `json:"secrets"`
+    Description        string               `json:"description"`
+    HTTPTimeout        string               `json:"http_timeout"`
+    RateLimit          int                  `json:"rate_limit"`
+    Active             bool                 `json:"active"`
+    RateLimitDuration  string               `json:"rate_limit_duration"`
+    CreatedAt          time.Time            `json:"created_at"`
+    UpdatedAt          time.Time            `json:"updated_at"`
+    DeletedAt          time.Time            `json:"deleted_at"`
+    Subscription       WebhookSubscription  `json:"subscription,omitempty"`
+}
