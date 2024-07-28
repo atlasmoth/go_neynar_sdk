@@ -165,3 +165,11 @@ type Webhook struct {
     DeletedAt          time.Time            `json:"deleted_at"`
     Subscription       WebhookSubscription  `json:"subscription,omitempty"`
 }
+
+type WebhookSubscription struct {
+	Object         string                       `json:"object"`
+	SubscriptionID string                       `json:"subscription_id"`
+	Filters        WebhookSubscriptionFilters   `json:"filters"`
+	CreatedAt      time.Time                    `json:"created_at"`
+	UpdatedAt      time.Time                    `json:"updated_at"`
+}

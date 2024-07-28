@@ -66,6 +66,7 @@ type Client struct {
 	Cast       CastService
 	Notification NotificationService
 	Follow      FollowService
+	Webhook    WebhookService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -81,6 +82,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Notification = NotificationService{client: c}
 	c.Cast = CastService{client: c}
 	c.Follow = FollowService{client: c}
+	c.Webhook = WebhookService{client: c}
 	return c,nil
 }
 
