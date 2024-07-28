@@ -52,6 +52,9 @@ func (s *StorageService) FetchStorageAllocations(ctx context.Context, params Fet
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -83,6 +86,9 @@ func (s *StorageService) FetchStorageUsage(ctx context.Context, params FetchStor
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -116,6 +122,9 @@ func (s *StorageService) BuyStorage(ctx context.Context, params BuyStorageParams
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {

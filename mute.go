@@ -69,6 +69,9 @@ func (s *MuteService) FetchMuteList(ctx context.Context, params FetchMuteListPar
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -105,6 +108,9 @@ func (s *MuteService) AddMute(ctx context.Context, params AddMuteParams) (MuteRe
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -140,6 +146,9 @@ func (s *MuteService) DeleteMute(ctx context.Context, params DeleteMuteParams) (
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {

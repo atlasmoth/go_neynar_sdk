@@ -24,6 +24,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Subscription = SubscriptionService{client: client}
 	client.Storage = StorageService{client: client}
 	client.Mute = MuteService{client: client}
+	client.Fname = FnameService{client: client}
 	return client, server
 }
 

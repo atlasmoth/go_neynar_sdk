@@ -14,6 +14,7 @@ type WebhookResponse struct {
 	Message string   `json:"message,omitempty"`
 	Success bool     `json:"success,omitempty"`
 	Webhook *Webhook `json:"webhook,omitempty"`
+	ErrorResponse
 }
 
 type GetWebhookParams struct {
@@ -44,8 +45,11 @@ func (s *WebhookService) GetWebhook(ctx context.Context, params GetWebhookParams
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
-	} else  {
+	} else {
 		var errorResponse ErrorResponse
 		err = s.client.HandleJsonResponse(resp, &errorResponse)
 		if err != nil {
@@ -87,6 +91,9 @@ func (s *WebhookService) CreateWebhook(ctx context.Context, params WebhookParams
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -116,6 +123,9 @@ func (s *WebhookService) UpdateWebhookActiveStatus(ctx context.Context, params W
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -153,8 +163,11 @@ func (s *WebhookService) UpdateWebhook(ctx context.Context, params WebhookParams
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
-	} else  {
+	} else {
 		var errorResponse ErrorResponse
 		err = s.client.HandleJsonResponse(resp, &errorResponse)
 		if err != nil {
@@ -229,6 +242,9 @@ func (s *WebhookService) DeleteWebhook(ctx context.Context, webhookID string) (W
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {

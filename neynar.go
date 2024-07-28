@@ -73,6 +73,7 @@ type Client struct {
 	Subscription SubscriptionService
 	Storage     StorageService
 	Mute        MuteService
+	Fname 		FnameService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -92,6 +93,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Subscription = SubscriptionService{client: c}
 	c.Storage = StorageService{client: c}
 	c.Mute = MuteService{client: c}
+	c.Fname = FnameService{client: c}
 	return c,nil
 }
 
