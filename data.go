@@ -173,3 +173,63 @@ type WebhookSubscription struct {
 	CreatedAt      time.Time                    `json:"created_at"`
 	UpdatedAt      time.Time                    `json:"updated_at"`
 }
+
+type Subscription struct {
+	Object          string      `json:"object"`
+	ContractAddress string      `json:"contract_address"`
+	Chain           int32       `json:"chain"`
+	Metadata        Metadata    `json:"metadata"`
+	OwnerAddress    string      `json:"owner_address"`
+	Price           Price       `json:"price"`
+	ProtocolVersion int32       `json:"protocol_version"`
+	Token           Token       `json:"token"`
+	Tiers           []Tier      `json:"tiers"`
+	ProviderName    string      `json:"provider_name"`
+}
+
+type Metadata struct {
+	Title  string `json:"title"`
+	Symbol string `json:"symbol"`
+	ArtURL string `json:"art_url"`
+}
+
+
+type Price struct {
+	PeriodDurationSeconds int32  `json:"period_duration_seconds"`
+	TokensPerPeriod       string `json:"tokens_per_period"`
+	InitialMintPrice      string `json:"initial_mint_price"`
+}
+
+type Token struct {
+	Symbol   string `json:"symbol"`
+	Address  string `json:"address,omitempty"`
+	Decimals int32  `json:"decimals"`
+	ERC20    bool   `json:"erc20"`
+}
+
+
+
+type Tier struct {
+	ID                  int32  `json:"id"`
+	PeriodDurationSeconds int32 `json:"period_duration_seconds"`
+	TokensPerPeriod     string `json:"tokens_per_period"`
+	InitialMintPrice    string `json:"initial_mint_price"`
+}
+
+type SubscribedTo struct {
+	Object        string `json:"object"`
+	ExpiresAt     string `json:"expires_at"`
+	SubscribedAt  string `json:"subscribed_at"`
+	Tier          Tier   `json:"tier"`
+	Creator       User   `json:"creator"`
+	ProviderName  string `json:"provider_name"`
+	ContractAddress string `json:"contract_address"`
+	Chain         int32  `json:"chain"`
+}
+
+
+type Subscriber struct {
+	Object       string      `json:"object"`
+	User         User        `json:"user"`
+	SubscribedTo SubscribedTo `json:"subscribed_to"`
+}

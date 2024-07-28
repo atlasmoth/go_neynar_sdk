@@ -1,530 +1,456 @@
 {
-  "/farcaster/webhook": {
+  "/farcaster/user/subscriptions_created": {
     "get": {
-      "tags": ["Webhook"],
-      "summary": "Fetch a webhook",
-      "description": "Fetch a webhook",
-      "operationId": "lookup-webhook",
+      "tags": ["Subscribers"],
+      "summary": "Fetch created subscriptions for a given fid",
+      "description": "Fetch created subscriptions for a given fid's.",
       "externalDocs": {
-        "url": "https://docs.neynar.com/reference/lookup-webhook"
+        "url": "https://docs.neynar.com/reference/subscriptions-created"
       },
+      "operationId": "subscriptions-created",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
         },
         {
-          "name": "webhook_id",
+          "name": "fid",
+          "in": "query",
+          "required": true,
+          "example": 528,
+          "schema": {
+            "default": 528,
+            "$ref": "#/components/schemas/Fid"
+          }
+        },
+        {
+          "name": "subscription_provider",
           "in": "query",
           "required": true,
           "schema": {
-            "type": "string"
+            "$ref": "#/components/schemas/SubscriptionProvider"
           }
         }
       ],
       "responses": {
         "200": {
-          "description": "Details of a webhook",
+          "description": "Successful operation.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WebhookResponse"
-              }
-            }
-          }
-        },
-        "404": {
-          "$ref": "#/components/responses/404Response"
-        }
-      }
-    },
-    "post": {
-      "tags": ["Webhook"],
-      "summary": "Create a webhook",
-      "description": "Create a webhook",
-      "operationId": "publish-webhook",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/publish-webhook"
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/WebhookPostReqBody"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Created webhook",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookResponse"
+                "$ref": "#/components/schemas/SubscriptionsResponse"
               }
             }
           }
         },
         "400": {
           "$ref": "#/components/responses/400Response"
-        },
-        "404": {
-          "$ref": "#/components/responses/404Response"
-        }
-      }
-    },
-    "patch": {
-      "tags": ["Webhook"],
-      "summary": "Update webhook active status",
-      "description": "Update webhook active status",
-      "operationId": "update-webhook-active-status",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/update-webhook-active-status"
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/WebhookPatchReqBody"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Updated webhook",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "$ref": "#/components/responses/400Response"
-        }
-      }
-    },
-    "put": {
-      "tags": ["Webhook"],
-      "summary": "Update a webhook",
-      "description": "Update a webhook",
-      "operationId": "update-webhook",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/update-webhook"
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/WebhookPutReqBody"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Updated webhook",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "$ref": "#/components/responses/400Response"
-        }
-      }
-    },
-    "delete": {
-      "tags": ["Webhook"],
-      "summary": "Delete a webhook",
-      "description": "Delete a webhook",
-      "operationId": "delete-webhook",
-      "externalDocs": {
-        "url": "https://docs.neynar.com/reference/delete-webhook"
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/WebhookDeleteReqBody"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Deleted webhook status message",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookResponse"
-              }
-            }
-          }
-        },
-        "404": {
-          "$ref": "#/components/responses/404Response"
         }
       }
     }
   },
-  "/farcaster/webhook/list": {
+  "/farcaster/user/subscribed_to": {
     "get": {
-      "tags": ["Webhook"],
-      "summary": "Fetch a list of webhooks associated to a user",
-      "description": "Fetch a list of webhooks associated to a user",
-      "operationId": "fetch-webhooks",
+      "tags": ["Subscribers"],
+      "summary": "Fetch what a given fid is subscribed to",
+      "description": "Fetch what fids and contracts a fid is subscribed to.",
       "externalDocs": {
-        "url": "https://docs.neynar.com/reference/fetch-webhooks"
+        "url": "https://docs.neynar.com/reference/subscribed-to"
       },
+      "operationId": "subscribed-to",
       "parameters": [
         {
           "$ref": "#/components/parameters/ApiKey"
+        },
+        {
+          "name": "fid",
+          "in": "query",
+          "required": true,
+          "example": 3206,
+          "schema": {
+            "default": 3206,
+            "$ref": "#/components/schemas/Fid"
+          }
+        },
+        {
+          "name": "viewer_fid",
+          "in": "query",
+          "required": false,
+          "example": 3,
+          "schema": {
+            "$ref": "#/components/schemas/Fid"
+          }
+        },
+        {
+          "name": "subscription_provider",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/SubscriptionProvider"
+          }
         }
       ],
       "responses": {
         "200": {
-          "description": "List of webhooks",
+          "description": "Successful operation.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WebhookListResponse"
+                "$ref": "#/components/schemas/SubscribedToResponse"
               }
             }
           }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
+        }
+      }
+    }
+  },
+  "/farcaster/user/subscribers": {
+    "get": {
+      "tags": ["Subscribers"],
+      "summary": "Fetch subscribers for a given fid",
+      "description": "Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.",
+      "externalDocs": {
+        "url": "https://docs.neynar.com/reference/subscribers"
+      },
+      "operationId": "subscribers",
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ApiKey"
+        },
+        {
+          "name": "fid",
+          "in": "query",
+          "required": true,
+          "example": 3206,
+          "schema": {
+            "default": 3206,
+            "$ref": "#/components/schemas/Fid"
+          }
+        },
+        {
+          "name": "viewer_fid",
+          "in": "query",
+          "required": false,
+          "example": 3,
+          "schema": {
+            "$ref": "#/components/schemas/Fid"
+          }
+        },
+        {
+          "name": "subscription_provider",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/SubscriptionProviders"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribersResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "$ref": "#/components/responses/400Response"
         }
       }
     }
   },
   "components": {
     "schemas": {
-      "WebhookListResponse": {
+      "SubscriptionProviders": {
+        "type": "string",
+        "enum": ["fabric_stp", "paragraph"],
+        "description": "The provider of the subscription.\n"
+      },
+      "SubscriptionProvider": {
+        "type": "string",
+        "enum": ["fabric_stp"],
+        "description": "The provider of the subscription.\n"
+      },
+      "SubscriptionTier": {
         "type": "object",
-        "required": ["webhooks"],
         "properties": {
-          "webhooks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Webhook"
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "period_duration_seconds": {
+                "type": "integer",
+                "example": 2592000
+              },
+              "tokens_per_period": {
+                "type": "string",
+                "example": "3000000000000000"
+              },
+              "initial_mint_price": {
+                "type": "string",
+                "example": "0"
+              }
             }
           }
         }
       },
-      "WebhookResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "success": {
-            "type": "boolean"
-          },
-          "webhook": {
-            "$ref": "#/components/schemas/Webhook"
-          }
-        }
-      },
-      "Webhook": {
+      "SubscribedTo": {
         "type": "object",
         "required": [
           "object",
-          "webhook_id",
-          "developer_uuid",
-          "target_url",
-          "title",
-          "secrets",
-          "description",
-          "http_timeout",
-          "rate_limit",
-          "active",
-          "rate_limit_duration",
-          "created_at",
-          "updated_at",
-          "deleted_at"
+          "user",
+          "expires_at",
+          "subscribed_at",
+          "tier",
+          "creator"
         ],
-        "properties": {
-          "object": {
-            "type": "string",
-            "enum": ["webhook"]
-          },
-          "webhook_id": {
-            "type": "string"
-          },
-          "developer_uuid": {
-            "type": "string"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "secrets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WebhookSecret"
-            }
-          },
-          "description": {
-            "type": "string"
-          },
-          "http_timeout": {
-            "type": "string"
-          },
-          "rate_limit": {
-            "type": "integer"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "rate_limit_duration": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "deleted_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "subscription": {
-            "$ref": "#/components/schemas/WebhookSubscription"
-          }
-        }
-      },
-      "WebhookPostReqBody": {
-        "type": "object",
-        "required": ["name", "url"],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "subscription": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFilters"
-          }
-        }
-      },
-      "WebhookPatchReqBody": {
-        "type": "object",
-        "required": ["webhook_id", "active"],
-        "properties": {
-          "webhook_id": {
-            "type": "string"
-          },
-          "active": {
-            "type": "string",
-            "enum": ["true", "false"]
-          }
-        }
-      },
-      "WebhookPutReqBody": {
-        "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/WebhookPostReqBody"
+            "$ref": "#/components/schemas/Subscription"
           },
           {
-            "required": ["webhook_id"],
+            "type": "object",
             "properties": {
-              "webhook_id": {
-                "type": "string"
+              "expires_at": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-09-13T22:10:22.000Z"
+              },
+              "subscribed_at": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-09-13T22:10:22.000Z"
+              },
+              "tier": {
+                "$ref": "#/components/schemas/SubscriptionTier"
+              },
+              "creator": {
+                "$ref": "#/components/schemas/User"
               }
             }
           }
         ]
       },
-      "WebhookDeleteReqBody": {
+      "Subscriber": {
         "type": "object",
-        "required": ["webhook_id"],
+        "required": ["object", "user", "subscribed_to"],
         "properties": {
-          "webhook_id": {
-            "type": "string"
+          "object": {
+            "type": "string",
+            "example": "subscriber"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "subscribed_to": {
+            "$ref": "#/components/schemas/SubscribedToObject"
           }
         }
       },
-      "WebhookSubscription": {
+      "Subscriptions": {
+        "type": "object",
+        "required": ["object", "subscriptions_created"],
+        "properties": {
+          "object": {
+            "type": "string"
+          },
+          "subscriptions_created": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscription"
+            }
+          }
+        }
+      },
+      "Subscription": {
         "type": "object",
         "required": [
           "object",
-          "subscription_id",
-          "filters",
-          "created_at",
-          "updated_at"
+          "contract_address",
+          "chain",
+          "metadata",
+          "owner_address",
+          "price",
+          "protocol_version",
+          "token"
         ],
         "properties": {
           "object": {
             "type": "string",
-            "enum": ["webhook_subscription"]
+            "example": "subscription"
           },
-          "subscription_id": {
-            "type": "string"
-          },
-          "filters": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFilters"
-          },
-          "created_at": {
+          "provider_name": {
             "type": "string",
-            "format": "date-time"
+            "example": "fabric_stp"
           },
-          "updated_at": {
+          "contract_address": {
             "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "WebhookSubscriptionFiltersFollow": {
-        "type": "object",
-        "properties": {
-          "fids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "example": "0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58"
           },
-          "target_fids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        }
-      },
-      "WebhookSubscriptionFiltersReaction": {
-        "type": "object",
-        "properties": {
-          "fids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+          "chain": {
+            "type": "integer",
+            "example": 8453
           },
-          "target_fids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        }
-      },
-      "WebhookSubscriptionFilters": {
-        "type": "object",
-        "properties": {
-          "cast.created": {
+          "metadata": {
             "type": "object",
             "properties": {
-              "exclude_author_fids": {
-                "description": "Exclude casts that matches these authors.\n**Note:**\nThis is applied as an AND operation against rest of the filters.\nRest of the filters are bundled as an OR operation.\n",
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
-              },
-              "author_fids": {
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
-              },
-              "mentioned_fids": {
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
-              },
-              "parent_urls": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "root_parent_urls": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "parent_author_fids": {
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
-              },
-              "text": {
+              "title": {
                 "type": "string",
-                "description": "Regex pattern to match the text key of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen\n",
-                "example": "(?i)\\$degen"
+                "example": "/memes channel sub"
               },
-              "embeds": {
+              "symbol": {
                 "type": "string",
-                "description": "Regex pattern to match the embeded_url (key embeds) of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b\n",
-                "example": "\\b(farcaster|neynar)\\b"
+                "example": "MMS"
+              },
+              "art_url": {
+                "type": "string",
+                "example": "https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg"
               }
-            }
+            },
+            "required": ["title", "symbol", "art_url"]
           },
-          "user.created": {
-            "type": "object"
+          "owner_address": {
+            "type": "string",
+            "example": "0xb6f6dce6000ca88cc936b450cedb16a5c15f157f"
           },
-          "user.updated": {
+          "price": {
             "type": "object",
             "properties": {
-              "fids": {
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                }
+              "period_duration_seconds": {
+                "type": "integer",
+                "example": 2592000
+              },
+              "tokens_per_period": {
+                "type": "string",
+                "example": "350574998400000"
+              },
+              "initial_mint_price": {
+                "type": "string",
+                "example": "0"
               }
+            },
+            "required": [
+              "period_duration_seconds",
+              "tokens_per_period",
+              "initial_mint_price"
+            ]
+          },
+          "tiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionTier"
             }
           },
-          "follow.created": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
+          "protocol_version": {
+            "type": "integer",
+            "example": 1
           },
-          "follow.deleted": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
-          },
-          "reaction.created": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
-          },
-          "reaction.deleted": {
-            "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
+          "token": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "example": "ETH"
+              },
+              "address": {
+                "type": "string",
+                "nullable": true,
+                "example": null
+              },
+              "decimals": {
+                "type": "integer",
+                "example": 18
+              },
+              "erc20": {
+                "type": "boolean",
+                "example": false
+              }
+            },
+            "required": ["symbol", "address", "decimals", "erc20"]
           }
         }
+      },
+      "SubscribedToObject": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "example": "subscription_dehydrated"
+          },
+          "provider_name": {
+            "type": "string",
+            "example": "fabric_stp"
+          },
+          "contract_address": {
+            "type": "string",
+            "example": "0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac"
+          },
+          "chain": {
+            "type": "integer",
+            "example": 8453
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-09-13T22:10:22.000Z"
+          },
+          "subscribed_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-09-13T22:10:22.000Z"
+          },
+          "tier_id": {
+            "type": "string",
+            "example": "0"
+          }
+        },
+        "required": ["object", "provider_name"]
+      },
+      "SubscribersResponse": {
+        "type": "object",
+        "properties": {
+          "subscribers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscriber"
+            }
+          }
+        }
+      },
+      "SubscribedToResponse": {
+        "type": "object",
+        "properties": {
+          "subscribed_to": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscribedTo"
+            }
+          }
+        }
+      },
+      "SubscriptionsResponse": {
+        "type": "object",
+        "properties": {
+          "subscriptions_created": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscriptions"
+            }
+          }
+        }
+      },
+      "Fid": {
+        "type": "integer",
+        "format": "int32",
+        "description": "User identifier (unsigned integer)"
       }
     }
   }
