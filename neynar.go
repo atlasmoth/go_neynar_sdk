@@ -75,6 +75,7 @@ type Client struct {
 	Mute        MuteService
 	Fname 		FnameService
 	Reaction    ReactionService
+	Signer      SignerService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -96,6 +97,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Mute = MuteService{client: c}
 	c.Fname = FnameService{client: c}
 	c.Reaction = ReactionService{client:  c}
+	c.Signer = SignerService{client: c}
 	return c,nil
 }
 

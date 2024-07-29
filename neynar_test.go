@@ -26,6 +26,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Mute = MuteService{client: client}
 	client.Fname = FnameService{client: client}
 	client.Reaction = ReactionService{client: client}
+	client.Signer = SignerService{client: client}
 	return client, server
 }
 
