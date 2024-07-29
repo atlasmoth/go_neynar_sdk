@@ -1,157 +1,268 @@
 {
-  "/farcaster/mute/list": {
-    "get": {
-      "tags": ["Mute"],
-      "summary": "Get fids that a user has muted",
-      "description": "Fetches all fids that a user has muted.",
-      "operationId": "mute-list",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
+  "components": {
+    "/farcaster/reactions/user": {
+      "get": {
+        "tags": ["Reaction"],
+        "summary": "Fetches reactions for a given user",
+        "description": "Fetches reactions for a given user",
+        "operationId": "reactions-user",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/reactions"
         },
-        {
-          "name": "fid",
-          "in": "query",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/Fid"
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
           },
-          "description": "The user's fid (identifier)",
-          "example": 194
-        },
-        {
-          "name": "limit",
-          "in": "query",
-          "description": "Number of results to retrieve (default 20, max 100).",
-          "required": false,
-          "schema": {
-            "type": "integer",
-            "default": 20,
-            "minimum": 1,
-            "maximum": 100
-          },
-          "example": 20
-        },
-        {
-          "name": "cursor",
-          "in": "query",
-          "description": "Pagination cursor.",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MuteListResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "$ref": "#/components/responses/400Response"
-        },
-        "404": {
-          "$ref": "#/components/responses/404Response"
-        },
-        "500": {
-          "$ref": "#/components/responses/500Response"
-        }
-      }
-    }
-  },
-  "/farcaster/mute": {
-    "post": {
-      "tags": ["Mute"],
-      "summary": "Adds a mute for a fid",
-      "description": "Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.",
-      "operationId": "add-mute",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
+          {
+            "name": "fid",
+            "in": "query",
+            "required": true,
+            "example": 3,
             "schema": {
-              "$ref": "#/components/schemas/MuteReqBody"
+              "$ref": "#/components/schemas/Fid"
+            }
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "example": 3,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "description": "Type of reaction to fetch (likes or recasts or all)",
+            "example": "all",
+            "schema": {
+              "$ref": "#/components/schemas/ReactionsType"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to retrieve (default 25, max 100)",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor.",
+            "schema": {
+              "type": "string"
             }
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MuteResponse"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReactionsResponse"
+                }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
           }
-        },
-        "400": {
-          "$ref": "#/components/responses/400Response"
-        },
-        "404": {
-          "$ref": "#/components/responses/404Response"
-        },
-        "500": {
-          "$ref": "#/components/responses/500Response"
         }
       }
     },
-    "delete": {
-      "tags": ["Mute"],
-      "summary": "Deletes a mute for a fid",
-      "description": "Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.",
-      "operationId": "delete-mute",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ApiKey"
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
+    "/farcaster/reactions/cast": {
+      "get": {
+        "tags": ["Reaction"],
+        "summary": "Fetches reactions for a given cast",
+        "description": "Fetches reactions for a given cast",
+        "operationId": "reactions-cast",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/reactions-cast"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "hash",
+            "in": "query",
+            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/MuteReqBody"
+              "$ref": "#/components/schemas/CastHash"
+            }
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^(likes,?|recasts,?|all,?)+$"
+            },
+            "example": "likes,recasts"
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to retrieve (default 25, max 100)",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor.",
+            "schema": {
+              "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReactionsCastResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          }
         }
-      },
-      "responses": {
-        "200": {
-          "description": "successful operation",
+      }
+    },
+    "/farcaster/reaction": {
+      "post": {
+        "tags": ["Reaction"],
+        "summary": "Posts a reaction",
+        "description": "Post a reaction (like or recast) to a given cast \\\n(In order to post a reaction `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/post-reaction"
+        },
+        "operationId": "post-reaction",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MuteResponse"
+                "$ref": "#/components/schemas/ReactionReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "target": "0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f",
+                "reaction_type": "like"
               }
             }
           }
         },
-        "400": {
-          "$ref": "#/components/responses/400Response"
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "403": {
+            "$ref": "#/components/responses/403Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Reaction"],
+        "summary": "Delete a reaction",
+        "description": "Delete a reaction (like or recast) to a given cast \\\n(In order to delete a reaction `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/delete-reaction"
         },
-        "404": {
-          "$ref": "#/components/responses/404Response"
+        "operationId": "delete-reaction",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReactionReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "target": "0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f",
+                "reaction_type": "like"
+              }
+            }
+          }
         },
-        "500": {
-          "$ref": "#/components/responses/500Response"
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "403": {
+            "$ref": "#/components/responses/403Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
         }
       }
-    }
-  },
-  "components": {
+    },
     "schemas": {
       "Idem": {
         "type": "string",
@@ -162,26 +273,22 @@
         "format": "int32",
         "description": "User identifier (unsigned integer)"
       },
-      "MuteReqBody": {
-        "type": "object",
-        "required": ["fid", "muted_fid"],
-        "properties": {
-          "fid": {
-            "$ref": "#/components/schemas/Fid"
-          },
-          "muted_fid": {
-            "$ref": "#/components/schemas/Fid"
-          }
-        }
+      "ReactionType": {
+        "type": "string",
+        "enum": ["like", "recast"]
       },
-      "MuteListResponse": {
+      "ReactionsType": {
+        "type": "string",
+        "enum": ["all", "likes", "recasts"]
+      },
+      "ReactionsResponse": {
         "type": "object",
-        "required": ["mutes", "next"],
+        "required": ["reactions", "next"],
         "properties": {
-          "mutes": {
+          "reactions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MuteList"
+              "$ref": "#/components/schemas/ReactionWithCastInfo"
             }
           },
           "next": {
@@ -189,32 +296,119 @@
           }
         }
       },
-      "MuteResponse": {
+      "ReactionsCastResponse": {
+        "type": "object",
+        "required": ["reactions", "next"],
+        "properties": {
+          "reactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReactionForCast"
+            }
+          },
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          }
+        }
+      },
+      "ReactionWithUserInfo": {
+        "type": "object",
+        "required": ["object", "cast", "user"],
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": ["likes", "recasts"]
+          },
+          "cast": {
+            "$ref": "#/components/schemas/CastDehydrated"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "ReactionForCast": {
+        "type": "object",
+        "required": ["reaction_type", "reaction_timestamp", "object", "user"],
+        "properties": {
+          "reaction_type": {
+            "type": "string",
+            "enum": ["like", "recast"]
+          },
+          "reaction_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "object": {
+            "type": "string",
+            "enum": ["likes", "recasts"]
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "ReactionWithCastInfo": {
+        "type": "object",
+        "required": [
+          "reaction_type",
+          "cast",
+          "reaction_timestamp",
+          "object",
+          "user"
+        ],
+        "properties": {
+          "reaction_type": {
+            "type": "string",
+            "enum": ["like", "recast"]
+          },
+          "cast": {
+            "$ref": "#/components/schemas/CastWithInteractions"
+          },
+          "reaction_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "object": {
+            "type": "string",
+            "enum": ["likes", "recasts"]
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDehydrated"
+          }
+        }
+      },
+      "ReactionReqBody": {
+        "type": "object",
+        "required": ["signer_uuid", "reaction_type", "target"],
+        "properties": {
+          "signer_uuid": {
+            "$ref": "#/components/schemas/SignerUUID"
+          },
+          "reaction_type": {
+            "$ref": "#/components/schemas/ReactionType"
+          },
+          "target": {
+            "type": "string"
+          },
+          "target_author_fid": {
+            "$ref": "#/components/schemas/Fid",
+            "description": "If the target is a cast hash, this value should indicate the target cast's author's fid (unsigned integer)"
+          },
+          "idem": {
+            "$ref": "#/components/schemas/Idem"
+          }
+        }
+      },
+      "OperationResponse": {
         "type": "object",
         "required": ["success"],
         "properties": {
           "success": {
-            "type": "boolean",
-            "example": true
+            "type": "boolean"
           },
           "message": {
             "type": "string"
-          }
-        }
-      },
-      "MuteList": {
-        "type": "object",
-        "required": ["object", "muted", "timestamp", "muted_at"],
-        "properties": {
-          "object": {
-            "type": "string",
-            "enum": ["mute"]
-          },
-          "muted": {
-            "$ref": "#/components/schemas/User"
-          },
-          "muted_at": {
-            "$ref": "#/components/schemas/Timestamp"
           }
         }
       }

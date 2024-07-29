@@ -292,3 +292,9 @@ type MuteList struct {
 	Muted    User   `json:"muted"`
 	MutedAt  int64  `json:"muted_at"`
 }
+type  ReactionWithCastInfo struct {
+    ReactionType      string    `json:"reaction_type"`
+    ReactionTimestamp time.Time `json:"reaction_timestamp"`
+    Object            string    `json:"object"`
+    User             User `json:"user"`
+}
