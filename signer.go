@@ -261,6 +261,7 @@ func (s *SignerService) PublishMessage(ctx context.Context, params PublishMessag
 	var result PublishMessageResponse
 
 	if len(params.Message) == 0 {
+		
 		return result, &RequiredFieldError{Field: "Message"}
 	}
 
@@ -268,6 +269,7 @@ func (s *SignerService) PublishMessage(ctx context.Context, params PublishMessag
 
 	resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, params.Message, nil)
 
+	
 	if err != nil {
 		return result, err
 	}
