@@ -414,3 +414,100 @@ type FrameInputText struct {
 	Username   string `json:"username"`
 	InputText  string `json:"input_text"`
 }
+type NeynarFrame struct {
+	UUID   string          `json:"uuid"`
+	Name   string          `json:"name"`
+	Link   string          `json:"link"`
+	Pages  []NeynarFramePage `json:"pages"`
+	Valid  bool            `json:"valid"`
+}
+
+type NeynarFramePage struct {
+	UUID     string             `json:"uuid"`
+	Version  string             `json:"version"`
+	Title    string             `json:"title"`
+	Image    NeynarPageImage    `json:"image"`
+	Buttons  []NeynarPageButton `json:"buttons,omitempty"`
+	Input    NeynarPageInput    `json:"input,omitempty"`
+}
+
+type NeynarPageImage struct {
+	URL           string `json:"url"`
+	AspectRatio   string `json:"aspect_ratio"`
+}
+
+type NeynarPageButton struct {
+	Title       string          `json:"title"`
+	Index       int             `json:"index"`
+	ActionType  string          `json:"action_type"`
+	NextPage    *NeynarNextPage `json:"next_page,omitempty"`
+}
+
+type NeynarPageInput struct {
+	Text struct {
+		Enabled     bool   `json:"enabled"`
+		Placeholder string `json:"placeholder,omitempty"`
+	} `json:"text"`
+}
+
+type NeynarNextPage struct {
+	UUID           string          `json:"uuid,omitempty"`
+	RedirectURL    string          `json:"redirect_url,omitempty"`
+	MintURL        string          `json:"mint_url,omitempty"`
+}
+
+type DeleteFrameResponse struct {
+	Success bool   `json:"success"`
+	Message string `json:"message,omitempty"`
+	ErrorResponse
+}
+
+type FetchFrameParams struct {
+	Type  string `json:"type"`
+	UUID  string `json:"uuid,omitempty"`
+	URL   string `json:"url,omitempty"`
+}
+
+type CreateFrameParams struct {
+	Frame NeynarFrame `json:"frame"`
+}
+
+type UpdateFrameParams struct {
+	Frame NeynarFrame `json:"frame"`
+}
+
+type DeleteFrameParams struct {
+	UUID string `json:"uuid"`
+}
+
+type FetchFrameListResponse struct {
+	Frames []NeynarFrame `json:"frames"`
+	ErrorResponse
+}
+
+type FrameSignaturePacket struct {
+	UntrustedData UntrustedData `json:"untrustedData"`
+	TrustedData   TrustedData   `json:"trustedData"`
+}
+type UntrustedData struct {
+	FID          string `json:"fid"`
+	URL          string `json:"url"`
+	MessageHash  string `json:"messageHash"`
+	Timestamp    string `json:"timestamp"`
+	Network      int    `json:"network"`
+	ButtonIndex  int    `json:"buttonIndex"`
+	InputText    string `json:"inputText"`
+	State        string `json:"state"`
+	TransactionID string `json:"transactionId"`
+	Address      string `json:"address"`
+	CastID       CastID `json:"castId"`
+}
+
+type TrustedData struct {
+	MessageBytes string `json:"messageBytes"`
+}
+
+type CastID struct {
+	FID  string `json:"fid"`
+	Hash string `json:"hash"`
+}
