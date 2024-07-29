@@ -76,6 +76,7 @@ type Client struct {
 	Fname 		FnameService
 	Reaction    ReactionService
 	Signer      SignerService
+	Frame       FrameService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -98,6 +99,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Fname = FnameService{client: c}
 	c.Reaction = ReactionService{client:  c}
 	c.Signer = SignerService{client: c}
+	c.Frame = FrameService{client: c}
 	return c,nil
 }
 
