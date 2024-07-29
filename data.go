@@ -298,3 +298,119 @@ type  ReactionWithCastInfo struct {
     Object            string    `json:"object"`
     User             User `json:"user"`
 }
+type SignerUUID string
+
+// CastHash represents the cast hash
+type CastHash string
+
+// FrameInput represents the input for a frame
+type FrameInput struct {
+    Text string `json:"text,omitempty"`
+}
+
+// FrameState represents the state for a frame
+type FrameState struct {
+    Serialized string `json:"serialized,omitempty"`
+}
+
+// FrameTransaction represents the transaction for a frame
+type FrameTransaction struct {
+    Hash string `json:"hash,omitempty"`
+}
+
+// FrameAddress represents the address for a frame
+type FrameAddress struct {
+    Address string `json:"address,omitempty"`
+}
+
+// FrameActionButton represents a button within a frame
+type FrameActionButton struct {
+    Title      string `json:"title,omitempty"`
+    Index      int    `json:"index"`
+    ActionType string `json:"action_type"`
+    Target     string `json:"target,omitempty"`
+    PostURL    string `json:"post_url,omitempty"`
+}
+
+// FrameAction represents an action to be taken on a frame
+type FrameAction struct {
+    Version     string           `json:"version,omitempty"`
+    Title       string           `json:"title,omitempty"`
+    Image       string           `json:"image,omitempty"`
+    Button      FrameActionButton `json:"button"`
+    Input       FrameInput       `json:"input,omitempty"`
+    State       FrameState       `json:"state,omitempty"`
+    Transaction FrameTransaction `json:"transaction,omitempty"`
+    Address     FrameAddress     `json:"address,omitempty"`
+    FramesURL   string           `json:"frames_url"`
+    PostURL     string           `json:"post_url"`
+}
+
+
+
+
+type Frame struct {
+    Version            string               `json:"version"`
+    Image              string               `json:"image"`
+    Buttons            []FrameActionButton  `json:"buttons"`
+    PostURL            string               `json:"post_url"`
+    FramesURL          string               `json:"frames_url"`
+    Title              string               `json:"title,omitempty"`
+    ImageAspectRatio   string               `json:"image_aspect_ratio,omitempty"`
+    Input              map[string]string    `json:"input,omitempty"`
+    State              map[string]string    `json:"state,omitempty"`
+}
+
+type ValidatedFrameAction struct {
+	Object        string              `json:"object"`
+	URL           string              `json:"url"`
+	Interactor    User                `json:"interactor"`
+	TappedButton  map[string]int      `json:"tapped_button"`
+	Input         FrameInput          `json:"input"`
+	State         FrameState          `json:"state"`
+	Timestamp     time.Time           `json:"timestamp"`
+	Signer        struct {
+		Client User `json:"client"`
+	} `json:"signer"`
+	Transaction FrameTransaction `json:"transaction"`
+	Address     FrameAddress     `json:"address"`
+}
+
+type FrameValidateAnalyticsInteractors struct {
+	Interactors []Interactor `json:"interactors"`
+}
+
+type Interactor struct {
+	FID               uint32  `json:"fid"` 
+	Username          string  `json:"username"`
+	InteractionCount  float64 `json:"interaction_count"`
+}
+
+
+type FrameValidateAnalyticsTotalInteractors struct {
+	TotalInteractors float64 `json:"total_interactors"`
+}
+
+
+type FrameValidateAnalyticsInteractionsPerCast struct {
+	InteractionsPerCast []InteractionPerCast `json:"interactions_per_cast"`
+}
+
+type InteractionPerCast struct {
+	Start            time.Time `json:"start"`
+	Stop             time.Time `json:"stop"`
+	Time             time.Time `json:"time"`
+	InteractionCount float64   `json:"interaction_count"`
+	CastURL          string    `json:"cast_url"`
+}
+
+
+type FrameValidateAnalyticsInputText struct {
+	InputTexts []FrameInputText `json:"input_texts"`
+}
+
+type FrameInputText struct {
+	FID        string `json:"fid"` 
+	Username   string `json:"username"`
+	InputText  string `json:"input_text"`
+}

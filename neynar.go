@@ -12,7 +12,9 @@ import (
 
 type FilterType string
 type FeedType string
-type SubscriptionProvider string
+type SubscriptionProvider string 
+type ValidateFrameAnalyticsType string
+
 
 const (
 	libraryVersion = "0.0.1"
@@ -30,6 +32,10 @@ const (
 	Filter         FeedType   = "filter"
 	FabricStp SubscriptionProvider = "fabric_stp"
 	Paragraph  SubscriptionProvider = "paragraph"
+	TotalInteractors      ValidateFrameAnalyticsType = "total-interactors"
+    Interactors           ValidateFrameAnalyticsType = "interactors"
+    InteractionsPerCast   ValidateFrameAnalyticsType = "interactions-per-cast"
+    InputText             ValidateFrameAnalyticsType = "input-text"
 )
 
 type ErrorResponse struct {
@@ -159,4 +165,14 @@ func GetUrlValues(obj map[string]any) url.Values {
 		}
 	}
 	return q
+}
+
+
+func Contains(slice []string, value string) bool {
+    for _, v := range slice {
+        if v == value {
+            return true
+        }
+    }
+    return false
 }
