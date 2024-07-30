@@ -16,7 +16,7 @@ type SubscriptionProvider string
 type ValidateFrameAnalyticsType string
 
 const (
-	libraryVersion = "0.0.1"
+	libraryVersion = "0.0.0"
 	defaultBaseURL = "https://api.neynar.com/"
 	mediaType      = "application/json"
 )
