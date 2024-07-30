@@ -288,3 +288,102 @@ func TestBulkUsersByAddress_ServerError(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
+
+func TestFetchAuthorizationUrl_Success(t *testing.T) {
+	expectedPath := "/v2/farcaster/login/authorize"
+	expectedParams := url.Values{
+		"client_id":     []string{"testClientID"},
+		"response_type": []string{"code"},
+	}
+	mockResponse := AuthorizationUrlResponse{
+		AuthorizationUrl: "https://example.com/authorize?client_id=testClientID&response_type=code",
+	}
+
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	params := FetchAuthorizationUrlParams{
+		ClientID:     "testClientID",
+		ResponseType: "code",
+	}
+	ctx := context.Background()
+	result, err := client.User.FetchAuthorizationUrl(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestFetchAuthorizationUrl_MissingClientID(t *testing.T) {
+	client, server := NewTestClient(nil)
+	defer server.Close()
+
+	params := FetchAuthorizationUrlParams{}
+	ctx := context.Background()
+	_, err := client.User.FetchAuthorizationUrl(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := "The following field is required: ClientID"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}
+
+func TestFetchAuthorizationUrl_DefaultResponseType(t *testing.T) {
+	expectedPath := "/v2/farcaster/login/authorize"
+	expectedParams := url.Values{
+		"client_id":     []string{"testClientID"},
+		"response_type": []string{"code"},
+	}
+	mockResponse := AuthorizationUrlResponse{
+		AuthorizationUrl: "https://example.com/authorize?client_id=testClientID&response_type=code",
+	}
+
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
+
+	params := FetchAuthorizationUrlParams{
+		ClientID: "testClientID",
+	}
+	ctx := context.Background()
+	result, err := client.User.FetchAuthorizationUrl(ctx, params)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
+}
+
+func TestFetchAuthorizationUrl_ServerError(t *testing.T) {
+	expectedPath := "/v2/farcaster/login/authorize"
+	expectedParams := url.Values{
+		"client_id":     []string{"testClientID"},
+		"response_type": []string{"code"},
+	}
+	mockResponse := ErrorResponse{
+		Code:    "500",
+		Message: "Internal Server Error",
+	}
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusInternalServerError))
+	defer server.Close()
+
+	params := FetchAuthorizationUrlParams{
+		ClientID:     "testClientID",
+		ResponseType: "code",
+	}
+	ctx := context.Background()
+	_, err := client.User.FetchAuthorizationUrl(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := mockResponse.Error()
+	if err.Error() != expectedError {
+		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
+	}
+}

@@ -66,6 +66,11 @@ type AddVerificationParams struct {
 	EthSignature string
 }
 
+type FetchAuthorizationUrlParams struct {
+	ClientID     string
+	ResponseType string
+}
+
 type RemoveVerificationParams struct {
 	SignerUUID string
 	Address    string
@@ -605,6 +610,54 @@ func (s *UserService) RemoveVerification(ctx context.Context, params RemoveVerif
 
 	resp, err := s.client.HandleJsonRequest(ctx, http.MethodDelete, baseURL, body, nil)
 
+	if err != nil {
+		return result, err
+	}
+	if resp.StatusCode == http.StatusOK {
+		err = s.client.HandleJsonResponse(resp, &result)
+		if err != nil {
+			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
+		return result, nil
+	} else {
+		var errorResponse ErrorResponse
+		err = s.client.HandleJsonResponse(resp, &errorResponse)
+		if err != nil {
+			return result, err
+		}
+		return result, &errorResponse
+	}
+}
+
+type AuthorizationUrlResponse struct {
+	AuthorizationUrl string `json:"authorization_url"`
+	ErrorResponse
+}
+
+func (s *UserService) FetchAuthorizationUrl(ctx context.Context, params FetchAuthorizationUrlParams) (AuthorizationUrlResponse, error) {
+	var result AuthorizationUrlResponse
+	if params.ClientID == "" {
+		return result, &RequiredFieldError{Field: "ClientID"}
+	}
+
+	if params.ResponseType != "code" {
+		params.ResponseType = "code"
+	}
+
+	baseURL := s.client.BaseURL.String() + "v2/farcaster/login/authorize"
+
+	values := map[string]interface{}{
+		"client_id":     params.ClientID,
+		"response_type": params.ResponseType,
+	}
+
+	q := GetUrlValues(values)
+	rawQuery := q.Encode()
+
+	resp, err := s.client.HandleJsonRequest(ctx, http.MethodGet, baseURL, nil, &rawQuery)
 	if err != nil {
 		return result, err
 	}
