@@ -25,7 +25,7 @@ type FetchUserReactionsParams struct {
 
 type ReactionsListResponse struct {
 	Reactions []ReactionWithCastInfo `json:"reactions"`
-	Next      Next                `json:"next"`
+	Next      Next                   `json:"next"`
 	ErrorResponse
 }
 
@@ -95,10 +95,6 @@ type PostReactionParams struct {
 	TargetAuthorFid uint32
 	Idem            string
 }
-
-
-
-
 
 func (s *ReactionService) FetchCastReactions(ctx context.Context, params FetchCastReactionsParams) (ReactionsListResponse, error) {
 	var result ReactionsListResponse

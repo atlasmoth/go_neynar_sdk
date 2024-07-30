@@ -12,9 +12,8 @@ import (
 
 type FilterType string
 type FeedType string
-type SubscriptionProvider string 
+type SubscriptionProvider string
 type ValidateFrameAnalyticsType string
-
 
 const (
 	libraryVersion = "0.0.1"
@@ -23,19 +22,19 @@ const (
 )
 
 const (
-	Fid            FilterType = "fids"
-	ParentUrl      FilterType = "parent_url"
-	ChannelId      FilterType = "channel_id"
-	EmbedURL       FilterType = "embed_url"
-	GlobalTrending FilterType = "global_trending"
-	Following      FeedType   = "following"
-	Filter         FeedType   = "filter"
-	FabricStp SubscriptionProvider = "fabric_stp"
-	Paragraph  SubscriptionProvider = "paragraph"
-	TotalInteractors      ValidateFrameAnalyticsType = "total-interactors"
-    Interactors           ValidateFrameAnalyticsType = "interactors"
-    InteractionsPerCast   ValidateFrameAnalyticsType = "interactions-per-cast"
-    InputText             ValidateFrameAnalyticsType = "input-text"
+	Fid                 FilterType                 = "fids"
+	ParentUrl           FilterType                 = "parent_url"
+	ChannelId           FilterType                 = "channel_id"
+	EmbedURL            FilterType                 = "embed_url"
+	GlobalTrending      FilterType                 = "global_trending"
+	Following           FeedType                   = "following"
+	Filter              FeedType                   = "filter"
+	FabricStp           SubscriptionProvider       = "fabric_stp"
+	Paragraph           SubscriptionProvider       = "paragraph"
+	TotalInteractors    ValidateFrameAnalyticsType = "total-interactors"
+	Interactors         ValidateFrameAnalyticsType = "interactors"
+	InteractionsPerCast ValidateFrameAnalyticsType = "interactions-per-cast"
+	InputText           ValidateFrameAnalyticsType = "input-text"
 )
 
 type ErrorResponse struct {
@@ -53,13 +52,12 @@ type RequiredFieldError struct {
 	Field string
 }
 
-
 func (e *RequiredFieldError) Error() string {
 	return fmt.Sprintf("The following field is required: %v", e.Field)
 }
 
 type InvalidFieldError struct {
-	Field string
+	Field  string
 	Values string
 }
 
@@ -68,31 +66,31 @@ func (e *InvalidFieldError) Error() string {
 }
 
 type Client struct {
-	HTTPClient *http.Client
-	BaseURL    *url.URL
-	ApiKey     *string
-	Feed       FeedService
-	Cast       CastService
+	HTTPClient   *http.Client
+	BaseURL      *url.URL
+	ApiKey       *string
+	Feed         FeedService
+	Cast         CastService
 	Notification NotificationService
-	Follow      FollowService
-	Webhook    WebhookService
+	Follow       FollowService
+	Webhook      WebhookService
 	Subscription SubscriptionService
-	Storage     StorageService
-	Mute        MuteService
-	Fname 		FnameService
-	Reaction    ReactionService
-	Signer      SignerService
-	Frame       FrameService
-	Channel     ChannelService
+	Storage      StorageService
+	Mute         MuteService
+	Fname        FnameService
+	Reaction     ReactionService
+	Signer       SignerService
+	Frame        FrameService
+	Channel      ChannelService
 }
 
-func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
+func NewClient(httpClient *http.Client, apiKey string) (*Client, error) {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
 	baseURL, err := url.Parse(defaultBaseURL)
-	if err != nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
 	c := &Client{HTTPClient: httpClient, BaseURL: baseURL, ApiKey: &apiKey}
 	c.Feed = FeedService{client: c}
@@ -104,25 +102,25 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Storage = StorageService{client: c}
 	c.Mute = MuteService{client: c}
 	c.Fname = FnameService{client: c}
-	c.Reaction = ReactionService{client:  c}
+	c.Reaction = ReactionService{client: c}
 	c.Signer = SignerService{client: c}
 	c.Frame = FrameService{client: c}
 	c.Channel = ChannelService{client: c}
-	return c,nil
+	return c, nil
 }
 
 func (c *Client) HandleJsonRequest(ctx context.Context, method string, url string, body any, queryParams *string) (*http.Response, error) {
 	var requestBody bytes.Buffer
-	if body != nil{
+	if body != nil {
 		// fmt.Printf("%+v\n",body)
 		req, err := json.Marshal(body)
 		if err != nil {
-			return nil,err
+			return nil, err
 		}
 		requestBody = *bytes.NewBuffer(req)
-	
+
 	}
-	
+
 	req, err := http.NewRequestWithContext(ctx, method, url, &requestBody)
 	if err != nil {
 		return nil, err
@@ -130,7 +128,7 @@ func (c *Client) HandleJsonRequest(ctx context.Context, method string, url strin
 	if queryParams != nil {
 		req.URL.RawQuery = *queryParams
 	}
-	
+
 	req.Header.Add("Content-Type", mediaType)
 	req.Header.Add("Accept", mediaType)
 	req.Header.Add("api_key", *c.ApiKey)
@@ -158,10 +156,6 @@ func (c *Client) HandleJsonResponse(r *http.Response, payload any) error {
 
 }
 
-
-
-
-
 func GetUrlValues(obj map[string]any) url.Values {
 	q := url.Values{}
 	for i, v := range obj {
@@ -173,12 +167,11 @@ func GetUrlValues(obj map[string]any) url.Values {
 	return q
 }
 
-
 func Contains(slice []string, value string) bool {
-    for _, v := range slice {
-        if v == value {
-            return true
-        }
-    }
-    return false
+	for _, v := range slice {
+		if v == value {
+			return true
+		}
+	}
+	return false
 }

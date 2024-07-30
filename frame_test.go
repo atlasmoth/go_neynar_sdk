@@ -92,7 +92,7 @@ func TestPostFrameAction_ServerError(t *testing.T) {
 func TestValidateFrame_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/frame/validate"
 	mockResponse := ValidateFrameActionResponse{
-		Valid: true,
+		Valid:  true,
 		Action: ValidatedFrameAction{ /* Initialize as required */ },
 		ErrorResponse: ErrorResponse{
 			Code:    "",
@@ -203,10 +203,10 @@ func TestGetValidatedFrames_ServerError(t *testing.T) {
 func TestGetFrameAnalytics_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/frame/validate/analytics"
 	mockResponse := FrameAnalyticsResponse{
-		FrameValidateAnalyticsInteractors: FrameValidateAnalyticsInteractors{},
-		FrameValidateAnalyticsTotalInteractors: FrameValidateAnalyticsTotalInteractors{},
+		FrameValidateAnalyticsInteractors:         FrameValidateAnalyticsInteractors{},
+		FrameValidateAnalyticsTotalInteractors:    FrameValidateAnalyticsTotalInteractors{},
 		FrameValidateAnalyticsInteractionsPerCast: FrameValidateAnalyticsInteractionsPerCast{},
-		FrameValidateAnalyticsInputText: FrameValidateAnalyticsInputText{},
+		FrameValidateAnalyticsInputText:           FrameValidateAnalyticsInputText{},
 		ErrorResponse: ErrorResponse{
 			Code:    "",
 			Message: "",
@@ -220,10 +220,10 @@ func TestGetFrameAnalytics_Success(t *testing.T) {
 		Stop:          time.Now(),
 	}
 	values := map[string]any{
-		"frame_url":         params.FrameURL,
-		"analytics_type":    params.AnalyticsType,
-		"start":             params.Start.Format(time.RFC3339),
-		"stop":              params.Stop.Format(time.RFC3339),
+		"frame_url":      params.FrameURL,
+		"analytics_type": params.AnalyticsType,
+		"start":          params.Start.Format(time.RFC3339),
+		"stop":           params.Stop.Format(time.RFC3339),
 	}
 	rawQuery := GetUrlValues(values)
 	client, server := NewTestClient(mockHandler(t, expectedPath, rawQuery, mockResponse, http.StatusOK))
@@ -282,13 +282,13 @@ func TestGetFrameAnalytics_ServerError(t *testing.T) {
 		Stop:          time.Now(),
 	}
 	values := map[string]any{
-		"frame_url":         params.FrameURL,
-		"analytics_type":    params.AnalyticsType,
-		"start":             params.Start.Format(time.RFC3339),
-		"stop":              params.Stop.Format(time.RFC3339),
+		"frame_url":      params.FrameURL,
+		"analytics_type": params.AnalyticsType,
+		"start":          params.Start.Format(time.RFC3339),
+		"stop":           params.Stop.Format(time.RFC3339),
 	}
 	rawQuery := GetUrlValues(values)
-	client, server := NewTestClient(mockHandler(t, expectedPath,rawQuery , mockResponse, http.StatusInternalServerError))
+	client, server := NewTestClient(mockHandler(t, expectedPath, rawQuery, mockResponse, http.StatusInternalServerError))
 	defer server.Close()
 
 	ctx := context.Background()

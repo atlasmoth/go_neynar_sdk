@@ -265,14 +265,12 @@ func (c *CastService) RetrieveConversation(ctx context.Context, params RetrieveC
 	}
 
 	if params.ReplyDepth > 5 {
-		return result, &InvalidFieldError{Field: "ReplyDepth", Values:  "0-5"}
+		return result, &InvalidFieldError{Field: "ReplyDepth", Values: "0-5"}
 	}
 
 	baseURL := c.client.BaseURL.String() + "v2/farcaster/cast/conversation"
 
-	values := map[string]any{"type": params.Type, "include_chronological_parent_casts": params.IncludeChronologicalParentCasts, "identifier" : params.Identifier,"reply_depth" : params.ReplyDepth}
-
-	
+	values := map[string]any{"type": params.Type, "include_chronological_parent_casts": params.IncludeChronologicalParentCasts, "identifier": params.Identifier, "reply_depth": params.ReplyDepth}
 
 	if params.Limit > 0 {
 		values["limit"] = params.Limit

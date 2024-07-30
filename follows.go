@@ -17,11 +17,8 @@ type RetrieveFollowersParams struct {
 	Cursor    string
 }
 
-
-
-
 type Follower struct {
-	TopRelevantFollowersHydrated  []Follow           `json:"top_relevant_followers_hydrated"`
+	TopRelevantFollowersHydrated   []Follow `json:"top_relevant_followers_hydrated"`
 	AllRelevantFollowersDehydrated []Follow `json:"all_relevant_followers_dehydrated"`
 }
 

@@ -405,191 +405,189 @@ func TestUserChannels_Success(t *testing.T) {
 	}
 
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
-    defer server.Close()
+	defer server.Close()
 
-    params := UserChannelsParams{
-        FID:    12345,
-        Limit:  50,
-        Cursor: "test-cursor",
-    }
-    ctx := context.Background()
-    result, err := client.Channel.UserChannels(ctx, params)
+	params := UserChannelsParams{
+		FID:    12345,
+		Limit:  50,
+		Cursor: "test-cursor",
+	}
+	ctx := context.Background()
+	result, err := client.Channel.UserChannels(ctx, params)
 
-    if err != nil {
-        t.Errorf("Expected no error, got %v", err)
-    }
-    if !reflect.DeepEqual(result, mockResponse) {
-        t.Errorf("Expected result %v, got %v", mockResponse, result)
-    }
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
 }
 
 func TestUserChannels_MissingFID(t *testing.T) {
-    client, server := NewTestClient(nil)
-    defer server.Close()
+	client, server := NewTestClient(nil)
+	defer server.Close()
 
-    params := UserChannelsParams{
-        Limit: 50,
-    }
-    ctx := context.Background()
-    _, err := client.Channel.UserChannels(ctx, params)
-    if err == nil {
-        t.Errorf("Expected error, got nil")
-    }
-    expectedError := &RequiredFieldError{Field: "FID"}
-    if !reflect.DeepEqual(err, expectedError) {
-        t.Errorf("Expected error %v, got %v", expectedError, err)
-    }
+	params := UserChannelsParams{
+		Limit: 50,
+	}
+	ctx := context.Background()
+	_, err := client.Channel.UserChannels(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := &RequiredFieldError{Field: "FID"}
+	if !reflect.DeepEqual(err, expectedError) {
+		t.Errorf("Expected error %v, got %v", expectedError, err)
+	}
 }
 
 func TestUserChannels_InvalidLimit(t *testing.T) {
-    client, server := NewTestClient(nil)
-    defer server.Close()
+	client, server := NewTestClient(nil)
+	defer server.Close()
 
-    params := UserChannelsParams{
-        FID:   12345,
-        Limit: 101, // Greater than maximum 100
-    }
-    ctx := context.Background()
-    _, err := client.Channel.UserChannels(ctx, params)
-    if err == nil {
-        t.Errorf("Expected error, got nil")
-    }
-    expectedError := &InvalidFieldError{Field: "Limit", Values: "must be between 1 and 100"}
-    if !reflect.DeepEqual(err, expectedError) {
-        t.Errorf("Expected error %v, got %v", expectedError, err)
-    }
+	params := UserChannelsParams{
+		FID:   12345,
+		Limit: 101, // Greater than maximum 100
+	}
+	ctx := context.Background()
+	_, err := client.Channel.UserChannels(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := &InvalidFieldError{Field: "Limit", Values: "must be between 1 and 100"}
+	if !reflect.DeepEqual(err, expectedError) {
+		t.Errorf("Expected error %v, got %v", expectedError, err)
+	}
 }
 
-
-
 func TestSearchChannels_EmptyResponse(t *testing.T) {
-    expectedPath := "/v2/farcaster/channel/search"
-    expectedParams := url.Values{
-        "q": []string{"nonexistent channel"},
-    }
-    mockResponse := ChannelSearchResponse{
-        Channels: []Channel{},
-    }
+	expectedPath := "/v2/farcaster/channel/search"
+	expectedParams := url.Values{
+		"q": []string{"nonexistent channel"},
+	}
+	mockResponse := ChannelSearchResponse{
+		Channels: []Channel{},
+	}
 
-    client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
-    defer server.Close()
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
 
-    params := SearchChannelsParams{Query: "nonexistent channel"}
-    ctx := context.Background()
-    result, err := client.Channel.SearchChannels(ctx, params)
+	params := SearchChannelsParams{Query: "nonexistent channel"}
+	ctx := context.Background()
+	result, err := client.Channel.SearchChannels(ctx, params)
 
-    if err != nil {
-        t.Errorf("Expected no error, got %v", err)
-    }
-    if len(result.Channels) != 0 {
-        t.Errorf("Expected empty channels slice, got %v", result.Channels)
-    }
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if len(result.Channels) != 0 {
+		t.Errorf("Expected empty channels slice, got %v", result.Channels)
+	}
 }
 
 func TestChannelBulk_MaxIDs(t *testing.T) {
-    client, server := NewTestClient(nil)
-    defer server.Close()
+	client, server := NewTestClient(nil)
+	defer server.Close()
 
-    ids := make([]string, 101) // Exceeds maximum of 100
-    for i := range ids {
-        ids[i] = fmt.Sprintf("id%d", i)
-    }
+	ids := make([]string, 101) // Exceeds maximum of 100
+	for i := range ids {
+		ids[i] = fmt.Sprintf("id%d", i)
+	}
 
-    params := ChannelBulkParams{
-        IDs: ids,
-    }
-    ctx := context.Background()
-    _, err := client.Channel.ChannelBulk(ctx, params)
-    if err == nil {
-        t.Errorf("Expected error, got nil")
-    }
-    expectedError := &InvalidFieldError{Field: "IDs", Values: "IDs"}
-    if !reflect.DeepEqual(err, expectedError) {
-        t.Errorf("Expected error %v, got %v", expectedError, err)
-    }
+	params := ChannelBulkParams{
+		IDs: ids,
+	}
+	ctx := context.Background()
+	_, err := client.Channel.ChannelBulk(ctx, params)
+	if err == nil {
+		t.Errorf("Expected error, got nil")
+	}
+	expectedError := &InvalidFieldError{Field: "IDs", Values: "IDs"}
+	if !reflect.DeepEqual(err, expectedError) {
+		t.Errorf("Expected error %v, got %v", expectedError, err)
+	}
 }
 
 func TestChannelDetails_DefaultType(t *testing.T) {
-    expectedPath := "/v2/farcaster/channel"
-    expectedParams := url.Values{
-        "id":   []string{"123"},
-        "type": []string{"id"}, // Default type should be "id"
-    }
-    mockResponse := ChannelResponse{
-        Channel: Channel{ID: "123"},
-    }
+	expectedPath := "/v2/farcaster/channel"
+	expectedParams := url.Values{
+		"id":   []string{"123"},
+		"type": []string{"id"}, // Default type should be "id"
+	}
+	mockResponse := ChannelResponse{
+		Channel: Channel{ID: "123"},
+	}
 
-    client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
-    defer server.Close()
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
 
-    params := ChannelParams{
-        ID: "123",
-        // Type is not set, should default to "id"
-    }
-    ctx := context.Background()
-    result, err := client.Channel.ChannelDetails(ctx, params)
+	params := ChannelParams{
+		ID: "123",
+		// Type is not set, should default to "id"
+	}
+	ctx := context.Background()
+	result, err := client.Channel.ChannelDetails(ctx, params)
 
-    if err != nil {
-        t.Errorf("Expected no error, got %v", err)
-    }
-    if !reflect.DeepEqual(result, mockResponse) {
-        t.Errorf("Expected result %v, got %v", mockResponse, result)
-    }
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
 }
 
 func TestChannelFollowers_MinimumLimit(t *testing.T) {
-    expectedPath := "/v2/farcaster/channel/followers"
-    expectedParams := url.Values{
-        "id":    []string{"123"},
-        "limit": []string{"15"}, // Minimum limit
-    }
-    mockResponse := UsersResponse{
-        Users: []User{{Fid: 1}, {Fid: 2}},
-        Next:  NextCursor{Cursor: "next-cursor"},
-    }
+	expectedPath := "/v2/farcaster/channel/followers"
+	expectedParams := url.Values{
+		"id":    []string{"123"},
+		"limit": []string{"15"}, // Minimum limit
+	}
+	mockResponse := UsersResponse{
+		Users: []User{{Fid: 1}, {Fid: 2}},
+		Next:  NextCursor{Cursor: "next-cursor"},
+	}
 
-    client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
-    defer server.Close()
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
 
-    params := ChannelFollowersParams{
-        ID:    "123",
-        Limit: 15,
-    }
-    ctx := context.Background()
-    result, err := client.Channel.ChannelFollowers(ctx, params)
+	params := ChannelFollowersParams{
+		ID:    "123",
+		Limit: 15,
+	}
+	ctx := context.Background()
+	result, err := client.Channel.ChannelFollowers(ctx, params)
 
-    if err != nil {
-        t.Errorf("Expected no error, got %v", err)
-    }
-    if !reflect.DeepEqual(result, mockResponse) {
-        t.Errorf("Expected result %v, got %v", mockResponse, result)
-    }
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
 }
 
 func TestTrendingChannels_EmptyTimeWindow(t *testing.T) {
-    expectedPath := "/v2/farcaster/channel/trending"
-    expectedParams := url.Values{
-        "limit": []string{"20"},
-    }
-    mockResponse := TrendingChannelResponse{
-        Channels: []ChannelActivity{{Channel: Channel{ID: "1"}}, {Channel: Channel{ID: "2"}}},
-        Next:     NextCursor{Cursor: "next-cursor"},
-    }
+	expectedPath := "/v2/farcaster/channel/trending"
+	expectedParams := url.Values{
+		"limit": []string{"20"},
+	}
+	mockResponse := TrendingChannelResponse{
+		Channels: []ChannelActivity{{Channel: Channel{ID: "1"}}, {Channel: Channel{ID: "2"}}},
+		Next:     NextCursor{Cursor: "next-cursor"},
+	}
 
-    client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
-    defer server.Close()
+	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockResponse, http.StatusOK))
+	defer server.Close()
 
-    params := TrendingChannelsParams{
-        Limit: 20,
-        // TimeWindow is not set
-    }
-    ctx := context.Background()
-    result, err := client.Channel.TrendingChannels(ctx, params)
+	params := TrendingChannelsParams{
+		Limit: 20,
+		// TimeWindow is not set
+	}
+	ctx := context.Background()
+	result, err := client.Channel.TrendingChannels(ctx, params)
 
-    if err != nil {
-        t.Errorf("Expected no error, got %v", err)
-    }
-    if !reflect.DeepEqual(result, mockResponse) {
-        t.Errorf("Expected result %v, got %v", mockResponse, result)
-    }
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !reflect.DeepEqual(result, mockResponse) {
+		t.Errorf("Expected result %v, got %v", mockResponse, result)
+	}
 }

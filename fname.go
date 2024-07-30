@@ -9,11 +9,11 @@ type FnameService struct {
 	client *Client
 }
 
-type CheckFnameParams struct{
+type CheckFnameParams struct {
 	Fname string
 }
 
-type CheckFnameResult struct{
+type CheckFnameResult struct {
 	Available bool `json:"available"`
 	ErrorResponse
 }

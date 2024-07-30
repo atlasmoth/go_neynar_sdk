@@ -14,7 +14,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	server := httptest.NewServer(handler)
 	baseURL, _ := url.Parse(server.URL + "/")
 	apiKey := "testApiKey"
-	client,_ := NewClient(server.Client(),apiKey)
+	client, _ := NewClient(server.Client(), apiKey)
 	client.BaseURL = baseURL
 	client.Feed = FeedService{client: client}
 	client.Cast = CastService{client: client}
@@ -34,8 +34,8 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 
 func TestNewClient(t *testing.T) {
 	apiKey := "testApiKey"
-	client,err := NewClient(nil, apiKey)
-	if err != nil{
+	client, err := NewClient(nil, apiKey)
+	if err != nil {
 		t.Errorf("Unable to create client")
 	}
 	if client.HTTPClient == nil {

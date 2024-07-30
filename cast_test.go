@@ -444,17 +444,15 @@ func TestRetrieveCastsFromArray_BadRequest(t *testing.T) {
 	}
 }
 
-
-
 func TestRetrieveConversation_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/cast/conversation"
 	expectedParams := url.Values{
-		"type":                             []string{"test-type"},
-		"identifier":                       []string{"test-identifier"},
-		"reply_depth":                      []string{"2"},
+		"type":                               []string{"test-type"},
+		"identifier":                         []string{"test-identifier"},
+		"reply_depth":                        []string{"2"},
 		"include_chronological_parent_casts": []string{"true"},
-		"limit":                            []string{"10"},
-		"viewer_fid":                       []string{"12345"},
+		"limit":                              []string{"10"},
+		"viewer_fid":                         []string{"12345"},
 	}
 	mockResponse := RetrieveConversationResult{
 		Conversation: Conversation{},
@@ -542,12 +540,12 @@ func TestRetrieveConversation_InvalidReplyDepth(t *testing.T) {
 func TestRetrieveConversation_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/cast/conversation"
 	expectedParams := url.Values{
-		"type":                             []string{"test-type"},
-		"identifier":                       []string{"test-identifier"},
-		"reply_depth":                      []string{"2"},
+		"type":                               []string{"test-type"},
+		"identifier":                         []string{"test-identifier"},
+		"reply_depth":                        []string{"2"},
 		"include_chronological_parent_casts": []string{"true"},
-		"limit":                            []string{"10"},
-		"viewer_fid":                       []string{"12345"},
+		"limit":                              []string{"10"},
+		"viewer_fid":                         []string{"12345"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "500",
@@ -578,12 +576,12 @@ func TestRetrieveConversation_ServerError(t *testing.T) {
 func TestRetrieveConversation_BadRequest(t *testing.T) {
 	expectedPath := "/v2/farcaster/cast/conversation"
 	expectedParams := url.Values{
-		"type":                             []string{"test-type"},
-		"identifier":                       []string{"test-identifier"},
-		"reply_depth":                      []string{"2"},
+		"type":                               []string{"test-type"},
+		"identifier":                         []string{"test-identifier"},
+		"reply_depth":                        []string{"2"},
 		"include_chronological_parent_casts": []string{"true"},
-		"limit":                            []string{"10"},
-		"viewer_fid":                       []string{"12345"},
+		"limit":                              []string{"10"},
+		"viewer_fid":                         []string{"12345"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "400",

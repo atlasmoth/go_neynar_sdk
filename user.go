@@ -12,10 +12,10 @@ type UserService struct {
 }
 
 type SearchUserParams struct {
-	Query      string
-	ViewerFid  int32
-	Limit      int
-	Cursor     string
+	Query     string
+	ViewerFid int32
+	Limit     int
+	Cursor    string
 }
 
 type BulkUserParams struct {
@@ -72,52 +72,52 @@ type RemoveVerificationParams struct {
 	Address    string
 }
 type UserSearchResponse struct {
-    Result struct {
-        Users []SearchedUser `json:"users"`
-        Next  NextCursor     `json:"next,omitempty"`
-    } `json:"result"`
-    ErrorResponse
+	Result struct {
+		Users []SearchedUser `json:"users"`
+		Next  NextCursor     `json:"next,omitempty"`
+	} `json:"result"`
+	ErrorResponse
 }
 
 type BulkUsersResponse struct {
-    Users []User `json:"users"`
-    ErrorResponse
+	Users []User `json:"users"`
+	ErrorResponse
 }
 
 type BulkUsersByAddressResponse map[string][]User
 
 type UserResponse struct {
-    User User `json:"user"`
-    ErrorResponse
+	User User `json:"user"`
+	ErrorResponse
 }
 
 type BulkFollowResponse struct {
-    Success bool             `json:"success"`
-    Details []FollowResponse `json:"details"`
-    ErrorResponse
+	Success bool             `json:"success"`
+	Details []FollowResponse `json:"details"`
+	ErrorResponse
 }
 type FollowResponse struct {
-    Success   bool   `json:"success"`
-    TargetFID int    `json:"target_fid"`
-    Hash      string `json:"hash"`
+	Success   bool   `json:"success"`
+	TargetFID int    `json:"target_fid"`
+	Hash      string `json:"hash"`
 }
 
 type UserFIDResponse struct {
-    FID int `json:"fid"`
-    ErrorResponse
+	FID int `json:"fid"`
+	ErrorResponse
 }
 
 type OperationResponse struct {
-    Success bool   `json:"success"`
-    Message string `json:"message,omitempty"`
-    ErrorResponse
+	Success bool   `json:"success"`
+	Message string `json:"message,omitempty"`
+	ErrorResponse
 }
 
 type RegisterUserResponse struct {
-    Success bool   `json:"success"`
-    Message string `json:"message"`
-    Signer  Signer `json:"signer"`
-    ErrorResponse
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+	Signer  Signer `json:"signer"`
+	ErrorResponse
 }
 
 func (s *UserService) SearchUsers(ctx context.Context, params SearchUserParams) (UserSearchResponse, error) {

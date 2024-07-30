@@ -21,7 +21,6 @@ type ChannelListResponse struct {
 	ErrorResponse
 }
 
-
 func (c *ChannelService) ListChannels(ctx context.Context, params ListChannelsParams) (ChannelListResponse, error) {
 	var result ChannelListResponse
 
@@ -70,8 +69,6 @@ type ChannelSearchResponse struct {
 	Channels []Channel `json:"channels"`
 	ErrorResponse
 }
-
-
 
 func (c *ChannelService) SearchChannels(ctx context.Context, params SearchChannelsParams) (ChannelSearchResponse, error) {
 	var result ChannelSearchResponse
@@ -134,7 +131,7 @@ func (c *ChannelService) ChannelBulk(ctx context.Context, params ChannelBulkPara
 		"ids":  strings.Join(params.IDs, ","),
 		"type": params.Type,
 	}
-	if values["type"] == ""{
+	if values["type"] == "" {
 		values["type"] = "id"
 	}
 
@@ -193,7 +190,7 @@ func (c *ChannelService) ChannelDetails(ctx context.Context, params ChannelParam
 		"type": params.Type,
 	}
 
-	if values["type"] == ""{
+	if values["type"] == "" {
 		values["type"] = "id"
 	}
 
@@ -349,7 +346,6 @@ type ChannelUsersParams struct {
 	Limit              int
 }
 
-
 func (c *ChannelService) ChannelUsers(ctx context.Context, params ChannelUsersParams) (UsersResponse, error) {
 	var result UsersResponse
 
@@ -460,9 +456,6 @@ type UserChannelsParams struct {
 	Cursor string
 }
 
-
-
-
 func (c *ChannelService) UserChannels(ctx context.Context, params UserChannelsParams) (ChannelListResponse, error) {
 	var result ChannelListResponse
 
@@ -507,15 +500,7 @@ func (c *ChannelService) UserChannels(ctx context.Context, params UserChannelsPa
 	}
 }
 
-
-
 type ChannelResponseBulk struct {
 	Channels []Channel `json:"channels"`
 	ErrorResponse
 }
-
-
-
-
-
-

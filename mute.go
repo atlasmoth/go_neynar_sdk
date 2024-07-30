@@ -31,8 +31,6 @@ type MuteListResponse struct {
 	ErrorResponse
 }
 
-
-
 type MuteResponse struct {
 	Success bool   `json:"success"`
 	Message string `json:"message,omitempty"`

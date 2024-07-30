@@ -53,7 +53,6 @@ func TestCheckFname_MissingFname(t *testing.T) {
 	}
 }
 
-
 func TestCheckFname_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/fname/availability"
 	expectedParams := url.Values{
@@ -79,7 +78,6 @@ func TestCheckFname_ServerError(t *testing.T) {
 		t.Errorf("Expected error message %v, got %v", expectedError, err.Error())
 	}
 }
-
 
 func TestCheckFname_BadRequest(t *testing.T) {
 	expectedPath := "/v2/farcaster/fname/availability"
@@ -107,10 +105,6 @@ func TestCheckFname_BadRequest(t *testing.T) {
 	}
 }
 
-
-
-
-
 func TestCheckFname_InvalidJsonResponse(t *testing.T) {
 	expectedPath := "/v2/farcaster/fname/availability"
 	expectedParams := url.Values{
@@ -129,12 +123,10 @@ func TestCheckFname_InvalidJsonResponse(t *testing.T) {
 	}
 }
 
-
 func TestCheckFname_InvalidUrl(t *testing.T) {
 	client, server := NewTestClient(nil)
 	defer server.Close()
 
-	
 	client.BaseURL = &url.URL{Scheme: "http", Host: "invalid-url"}
 
 	params := CheckFnameParams{

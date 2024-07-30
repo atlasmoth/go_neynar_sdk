@@ -5,24 +5,19 @@ import (
 	"net/http"
 )
 
-
 type SubscriptionService struct {
 	client *Client
 }
-
-
 
 type RetrieveSubscriptionsCreatedParams struct {
 	Fid                  int32  `json:"fid"`
 	SubscriptionProvider string `json:"subscription_provider"`
 }
 
-
 type RetrieveSubscriptionsCreatedResult struct {
 	SubscriptionsCreated []SubscriptionsCreated `json:"subscriptions_created"`
 	ErrorResponse
 }
-
 
 type RetrieveSubscribedToParams struct {
 	Fid                  int32  `json:"fid"`
@@ -30,12 +25,10 @@ type RetrieveSubscribedToParams struct {
 	SubscriptionProvider string `json:"subscription_provider"`
 }
 
-
 type RetrieveSubscribedToResult struct {
 	SubscribedTo []Subscription `json:"subscribed_to"`
 	ErrorResponse
 }
-
 
 type RetrieveSubscribersParams struct {
 	Fid                  int32  `json:"fid"`
@@ -43,12 +36,10 @@ type RetrieveSubscribersParams struct {
 	SubscriptionProvider string `json:"subscription_provider"`
 }
 
-
 type RetrieveSubscribersResult struct {
 	Subscribers []Subscriber `json:"subscribers"`
 	ErrorResponse
 }
-
 
 func (s *SubscriptionService) RetrieveSubscriptionsCreated(ctx context.Context, params RetrieveSubscriptionsCreatedParams) (RetrieveSubscriptionsCreatedResult, error) {
 	var result RetrieveSubscriptionsCreatedResult
@@ -87,7 +78,6 @@ func (s *SubscriptionService) RetrieveSubscriptionsCreated(ctx context.Context, 
 		return result, &errorResponse
 	}
 }
-
 
 func (s *SubscriptionService) RetrieveSubscribedTo(ctx context.Context, params RetrieveSubscribedToParams) (RetrieveSubscribedToResult, error) {
 	var result RetrieveSubscribedToResult
@@ -129,7 +119,6 @@ func (s *SubscriptionService) RetrieveSubscribedTo(ctx context.Context, params R
 		return result, &errorResponse
 	}
 }
-
 
 func (s *SubscriptionService) RetrieveSubscribers(ctx context.Context, params RetrieveSubscribersParams) (RetrieveSubscribersResult, error) {
 	var result RetrieveSubscribersResult

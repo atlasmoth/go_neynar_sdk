@@ -24,15 +24,12 @@ var mockSignerResponse = SignerResponse{
 	Fid:               12345,
 }
 
-
-
-
 func TestFetchDeveloperManagedSigner_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer/developer_managed"
 	expectedParams := url.Values{
 		"public_key": []string{"publicKey123"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockDeveloperManagedSignerResponse, http.StatusOK))
 	defer server.Close()
 
@@ -71,7 +68,7 @@ func TestFetchDeveloperManagedSigner_ServerError(t *testing.T) {
 	expectedParams := url.Values{
 		"public_key": []string{"publicKey123"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -89,11 +86,9 @@ func TestFetchDeveloperManagedSigner_ServerError(t *testing.T) {
 	}
 }
 
-
 func TestRegisterDeveloperManagedSignedKey_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer/developer_managed/signed_key"
-	
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockDeveloperManagedSignerResponse, http.StatusOK))
 	defer server.Close()
 
@@ -165,13 +160,12 @@ func TestRegisterDeveloperManagedSignedKey_ServerError(t *testing.T) {
 	}
 }
 
-
 func TestFetchSigner_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer"
 	expectedParams := url.Values{
 		"signer_uuid": []string{"uuid123"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockSignerResponse, http.StatusOK))
 	defer server.Close()
 
@@ -210,7 +204,7 @@ func TestFetchSigner_ServerError(t *testing.T) {
 	expectedParams := url.Values{
 		"signer_uuid": []string{"uuid123"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -228,10 +222,9 @@ func TestFetchSigner_ServerError(t *testing.T) {
 	}
 }
 
-
 func TestCreateSigner_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer"
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockSignerResponse, http.StatusOK))
 	defer server.Close()
 
@@ -248,7 +241,7 @@ func TestCreateSigner_Success(t *testing.T) {
 
 func TestCreateSigner_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer"
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -263,10 +256,9 @@ func TestCreateSigner_ServerError(t *testing.T) {
 	}
 }
 
-
 func TestRegisterSignedKey_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/signer/signed_key"
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockSignerResponse, http.StatusOK))
 	defer server.Close()
 
@@ -338,12 +330,11 @@ func TestRegisterSignedKey_ServerError(t *testing.T) {
 	}
 }
 
-
 func TestPublishMessage_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/message"
 	mockMessage := json.RawMessage(`{"key": "value"}`)
 	mockResponse := PublishMessageResponse{}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockResponse, http.StatusOK))
 	defer server.Close()
 
@@ -380,7 +371,7 @@ func TestPublishMessage_MissingMessage(t *testing.T) {
 func TestPublishMessage_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/message"
 	mockMessage := json.RawMessage(`{"key": "value"}`)
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, nil, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -402,7 +393,7 @@ func TestPublishMessage_InvalidJSON(t *testing.T) {
 	client, server := NewTestClient(nil)
 	defer server.Close()
 
-	invalidJSON := json.RawMessage(`{"key": "value"`) 
+	invalidJSON := json.RawMessage(`{"key": "value"`)
 	params := PublishMessageParams{
 		Message: invalidJSON,
 	}
@@ -418,7 +409,7 @@ func TestPublishMessage_EmptyMessage(t *testing.T) {
 	defer server.Close()
 
 	params := PublishMessageParams{
-		Message: json.RawMessage(`{}`) ,
+		Message: json.RawMessage(`{}`),
 	}
 	ctx := context.Background()
 	_, err := client.Signer.PublishMessage(ctx, params)

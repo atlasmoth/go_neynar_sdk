@@ -8,7 +8,6 @@ import (
 	"testing"
 )
 
-
 var mockFetchUserReactionsResponse = ReactionsListResponse{
 	Reactions: []ReactionWithCastInfo{},
 	Next:      Next{Cursor: "nextCursor"},
@@ -38,12 +37,12 @@ var mockErrorResponse = ErrorResponse{
 func TestFetchUserReactions_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/reactions/user"
 	expectedParams := url.Values{
-		"fid": []string{"12345"},
-		"type": []string{"like"},
-		"limit": []string{"10"},
+		"fid":    []string{"12345"},
+		"type":   []string{"like"},
+		"limit":  []string{"10"},
 		"cursor": []string{"someCursor"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockFetchUserReactionsResponse, http.StatusOK))
 	defer server.Close()
 
@@ -106,7 +105,7 @@ func TestFetchUserReactions_ServerError(t *testing.T) {
 		"fid":  []string{"12345"},
 		"type": []string{"like"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -129,19 +128,19 @@ func TestFetchUserReactions_ServerError(t *testing.T) {
 func TestFetchCastReactions_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/reactions/cast"
 	expectedParams := url.Values{
-		"hash":  []string{"hash123"},
-		"types": []string{"like"},
-		"limit": []string{"10"},
+		"hash":   []string{"hash123"},
+		"types":  []string{"like"},
+		"limit":  []string{"10"},
 		"cursor": []string{"someCursor"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockFetchCastReactionsResponse, http.StatusOK))
 	defer server.Close()
 
 	params := FetchCastReactionsParams{
-		Hash:  "hash123",
-		Types: "like",
-		Limit: 10,
+		Hash:   "hash123",
+		Types:  "like",
+		Limit:  10,
 		Cursor: "someCursor",
 	}
 	ctx := context.Background()
@@ -197,7 +196,7 @@ func TestFetchCastReactions_ServerError(t *testing.T) {
 		"hash":  []string{"hash123"},
 		"types": []string{"like"},
 	}
-	
+
 	client, server := NewTestClient(mockHandler(t, expectedPath, expectedParams, mockErrorResponse, http.StatusInternalServerError))
 	defer server.Close()
 
@@ -223,8 +222,8 @@ func TestPostReaction_Success(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
-		Target: "target123",
+		SignerUUID:   "uuid123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -243,7 +242,7 @@ func TestPostReaction_MissingSignerUUID(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		Target: "target123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -262,7 +261,7 @@ func TestPostReaction_MissingTarget(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
+		SignerUUID:   "uuid123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -282,7 +281,7 @@ func TestPostReaction_MissingReactionType(t *testing.T) {
 
 	params := PostReactionParams{
 		SignerUUID: "uuid123",
-		Target: "target123",
+		Target:     "target123",
 	}
 	ctx := context.Background()
 	_, err := client.Reaction.PostReaction(ctx, params)
@@ -301,8 +300,8 @@ func TestPostReaction_ServerError(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
-		Target: "target123",
+		SignerUUID:   "uuid123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -323,8 +322,8 @@ func TestDeleteReaction_Success(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
-		Target: "target123",
+		SignerUUID:   "uuid123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -343,7 +342,7 @@ func TestDeleteReaction_MissingSignerUUID(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		Target: "target123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -362,7 +361,7 @@ func TestDeleteReaction_MissingTarget(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
+		SignerUUID:   "uuid123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()
@@ -382,7 +381,7 @@ func TestDeleteReaction_MissingReactionType(t *testing.T) {
 
 	params := PostReactionParams{
 		SignerUUID: "uuid123",
-		Target: "target123",
+		Target:     "target123",
 	}
 	ctx := context.Background()
 	_, err := client.Reaction.DeleteReaction(ctx, params)
@@ -401,8 +400,8 @@ func TestDeleteReaction_ServerError(t *testing.T) {
 	defer server.Close()
 
 	params := PostReactionParams{
-		SignerUUID: "uuid123",
-		Target: "target123",
+		SignerUUID:   "uuid123",
+		Target:       "target123",
 		ReactionType: "like",
 	}
 	ctx := context.Background()

@@ -10,36 +10,33 @@ type FrameService struct {
 	client *Client
 }
 
-
-
-type PostFrameActionResponse struct{
+type PostFrameActionResponse struct {
 	Frame
 	ErrorResponse
 }
 
 type FrameActionReqBody struct {
-    SignerUUID SignerUUID `json:"signer_uuid"`
-    CastHash   CastHash   `json:"cast_hash"`
-    Action     FrameAction `json:"action"`
+	SignerUUID SignerUUID  `json:"signer_uuid"`
+	CastHash   CastHash    `json:"cast_hash"`
+	Action     FrameAction `json:"action"`
 }
 
 func (s *FrameService) PostFrameAction(ctx context.Context, reqBody FrameActionReqBody) (PostFrameActionResponse, error) {
-    var result PostFrameActionResponse
+	var result PostFrameActionResponse
 
 	if reqBody.SignerUUID == "" {
-        return result, &RequiredFieldError{Field: "SignerUUID"}
-    }
-    if reqBody.CastHash == "" {
-        return result, &RequiredFieldError{Field: "CastHash"}
-    }
-    
-    baseURL := s.client.BaseURL.String() + "v2/farcaster/frame/action"
+		return result, &RequiredFieldError{Field: "SignerUUID"}
+	}
+	if reqBody.CastHash == "" {
+		return result, &RequiredFieldError{Field: "CastHash"}
+	}
 
-    
-    resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, reqBody, nil)
-    if err != nil {
-        return result, err
-    }
+	baseURL := s.client.BaseURL.String() + "v2/farcaster/frame/action"
+
+	resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, reqBody, nil)
+	if err != nil {
+		return result, err
+	}
 
 	if resp.StatusCode == http.StatusOK {
 		err = s.client.HandleJsonResponse(resp, &result)
@@ -61,23 +58,23 @@ func (s *FrameService) PostFrameAction(ctx context.Context, reqBody FrameActionR
 }
 
 type ValidateFrameActionRequest struct {
-	MessageBytesInHex    string `json:"message_bytes_in_hex"`
-	OmitCastReactionContext  bool   `json:"cast_reaction_context,omitempty"`
-	FollowContext        bool   `json:"follow_context,omitempty"`
-	SignerContext        bool   `json:"signer_context,omitempty"`
-	ChannelFollowContext bool   `json:"channel_follow_context,omitempty"`
+	MessageBytesInHex       string `json:"message_bytes_in_hex"`
+	OmitCastReactionContext bool   `json:"cast_reaction_context,omitempty"`
+	FollowContext           bool   `json:"follow_context,omitempty"`
+	SignerContext           bool   `json:"signer_context,omitempty"`
+	ChannelFollowContext    bool   `json:"channel_follow_context,omitempty"`
 }
 
-
 type ValidateFrameActionResponse struct {
-	Valid  bool                `json:"valid"`
+	Valid  bool                 `json:"valid"`
 	Action ValidatedFrameAction `json:"action"`
 	ErrorResponse
 }
+
 func (s *FrameService) ValidateFrame(ctx context.Context, reqBody ValidateFrameActionRequest) (ValidateFrameActionResponse, error) {
 	var result ValidateFrameActionResponse
 	reqBody.OmitCastReactionContext = !reqBody.OmitCastReactionContext
-	
+
 	if reqBody.MessageBytesInHex == "" {
 		return result, &RequiredFieldError{Field: "message_bytes_in_hex"}
 	}
@@ -107,7 +104,6 @@ func (s *FrameService) ValidateFrame(ctx context.Context, reqBody ValidateFrameA
 		return result, &errorResponse
 	}
 }
-
 
 type FrameValidateListResponse struct {
 	Frames []string `json:"frames"`
@@ -142,71 +138,64 @@ func (s *FrameService) GetValidatedFrames(ctx context.Context) (FrameValidateLis
 	}
 }
 
-
-
 type FrameAnalyticsResponse struct {
-   FrameValidateAnalyticsInteractors
-   FrameValidateAnalyticsTotalInteractors
-   FrameValidateAnalyticsInteractionsPerCast
-   FrameValidateAnalyticsInputText
-   ErrorResponse 
-
+	FrameValidateAnalyticsInteractors
+	FrameValidateAnalyticsTotalInteractors
+	FrameValidateAnalyticsInteractionsPerCast
+	FrameValidateAnalyticsInputText
+	ErrorResponse
 }
 
 type FrameAnalyticsRequestParams struct {
-    FrameURL         string    `json:"frame_url"`
-    AnalyticsType    string    `json:"analytics_type"`
-    Start            time.Time `json:"start"`
-    Stop             time.Time `json:"stop"`
-    AggregateWindow  string    `json:"aggregate_window,omitempty"`
+	FrameURL        string    `json:"frame_url"`
+	AnalyticsType   string    `json:"analytics_type"`
+	Start           time.Time `json:"start"`
+	Stop            time.Time `json:"stop"`
+	AggregateWindow string    `json:"aggregate_window,omitempty"`
 }
 
 func (s *FrameService) GetFrameAnalytics(ctx context.Context, params FrameAnalyticsRequestParams) (FrameAnalyticsResponse, error) {
-    var result FrameAnalyticsResponse
+	var result FrameAnalyticsResponse
 
+	if params.FrameURL == "" {
+		return result, &RequiredFieldError{Field: "FrameURL"}
+	}
+	if params.AnalyticsType == "" {
+		return result, &RequiredFieldError{Field: "AnalyticsType"}
+	}
+	if params.Start.IsZero() {
+		return result, &RequiredFieldError{Field: "Start"}
+	}
+	if params.Stop.IsZero() {
+		return result, &RequiredFieldError{Field: "Stop"}
+	}
 
-    if params.FrameURL == "" {
-        return result, &RequiredFieldError{Field: "FrameURL"}
-    }
-    if params.AnalyticsType == "" {
-        return result, &RequiredFieldError{Field: "AnalyticsType"}
-    }
-    if params.Start.IsZero() {
-        return result, &RequiredFieldError{Field: "Start"}
-    }
-    if params.Stop.IsZero() {
-        return result, &RequiredFieldError{Field: "Stop"}
-    }
+	validAnalyticsTypes := []string{"total-interactors", "interactors", "interactions-per-cast", "input-text"}
+	if !Contains(validAnalyticsTypes, params.AnalyticsType) {
+		return result, &InvalidFieldError{Field: "AnalyticsType", Values: params.AnalyticsType}
+	}
 
-    
-    validAnalyticsTypes := []string{"total-interactors", "interactors", "interactions-per-cast", "input-text"}
-    if !Contains(validAnalyticsTypes, params.AnalyticsType) {
-        return result, &InvalidFieldError{Field: "AnalyticsType", Values:params.AnalyticsType}
-    }
+	if params.AnalyticsType == "interactions-per-cast" {
+		validAggregateWindows := []string{"10s", "1m", "2m", "5m", "10m", "20m", "30m", "2h", "12h", "1d", "7d"}
+		if params.AggregateWindow == "" || !Contains(validAggregateWindows, params.AggregateWindow) {
+			return result, &InvalidFieldError{Field: "AggregateWindow", Values: params.AggregateWindow}
+		}
+	}
 
-    
-    if params.AnalyticsType == "interactions-per-cast" {
-        validAggregateWindows := []string{"10s", "1m", "2m", "5m", "10m", "20m", "30m", "2h", "12h", "1d", "7d"}
-        if params.AggregateWindow == "" || !Contains(validAggregateWindows, params.AggregateWindow) {
-            return result, &InvalidFieldError{Field: "AggregateWindow", Values: params.AggregateWindow}
-        }
-    }
-
-    baseURL := s.client.BaseURL.String() + "v2/farcaster/frame/validate/analytics"
+	baseURL := s.client.BaseURL.String() + "v2/farcaster/frame/validate/analytics"
 
 	values := map[string]any{
-		"frame_url": params.FrameURL,
-		"analytics_type" : params.AnalyticsType,
-		"start" : params.Start.Format(time.RFC3339),
-		"stop" : params.Stop.Format(time.RFC3339),
+		"frame_url":      params.FrameURL,
+		"analytics_type": params.AnalyticsType,
+		"start":          params.Start.Format(time.RFC3339),
+		"stop":           params.Stop.Format(time.RFC3339),
 	}
-    
 
-    if params.AggregateWindow != "" {
+	if params.AggregateWindow != "" {
 		values["aggregate_window"] = params.AggregateWindow
-    }
+	}
 
-    q := GetUrlValues(values)
+	q := GetUrlValues(values)
 
 	rawQuery := q.Encode()
 	resp, err := s.client.HandleJsonRequest(ctx, http.MethodGet, baseURL, nil, &rawQuery)
@@ -233,9 +222,8 @@ func (s *FrameService) GetFrameAnalytics(ctx context.Context, params FrameAnalyt
 	}
 }
 
-
 type FrameResponse struct {
-	NeynarFrame 
+	NeynarFrame
 	ErrorResponse
 }
 
@@ -248,8 +236,8 @@ func (s *FrameService) FetchFrame(ctx context.Context, params FetchFrameParams) 
 	baseURL := s.client.BaseURL.String() + "v2/farcaster/frame"
 	values := map[string]any{
 		"type": params.Type,
-		"uuid" : params.UUID,
-		"url" : params.URL,
+		"uuid": params.UUID,
+		"url":  params.URL,
 	}
 
 	q := GetUrlValues(values)
@@ -278,19 +266,15 @@ func (s *FrameService) FetchFrame(ctx context.Context, params FetchFrameParams) 
 	}
 }
 
-
 func (s *FrameService) CreateFrame(ctx context.Context, params CreateFrameParams) (FrameResponse, error) {
 	var result FrameResponse
 
-	
 	if params.Frame.Name == "" {
 		return result, &RequiredFieldError{Field: "Frame.Name"}
 	}
 	if len(params.Frame.Pages) == 0 {
 		return result, &RequiredFieldError{Field: "Frame.Pages"}
 	}
-	
-	
 
 	for _, page := range params.Frame.Pages {
 		if page.UUID == "" {
@@ -367,7 +351,6 @@ func (s *FrameService) CreateFrame(ctx context.Context, params CreateFrameParams
 	}
 }
 
-
 func (s *FrameService) UpdateFrame(ctx context.Context, params UpdateFrameParams) (FrameResponse, error) {
 	var result FrameResponse
 
@@ -378,7 +361,6 @@ func (s *FrameService) UpdateFrame(ctx context.Context, params UpdateFrameParams
 	if len(params.Frame.Pages) == 0 {
 		return result, &RequiredFieldError{Field: "Frame.Pages"}
 	}
-	
 
 	// Validate Pages
 	for _, page := range params.Frame.Pages {
@@ -456,7 +438,6 @@ func (s *FrameService) UpdateFrame(ctx context.Context, params UpdateFrameParams
 	}
 }
 
-
 type DeleteFrameRequest struct {
 	UUID string `json:"uuid"`
 }
@@ -498,6 +479,7 @@ type FrameResponseList struct {
 	Frames
 	ErrorResponse
 }
+
 func (s *FrameService) FetchFrameList(ctx context.Context) (FrameResponseList, error) {
 	var result FrameResponseList
 
@@ -527,17 +509,16 @@ func (s *FrameService) FetchFrameList(ctx context.Context) (FrameResponseList, e
 	}
 }
 
-
 type FrameDeveloperManagedActionReqBody struct {
-	CastHash        string            `json:"cast_hash"`
-	Action          FrameAction       `json:"action"`
+	CastHash        string               `json:"cast_hash"`
+	Action          FrameAction          `json:"action"`
 	SignaturePacket FrameSignaturePacket `json:"signature_packet"`
 }
 
 func (s *FrameService) PostFrameDeveloperManagedAction(ctx context.Context, params FrameDeveloperManagedActionReqBody) (FrameResponse, error) {
 	var result FrameResponse
-// !important to revisit this damn logic!!!!!
-	
+	// !important to revisit this damn logic!!!!!
+
 	if params.CastHash == "" {
 		return result, &RequiredFieldError{Field: "RequestBody.CastHash"}
 	}

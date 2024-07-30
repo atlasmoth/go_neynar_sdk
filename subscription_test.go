@@ -11,7 +11,7 @@ import (
 func TestRetrieveSubscriptionsCreated_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscriptions_created"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
 	}
 	mockResponse := RetrieveSubscriptionsCreatedResult{
@@ -75,7 +75,7 @@ func TestRetrieveSubscriptionsCreated_MissingProvider(t *testing.T) {
 func TestRetrieveSubscriptionsCreated_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscriptions_created"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
 	}
 	mockResponse := ErrorResponse{
@@ -103,9 +103,9 @@ func TestRetrieveSubscriptionsCreated_ServerError(t *testing.T) {
 func TestRetrieveSubscribedTo_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscribed_to"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
-		"viewer_fid":           []string{"54321"},
+		"viewer_fid":            []string{"54321"},
 	}
 	mockResponse := RetrieveSubscribedToResult{
 		SubscribedTo: []Subscription{},
@@ -169,9 +169,9 @@ func TestRetrieveSubscribedTo_MissingProvider(t *testing.T) {
 func TestRetrieveSubscribedTo_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscribed_to"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
-		"viewer_fid":           []string{"54321"},
+		"viewer_fid":            []string{"54321"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "500",
@@ -199,9 +199,9 @@ func TestRetrieveSubscribedTo_ServerError(t *testing.T) {
 func TestRetrieveSubscribers_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscribers"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
-		"viewer_fid":           []string{"54321"},
+		"viewer_fid":            []string{"54321"},
 	}
 	mockResponse := RetrieveSubscribersResult{
 		Subscribers: []Subscriber{},
@@ -265,9 +265,9 @@ func TestRetrieveSubscribers_MissingProvider(t *testing.T) {
 func TestRetrieveSubscribers_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/user/subscribers"
 	expectedParams := url.Values{
-		"fid":                  []string{"12345"},
+		"fid":                   []string{"12345"},
 		"subscription_provider": []string{"provider"},
-		"viewer_fid":           []string{"54321"},
+		"viewer_fid":            []string{"54321"},
 	}
 	mockResponse := ErrorResponse{
 		Code:    "500",

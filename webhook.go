@@ -58,7 +58,6 @@ func (s *WebhookService) GetWebhook(ctx context.Context, params GetWebhookParams
 		return result, &errorResponse
 	}
 
-	
 }
 
 type WebhookParams struct {
@@ -176,21 +175,18 @@ func (s *WebhookService) UpdateWebhook(ctx context.Context, params WebhookParams
 		return result, &errorResponse
 	}
 
-	
 }
 
 type WebhookListResponse struct {
 	Webhooks []Webhook `json:"webhooks"`
 }
 
-
-
 type WebhookSubscriptionFilters struct {
-	CastCreated     CastCreatedFilter           `json:"cast.created,omitempty"`
-	UserCreated     interface{}                 `json:"user.created,omitempty"`
-	UserUpdated     UserUpdatedFilter           `json:"user.updated,omitempty"`
-	FollowCreated   WebhookSubscriptionFiltersFollow `json:"follow.created,omitempty"`
-	FollowDeleted   WebhookSubscriptionFiltersFollow `json:"follow.deleted,omitempty"`
+	CastCreated     CastCreatedFilter                  `json:"cast.created,omitempty"`
+	UserCreated     interface{}                        `json:"user.created,omitempty"`
+	UserUpdated     UserUpdatedFilter                  `json:"user.updated,omitempty"`
+	FollowCreated   WebhookSubscriptionFiltersFollow   `json:"follow.created,omitempty"`
+	FollowDeleted   WebhookSubscriptionFiltersFollow   `json:"follow.deleted,omitempty"`
 	ReactionCreated WebhookSubscriptionFiltersReaction `json:"reaction.created,omitempty"`
 	ReactionDeleted WebhookSubscriptionFiltersReaction `json:"reaction.deleted,omitempty"`
 }
@@ -256,7 +252,6 @@ func (s *WebhookService) DeleteWebhook(ctx context.Context, webhookID string) (W
 		return result, &errorResponse
 	}
 
-	
 }
 
 func (s *WebhookService) ListWebhooks(ctx context.Context) (WebhookListResponse, error) {

@@ -36,7 +36,7 @@ type DeveloperManagedSignerResponse struct {
 	PublicKey         string `json:"public_key"`
 	Status            string `json:"status"`
 	SignerApprovalURL string `json:"signer_approval_url,omitempty"`
-	Fid               uint32  `json:"fid,omitempty"`
+	Fid               uint32 `json:"fid,omitempty"`
 	ErrorResponse
 }
 
@@ -45,7 +45,7 @@ type SignerResponse struct {
 	PublicKey         string `json:"public_key"`
 	Status            string `json:"status"`
 	SignerApprovalURL string `json:"signer_approval_url,omitempty"`
-	Fid               uint32  `json:"fid,omitempty"`
+	Fid               uint32 `json:"fid,omitempty"`
 	ErrorResponse
 }
 
@@ -250,18 +250,15 @@ type PublishMessageParams struct {
 	Message json.RawMessage
 }
 
-
 type PublishMessageResponse struct {
-	
 	ErrorResponse
 }
-
 
 func (s *SignerService) PublishMessage(ctx context.Context, params PublishMessageParams) (PublishMessageResponse, error) {
 	var result PublishMessageResponse
 
 	if len(params.Message) == 0 {
-		
+
 		return result, &RequiredFieldError{Field: "Message"}
 	}
 
@@ -269,7 +266,6 @@ func (s *SignerService) PublishMessage(ctx context.Context, params PublishMessag
 
 	resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, params.Message, nil)
 
-	
 	if err != nil {
 		return result, err
 	}

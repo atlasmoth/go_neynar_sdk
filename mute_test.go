@@ -83,7 +83,7 @@ func TestFetchMuteList_ServerError(t *testing.T) {
 
 func TestAddMute_Success(t *testing.T) {
 	expectedPath := "/v2/farcaster/mute"
-	
+
 	mockResponse := MuteResponse{
 		Success: true,
 		Message: "Mute added successfully",
@@ -230,7 +230,7 @@ func TestDeleteMute_MissingMutedFid(t *testing.T) {
 
 func TestDeleteMute_ServerError(t *testing.T) {
 	expectedPath := "/v2/farcaster/mute"
-	
+
 	mockResponse := ErrorResponse{
 		Code:    "500",
 		Message: "Internal Server Error",

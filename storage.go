@@ -24,12 +24,10 @@ type BuyStorageParams struct {
 }
 
 type StorageAllocationsResponse struct {
-	TotalActiveUnits int              `json:"total_active_units"`
+	TotalActiveUnits int                 `json:"total_active_units"`
 	Allocations      []StorageAllocation `json:"allocations"`
 	ErrorResponse
 }
-
-
 
 func (s *StorageService) FetchStorageAllocations(ctx context.Context, params FetchStorageAllocationsParams) (StorageAllocationsResponse, error) {
 	var result StorageAllocationsResponse
