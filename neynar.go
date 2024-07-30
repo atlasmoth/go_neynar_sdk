@@ -83,6 +83,7 @@ type Client struct {
 	Reaction    ReactionService
 	Signer      SignerService
 	Frame       FrameService
+	Channel     ChannelService
 }
 
 func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
@@ -106,6 +107,7 @@ func NewClient(httpClient *http.Client, apiKey string) (*Client,error) {
 	c.Reaction = ReactionService{client:  c}
 	c.Signer = SignerService{client: c}
 	c.Frame = FrameService{client: c}
+	c.Channel = ChannelService{client: c}
 	return c,nil
 }
 
@@ -155,6 +157,10 @@ func (c *Client) HandleJsonResponse(r *http.Response, payload any) error {
 	return nil
 
 }
+
+
+
+
 
 func GetUrlValues(obj map[string]any) url.Values {
 	q := url.Values{}

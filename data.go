@@ -74,11 +74,41 @@ type Replies struct {
 }
 
 type Channel struct {
-    Object   string `json:"object"`
-    ID       string `json:"id"`
-    Name     string `json:"name"`
-    ImageURL string `json:"image_url"`
+	ID            string               `json:"id"`
+	URL           string               `json:"url"`
+	Name          string               `json:"name,omitempty"`
+	Description   string               `json:"description,omitempty"`
+	Object        string               `json:"object"`
+	CreatedAt     float64              `json:"created_at,omitempty"`
+	FollowerCount float64              `json:"follower_count,omitempty"`
+	ImageURL      string               `json:"image_url,omitempty"`
+	ParentURL     string               `json:"parent_url,omitempty"`
+	Lead          User                 `json:"lead,omitempty"`
+	Moderator     User                 `json:"moderator,omitempty"`
+	Hosts         []User               `json:"hosts,omitempty"`
+	ViewerContext ChannelViewerContext `json:"viewer_context,omitempty"`
 }
+
+type ChannelViewerContext struct {
+	Following bool `json:"following"`
+}
+
+
+type ChannelActivity struct {
+	Object       string  `json:"object"`
+	CastCount1d  string  `json:"cast_count_1d"`
+	CastCount7d  string  `json:"cast_count_7d"`
+	CastCount30d string  `json:"cast_count_30d"`
+	Channel      Channel `json:"channel"`
+}
+
+
+
+
+type NextCursor struct {
+	Cursor string `json:"cursor"`
+}
+
 
 type Next struct {
     Cursor string `json:"cursor"`
