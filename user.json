@@ -1,0 +1,833 @@
+{
+  "components": {
+    "/farcaster/user/search": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Search for Usernames",
+        "description": "Search for Usernames",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/user-search"
+        },
+        "operationId": "user-search",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "example": "r",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "example": 3,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "example": 10,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5,
+              "maximum": 10
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/bulk": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Fetch users based on FIDs",
+        "description": "Fetches information about multiple users based on FIDs",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/user-bulk"
+        },
+        "operationId": "user-bulk",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "fids",
+            "description": "Comma separated list of FIDs, up to 100 at a time",
+            "in": "query",
+            "required": true,
+            "example": "194, 191, 6131",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "example": 3,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkUsersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/power": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Fetch power users",
+        "description": "Fetches power users based on Warpcast power badges. Information is updated once a day.",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/user-power"
+        },
+        "operationId": "power-users",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "example": 3,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of power users to fetch, max 100",
+            "example": 10,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/bulk-by-address": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Fetches users based on Eth or Sol addresses",
+        "description": "Fetches all users based on multiple Ethereum or Solana addresses.\n\nEach farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.\n\nA custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.\nYou can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/user-bulk-by-address"
+        },
+        "operationId": "user-bulk-by-address",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "addresses",
+            "description": "Comma separated list of Ethereum addresses, up to 350 at a time",
+            "in": "query",
+            "required": true,
+            "example": "0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address_types",
+            "in": "query",
+            "description": "Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.\n",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^(custody_address,?|verified_address,?)+$"
+            },
+            "example": "custody_address,verified_address"
+          },
+          {
+            "name": "viewer_fid",
+            "in": "query",
+            "required": false,
+            "example": 3,
+            "schema": {
+              "$ref": "#/components/schemas/Fid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkUsersByAddressResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/custody-address": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Lookup a user by custody-address",
+        "description": "Lookup a user by custody-address",
+        "operationId": "lookup-user-by-custody-address",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/lookup-user-by-custody-address"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          },
+          {
+            "name": "custody_address",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0xd1b702203b1b3b641a699997746bd4a12d157909",
+            "description": "Custody Address associated with mnemonic"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/follow": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Follow a user",
+        "description": "Follow a user \\\n(In order to follow a user `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/follow-user"
+        },
+        "operationId": "follow-user",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "target_fids": [3, 194]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkFollowResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "403": {
+            "$ref": "#/components/responses/403Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Unfollow a user",
+        "description": "Unfollow a user \\\n(In order to unfollow a user `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/unfollow-user"
+        },
+        "operationId": "unfollow-user",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FollowReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "target_fids": [3, 194]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkFollowResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "403": {
+            "$ref": "#/components/responses/403Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/fid": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Fetches fid to assign it new user",
+        "description": "Fetches fid to assign it new user",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/get-fresh-fid"
+        },
+        "operationId": "get-fresh-fid",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserFIDResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Update user profile",
+        "description": "Update user profile \\\n(In order to update user's profile `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/update-user"
+        },
+        "operationId": "update-user",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "bio": "Hey there..!!!",
+                "pfp_url": "https://i.imgur.com/keIWEYM.jpg",
+                "username": "dan",
+                "display_name": "Dan Romero"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "403": {
+            "$ref": "#/components/responses/403Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Register account on farcaster",
+        "description": "Register account on farcaster.\n\n**Note:** This API must be called within 10 minutes of the fetch fid API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this fid to another available user.\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/register-user"
+        },
+        "operationId": "register-user",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserReqBody"
+              },
+              "example": {
+                "signature": "0xe0cd4da80fb30d59e3ce5a10768c35043bc31487362977cf0a3acf15338a730f4aa329568055c943d777dd81fcb60292f15fc0bcf644da1943b6aa0b3ea9bdcf1b",
+                "fid": 321518,
+                "requested_user_custody_address": "0x2c57e688154C082955cF205F4A335E852D3e25f1",
+                "deadline": 1707371935,
+                "fname": "desired_fname"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/401Response"
+          },
+          "404": {
+            "$ref": "#/components/responses/404Response"
+          },
+          "409": {
+            "$ref": "#/components/responses/409Response"
+          },
+          "500": {
+            "$ref": "#/components/responses/500Response"
+          }
+        }
+      }
+    },
+    "/farcaster/user/verification": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Adds verification for an eth address for the user",
+        "description": "Adds verification for an eth address for the user \\\n(In order to add verification `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/add-verification"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddVerificationReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "address": "0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f",
+                "block_hash": "0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29",
+                "eth_signature": "0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Removes verification for an eth address for the user",
+        "description": "Removes verification for an eth address for the user \\\n(In order to delete verification `signer_uuid` must be approved)\n",
+        "externalDocs": {
+          "url": "https://docs.neynar.com/reference/remove-verification"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ApiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveVerificationReqBody"
+              },
+              "example": {
+                "signer_uuid": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+                "address": "0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "schemas": {
+      "OperationResponse": {
+        "type": "object",
+        "required": ["success"],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "UserFIDResponse": {
+        "type": "object",
+        "required": ["fid"],
+        "properties": {
+          "fid": {
+            "type": "integer"
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "required": ["user"],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "BulkUsersResponse": {
+        "type": "object",
+        "required": ["users"],
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "UsersResponse": {
+        "type": "object",
+        "required": ["users", "next"],
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          }
+        }
+      },
+      "BulkUsersByAddressResponse": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "Fid": {
+        "type": "integer",
+        "format": "int32",
+        "description": "User identifier (unsigned integer)"
+      },
+
+      "UserSearchResponse": {
+        "type": "object",
+        "required": ["result"],
+        "properties": {
+          "result": {
+            "type": "object",
+            "required": ["users"],
+            "properties": {
+              "users": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SearchedUser"
+                }
+              },
+              "next": {
+                "$ref": "#/components/schemas/NextCursor"
+              }
+            }
+          }
+        }
+      },
+      "FollowResponse": {
+        "type": "object",
+        "required": ["success", "target_fid", "hash"],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "target_fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "hash": {
+            "type": "string"
+          }
+        }
+      },
+      "BulkFollowResponse": {
+        "type": "object",
+        "required": ["success", "details"],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FollowResponse"
+            }
+          }
+        }
+      },
+      "RegisterUserReqBody": {
+        "type": "object",
+        "required": [
+          "signature",
+          "fid",
+          "requested_user_custody_address",
+          "deadline"
+        ],
+        "properties": {
+          "signature": {
+            "type": "string"
+          },
+          "fid": {
+            "type": "number"
+          },
+          "requested_user_custody_address": {
+            "type": "string"
+          },
+          "deadline": {
+            "type": "number"
+          },
+          "fname": {
+            "type": "string"
+          }
+        }
+      },
+      "RegisterUserResponse": {
+        "type": "object",
+        "required": ["success", "message", "signer"],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "enum": [true]
+          },
+          "message": {
+            "type": "string"
+          },
+          "signer": {
+            "$ref": "#/components/schemas/Signer"
+          }
+        }
+      },
+      "Signer": {
+        "type": "object",
+        "required": ["signer_uuid", "public_key", "status"],
+        "properties": {
+          "signer_uuid": {
+            "$ref": "#/components/schemas/SignerUUID"
+          },
+          "public_key": {
+            "$ref": "#/components/schemas/Ed25519PublicKey"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["generated", "pending_approval", "approved", "revoked"]
+          },
+          "signer_approval_url": {
+            "type": "string"
+          },
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          }
+        }
+      },
+      "AddVerificationReqBody": {
+        "type": "object",
+        "required": ["signer_uuid", "address", "block_hash", "eth_signature"],
+        "properties": {
+          "signer_uuid": {
+            "$ref": "#/components/schemas/SignerUUID"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "block_hash": {
+            "type": "string"
+          },
+          "eth_signature": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

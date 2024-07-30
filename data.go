@@ -541,3 +541,22 @@ type CastID struct {
 	FID  string `json:"fid"`
 	Hash string `json:"hash"`
 }
+
+type Signer struct {
+    SignerUUID        string          `json:"signer_uuid"`
+    PublicKey         string          `json:"public_key"`
+    Status            string          `json:"status"`
+    SignerApprovalURL string          `json:"signer_approval_url,omitempty"`
+    FID               int             `json:"fid,omitempty"`
+}
+
+type ProfileUrl struct {
+    Pfp struct {
+        Url string `json:"url"`
+    } `json:"pfp"`
+}
+
+type SearchedUser struct {
+    User
+    ProfileUrl
+}
