@@ -29,6 +29,7 @@ func NewTestClient(handler http.Handler) (*Client, *httptest.Server) {
 	client.Signer = SignerService{client: client}
 	client.Frame = FrameService{client: client}
 	client.Channel = ChannelService{client: client}
+	client.User = UserService{client: client}
 	return client, server
 }
 
