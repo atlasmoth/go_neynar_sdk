@@ -2,7 +2,6 @@ package neynarsdk
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"strings"
 )
@@ -19,7 +18,7 @@ type SearchUserParams struct {
 }
 
 type BulkUserParams struct {
-	Fids      []int32
+	Fids      string
 	ViewerFid int32
 }
 
@@ -40,8 +39,8 @@ type LookupUserByCustodyAddressParams struct {
 }
 
 type FollowUserParams struct {
-	SignerUUID string
-	TargetFids []int32
+	SignerUUID string  `json:"signer_uuid"`
+	TargetFids []int32 `json:"target_fids"`
 }
 
 type UpdateUserParams struct {
@@ -79,47 +78,6 @@ type UserSearchResponse struct {
 	ErrorResponse
 }
 
-type BulkUsersResponse struct {
-	Users []User `json:"users"`
-	ErrorResponse
-}
-
-type BulkUsersByAddressResponse map[string][]User
-
-type UserResponse struct {
-	User User `json:"user"`
-	ErrorResponse
-}
-
-type BulkFollowResponse struct {
-	Success bool             `json:"success"`
-	Details []FollowResponse `json:"details"`
-	ErrorResponse
-}
-type FollowResponse struct {
-	Success   bool   `json:"success"`
-	TargetFID int    `json:"target_fid"`
-	Hash      string `json:"hash"`
-}
-
-type UserFIDResponse struct {
-	FID int `json:"fid"`
-	ErrorResponse
-}
-
-type OperationResponse struct {
-	Success bool   `json:"success"`
-	Message string `json:"message,omitempty"`
-	ErrorResponse
-}
-
-type RegisterUserResponse struct {
-	Success bool   `json:"success"`
-	Message string `json:"message"`
-	Signer  Signer `json:"signer"`
-	ErrorResponse
-}
-
 func (s *UserService) SearchUsers(ctx context.Context, params SearchUserParams) (UserSearchResponse, error) {
 	var result UserSearchResponse
 	if params.Query == "" {
@@ -153,6 +111,9 @@ func (s *UserService) SearchUsers(ctx context.Context, params SearchUserParams) 
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -164,15 +125,20 @@ func (s *UserService) SearchUsers(ctx context.Context, params SearchUserParams) 
 	}
 }
 
+type BulkUsersResponse struct {
+	Users []User `json:"users"`
+	ErrorResponse
+}
+
 func (s *UserService) BulkUsers(ctx context.Context, params BulkUserParams) (BulkUsersResponse, error) {
 	var result BulkUsersResponse
-	if len(params.Fids) == 0 {
+	if params.Fids == "" {
 		return result, &RequiredFieldError{Field: "Fids"}
 	}
 
 	baseURL := s.client.BaseURL.String() + "v2/farcaster/user/bulk"
 	values := map[string]any{
-		"fids": strings.Trim(strings.Join(strings.Fields(fmt.Sprint(params.Fids)), ","), "[]"),
+		"fids": params.Fids,
 	}
 
 	if params.ViewerFid != 0 {
@@ -190,6 +156,9 @@ func (s *UserService) BulkUsers(ctx context.Context, params BulkUserParams) (Bul
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -230,6 +199,9 @@ func (s *UserService) PowerUsers(ctx context.Context, params PowerUserParams) (U
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -239,6 +211,13 @@ func (s *UserService) PowerUsers(ctx context.Context, params PowerUserParams) (U
 		}
 		return result, &errorResponse
 	}
+}
+
+type BulkUsersByAddress map[string][]User
+
+type BulkUsersByAddressResponse struct {
+	ErrorResponse
+	BulkUsersByAddress
 }
 
 func (s *UserService) BulkUsersByAddress(ctx context.Context, params BulkUserByAddressParams) (BulkUsersByAddressResponse, error) {
@@ -271,6 +250,9 @@ func (s *UserService) BulkUsersByAddress(ctx context.Context, params BulkUserByA
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -280,6 +262,11 @@ func (s *UserService) BulkUsersByAddress(ctx context.Context, params BulkUserByA
 		}
 		return result, &errorResponse
 	}
+}
+
+type UserResponse struct {
+	User User `json:"user"`
+	ErrorResponse
 }
 
 func (s *UserService) LookupUserByCustodyAddress(ctx context.Context, params LookupUserByCustodyAddressParams) (UserResponse, error) {
@@ -305,6 +292,9 @@ func (s *UserService) LookupUserByCustodyAddress(ctx context.Context, params Loo
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -314,6 +304,12 @@ func (s *UserService) LookupUserByCustodyAddress(ctx context.Context, params Loo
 		}
 		return result, &errorResponse
 	}
+}
+
+type BulkFollowResponse struct {
+	Success bool             `json:"success"`
+	Details []FollowResponse `json:"details"`
+	ErrorResponse
 }
 
 func (s *UserService) FollowUser(ctx context.Context, params FollowUserParams) (BulkFollowResponse, error) {
@@ -340,6 +336,9 @@ func (s *UserService) FollowUser(ctx context.Context, params FollowUserParams) (
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -377,6 +376,9 @@ func (s *UserService) UnfollowUser(ctx context.Context, params FollowUserParams)
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -386,6 +388,17 @@ func (s *UserService) UnfollowUser(ctx context.Context, params FollowUserParams)
 		}
 		return result, &errorResponse
 	}
+}
+
+type FollowResponse struct {
+	Success   bool   `json:"success"`
+	TargetFID int    `json:"target_fid"`
+	Hash      string `json:"hash"`
+}
+
+type UserFIDResponse struct {
+	FID int `json:"fid"`
+	ErrorResponse
 }
 
 func (s *UserService) GetFreshFid(ctx context.Context) (UserFIDResponse, error) {
@@ -401,6 +414,73 @@ func (s *UserService) GetFreshFid(ctx context.Context) (UserFIDResponse, error) 
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
+		return result, nil
+	} else {
+		var errorResponse ErrorResponse
+		err = s.client.HandleJsonResponse(resp, &errorResponse)
+		if err != nil {
+			return result, err
+		}
+		return result, &errorResponse
+	}
+}
+
+type OperationResponse struct {
+	Success bool   `json:"success"`
+	Message string `json:"message,omitempty"`
+	ErrorResponse
+}
+
+type RegisterUserResponse struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+	Signer  Signer `json:"signer"`
+	ErrorResponse
+}
+
+func (s *UserService) RegisterUser(ctx context.Context, params RegisterUserParams) (RegisterUserResponse, error) {
+	var result RegisterUserResponse
+	if params.Signature == "" {
+		return result, &RequiredFieldError{Field: "Signature"}
+	}
+	if params.Fid == 0 {
+		return result, &RequiredFieldError{Field: "Fid"}
+	}
+	if params.RequestedUserCustodyAddress == "" {
+		return result, &RequiredFieldError{Field: "RequestedUserCustodyAddress"}
+	}
+	if params.Deadline == 0 {
+		return result, &RequiredFieldError{Field: "Deadline"}
+	}
+
+	baseURL := s.client.BaseURL.String() + "v2/farcaster/user"
+	body := map[string]any{
+		"signature":                      params.Signature,
+		"fid":                            params.Fid,
+		"requested_user_custody_address": params.RequestedUserCustodyAddress,
+		"deadline":                       params.Deadline,
+	}
+
+	if params.Fname != "" {
+		body["fname"] = params.Fname
+	}
+
+	resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, body, nil)
+
+	if err != nil {
+		return result, err
+	}
+	if resp.StatusCode == http.StatusOK {
+		err = s.client.HandleJsonResponse(resp, &result)
+		if err != nil {
+			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -447,53 +527,8 @@ func (s *UserService) UpdateUser(ctx context.Context, params UpdateUserParams) (
 		if err != nil {
 			return result, err
 		}
-		return result, nil
-	} else {
-		var errorResponse ErrorResponse
-		err = s.client.HandleJsonResponse(resp, &errorResponse)
-		if err != nil {
-			return result, err
-		}
-		return result, &errorResponse
-	}
-}
-
-func (s *UserService) RegisterUser(ctx context.Context, params RegisterUserParams) (RegisterUserResponse, error) {
-	var result RegisterUserResponse
-	if params.Signature == "" {
-		return result, &RequiredFieldError{Field: "Signature"}
-	}
-	if params.Fid == 0 {
-		return result, &RequiredFieldError{Field: "Fid"}
-	}
-	if params.RequestedUserCustodyAddress == "" {
-		return result, &RequiredFieldError{Field: "RequestedUserCustodyAddress"}
-	}
-	if params.Deadline == 0 {
-		return result, &RequiredFieldError{Field: "Deadline"}
-	}
-
-	baseURL := s.client.BaseURL.String() + "v2/farcaster/user"
-	body := map[string]any{
-		"signature":                      params.Signature,
-		"fid":                            params.Fid,
-		"requested_user_custody_address": params.RequestedUserCustodyAddress,
-		"deadline":                       params.Deadline,
-	}
-
-	if params.Fname != "" {
-		body["fname"] = params.Fname
-	}
-
-	resp, err := s.client.HandleJsonRequest(ctx, http.MethodPost, baseURL, body, nil)
-
-	if err != nil {
-		return result, err
-	}
-	if resp.StatusCode == http.StatusOK {
-		err = s.client.HandleJsonResponse(resp, &result)
-		if err != nil {
-			return result, err
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
@@ -539,6 +574,9 @@ func (s *UserService) AddVerification(ctx context.Context, params AddVerificatio
 		if err != nil {
 			return result, err
 		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
+		}
 		return result, nil
 	} else {
 		var errorResponse ErrorResponse
@@ -574,6 +612,9 @@ func (s *UserService) RemoveVerification(ctx context.Context, params RemoveVerif
 		err = s.client.HandleJsonResponse(resp, &result)
 		if err != nil {
 			return result, err
+		}
+		if result.Code != "" {
+			return result, &result.ErrorResponse
 		}
 		return result, nil
 	} else {
