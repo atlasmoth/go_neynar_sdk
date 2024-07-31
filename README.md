@@ -77,7 +77,7 @@ Each service corresponds to a group of API endpoints. Refer to the Neynar API do
 
 ## Versioning
 
-Each version of the client is tagged and the version is updated accordingly. The current version is 0.0.1.
+Each version of the client is tagged and the version is updated accordingly. The current version is 0.0.0.
 
 To see the list of past versions, `run git tag`.
 
