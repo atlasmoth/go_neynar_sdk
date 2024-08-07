@@ -6,7 +6,7 @@ go_neynar_sdk is a Go client library for accessing the [Neynar API's](https://do
 
 Install the following dependencies:
 
-```go
+```bash
 go get github.com/atlasmoth/go_neynar_sdk@vX.Y.Z
 ```
 
