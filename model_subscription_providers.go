@@ -15,13 +15,13 @@ import (
 	"fmt"
 )
 
-// SubscriptionProviders The provider of the subscription.
+// SubscriptionProviders The provider of the subscription. 
 type SubscriptionProviders string
 
 // List of SubscriptionProviders
 const (
-	FABRIC_STP SubscriptionProviders = "fabric_stp"
-	PARAGRAPH  SubscriptionProviders = "paragraph"
+	SUBSCRIPTIONPROVIDERS_FABRIC_STP SubscriptionProviders = "fabric_stp"
+	SUBSCRIPTIONPROVIDERS_PARAGRAPH SubscriptionProviders = "paragraph"
 )
 
 // All allowed values of SubscriptionProviders enum
@@ -108,3 +108,4 @@ func (v *NullableSubscriptionProviders) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,16 +24,16 @@ type Frame struct {
 	// Version of the frame
 	Version string `json:"version"`
 	// URL of the image
-	Image   string              `json:"image"`
+	Image string `json:"image"`
 	Buttons []FrameActionButton `json:"buttons,omitempty"`
 	// Post URL to take an action on this frame
 	PostUrl *string `json:"post_url,omitempty"`
 	// URL of the frames
-	FramesUrl        string      `json:"frames_url"`
-	Title            *string     `json:"title,omitempty"`
-	ImageAspectRatio *string     `json:"image_aspect_ratio,omitempty"`
-	Input            *FrameInput `json:"input,omitempty"`
-	State            *FrameState `json:"state,omitempty"`
+	FramesUrl string `json:"frames_url"`
+	Title *string `json:"title,omitempty"`
+	ImageAspectRatio *string `json:"image_aspect_ratio,omitempty"`
+	Input *FrameInput `json:"input,omitempty"`
+	State *FrameState `json:"state,omitempty"`
 }
 
 type _Frame Frame
@@ -323,7 +323,7 @@ func (o *Frame) SetState(v FrameState) {
 }
 
 func (o Frame) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -371,10 +371,10 @@ func (o *Frame) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -430,3 +430,5 @@ func (v *NullableFrame) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

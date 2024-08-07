@@ -39,7 +39,7 @@ type FrameSignaturePacketUntrustedData struct {
 	TransactionId *string `json:"transactionId,omitempty"`
 	// Ethereum address
 	Address *string `json:"address,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	CastId  *CastId `json:"castId,omitempty"`
+	CastId *CastId `json:"castId,omitempty"`
 }
 
 // NewFrameSignaturePacketUntrustedData instantiates a new FrameSignaturePacketUntrustedData object
@@ -412,7 +412,7 @@ func (o *FrameSignaturePacketUntrustedData) SetCastId(v CastId) {
 }
 
 func (o FrameSignaturePacketUntrustedData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -492,3 +492,5 @@ func (v *NullableFrameSignaturePacketUntrustedData) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

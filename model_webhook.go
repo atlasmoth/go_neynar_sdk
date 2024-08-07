@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Webhook type satisfies the MappedNullable interface at compile time
@@ -22,21 +22,21 @@ var _ MappedNullable = &Webhook{}
 
 // Webhook struct for Webhook
 type Webhook struct {
-	Object            string               `json:"object"`
-	WebhookId         string               `json:"webhook_id"`
-	DeveloperUuid     string               `json:"developer_uuid"`
-	TargetUrl         string               `json:"target_url"`
-	Title             string               `json:"title"`
-	Secrets           []WebhookSecret      `json:"secrets"`
-	Description       string               `json:"description"`
-	HttpTimeout       string               `json:"http_timeout"`
-	RateLimit         int32                `json:"rate_limit"`
-	Active            bool                 `json:"active"`
-	RateLimitDuration string               `json:"rate_limit_duration"`
-	CreatedAt         time.Time            `json:"created_at"`
-	UpdatedAt         time.Time            `json:"updated_at"`
-	DeletedAt         time.Time            `json:"deleted_at"`
-	Subscription      *WebhookSubscription `json:"subscription,omitempty"`
+	Object string `json:"object"`
+	WebhookId string `json:"webhook_id"`
+	DeveloperUuid string `json:"developer_uuid"`
+	TargetUrl string `json:"target_url"`
+	Title string `json:"title"`
+	Secrets []WebhookSecret `json:"secrets"`
+	Description string `json:"description"`
+	HttpTimeout string `json:"http_timeout"`
+	RateLimit int32 `json:"rate_limit"`
+	Active bool `json:"active"`
+	RateLimitDuration string `json:"rate_limit_duration"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	DeletedAt time.Time `json:"deleted_at"`
+	Subscription *WebhookSubscription `json:"subscription,omitempty"`
 }
 
 type _Webhook Webhook
@@ -441,7 +441,7 @@ func (o *Webhook) SetSubscription(v WebhookSubscription) {
 }
 
 func (o Webhook) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -496,10 +496,10 @@ func (o *Webhook) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -555,3 +555,5 @@ func (v *NullableWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

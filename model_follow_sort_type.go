@@ -20,8 +20,8 @@ type FollowSortType string
 
 // List of FollowSortType
 const (
-	DESC_CHRON  FollowSortType = "desc_chron"
-	ALGORITHMIC FollowSortType = "algorithmic"
+	FOLLOWSORTTYPE_DESC_CHRON FollowSortType = "desc_chron"
+	FOLLOWSORTTYPE_ALGORITHMIC FollowSortType = "algorithmic"
 )
 
 // All allowed values of FollowSortType enum
@@ -108,3 +108,4 @@ func (v *NullableFollowSortType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

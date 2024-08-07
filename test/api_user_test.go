@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_UserAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService ActiveUsers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.ActiveUsers(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FarcasterUserVerificationDelete", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FarcasterUserVerificationDelete(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FarcasterUserVerificationPost", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FarcasterUserVerificationPost(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FollowUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FollowUser(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetFreshFid", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.GetFreshFid(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService LookupUserByCustodyAddress", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.LookupUserByCustodyAddress(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService PowerUsers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.PowerUsers(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService RegisterUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.RegisterUser(context.Background()).Execute()
 
@@ -120,7 +120,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UnfollowUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UnfollowUser(context.Background()).Execute()
 
@@ -132,7 +132,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UpdateUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UpdateUser(context.Background()).Execute()
 
@@ -144,7 +144,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UserBulk", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UserBulk(context.Background()).Execute()
 
@@ -156,7 +156,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UserBulkByAddress", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UserBulkByAddress(context.Background()).Execute()
 
@@ -168,7 +168,7 @@ func Test_openapi_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UserSearch", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UserSearch(context.Background()).Execute()
 

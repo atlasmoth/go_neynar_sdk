@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CastWithInteractions type satisfies the MappedNullable interface at compile time
@@ -22,23 +22,23 @@ var _ MappedNullable = &CastWithInteractions{}
 
 // CastWithInteractions struct for CastWithInteractions
 type CastWithInteractions struct {
-	Hash              string                        `json:"hash"`
-	ParentHash        NullableString                `json:"parent_hash"`
-	ParentUrl         NullableString                `json:"parent_url"`
-	RootParentUrl     NullableString                `json:"root_parent_url"`
-	ParentAuthor      CastParentAuthor              `json:"parent_author"`
-	Author            User                          `json:"author"`
-	Text              string                        `json:"text"`
-	Timestamp         time.Time                     `json:"timestamp"`
-	Embeds            []EmbeddedCast                `json:"embeds"`
-	Type              *CastNotificationType         `json:"type,omitempty"`
-	Frames            []Frame                       `json:"frames,omitempty"`
-	Reactions         CastWithInteractionsReactions `json:"reactions"`
-	Replies           CastWithInteractionsReplies   `json:"replies"`
-	ThreadHash        NullableString                `json:"thread_hash"`
-	MentionedProfiles []User                        `json:"mentioned_profiles"`
-	Channel           ChannelOrDehydratedChannel    `json:"channel"`
-	ViewerContext     *CastViewerContext            `json:"viewer_context,omitempty"`
+	Hash string `json:"hash"`
+	ParentHash NullableString `json:"parent_hash"`
+	ParentUrl NullableString `json:"parent_url"`
+	RootParentUrl NullableString `json:"root_parent_url"`
+	ParentAuthor CastParentAuthor `json:"parent_author"`
+	Author User `json:"author"`
+	Text string `json:"text"`
+	Timestamp time.Time `json:"timestamp"`
+	Embeds []EmbeddedCast `json:"embeds"`
+	Type *CastNotificationType `json:"type,omitempty"`
+	Frames []Frame `json:"frames,omitempty"`
+	Reactions CastWithInteractionsReactions `json:"reactions"`
+	Replies CastWithInteractionsReplies `json:"replies"`
+	ThreadHash NullableString `json:"thread_hash"`
+	MentionedProfiles []User `json:"mentioned_profiles"`
+	Channel ChannelOrDehydratedChannel `json:"channel"`
+	ViewerContext *CastViewerContext `json:"viewer_context,omitempty"`
 }
 
 type _CastWithInteractions CastWithInteractions
@@ -515,7 +515,7 @@ func (o *CastWithInteractions) SetViewerContext(v CastViewerContext) {
 }
 
 func (o CastWithInteractions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -576,10 +576,10 @@ func (o *CastWithInteractions) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -635,3 +635,5 @@ func (v *NullableCastWithInteractions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

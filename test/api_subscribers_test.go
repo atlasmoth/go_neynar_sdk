@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_SubscribersAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService SubscribedTo", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.SubscribedTo(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService Subscribers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.Subscribers(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService SubscriptionsCreated", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.SubscriptionsCreated(context.Background()).Execute()
 

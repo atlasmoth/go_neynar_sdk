@@ -19,10 +19,10 @@ import (
 type VerificationType int32
 
 // List of VerificationType
-// const (
-// 	_0 VerificationType = 0
-// 	_1 VerificationType = 1
-// )
+const (
+	VERIFICATIONTYPE__0 VerificationType = 0
+	VERIFICATIONTYPE__1 VerificationType = 1
+)
 
 // All allowed values of VerificationType enum
 var AllowedVerificationTypeEnumValues = []VerificationType{
@@ -108,3 +108,4 @@ func (v *NullableVerificationType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

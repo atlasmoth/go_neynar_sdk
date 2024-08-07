@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,9 +21,9 @@ var _ MappedNullable = &SubscriptionPrice{}
 
 // SubscriptionPrice struct for SubscriptionPrice
 type SubscriptionPrice struct {
-	PeriodDurationSeconds int32  `json:"period_duration_seconds"`
-	TokensPerPeriod       string `json:"tokens_per_period"`
-	InitialMintPrice      string `json:"initial_mint_price"`
+	PeriodDurationSeconds int32 `json:"period_duration_seconds"`
+	TokensPerPeriod string `json:"tokens_per_period"`
+	InitialMintPrice string `json:"initial_mint_price"`
 }
 
 type _SubscriptionPrice SubscriptionPrice
@@ -121,7 +121,7 @@ func (o *SubscriptionPrice) SetInitialMintPrice(v string) {
 }
 
 func (o SubscriptionPrice) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -151,10 +151,10 @@ func (o *SubscriptionPrice) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -210,3 +210,5 @@ func (v *NullableSubscriptionPrice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

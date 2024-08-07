@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &NeynarFrameCreationRequest{}
 // NeynarFrameCreationRequest struct for NeynarFrameCreationRequest
 type NeynarFrameCreationRequest struct {
 	// The name of the frame.
-	Name  string            `json:"name"`
+	Name string `json:"name"`
 	Pages []NeynarFramePage `json:"pages"`
 }
 
@@ -96,7 +96,7 @@ func (o *NeynarFrameCreationRequest) SetPages(v []NeynarFramePage) {
 }
 
 func (o NeynarFrameCreationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -124,10 +124,10 @@ func (o *NeynarFrameCreationRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -183,3 +183,5 @@ func (v *NullableNeynarFrameCreationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

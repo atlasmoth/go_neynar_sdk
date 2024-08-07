@@ -20,9 +20,9 @@ type VerificationChainId int32
 
 // List of VerificationChainId
 const (
-	_0  VerificationChainId = 0
-	_1  VerificationChainId = 1
-	_10 VerificationChainId = 10
+	VERIFICATIONCHAINID__0 VerificationChainId = 0
+	VERIFICATIONCHAINID__1 VerificationChainId = 1
+	VERIFICATIONCHAINID__10 VerificationChainId = 10
 )
 
 // All allowed values of VerificationChainId enum
@@ -110,3 +110,4 @@ func (v *NullableVerificationChainId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -18,24 +18,25 @@ import (
 	"net/url"
 )
 
+
 // FeedAPIService FeedAPI service
 type FeedAPIService service
 
 type ApiFeedRequest struct {
-	ctx         context.Context
-	ApiService  *FeedAPIService
-	apiKey      *string
-	feedType    *FeedType
-	filterType  *FilterType
-	fid         *int32
-	fids        *string
-	parentUrl   *string
-	channelId   *string
-	embedUrl    *string
+	ctx context.Context
+	ApiService *FeedAPIService
+	apiKey *string
+	feedType *FeedType
+	filterType *FilterType
+	fid *int32
+	fids *string
+	parentUrl *string
+	channelId *string
+	embedUrl *string
 	withRecasts *bool
-	limit       *int32
-	cursor      *string
-	viewerFid   *int32
+	limit *int32
+	cursor *string
+	viewerFid *int32
 }
 
 // API key required for authentication.
@@ -118,25 +119,24 @@ Feed Retrieve casts based on filters
 
 Retrieve casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedRequest
 */
 func (a *FeedAPIService) Feed(ctx context.Context) ApiFeedRequest {
 	return ApiFeedRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedExecute(r ApiFeedRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.Feed")
@@ -240,8 +240,8 @@ func (a *FeedAPIService) FeedExecute(r ApiFeedRequest) (*FeedResponse, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -259,15 +259,15 @@ func (a *FeedAPIService) FeedExecute(r ApiFeedRequest) (*FeedResponse, *http.Res
 }
 
 type ApiFeedChannelsRequest struct {
-	ctx            context.Context
-	ApiService     *FeedAPIService
-	apiKey         *string
-	channelIds     *string
-	withRecasts    *bool
-	viewerFid      *int32
-	withReplies    *bool
-	limit          *int32
-	cursor         *string
+	ctx context.Context
+	ApiService *FeedAPIService
+	apiKey *string
+	channelIds *string
+	withRecasts *bool
+	viewerFid *int32
+	withReplies *bool
+	limit *int32
+	cursor *string
 	shouldModerate *bool
 }
 
@@ -327,25 +327,24 @@ FeedChannels Retrieve feed based on channel ids
 
 Retrieve feed based on channel ids
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedChannelsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedChannelsRequest
 */
 func (a *FeedAPIService) FeedChannels(ctx context.Context) ApiFeedChannelsRequest {
 	return ApiFeedChannelsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedChannelsExecute(r ApiFeedChannelsRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedChannels")
@@ -443,8 +442,8 @@ func (a *FeedAPIService) FeedChannelsExecute(r ApiFeedChannelsRequest) (*FeedRes
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -462,14 +461,14 @@ func (a *FeedAPIService) FeedChannelsExecute(r ApiFeedChannelsRequest) (*FeedRes
 }
 
 type ApiFeedFollowingRequest struct {
-	ctx         context.Context
-	ApiService  *FeedAPIService
-	apiKey      *string
-	fid         *int32
-	viewerFid   *int32
+	ctx context.Context
+	ApiService *FeedAPIService
+	apiKey *string
+	fid *int32
+	viewerFid *int32
 	withRecasts *bool
-	limit       *int32
-	cursor      *string
+	limit *int32
+	cursor *string
 }
 
 // API key required for authentication.
@@ -516,25 +515,24 @@ FeedFollowing Retrieve feed based on who a user is following
 
 Retrieve feed based on who a user is following
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedFollowingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedFollowingRequest
 */
 func (a *FeedAPIService) FeedFollowing(ctx context.Context) ApiFeedFollowingRequest {
 	return ApiFeedFollowingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedFollowingExecute(r ApiFeedFollowingRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedFollowing")
@@ -620,8 +618,8 @@ func (a *FeedAPIService) FeedFollowingExecute(r ApiFeedFollowingRequest) (*FeedR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -639,14 +637,14 @@ func (a *FeedAPIService) FeedFollowingExecute(r ApiFeedFollowingRequest) (*FeedR
 }
 
 type ApiFeedForYouRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *FeedAPIService
-	apiKey     *string
-	fid        *int32
-	viewerFid  *int32
-	provider   *ForYouProvider
-	limit      *int32
-	cursor     *string
+	apiKey *string
+	fid *int32
+	viewerFid *int32
+	provider *ForYouProvider
+	limit *int32
+	cursor *string
 }
 
 // API key required for authentication.
@@ -692,25 +690,24 @@ FeedForYou Retrieve a personalized For You feed for a user
 
 Retrieve a personalized For You feed for a user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedForYouRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedForYouRequest
 */
 func (a *FeedAPIService) FeedForYou(ctx context.Context) ApiFeedForYouRequest {
 	return ApiFeedForYouRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedForYouExecute(r ApiFeedForYouRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedForYou")
@@ -793,8 +790,8 @@ func (a *FeedAPIService) FeedForYouExecute(r ApiFeedForYouRequest) (*FeedRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -812,12 +809,12 @@ func (a *FeedAPIService) FeedForYouExecute(r ApiFeedForYouRequest) (*FeedRespons
 }
 
 type ApiFeedFramesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *FeedAPIService
-	apiKey     *string
-	limit      *int32
-	viewerFid  *int32
-	cursor     *string
+	apiKey *string
+	limit *int32
+	viewerFid *int32
+	cursor *string
 }
 
 // API key required for authentication.
@@ -852,25 +849,24 @@ FeedFrames Retrieve feed of casts with Frames, reverse chronological order
 
 Retrieve feed of casts with Frames, reverse chronological order
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedFramesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedFramesRequest
 */
 func (a *FeedAPIService) FeedFrames(ctx context.Context) ApiFeedFramesRequest {
 	return ApiFeedFramesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedFramesExecute(r ApiFeedFramesRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedFrames")
@@ -946,8 +942,8 @@ func (a *FeedAPIService) FeedFramesExecute(r ApiFeedFramesRequest) (*FeedRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -965,14 +961,14 @@ func (a *FeedAPIService) FeedFramesExecute(r ApiFeedFramesRequest) (*FeedRespons
 }
 
 type ApiFeedTrendingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *FeedAPIService
-	apiKey     *string
-	limit      *int32
-	cursor     *string
-	viewerFid  *int32
+	apiKey *string
+	limit *int32
+	cursor *string
+	viewerFid *int32
 	timeWindow *string
-	channelId  *string
+	channelId *string
 }
 
 // API key required for authentication.
@@ -1019,25 +1015,24 @@ FeedTrending Retrieve trending casts
 
 Retrieve trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedTrendingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedTrendingRequest
 */
 func (a *FeedAPIService) FeedTrending(ctx context.Context) ApiFeedTrendingRequest {
 	return ApiFeedTrendingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedTrendingExecute(r ApiFeedTrendingRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedTrending")
@@ -1122,8 +1117,8 @@ func (a *FeedAPIService) FeedTrendingExecute(r ApiFeedTrendingRequest) (*FeedRes
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1141,11 +1136,11 @@ func (a *FeedAPIService) FeedTrendingExecute(r ApiFeedTrendingRequest) (*FeedRes
 }
 
 type ApiFeedUserPopularRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *FeedAPIService
-	apiKey     *string
-	fid        *int32
-	viewerFid  *int32
+	apiKey *string
+	fid *int32
+	viewerFid *int32
 }
 
 // API key required for authentication.
@@ -1174,25 +1169,24 @@ FeedUserPopular Retrieve 10 most popular casts for a user
 
 Retrieve 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedUserPopularRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedUserPopularRequest
 */
 func (a *FeedAPIService) FeedUserPopular(ctx context.Context) ApiFeedUserPopularRequest {
 	return ApiFeedUserPopularRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return BulkCastsResponse
+//  @return BulkCastsResponse
 func (a *FeedAPIService) FeedUserPopularExecute(r ApiFeedUserPopularRequest) (*BulkCastsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BulkCastsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BulkCastsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedUserPopular")
@@ -1263,8 +1257,8 @@ func (a *FeedAPIService) FeedUserPopularExecute(r ApiFeedUserPopularRequest) (*B
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1282,14 +1276,14 @@ func (a *FeedAPIService) FeedUserPopularExecute(r ApiFeedUserPopularRequest) (*B
 }
 
 type ApiFeedUserRepliesRecastsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *FeedAPIService
-	apiKey     *string
-	fid        *int32
-	filter     *string
-	limit      *int32
-	cursor     *string
-	viewerFid  *int32
+	apiKey *string
+	fid *int32
+	filter *string
+	limit *int32
+	cursor *string
+	viewerFid *int32
 }
 
 // API key required for authentication.
@@ -1336,25 +1330,24 @@ FeedUserRepliesRecasts Retrieve recent replies and recasts for a user
 
 Retrieve recent replies and recasts for a given user FID; sorted by most recent first
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFeedUserRepliesRecastsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFeedUserRepliesRecastsRequest
 */
 func (a *FeedAPIService) FeedUserRepliesRecasts(ctx context.Context) ApiFeedUserRepliesRecastsRequest {
 	return ApiFeedUserRepliesRecastsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FeedResponse
+//  @return FeedResponse
 func (a *FeedAPIService) FeedUserRepliesRecastsExecute(r ApiFeedUserRepliesRecastsRequest) (*FeedResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FeedResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FeedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeedAPIService.FeedUserRepliesRecasts")
@@ -1440,8 +1433,8 @@ func (a *FeedAPIService) FeedUserRepliesRecastsExecute(r ApiFeedUserRepliesRecas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

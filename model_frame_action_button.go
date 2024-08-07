@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +24,7 @@ type FrameActionButton struct {
 	// Title of the button
 	Title *string `json:"title,omitempty"`
 	// Index of the button
-	Index      int32                 `json:"index"`
+	Index int32 `json:"index"`
 	ActionType FrameButtonActionType `json:"action_type"`
 	// Target of the button
 	Target *string `json:"target,omitempty"`
@@ -198,7 +198,7 @@ func (o *FrameActionButton) SetPostUrl(v string) {
 }
 
 func (o FrameActionButton) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -235,10 +235,10 @@ func (o *FrameActionButton) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -294,3 +294,5 @@ func (v *NullableFrameActionButton) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

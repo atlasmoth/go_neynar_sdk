@@ -18,15 +18,16 @@ import (
 	"net/url"
 )
 
+
 // NotificationsAPIService NotificationsAPI service
 type NotificationsAPIService service
 
 type ApiNotificationsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *NotificationsAPIService
-	apiKey     *string
-	fid        *int32
-	cursor     *string
+	apiKey *string
+	fid *int32
+	cursor *string
 }
 
 // API key required for authentication.
@@ -56,25 +57,24 @@ Notifications Retrieve notifications for a given user
 
 Returns a list of notifications for a specific FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNotificationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNotificationsRequest
 */
 func (a *NotificationsAPIService) Notifications(ctx context.Context) ApiNotificationsRequest {
 	return ApiNotificationsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NotificationsResponse
+//  @return NotificationsResponse
 func (a *NotificationsAPIService) NotificationsExecute(r ApiNotificationsRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NotificationsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.Notifications")
@@ -145,8 +145,8 @@ func (a *NotificationsAPIService) NotificationsExecute(r ApiNotificationsRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -164,12 +164,12 @@ func (a *NotificationsAPIService) NotificationsExecute(r ApiNotificationsRequest
 }
 
 type ApiNotificationsChannelRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *NotificationsAPIService
-	apiKey     *string
-	fid        *int32
+	apiKey *string
+	fid *int32
 	channelIds *string
-	cursor     *string
+	cursor *string
 }
 
 // API key required for authentication.
@@ -205,25 +205,24 @@ NotificationsChannel Retrieve notifications for a user in given channels
 
 Returns a list of notifications for a user in specific channels
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNotificationsChannelRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNotificationsChannelRequest
 */
 func (a *NotificationsAPIService) NotificationsChannel(ctx context.Context) ApiNotificationsChannelRequest {
 	return ApiNotificationsChannelRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NotificationsResponse
+//  @return NotificationsResponse
 func (a *NotificationsAPIService) NotificationsChannelExecute(r ApiNotificationsChannelRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NotificationsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.NotificationsChannel")
@@ -298,8 +297,8 @@ func (a *NotificationsAPIService) NotificationsChannelExecute(r ApiNotifications
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -317,12 +316,12 @@ func (a *NotificationsAPIService) NotificationsChannelExecute(r ApiNotifications
 }
 
 type ApiNotificationsParentUrlRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *NotificationsAPIService
-	apiKey     *string
-	fid        *int32
+	apiKey *string
+	fid *int32
 	parentUrls *string
-	cursor     *string
+	cursor *string
 }
 
 // API key required for authentication.
@@ -358,25 +357,24 @@ NotificationsParentUrl Retrieve notifications for a user in given parent_urls
 
 Returns a list of notifications for a user in specific parent_urls
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNotificationsParentUrlRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNotificationsParentUrlRequest
 */
 func (a *NotificationsAPIService) NotificationsParentUrl(ctx context.Context) ApiNotificationsParentUrlRequest {
 	return ApiNotificationsParentUrlRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NotificationsResponse
+//  @return NotificationsResponse
 func (a *NotificationsAPIService) NotificationsParentUrlExecute(r ApiNotificationsParentUrlRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NotificationsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.NotificationsParentUrl")
@@ -451,8 +449,8 @@ func (a *NotificationsAPIService) NotificationsParentUrlExecute(r ApiNotificatio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

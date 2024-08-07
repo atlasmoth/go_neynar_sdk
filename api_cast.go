@@ -18,16 +18,17 @@ import (
 	"net/url"
 )
 
+
 // CastAPIService CastAPI service
 type CastAPIService service
 
 type ApiCastRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *CastAPIService
-	apiKey     *string
+	apiKey *string
 	identifier *string
-	type_      *CastParamType
-	viewerFid  *int32
+	type_ *CastParamType
+	viewerFid *int32
 }
 
 // API key required for authentication.
@@ -62,25 +63,24 @@ Cast Retrieve cast for a given hash or Warpcast URL
 
 Gets information about an individual cast by passing in a Warpcast web URL or cast hash
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCastRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCastRequest
 */
 func (a *CastAPIService) Cast(ctx context.Context) ApiCastRequest {
 	return ApiCastRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CastResponse
+//  @return CastResponse
 func (a *CastAPIService) CastExecute(r ApiCastRequest) (*CastResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CastResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CastResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.Cast")
@@ -155,8 +155,8 @@ func (a *CastAPIService) CastExecute(r ApiCastRequest) (*CastResponse, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -174,16 +174,16 @@ func (a *CastAPIService) CastExecute(r ApiCastRequest) (*CastResponse, *http.Res
 }
 
 type ApiCastConversationRequest struct {
-	ctx                             context.Context
-	ApiService                      *CastAPIService
-	apiKey                          *string
-	identifier                      *string
-	type_                           *CastParamType
-	replyDepth                      *int32
+	ctx context.Context
+	ApiService *CastAPIService
+	apiKey *string
+	identifier *string
+	type_ *CastParamType
+	replyDepth *int32
 	includeChronologicalParentCasts *bool
-	viewerFid                       *int32
-	limit                           *int32
-	cursor                          *string
+	viewerFid *int32
+	limit *int32
+	cursor *string
 }
 
 // API key required for authentication.
@@ -241,25 +241,24 @@ CastConversation Retrieve the conversation for a given cast
 
 Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCastConversationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCastConversationRequest
 */
 func (a *CastAPIService) CastConversation(ctx context.Context) ApiCastConversationRequest {
 	return ApiCastConversationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return Conversation
+//  @return Conversation
 func (a *CastAPIService) CastConversationExecute(r ApiCastConversationRequest) (*Conversation, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Conversation
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Conversation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.CastConversation")
@@ -355,8 +354,8 @@ func (a *CastAPIService) CastConversationExecute(r ApiCastConversationRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -374,12 +373,12 @@ func (a *CastAPIService) CastConversationExecute(r ApiCastConversationRequest) (
 }
 
 type ApiCastsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *CastAPIService
-	apiKey     *string
-	casts      *string
-	viewerFid  *int32
-	sortType   *string
+	apiKey *string
+	casts *string
+	viewerFid *int32
+	sortType *string
 }
 
 // API key required for authentication.
@@ -415,25 +414,24 @@ Casts Gets information about an array of casts
 
 Retrieve multiple casts using their respective hashes.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCastsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCastsRequest
 */
 func (a *CastAPIService) Casts(ctx context.Context) ApiCastsRequest {
 	return ApiCastsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CastsResponse
+//  @return CastsResponse
 func (a *CastAPIService) CastsExecute(r ApiCastsRequest) (*CastsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CastsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CastsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.Casts")
@@ -507,8 +505,8 @@ func (a *CastAPIService) CastsExecute(r ApiCastsRequest) (*CastsResponse, *http.
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -526,9 +524,9 @@ func (a *CastAPIService) CastsExecute(r ApiCastsRequest) (*CastsResponse, *http.
 }
 
 type ApiDeleteCastRequest struct {
-	ctx               context.Context
-	ApiService        *CastAPIService
-	apiKey            *string
+	ctx context.Context
+	ApiService *CastAPIService
+	apiKey *string
 	deleteCastReqBody *DeleteCastReqBody
 }
 
@@ -553,25 +551,25 @@ DeleteCast Delete a cast
 Delete an existing cast. \
 (In order to delete a cast `signer_uuid` must be approved)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteCastRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDeleteCastRequest
 */
 func (a *CastAPIService) DeleteCast(ctx context.Context) ApiDeleteCastRequest {
 	return ApiDeleteCastRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return OperationResponse
+//  @return OperationResponse
 func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OperationResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.DeleteCast")
@@ -640,8 +638,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -651,8 +649,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -662,8 +660,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -673,8 +671,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -692,9 +690,9 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 }
 
 type ApiPostCastRequest struct {
-	ctx             context.Context
-	ApiService      *CastAPIService
-	apiKey          *string
+	ctx context.Context
+	ApiService *CastAPIService
+	apiKey *string
 	postCastReqBody *PostCastReqBody
 }
 
@@ -716,28 +714,28 @@ func (r ApiPostCastRequest) Execute() (*PostCastResponse, *http.Response, error)
 /*
 PostCast Posts a cast
 
-Posts a cast or cast reply. Works with mentions and embeds.
+Posts a cast or cast reply. Works with mentions and embeds.  
 (In order to post a cast `signer_uuid` must be approved)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostCastRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostCastRequest
 */
 func (a *CastAPIService) PostCast(ctx context.Context) ApiPostCastRequest {
 	return ApiPostCastRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PostCastResponse
+//  @return PostCastResponse
 func (a *CastAPIService) PostCastExecute(r ApiPostCastRequest) (*PostCastResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PostCastResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PostCastResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.PostCast")
@@ -806,8 +804,8 @@ func (a *CastAPIService) PostCastExecute(r ApiPostCastRequest) (*PostCastRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -817,8 +815,8 @@ func (a *CastAPIService) PostCastExecute(r ApiPostCastRequest) (*PostCastRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -828,8 +826,8 @@ func (a *CastAPIService) PostCastExecute(r ApiPostCastRequest) (*PostCastRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -839,8 +837,8 @@ func (a *CastAPIService) PostCastExecute(r ApiPostCastRequest) (*PostCastRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

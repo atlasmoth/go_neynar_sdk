@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the WebhookSubscription type satisfies the MappedNullable interface at compile time
@@ -22,11 +22,11 @@ var _ MappedNullable = &WebhookSubscription{}
 
 // WebhookSubscription struct for WebhookSubscription
 type WebhookSubscription struct {
-	Object         string                     `json:"object"`
-	SubscriptionId string                     `json:"subscription_id"`
-	Filters        WebhookSubscriptionFilters `json:"filters"`
-	CreatedAt      time.Time                  `json:"created_at"`
-	UpdatedAt      time.Time                  `json:"updated_at"`
+	Object string `json:"object"`
+	SubscriptionId string `json:"subscription_id"`
+	Filters WebhookSubscriptionFilters `json:"filters"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type _WebhookSubscription WebhookSubscription
@@ -174,7 +174,7 @@ func (o *WebhookSubscription) SetUpdatedAt(v time.Time) {
 }
 
 func (o WebhookSubscription) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -208,10 +208,10 @@ func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -267,3 +267,5 @@ func (v *NullableWebhookSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

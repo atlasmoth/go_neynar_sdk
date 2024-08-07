@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,11 +21,11 @@ var _ MappedNullable = &ChannelActivity{}
 
 // ChannelActivity struct for ChannelActivity
 type ChannelActivity struct {
-	Object       string  `json:"object"`
-	CastCount1d  string  `json:"cast_count_1d"`
-	CastCount7d  string  `json:"cast_count_7d"`
-	CastCount30d string  `json:"cast_count_30d"`
-	Channel      Channel `json:"channel"`
+	Object string `json:"object"`
+	CastCount1d string `json:"cast_count_1d"`
+	CastCount7d string `json:"cast_count_7d"`
+	CastCount30d string `json:"cast_count_30d"`
+	Channel Channel `json:"channel"`
 }
 
 type _ChannelActivity ChannelActivity
@@ -173,7 +173,7 @@ func (o *ChannelActivity) SetChannel(v Channel) {
 }
 
 func (o ChannelActivity) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -207,10 +207,10 @@ func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -266,3 +266,5 @@ func (v *NullableChannelActivity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

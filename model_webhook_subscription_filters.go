@@ -19,13 +19,13 @@ var _ MappedNullable = &WebhookSubscriptionFilters{}
 
 // WebhookSubscriptionFilters struct for WebhookSubscriptionFilters
 type WebhookSubscriptionFilters struct {
-	CastCreated     *WebhookSubscriptionFiltersCastCreated `json:"cast.created,omitempty"`
-	UserCreated     map[string]interface{}                 `json:"user.created,omitempty"`
-	UserUpdated     *WebhookSubscriptionFiltersUserUpdated `json:"user.updated,omitempty"`
-	FollowCreated   *WebhookSubscriptionFiltersFollow      `json:"follow.created,omitempty"`
-	FollowDeleted   *WebhookSubscriptionFiltersFollow      `json:"follow.deleted,omitempty"`
-	ReactionCreated *WebhookSubscriptionFiltersReaction    `json:"reaction.created,omitempty"`
-	ReactionDeleted *WebhookSubscriptionFiltersReaction    `json:"reaction.deleted,omitempty"`
+	CastCreated *WebhookSubscriptionFiltersCastCreated `json:"cast.created,omitempty"`
+	UserCreated map[string]interface{} `json:"user.created,omitempty"`
+	UserUpdated *WebhookSubscriptionFiltersUserUpdated `json:"user.updated,omitempty"`
+	FollowCreated *WebhookSubscriptionFiltersFollow `json:"follow.created,omitempty"`
+	FollowDeleted *WebhookSubscriptionFiltersFollow `json:"follow.deleted,omitempty"`
+	ReactionCreated *WebhookSubscriptionFiltersReaction `json:"reaction.created,omitempty"`
+	ReactionDeleted *WebhookSubscriptionFiltersReaction `json:"reaction.deleted,omitempty"`
 }
 
 // NewWebhookSubscriptionFilters instantiates a new WebhookSubscriptionFilters object
@@ -270,7 +270,7 @@ func (o *WebhookSubscriptionFilters) SetReactionDeleted(v WebhookSubscriptionFil
 }
 
 func (o WebhookSubscriptionFilters) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,3 +338,5 @@ func (v *NullableWebhookSubscriptionFilters) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

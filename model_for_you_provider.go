@@ -15,12 +15,12 @@ import (
 	"fmt"
 )
 
-// ForYouProvider The provider of the For You feed.
+// ForYouProvider The provider of the For You feed. 
 type ForYouProvider string
 
 // List of ForYouProvider
 const (
-	KARMA3 ForYouProvider = "karma3"
+	FORYOUPROVIDER_KARMA3 ForYouProvider = "karma3"
 )
 
 // All allowed values of ForYouProvider enum
@@ -106,3 +106,4 @@ func (v *NullableForYouProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

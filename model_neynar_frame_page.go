@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -26,10 +26,10 @@ type NeynarFramePage struct {
 	// The version of the page schema.
 	Version string `json:"version"`
 	// The title of the page.
-	Title   string             `json:"title"`
-	Image   NeynarPageImage    `json:"image"`
+	Title string `json:"title"`
+	Image NeynarPageImage `json:"image"`
 	Buttons []NeynarPageButton `json:"buttons,omitempty"`
-	Input   *NeynarPageInput   `json:"input,omitempty"`
+	Input *NeynarPageInput `json:"input,omitempty"`
 }
 
 type _NeynarFramePage NeynarFramePage
@@ -218,7 +218,7 @@ func (o *NeynarFramePage) SetInput(v NeynarPageInput) {
 }
 
 func (o NeynarFramePage) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -256,10 +256,10 @@ func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -315,3 +315,5 @@ func (v *NullableNeynarFramePage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

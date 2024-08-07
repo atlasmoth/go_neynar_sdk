@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &WebhookPostReqBody{}
 
 // WebhookPostReqBody struct for WebhookPostReqBody
 type WebhookPostReqBody struct {
-	Name         string                      `json:"name"`
-	Url          string                      `json:"url"`
+	Name string `json:"name"`
+	Url string `json:"url"`
 	Subscription *WebhookSubscriptionFilters `json:"subscription,omitempty"`
 }
 
@@ -128,7 +128,7 @@ func (o *WebhookPostReqBody) SetSubscription(v WebhookSubscriptionFilters) {
 }
 
 func (o WebhookPostReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,10 +159,10 @@ func (o *WebhookPostReqBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -218,3 +218,5 @@ func (v *NullableWebhookPostReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

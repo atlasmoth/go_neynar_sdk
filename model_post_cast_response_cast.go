@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &PostCastResponseCast{}
 // PostCastResponseCast struct for PostCastResponseCast
 type PostCastResponseCast struct {
 	// Ethereum address
-	Hash   string                     `json:"hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	Hash string `json:"hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	Author PostCastResponseCastAuthor `json:"author"`
-	Text   string                     `json:"text"`
+	Text string `json:"text"`
 }
 
 type _PostCastResponseCast PostCastResponseCast
@@ -122,7 +122,7 @@ func (o *PostCastResponseCast) SetText(v string) {
 }
 
 func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,10 +152,10 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -211,3 +211,5 @@ func (v *NullablePostCastResponseCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

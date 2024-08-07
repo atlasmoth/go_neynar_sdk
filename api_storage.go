@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 // StorageAPIService StorageAPI service
 type StorageAPIService service
 
 type ApiBuyStorageRequest struct {
-	ctx               context.Context
-	ApiService        *StorageAPIService
-	apiKey            *string
+	ctx context.Context
+	ApiService *StorageAPIService
+	apiKey *string
 	buyStorageReqBody *BuyStorageReqBody
 }
 
@@ -49,25 +50,25 @@ BuyStorage Buy storage for an fid
 This api will help you rent units of storage for an year for a specific fid.
 A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiBuyStorageRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiBuyStorageRequest
 */
 func (a *StorageAPIService) BuyStorage(ctx context.Context) ApiBuyStorageRequest {
 	return ApiBuyStorageRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return StorageAllocationsResponse
+//  @return StorageAllocationsResponse
 func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageAllocationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *StorageAllocationsResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageAllocationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.BuyStorage")
@@ -136,8 +137,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -147,8 +148,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -158,8 +159,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -177,10 +178,10 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 }
 
 type ApiStorageAllocationsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *StorageAPIService
-	apiKey     *string
-	fid        *int32
+	apiKey *string
+	fid *int32
 }
 
 // API key required for authentication.
@@ -203,25 +204,24 @@ StorageAllocations Fetches storage allocations for a given user
 
 Fetches storage allocations for a given user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiStorageAllocationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiStorageAllocationsRequest
 */
 func (a *StorageAPIService) StorageAllocations(ctx context.Context) ApiStorageAllocationsRequest {
 	return ApiStorageAllocationsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return StorageAllocationsResponse
+//  @return StorageAllocationsResponse
 func (a *StorageAPIService) StorageAllocationsExecute(r ApiStorageAllocationsRequest) (*StorageAllocationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *StorageAllocationsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageAllocationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.StorageAllocations")
@@ -289,8 +289,8 @@ func (a *StorageAPIService) StorageAllocationsExecute(r ApiStorageAllocationsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -308,10 +308,10 @@ func (a *StorageAPIService) StorageAllocationsExecute(r ApiStorageAllocationsReq
 }
 
 type ApiStorageUsageRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *StorageAPIService
-	apiKey     *string
-	fid        *int32
+	apiKey *string
+	fid *int32
 }
 
 // API key required for authentication.
@@ -334,25 +334,24 @@ StorageUsage Fetches storage usage for a given user
 
 Fetches storage usage for a given user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiStorageUsageRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiStorageUsageRequest
 */
 func (a *StorageAPIService) StorageUsage(ctx context.Context) ApiStorageUsageRequest {
 	return ApiStorageUsageRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return StorageUsageResponse
+//  @return StorageUsageResponse
 func (a *StorageAPIService) StorageUsageExecute(r ApiStorageUsageRequest) (*StorageUsageResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *StorageUsageResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageUsageResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.StorageUsage")
@@ -420,8 +419,8 @@ func (a *StorageAPIService) StorageUsageExecute(r ApiStorageUsageRequest) (*Stor
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

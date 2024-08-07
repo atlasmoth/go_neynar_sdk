@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,8 +24,8 @@ type FrameActionReqBody struct {
 	// UUID of the signer
 	SignerUuid string `json:"signer_uuid"`
 	// Cast Hash
-	CastHash *string     `json:"cast_hash,omitempty"`
-	Action   FrameAction `json:"action"`
+	CastHash *string `json:"cast_hash,omitempty"`
+	Action FrameAction `json:"action"`
 }
 
 type _FrameActionReqBody FrameActionReqBody
@@ -134,7 +134,7 @@ func (o *FrameActionReqBody) SetAction(v FrameAction) {
 }
 
 func (o FrameActionReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -165,10 +165,10 @@ func (o *FrameActionReqBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -224,3 +224,5 @@ func (v *NullableFrameActionReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

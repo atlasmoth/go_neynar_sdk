@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MuteList type satisfies the MappedNullable interface at compile time
@@ -22,8 +22,8 @@ var _ MappedNullable = &MuteList{}
 
 // MuteList struct for MuteList
 type MuteList struct {
-	Object  string    `json:"object"`
-	Muted   User      `json:"muted"`
+	Object string `json:"object"`
+	Muted User `json:"muted"`
 	MutedAt time.Time `json:"muted_at"`
 }
 
@@ -122,7 +122,7 @@ func (o *MuteList) SetMutedAt(v time.Time) {
 }
 
 func (o MuteList) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,10 +152,10 @@ func (o *MuteList) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -211,3 +211,5 @@ func (v *NullableMuteList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

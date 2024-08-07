@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Notification type satisfies the MappedNullable interface at compile time
@@ -22,12 +22,12 @@ var _ MappedNullable = &Notification{}
 
 // Notification struct for Notification
 type Notification struct {
-	Object              string                 `json:"object"`
-	MostRecentTimestamp time.Time              `json:"most_recent_timestamp"`
-	Type                string                 `json:"type"`
-	Follows             []Follow               `json:"follows,omitempty"`
-	Cast                *CastWithInteractions  `json:"cast,omitempty"`
-	Reactions           []ReactionWithUserInfo `json:"reactions,omitempty"`
+	Object string `json:"object"`
+	MostRecentTimestamp time.Time `json:"most_recent_timestamp"`
+	Type string `json:"type"`
+	Follows []Follow `json:"follows,omitempty"`
+	Cast *CastWithInteractions `json:"cast,omitempty"`
+	Reactions []ReactionWithUserInfo `json:"reactions,omitempty"`
 }
 
 type _Notification Notification
@@ -221,7 +221,7 @@ func (o *Notification) SetReactions(v []ReactionWithUserInfo) {
 }
 
 func (o Notification) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -260,10 +260,10 @@ func (o *Notification) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -319,3 +319,5 @@ func (v *NullableNotification) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

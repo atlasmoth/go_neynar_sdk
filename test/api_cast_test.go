@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_CastAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService Cast", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.Cast(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService CastConversation", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.CastConversation(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService Casts", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.Casts(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_openapi_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService DeleteCast", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.DeleteCast(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_openapi_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService PostCast", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.PostCast(context.Background()).Execute()
 

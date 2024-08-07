@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,20 +21,20 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	Id          string  `json:"id"`
-	Url         string  `json:"url"`
-	Name        *string `json:"name,omitempty"`
+	Id string `json:"id"`
+	Url string `json:"url"`
+	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Object      string  `json:"object"`
+	Object string `json:"object"`
 	// Epoch timestamp in seconds.
 	CreatedAt *float32 `json:"created_at,omitempty"`
 	// Number of followers the channel has.
-	FollowerCount *float32              `json:"follower_count,omitempty"`
-	ImageUrl      *string               `json:"image_url,omitempty"`
-	ParentUrl     *string               `json:"parent_url,omitempty"`
-	Lead          *User                 `json:"lead,omitempty"`
-	Moderator     *User                 `json:"moderator,omitempty"`
-	Hosts         []User                `json:"hosts,omitempty"`
+	FollowerCount *float32 `json:"follower_count,omitempty"`
+	ImageUrl *string `json:"image_url,omitempty"`
+	ParentUrl *string `json:"parent_url,omitempty"`
+	Lead *User `json:"lead,omitempty"`
+	Moderator *User `json:"moderator,omitempty"`
+	Hosts []User `json:"hosts,omitempty"`
 	ViewerContext *ChannelViewerContext `json:"viewer_context,omitempty"`
 }
 
@@ -453,7 +453,7 @@ func (o *Channel) SetViewerContext(v ChannelViewerContext) {
 }
 
 func (o Channel) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -513,10 +513,10 @@ func (o *Channel) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -572,3 +572,5 @@ func (v *NullableChannel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -15,13 +15,13 @@ import (
 	"fmt"
 )
 
-// CastParamType The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
+// CastParamType The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash 
 type CastParamType string
 
 // List of CastParamType
 const (
-	// URL CastParamType = "url"
-	HASH CastParamType = "hash"
+	CASTPARAMTYPE_URL CastParamType = "url"
+	CASTPARAMTYPE_HASH CastParamType = "hash"
 )
 
 // All allowed values of CastParamType enum
@@ -108,3 +108,4 @@ func (v *NullableCastParamType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

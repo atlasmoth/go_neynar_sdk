@@ -15,13 +15,13 @@ import (
 	"fmt"
 )
 
-// ActiveStatus The status of a user.   - active: The user is currently active.   - inactive: The user is not currently active.
+// ActiveStatus The status of a user.   - active: The user is currently active.   - inactive: The user is not currently active. 
 type ActiveStatus string
 
 // List of ActiveStatus
 const (
-	ACTIVE   ActiveStatus = "active"
-	INACTIVE ActiveStatus = "inactive"
+	ACTIVESTATUS_ACTIVE ActiveStatus = "active"
+	ACTIVESTATUS_INACTIVE ActiveStatus = "inactive"
 )
 
 // All allowed values of ActiveStatus enum
@@ -108,3 +108,4 @@ func (v *NullableActiveStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

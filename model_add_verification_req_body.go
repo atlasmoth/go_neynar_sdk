@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,11 +24,11 @@ type AddVerificationReqBody struct {
 	// UUID of the signer
 	SignerUuid string `json:"signer_uuid"`
 	// Ethereum address
-	Address          string               `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	BlockHash        string               `json:"block_hash"`
-	EthSignature     string               `json:"eth_signature"`
-	VerificationType *VerificationType    `json:"verification_type,omitempty"`
-	ChainId          *VerificationChainId `json:"chain_id,omitempty"`
+	Address string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	BlockHash string `json:"block_hash"`
+	EthSignature string `json:"eth_signature"`
+	VerificationType *VerificationType `json:"verification_type,omitempty"`
+	ChainId *VerificationChainId `json:"chain_id,omitempty"`
 }
 
 type _AddVerificationReqBody AddVerificationReqBody
@@ -43,9 +43,9 @@ func NewAddVerificationReqBody(signerUuid string, address string, blockHash stri
 	this.Address = address
 	this.BlockHash = blockHash
 	this.EthSignature = ethSignature
-	var verificationType VerificationType = 0
+	var verificationType VerificationType = VERIFICATIONTYPE__0
 	this.VerificationType = &verificationType
-	var chainId VerificationChainId = _0
+	var chainId VerificationChainId = VERIFICATIONCHAINID__0
 	this.ChainId = &chainId
 	return &this
 }
@@ -55,9 +55,9 @@ func NewAddVerificationReqBody(signerUuid string, address string, blockHash stri
 // but it doesn't guarantee that properties required by API are set
 func NewAddVerificationReqBodyWithDefaults() *AddVerificationReqBody {
 	this := AddVerificationReqBody{}
-	var verificationType VerificationType = 0
+	var verificationType VerificationType = VERIFICATIONTYPE__0
 	this.VerificationType = &verificationType
-	var chainId VerificationChainId = _0
+	var chainId VerificationChainId = VERIFICATIONCHAINID__0
 	this.ChainId = &chainId
 	return &this
 }
@@ -223,7 +223,7 @@ func (o *AddVerificationReqBody) SetChainId(v VerificationChainId) {
 }
 
 func (o AddVerificationReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -261,10 +261,10 @@ func (o *AddVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -320,3 +320,5 @@ func (v *NullableAddVerificationReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -20,10 +20,10 @@ type ValidateFrameAnalyticsType string
 
 // List of ValidateFrameAnalyticsType
 const (
-	TOTAL_INTERACTORS     ValidateFrameAnalyticsType = "total-interactors"
-	INTERACTORS           ValidateFrameAnalyticsType = "interactors"
-	INTERACTIONS_PER_CAST ValidateFrameAnalyticsType = "interactions-per-cast"
-	INPUT_TEXT            ValidateFrameAnalyticsType = "input-text"
+	VALIDATEFRAMEANALYTICSTYPE_TOTAL_INTERACTORS ValidateFrameAnalyticsType = "total-interactors"
+	VALIDATEFRAMEANALYTICSTYPE_INTERACTORS ValidateFrameAnalyticsType = "interactors"
+	VALIDATEFRAMEANALYTICSTYPE_INTERACTIONS_PER_CAST ValidateFrameAnalyticsType = "interactions-per-cast"
+	VALIDATEFRAMEANALYTICSTYPE_INPUT_TEXT ValidateFrameAnalyticsType = "input-text"
 )
 
 // All allowed values of ValidateFrameAnalyticsType enum
@@ -112,3 +112,4 @@ func (v *NullableValidateFrameAnalyticsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

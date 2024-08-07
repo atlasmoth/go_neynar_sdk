@@ -327,6 +327,10 @@ All URIs are relative to *https://api.neynar.com/v2*
 - [ZodError](docs/ZodError.md)
 - [ZodErrorErrorsInner](docs/ZodErrorErrorsInner.md)
 
+## Documentation For Authorization
+
+Endpoints do not require authorization.
+
 ## Documentation for Utility Methods
 
 Due to the fact that model structure members are all pointers, this package contains
@@ -344,3 +348,5 @@ Each of these functions takes a value of the given basic type and returns a poin
 - `PtrTime`
 
 ## Author
+
+[Chukwuebuka Osuji](github.com/atlasmoth)

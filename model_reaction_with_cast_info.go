@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ReactionWithCastInfo type satisfies the MappedNullable interface at compile time
@@ -22,11 +22,11 @@ var _ MappedNullable = &ReactionWithCastInfo{}
 
 // ReactionWithCastInfo struct for ReactionWithCastInfo
 type ReactionWithCastInfo struct {
-	ReactionType      string               `json:"reaction_type"`
-	Cast              CastWithInteractions `json:"cast"`
-	ReactionTimestamp time.Time            `json:"reaction_timestamp"`
-	Object            string               `json:"object"`
-	User              UserDehydrated       `json:"user"`
+	ReactionType string `json:"reaction_type"`
+	Cast CastWithInteractions `json:"cast"`
+	ReactionTimestamp time.Time `json:"reaction_timestamp"`
+	Object string `json:"object"`
+	User UserDehydrated `json:"user"`
 }
 
 type _ReactionWithCastInfo ReactionWithCastInfo
@@ -174,7 +174,7 @@ func (o *ReactionWithCastInfo) SetUser(v UserDehydrated) {
 }
 
 func (o ReactionWithCastInfo) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -208,10 +208,10 @@ func (o *ReactionWithCastInfo) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -267,3 +267,5 @@ func (v *NullableReactionWithCastInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

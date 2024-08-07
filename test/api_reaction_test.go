@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_ReactionAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService DeleteReaction", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.DeleteReaction(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService PostReaction", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.PostReaction(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService ReactionsCast", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.ReactionsCast(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_openapi_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService ReactionsUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.ReactionsUser(context.Background()).Execute()
 
