@@ -20,8 +20,8 @@ type ReactionsType string
 
 // List of ReactionsType
 const (
-	REACTIONSTYPE_ALL ReactionsType = "all"
-	REACTIONSTYPE_LIKES ReactionsType = "likes"
+	REACTIONSTYPE_ALL     ReactionsType = "all"
+	REACTIONSTYPE_LIKES   ReactionsType = "likes"
 	REACTIONSTYPE_RECASTS ReactionsType = "recasts"
 )
 
@@ -110,4 +110,3 @@ func (v *NullableReactionsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

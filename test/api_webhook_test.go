@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_WebhookAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService DeleteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.DeleteWebhook(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService FetchWebhooks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.FetchWebhooks(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService LookupWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.LookupWebhook(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService PublishWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.PublishWebhook(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService UpdateWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.UpdateWebhook(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_openapi_WebhookAPIService(t *testing.T) {
 
 	t.Run("Test WebhookAPIService UpdateWebhookActiveStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.WebhookAPI.UpdateWebhookActiveStatus(context.Background()).Execute()
 

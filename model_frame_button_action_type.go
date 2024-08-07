@@ -20,9 +20,9 @@ type FrameButtonActionType string
 
 // List of FrameButtonActionType
 const (
-	FRAMEBUTTONACTIONTYPE_POST FrameButtonActionType = "post"
+	FRAMEBUTTONACTIONTYPE_POST          FrameButtonActionType = "post"
 	FRAMEBUTTONACTIONTYPE_POST_REDIRECT FrameButtonActionType = "post_redirect"
-	FRAMEBUTTONACTIONTYPE_TX FrameButtonActionType = "tx"
+	FRAMEBUTTONACTIONTYPE_TX            FrameButtonActionType = "tx"
 )
 
 // All allowed values of FrameButtonActionType enum
@@ -110,4 +110,3 @@ func (v *NullableFrameButtonActionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

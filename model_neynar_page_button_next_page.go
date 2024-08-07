@@ -12,14 +12,14 @@ package openapi
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // NeynarPageButtonNextPage - struct for NeynarPageButtonNextPage
 type NeynarPageButtonNextPage struct {
-	NeynarNextFramePage *NeynarNextFramePage
-	NeynarNextFramePageMintUrl *NeynarNextFramePageMintUrl
+	NeynarNextFramePage         *NeynarNextFramePage
+	NeynarNextFramePageMintUrl  *NeynarNextFramePageMintUrl
 	NeynarNextFramePageRedirect *NeynarNextFramePageRedirect
 }
 
@@ -43,7 +43,6 @@ func NeynarNextFramePageRedirectAsNeynarPageButtonNextPage(v *NeynarNextFramePag
 		NeynarNextFramePageRedirect: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NeynarPageButtonNextPage) UnmarshalJSON(data []byte) error {
@@ -132,7 +131,7 @@ func (src NeynarPageButtonNextPage) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NeynarPageButtonNextPage) GetActualInstance() (interface{}) {
+func (obj *NeynarPageButtonNextPage) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,5 +186,3 @@ func (v *NullableNeynarPageButtonNextPage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner type satisfies the MappedNullable interface at compile time
@@ -22,11 +22,11 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractionsPerCastInteractionsPer
 
 // FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct for FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 type FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct {
-	Start time.Time `json:"start"`
-	Stop time.Time `json:"stop"`
-	Time time.Time `json:"time"`
-	InteractionCount float32 `json:"interaction_count"`
-	CastUrl string `json:"cast_url"`
+	Start            time.Time `json:"start"`
+	Stop             time.Time `json:"stop"`
+	Time             time.Time `json:"time"`
+	InteractionCount float32   `json:"interaction_count"`
+	CastUrl          string    `json:"cast_url"`
 }
 
 type _FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
@@ -174,7 +174,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetC
 }
 
 func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -208,10 +208,10 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) Unma
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -267,5 +267,3 @@ func (v *NullableFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInn
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

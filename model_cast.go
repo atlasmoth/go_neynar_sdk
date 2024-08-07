@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the Cast type satisfies the MappedNullable interface at compile time
@@ -22,16 +22,16 @@ var _ MappedNullable = &Cast{}
 
 // Cast struct for Cast
 type Cast struct {
-	Hash string `json:"hash"`
-	ParentHash NullableString `json:"parent_hash"`
-	ParentUrl NullableString `json:"parent_url"`
-	RootParentUrl NullableString `json:"root_parent_url"`
-	ParentAuthor CastParentAuthor `json:"parent_author"`
-	Author User `json:"author"`
-	Text string `json:"text"`
-	Timestamp time.Time `json:"timestamp"`
-	Embeds []EmbeddedCast `json:"embeds"`
-	Type *CastNotificationType `json:"type,omitempty"`
+	Hash          string                `json:"hash"`
+	ParentHash    NullableString        `json:"parent_hash"`
+	ParentUrl     NullableString        `json:"parent_url"`
+	RootParentUrl NullableString        `json:"root_parent_url"`
+	ParentAuthor  CastParentAuthor      `json:"parent_author"`
+	Author        User                  `json:"author"`
+	Text          string                `json:"text"`
+	Timestamp     time.Time             `json:"timestamp"`
+	Embeds        []EmbeddedCast        `json:"embeds"`
+	Type          *CastNotificationType `json:"type,omitempty"`
 }
 
 type _Cast Cast
@@ -317,7 +317,7 @@ func (o *Cast) SetType(v CastNotificationType) {
 }
 
 func (o Cast) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -362,10 +362,10 @@ func (o *Cast) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -421,5 +421,3 @@ func (v *NullableCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

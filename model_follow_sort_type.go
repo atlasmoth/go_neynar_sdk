@@ -20,7 +20,7 @@ type FollowSortType string
 
 // List of FollowSortType
 const (
-	FOLLOWSORTTYPE_DESC_CHRON FollowSortType = "desc_chron"
+	FOLLOWSORTTYPE_DESC_CHRON  FollowSortType = "desc_chron"
 	FOLLOWSORTTYPE_ALGORITHMIC FollowSortType = "algorithmic"
 )
 
@@ -108,4 +108,3 @@ func (v *NullableFollowSortType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

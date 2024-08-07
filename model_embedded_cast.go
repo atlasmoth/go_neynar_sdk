@@ -12,14 +12,14 @@ package openapi
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // EmbeddedCast - struct for EmbeddedCast
 type EmbeddedCast struct {
 	EmbedCastId *EmbedCastId
-	EmbedUrl *EmbedUrl
+	EmbedUrl    *EmbedUrl
 }
 
 // EmbedCastIdAsEmbeddedCast is a convenience function that returns EmbedCastId wrapped in EmbeddedCast
@@ -35,7 +35,6 @@ func EmbedUrlAsEmbeddedCast(v *EmbedUrl) EmbeddedCast {
 		EmbedUrl: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *EmbeddedCast) UnmarshalJSON(data []byte) error {
@@ -102,7 +101,7 @@ func (src EmbeddedCast) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *EmbeddedCast) GetActualInstance() (interface{}) {
+func (obj *EmbeddedCast) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,5 +152,3 @@ func (v *NullableEmbeddedCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

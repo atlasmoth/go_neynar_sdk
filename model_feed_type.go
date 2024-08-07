@@ -21,7 +21,7 @@ type FeedType string
 // List of FeedType
 const (
 	FEEDTYPE_FOLLOWING FeedType = "following"
-	FEEDTYPE_FILTER FeedType = "filter"
+	FEEDTYPE_FILTER    FeedType = "filter"
 )
 
 // All allowed values of FeedType enum
@@ -108,4 +108,3 @@ func (v *NullableFeedType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

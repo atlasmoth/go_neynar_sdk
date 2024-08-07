@@ -19,8 +19,8 @@ var _ MappedNullable = &WebhookResponse{}
 
 // WebhookResponse struct for WebhookResponse
 type WebhookResponse struct {
-	Message *string `json:"message,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Message *string  `json:"message,omitempty"`
+	Success *bool    `json:"success,omitempty"`
 	Webhook *Webhook `json:"webhook,omitempty"`
 }
 
@@ -138,7 +138,7 @@ func (o *WebhookResponse) SetWebhook(v Webhook) {
 }
 
 func (o WebhookResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,5 +194,3 @@ func (v *NullableWebhookResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

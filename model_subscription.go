@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,16 +21,16 @@ var _ MappedNullable = &Subscription{}
 
 // Subscription struct for Subscription
 type Subscription struct {
-	Object string `json:"object"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	ContractAddress string `json:"contract_address"`
-	Chain int32 `json:"chain"`
-	Metadata SubscriptionMetadata `json:"metadata"`
-	OwnerAddress string `json:"owner_address"`
-	Price SubscriptionPrice `json:"price"`
-	Tiers []SubscriptionTier `json:"tiers,omitempty"`
-	ProtocolVersion int32 `json:"protocol_version"`
-	Token SubscriptionToken `json:"token"`
+	Object          string               `json:"object"`
+	ProviderName    *string              `json:"provider_name,omitempty"`
+	ContractAddress string               `json:"contract_address"`
+	Chain           int32                `json:"chain"`
+	Metadata        SubscriptionMetadata `json:"metadata"`
+	OwnerAddress    string               `json:"owner_address"`
+	Price           SubscriptionPrice    `json:"price"`
+	Tiers           []SubscriptionTier   `json:"tiers,omitempty"`
+	ProtocolVersion int32                `json:"protocol_version"`
+	Token           SubscriptionToken    `json:"token"`
 }
 
 type _Subscription Subscription
@@ -317,7 +317,7 @@ func (o *Subscription) SetToken(v SubscriptionToken) {
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -363,10 +363,10 @@ func (o *Subscription) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -422,5 +422,3 @@ func (v *NullableSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

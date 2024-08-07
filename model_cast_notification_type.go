@@ -15,13 +15,13 @@ import (
 	"fmt"
 )
 
-// CastNotificationType The notification type of a cast. 
+// CastNotificationType The notification type of a cast.
 type CastNotificationType string
 
 // List of CastNotificationType
 const (
 	CASTNOTIFICATIONTYPE_MENTION CastNotificationType = "cast-mention"
-	CASTNOTIFICATIONTYPE_REPLY CastNotificationType = "cast-reply"
+	CASTNOTIFICATIONTYPE_REPLY   CastNotificationType = "cast-reply"
 )
 
 // All allowed values of CastNotificationType enum
@@ -108,4 +108,3 @@ func (v *NullableCastNotificationType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -20,7 +20,7 @@ type ChannelType string
 
 // List of ChannelType
 const (
-	CHANNELTYPE_ID ChannelType = "id"
+	CHANNELTYPE_ID         ChannelType = "id"
 	CHANNELTYPE_PARENT_URL ChannelType = "parent_url"
 )
 
@@ -108,4 +108,3 @@ func (v *NullableChannelType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

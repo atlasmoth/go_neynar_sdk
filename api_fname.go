@@ -18,15 +18,14 @@ import (
 	"net/url"
 )
 
-
 // FnameAPIService FnameAPI service
 type FnameAPIService service
 
 type ApiFnameAvailabilityRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FnameAPIService
-	apiKey *string
-	fname *string
+	apiKey     *string
+	fname      *string
 }
 
 // API key required for authentication.
@@ -49,24 +48,25 @@ FnameAvailability Check if a given fname is available
 
 Check if a given fname is available
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFnameAvailabilityRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFnameAvailabilityRequest
 */
 func (a *FnameAPIService) FnameAvailability(ctx context.Context) ApiFnameAvailabilityRequest {
 	return ApiFnameAvailabilityRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FnameAvailabilityResponse
+//
+//	@return FnameAvailabilityResponse
 func (a *FnameAPIService) FnameAvailabilityExecute(r ApiFnameAvailabilityRequest) (*FnameAvailabilityResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FnameAvailabilityResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FnameAvailabilityResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FnameAPIService.FnameAvailability")
@@ -134,8 +134,8 @@ func (a *FnameAPIService) FnameAvailabilityExecute(r ApiFnameAvailabilityRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,11 +21,11 @@ var _ MappedNullable = &RegisterUserReqBody{}
 
 // RegisterUserReqBody struct for RegisterUserReqBody
 type RegisterUserReqBody struct {
-	Signature string `json:"signature"`
-	Fid float32 `json:"fid"`
-	RequestedUserCustodyAddress string `json:"requested_user_custody_address"`
-	Deadline float32 `json:"deadline"`
-	Fname *string `json:"fname,omitempty"`
+	Signature                   string  `json:"signature"`
+	Fid                         float32 `json:"fid"`
+	RequestedUserCustodyAddress string  `json:"requested_user_custody_address"`
+	Deadline                    float32 `json:"deadline"`
+	Fname                       *string `json:"fname,omitempty"`
 }
 
 type _RegisterUserReqBody RegisterUserReqBody
@@ -180,7 +180,7 @@ func (o *RegisterUserReqBody) SetFname(v string) {
 }
 
 func (o RegisterUserReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -215,10 +215,10 @@ func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -274,5 +274,3 @@ func (v *NullableRegisterUserReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

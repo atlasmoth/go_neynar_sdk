@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -24,8 +24,8 @@ type Signer struct {
 	// UUID of the signer
 	SignerUuid string `json:"signer_uuid"`
 	// Ed25519 public key
-	PublicKey string `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
-	Status string `json:"status"`
+	PublicKey         string  `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
+	Status            string  `json:"status"`
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
 	// User identifier (unsigned integer)
 	Fid *int32 `json:"fid,omitempty"`
@@ -190,7 +190,7 @@ func (o *Signer) SetFid(v int32) {
 }
 
 func (o Signer) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -226,10 +226,10 @@ func (o *Signer) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -285,5 +285,3 @@ func (v *NullableSigner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

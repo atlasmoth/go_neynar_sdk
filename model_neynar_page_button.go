@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -26,8 +26,8 @@ type NeynarPageButton struct {
 	// The index of the button, first button should have index 1 and so on.
 	Index int32 `json:"index"`
 	// The type of action that the button performs.
-	ActionType string `json:"action_type"`
-	NextPage *NeynarPageButtonNextPage `json:"next_page,omitempty"`
+	ActionType string                    `json:"action_type"`
+	NextPage   *NeynarPageButtonNextPage `json:"next_page,omitempty"`
 }
 
 type _NeynarPageButton NeynarPageButton
@@ -157,7 +157,7 @@ func (o *NeynarPageButton) SetNextPage(v NeynarPageButtonNextPage) {
 }
 
 func (o NeynarPageButton) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -190,10 +190,10 @@ func (o *NeynarPageButton) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -249,5 +249,3 @@ func (v *NullableNeynarPageButton) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

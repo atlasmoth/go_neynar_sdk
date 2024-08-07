@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_MuteAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService AddMute", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.AddMute(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService DeleteMute", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.DeleteMute(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService MuteList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.MuteList(context.Background()).Execute()
 

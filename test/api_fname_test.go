@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_FnameAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_FnameAPIService(t *testing.T) {
 
 	t.Run("Test FnameAPIService FnameAvailability", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FnameAPI.FnameAvailability(context.Background()).Execute()
 

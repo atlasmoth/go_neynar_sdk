@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// SubscriptionProvider The provider of the subscription. 
+// SubscriptionProvider The provider of the subscription.
 type SubscriptionProvider string
 
 // List of SubscriptionProvider
@@ -106,4 +106,3 @@ func (v *NullableSubscriptionProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -18,19 +18,18 @@ import (
 	"net/url"
 )
 
-
 // FollowsAPIService FollowsAPI service
 type FollowsAPIService service
 
 type ApiFollowersV2Request struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FollowsAPIService
-	apiKey *string
-	fid *int32
-	viewerFid *int32
-	sortType *FollowSortType
-	limit *int32
-	cursor *string
+	apiKey     *string
+	fid        *int32
+	viewerFid  *int32
+	sortType   *FollowSortType
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -78,24 +77,25 @@ FollowersV2 Retrieve followers for a given user
 
 Returns a list of followers for a specific FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFollowersV2Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFollowersV2Request
 */
 func (a *FollowsAPIService) FollowersV2(ctx context.Context) ApiFollowersV2Request {
 	return ApiFollowersV2Request{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *FollowsAPIService) FollowersV2Execute(r ApiFollowersV2Request) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FollowersV2")
@@ -178,8 +178,8 @@ func (a *FollowsAPIService) FollowersV2Execute(r ApiFollowersV2Request) (*UsersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -189,8 +189,8 @@ func (a *FollowsAPIService) FollowersV2Execute(r ApiFollowersV2Request) (*UsersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -208,14 +208,14 @@ func (a *FollowsAPIService) FollowersV2Execute(r ApiFollowersV2Request) (*UsersR
 }
 
 type ApiFollowingV2Request struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FollowsAPIService
-	apiKey *string
-	fid *int32
-	viewerFid *int32
-	sortType *FollowSortType
-	limit *int32
-	cursor *string
+	apiKey     *string
+	fid        *int32
+	viewerFid  *int32
+	sortType   *FollowSortType
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -263,24 +263,25 @@ FollowingV2 Retrieve a list of users followed by a user
 
 Retrieve a list of users followed by a user. Can optionally include a viewer_fid and sort_type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFollowingV2Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFollowingV2Request
 */
 func (a *FollowsAPIService) FollowingV2(ctx context.Context) ApiFollowingV2Request {
 	return ApiFollowingV2Request{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *FollowsAPIService) FollowingV2Execute(r ApiFollowingV2Request) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FollowingV2")
@@ -363,8 +364,8 @@ func (a *FollowsAPIService) FollowingV2Execute(r ApiFollowingV2Request) (*UsersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -374,8 +375,8 @@ func (a *FollowsAPIService) FollowingV2Execute(r ApiFollowingV2Request) (*UsersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -393,11 +394,11 @@ func (a *FollowsAPIService) FollowingV2Execute(r ApiFollowingV2Request) (*UsersR
 }
 
 type ApiRelevantFollowersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FollowsAPIService
-	apiKey *string
-	targetFid *int32
-	viewerFid *int32
+	apiKey     *string
+	targetFid  *int32
+	viewerFid  *int32
 }
 
 // API key required for authentication.
@@ -427,24 +428,25 @@ RelevantFollowers Retrieve relevant followers for a given user
 
 Returns a list of relevant followers for a specific FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRelevantFollowersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRelevantFollowersRequest
 */
 func (a *FollowsAPIService) RelevantFollowers(ctx context.Context) ApiRelevantFollowersRequest {
 	return ApiRelevantFollowersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RelevantFollowersResponse
+//
+//	@return RelevantFollowersResponse
 func (a *FollowsAPIService) RelevantFollowersExecute(r ApiRelevantFollowersRequest) (*RelevantFollowersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RelevantFollowersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RelevantFollowersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.RelevantFollowers")
@@ -516,8 +518,8 @@ func (a *FollowsAPIService) RelevantFollowersExecute(r ApiRelevantFollowersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

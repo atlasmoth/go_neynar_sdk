@@ -18,17 +18,16 @@ import (
 	"net/url"
 )
 
-
 // ChannelAPIService ChannelAPI service
 type ChannelAPIService service
 
 type ApiActiveChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	fid *int32
-	limit *int32
-	cursor *string
+	apiKey     *string
+	fid        *int32
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -64,24 +63,25 @@ ActiveChannels Get channels that a user is active in
 
 Fetches all channels that a user has casted in, in reverse chronological order.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiActiveChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiActiveChannelsRequest
 */
 func (a *ChannelAPIService) ActiveChannels(ctx context.Context) ApiActiveChannelsRequest {
 	return ApiActiveChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersActiveChannelsResponse
+//
+//	@return UsersActiveChannelsResponse
 func (a *ChannelAPIService) ActiveChannelsExecute(r ApiActiveChannelsRequest) (*UsersActiveChannelsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersActiveChannelsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersActiveChannelsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ActiveChannels")
@@ -158,8 +158,8 @@ func (a *ChannelAPIService) ActiveChannelsExecute(r ApiActiveChannelsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -169,8 +169,8 @@ func (a *ChannelAPIService) ActiveChannelsExecute(r ApiActiveChannelsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -188,12 +188,12 @@ func (a *ChannelAPIService) ActiveChannelsExecute(r ApiActiveChannelsRequest) (*
 }
 
 type ApiChannelDetailsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	id *string
-	type_ *ChannelType
-	viewerFid *int32
+	apiKey     *string
+	id         *string
+	type_      *ChannelType
+	viewerFid  *int32
 }
 
 // API key required for authentication.
@@ -229,24 +229,25 @@ ChannelDetails Retrieve channel details by id or parent_url
 
 Returns details of a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiChannelDetailsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiChannelDetailsRequest
 */
 func (a *ChannelAPIService) ChannelDetails(ctx context.Context) ApiChannelDetailsRequest {
 	return ApiChannelDetailsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelResponse
+//
+//	@return ChannelResponse
 func (a *ChannelAPIService) ChannelDetailsExecute(r ApiChannelDetailsRequest) (*ChannelResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ChannelDetails")
@@ -320,8 +321,8 @@ func (a *ChannelAPIService) ChannelDetailsExecute(r ApiChannelDetailsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -339,12 +340,12 @@ func (a *ChannelAPIService) ChannelDetailsExecute(r ApiChannelDetailsRequest) (*
 }
 
 type ApiChannelDetailsBulkRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	ids *string
-	type_ *ChannelType
-	viewerFid *int32
+	apiKey     *string
+	ids        *string
+	type_      *ChannelType
+	viewerFid  *int32
 }
 
 // API key required for authentication.
@@ -380,24 +381,25 @@ ChannelDetailsBulk (Bulk) Retrieve channels by id or parent_url
 
 Returns details of multiple channels
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiChannelDetailsBulkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiChannelDetailsBulkRequest
 */
 func (a *ChannelAPIService) ChannelDetailsBulk(ctx context.Context) ApiChannelDetailsBulkRequest {
 	return ApiChannelDetailsBulkRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelResponseBulk
+//
+//	@return ChannelResponseBulk
 func (a *ChannelAPIService) ChannelDetailsBulkExecute(r ApiChannelDetailsBulkRequest) (*ChannelResponseBulk, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelResponseBulk
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelResponseBulk
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ChannelDetailsBulk")
@@ -471,8 +473,8 @@ func (a *ChannelAPIService) ChannelDetailsBulkExecute(r ApiChannelDetailsBulkReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -490,12 +492,12 @@ func (a *ChannelAPIService) ChannelDetailsBulkExecute(r ApiChannelDetailsBulkReq
 }
 
 type ApiChannelFollowersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	id *string
-	cursor *string
-	limit *int32
+	apiKey     *string
+	id         *string
+	cursor     *string
+	limit      *int32
 }
 
 // API key required for authentication.
@@ -531,24 +533,25 @@ ChannelFollowers Retrieve followers for a given channel
 
 Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiChannelFollowersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiChannelFollowersRequest
 */
 func (a *ChannelAPIService) ChannelFollowers(ctx context.Context) ApiChannelFollowersRequest {
 	return ApiChannelFollowersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *ChannelAPIService) ChannelFollowersExecute(r ApiChannelFollowersRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ChannelFollowers")
@@ -625,8 +628,8 @@ func (a *ChannelAPIService) ChannelFollowersExecute(r ApiChannelFollowersRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -644,16 +647,16 @@ func (a *ChannelAPIService) ChannelFollowersExecute(r ApiChannelFollowersRequest
 }
 
 type ApiChannelUsersRequest struct {
-	ctx context.Context
-	ApiService *ChannelAPIService
-	apiKey *string
-	id *string
+	ctx                context.Context
+	ApiService         *ChannelAPIService
+	apiKey             *string
+	id                 *string
 	hasRootCastAuthors *bool
-	hasCastLikers *bool
-	hasCastRecasters *bool
-	hasReplyAuthors *bool
-	cursor *string
-	limit *int32
+	hasCastLikers      *bool
+	hasCastRecasters   *bool
+	hasReplyAuthors    *bool
+	cursor             *string
+	limit              *int32
 }
 
 // API key required for authentication.
@@ -713,24 +716,25 @@ ChannelUsers Retrieve users who are active in a channel
 
 Returns a list of users who are active in a given channel, ordered by ascending FIDs
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiChannelUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiChannelUsersRequest
 */
 func (a *ChannelAPIService) ChannelUsers(ctx context.Context) ApiChannelUsersRequest {
 	return ApiChannelUsersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *ChannelAPIService) ChannelUsersExecute(r ApiChannelUsersRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ChannelUsers")
@@ -820,8 +824,8 @@ func (a *ChannelAPIService) ChannelUsersExecute(r ApiChannelUsersRequest) (*User
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -839,11 +843,11 @@ func (a *ChannelAPIService) ChannelUsersExecute(r ApiChannelUsersRequest) (*User
 }
 
 type ApiListAllChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	limit *int32
-	cursor *string
+	apiKey     *string
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -873,24 +877,25 @@ ListAllChannels Retrieve all channels with their details
 
 Returns a list of all channels with their details
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListAllChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListAllChannelsRequest
 */
 func (a *ChannelAPIService) ListAllChannels(ctx context.Context) ApiListAllChannelsRequest {
 	return ApiListAllChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelListResponse
+//
+//	@return ChannelListResponse
 func (a *ChannelAPIService) ListAllChannelsExecute(r ApiListAllChannelsRequest) (*ChannelListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.ListAllChannels")
@@ -972,10 +977,10 @@ func (a *ChannelAPIService) ListAllChannelsExecute(r ApiListAllChannelsRequest) 
 }
 
 type ApiSearchChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	q *string
+	apiKey     *string
+	q          *string
 }
 
 // API key required for authentication.
@@ -999,24 +1004,25 @@ SearchChannels Search for channels based on id or name
 
 Returns a list of channels based on id or name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchChannelsRequest
 */
 func (a *ChannelAPIService) SearchChannels(ctx context.Context) ApiSearchChannelsRequest {
 	return ApiSearchChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelSearchResponse
+//
+//	@return ChannelSearchResponse
 func (a *ChannelAPIService) SearchChannelsExecute(r ApiSearchChannelsRequest) (*ChannelSearchResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelSearchResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.SearchChannels")
@@ -1093,12 +1099,12 @@ func (a *ChannelAPIService) SearchChannelsExecute(r ApiSearchChannelsRequest) (*
 }
 
 type ApiTrendingChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
+	apiKey     *string
 	timeWindow *string
-	limit *int32
-	cursor *string
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -1133,24 +1139,25 @@ TrendingChannels Retrieve trending channels based on activity
 
 Returns a list of trending channels based on activity
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTrendingChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTrendingChannelsRequest
 */
 func (a *ChannelAPIService) TrendingChannels(ctx context.Context) ApiTrendingChannelsRequest {
 	return ApiTrendingChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TrendingChannelResponse
+//
+//	@return TrendingChannelResponse
 func (a *ChannelAPIService) TrendingChannelsExecute(r ApiTrendingChannelsRequest) (*TrendingChannelResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TrendingChannelResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TrendingChannelResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.TrendingChannels")
@@ -1226,8 +1233,8 @@ func (a *ChannelAPIService) TrendingChannelsExecute(r ApiTrendingChannelsRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -1237,8 +1244,8 @@ func (a *ChannelAPIService) TrendingChannelsExecute(r ApiTrendingChannelsRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1256,12 +1263,12 @@ func (a *ChannelAPIService) TrendingChannelsExecute(r ApiTrendingChannelsRequest
 }
 
 type ApiUserChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ChannelAPIService
-	apiKey *string
-	fid *int32
-	limit *int32
-	cursor *string
+	apiKey     *string
+	fid        *int32
+	limit      *int32
+	cursor     *string
 }
 
 // API key required for authentication.
@@ -1297,24 +1304,25 @@ UserChannels Retrieve all channels that a given fid follows
 
 Returns a list of all channels with their details that a fid follows.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUserChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUserChannelsRequest
 */
 func (a *ChannelAPIService) UserChannels(ctx context.Context) ApiUserChannelsRequest {
 	return ApiUserChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelListResponse
+//
+//	@return ChannelListResponse
 func (a *ChannelAPIService) UserChannelsExecute(r ApiUserChannelsRequest) (*ChannelListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.UserChannels")

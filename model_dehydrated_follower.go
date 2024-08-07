@@ -19,8 +19,8 @@ var _ MappedNullable = &DehydratedFollower{}
 
 // DehydratedFollower struct for DehydratedFollower
 type DehydratedFollower struct {
-	Object *string `json:"object,omitempty"`
-	User *UserDehydrated `json:"user,omitempty"`
+	Object *string         `json:"object,omitempty"`
+	User   *UserDehydrated `json:"user,omitempty"`
 }
 
 // NewDehydratedFollower instantiates a new DehydratedFollower object
@@ -105,7 +105,7 @@ func (o *DehydratedFollower) SetUser(v UserDehydrated) {
 }
 
 func (o DehydratedFollower) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,5 +158,3 @@ func (v *NullableDehydratedFollower) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

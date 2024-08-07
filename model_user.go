@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,23 +23,23 @@ var _ MappedNullable = &User{}
 type User struct {
 	Object string `json:"object"`
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	Username string `json:"username"`
+	Fid         int32   `json:"fid"`
+	Username    string  `json:"username"`
 	DisplayName *string `json:"display_name,omitempty"`
 	// Ethereum address
 	CustodyAddress string `json:"custody_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// The URL of the user's profile picture
-	PfpUrl *string `json:"pfp_url,omitempty"`
+	PfpUrl  *string     `json:"pfp_url,omitempty"`
 	Profile UserProfile `json:"profile"`
 	// The number of followers the user has.
 	FollowerCount int32 `json:"follower_count"`
 	// The number of users the user is following.
-	FollowingCount int32 `json:"following_count"`
-	Verifications []string `json:"verifications"`
+	FollowingCount    int32                 `json:"following_count"`
+	Verifications     []string              `json:"verifications"`
 	VerifiedAddresses UserVerifiedAddresses `json:"verified_addresses"`
-	ActiveStatus ActiveStatus `json:"active_status"`
-	PowerBadge bool `json:"power_badge"`
-	ViewerContext *UserViewerContext `json:"viewer_context,omitempty"`
+	ActiveStatus      ActiveStatus          `json:"active_status"`
+	PowerBadge        bool                  `json:"power_badge"`
+	ViewerContext     *UserViewerContext    `json:"viewer_context,omitempty"`
 }
 
 type _User User
@@ -433,7 +433,7 @@ func (o *User) SetViewerContext(v UserViewerContext) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -488,10 +488,10 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -547,5 +547,3 @@ func (v *NullableUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

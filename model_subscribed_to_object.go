@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the SubscribedToObject type satisfies the MappedNullable interface at compile time
@@ -22,14 +22,14 @@ var _ MappedNullable = &SubscribedToObject{}
 
 // SubscribedToObject struct for SubscribedToObject
 type SubscribedToObject struct {
-	Object string `json:"object"`
-	ProviderName string `json:"provider_name"`
-	ContractAddress *string `json:"contract_address,omitempty"`
-	ProtocolVersion *int32 `json:"protocol_version,omitempty"`
-	Chain *int32 `json:"chain,omitempty"`
-	ExpiresAt *time.Time `json:"expires_at,omitempty"`
-	SubscribedAt *time.Time `json:"subscribed_at,omitempty"`
-	TierId *string `json:"tier_id,omitempty"`
+	Object          string     `json:"object"`
+	ProviderName    string     `json:"provider_name"`
+	ContractAddress *string    `json:"contract_address,omitempty"`
+	ProtocolVersion *int32     `json:"protocol_version,omitempty"`
+	Chain           *int32     `json:"chain,omitempty"`
+	ExpiresAt       *time.Time `json:"expires_at,omitempty"`
+	SubscribedAt    *time.Time `json:"subscribed_at,omitempty"`
+	TierId          *string    `json:"tier_id,omitempty"`
 }
 
 type _SubscribedToObject SubscribedToObject
@@ -294,7 +294,7 @@ func (o *SubscribedToObject) SetTierId(v string) {
 }
 
 func (o SubscribedToObject) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -340,10 +340,10 @@ func (o *SubscribedToObject) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -399,5 +399,3 @@ func (v *NullableSubscribedToObject) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

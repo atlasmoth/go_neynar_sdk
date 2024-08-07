@@ -12,13 +12,13 @@ package openapi
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // ChannelOrDehydratedChannel - struct for ChannelOrDehydratedChannel
 type ChannelOrDehydratedChannel struct {
-	Channel *Channel
+	Channel           *Channel
 	DehydratedChannel *DehydratedChannel
 }
 
@@ -35,7 +35,6 @@ func DehydratedChannelAsChannelOrDehydratedChannel(v *DehydratedChannel) Channel
 		DehydratedChannel: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ChannelOrDehydratedChannel) UnmarshalJSON(data []byte) error {
@@ -102,7 +101,7 @@ func (src ChannelOrDehydratedChannel) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ChannelOrDehydratedChannel) GetActualInstance() (interface{}) {
+func (obj *ChannelOrDehydratedChannel) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,5 +152,3 @@ func (v *NullableChannelOrDehydratedChannel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

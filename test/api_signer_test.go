@@ -11,10 +11,10 @@ package openapi
 
 import (
 	"context"
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_SignerAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService CreateSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.CreateSigner(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService DeveloperManagedSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.DeveloperManagedSigner(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService FetchAuthorizationUrl", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.FetchAuthorizationUrl(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService PublishMessage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.PublishMessage(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService RegisterSignedKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.RegisterSignedKey(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService RegisterSignedKeyForDeveloperManagedSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.RegisterSignedKeyForDeveloperManagedSigner(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_openapi_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService Signer", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.Signer(context.Background()).Execute()
 

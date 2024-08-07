@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the SubscribedTo type satisfies the MappedNullable interface at compile time
@@ -22,20 +22,20 @@ var _ MappedNullable = &SubscribedTo{}
 
 // SubscribedTo struct for SubscribedTo
 type SubscribedTo struct {
-	Object string `json:"object"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	ContractAddress string `json:"contract_address"`
-	Chain int32 `json:"chain"`
-	Metadata SubscriptionMetadata `json:"metadata"`
-	OwnerAddress string `json:"owner_address"`
-	Price SubscriptionPrice `json:"price"`
-	Tiers []SubscriptionTier `json:"tiers,omitempty"`
-	ProtocolVersion int32 `json:"protocol_version"`
-	Token SubscriptionToken `json:"token"`
-	ExpiresAt time.Time `json:"expires_at"`
-	SubscribedAt time.Time `json:"subscribed_at"`
-	Tier SubscriptionTier `json:"tier"`
-	Creator User `json:"creator"`
+	Object          string               `json:"object"`
+	ProviderName    *string              `json:"provider_name,omitempty"`
+	ContractAddress string               `json:"contract_address"`
+	Chain           int32                `json:"chain"`
+	Metadata        SubscriptionMetadata `json:"metadata"`
+	OwnerAddress    string               `json:"owner_address"`
+	Price           SubscriptionPrice    `json:"price"`
+	Tiers           []SubscriptionTier   `json:"tiers,omitempty"`
+	ProtocolVersion int32                `json:"protocol_version"`
+	Token           SubscriptionToken    `json:"token"`
+	ExpiresAt       time.Time            `json:"expires_at"`
+	SubscribedAt    time.Time            `json:"subscribed_at"`
+	Tier            SubscriptionTier     `json:"tier"`
+	Creator         User                 `json:"creator"`
 }
 
 type _SubscribedTo SubscribedTo
@@ -422,7 +422,7 @@ func (o *SubscribedTo) SetCreator(v User) {
 }
 
 func (o SubscribedTo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -476,10 +476,10 @@ func (o *SubscribedTo) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -535,5 +535,3 @@ func (v *NullableSubscribedTo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

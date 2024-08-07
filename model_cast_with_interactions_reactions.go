@@ -11,8 +11,8 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,10 +21,10 @@ var _ MappedNullable = &CastWithInteractionsReactions{}
 
 // CastWithInteractionsReactions struct for CastWithInteractionsReactions
 type CastWithInteractionsReactions struct {
-	Likes []ReactionLike `json:"likes"`
-	Recasts []ReactionRecast `json:"recasts"`
-	LikesCount int32 `json:"likes_count"`
-	RecastsCount int32 `json:"recasts_count"`
+	Likes        []ReactionLike   `json:"likes"`
+	Recasts      []ReactionRecast `json:"recasts"`
+	LikesCount   int32            `json:"likes_count"`
+	RecastsCount int32            `json:"recasts_count"`
 }
 
 type _CastWithInteractionsReactions CastWithInteractionsReactions
@@ -147,7 +147,7 @@ func (o *CastWithInteractionsReactions) SetRecastsCount(v int32) {
 }
 
 func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -179,10 +179,10 @@ func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -238,5 +238,3 @@ func (v *NullableCastWithInteractionsReactions) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

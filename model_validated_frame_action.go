@@ -11,10 +11,10 @@ API version: 2.0
 package openapi
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ValidatedFrameAction type satisfies the MappedNullable interface at compile time
@@ -22,16 +22,16 @@ var _ MappedNullable = &ValidatedFrameAction{}
 
 // ValidatedFrameAction struct for ValidatedFrameAction
 type ValidatedFrameAction struct {
-	Object string `json:"object"`
-	Url string `json:"url"`
-	Interactor User `json:"interactor"`
+	Object       string                           `json:"object"`
+	Url          string                           `json:"url"`
+	Interactor   User                             `json:"interactor"`
 	TappedButton ValidatedFrameActionTappedButton `json:"tapped_button"`
-	Input *FrameInput `json:"input,omitempty"`
-	State FrameState `json:"state"`
-	Cast CastWithInteractions `json:"cast"`
-	Timestamp time.Time `json:"timestamp"`
-	Signer *ValidatedFrameActionSigner `json:"signer,omitempty"`
-	Transaction *FrameTransaction `json:"transaction,omitempty"`
+	Input        *FrameInput                      `json:"input,omitempty"`
+	State        FrameState                       `json:"state"`
+	Cast         CastWithInteractions             `json:"cast"`
+	Timestamp    time.Time                        `json:"timestamp"`
+	Signer       *ValidatedFrameActionSigner      `json:"signer,omitempty"`
+	Transaction  *FrameTransaction                `json:"transaction,omitempty"`
 	// The connected wallet address of the interacting user.
 	Address *string `json:"address,omitempty"`
 }
@@ -359,7 +359,7 @@ func (o *ValidatedFrameAction) SetAddress(v string) {
 }
 
 func (o ValidatedFrameAction) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -409,10 +409,10 @@ func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -468,5 +468,3 @@ func (v *NullableValidatedFrameAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

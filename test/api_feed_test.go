@@ -11,10 +11,11 @@ package openapi
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk"
 )
 
 func Test_openapi_FeedAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService Feed", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.Feed(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedChannels(context.Background()).Execute()
 
@@ -48,7 +49,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedFollowing", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedFollowing(context.Background()).Execute()
 
@@ -60,7 +61,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedForYou", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedForYou(context.Background()).Execute()
 
@@ -72,7 +73,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedFrames", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedFrames(context.Background()).Execute()
 
@@ -84,7 +85,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedTrending", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedTrending(context.Background()).Execute()
 
@@ -96,7 +97,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedUserPopular", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedUserPopular(context.Background()).Execute()
 
@@ -108,7 +109,7 @@ func Test_openapi_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FeedUserRepliesRecasts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FeedUserRepliesRecasts(context.Background()).Execute()
 

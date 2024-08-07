@@ -18,17 +18,16 @@ import (
 	"net/url"
 )
 
-
 // SubscribersAPIService SubscribersAPI service
 type SubscribersAPIService service
 
 type ApiSubscribedToRequest struct {
-	ctx context.Context
-	ApiService *SubscribersAPIService
-	apiKey *string
-	fid *int32
+	ctx                  context.Context
+	ApiService           *SubscribersAPIService
+	apiKey               *string
+	fid                  *int32
 	subscriptionProvider *SubscriptionProvider
-	viewerFid *int32
+	viewerFid            *int32
 }
 
 // API key required for authentication.
@@ -61,24 +60,25 @@ SubscribedTo Fetch what a given fid is subscribed to
 
 Fetch what fids and contracts a fid is subscribed to.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubscribedToRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSubscribedToRequest
 */
 func (a *SubscribersAPIService) SubscribedTo(ctx context.Context) ApiSubscribedToRequest {
 	return ApiSubscribedToRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscribedToResponse
+//
+//	@return SubscribedToResponse
 func (a *SubscribersAPIService) SubscribedToExecute(r ApiSubscribedToRequest) (*SubscribedToResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscribedToResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscribedToResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.SubscribedTo")
@@ -153,8 +153,8 @@ func (a *SubscribersAPIService) SubscribedToExecute(r ApiSubscribedToRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -172,12 +172,12 @@ func (a *SubscribersAPIService) SubscribedToExecute(r ApiSubscribedToRequest) (*
 }
 
 type ApiSubscribersRequest struct {
-	ctx context.Context
-	ApiService *SubscribersAPIService
-	apiKey *string
-	fid *int32
+	ctx                  context.Context
+	ApiService           *SubscribersAPIService
+	apiKey               *string
+	fid                  *int32
 	subscriptionProvider *SubscriptionProviders
-	viewerFid *int32
+	viewerFid            *int32
 }
 
 // API key required for authentication.
@@ -210,24 +210,25 @@ Subscribers Fetch subscribers for a given fid
 
 Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubscribersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSubscribersRequest
 */
 func (a *SubscribersAPIService) Subscribers(ctx context.Context) ApiSubscribersRequest {
 	return ApiSubscribersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscribersResponse
+//
+//	@return SubscribersResponse
 func (a *SubscribersAPIService) SubscribersExecute(r ApiSubscribersRequest) (*SubscribersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscribersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscribersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.Subscribers")
@@ -302,8 +303,8 @@ func (a *SubscribersAPIService) SubscribersExecute(r ApiSubscribersRequest) (*Su
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -321,10 +322,10 @@ func (a *SubscribersAPIService) SubscribersExecute(r ApiSubscribersRequest) (*Su
 }
 
 type ApiSubscriptionsCreatedRequest struct {
-	ctx context.Context
-	ApiService *SubscribersAPIService
-	apiKey *string
-	fid *int32
+	ctx                  context.Context
+	ApiService           *SubscribersAPIService
+	apiKey               *string
+	fid                  *int32
 	subscriptionProvider *SubscriptionProvider
 }
 
@@ -353,24 +354,25 @@ SubscriptionsCreated Fetch created subscriptions for a given fid
 
 Fetch created subscriptions for a given fid's.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubscriptionsCreatedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSubscriptionsCreatedRequest
 */
 func (a *SubscribersAPIService) SubscriptionsCreated(ctx context.Context) ApiSubscriptionsCreatedRequest {
 	return ApiSubscriptionsCreatedRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscriptionsResponse
+//
+//	@return SubscriptionsResponse
 func (a *SubscribersAPIService) SubscriptionsCreatedExecute(r ApiSubscriptionsCreatedRequest) (*SubscriptionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.SubscriptionsCreated")
@@ -442,8 +444,8 @@ func (a *SubscribersAPIService) SubscriptionsCreatedExecute(r ApiSubscriptionsCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
