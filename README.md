@@ -6,13 +6,6 @@ go_neynar_sdk is a Go client library for accessing the [Neynar API's](https://do
 
 Install the following dependencies:
 
-```sh
-go get github.com/stretchr/testify/assert
-go get golang.org/x/net/context
-```
-
-Put the package under your project folder and add the following in import:
-
 ```go
 go get github.com/atlasmoth/go_neynar_sdk@vX.Y.Z
 ```
