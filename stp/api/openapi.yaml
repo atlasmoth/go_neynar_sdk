@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: STP API V2
+  version: "2.0"
+servers:
+- url: https://api.neynar.com/v2
+paths:
+  /stp/subscription_check:
+    get:
+      description: Check if a wallet address is subscribed to a given STP contract.
+      externalDocs:
+        url: https://docs.neynar.com/reference/subscription-check
+      operationId: subscription-check
+      parameters:
+      - description: API key required for authentication.
+        explode: false
+        in: header
+        name: api_key
+        required: true
+        schema:
+          default: NEYNAR_API_DOCS
+          type: string
+        style: simple
+      - description: "Comma separated list of Ethereum addresses, up to 350 at a time"
+        example: "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7"
+        explode: true
+        in: query
+        name: addresses
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Ethereum address of the STP contract
+        example: 0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b
+        explode: true
+        in: query
+        name: contract_address
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Chain ID of the STP contract
+        example: "8453"
+        explode: true
+        in: query
+        name: chain_id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCheckResponse'
+          description: Successful response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Check if a wallet address is subscribed to a STP contract
+      tags:
+      - STP
+components:
+  parameters:
+    ApiKey:
+      description: API key required for authentication.
+      explode: false
+      in: header
+      name: api_key
+      required: true
+      schema:
+        default: NEYNAR_API_DOCS
+        type: string
+      style: simple
+  responses:
+    "401Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorRes'
+      description: Unauthorized
+    "404Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorRes'
+      description: Resource not found
+    "400Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorRes'
+      description: Bad Request
+    "403Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorRes'
+      description: Forbidden
+    "409Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictErrorRes'
+      description: Conflict
+    "500Response":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorRes'
+      description: Server Error
+  schemas:
+    ConflictErrorRes:
+      description: Details for the conflict error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        key:
+          type: string
+      required:
+      - message
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      example:
+        code: code
+        property: property
+        message: message
+        status: 0
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      type: object
+    SubscriptionCheckResponse:
+      additionalProperties:
+        $ref: '#/components/schemas/SubscriptionStatus'
+      example:
+        "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7":
+          object: subscribed_to_dehydrated
+          status: true
+          expires_at: 1748890497000
+          subscribed_at: 1719256819704
+          tier:
+            id: 1
+            price:
+              period_duration_seconds: 2592000
+              tokens_per_period: "3499999997472000"
+              initial_mint_price: "0"
+        "0x5a927ac639636e534b678e81768ca19e2c6280b7":
+          object: subscribed_to_dehydrated
+          status: false
+          expires_at: null
+          subscribed_at: null
+          tier: null
+      type: object
+    SubscriptionStatus:
+      properties:
+        object:
+          enum:
+          - subscribed_to_dehydrated
+          type: string
+        status:
+          type: boolean
+        expires_at:
+          format: int64
+          nullable: true
+          type: integer
+        subscribed_at:
+          format: int64
+          nullable: true
+          type: integer
+        tier:
+          $ref: '#/components/schemas/SubscriptionTier'
+      required:
+      - expires_at
+      - object
+      - status
+      - subscribed_at
+      - tier
+      type: object
+    SubscriptionTier:
+      properties:
+        id:
+          example: 1
+          type: integer
+        price:
+          $ref: '#/components/schemas/SubscriptionTier_price'
+      type: object
+    SubscriptionTier_price:
+      properties:
+        period_duration_seconds:
+          example: 2592000
+          type: integer
+        tokens_per_period:
+          example: "3000000000000000"
+          type: string
+        initial_mint_price:
+          example: "0"
+          type: string
+      type: object
