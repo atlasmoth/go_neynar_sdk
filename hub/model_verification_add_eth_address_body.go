@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type VerificationAddEthAddressBody struct {
 	Address string `json:"address" validate:"regexp=^(?:0x[a-fA-F0-9]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$"`
 	EthSignature string `json:"ethSignature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	BlockHash string `json:"blockHash" validate:"regexp=^(0x[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{44})$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationAddEthAddressBody VerificationAddEthAddressBody
@@ -133,6 +133,11 @@ func (o VerificationAddEthAddressBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["address"] = o.Address
 	toSerialize["ethSignature"] = o.EthSignature
 	toSerialize["blockHash"] = o.BlockHash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *VerificationAddEthAddressBody) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationAddEthAddressBody := _VerificationAddEthAddressBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationAddEthAddressBody)
+	err = json.Unmarshal(data, &varVerificationAddEthAddressBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationAddEthAddressBody(varVerificationAddEthAddressBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "ethSignature")
+		delete(additionalProperties, "blockHash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type LinkBody struct {
 	Type LinkType `json:"type"`
 	DisplayTimestamp *int64 `json:"displayTimestamp,omitempty"`
 	TargetFid int32 `json:"targetFid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LinkBody LinkBody
@@ -144,6 +144,11 @@ func (o LinkBody) ToMap() (map[string]interface{}, error) {
 		toSerialize["displayTimestamp"] = o.DisplayTimestamp
 	}
 	toSerialize["targetFid"] = o.TargetFid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *LinkBody) UnmarshalJSON(data []byte) (err error) {
 
 	varLinkBody := _LinkBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLinkBody)
+	err = json.Unmarshal(data, &varLinkBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LinkBody(varLinkBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "displayTimestamp")
+		delete(additionalProperties, "targetFid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

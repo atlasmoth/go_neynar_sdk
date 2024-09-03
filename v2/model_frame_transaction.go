@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &FrameTransaction{}
 type FrameTransaction struct {
 	// Transaction hash
 	Hash string `json:"hash"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameTransaction FrameTransaction
@@ -80,6 +80,11 @@ func (o FrameTransaction) MarshalJSON() ([]byte, error) {
 func (o FrameTransaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["hash"] = o.Hash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *FrameTransaction) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameTransaction := _FrameTransaction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameTransaction)
+	err = json.Unmarshal(data, &varFrameTransaction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameTransaction(varFrameTransaction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

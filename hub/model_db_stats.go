@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type DbStats struct {
 	NumMessages int32 `json:"numMessages"`
 	NumFidEvents int32 `json:"numFidEvents"`
 	NumFnameEvents int32 `json:"numFnameEvents"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DbStats DbStats
@@ -133,6 +133,11 @@ func (o DbStats) ToMap() (map[string]interface{}, error) {
 	toSerialize["numMessages"] = o.NumMessages
 	toSerialize["numFidEvents"] = o.NumFidEvents
 	toSerialize["numFnameEvents"] = o.NumFnameEvents
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *DbStats) UnmarshalJSON(data []byte) (err error) {
 
 	varDbStats := _DbStats{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDbStats)
+	err = json.Unmarshal(data, &varDbStats)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DbStats(varDbStats)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "numMessages")
+		delete(additionalProperties, "numFidEvents")
+		delete(additionalProperties, "numFnameEvents")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

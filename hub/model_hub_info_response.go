@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type HubInfoResponse struct {
 	DbStats *DbStats `json:"dbStats,omitempty"`
 	PeerId string `json:"peerId"`
 	HubOperatorFid int32 `json:"hubOperatorFid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HubInfoResponse HubInfoResponse
@@ -250,6 +250,11 @@ func (o HubInfoResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["peerId"] = o.PeerId
 	toSerialize["hubOperatorFid"] = o.HubOperatorFid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -282,15 +287,26 @@ func (o *HubInfoResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varHubInfoResponse := _HubInfoResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHubInfoResponse)
+	err = json.Unmarshal(data, &varHubInfoResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HubInfoResponse(varHubInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "isSyncing")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "rootHash")
+		delete(additionalProperties, "dbStats")
+		delete(additionalProperties, "peerId")
+		delete(additionalProperties, "hubOperatorFid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

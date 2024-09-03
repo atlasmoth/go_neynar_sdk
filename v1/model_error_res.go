@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ErrorRes struct {
 	Code *string `json:"code,omitempty"`
 	Message string `json:"message"`
 	Property *string `json:"property,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorRes ErrorRes
@@ -151,6 +151,11 @@ func (o ErrorRes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Property) {
 		toSerialize["property"] = o.Property
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *ErrorRes) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorRes := _ErrorRes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorRes)
+	err = json.Unmarshal(data, &varErrorRes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorRes(varErrorRes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "property")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

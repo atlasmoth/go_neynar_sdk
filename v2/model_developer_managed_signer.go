@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type DeveloperManagedSigner struct {
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
 	// User identifier (unsigned integer)
 	Fid *int32 `json:"fid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeveloperManagedSigner DeveloperManagedSigner
@@ -180,6 +180,11 @@ func (o DeveloperManagedSigner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Fid) {
 		toSerialize["fid"] = o.Fid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -208,15 +213,23 @@ func (o *DeveloperManagedSigner) UnmarshalJSON(data []byte) (err error) {
 
 	varDeveloperManagedSigner := _DeveloperManagedSigner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeveloperManagedSigner)
+	err = json.Unmarshal(data, &varDeveloperManagedSigner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeveloperManagedSigner(varDeveloperManagedSigner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "signer_approval_url")
+		delete(additionalProperties, "fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

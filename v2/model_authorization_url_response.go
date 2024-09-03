@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &AuthorizationUrlResponse{}
 // AuthorizationUrlResponse struct for AuthorizationUrlResponse
 type AuthorizationUrlResponse struct {
 	AuthorizationUrl string `json:"authorization_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuthorizationUrlResponse AuthorizationUrlResponse
@@ -79,6 +79,11 @@ func (o AuthorizationUrlResponse) MarshalJSON() ([]byte, error) {
 func (o AuthorizationUrlResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["authorization_url"] = o.AuthorizationUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *AuthorizationUrlResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAuthorizationUrlResponse := _AuthorizationUrlResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuthorizationUrlResponse)
+	err = json.Unmarshal(data, &varAuthorizationUrlResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuthorizationUrlResponse(varAuthorizationUrlResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorization_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &Conversation{}
 type Conversation struct {
 	Conversation ConversationConversation `json:"conversation"`
 	Next *NextCursor `json:"next,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Conversation Conversation
@@ -115,6 +115,11 @@ func (o Conversation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *Conversation) UnmarshalJSON(data []byte) (err error) {
 
 	varConversation := _Conversation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConversation)
+	err = json.Unmarshal(data, &varConversation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Conversation(varConversation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "conversation")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

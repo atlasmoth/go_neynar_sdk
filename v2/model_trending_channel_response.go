@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &TrendingChannelResponse{}
 type TrendingChannelResponse struct {
 	Channels []ChannelActivity `json:"channels"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TrendingChannelResponse TrendingChannelResponse
@@ -106,6 +106,11 @@ func (o TrendingChannelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["channels"] = o.Channels
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *TrendingChannelResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTrendingChannelResponse := _TrendingChannelResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTrendingChannelResponse)
+	err = json.Unmarshal(data, &varTrendingChannelResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TrendingChannelResponse(varTrendingChannelResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "channels")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

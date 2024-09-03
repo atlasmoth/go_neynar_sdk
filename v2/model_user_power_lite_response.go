@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &UserPowerLiteResponse{}
 // UserPowerLiteResponse struct for UserPowerLiteResponse
 type UserPowerLiteResponse struct {
 	Result UserPowerLiteResponseResult `json:"result"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserPowerLiteResponse UserPowerLiteResponse
@@ -79,6 +79,11 @@ func (o UserPowerLiteResponse) MarshalJSON() ([]byte, error) {
 func (o UserPowerLiteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["result"] = o.Result
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *UserPowerLiteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUserPowerLiteResponse := _UserPowerLiteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserPowerLiteResponse)
+	err = json.Unmarshal(data, &varUserPowerLiteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserPowerLiteResponse(varUserPowerLiteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "result")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

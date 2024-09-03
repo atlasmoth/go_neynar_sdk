@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &NeynarNextFramePageMintUrl{}
 type NeynarNextFramePageMintUrl struct {
 	// The URL for minting, specific to the mint action.
 	MintUrl string `json:"mint_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarNextFramePageMintUrl NeynarNextFramePageMintUrl
@@ -80,6 +80,11 @@ func (o NeynarNextFramePageMintUrl) MarshalJSON() ([]byte, error) {
 func (o NeynarNextFramePageMintUrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["mint_url"] = o.MintUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NeynarNextFramePageMintUrl) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarNextFramePageMintUrl := _NeynarNextFramePageMintUrl{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarNextFramePageMintUrl)
+	err = json.Unmarshal(data, &varNeynarNextFramePageMintUrl)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarNextFramePageMintUrl(varNeynarNextFramePageMintUrl)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mint_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

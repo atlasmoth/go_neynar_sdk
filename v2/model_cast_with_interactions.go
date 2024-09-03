@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -39,6 +38,7 @@ type CastWithInteractions struct {
 	MentionedProfiles []User `json:"mentioned_profiles"`
 	Channel ChannelOrDehydratedChannel `json:"channel"`
 	ViewerContext *CastViewerContext `json:"viewer_context,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastWithInteractions CastWithInteractions
@@ -547,6 +547,11 @@ func (o CastWithInteractions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -587,15 +592,36 @@ func (o *CastWithInteractions) UnmarshalJSON(data []byte) (err error) {
 
 	varCastWithInteractions := _CastWithInteractions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastWithInteractions)
+	err = json.Unmarshal(data, &varCastWithInteractions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastWithInteractions(varCastWithInteractions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "parent_hash")
+		delete(additionalProperties, "parent_url")
+		delete(additionalProperties, "root_parent_url")
+		delete(additionalProperties, "parent_author")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "frames")
+		delete(additionalProperties, "reactions")
+		delete(additionalProperties, "replies")
+		delete(additionalProperties, "thread_hash")
+		delete(additionalProperties, "mentioned_profiles")
+		delete(additionalProperties, "channel")
+		delete(additionalProperties, "viewer_context")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

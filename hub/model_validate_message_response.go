@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ValidateMessageResponse{}
 type ValidateMessageResponse struct {
 	Valid bool `json:"valid"`
 	Message Message `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidateMessageResponse ValidateMessageResponse
@@ -106,6 +106,11 @@ func (o ValidateMessageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["valid"] = o.Valid
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *ValidateMessageResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varValidateMessageResponse := _ValidateMessageResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidateMessageResponse)
+	err = json.Unmarshal(data, &varValidateMessageResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidateMessageResponse(varValidateMessageResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "valid")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

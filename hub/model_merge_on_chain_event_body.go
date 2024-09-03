@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &MergeOnChainEventBody{}
 // MergeOnChainEventBody struct for MergeOnChainEventBody
 type MergeOnChainEventBody struct {
 	OnChainEvent OnChainEvent `json:"onChainEvent"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MergeOnChainEventBody MergeOnChainEventBody
@@ -79,6 +79,11 @@ func (o MergeOnChainEventBody) MarshalJSON() ([]byte, error) {
 func (o MergeOnChainEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["onChainEvent"] = o.OnChainEvent
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *MergeOnChainEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	varMergeOnChainEventBody := _MergeOnChainEventBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMergeOnChainEventBody)
+	err = json.Unmarshal(data, &varMergeOnChainEventBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MergeOnChainEventBody(varMergeOnChainEventBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "onChainEvent")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

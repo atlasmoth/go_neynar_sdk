@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &StorageLimit{}
 type StorageLimit struct {
 	StoreType StoreType `json:"storeType"`
 	Limit int32 `json:"limit"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StorageLimit StorageLimit
@@ -108,6 +108,11 @@ func (o StorageLimit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["storeType"] = o.StoreType
 	toSerialize["limit"] = o.Limit
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *StorageLimit) UnmarshalJSON(data []byte) (err error) {
 
 	varStorageLimit := _StorageLimit{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStorageLimit)
+	err = json.Unmarshal(data, &varStorageLimit)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StorageLimit(varStorageLimit)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "storeType")
+		delete(additionalProperties, "limit")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

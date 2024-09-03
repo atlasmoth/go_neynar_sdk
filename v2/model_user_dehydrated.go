@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type UserDehydrated struct {
 	Object string `json:"object"`
 	// User identifier (unsigned integer)
 	Fid int32 `json:"fid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserDehydrated UserDehydrated
@@ -107,6 +107,11 @@ func (o UserDehydrated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["object"] = o.Object
 	toSerialize["fid"] = o.Fid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *UserDehydrated) UnmarshalJSON(data []byte) (err error) {
 
 	varUserDehydrated := _UserDehydrated{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserDehydrated)
+	err = json.Unmarshal(data, &varUserDehydrated)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserDehydrated(varUserDehydrated)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

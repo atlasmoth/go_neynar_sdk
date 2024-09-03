@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type FrameValidateAnalyticsInputTextInputTextsInner struct {
 	Fid int32 `json:"fid"`
 	Username string `json:"username"`
 	InputText string `json:"input_text"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateAnalyticsInputTextInputTextsInner FrameValidateAnalyticsInputTextInputTextsInner
@@ -134,6 +134,11 @@ func (o FrameValidateAnalyticsInputTextInputTextsInner) ToMap() (map[string]inte
 	toSerialize["fid"] = o.Fid
 	toSerialize["username"] = o.Username
 	toSerialize["input_text"] = o.InputText
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) UnmarshalJSON(data []by
 
 	varFrameValidateAnalyticsInputTextInputTextsInner := _FrameValidateAnalyticsInputTextInputTextsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateAnalyticsInputTextInputTextsInner)
+	err = json.Unmarshal(data, &varFrameValidateAnalyticsInputTextInputTextsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateAnalyticsInputTextInputTextsInner(varFrameValidateAnalyticsInputTextInputTextsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "input_text")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

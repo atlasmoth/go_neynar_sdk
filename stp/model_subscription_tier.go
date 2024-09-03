@@ -21,7 +21,10 @@ var _ MappedNullable = &SubscriptionTier{}
 type SubscriptionTier struct {
 	Id *int32 `json:"id,omitempty"`
 	Price *SubscriptionTierPrice `json:"price,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SubscriptionTier SubscriptionTier
 
 // NewSubscriptionTier instantiates a new SubscriptionTier object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o SubscriptionTier) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SubscriptionTier) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionTier := _SubscriptionTier{}
+
+	err = json.Unmarshal(data, &varSubscriptionTier)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionTier(varSubscriptionTier)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "price")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscriptionTier struct {

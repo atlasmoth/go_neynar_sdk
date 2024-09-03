@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type Recaster struct {
 	FollowingCount int32 `json:"followingCount"`
 	Timestamp time.Time `json:"timestamp"`
 	ViewerContext *RecasterViewerContext `json:"viewerContext,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Recaster Recaster
@@ -310,6 +310,11 @@ func (o Recaster) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -344,15 +349,28 @@ func (o *Recaster) UnmarshalJSON(data []byte) (err error) {
 
 	varRecaster := _Recaster{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecaster)
+	err = json.Unmarshal(data, &varRecaster)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Recaster(varRecaster)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "pfp")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "followerCount")
+		delete(additionalProperties, "followingCount")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "viewerContext")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

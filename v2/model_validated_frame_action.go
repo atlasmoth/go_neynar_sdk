@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type ValidatedFrameAction struct {
 	Transaction *FrameTransaction `json:"transaction,omitempty"`
 	// The connected wallet address of the interacting user.
 	Address *string `json:"address,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidatedFrameAction ValidatedFrameAction
@@ -387,6 +387,11 @@ func (o ValidatedFrameAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -420,15 +425,30 @@ func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
 
 	varValidatedFrameAction := _ValidatedFrameAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidatedFrameAction)
+	err = json.Unmarshal(data, &varValidatedFrameAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidatedFrameAction(varValidatedFrameAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "interactor")
+		delete(additionalProperties, "tapped_button")
+		delete(additionalProperties, "input")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "signer")
+		delete(additionalProperties, "transaction")
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

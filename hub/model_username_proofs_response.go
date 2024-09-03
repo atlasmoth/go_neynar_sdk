@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &UsernameProofsResponse{}
 // UsernameProofsResponse struct for UsernameProofsResponse
 type UsernameProofsResponse struct {
 	Proofs []UserNameProof `json:"proofs"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UsernameProofsResponse UsernameProofsResponse
@@ -79,6 +79,11 @@ func (o UsernameProofsResponse) MarshalJSON() ([]byte, error) {
 func (o UsernameProofsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["proofs"] = o.Proofs
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *UsernameProofsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUsernameProofsResponse := _UsernameProofsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUsernameProofsResponse)
+	err = json.Unmarshal(data, &varUsernameProofsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UsernameProofsResponse(varUsernameProofsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "proofs")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

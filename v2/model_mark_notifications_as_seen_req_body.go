@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type MarkNotificationsAsSeenReqBody struct {
 	// The UUID of the signer. Signer should have atleast one write permission 
 	SignerUuid string `json:"signer_uuid"`
 	Type *NotificationType `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MarkNotificationsAsSeenReqBody MarkNotificationsAsSeenReqBody
@@ -116,6 +116,11 @@ func (o MarkNotificationsAsSeenReqBody) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *MarkNotificationsAsSeenReqBody) UnmarshalJSON(data []byte) (err error) 
 
 	varMarkNotificationsAsSeenReqBody := _MarkNotificationsAsSeenReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMarkNotificationsAsSeenReqBody)
+	err = json.Unmarshal(data, &varMarkNotificationsAsSeenReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MarkNotificationsAsSeenReqBody(varMarkNotificationsAsSeenReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

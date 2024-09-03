@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type Reactor struct {
 	// The number of users the reactor is following.
 	FollowingCount int32 `json:"followingCount"`
 	ViewerContext *ReactorViewerContext `json:"viewerContext,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Reactor Reactor
@@ -255,6 +255,11 @@ func (o Reactor) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -287,15 +292,26 @@ func (o *Reactor) UnmarshalJSON(data []byte) (err error) {
 
 	varReactor := _Reactor{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactor)
+	err = json.Unmarshal(data, &varReactor)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Reactor(varReactor)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "pfp")
+		delete(additionalProperties, "followerCount")
+		delete(additionalProperties, "followingCount")
+		delete(additionalProperties, "viewerContext")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

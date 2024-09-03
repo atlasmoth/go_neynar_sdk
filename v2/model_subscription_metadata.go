@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SubscriptionMetadata struct {
 	Title string `json:"title"`
 	Symbol string `json:"symbol"`
 	ArtUrl string `json:"art_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscriptionMetadata SubscriptionMetadata
@@ -133,6 +133,11 @@ func (o SubscriptionMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["title"] = o.Title
 	toSerialize["symbol"] = o.Symbol
 	toSerialize["art_url"] = o.ArtUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *SubscriptionMetadata) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriptionMetadata := _SubscriptionMetadata{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriptionMetadata)
+	err = json.Unmarshal(data, &varSubscriptionMetadata)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscriptionMetadata(varSubscriptionMetadata)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "art_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

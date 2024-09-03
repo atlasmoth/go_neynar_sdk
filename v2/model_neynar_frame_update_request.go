@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type NeynarFrameUpdateRequest struct {
 	// The name of the frame.
 	Name *string `json:"name,omitempty"`
 	Pages []NeynarFramePage `json:"pages"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarFrameUpdateRequest NeynarFrameUpdateRequest
@@ -144,6 +144,11 @@ func (o NeynarFrameUpdateRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["name"] = o.Name
 	}
 	toSerialize["pages"] = o.Pages
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *NeynarFrameUpdateRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarFrameUpdateRequest := _NeynarFrameUpdateRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarFrameUpdateRequest)
+	err = json.Unmarshal(data, &varNeynarFrameUpdateRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarFrameUpdateRequest(varNeynarFrameUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

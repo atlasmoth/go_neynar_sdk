@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &AllCastsInThreadResponse{}
 // AllCastsInThreadResponse struct for AllCastsInThreadResponse
 type AllCastsInThreadResponse struct {
 	Result AllCastsInThreadResponseResult `json:"result"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AllCastsInThreadResponse AllCastsInThreadResponse
@@ -79,6 +79,11 @@ func (o AllCastsInThreadResponse) MarshalJSON() ([]byte, error) {
 func (o AllCastsInThreadResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["result"] = o.Result
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *AllCastsInThreadResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAllCastsInThreadResponse := _AllCastsInThreadResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAllCastsInThreadResponse)
+	err = json.Unmarshal(data, &varAllCastsInThreadResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AllCastsInThreadResponse(varAllCastsInThreadResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "result")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

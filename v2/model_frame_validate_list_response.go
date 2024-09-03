@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FrameValidateListResponse{}
 // FrameValidateListResponse struct for FrameValidateListResponse
 type FrameValidateListResponse struct {
 	Frames []string `json:"frames"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateListResponse FrameValidateListResponse
@@ -79,6 +79,11 @@ func (o FrameValidateListResponse) MarshalJSON() ([]byte, error) {
 func (o FrameValidateListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["frames"] = o.Frames
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FrameValidateListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameValidateListResponse := _FrameValidateListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateListResponse)
+	err = json.Unmarshal(data, &varFrameValidateListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateListResponse(varFrameValidateListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "frames")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FrameFromUrl200Response{}
 // FrameFromUrl200Response The frame object containing the meta tags
 type FrameFromUrl200Response struct {
 	Frame Frame `json:"frame"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameFromUrl200Response FrameFromUrl200Response
@@ -79,6 +79,11 @@ func (o FrameFromUrl200Response) MarshalJSON() ([]byte, error) {
 func (o FrameFromUrl200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["frame"] = o.Frame
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FrameFromUrl200Response) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameFromUrl200Response := _FrameFromUrl200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameFromUrl200Response)
+	err = json.Unmarshal(data, &varFrameFromUrl200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameFromUrl200Response(varFrameFromUrl200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "frame")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ViewerContext struct {
 	FollowedBy bool `json:"followedBy"`
 	Liked *bool `json:"liked,omitempty"`
 	Recasted *bool `json:"recasted,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ViewerContext ViewerContext
@@ -178,6 +178,11 @@ func (o ViewerContext) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Recasted) {
 		toSerialize["recasted"] = o.Recasted
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -206,15 +211,23 @@ func (o *ViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varViewerContext := _ViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varViewerContext)
+	err = json.Unmarshal(data, &varViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ViewerContext(varViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "following")
+		delete(additionalProperties, "followedBy")
+		delete(additionalProperties, "liked")
+		delete(additionalProperties, "recasted")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

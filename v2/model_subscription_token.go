@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type SubscriptionToken struct {
 	Address NullableString `json:"address"`
 	Decimals int32 `json:"decimals"`
 	Erc20 bool `json:"erc20"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscriptionToken SubscriptionToken
@@ -162,6 +162,11 @@ func (o SubscriptionToken) ToMap() (map[string]interface{}, error) {
 	toSerialize["address"] = o.Address.Get()
 	toSerialize["decimals"] = o.Decimals
 	toSerialize["erc20"] = o.Erc20
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *SubscriptionToken) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriptionToken := _SubscriptionToken{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriptionToken)
+	err = json.Unmarshal(data, &varSubscriptionToken)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscriptionToken(varSubscriptionToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "decimals")
+		delete(additionalProperties, "erc20")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

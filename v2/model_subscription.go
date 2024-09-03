@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type Subscription struct {
 	Tiers []SubscriptionTier `json:"tiers,omitempty"`
 	ProtocolVersion int32 `json:"protocol_version"`
 	Token SubscriptionToken `json:"token"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Subscription Subscription
@@ -340,6 +340,11 @@ func (o Subscription) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["protocol_version"] = o.ProtocolVersion
 	toSerialize["token"] = o.Token
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -374,15 +379,29 @@ func (o *Subscription) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscription := _Subscription{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscription)
+	err = json.Unmarshal(data, &varSubscription)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Subscription(varSubscription)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "provider_name")
+		delete(additionalProperties, "contract_address")
+		delete(additionalProperties, "chain")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "owner_address")
+		delete(additionalProperties, "price")
+		delete(additionalProperties, "tiers")
+		delete(additionalProperties, "protocol_version")
+		delete(additionalProperties, "token")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

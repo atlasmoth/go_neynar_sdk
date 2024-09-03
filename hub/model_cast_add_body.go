@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type CastAddBody struct {
 	Text string `json:"text"`
 	MentionsPositions []int64 `json:"mentionsPositions"`
 	Embeds []Embed `json:"embeds"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastAddBody CastAddBody
@@ -259,6 +259,11 @@ func (o CastAddBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["text"] = o.Text
 	toSerialize["mentionsPositions"] = o.MentionsPositions
 	toSerialize["embeds"] = o.Embeds
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -290,15 +295,26 @@ func (o *CastAddBody) UnmarshalJSON(data []byte) (err error) {
 
 	varCastAddBody := _CastAddBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastAddBody)
+	err = json.Unmarshal(data, &varCastAddBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastAddBody(varCastAddBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "embedsDeprecated")
+		delete(additionalProperties, "mentions")
+		delete(additionalProperties, "parentCastId")
+		delete(additionalProperties, "parentUrl")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "mentionsPositions")
+		delete(additionalProperties, "embeds")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

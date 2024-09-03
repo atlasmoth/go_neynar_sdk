@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ListReactionsByCast200Response{}
 type ListReactionsByCast200Response struct {
 	Messages []Reaction `json:"messages"`
 	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListReactionsByCast200Response ListReactionsByCast200Response
@@ -106,6 +106,11 @@ func (o ListReactionsByCast200Response) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["messages"] = o.Messages
 	toSerialize["nextPageToken"] = o.NextPageToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *ListReactionsByCast200Response) UnmarshalJSON(data []byte) (err error) 
 
 	varListReactionsByCast200Response := _ListReactionsByCast200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListReactionsByCast200Response)
+	err = json.Unmarshal(data, &varListReactionsByCast200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListReactionsByCast200Response(varListReactionsByCast200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "nextPageToken")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

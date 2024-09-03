@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type UpdateUserReqBody struct {
 	Url *string `json:"url,omitempty"`
 	Username *string `json:"username,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateUserReqBody UpdateUserReqBody
@@ -260,6 +260,11 @@ func (o UpdateUserReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayName) {
 		toSerialize["display_name"] = o.DisplayName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -287,15 +292,25 @@ func (o *UpdateUserReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateUserReqBody := _UpdateUserReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateUserReqBody)
+	err = json.Unmarshal(data, &varUpdateUserReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateUserReqBody(varUpdateUserReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "bio")
+		delete(additionalProperties, "pfp_url")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "display_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

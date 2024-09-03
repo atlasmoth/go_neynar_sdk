@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ProfileUrlPfp{}
 // ProfileUrlPfp struct for ProfileUrlPfp
 type ProfileUrlPfp struct {
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProfileUrlPfp ProfileUrlPfp
@@ -79,6 +79,11 @@ func (o ProfileUrlPfp) MarshalJSON() ([]byte, error) {
 func (o ProfileUrlPfp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ProfileUrlPfp) UnmarshalJSON(data []byte) (err error) {
 
 	varProfileUrlPfp := _ProfileUrlPfp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProfileUrlPfp)
+	err = json.Unmarshal(data, &varProfileUrlPfp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProfileUrlPfp(varProfileUrlPfp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

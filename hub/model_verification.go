@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type Verification struct {
 	SignatureScheme SignatureScheme `json:"signatureScheme"`
 	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
 	Data VerificationAllOfData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Verification Verification
@@ -218,6 +218,11 @@ func (o Verification) ToMap() (map[string]interface{}, error) {
 	toSerialize["signatureScheme"] = o.SignatureScheme
 	toSerialize["signer"] = o.Signer
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -250,15 +255,25 @@ func (o *Verification) UnmarshalJSON(data []byte) (err error) {
 
 	varVerification := _Verification{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerification)
+	err = json.Unmarshal(data, &varVerification)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Verification(varVerification)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "hashScheme")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "signatureScheme")
+		delete(additionalProperties, "signer")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

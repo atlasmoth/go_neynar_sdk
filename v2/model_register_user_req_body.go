@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type RegisterUserReqBody struct {
 	RequestedUserCustodyAddress string `json:"requested_user_custody_address"`
 	Deadline float32 `json:"deadline"`
 	Fname *string `json:"fname,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RegisterUserReqBody RegisterUserReqBody
@@ -196,6 +196,11 @@ func (o RegisterUserReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Fname) {
 		toSerialize["fname"] = o.Fname
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -226,15 +231,24 @@ func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varRegisterUserReqBody := _RegisterUserReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRegisterUserReqBody)
+	err = json.Unmarshal(data, &varRegisterUserReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RegisterUserReqBody(varRegisterUserReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "requested_user_custody_address")
+		delete(additionalProperties, "deadline")
+		delete(additionalProperties, "fname")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

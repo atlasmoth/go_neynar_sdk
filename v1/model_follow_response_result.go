@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &FollowResponseResult{}
 type FollowResponseResult struct {
 	Users []FollowResponseUser `json:"users"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FollowResponseResult FollowResponseResult
@@ -106,6 +106,11 @@ func (o FollowResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["users"] = o.Users
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *FollowResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varFollowResponseResult := _FollowResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFollowResponseResult)
+	err = json.Unmarshal(data, &varFollowResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FollowResponseResult(varFollowResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "users")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

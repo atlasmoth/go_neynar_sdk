@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type Cast struct {
 	Timestamp time.Time `json:"timestamp"`
 	Embeds []EmbedUrl `json:"embeds"`
 	Type *CastType `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Cast Cast
@@ -363,6 +363,11 @@ func (o Cast) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -399,15 +404,30 @@ func (o *Cast) UnmarshalJSON(data []byte) (err error) {
 
 	varCast := _Cast{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCast)
+	err = json.Unmarshal(data, &varCast)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Cast(varCast)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "parentHash")
+		delete(additionalProperties, "parentUrl")
+		delete(additionalProperties, "threadHash")
+		delete(additionalProperties, "parentAuthor")
+		delete(additionalProperties, "mentionedProfiles")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

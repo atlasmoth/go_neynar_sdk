@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type PostCastResponseCast struct {
 	Hash string `json:"hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	Author PostCastResponseCastAuthor `json:"author"`
 	Text string `json:"text"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PostCastResponseCast PostCastResponseCast
@@ -134,6 +134,11 @@ func (o PostCastResponseCast) ToMap() (map[string]interface{}, error) {
 	toSerialize["hash"] = o.Hash
 	toSerialize["author"] = o.Author
 	toSerialize["text"] = o.Text
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 
 	varPostCastResponseCast := _PostCastResponseCast{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostCastResponseCast)
+	err = json.Unmarshal(data, &varPostCastResponseCast)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PostCastResponseCast(varPostCastResponseCast)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

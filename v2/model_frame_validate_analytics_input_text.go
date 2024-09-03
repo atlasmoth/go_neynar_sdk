@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FrameValidateAnalyticsInputText{}
 // FrameValidateAnalyticsInputText struct for FrameValidateAnalyticsInputText
 type FrameValidateAnalyticsInputText struct {
 	InputTexts []FrameValidateAnalyticsInputTextInputTextsInner `json:"input_texts"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateAnalyticsInputText FrameValidateAnalyticsInputText
@@ -79,6 +79,11 @@ func (o FrameValidateAnalyticsInputText) MarshalJSON() ([]byte, error) {
 func (o FrameValidateAnalyticsInputText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["input_texts"] = o.InputTexts
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FrameValidateAnalyticsInputText) UnmarshalJSON(data []byte) (err error)
 
 	varFrameValidateAnalyticsInputText := _FrameValidateAnalyticsInputText{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateAnalyticsInputText)
+	err = json.Unmarshal(data, &varFrameValidateAnalyticsInputText)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateAnalyticsInputText(varFrameValidateAnalyticsInputText)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "input_texts")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

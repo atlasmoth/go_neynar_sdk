@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ZodErrorErrorsInner struct {
 	Received string `json:"received"`
 	Path []string `json:"path"`
 	Message string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ZodErrorErrorsInner ZodErrorErrorsInner
@@ -187,6 +187,11 @@ func (o ZodErrorErrorsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize["received"] = o.Received
 	toSerialize["path"] = o.Path
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,24 @@ func (o *ZodErrorErrorsInner) UnmarshalJSON(data []byte) (err error) {
 
 	varZodErrorErrorsInner := _ZodErrorErrorsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varZodErrorErrorsInner)
+	err = json.Unmarshal(data, &varZodErrorErrorsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ZodErrorErrorsInner(varZodErrorErrorsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "expected")
+		delete(additionalProperties, "received")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

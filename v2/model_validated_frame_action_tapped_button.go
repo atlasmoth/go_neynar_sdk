@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ValidatedFrameActionTappedButton{}
 // ValidatedFrameActionTappedButton struct for ValidatedFrameActionTappedButton
 type ValidatedFrameActionTappedButton struct {
 	Index int32 `json:"index"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidatedFrameActionTappedButton ValidatedFrameActionTappedButton
@@ -79,6 +79,11 @@ func (o ValidatedFrameActionTappedButton) MarshalJSON() ([]byte, error) {
 func (o ValidatedFrameActionTappedButton) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["index"] = o.Index
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ValidatedFrameActionTappedButton) UnmarshalJSON(data []byte) (err error
 
 	varValidatedFrameActionTappedButton := _ValidatedFrameActionTappedButton{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidatedFrameActionTappedButton)
+	err = json.Unmarshal(data, &varValidatedFrameActionTappedButton)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidatedFrameActionTappedButton(varValidatedFrameActionTappedButton)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "index")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

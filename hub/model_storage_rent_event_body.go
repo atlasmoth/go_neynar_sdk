@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type StorageRentEventBody struct {
 	Payer string `json:"payer" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	Units int64 `json:"units"`
 	Expiry int64 `json:"expiry"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StorageRentEventBody StorageRentEventBody
@@ -133,6 +133,11 @@ func (o StorageRentEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["payer"] = o.Payer
 	toSerialize["units"] = o.Units
 	toSerialize["expiry"] = o.Expiry
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *StorageRentEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	varStorageRentEventBody := _StorageRentEventBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStorageRentEventBody)
+	err = json.Unmarshal(data, &varStorageRentEventBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StorageRentEventBody(varStorageRentEventBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "payer")
+		delete(additionalProperties, "units")
+		delete(additionalProperties, "expiry")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

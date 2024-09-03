@@ -21,7 +21,10 @@ var _ MappedNullable = &EmbedUrlMetadataVideo{}
 type EmbedUrlMetadataVideo struct {
 	DurationS *float32 `json:"duration_s,omitempty"`
 	Stream []EmbedUrlMetadataVideoStreamInner `json:"stream,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EmbedUrlMetadataVideo EmbedUrlMetadataVideo
 
 // NewEmbedUrlMetadataVideo instantiates a new EmbedUrlMetadataVideo object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o EmbedUrlMetadataVideo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Stream) {
 		toSerialize["stream"] = o.Stream
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EmbedUrlMetadataVideo) UnmarshalJSON(data []byte) (err error) {
+	varEmbedUrlMetadataVideo := _EmbedUrlMetadataVideo{}
+
+	err = json.Unmarshal(data, &varEmbedUrlMetadataVideo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmbedUrlMetadataVideo(varEmbedUrlMetadataVideo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "duration_s")
+		delete(additionalProperties, "stream")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEmbedUrlMetadataVideo struct {

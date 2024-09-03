@@ -31,7 +31,10 @@ type WebhookSubscriptionFiltersCastCreated struct {
 	Text *string `json:"text,omitempty"`
 	// Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b 
 	Embeds *string `json:"embeds,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookSubscriptionFiltersCastCreated WebhookSubscriptionFiltersCastCreated
 
 // NewWebhookSubscriptionFiltersCastCreated instantiates a new WebhookSubscriptionFiltersCastCreated object
 // This constructor will assign default values to properties that have it defined,
@@ -375,7 +378,41 @@ func (o WebhookSubscriptionFiltersCastCreated) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Embeds) {
 		toSerialize["embeds"] = o.Embeds
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookSubscriptionFiltersCastCreated) UnmarshalJSON(data []byte) (err error) {
+	varWebhookSubscriptionFiltersCastCreated := _WebhookSubscriptionFiltersCastCreated{}
+
+	err = json.Unmarshal(data, &varWebhookSubscriptionFiltersCastCreated)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookSubscriptionFiltersCastCreated(varWebhookSubscriptionFiltersCastCreated)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exclude_author_fids")
+		delete(additionalProperties, "author_fids")
+		delete(additionalProperties, "mentioned_fids")
+		delete(additionalProperties, "parent_urls")
+		delete(additionalProperties, "root_parent_urls")
+		delete(additionalProperties, "parent_hashes")
+		delete(additionalProperties, "parent_author_fids")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "embeds")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookSubscriptionFiltersCastCreated struct {

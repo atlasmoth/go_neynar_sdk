@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type CastWithInteractionsReactions struct {
 	Count int32 `json:"count"`
 	Fids []int32 `json:"fids"`
 	Fnames []string `json:"fnames"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastWithInteractionsReactions CastWithInteractionsReactions
@@ -133,6 +133,11 @@ func (o CastWithInteractionsReactions) ToMap() (map[string]interface{}, error) {
 	toSerialize["count"] = o.Count
 	toSerialize["fids"] = o.Fids
 	toSerialize["fnames"] = o.Fnames
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
 
 	varCastWithInteractionsReactions := _CastWithInteractionsReactions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastWithInteractionsReactions)
+	err = json.Unmarshal(data, &varCastWithInteractionsReactions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastWithInteractionsReactions(varCastWithInteractionsReactions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "fids")
+		delete(additionalProperties, "fnames")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

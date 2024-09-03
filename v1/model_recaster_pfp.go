@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &RecasterPfp{}
 type RecasterPfp struct {
 	// The URL of the recaster's profile picture.
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecasterPfp RecasterPfp
@@ -80,6 +80,11 @@ func (o RecasterPfp) MarshalJSON() ([]byte, error) {
 func (o RecasterPfp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *RecasterPfp) UnmarshalJSON(data []byte) (err error) {
 
 	varRecasterPfp := _RecasterPfp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecasterPfp)
+	err = json.Unmarshal(data, &varRecasterPfp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecasterPfp(varRecasterPfp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

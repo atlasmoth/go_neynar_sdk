@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type NeynarPageInputText struct {
 	Enabled bool `json:"enabled"`
 	// The placeholder text for the input.
 	Placeholder *string `json:"placeholder,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarPageInputText NeynarPageInputText
@@ -119,6 +119,11 @@ func (o NeynarPageInputText) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Placeholder) {
 		toSerialize["placeholder"] = o.Placeholder
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -146,15 +151,21 @@ func (o *NeynarPageInputText) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarPageInputText := _NeynarPageInputText{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarPageInputText)
+	err = json.Unmarshal(data, &varNeynarPageInputText)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarPageInputText(varNeynarPageInputText)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "placeholder")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

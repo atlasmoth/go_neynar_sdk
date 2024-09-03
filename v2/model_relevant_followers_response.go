@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &RelevantFollowersResponse{}
 type RelevantFollowersResponse struct {
 	TopRelevantFollowersHydrated []HydratedFollower `json:"top_relevant_followers_hydrated"`
 	AllRelevantFollowersDehydrated []DehydratedFollower `json:"all_relevant_followers_dehydrated"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RelevantFollowersResponse RelevantFollowersResponse
@@ -106,6 +106,11 @@ func (o RelevantFollowersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["top_relevant_followers_hydrated"] = o.TopRelevantFollowersHydrated
 	toSerialize["all_relevant_followers_dehydrated"] = o.AllRelevantFollowersDehydrated
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *RelevantFollowersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRelevantFollowersResponse := _RelevantFollowersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRelevantFollowersResponse)
+	err = json.Unmarshal(data, &varRelevantFollowersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RelevantFollowersResponse(varRelevantFollowersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "top_relevant_followers_hydrated")
+		delete(additionalProperties, "all_relevant_followers_dehydrated")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

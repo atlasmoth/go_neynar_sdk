@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &PruneMessageBody{}
 // PruneMessageBody struct for PruneMessageBody
 type PruneMessageBody struct {
 	Message Message `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PruneMessageBody PruneMessageBody
@@ -79,6 +79,11 @@ func (o PruneMessageBody) MarshalJSON() ([]byte, error) {
 func (o PruneMessageBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *PruneMessageBody) UnmarshalJSON(data []byte) (err error) {
 
 	varPruneMessageBody := _PruneMessageBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPruneMessageBody)
+	err = json.Unmarshal(data, &varPruneMessageBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PruneMessageBody(varPruneMessageBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

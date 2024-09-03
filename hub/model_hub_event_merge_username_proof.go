@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type HubEventMergeUsernameProof struct {
 	Type string `json:"type"`
 	Id int32 `json:"id"`
 	MergeUsernameProofBody MergeUserNameProofBody `json:"mergeUsernameProofBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HubEventMergeUsernameProof HubEventMergeUsernameProof
@@ -133,6 +133,11 @@ func (o HubEventMergeUsernameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
 	toSerialize["mergeUsernameProofBody"] = o.MergeUsernameProofBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *HubEventMergeUsernameProof) UnmarshalJSON(data []byte) (err error) {
 
 	varHubEventMergeUsernameProof := _HubEventMergeUsernameProof{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHubEventMergeUsernameProof)
+	err = json.Unmarshal(data, &varHubEventMergeUsernameProof)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HubEventMergeUsernameProof(varHubEventMergeUsernameProof)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "mergeUsernameProofBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

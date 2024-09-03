@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type HubEventPruneMessage struct {
 	Type string `json:"type"`
 	Id int32 `json:"id"`
 	PruneMessageBody PruneMessageBody `json:"pruneMessageBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HubEventPruneMessage HubEventPruneMessage
@@ -133,6 +133,11 @@ func (o HubEventPruneMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
 	toSerialize["pruneMessageBody"] = o.PruneMessageBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *HubEventPruneMessage) UnmarshalJSON(data []byte) (err error) {
 
 	varHubEventPruneMessage := _HubEventPruneMessage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHubEventPruneMessage)
+	err = json.Unmarshal(data, &varHubEventPruneMessage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HubEventPruneMessage(varHubEventPruneMessage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "pruneMessageBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ChannelActivity struct {
 	CastCount7d string `json:"cast_count_7d"`
 	CastCount30d string `json:"cast_count_30d"`
 	Channel Channel `json:"channel"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChannelActivity ChannelActivity
@@ -187,6 +187,11 @@ func (o ChannelActivity) ToMap() (map[string]interface{}, error) {
 	toSerialize["cast_count_7d"] = o.CastCount7d
 	toSerialize["cast_count_30d"] = o.CastCount30d
 	toSerialize["channel"] = o.Channel
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,24 @@ func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
 
 	varChannelActivity := _ChannelActivity{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChannelActivity)
+	err = json.Unmarshal(data, &varChannelActivity)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChannelActivity(varChannelActivity)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "cast_count_1d")
+		delete(additionalProperties, "cast_count_7d")
+		delete(additionalProperties, "cast_count_30d")
+		delete(additionalProperties, "channel")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

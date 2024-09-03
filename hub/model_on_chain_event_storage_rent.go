@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type OnChainEventStorageRent struct {
 	TxIndex int32 `json:"txIndex"`
 	Fid int32 `json:"fid"`
 	StorageRentEventBody StorageRentEventBody `json:"storageRentEventBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OnChainEventStorageRent OnChainEventStorageRent
@@ -322,6 +322,11 @@ func (o OnChainEventStorageRent) ToMap() (map[string]interface{}, error) {
 	toSerialize["txIndex"] = o.TxIndex
 	toSerialize["fid"] = o.Fid
 	toSerialize["storageRentEventBody"] = o.StorageRentEventBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -358,15 +363,29 @@ func (o *OnChainEventStorageRent) UnmarshalJSON(data []byte) (err error) {
 
 	varOnChainEventStorageRent := _OnChainEventStorageRent{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOnChainEventStorageRent)
+	err = json.Unmarshal(data, &varOnChainEventStorageRent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OnChainEventStorageRent(varOnChainEventStorageRent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "chainId")
+		delete(additionalProperties, "blockNumber")
+		delete(additionalProperties, "blockHash")
+		delete(additionalProperties, "blockTimestamp")
+		delete(additionalProperties, "transactionHash")
+		delete(additionalProperties, "logIndex")
+		delete(additionalProperties, "txIndex")
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "storageRentEventBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

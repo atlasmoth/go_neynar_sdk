@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MuteReqBody struct {
 	Fid int32 `json:"fid"`
 	// User identifier (unsigned integer)
 	MutedFid int32 `json:"muted_fid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MuteReqBody MuteReqBody
@@ -108,6 +108,11 @@ func (o MuteReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["muted_fid"] = o.MutedFid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *MuteReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varMuteReqBody := _MuteReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMuteReqBody)
+	err = json.Unmarshal(data, &varMuteReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MuteReqBody(varMuteReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "muted_fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

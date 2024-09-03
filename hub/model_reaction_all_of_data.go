@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ReactionAllOfData struct {
 	Network FarcasterNetwork `json:"network"`
 	ReactionBody ReactionBody `json:"reactionBody"`
 	Type MessageType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionAllOfData ReactionAllOfData
@@ -191,6 +191,11 @@ func (o ReactionAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize["network"] = o.Network
 	toSerialize["reactionBody"] = o.ReactionBody
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *ReactionAllOfData) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionAllOfData := _ReactionAllOfData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionAllOfData)
+	err = json.Unmarshal(data, &varReactionAllOfData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionAllOfData(varReactionAllOfData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "reactionBody")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

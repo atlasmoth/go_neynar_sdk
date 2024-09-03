@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractionsPerCast{}
 // FrameValidateAnalyticsInteractionsPerCast struct for FrameValidateAnalyticsInteractionsPerCast
 type FrameValidateAnalyticsInteractionsPerCast struct {
 	InteractionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner `json:"interactions_per_cast"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateAnalyticsInteractionsPerCast FrameValidateAnalyticsInteractionsPerCast
@@ -79,6 +79,11 @@ func (o FrameValidateAnalyticsInteractionsPerCast) MarshalJSON() ([]byte, error)
 func (o FrameValidateAnalyticsInteractionsPerCast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["interactions_per_cast"] = o.InteractionsPerCast
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FrameValidateAnalyticsInteractionsPerCast) UnmarshalJSON(data []byte) (
 
 	varFrameValidateAnalyticsInteractionsPerCast := _FrameValidateAnalyticsInteractionsPerCast{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateAnalyticsInteractionsPerCast)
+	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractionsPerCast)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateAnalyticsInteractionsPerCast(varFrameValidateAnalyticsInteractionsPerCast)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interactions_per_cast")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

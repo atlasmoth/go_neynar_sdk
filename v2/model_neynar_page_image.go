@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type NeynarPageImage struct {
 	Url string `json:"url"`
 	// The aspect ratio of the image.
 	AspectRatio string `json:"aspect_ratio"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarPageImage NeynarPageImage
@@ -108,6 +108,11 @@ func (o NeynarPageImage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
 	toSerialize["aspect_ratio"] = o.AspectRatio
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *NeynarPageImage) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarPageImage := _NeynarPageImage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarPageImage)
+	err = json.Unmarshal(data, &varNeynarPageImage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarPageImage(varNeynarPageImage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "aspect_ratio")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type FrameValidateAnalyticsInteractorsInteractorsInner struct {
 	Fid int32 `json:"fid"`
 	Username string `json:"username"`
 	InteractionCount float32 `json:"interaction_count"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateAnalyticsInteractorsInteractorsInner FrameValidateAnalyticsInteractorsInteractorsInner
@@ -134,6 +134,11 @@ func (o FrameValidateAnalyticsInteractorsInteractorsInner) ToMap() (map[string]i
 	toSerialize["fid"] = o.Fid
 	toSerialize["username"] = o.Username
 	toSerialize["interaction_count"] = o.InteractionCount
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSON(data [
 
 	varFrameValidateAnalyticsInteractorsInteractorsInner := _FrameValidateAnalyticsInteractorsInteractorsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateAnalyticsInteractorsInteractorsInner)
+	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractorsInteractorsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateAnalyticsInteractorsInteractorsInner(varFrameValidateAnalyticsInteractorsInteractorsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "interaction_count")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

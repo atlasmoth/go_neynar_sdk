@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ValidateFrameActionResponse{}
 type ValidateFrameActionResponse struct {
 	Valid bool `json:"valid"`
 	Action ValidatedFrameAction `json:"action"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidateFrameActionResponse ValidateFrameActionResponse
@@ -106,6 +106,11 @@ func (o ValidateFrameActionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["valid"] = o.Valid
 	toSerialize["action"] = o.Action
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *ValidateFrameActionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varValidateFrameActionResponse := _ValidateFrameActionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidateFrameActionResponse)
+	err = json.Unmarshal(data, &varValidateFrameActionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidateFrameActionResponse(varValidateFrameActionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "valid")
+		delete(additionalProperties, "action")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,7 +20,10 @@ var _ MappedNullable = &SubscriptionsResponse{}
 // SubscriptionsResponse struct for SubscriptionsResponse
 type SubscriptionsResponse struct {
 	SubscriptionsCreated []Subscriptions `json:"subscriptions_created,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SubscriptionsResponse SubscriptionsResponse
 
 // NewSubscriptionsResponse instantiates a new SubscriptionsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o SubscriptionsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SubscriptionsCreated) {
 		toSerialize["subscriptions_created"] = o.SubscriptionsCreated
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SubscriptionsResponse) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionsResponse := _SubscriptionsResponse{}
+
+	err = json.Unmarshal(data, &varSubscriptionsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionsResponse(varSubscriptionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "subscriptions_created")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscriptionsResponse struct {

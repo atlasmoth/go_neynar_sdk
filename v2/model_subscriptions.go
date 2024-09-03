@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &Subscriptions{}
 type Subscriptions struct {
 	Object string `json:"object"`
 	SubscriptionsCreated []Subscription `json:"subscriptions_created"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Subscriptions Subscriptions
@@ -106,6 +106,11 @@ func (o Subscriptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["object"] = o.Object
 	toSerialize["subscriptions_created"] = o.SubscriptionsCreated
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Subscriptions) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriptions := _Subscriptions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriptions)
+	err = json.Unmarshal(data, &varSubscriptions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Subscriptions(varSubscriptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "subscriptions_created")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

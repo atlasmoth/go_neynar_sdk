@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type WebhookPutReqBody struct {
 	Url string `json:"url"`
 	Subscription *WebhookSubscriptionFilters `json:"subscription,omitempty"`
 	WebhookId string `json:"webhook_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookPutReqBody WebhookPutReqBody
@@ -169,6 +169,11 @@ func (o WebhookPutReqBody) ToMap() (map[string]interface{}, error) {
 		toSerialize["subscription"] = o.Subscription
 	}
 	toSerialize["webhook_id"] = o.WebhookId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -198,15 +203,23 @@ func (o *WebhookPutReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookPutReqBody := _WebhookPutReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookPutReqBody)
+	err = json.Unmarshal(data, &varWebhookPutReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookPutReqBody(varWebhookPutReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "subscription")
+		delete(additionalProperties, "webhook_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type TwitterImageObject struct {
 	Height *int32 `json:"height,omitempty"`
 	Url string `json:"url"`
 	Width *int32 `json:"width,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TwitterImageObject TwitterImageObject
@@ -187,6 +187,11 @@ func (o TwitterImageObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -214,15 +219,23 @@ func (o *TwitterImageObject) UnmarshalJSON(data []byte) (err error) {
 
 	varTwitterImageObject := _TwitterImageObject{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTwitterImageObject)
+	err = json.Unmarshal(data, &varTwitterImageObject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TwitterImageObject(varTwitterImageObject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alt")
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "width")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

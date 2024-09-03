@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ReactionWithCastMeta struct {
 	Reaction ReactionWithCastMetaReaction `json:"reaction"`
 	Cast *ReactionWithCastMetaCast `json:"cast,omitempty"`
 	CastAuthor *User `json:"cast_author,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionWithCastMeta ReactionWithCastMeta
@@ -151,6 +151,11 @@ func (o ReactionWithCastMeta) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CastAuthor) {
 		toSerialize["cast_author"] = o.CastAuthor
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *ReactionWithCastMeta) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionWithCastMeta := _ReactionWithCastMeta{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionWithCastMeta)
+	err = json.Unmarshal(data, &varReactionWithCastMeta)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionWithCastMeta(varReactionWithCastMeta)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "reaction")
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "cast_author")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

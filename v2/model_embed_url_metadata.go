@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type EmbedUrlMetadata struct {
 	Image *EmbedUrlMetadataImage `json:"image,omitempty"`
 	Video *EmbedUrlMetadataVideo `json:"video,omitempty"`
 	Html *OgObject `json:"html,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmbedUrlMetadata EmbedUrlMetadata
@@ -279,6 +279,11 @@ func (o EmbedUrlMetadata) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Html) {
 		toSerialize["html"] = o.Html
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -306,15 +311,25 @@ func (o *EmbedUrlMetadata) UnmarshalJSON(data []byte) (err error) {
 
 	varEmbedUrlMetadata := _EmbedUrlMetadata{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEmbedUrlMetadata)
+	err = json.Unmarshal(data, &varEmbedUrlMetadata)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmbedUrlMetadata(varEmbedUrlMetadata)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "_status")
+		delete(additionalProperties, "content_type")
+		delete(additionalProperties, "content_length")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "video")
+		delete(additionalProperties, "html")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

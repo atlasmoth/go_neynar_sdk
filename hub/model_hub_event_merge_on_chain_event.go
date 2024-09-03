@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type HubEventMergeOnChainEvent struct {
 	Type string `json:"type"`
 	Id int32 `json:"id"`
 	MergeOnChainEventBody MergeOnChainEventBody `json:"mergeOnChainEventBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HubEventMergeOnChainEvent HubEventMergeOnChainEvent
@@ -133,6 +133,11 @@ func (o HubEventMergeOnChainEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
 	toSerialize["mergeOnChainEventBody"] = o.MergeOnChainEventBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *HubEventMergeOnChainEvent) UnmarshalJSON(data []byte) (err error) {
 
 	varHubEventMergeOnChainEvent := _HubEventMergeOnChainEvent{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHubEventMergeOnChainEvent)
+	err = json.Unmarshal(data, &varHubEventMergeOnChainEvent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HubEventMergeOnChainEvent(varHubEventMergeOnChainEvent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "mergeOnChainEventBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

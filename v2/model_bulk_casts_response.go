@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &BulkCastsResponse{}
 // BulkCastsResponse struct for BulkCastsResponse
 type BulkCastsResponse struct {
 	Casts []CastWithInteractions `json:"casts"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BulkCastsResponse BulkCastsResponse
@@ -79,6 +79,11 @@ func (o BulkCastsResponse) MarshalJSON() ([]byte, error) {
 func (o BulkCastsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["casts"] = o.Casts
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *BulkCastsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBulkCastsResponse := _BulkCastsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBulkCastsResponse)
+	err = json.Unmarshal(data, &varBulkCastsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BulkCastsResponse(varBulkCastsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "casts")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

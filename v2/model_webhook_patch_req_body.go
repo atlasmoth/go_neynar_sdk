@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &WebhookPatchReqBody{}
 type WebhookPatchReqBody struct {
 	WebhookId string `json:"webhook_id"`
 	Active string `json:"active"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookPatchReqBody WebhookPatchReqBody
@@ -106,6 +106,11 @@ func (o WebhookPatchReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["webhook_id"] = o.WebhookId
 	toSerialize["active"] = o.Active
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *WebhookPatchReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookPatchReqBody := _WebhookPatchReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookPatchReqBody)
+	err = json.Unmarshal(data, &varWebhookPatchReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookPatchReqBody(varWebhookPatchReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "webhook_id")
+		delete(additionalProperties, "active")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

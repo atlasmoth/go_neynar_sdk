@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UserSearchResponseResult{}
 type UserSearchResponseResult struct {
 	Users []SearchedUser `json:"users"`
 	Next *NextCursor `json:"next,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserSearchResponseResult UserSearchResponseResult
@@ -115,6 +115,11 @@ func (o UserSearchResponseResult) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *UserSearchResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varUserSearchResponseResult := _UserSearchResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserSearchResponseResult)
+	err = json.Unmarshal(data, &varUserSearchResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserSearchResponseResult(varUserSearchResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "users")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type SubscribedToObject struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	SubscribedAt *time.Time `json:"subscribed_at,omitempty"`
 	TierId *string `json:"tier_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscribedToObject SubscribedToObject
@@ -323,6 +323,11 @@ func (o SubscribedToObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TierId) {
 		toSerialize["tier_id"] = o.TierId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -351,15 +356,27 @@ func (o *SubscribedToObject) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscribedToObject := _SubscribedToObject{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscribedToObject)
+	err = json.Unmarshal(data, &varSubscribedToObject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscribedToObject(varSubscribedToObject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "provider_name")
+		delete(additionalProperties, "contract_address")
+		delete(additionalProperties, "protocol_version")
+		delete(additionalProperties, "chain")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "subscribed_at")
+		delete(additionalProperties, "tier_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

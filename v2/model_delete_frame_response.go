@@ -21,7 +21,10 @@ var _ MappedNullable = &DeleteFrameResponse{}
 type DeleteFrameResponse struct {
 	Success *bool `json:"success,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeleteFrameResponse DeleteFrameResponse
 
 // NewDeleteFrameResponse instantiates a new DeleteFrameResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o DeleteFrameResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Uuid) {
 		toSerialize["uuid"] = o.Uuid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeleteFrameResponse) UnmarshalJSON(data []byte) (err error) {
+	varDeleteFrameResponse := _DeleteFrameResponse{}
+
+	err = json.Unmarshal(data, &varDeleteFrameResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeleteFrameResponse(varDeleteFrameResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "uuid")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeleteFrameResponse struct {

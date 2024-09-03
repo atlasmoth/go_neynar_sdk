@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type ValidateFrameRequest struct {
 	SignerContext *bool `json:"signer_context,omitempty"`
 	// Adds context about the channel that the cast belongs to inside of the cast object.
 	ChannelFollowContext *bool `json:"channel_follow_context,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidateFrameRequest ValidateFrameRequest
@@ -244,6 +244,11 @@ func (o ValidateFrameRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChannelFollowContext) {
 		toSerialize["channel_follow_context"] = o.ChannelFollowContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -271,15 +276,24 @@ func (o *ValidateFrameRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varValidateFrameRequest := _ValidateFrameRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidateFrameRequest)
+	err = json.Unmarshal(data, &varValidateFrameRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidateFrameRequest(varValidateFrameRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message_bytes_in_hex")
+		delete(additionalProperties, "cast_reaction_context")
+		delete(additionalProperties, "follow_context")
+		delete(additionalProperties, "signer_context")
+		delete(additionalProperties, "channel_follow_context")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

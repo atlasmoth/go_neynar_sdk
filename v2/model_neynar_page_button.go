@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type NeynarPageButton struct {
 	// The type of action that the button performs.
 	ActionType string `json:"action_type"`
 	NextPage *NeynarPageButtonNextPage `json:"next_page,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarPageButton NeynarPageButton
@@ -172,6 +172,11 @@ func (o NeynarPageButton) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPage) {
 		toSerialize["next_page"] = o.NextPage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,23 @@ func (o *NeynarPageButton) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarPageButton := _NeynarPageButton{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarPageButton)
+	err = json.Unmarshal(data, &varNeynarPageButton)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarPageButton(varNeynarPageButton)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "index")
+		delete(additionalProperties, "action_type")
+		delete(additionalProperties, "next_page")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

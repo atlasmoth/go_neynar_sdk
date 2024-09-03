@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type DehydratedChannel struct {
 	Name string `json:"name"`
 	Object string `json:"object"`
 	ImageUrl *string `json:"image_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DehydratedChannel DehydratedChannel
@@ -169,6 +169,11 @@ func (o DehydratedChannel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ImageUrl) {
 		toSerialize["image_url"] = o.ImageUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -198,15 +203,23 @@ func (o *DehydratedChannel) UnmarshalJSON(data []byte) (err error) {
 
 	varDehydratedChannel := _DehydratedChannel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDehydratedChannel)
+	err = json.Unmarshal(data, &varDehydratedChannel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DehydratedChannel(varDehydratedChannel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "image_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

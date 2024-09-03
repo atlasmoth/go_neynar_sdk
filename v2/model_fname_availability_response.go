@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FnameAvailabilityResponse{}
 // FnameAvailabilityResponse struct for FnameAvailabilityResponse
 type FnameAvailabilityResponse struct {
 	Available bool `json:"available"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FnameAvailabilityResponse FnameAvailabilityResponse
@@ -79,6 +79,11 @@ func (o FnameAvailabilityResponse) MarshalJSON() ([]byte, error) {
 func (o FnameAvailabilityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["available"] = o.Available
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FnameAvailabilityResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFnameAvailabilityResponse := _FnameAvailabilityResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFnameAvailabilityResponse)
+	err = json.Unmarshal(data, &varFnameAvailabilityResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FnameAvailabilityResponse(varFnameAvailabilityResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "available")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

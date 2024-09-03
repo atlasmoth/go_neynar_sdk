@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &UserCastLikeResponse{}
 // UserCastLikeResponse struct for UserCastLikeResponse
 type UserCastLikeResponse struct {
 	Result UserCastLikeResponseResult `json:"result"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserCastLikeResponse UserCastLikeResponse
@@ -79,6 +79,11 @@ func (o UserCastLikeResponse) MarshalJSON() ([]byte, error) {
 func (o UserCastLikeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["result"] = o.Result
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *UserCastLikeResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUserCastLikeResponse := _UserCastLikeResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserCastLikeResponse)
+	err = json.Unmarshal(data, &varUserCastLikeResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserCastLikeResponse(varUserCastLikeResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "result")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

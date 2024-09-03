@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type SignerEventBody struct {
 	EventType SignerEventType `json:"eventType"`
 	Metadata string `json:"metadata" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	MetadataType int64 `json:"metadataType"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SignerEventBody SignerEventBody
@@ -189,6 +189,11 @@ func (o SignerEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["eventType"] = o.EventType
 	toSerialize["metadata"] = o.Metadata
 	toSerialize["metadataType"] = o.MetadataType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -220,15 +225,24 @@ func (o *SignerEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	varSignerEventBody := _SignerEventBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSignerEventBody)
+	err = json.Unmarshal(data, &varSignerEventBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SignerEventBody(varSignerEventBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "eventType")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "metadataType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

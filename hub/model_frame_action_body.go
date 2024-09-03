@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type FrameActionBody struct {
 	Url string `json:"url"`
 	ButtonIndex int32 `json:"buttonIndex"`
 	CastId CastId `json:"castId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameActionBody FrameActionBody
@@ -133,6 +133,11 @@ func (o FrameActionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["url"] = o.Url
 	toSerialize["buttonIndex"] = o.ButtonIndex
 	toSerialize["castId"] = o.CastId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *FrameActionBody) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameActionBody := _FrameActionBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameActionBody)
+	err = json.Unmarshal(data, &varFrameActionBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameActionBody(varFrameActionBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "buttonIndex")
+		delete(additionalProperties, "castId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

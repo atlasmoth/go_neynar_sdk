@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &VerificationRemoveBody{}
 // VerificationRemoveBody Removes a Verification of any type
 type VerificationRemoveBody struct {
 	Address string `json:"address" validate:"regexp=^0x[A-Za-z0-9]{40}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationRemoveBody VerificationRemoveBody
@@ -79,6 +79,11 @@ func (o VerificationRemoveBody) MarshalJSON() ([]byte, error) {
 func (o VerificationRemoveBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *VerificationRemoveBody) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationRemoveBody := _VerificationRemoveBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationRemoveBody)
+	err = json.Unmarshal(data, &varVerificationRemoveBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationRemoveBody(varVerificationRemoveBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

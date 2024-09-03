@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type LinkAddAllOfData struct {
 	Network FarcasterNetwork `json:"network"`
 	LinkBody LinkBody `json:"linkBody"`
 	Type MessageType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LinkAddAllOfData LinkAddAllOfData
@@ -191,6 +191,11 @@ func (o LinkAddAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize["network"] = o.Network
 	toSerialize["linkBody"] = o.LinkBody
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *LinkAddAllOfData) UnmarshalJSON(data []byte) (err error) {
 
 	varLinkAddAllOfData := _LinkAddAllOfData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLinkAddAllOfData)
+	err = json.Unmarshal(data, &varLinkAddAllOfData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LinkAddAllOfData(varLinkAddAllOfData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "linkBody")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &BulkFollowResponse{}
 type BulkFollowResponse struct {
 	Success bool `json:"success"`
 	Details []FollowResponse `json:"details"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BulkFollowResponse BulkFollowResponse
@@ -106,6 +106,11 @@ func (o BulkFollowResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["details"] = o.Details
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *BulkFollowResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBulkFollowResponse := _BulkFollowResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBulkFollowResponse)
+	err = json.Unmarshal(data, &varBulkFollowResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BulkFollowResponse(varBulkFollowResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "details")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

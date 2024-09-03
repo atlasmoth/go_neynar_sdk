@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &CastRecasterResponseResult{}
 type CastRecasterResponseResult struct {
 	Users []Recaster `json:"users"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastRecasterResponseResult CastRecasterResponseResult
@@ -106,6 +106,11 @@ func (o CastRecasterResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["users"] = o.Users
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *CastRecasterResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varCastRecasterResponseResult := _CastRecasterResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastRecasterResponseResult)
+	err = json.Unmarshal(data, &varCastRecasterResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastRecasterResponseResult(varCastRecasterResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "users")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

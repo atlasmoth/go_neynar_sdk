@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ReactionRecast struct {
 	// User identifier (unsigned integer)
 	Fid int32 `json:"fid"`
 	Fname string `json:"fname"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionRecast ReactionRecast
@@ -107,6 +107,11 @@ func (o ReactionRecast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["fname"] = o.Fname
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ReactionRecast) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionRecast := _ReactionRecast{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionRecast)
+	err = json.Unmarshal(data, &varReactionRecast)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionRecast(varReactionRecast)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "fname")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

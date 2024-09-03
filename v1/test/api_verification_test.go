@@ -11,10 +11,11 @@ package openapi
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/atlasmoth/go_neynar_sdk/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v1"
 )
 
 func Test_openapi_VerificationAPIService(t *testing.T) {

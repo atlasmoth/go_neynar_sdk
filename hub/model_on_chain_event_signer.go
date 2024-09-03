@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type OnChainEventSigner struct {
 	TxIndex int32 `json:"txIndex"`
 	Fid int32 `json:"fid"`
 	SignerEventBody SignerEventBody `json:"signerEventBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OnChainEventSigner OnChainEventSigner
@@ -322,6 +322,11 @@ func (o OnChainEventSigner) ToMap() (map[string]interface{}, error) {
 	toSerialize["txIndex"] = o.TxIndex
 	toSerialize["fid"] = o.Fid
 	toSerialize["signerEventBody"] = o.SignerEventBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -358,15 +363,29 @@ func (o *OnChainEventSigner) UnmarshalJSON(data []byte) (err error) {
 
 	varOnChainEventSigner := _OnChainEventSigner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOnChainEventSigner)
+	err = json.Unmarshal(data, &varOnChainEventSigner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OnChainEventSigner(varOnChainEventSigner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "chainId")
+		delete(additionalProperties, "blockNumber")
+		delete(additionalProperties, "blockHash")
+		delete(additionalProperties, "blockTimestamp")
+		delete(additionalProperties, "transactionHash")
+		delete(additionalProperties, "logIndex")
+		delete(additionalProperties, "txIndex")
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "signerEventBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

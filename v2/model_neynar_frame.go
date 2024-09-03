@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type NeynarFrame struct {
 	Pages []NeynarFramePage `json:"pages"`
 	// Indicates if the frame is valid.
 	Valid *bool `json:"valid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarFrame NeynarFrame
@@ -200,6 +200,11 @@ func (o NeynarFrame) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Valid) {
 		toSerialize["valid"] = o.Valid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -230,15 +235,24 @@ func (o *NeynarFrame) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarFrame := _NeynarFrame{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarFrame)
+	err = json.Unmarshal(data, &varNeynarFrame)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarFrame(varNeynarFrame)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "pages")
+		delete(additionalProperties, "valid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

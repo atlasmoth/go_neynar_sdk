@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ConversationConversation{}
 type ConversationConversation struct {
 	Cast CastWithInteractionsAndConversations `json:"cast"`
 	ChronologicalParentCasts []CastWithInteractions `json:"chronological_parent_casts,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConversationConversation ConversationConversation
@@ -115,6 +115,11 @@ func (o ConversationConversation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChronologicalParentCasts) {
 		toSerialize["chronological_parent_casts"] = o.ChronologicalParentCasts
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *ConversationConversation) UnmarshalJSON(data []byte) (err error) {
 
 	varConversationConversation := _ConversationConversation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConversationConversation)
+	err = json.Unmarshal(data, &varConversationConversation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConversationConversation(varConversationConversation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "chronological_parent_casts")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

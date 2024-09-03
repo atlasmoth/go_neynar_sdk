@@ -21,7 +21,10 @@ var _ MappedNullable = &WebhookSubscriptionFiltersReaction{}
 type WebhookSubscriptionFiltersReaction struct {
 	Fids []int32 `json:"fids,omitempty"`
 	TargetFids []int32 `json:"target_fids,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookSubscriptionFiltersReaction WebhookSubscriptionFiltersReaction
 
 // NewWebhookSubscriptionFiltersReaction instantiates a new WebhookSubscriptionFiltersReaction object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o WebhookSubscriptionFiltersReaction) ToMap() (map[string]interface{}, err
 	if !IsNil(o.TargetFids) {
 		toSerialize["target_fids"] = o.TargetFids
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookSubscriptionFiltersReaction) UnmarshalJSON(data []byte) (err error) {
+	varWebhookSubscriptionFiltersReaction := _WebhookSubscriptionFiltersReaction{}
+
+	err = json.Unmarshal(data, &varWebhookSubscriptionFiltersReaction)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookSubscriptionFiltersReaction(varWebhookSubscriptionFiltersReaction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fids")
+		delete(additionalProperties, "target_fids")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookSubscriptionFiltersReaction struct {

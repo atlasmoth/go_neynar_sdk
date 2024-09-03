@@ -21,7 +21,10 @@ var _ MappedNullable = &CastComposerActionsListResponse{}
 type CastComposerActionsListResponse struct {
 	Actions []CastComposerActionsListResponseActionsInner `json:"actions,omitempty"`
 	Next *NextCursor `json:"next,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CastComposerActionsListResponse CastComposerActionsListResponse
 
 // NewCastComposerActionsListResponse instantiates a new CastComposerActionsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o CastComposerActionsListResponse) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CastComposerActionsListResponse) UnmarshalJSON(data []byte) (err error) {
+	varCastComposerActionsListResponse := _CastComposerActionsListResponse{}
+
+	err = json.Unmarshal(data, &varCastComposerActionsListResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CastComposerActionsListResponse(varCastComposerActionsListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCastComposerActionsListResponse struct {

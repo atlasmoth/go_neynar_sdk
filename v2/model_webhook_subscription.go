@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type WebhookSubscription struct {
 	Filters WebhookSubscriptionFilters `json:"filters"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookSubscription WebhookSubscription
@@ -188,6 +188,11 @@ func (o WebhookSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize["filters"] = o.Filters
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookSubscription := _WebhookSubscription{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookSubscription)
+	err = json.Unmarshal(data, &varWebhookSubscription)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookSubscription(varWebhookSubscription)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "subscription_id")
+		delete(additionalProperties, "filters")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type VideoObject struct {
 	Type *string `json:"type,omitempty"`
 	Url string `json:"url"`
 	Width *int32 `json:"width,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VideoObject VideoObject
@@ -187,6 +187,11 @@ func (o VideoObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -214,15 +219,23 @@ func (o *VideoObject) UnmarshalJSON(data []byte) (err error) {
 
 	varVideoObject := _VideoObject{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVideoObject)
+	err = json.Unmarshal(data, &varVideoObject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VideoObject(varVideoObject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "width")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

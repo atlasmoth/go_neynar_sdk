@@ -40,7 +40,10 @@ type FrameSignaturePacketUntrustedData struct {
 	// Ethereum address
 	Address *string `json:"address,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	CastId *CastId `json:"castId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrameSignaturePacketUntrustedData FrameSignaturePacketUntrustedData
 
 // NewFrameSignaturePacketUntrustedData instantiates a new FrameSignaturePacketUntrustedData object
 // This constructor will assign default values to properties that have it defined,
@@ -454,7 +457,43 @@ func (o FrameSignaturePacketUntrustedData) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.CastId) {
 		toSerialize["castId"] = o.CastId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrameSignaturePacketUntrustedData) UnmarshalJSON(data []byte) (err error) {
+	varFrameSignaturePacketUntrustedData := _FrameSignaturePacketUntrustedData{}
+
+	err = json.Unmarshal(data, &varFrameSignaturePacketUntrustedData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrameSignaturePacketUntrustedData(varFrameSignaturePacketUntrustedData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "messageHash")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "buttonIndex")
+		delete(additionalProperties, "inputText")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "transactionId")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "castId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrameSignaturePacketUntrustedData struct {

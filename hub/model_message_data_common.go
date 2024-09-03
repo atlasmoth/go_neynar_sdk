@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type MessageDataCommon struct {
 	Fid int32 `json:"fid"`
 	Timestamp int64 `json:"timestamp"`
 	Network FarcasterNetwork `json:"network"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MessageDataCommon MessageDataCommon
@@ -135,6 +135,11 @@ func (o MessageDataCommon) ToMap() (map[string]interface{}, error) {
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["network"] = o.Network
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -164,15 +169,22 @@ func (o *MessageDataCommon) UnmarshalJSON(data []byte) (err error) {
 
 	varMessageDataCommon := _MessageDataCommon{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMessageDataCommon)
+	err = json.Unmarshal(data, &varMessageDataCommon)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MessageDataCommon(varMessageDataCommon)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

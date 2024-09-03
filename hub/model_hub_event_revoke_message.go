@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type HubEventRevokeMessage struct {
 	Type string `json:"type"`
 	Id int32 `json:"id"`
 	RevokeMessageBody RevokeMessageBody `json:"revokeMessageBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HubEventRevokeMessage HubEventRevokeMessage
@@ -133,6 +133,11 @@ func (o HubEventRevokeMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
 	toSerialize["revokeMessageBody"] = o.RevokeMessageBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *HubEventRevokeMessage) UnmarshalJSON(data []byte) (err error) {
 
 	varHubEventRevokeMessage := _HubEventRevokeMessage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHubEventRevokeMessage)
+	err = json.Unmarshal(data, &varHubEventRevokeMessage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HubEventRevokeMessage(varHubEventRevokeMessage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "revokeMessageBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

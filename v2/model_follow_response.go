@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type FollowResponse struct {
 	// User identifier (unsigned integer)
 	TargetFid int32 `json:"target_fid"`
 	Hash string `json:"hash"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FollowResponse FollowResponse
@@ -134,6 +134,11 @@ func (o FollowResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["success"] = o.Success
 	toSerialize["target_fid"] = o.TargetFid
 	toSerialize["hash"] = o.Hash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *FollowResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFollowResponse := _FollowResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFollowResponse)
+	err = json.Unmarshal(data, &varFollowResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FollowResponse(varFollowResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "target_fid")
+		delete(additionalProperties, "hash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

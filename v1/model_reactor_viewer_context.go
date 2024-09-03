@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ReactorViewerContext struct {
 	Following bool `json:"following"`
 	// Indicates if the reactor is followed by the viewer.
 	FollowedBy bool `json:"followedBy"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactorViewerContext ReactorViewerContext
@@ -108,6 +108,11 @@ func (o ReactorViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["following"] = o.Following
 	toSerialize["followedBy"] = o.FollowedBy
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ReactorViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varReactorViewerContext := _ReactorViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactorViewerContext)
+	err = json.Unmarshal(data, &varReactorViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactorViewerContext(varReactorViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "following")
+		delete(additionalProperties, "followedBy")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

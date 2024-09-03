@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ListVerificationsByFid200Response{}
 type ListVerificationsByFid200Response struct {
 	Messages []Verification `json:"messages"`
 	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListVerificationsByFid200Response ListVerificationsByFid200Response
@@ -106,6 +106,11 @@ func (o ListVerificationsByFid200Response) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	toSerialize["messages"] = o.Messages
 	toSerialize["nextPageToken"] = o.NextPageToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *ListVerificationsByFid200Response) UnmarshalJSON(data []byte) (err erro
 
 	varListVerificationsByFid200Response := _ListVerificationsByFid200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListVerificationsByFid200Response)
+	err = json.Unmarshal(data, &varListVerificationsByFid200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListVerificationsByFid200Response(varListVerificationsByFid200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "nextPageToken")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

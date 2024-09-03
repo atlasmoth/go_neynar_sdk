@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &FrameSignaturePacket{}
 type FrameSignaturePacket struct {
 	UntrustedData FrameSignaturePacketUntrustedData `json:"untrustedData"`
 	TrustedData FrameSignaturePacketTrustedData `json:"trustedData"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameSignaturePacket FrameSignaturePacket
@@ -106,6 +106,11 @@ func (o FrameSignaturePacket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["untrustedData"] = o.UntrustedData
 	toSerialize["trustedData"] = o.TrustedData
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *FrameSignaturePacket) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameSignaturePacket := _FrameSignaturePacket{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameSignaturePacket)
+	err = json.Unmarshal(data, &varFrameSignaturePacket)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameSignaturePacket(varFrameSignaturePacket)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "untrustedData")
+		delete(additionalProperties, "trustedData")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &MergeMessageBody{}
 type MergeMessageBody struct {
 	Message Message `json:"message"`
 	DeletedMessages []Message `json:"deletedMessages"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MergeMessageBody MergeMessageBody
@@ -106,6 +106,11 @@ func (o MergeMessageBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
 	toSerialize["deletedMessages"] = o.DeletedMessages
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *MergeMessageBody) UnmarshalJSON(data []byte) (err error) {
 
 	varMergeMessageBody := _MergeMessageBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMergeMessageBody)
+	err = json.Unmarshal(data, &varMergeMessageBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MergeMessageBody(varMergeMessageBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "deletedMessages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

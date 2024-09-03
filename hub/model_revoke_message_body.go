@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &RevokeMessageBody{}
 // RevokeMessageBody struct for RevokeMessageBody
 type RevokeMessageBody struct {
 	Message Message `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RevokeMessageBody RevokeMessageBody
@@ -79,6 +79,11 @@ func (o RevokeMessageBody) MarshalJSON() ([]byte, error) {
 func (o RevokeMessageBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *RevokeMessageBody) UnmarshalJSON(data []byte) (err error) {
 
 	varRevokeMessageBody := _RevokeMessageBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRevokeMessageBody)
+	err = json.Unmarshal(data, &varRevokeMessageBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RevokeMessageBody(varRevokeMessageBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

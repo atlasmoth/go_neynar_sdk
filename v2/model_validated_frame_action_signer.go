@@ -20,7 +20,10 @@ var _ MappedNullable = &ValidatedFrameActionSigner{}
 // ValidatedFrameActionSigner struct for ValidatedFrameActionSigner
 type ValidatedFrameActionSigner struct {
 	Client *User `json:"client,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ValidatedFrameActionSigner ValidatedFrameActionSigner
 
 // NewValidatedFrameActionSigner instantiates a new ValidatedFrameActionSigner object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o ValidatedFrameActionSigner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Client) {
 		toSerialize["client"] = o.Client
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ValidatedFrameActionSigner) UnmarshalJSON(data []byte) (err error) {
+	varValidatedFrameActionSigner := _ValidatedFrameActionSigner{}
+
+	err = json.Unmarshal(data, &varValidatedFrameActionSigner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ValidatedFrameActionSigner(varValidatedFrameActionSigner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "client")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableValidatedFrameActionSigner struct {

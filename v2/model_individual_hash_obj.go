@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &IndividualHashObj{}
 // IndividualHashObj struct for IndividualHashObj
 type IndividualHashObj struct {
 	Hash string `json:"hash"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IndividualHashObj IndividualHashObj
@@ -79,6 +79,11 @@ func (o IndividualHashObj) MarshalJSON() ([]byte, error) {
 func (o IndividualHashObj) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["hash"] = o.Hash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *IndividualHashObj) UnmarshalJSON(data []byte) (err error) {
 
 	varIndividualHashObj := _IndividualHashObj{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIndividualHashObj)
+	err = json.Unmarshal(data, &varIndividualHashObj)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IndividualHashObj(varIndividualHashObj)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

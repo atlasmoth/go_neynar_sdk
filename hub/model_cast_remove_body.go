@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &CastRemoveBody{}
 // CastRemoveBody Removes an existing Cast
 type CastRemoveBody struct {
 	TargetHash string `json:"targetHash" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastRemoveBody CastRemoveBody
@@ -79,6 +79,11 @@ func (o CastRemoveBody) MarshalJSON() ([]byte, error) {
 func (o CastRemoveBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["targetHash"] = o.TargetHash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CastRemoveBody) UnmarshalJSON(data []byte) (err error) {
 
 	varCastRemoveBody := _CastRemoveBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastRemoveBody)
+	err = json.Unmarshal(data, &varCastRemoveBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastRemoveBody(varCastRemoveBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "targetHash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

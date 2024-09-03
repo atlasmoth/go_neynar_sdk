@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ChannelResponseBulk{}
 // ChannelResponseBulk struct for ChannelResponseBulk
 type ChannelResponseBulk struct {
 	Channels []Channel `json:"channels"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChannelResponseBulk ChannelResponseBulk
@@ -79,6 +79,11 @@ func (o ChannelResponseBulk) MarshalJSON() ([]byte, error) {
 func (o ChannelResponseBulk) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["channels"] = o.Channels
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ChannelResponseBulk) UnmarshalJSON(data []byte) (err error) {
 
 	varChannelResponseBulk := _ChannelResponseBulk{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChannelResponseBulk)
+	err = json.Unmarshal(data, &varChannelResponseBulk)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChannelResponseBulk(varChannelResponseBulk)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "channels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

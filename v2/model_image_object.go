@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ImageObject struct {
 	Url string `json:"url"`
 	Width *int32 `json:"width,omitempty"`
 	Alt *string `json:"alt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageObject ImageObject
@@ -223,6 +223,11 @@ func (o ImageObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Alt) {
 		toSerialize["alt"] = o.Alt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -250,15 +255,24 @@ func (o *ImageObject) UnmarshalJSON(data []byte) (err error) {
 
 	varImageObject := _ImageObject{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageObject)
+	err = json.Unmarshal(data, &varImageObject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageObject(varImageObject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "width")
+		delete(additionalProperties, "alt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

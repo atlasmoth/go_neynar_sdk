@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type FrameActionReqBody struct {
 	// Cast Hash
 	CastHash *string `json:"cast_hash,omitempty"`
 	Action FrameAction `json:"action"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameActionReqBody FrameActionReqBody
@@ -148,6 +148,11 @@ func (o FrameActionReqBody) ToMap() (map[string]interface{}, error) {
 		toSerialize["cast_hash"] = o.CastHash
 	}
 	toSerialize["action"] = o.Action
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -176,15 +181,22 @@ func (o *FrameActionReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameActionReqBody := _FrameActionReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameActionReqBody)
+	err = json.Unmarshal(data, &varFrameActionReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameActionReqBody(varFrameActionReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "cast_hash")
+		delete(additionalProperties, "action")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type CastAdd struct {
 	SignatureScheme SignatureScheme `json:"signatureScheme"`
 	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
 	Data CastAddAllOfData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastAdd CastAdd
@@ -218,6 +218,11 @@ func (o CastAdd) ToMap() (map[string]interface{}, error) {
 	toSerialize["signatureScheme"] = o.SignatureScheme
 	toSerialize["signer"] = o.Signer
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -250,15 +255,25 @@ func (o *CastAdd) UnmarshalJSON(data []byte) (err error) {
 
 	varCastAdd := _CastAdd{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastAdd)
+	err = json.Unmarshal(data, &varCastAdd)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastAdd(varCastAdd)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "hashScheme")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "signatureScheme")
+		delete(additionalProperties, "signer")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

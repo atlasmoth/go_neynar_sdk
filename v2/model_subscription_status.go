@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type SubscriptionStatus struct {
 	ExpiresAt NullableInt64 `json:"expires_at"`
 	SubscribedAt NullableInt64 `json:"subscribed_at"`
 	Tier SubscriptionTier `json:"tier"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscriptionStatus SubscriptionStatus
@@ -191,6 +191,11 @@ func (o SubscriptionStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize["expires_at"] = o.ExpiresAt.Get()
 	toSerialize["subscribed_at"] = o.SubscribedAt.Get()
 	toSerialize["tier"] = o.Tier
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *SubscriptionStatus) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriptionStatus := _SubscriptionStatus{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriptionStatus)
+	err = json.Unmarshal(data, &varSubscriptionStatus)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscriptionStatus(varSubscriptionStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "subscribed_at")
+		delete(additionalProperties, "tier")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

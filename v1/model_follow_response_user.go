@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type FollowResponseUser struct {
 	ActiveStatus ActiveStatus `json:"activeStatus"`
 	ViewerContext *ViewerContext `json:"viewerContext,omitempty"`
 	Timestamp time.Time `json:"timestamp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FollowResponseUser FollowResponseUser
@@ -394,6 +394,11 @@ func (o FollowResponseUser) ToMap() (map[string]interface{}, error) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
 	toSerialize["timestamp"] = o.Timestamp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -431,15 +436,31 @@ func (o *FollowResponseUser) UnmarshalJSON(data []byte) (err error) {
 
 	varFollowResponseUser := _FollowResponseUser{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFollowResponseUser)
+	err = json.Unmarshal(data, &varFollowResponseUser)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FollowResponseUser(varFollowResponseUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "custodyAddress")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "pfp")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "followerCount")
+		delete(additionalProperties, "followingCount")
+		delete(additionalProperties, "verifications")
+		delete(additionalProperties, "activeStatus")
+		delete(additionalProperties, "viewerContext")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

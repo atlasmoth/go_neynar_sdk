@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type Signer struct {
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
 	// User identifier (unsigned integer)
 	Fid *int32 `json:"fid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Signer Signer
@@ -208,6 +208,11 @@ func (o Signer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Fid) {
 		toSerialize["fid"] = o.Fid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -237,15 +242,24 @@ func (o *Signer) UnmarshalJSON(data []byte) (err error) {
 
 	varSigner := _Signer{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSigner)
+	err = json.Unmarshal(data, &varSigner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Signer(varSigner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "signer_approval_url")
+		delete(additionalProperties, "fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

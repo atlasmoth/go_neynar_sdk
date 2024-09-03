@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type Channel struct {
 	Moderator *User `json:"moderator,omitempty"`
 	Hosts []User `json:"hosts,omitempty"`
 	ViewerContext *ChannelViewerContext `json:"viewer_context,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Channel Channel
@@ -495,6 +495,11 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -524,15 +529,32 @@ func (o *Channel) UnmarshalJSON(data []byte) (err error) {
 
 	varChannel := _Channel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChannel)
+	err = json.Unmarshal(data, &varChannel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Channel(varChannel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "follower_count")
+		delete(additionalProperties, "image_url")
+		delete(additionalProperties, "parent_url")
+		delete(additionalProperties, "lead")
+		delete(additionalProperties, "moderator")
+		delete(additionalProperties, "hosts")
+		delete(additionalProperties, "viewer_context")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

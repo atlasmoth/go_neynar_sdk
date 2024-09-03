@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type WebhookSecret struct {
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 	DeletedAt string `json:"deleted_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookSecret WebhookSecret
@@ -214,6 +214,11 @@ func (o WebhookSecret) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
 	toSerialize["deleted_at"] = o.DeletedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -246,15 +251,25 @@ func (o *WebhookSecret) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookSecret := _WebhookSecret{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookSecret)
+	err = json.Unmarshal(data, &varWebhookSecret)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookSecret(varWebhookSecret)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uid")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "deleted_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

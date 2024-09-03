@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ErrorResponseMetadata{}
 // ErrorResponseMetadata struct for ErrorResponseMetadata
 type ErrorResponseMetadata struct {
 	Errcode []string `json:"errcode"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorResponseMetadata ErrorResponseMetadata
@@ -79,6 +79,11 @@ func (o ErrorResponseMetadata) MarshalJSON() ([]byte, error) {
 func (o ErrorResponseMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["errcode"] = o.Errcode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ErrorResponseMetadata) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorResponseMetadata := _ErrorResponseMetadata{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorResponseMetadata)
+	err = json.Unmarshal(data, &varErrorResponseMetadata)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorResponseMetadata(varErrorResponseMetadata)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errcode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -21,7 +21,10 @@ var _ MappedNullable = &FrameInput{}
 type FrameInput struct {
 	// Input text for the frame
 	Text *string `json:"text,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrameInput FrameInput
 
 // NewFrameInput instantiates a new FrameInput object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o FrameInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrameInput) UnmarshalJSON(data []byte) (err error) {
+	varFrameInput := _FrameInput{}
+
+	err = json.Unmarshal(data, &varFrameInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrameInput(varFrameInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "text")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrameInput struct {

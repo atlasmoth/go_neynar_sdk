@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractors{}
 // FrameValidateAnalyticsInteractors struct for FrameValidateAnalyticsInteractors
 type FrameValidateAnalyticsInteractors struct {
 	Interactors []FrameValidateAnalyticsInteractorsInteractorsInner `json:"interactors"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameValidateAnalyticsInteractors FrameValidateAnalyticsInteractors
@@ -79,6 +79,11 @@ func (o FrameValidateAnalyticsInteractors) MarshalJSON() ([]byte, error) {
 func (o FrameValidateAnalyticsInteractors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["interactors"] = o.Interactors
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *FrameValidateAnalyticsInteractors) UnmarshalJSON(data []byte) (err erro
 
 	varFrameValidateAnalyticsInteractors := _FrameValidateAnalyticsInteractors{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameValidateAnalyticsInteractors)
+	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractors)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameValidateAnalyticsInteractors(varFrameValidateAnalyticsInteractors)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interactors")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

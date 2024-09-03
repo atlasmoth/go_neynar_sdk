@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &StorageLimitsResponse{}
 // StorageLimitsResponse struct for StorageLimitsResponse
 type StorageLimitsResponse struct {
 	Limits []StorageLimit `json:"limits"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StorageLimitsResponse StorageLimitsResponse
@@ -79,6 +79,11 @@ func (o StorageLimitsResponse) MarshalJSON() ([]byte, error) {
 func (o StorageLimitsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["limits"] = o.Limits
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *StorageLimitsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varStorageLimitsResponse := _StorageLimitsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStorageLimitsResponse)
+	err = json.Unmarshal(data, &varStorageLimitsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StorageLimitsResponse(varStorageLimitsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "limits")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

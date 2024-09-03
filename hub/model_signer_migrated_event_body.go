@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &SignerMigratedEventBody{}
 // SignerMigratedEventBody struct for SignerMigratedEventBody
 type SignerMigratedEventBody struct {
 	MigratedAt int64 `json:"migratedAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SignerMigratedEventBody SignerMigratedEventBody
@@ -79,6 +79,11 @@ func (o SignerMigratedEventBody) MarshalJSON() ([]byte, error) {
 func (o SignerMigratedEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["migratedAt"] = o.MigratedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *SignerMigratedEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	varSignerMigratedEventBody := _SignerMigratedEventBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSignerMigratedEventBody)
+	err = json.Unmarshal(data, &varSignerMigratedEventBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SignerMigratedEventBody(varSignerMigratedEventBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "migratedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

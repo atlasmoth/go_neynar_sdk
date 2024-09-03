@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MessageDataUsernameProof struct {
 	Timestamp int64 `json:"timestamp"`
 	Network FarcasterNetwork `json:"network"`
 	UsernameProofBody UserNameProof `json:"usernameProofBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MessageDataUsernameProof MessageDataUsernameProof
@@ -162,6 +162,11 @@ func (o MessageDataUsernameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["network"] = o.Network
 	toSerialize["usernameProofBody"] = o.UsernameProofBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *MessageDataUsernameProof) UnmarshalJSON(data []byte) (err error) {
 
 	varMessageDataUsernameProof := _MessageDataUsernameProof{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMessageDataUsernameProof)
+	err = json.Unmarshal(data, &varMessageDataUsernameProof)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MessageDataUsernameProof(varMessageDataUsernameProof)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "usernameProofBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

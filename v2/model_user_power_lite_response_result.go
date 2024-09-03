@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UserPowerLiteResponseResult{}
 type UserPowerLiteResponseResult struct {
 	// List of FIDs
 	Fids []int32 `json:"fids"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserPowerLiteResponseResult UserPowerLiteResponseResult
@@ -80,6 +80,11 @@ func (o UserPowerLiteResponseResult) MarshalJSON() ([]byte, error) {
 func (o UserPowerLiteResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fids"] = o.Fids
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UserPowerLiteResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varUserPowerLiteResponseResult := _UserPowerLiteResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserPowerLiteResponseResult)
+	err = json.Unmarshal(data, &varUserPowerLiteResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserPowerLiteResponseResult(varUserPowerLiteResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fids")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

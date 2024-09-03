@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type Subscriber struct {
 	Object string `json:"object"`
 	User User `json:"user"`
 	SubscribedTo SubscribedToObject `json:"subscribed_to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Subscriber Subscriber
@@ -133,6 +133,11 @@ func (o Subscriber) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["user"] = o.User
 	toSerialize["subscribed_to"] = o.SubscribedTo
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *Subscriber) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriber := _Subscriber{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriber)
+	err = json.Unmarshal(data, &varSubscriber)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Subscriber(varSubscriber)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "subscribed_to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

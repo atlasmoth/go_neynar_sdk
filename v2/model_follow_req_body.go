@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type FollowReqBody struct {
 	// UUID of the signer
 	SignerUuid string `json:"signer_uuid"`
 	TargetFids []int32 `json:"target_fids"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FollowReqBody FollowReqBody
@@ -107,6 +107,11 @@ func (o FollowReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["signer_uuid"] = o.SignerUuid
 	toSerialize["target_fids"] = o.TargetFids
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *FollowReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varFollowReqBody := _FollowReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFollowReqBody)
+	err = json.Unmarshal(data, &varFollowReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FollowReqBody(varFollowReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "target_fids")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &GetUserDataByFid200ResponseOneOf{}
 type GetUserDataByFid200ResponseOneOf struct {
 	Messages []UserDataAdd `json:"messages"`
 	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetUserDataByFid200ResponseOneOf GetUserDataByFid200ResponseOneOf
@@ -106,6 +106,11 @@ func (o GetUserDataByFid200ResponseOneOf) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["messages"] = o.Messages
 	toSerialize["nextPageToken"] = o.NextPageToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *GetUserDataByFid200ResponseOneOf) UnmarshalJSON(data []byte) (err error
 
 	varGetUserDataByFid200ResponseOneOf := _GetUserDataByFid200ResponseOneOf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetUserDataByFid200ResponseOneOf)
+	err = json.Unmarshal(data, &varGetUserDataByFid200ResponseOneOf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetUserDataByFid200ResponseOneOf(varGetUserDataByFid200ResponseOneOf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "nextPageToken")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ChannelViewerContext{}
 type ChannelViewerContext struct {
 	// Indicates if the viewer is following the channel.
 	Following bool `json:"following"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChannelViewerContext ChannelViewerContext
@@ -80,6 +80,11 @@ func (o ChannelViewerContext) MarshalJSON() ([]byte, error) {
 func (o ChannelViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["following"] = o.Following
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ChannelViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varChannelViewerContext := _ChannelViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChannelViewerContext)
+	err = json.Unmarshal(data, &varChannelViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChannelViewerContext(varChannelViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "following")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

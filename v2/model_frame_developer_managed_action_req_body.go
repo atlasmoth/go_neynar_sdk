@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type FrameDeveloperManagedActionReqBody struct {
 	CastHash *string `json:"cast_hash,omitempty"`
 	Action FrameAction `json:"action"`
 	SignaturePacket FrameSignaturePacket `json:"signature_packet"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameDeveloperManagedActionReqBody FrameDeveloperManagedActionReqBody
@@ -147,6 +147,11 @@ func (o FrameDeveloperManagedActionReqBody) ToMap() (map[string]interface{}, err
 	}
 	toSerialize["action"] = o.Action
 	toSerialize["signature_packet"] = o.SignaturePacket
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -175,15 +180,22 @@ func (o *FrameDeveloperManagedActionReqBody) UnmarshalJSON(data []byte) (err err
 
 	varFrameDeveloperManagedActionReqBody := _FrameDeveloperManagedActionReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameDeveloperManagedActionReqBody)
+	err = json.Unmarshal(data, &varFrameDeveloperManagedActionReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameDeveloperManagedActionReqBody(varFrameDeveloperManagedActionReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cast_hash")
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "signature_packet")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

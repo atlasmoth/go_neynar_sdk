@@ -20,6 +20,8 @@ where X.Y.Z is the version you need.
 
 - [Farcaster API V1](/v1/README.md)
 
+- [STP API](/stp/README.md)
+
 ## Author
 
 [Chukwuebuka Osuji](https://github.com/atlasmoth)

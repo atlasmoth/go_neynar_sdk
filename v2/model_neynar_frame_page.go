@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type NeynarFramePage struct {
 	Image NeynarPageImage `json:"image"`
 	Buttons []NeynarPageButton `json:"buttons,omitempty"`
 	Input *NeynarPageInput `json:"input,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarFramePage NeynarFramePage
@@ -237,6 +237,11 @@ func (o NeynarFramePage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -267,15 +272,25 @@ func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarFramePage := _NeynarFramePage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarFramePage)
+	err = json.Unmarshal(data, &varNeynarFramePage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarFramePage(varNeynarFramePage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "buttons")
+		delete(additionalProperties, "input")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

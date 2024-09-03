@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type RemoveVerificationReqBody struct {
 	SignerUuid string `json:"signer_uuid"`
 	// Ethereum address
 	Address string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RemoveVerificationReqBody RemoveVerificationReqBody
@@ -108,6 +108,11 @@ func (o RemoveVerificationReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["signer_uuid"] = o.SignerUuid
 	toSerialize["address"] = o.Address
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *RemoveVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varRemoveVerificationReqBody := _RemoveVerificationReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRemoveVerificationReqBody)
+	err = json.Unmarshal(data, &varRemoveVerificationReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RemoveVerificationReqBody(varRemoveVerificationReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

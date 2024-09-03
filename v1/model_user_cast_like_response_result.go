@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type UserCastLikeResponseResult struct {
 	Reactor User `json:"reactor"`
 	Likes []ReactionWithCastMeta `json:"likes"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserCastLikeResponseResult UserCastLikeResponseResult
@@ -133,6 +133,11 @@ func (o UserCastLikeResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize["reactor"] = o.Reactor
 	toSerialize["likes"] = o.Likes
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *UserCastLikeResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varUserCastLikeResponseResult := _UserCastLikeResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserCastLikeResponseResult)
+	err = json.Unmarshal(data, &varUserCastLikeResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserCastLikeResponseResult(varUserCastLikeResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "reactor")
+		delete(additionalProperties, "likes")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

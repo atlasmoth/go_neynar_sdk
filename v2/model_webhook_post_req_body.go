@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type WebhookPostReqBody struct {
 	Name string `json:"name"`
 	Url string `json:"url"`
 	Subscription *WebhookSubscriptionFilters `json:"subscription,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookPostReqBody WebhookPostReqBody
@@ -142,6 +142,11 @@ func (o WebhookPostReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *WebhookPostReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookPostReqBody := _WebhookPostReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookPostReqBody)
+	err = json.Unmarshal(data, &varWebhookPostReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookPostReqBody(varWebhookPostReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "subscription")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

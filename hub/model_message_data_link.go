@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MessageDataLink struct {
 	Timestamp int64 `json:"timestamp"`
 	Network FarcasterNetwork `json:"network"`
 	LinkBody LinkBody `json:"linkBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MessageDataLink MessageDataLink
@@ -162,6 +162,11 @@ func (o MessageDataLink) ToMap() (map[string]interface{}, error) {
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["network"] = o.Network
 	toSerialize["linkBody"] = o.LinkBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *MessageDataLink) UnmarshalJSON(data []byte) (err error) {
 
 	varMessageDataLink := _MessageDataLink{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMessageDataLink)
+	err = json.Unmarshal(data, &varMessageDataLink)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MessageDataLink(varMessageDataLink)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "linkBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

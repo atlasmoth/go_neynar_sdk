@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type Notification struct {
 	Follows []Follow `json:"follows,omitempty"`
 	Cast *CastWithInteractions `json:"cast,omitempty"`
 	Reactions []ReactionWithUserInfo `json:"reactions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Notification Notification
@@ -269,6 +269,11 @@ func (o Notification) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reactions) {
 		toSerialize["reactions"] = o.Reactions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -299,15 +304,26 @@ func (o *Notification) UnmarshalJSON(data []byte) (err error) {
 
 	varNotification := _Notification{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNotification)
+	err = json.Unmarshal(data, &varNotification)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Notification(varNotification)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "most_recent_timestamp")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "seen")
+		delete(additionalProperties, "follows")
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "reactions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

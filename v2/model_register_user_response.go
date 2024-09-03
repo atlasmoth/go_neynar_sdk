@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type RegisterUserResponse struct {
 	Success bool `json:"success"`
 	Message string `json:"message"`
 	Signer Signer `json:"signer"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RegisterUserResponse RegisterUserResponse
@@ -133,6 +133,11 @@ func (o RegisterUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["success"] = o.Success
 	toSerialize["message"] = o.Message
 	toSerialize["signer"] = o.Signer
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *RegisterUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRegisterUserResponse := _RegisterUserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRegisterUserResponse)
+	err = json.Unmarshal(data, &varRegisterUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RegisterUserResponse(varRegisterUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "signer")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

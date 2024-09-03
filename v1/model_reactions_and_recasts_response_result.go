@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ReactionsAndRecastsResponseResult{}
 type ReactionsAndRecastsResponseResult struct {
 	Notifications []ReactionsAndRecastsNotification `json:"notifications"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionsAndRecastsResponseResult ReactionsAndRecastsResponseResult
@@ -106,6 +106,11 @@ func (o ReactionsAndRecastsResponseResult) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	toSerialize["notifications"] = o.Notifications
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *ReactionsAndRecastsResponseResult) UnmarshalJSON(data []byte) (err erro
 
 	varReactionsAndRecastsResponseResult := _ReactionsAndRecastsResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionsAndRecastsResponseResult)
+	err = json.Unmarshal(data, &varReactionsAndRecastsResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionsAndRecastsResponseResult(varReactionsAndRecastsResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "notifications")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

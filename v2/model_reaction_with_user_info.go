@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ReactionWithUserInfo struct {
 	Object string `json:"object"`
 	Cast CastDehydrated `json:"cast"`
 	User User `json:"user"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionWithUserInfo ReactionWithUserInfo
@@ -133,6 +133,11 @@ func (o ReactionWithUserInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["cast"] = o.Cast
 	toSerialize["user"] = o.User
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *ReactionWithUserInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionWithUserInfo := _ReactionWithUserInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionWithUserInfo)
+	err = json.Unmarshal(data, &varReactionWithUserInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionWithUserInfo(varReactionWithUserInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

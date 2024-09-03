@@ -23,7 +23,10 @@ type MergeUserNameProofBody struct {
 	DeletedUsernameProof *UserNameProof `json:"deletedUsernameProof,omitempty"`
 	UsernameProofMessage *Message `json:"usernameProofMessage,omitempty"`
 	DeletedUsernameProofMessage *Message `json:"deletedUsernameProofMessage,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MergeUserNameProofBody MergeUserNameProofBody
 
 // NewMergeUserNameProofBody instantiates a new MergeUserNameProofBody object
 // This constructor will assign default values to properties that have it defined,
@@ -192,7 +195,36 @@ func (o MergeUserNameProofBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeletedUsernameProofMessage) {
 		toSerialize["deletedUsernameProofMessage"] = o.DeletedUsernameProofMessage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MergeUserNameProofBody) UnmarshalJSON(data []byte) (err error) {
+	varMergeUserNameProofBody := _MergeUserNameProofBody{}
+
+	err = json.Unmarshal(data, &varMergeUserNameProofBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MergeUserNameProofBody(varMergeUserNameProofBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "usernameProof")
+		delete(additionalProperties, "deletedUsernameProof")
+		delete(additionalProperties, "usernameProofMessage")
+		delete(additionalProperties, "deletedUsernameProofMessage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMergeUserNameProofBody struct {

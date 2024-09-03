@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type FrameAction struct {
 	FramesUrl string `json:"frames_url"`
 	// URL of the post to get the next frame
 	PostUrl string `json:"post_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameAction FrameAction
@@ -388,6 +388,11 @@ func (o FrameAction) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["frames_url"] = o.FramesUrl
 	toSerialize["post_url"] = o.PostUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -417,15 +422,29 @@ func (o *FrameAction) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameAction := _FrameAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameAction)
+	err = json.Unmarshal(data, &varFrameAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameAction(varFrameAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "button")
+		delete(additionalProperties, "input")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "transaction")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "frames_url")
+		delete(additionalProperties, "post_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

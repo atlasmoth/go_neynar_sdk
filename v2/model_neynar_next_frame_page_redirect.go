@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &NeynarNextFramePageRedirect{}
 type NeynarNextFramePageRedirect struct {
 	// The URL to redirect to.
 	RedirectUrl string `json:"redirect_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarNextFramePageRedirect NeynarNextFramePageRedirect
@@ -80,6 +80,11 @@ func (o NeynarNextFramePageRedirect) MarshalJSON() ([]byte, error) {
 func (o NeynarNextFramePageRedirect) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["redirect_url"] = o.RedirectUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NeynarNextFramePageRedirect) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarNextFramePageRedirect := _NeynarNextFramePageRedirect{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarNextFramePageRedirect)
+	err = json.Unmarshal(data, &varNeynarNextFramePageRedirect)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarNextFramePageRedirect(varNeynarNextFramePageRedirect)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "redirect_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

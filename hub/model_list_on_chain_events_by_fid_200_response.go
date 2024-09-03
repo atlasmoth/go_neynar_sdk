@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ListOnChainEventsByFid200Response{}
 // ListOnChainEventsByFid200Response struct for ListOnChainEventsByFid200Response
 type ListOnChainEventsByFid200Response struct {
 	Events []OnChainEvent `json:"events"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListOnChainEventsByFid200Response ListOnChainEventsByFid200Response
@@ -79,6 +79,11 @@ func (o ListOnChainEventsByFid200Response) MarshalJSON() ([]byte, error) {
 func (o ListOnChainEventsByFid200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["events"] = o.Events
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListOnChainEventsByFid200Response) UnmarshalJSON(data []byte) (err erro
 
 	varListOnChainEventsByFid200Response := _ListOnChainEventsByFid200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListOnChainEventsByFid200Response)
+	err = json.Unmarshal(data, &varListOnChainEventsByFid200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListOnChainEventsByFid200Response(varListOnChainEventsByFid200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "events")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

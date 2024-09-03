@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type ReactionWithCastInfo struct {
 	ReactionTimestamp time.Time `json:"reaction_timestamp"`
 	Object string `json:"object"`
 	User UserDehydrated `json:"user"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionWithCastInfo ReactionWithCastInfo
@@ -188,6 +188,11 @@ func (o ReactionWithCastInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["reaction_timestamp"] = o.ReactionTimestamp
 	toSerialize["object"] = o.Object
 	toSerialize["user"] = o.User
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *ReactionWithCastInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionWithCastInfo := _ReactionWithCastInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionWithCastInfo)
+	err = json.Unmarshal(data, &varReactionWithCastInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionWithCastInfo(varReactionWithCastInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "reaction_type")
+		delete(additionalProperties, "cast")
+		delete(additionalProperties, "reaction_timestamp")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type IdRegisterEventBody struct {
 	EventType IdRegisterEventType `json:"eventType"`
 	From string `json:"from" validate:"regexp=^0x[a-fA-F0-9]*$|^$"`
 	RecoveryAddress string `json:"recoveryAddress" validate:"regexp=^0x[a-fA-F0-9]*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IdRegisterEventBody IdRegisterEventBody
@@ -162,6 +162,11 @@ func (o IdRegisterEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["eventType"] = o.EventType
 	toSerialize["from"] = o.From
 	toSerialize["recoveryAddress"] = o.RecoveryAddress
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *IdRegisterEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	varIdRegisterEventBody := _IdRegisterEventBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIdRegisterEventBody)
+	err = json.Unmarshal(data, &varIdRegisterEventBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IdRegisterEventBody(varIdRegisterEventBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "to")
+		delete(additionalProperties, "eventType")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "recoveryAddress")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

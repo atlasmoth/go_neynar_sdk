@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type SubscribedTo struct {
 	SubscribedAt time.Time `json:"subscribed_at"`
 	Tier SubscriptionTier `json:"tier"`
 	Creator User `json:"creator"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscribedTo SubscribedTo
@@ -449,6 +449,11 @@ func (o SubscribedTo) ToMap() (map[string]interface{}, error) {
 	toSerialize["subscribed_at"] = o.SubscribedAt
 	toSerialize["tier"] = o.Tier
 	toSerialize["creator"] = o.Creator
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -487,15 +492,33 @@ func (o *SubscribedTo) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscribedTo := _SubscribedTo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscribedTo)
+	err = json.Unmarshal(data, &varSubscribedTo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscribedTo(varSubscribedTo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "provider_name")
+		delete(additionalProperties, "contract_address")
+		delete(additionalProperties, "chain")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "owner_address")
+		delete(additionalProperties, "price")
+		delete(additionalProperties, "tiers")
+		delete(additionalProperties, "protocol_version")
+		delete(additionalProperties, "token")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "subscribed_at")
+		delete(additionalProperties, "tier")
+		delete(additionalProperties, "creator")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

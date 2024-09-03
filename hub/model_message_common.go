@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type MessageCommon struct {
 	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	SignatureScheme SignatureScheme `json:"signatureScheme"`
 	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MessageCommon MessageCommon
@@ -191,6 +191,11 @@ func (o MessageCommon) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature"] = o.Signature
 	toSerialize["signatureScheme"] = o.SignatureScheme
 	toSerialize["signer"] = o.Signer
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *MessageCommon) UnmarshalJSON(data []byte) (err error) {
 
 	varMessageCommon := _MessageCommon{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMessageCommon)
+	err = json.Unmarshal(data, &varMessageCommon)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MessageCommon(varMessageCommon)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "hashScheme")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "signatureScheme")
+		delete(additionalProperties, "signer")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type PostCastReqBody struct {
 	Idem *string `json:"idem,omitempty"`
 	// User identifier (unsigned integer)
 	ParentAuthorFid *int32 `json:"parent_author_fid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PostCastReqBody PostCastReqBody
@@ -300,6 +300,11 @@ func (o PostCastReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentAuthorFid) {
 		toSerialize["parent_author_fid"] = o.ParentAuthorFid
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -327,15 +332,26 @@ func (o *PostCastReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varPostCastReqBody := _PostCastReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostCastReqBody)
+	err = json.Unmarshal(data, &varPostCastReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PostCastReqBody(varPostCastReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "parent")
+		delete(additionalProperties, "channel_id")
+		delete(additionalProperties, "idem")
+		delete(additionalProperties, "parent_author_fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

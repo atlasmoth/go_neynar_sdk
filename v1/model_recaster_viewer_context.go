@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type RecasterViewerContext struct {
 	Following bool `json:"following"`
 	// Indicates if the recaster is followed by the viewer.
 	FollowedBy bool `json:"followedBy"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecasterViewerContext RecasterViewerContext
@@ -108,6 +108,11 @@ func (o RecasterViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["following"] = o.Following
 	toSerialize["followedBy"] = o.FollowedBy
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *RecasterViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varRecasterViewerContext := _RecasterViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecasterViewerContext)
+	err = json.Unmarshal(data, &varRecasterViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecasterViewerContext(varRecasterViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "following")
+		delete(additionalProperties, "followedBy")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

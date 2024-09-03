@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &VerificationResponse{}
 // VerificationResponse struct for VerificationResponse
 type VerificationResponse struct {
 	Result VerificationResponseResult `json:"result"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationResponse VerificationResponse
@@ -79,6 +79,11 @@ func (o VerificationResponse) MarshalJSON() ([]byte, error) {
 func (o VerificationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["result"] = o.Result
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *VerificationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationResponse := _VerificationResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationResponse)
+	err = json.Unmarshal(data, &varVerificationResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationResponse(varVerificationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "result")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type RegisterDeveloperManagedSignedKeyReqBody struct {
 	// unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)
 	Deadline int32 `json:"deadline"`
 	Sponsor *RegisterSignerKeyReqBodySponsor `json:"sponsor,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RegisterDeveloperManagedSignedKeyReqBody RegisterDeveloperManagedSignedKeyReqBody
@@ -200,6 +200,11 @@ func (o RegisterDeveloperManagedSignedKeyReqBody) ToMap() (map[string]interface{
 	if !IsNil(o.Sponsor) {
 		toSerialize["sponsor"] = o.Sponsor
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -230,15 +235,24 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) UnmarshalJSON(data []byte) (e
 
 	varRegisterDeveloperManagedSignedKeyReqBody := _RegisterDeveloperManagedSignedKeyReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRegisterDeveloperManagedSignedKeyReqBody)
+	err = json.Unmarshal(data, &varRegisterDeveloperManagedSignedKeyReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RegisterDeveloperManagedSignedKeyReqBody(varRegisterDeveloperManagedSignedKeyReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "app_fid")
+		delete(additionalProperties, "deadline")
+		delete(additionalProperties, "sponsor")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

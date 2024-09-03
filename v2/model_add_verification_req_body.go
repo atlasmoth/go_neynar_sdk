@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type AddVerificationReqBody struct {
 	EthSignature string `json:"eth_signature"`
 	VerificationType *VerificationType `json:"verification_type,omitempty"`
 	ChainId *VerificationChainId `json:"chain_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AddVerificationReqBody AddVerificationReqBody
@@ -242,6 +242,11 @@ func (o AddVerificationReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChainId) {
 		toSerialize["chain_id"] = o.ChainId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -272,15 +277,25 @@ func (o *AddVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varAddVerificationReqBody := _AddVerificationReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddVerificationReqBody)
+	err = json.Unmarshal(data, &varAddVerificationReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AddVerificationReqBody(varAddVerificationReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "block_hash")
+		delete(additionalProperties, "eth_signature")
+		delete(additionalProperties, "verification_type")
+		delete(additionalProperties, "chain_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

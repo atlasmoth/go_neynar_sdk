@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type UserViewerContext struct {
 	Following bool `json:"following"`
 	// Indicates if the viewer is followed by the user.
 	FollowedBy bool `json:"followed_by"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserViewerContext UserViewerContext
@@ -108,6 +108,11 @@ func (o UserViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["following"] = o.Following
 	toSerialize["followed_by"] = o.FollowedBy
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *UserViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varUserViewerContext := _UserViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserViewerContext)
+	err = json.Unmarshal(data, &varUserViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserViewerContext(varUserViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "following")
+		delete(additionalProperties, "followed_by")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

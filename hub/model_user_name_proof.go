@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type UserNameProof struct {
 	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	Fid int32 `json:"fid"`
 	Type UserNameType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserNameProof UserNameProof
@@ -216,6 +216,11 @@ func (o UserNameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature"] = o.Signature
 	toSerialize["fid"] = o.Fid
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -248,15 +253,25 @@ func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
 
 	varUserNameProof := _UserNameProof{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserNameProof)
+	err = json.Unmarshal(data, &varUserNameProof)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserNameProof(varUserNameProof)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "owner")
+		delete(additionalProperties, "signature")
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

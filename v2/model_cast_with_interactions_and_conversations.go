@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -41,6 +40,7 @@ type CastWithInteractionsAndConversations struct {
 	ViewerContext *CastViewerContext `json:"viewer_context,omitempty"`
 	// note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
 	DirectReplies []CastWithInteractionsAndConversations `json:"direct_replies"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastWithInteractionsAndConversations CastWithInteractionsAndConversations
@@ -575,6 +575,11 @@ func (o CastWithInteractionsAndConversations) ToMap() (map[string]interface{}, e
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
 	toSerialize["direct_replies"] = o.DirectReplies
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -616,15 +621,37 @@ func (o *CastWithInteractionsAndConversations) UnmarshalJSON(data []byte) (err e
 
 	varCastWithInteractionsAndConversations := _CastWithInteractionsAndConversations{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastWithInteractionsAndConversations)
+	err = json.Unmarshal(data, &varCastWithInteractionsAndConversations)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastWithInteractionsAndConversations(varCastWithInteractionsAndConversations)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "parent_hash")
+		delete(additionalProperties, "parent_url")
+		delete(additionalProperties, "root_parent_url")
+		delete(additionalProperties, "parent_author")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "frames")
+		delete(additionalProperties, "reactions")
+		delete(additionalProperties, "replies")
+		delete(additionalProperties, "thread_hash")
+		delete(additionalProperties, "mentioned_profiles")
+		delete(additionalProperties, "channel")
+		delete(additionalProperties, "viewer_context")
+		delete(additionalProperties, "direct_replies")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

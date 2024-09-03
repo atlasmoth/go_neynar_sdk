@@ -21,7 +21,10 @@ var _ MappedNullable = &EmbedUrlMetadataImage{}
 type EmbedUrlMetadataImage struct {
 	HeightPx *int32 `json:"height_px,omitempty"`
 	WidthPx *int32 `json:"width_px,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EmbedUrlMetadataImage EmbedUrlMetadataImage
 
 // NewEmbedUrlMetadataImage instantiates a new EmbedUrlMetadataImage object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o EmbedUrlMetadataImage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WidthPx) {
 		toSerialize["width_px"] = o.WidthPx
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EmbedUrlMetadataImage) UnmarshalJSON(data []byte) (err error) {
+	varEmbedUrlMetadataImage := _EmbedUrlMetadataImage{}
+
+	err = json.Unmarshal(data, &varEmbedUrlMetadataImage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmbedUrlMetadataImage(varEmbedUrlMetadataImage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "height_px")
+		delete(additionalProperties, "width_px")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEmbedUrlMetadataImage struct {

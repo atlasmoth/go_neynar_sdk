@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ReactionBody struct {
 	Type ReactionType `json:"type"`
 	TargetCastId *CastId `json:"targetCastId,omitempty"`
 	TargetUrl *string `json:"targetUrl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionBody ReactionBody
@@ -153,6 +153,11 @@ func (o ReactionBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetUrl) {
 		toSerialize["targetUrl"] = o.TargetUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -180,15 +185,22 @@ func (o *ReactionBody) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionBody := _ReactionBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionBody)
+	err = json.Unmarshal(data, &varReactionBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionBody(varReactionBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "targetCastId")
+		delete(additionalProperties, "targetUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

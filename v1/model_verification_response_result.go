@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type VerificationResponseResult struct {
 	Username string `json:"username"`
 	DisplayName string `json:"display_name"`
 	Verifications []string `json:"verifications"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationResponseResult VerificationResponseResult
@@ -160,6 +160,11 @@ func (o VerificationResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize["username"] = o.Username
 	toSerialize["display_name"] = o.DisplayName
 	toSerialize["verifications"] = o.Verifications
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -190,15 +195,23 @@ func (o *VerificationResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationResponseResult := _VerificationResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationResponseResult)
+	err = json.Unmarshal(data, &varVerificationResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationResponseResult(varVerificationResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "display_name")
+		delete(additionalProperties, "verifications")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

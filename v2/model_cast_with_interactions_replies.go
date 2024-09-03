@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &CastWithInteractionsReplies{}
 // CastWithInteractionsReplies struct for CastWithInteractionsReplies
 type CastWithInteractionsReplies struct {
 	Count int32 `json:"count"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastWithInteractionsReplies CastWithInteractionsReplies
@@ -79,6 +79,11 @@ func (o CastWithInteractionsReplies) MarshalJSON() ([]byte, error) {
 func (o CastWithInteractionsReplies) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["count"] = o.Count
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CastWithInteractionsReplies) UnmarshalJSON(data []byte) (err error) {
 
 	varCastWithInteractionsReplies := _CastWithInteractionsReplies{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastWithInteractionsReplies)
+	err = json.Unmarshal(data, &varCastWithInteractionsReplies)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastWithInteractionsReplies(varCastWithInteractionsReplies)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

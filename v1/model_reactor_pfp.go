@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ReactorPfp{}
 type ReactorPfp struct {
 	// The URL of the reactor's profile picture.
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactorPfp ReactorPfp
@@ -80,6 +80,11 @@ func (o ReactorPfp) MarshalJSON() ([]byte, error) {
 func (o ReactorPfp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ReactorPfp) UnmarshalJSON(data []byte) (err error) {
 
 	varReactorPfp := _ReactorPfp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactorPfp)
+	err = json.Unmarshal(data, &varReactorPfp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactorPfp(varReactorPfp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

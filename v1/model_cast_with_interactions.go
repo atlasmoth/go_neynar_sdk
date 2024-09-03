@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -38,6 +37,7 @@ type CastWithInteractions struct {
 	Recasters []string `json:"recasters"`
 	ViewerContext *ViewerContext `json:"viewerContext,omitempty"`
 	Replies CastWithInteractionsReplies `json:"replies"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastWithInteractions CastWithInteractions
@@ -507,6 +507,11 @@ func (o CastWithInteractions) ToMap() (map[string]interface{}, error) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
 	toSerialize["replies"] = o.Replies
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -547,15 +552,35 @@ func (o *CastWithInteractions) UnmarshalJSON(data []byte) (err error) {
 
 	varCastWithInteractions := _CastWithInteractions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastWithInteractions)
+	err = json.Unmarshal(data, &varCastWithInteractions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastWithInteractions(varCastWithInteractions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "parentHash")
+		delete(additionalProperties, "parentUrl")
+		delete(additionalProperties, "threadHash")
+		delete(additionalProperties, "parentAuthor")
+		delete(additionalProperties, "mentionedProfiles")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "reactions")
+		delete(additionalProperties, "recasts")
+		delete(additionalProperties, "recasters")
+		delete(additionalProperties, "viewerContext")
+		delete(additionalProperties, "replies")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

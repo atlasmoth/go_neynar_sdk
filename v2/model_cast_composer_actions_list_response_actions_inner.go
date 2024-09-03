@@ -44,7 +44,10 @@ type CastComposerActionsListResponseActionsInner struct {
 	Category *string `json:"category,omitempty"`
 	// Object type, which is \"composer_action\".
 	Object *string `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CastComposerActionsListResponseActionsInner CastComposerActionsListResponseActionsInner
 
 // NewCastComposerActionsListResponseActionsInner instantiates a new CastComposerActionsListResponseActionsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -528,7 +531,45 @@ func (o CastComposerActionsListResponseActionsInner) ToMap() (map[string]interfa
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CastComposerActionsListResponseActionsInner) UnmarshalJSON(data []byte) (err error) {
+	varCastComposerActionsListResponseActionsInner := _CastComposerActionsListResponseActionsInner{}
+
+	err = json.Unmarshal(data, &varCastComposerActionsListResponseActionsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CastComposerActionsListResponseActionsInner(varCastComposerActionsListResponseActionsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "icon")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "about_url")
+		delete(additionalProperties, "image_url")
+		delete(additionalProperties, "action_url")
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "octicon")
+		delete(additionalProperties, "added_count")
+		delete(additionalProperties, "app_name")
+		delete(additionalProperties, "author_fid")
+		delete(additionalProperties, "category")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCastComposerActionsListResponseActionsInner struct {

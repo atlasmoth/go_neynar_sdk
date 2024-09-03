@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type CastViewerContext struct {
 	Liked bool `json:"liked"`
 	// Indicates if the viewer recasted the cast.
 	Recasted bool `json:"recasted"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastViewerContext CastViewerContext
@@ -108,6 +108,11 @@ func (o CastViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["liked"] = o.Liked
 	toSerialize["recasted"] = o.Recasted
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *CastViewerContext) UnmarshalJSON(data []byte) (err error) {
 
 	varCastViewerContext := _CastViewerContext{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastViewerContext)
+	err = json.Unmarshal(data, &varCastViewerContext)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastViewerContext(varCastViewerContext)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "liked")
+		delete(additionalProperties, "recasted")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

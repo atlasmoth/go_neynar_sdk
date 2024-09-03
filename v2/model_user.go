@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type User struct {
 	ActiveStatus ActiveStatus `json:"active_status"`
 	PowerBadge bool `json:"power_badge"`
 	ViewerContext *UserViewerContext `json:"viewer_context,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _User User
@@ -462,6 +462,11 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -499,15 +504,33 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 
 	varUser := _User{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUser)
+	err = json.Unmarshal(data, &varUser)
 
 	if err != nil {
 		return err
 	}
 
 	*o = User(varUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "display_name")
+		delete(additionalProperties, "custody_address")
+		delete(additionalProperties, "pfp_url")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "follower_count")
+		delete(additionalProperties, "following_count")
+		delete(additionalProperties, "verifications")
+		delete(additionalProperties, "verified_addresses")
+		delete(additionalProperties, "active_status")
+		delete(additionalProperties, "power_badge")
+		delete(additionalProperties, "viewer_context")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

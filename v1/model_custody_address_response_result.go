@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type CustodyAddressResponseResult struct {
 	// User identifier (unsigned integer)
 	Fid int32 `json:"fid"`
 	CustodyAddress NullableString `json:"custodyAddress"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustodyAddressResponseResult CustodyAddressResponseResult
@@ -111,6 +111,11 @@ func (o CustodyAddressResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["custodyAddress"] = o.CustodyAddress.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -139,15 +144,21 @@ func (o *CustodyAddressResponseResult) UnmarshalJSON(data []byte) (err error) {
 
 	varCustodyAddressResponseResult := _CustodyAddressResponseResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustodyAddressResponseResult)
+	err = json.Unmarshal(data, &varCustodyAddressResponseResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustodyAddressResponseResult(varCustodyAddressResponseResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "custodyAddress")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

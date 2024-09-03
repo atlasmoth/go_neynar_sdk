@@ -11,10 +11,11 @@ package openapi
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
 )
 
 func Test_openapi_FnameAPIService(t *testing.T) {

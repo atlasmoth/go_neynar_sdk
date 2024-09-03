@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &MuteResponse{}
 type MuteResponse struct {
 	Success bool `json:"success"`
 	Message *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MuteResponse MuteResponse
@@ -115,6 +115,11 @@ func (o MuteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *MuteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMuteResponse := _MuteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMuteResponse)
+	err = json.Unmarshal(data, &varMuteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MuteResponse(varMuteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

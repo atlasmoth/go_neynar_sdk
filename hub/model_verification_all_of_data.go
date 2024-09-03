@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type VerificationAllOfData struct {
 	Network FarcasterNetwork `json:"network"`
 	VerificationAddEthAddressBody VerificationAddEthAddressBody `json:"verificationAddEthAddressBody"`
 	Type MessageType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationAllOfData VerificationAllOfData
@@ -191,6 +191,11 @@ func (o VerificationAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize["network"] = o.Network
 	toSerialize["verificationAddEthAddressBody"] = o.VerificationAddEthAddressBody
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *VerificationAllOfData) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationAllOfData := _VerificationAllOfData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationAllOfData)
+	err = json.Unmarshal(data, &varVerificationAllOfData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationAllOfData(varVerificationAllOfData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "verificationAddEthAddressBody")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

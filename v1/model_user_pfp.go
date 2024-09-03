@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UserPfp{}
 type UserPfp struct {
 	// The URL of the user's profile picture.
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserPfp UserPfp
@@ -80,6 +80,11 @@ func (o UserPfp) MarshalJSON() ([]byte, error) {
 func (o UserPfp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UserPfp) UnmarshalJSON(data []byte) (err error) {
 
 	varUserPfp := _UserPfp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserPfp)
+	err = json.Unmarshal(data, &varUserPfp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserPfp(varUserPfp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

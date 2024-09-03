@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SubscriptionPrice struct {
 	PeriodDurationSeconds int32 `json:"period_duration_seconds"`
 	TokensPerPeriod string `json:"tokens_per_period"`
 	InitialMintPrice string `json:"initial_mint_price"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscriptionPrice SubscriptionPrice
@@ -133,6 +133,11 @@ func (o SubscriptionPrice) ToMap() (map[string]interface{}, error) {
 	toSerialize["period_duration_seconds"] = o.PeriodDurationSeconds
 	toSerialize["tokens_per_period"] = o.TokensPerPeriod
 	toSerialize["initial_mint_price"] = o.InitialMintPrice
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *SubscriptionPrice) UnmarshalJSON(data []byte) (err error) {
 
 	varSubscriptionPrice := _SubscriptionPrice{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubscriptionPrice)
+	err = json.Unmarshal(data, &varSubscriptionPrice)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscriptionPrice(varSubscriptionPrice)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "period_duration_seconds")
+		delete(additionalProperties, "tokens_per_period")
+		delete(additionalProperties, "initial_mint_price")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

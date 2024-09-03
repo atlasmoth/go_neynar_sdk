@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -37,6 +36,7 @@ type Webhook struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	DeletedAt time.Time `json:"deleted_at"`
 	Subscription *WebhookSubscription `json:"subscription,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Webhook Webhook
@@ -467,6 +467,11 @@ func (o Webhook) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -507,15 +512,34 @@ func (o *Webhook) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhook := _Webhook{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhook)
+	err = json.Unmarshal(data, &varWebhook)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Webhook(varWebhook)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "webhook_id")
+		delete(additionalProperties, "developer_uuid")
+		delete(additionalProperties, "target_url")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "secrets")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "http_timeout")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "rate_limit_duration")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "subscription")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

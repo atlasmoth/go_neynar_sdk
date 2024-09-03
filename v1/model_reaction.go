@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type Reaction struct {
 	Timestamp time.Time `json:"timestamp"`
 	// Cast Hash
 	CastHash string `json:"castHash"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Reaction Reaction
@@ -194,6 +194,11 @@ func (o Reaction) ToMap() (map[string]interface{}, error) {
 	toSerialize["reactor"] = o.Reactor
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["castHash"] = o.CastHash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -225,15 +230,24 @@ func (o *Reaction) UnmarshalJSON(data []byte) (err error) {
 
 	varReaction := _Reaction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReaction)
+	err = json.Unmarshal(data, &varReaction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Reaction(varReaction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "reactor")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "castHash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

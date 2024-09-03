@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ReactionWithCastMetaReaction struct {
 	ReactionHash string `json:"reaction_hash"`
 	ReactionTargetHash string `json:"reaction_target_hash"`
 	ReactionTimestamp time.Time `json:"reaction_timestamp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionWithCastMetaReaction ReactionWithCastMetaReaction
@@ -191,6 +191,11 @@ func (o ReactionWithCastMetaReaction) ToMap() (map[string]interface{}, error) {
 	toSerialize["reaction_hash"] = o.ReactionHash
 	toSerialize["reaction_target_hash"] = o.ReactionTargetHash
 	toSerialize["reaction_timestamp"] = o.ReactionTimestamp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *ReactionWithCastMetaReaction) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionWithCastMetaReaction := _ReactionWithCastMetaReaction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionWithCastMetaReaction)
+	err = json.Unmarshal(data, &varReactionWithCastMetaReaction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionWithCastMetaReaction(varReactionWithCastMetaReaction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "reactor_fid")
+		delete(additionalProperties, "reaction_type")
+		delete(additionalProperties, "reaction_hash")
+		delete(additionalProperties, "reaction_target_hash")
+		delete(additionalProperties, "reaction_timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

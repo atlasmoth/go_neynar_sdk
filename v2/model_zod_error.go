@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ZodError struct {
 	Message string `json:"message"`
 	Code string `json:"code"`
 	Errors []ZodErrorErrorsInner `json:"errors"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ZodError ZodError
@@ -133,6 +133,11 @@ func (o ZodError) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	toSerialize["code"] = o.Code
 	toSerialize["errors"] = o.Errors
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *ZodError) UnmarshalJSON(data []byte) (err error) {
 
 	varZodError := _ZodError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varZodError)
+	err = json.Unmarshal(data, &varZodError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ZodError(varZodError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &PostCastResponse{}
 type PostCastResponse struct {
 	Success bool `json:"success"`
 	Cast PostCastResponseCast `json:"cast"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PostCastResponse PostCastResponse
@@ -106,6 +106,11 @@ func (o PostCastResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["cast"] = o.Cast
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *PostCastResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPostCastResponse := _PostCastResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostCastResponse)
+	err = json.Unmarshal(data, &varPostCastResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PostCastResponse(varPostCastResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "cast")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

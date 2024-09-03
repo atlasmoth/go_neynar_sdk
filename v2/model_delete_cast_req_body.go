@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type DeleteCastReqBody struct {
 	SignerUuid string `json:"signer_uuid"`
 	// Ethereum address
 	TargetHash string `json:"target_hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeleteCastReqBody DeleteCastReqBody
@@ -108,6 +108,11 @@ func (o DeleteCastReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["signer_uuid"] = o.SignerUuid
 	toSerialize["target_hash"] = o.TargetHash
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varDeleteCastReqBody := _DeleteCastReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeleteCastReqBody)
+	err = json.Unmarshal(data, &varDeleteCastReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeleteCastReqBody(varDeleteCastReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "signer_uuid")
+		delete(additionalProperties, "target_hash")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

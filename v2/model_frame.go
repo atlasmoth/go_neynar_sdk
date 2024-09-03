@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type Frame struct {
 	ImageAspectRatio *string `json:"image_aspect_ratio,omitempty"`
 	Input *FrameInput `json:"input,omitempty"`
 	State *FrameState `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Frame Frame
@@ -353,6 +353,11 @@ func (o Frame) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -382,15 +387,28 @@ func (o *Frame) UnmarshalJSON(data []byte) (err error) {
 
 	varFrame := _Frame{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrame)
+	err = json.Unmarshal(data, &varFrame)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Frame(varFrame)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "buttons")
+		delete(additionalProperties, "post_url")
+		delete(additionalProperties, "frames_url")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "image_aspect_ratio")
+		delete(additionalProperties, "input")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

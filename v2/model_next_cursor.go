@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &NextCursor{}
 // NextCursor Returns next cursor
 type NextCursor struct {
 	Cursor NullableString `json:"cursor"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NextCursor NextCursor
@@ -81,6 +81,11 @@ func (o NextCursor) MarshalJSON() ([]byte, error) {
 func (o NextCursor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cursor"] = o.Cursor.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *NextCursor) UnmarshalJSON(data []byte) (err error) {
 
 	varNextCursor := _NextCursor{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNextCursor)
+	err = json.Unmarshal(data, &varNextCursor)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NextCursor(varNextCursor)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cursor")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

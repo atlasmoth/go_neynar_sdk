@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &ReactionsAndRecastsResponse{}
 // ReactionsAndRecastsResponse struct for ReactionsAndRecastsResponse
 type ReactionsAndRecastsResponse struct {
 	Result ReactionsAndRecastsResponseResult `json:"result"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionsAndRecastsResponse ReactionsAndRecastsResponse
@@ -79,6 +79,11 @@ func (o ReactionsAndRecastsResponse) MarshalJSON() ([]byte, error) {
 func (o ReactionsAndRecastsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["result"] = o.Result
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ReactionsAndRecastsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionsAndRecastsResponse := _ReactionsAndRecastsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionsAndRecastsResponse)
+	err = json.Unmarshal(data, &varReactionsAndRecastsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionsAndRecastsResponse(varReactionsAndRecastsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "result")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

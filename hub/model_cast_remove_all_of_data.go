@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type CastRemoveAllOfData struct {
 	Network FarcasterNetwork `json:"network"`
 	CastRemoveBody CastRemoveBody `json:"castRemoveBody"`
 	Type MessageType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastRemoveAllOfData CastRemoveAllOfData
@@ -191,6 +191,11 @@ func (o CastRemoveAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize["network"] = o.Network
 	toSerialize["castRemoveBody"] = o.CastRemoveBody
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *CastRemoveAllOfData) UnmarshalJSON(data []byte) (err error) {
 
 	varCastRemoveAllOfData := _CastRemoveAllOfData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastRemoveAllOfData)
+	err = json.Unmarshal(data, &varCastRemoveAllOfData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastRemoveAllOfData(varCastRemoveAllOfData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "castRemoveBody")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

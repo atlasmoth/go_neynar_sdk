@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ConflictErrorRes struct {
 	Message string `json:"message"`
 	Property *string `json:"property,omitempty"`
 	Key *string `json:"key,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConflictErrorRes ConflictErrorRes
@@ -187,6 +187,11 @@ func (o ConflictErrorRes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Key) {
 		toSerialize["key"] = o.Key
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -214,15 +219,23 @@ func (o *ConflictErrorRes) UnmarshalJSON(data []byte) (err error) {
 
 	varConflictErrorRes := _ConflictErrorRes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConflictErrorRes)
+	err = json.Unmarshal(data, &varConflictErrorRes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConflictErrorRes(varConflictErrorRes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "property")
+		delete(additionalProperties, "key")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

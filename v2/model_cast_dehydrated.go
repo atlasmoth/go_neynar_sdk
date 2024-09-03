@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &CastDehydrated{}
 type CastDehydrated struct {
 	Hash string `json:"hash"`
 	Object string `json:"object"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastDehydrated CastDehydrated
@@ -106,6 +106,11 @@ func (o CastDehydrated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["hash"] = o.Hash
 	toSerialize["object"] = o.Object
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *CastDehydrated) UnmarshalJSON(data []byte) (err error) {
 
 	varCastDehydrated := _CastDehydrated{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastDehydrated)
+	err = json.Unmarshal(data, &varCastDehydrated)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastDehydrated(varCastDehydrated)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

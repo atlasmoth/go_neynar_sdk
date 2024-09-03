@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MessageDataFrameAction struct {
 	Timestamp int64 `json:"timestamp"`
 	Network FarcasterNetwork `json:"network"`
 	FrameActionBody FrameActionBody `json:"frameActionBody"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MessageDataFrameAction MessageDataFrameAction
@@ -162,6 +162,11 @@ func (o MessageDataFrameAction) ToMap() (map[string]interface{}, error) {
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["network"] = o.Network
 	toSerialize["frameActionBody"] = o.FrameActionBody
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *MessageDataFrameAction) UnmarshalJSON(data []byte) (err error) {
 
 	varMessageDataFrameAction := _MessageDataFrameAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMessageDataFrameAction)
+	err = json.Unmarshal(data, &varMessageDataFrameAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MessageDataFrameAction(varMessageDataFrameAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "frameActionBody")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

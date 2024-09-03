@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type MusicSongObject struct {
 	Disc *string `json:"disc,omitempty"`
 	Track *int32 `json:"track,omitempty"`
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MusicSongObject MusicSongObject
@@ -151,6 +151,11 @@ func (o MusicSongObject) ToMap() (map[string]interface{}, error) {
 		toSerialize["track"] = o.Track
 	}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *MusicSongObject) UnmarshalJSON(data []byte) (err error) {
 
 	varMusicSongObject := _MusicSongObject{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMusicSongObject)
+	err = json.Unmarshal(data, &varMusicSongObject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MusicSongObject(varMusicSongObject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "disc")
+		delete(additionalProperties, "track")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

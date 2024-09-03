@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &CastParentAuthor{}
 // CastParentAuthor struct for CastParentAuthor
 type CastParentAuthor struct {
 	Fid NullableString `json:"fid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CastParentAuthor CastParentAuthor
@@ -81,6 +81,11 @@ func (o CastParentAuthor) MarshalJSON() ([]byte, error) {
 func (o CastParentAuthor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CastParentAuthor) UnmarshalJSON(data []byte) (err error) {
 
 	varCastParentAuthor := _CastParentAuthor{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCastParentAuthor)
+	err = json.Unmarshal(data, &varCastParentAuthor)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CastParentAuthor(varCastParentAuthor)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

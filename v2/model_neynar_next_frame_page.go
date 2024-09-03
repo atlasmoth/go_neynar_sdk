@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &NeynarNextFramePage{}
 type NeynarNextFramePage struct {
 	// The UUID of the next page.
 	Uuid string `json:"uuid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NeynarNextFramePage NeynarNextFramePage
@@ -80,6 +80,11 @@ func (o NeynarNextFramePage) MarshalJSON() ([]byte, error) {
 func (o NeynarNextFramePage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["uuid"] = o.Uuid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NeynarNextFramePage) UnmarshalJSON(data []byte) (err error) {
 
 	varNeynarNextFramePage := _NeynarNextFramePage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarNextFramePage)
+	err = json.Unmarshal(data, &varNeynarNextFramePage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NeynarNextFramePage(varNeynarNextFramePage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uuid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

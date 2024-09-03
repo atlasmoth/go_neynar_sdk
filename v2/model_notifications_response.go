@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type NotificationsResponse struct {
 	UnseenNotificationsCount int32 `json:"unseen_notifications_count"`
 	Notifications []Notification `json:"notifications"`
 	Next NextCursor `json:"next"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NotificationsResponse NotificationsResponse
@@ -133,6 +133,11 @@ func (o NotificationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["unseen_notifications_count"] = o.UnseenNotificationsCount
 	toSerialize["notifications"] = o.Notifications
 	toSerialize["next"] = o.Next
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *NotificationsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varNotificationsResponse := _NotificationsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNotificationsResponse)
+	err = json.Unmarshal(data, &varNotificationsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NotificationsResponse(varNotificationsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "unseen_notifications_count")
+		delete(additionalProperties, "notifications")
+		delete(additionalProperties, "next")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

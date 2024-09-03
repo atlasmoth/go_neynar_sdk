@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type ReactionsAndRecastsNotification struct {
 	Type *CastType `json:"type,omitempty"`
 	Reactors []User `json:"reactors,omitempty"`
 	ReactionType *ReactionType `json:"reactionType,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionsAndRecastsNotification ReactionsAndRecastsNotification
@@ -435,6 +435,11 @@ func (o ReactionsAndRecastsNotification) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.ReactionType) {
 		toSerialize["reactionType"] = o.ReactionType
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -471,15 +476,32 @@ func (o *ReactionsAndRecastsNotification) UnmarshalJSON(data []byte) (err error)
 
 	varReactionsAndRecastsNotification := _ReactionsAndRecastsNotification{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionsAndRecastsNotification)
+	err = json.Unmarshal(data, &varReactionsAndRecastsNotification)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionsAndRecastsNotification(varReactionsAndRecastsNotification)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hash")
+		delete(additionalProperties, "parentHash")
+		delete(additionalProperties, "parentUrl")
+		delete(additionalProperties, "threadHash")
+		delete(additionalProperties, "parentAuthor")
+		delete(additionalProperties, "mentionedProfiles")
+		delete(additionalProperties, "author")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "embeds")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "reactors")
+		delete(additionalProperties, "reactionType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

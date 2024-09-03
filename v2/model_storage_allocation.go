@@ -25,7 +25,10 @@ type StorageAllocation struct {
 	Units *int32 `json:"units,omitempty"`
 	Expiry *time.Time `json:"expiry,omitempty"`
 	Timestamp *time.Time `json:"timestamp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _StorageAllocation StorageAllocation
 
 // NewStorageAllocation instantiates a new StorageAllocation object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o StorageAllocation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *StorageAllocation) UnmarshalJSON(data []byte) (err error) {
+	varStorageAllocation := _StorageAllocation{}
+
+	err = json.Unmarshal(data, &varStorageAllocation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StorageAllocation(varStorageAllocation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "units")
+		delete(additionalProperties, "expiry")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStorageAllocation struct {

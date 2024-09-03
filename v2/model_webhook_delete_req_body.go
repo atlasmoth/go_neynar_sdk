@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &WebhookDeleteReqBody{}
 // WebhookDeleteReqBody struct for WebhookDeleteReqBody
 type WebhookDeleteReqBody struct {
 	WebhookId string `json:"webhook_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookDeleteReqBody WebhookDeleteReqBody
@@ -79,6 +79,11 @@ func (o WebhookDeleteReqBody) MarshalJSON() ([]byte, error) {
 func (o WebhookDeleteReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["webhook_id"] = o.WebhookId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *WebhookDeleteReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookDeleteReqBody := _WebhookDeleteReqBody{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookDeleteReqBody)
+	err = json.Unmarshal(data, &varWebhookDeleteReqBody)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookDeleteReqBody(varWebhookDeleteReqBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "webhook_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

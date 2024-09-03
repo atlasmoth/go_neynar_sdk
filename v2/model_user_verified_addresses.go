@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UserVerifiedAddresses{}
 type UserVerifiedAddresses struct {
 	EthAddresses []string `json:"eth_addresses"`
 	SolAddresses []string `json:"sol_addresses"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserVerifiedAddresses UserVerifiedAddresses
@@ -106,6 +106,11 @@ func (o UserVerifiedAddresses) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["eth_addresses"] = o.EthAddresses
 	toSerialize["sol_addresses"] = o.SolAddresses
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *UserVerifiedAddresses) UnmarshalJSON(data []byte) (err error) {
 
 	varUserVerifiedAddresses := _UserVerifiedAddresses{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserVerifiedAddresses)
+	err = json.Unmarshal(data, &varUserVerifiedAddresses)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserVerifiedAddresses(varUserVerifiedAddresses)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "eth_addresses")
+		delete(additionalProperties, "sol_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

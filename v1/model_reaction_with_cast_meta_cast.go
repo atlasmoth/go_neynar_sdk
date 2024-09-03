@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ReactionWithCastMetaCast struct {
 	CastText string `json:"cast_text"`
 	CastEmbeds []EmbedUrl `json:"cast_embeds"`
 	CastTimestamp time.Time `json:"cast_timestamp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReactionWithCastMetaCast ReactionWithCastMetaCast
@@ -191,6 +191,11 @@ func (o ReactionWithCastMetaCast) ToMap() (map[string]interface{}, error) {
 	toSerialize["cast_text"] = o.CastText
 	toSerialize["cast_embeds"] = o.CastEmbeds
 	toSerialize["cast_timestamp"] = o.CastTimestamp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,24 @@ func (o *ReactionWithCastMetaCast) UnmarshalJSON(data []byte) (err error) {
 
 	varReactionWithCastMetaCast := _ReactionWithCastMetaCast{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReactionWithCastMetaCast)
+	err = json.Unmarshal(data, &varReactionWithCastMetaCast)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReactionWithCastMetaCast(varReactionWithCastMetaCast)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cast_fid")
+		delete(additionalProperties, "cast_hash")
+		delete(additionalProperties, "cast_text")
+		delete(additionalProperties, "cast_embeds")
+		delete(additionalProperties, "cast_timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MuteList struct {
 	Object string `json:"object"`
 	Muted User `json:"muted"`
 	MutedAt time.Time `json:"muted_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MuteList MuteList
@@ -134,6 +134,11 @@ func (o MuteList) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["muted"] = o.Muted
 	toSerialize["muted_at"] = o.MutedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *MuteList) UnmarshalJSON(data []byte) (err error) {
 
 	varMuteList := _MuteList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMuteList)
+	err = json.Unmarshal(data, &varMuteList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MuteList(varMuteList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "muted")
+		delete(additionalProperties, "muted_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

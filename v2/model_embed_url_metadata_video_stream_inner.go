@@ -22,7 +22,10 @@ type EmbedUrlMetadataVideoStreamInner struct {
 	CodecName *string `json:"codec_name,omitempty"`
 	HeightPx *int32 `json:"height_px,omitempty"`
 	WidthPx *int32 `json:"width_px,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EmbedUrlMetadataVideoStreamInner EmbedUrlMetadataVideoStreamInner
 
 // NewEmbedUrlMetadataVideoStreamInner instantiates a new EmbedUrlMetadataVideoStreamInner object
 // This constructor will assign default values to properties that have it defined,
@@ -156,7 +159,35 @@ func (o EmbedUrlMetadataVideoStreamInner) ToMap() (map[string]interface{}, error
 	if !IsNil(o.WidthPx) {
 		toSerialize["width_px"] = o.WidthPx
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EmbedUrlMetadataVideoStreamInner) UnmarshalJSON(data []byte) (err error) {
+	varEmbedUrlMetadataVideoStreamInner := _EmbedUrlMetadataVideoStreamInner{}
+
+	err = json.Unmarshal(data, &varEmbedUrlMetadataVideoStreamInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmbedUrlMetadataVideoStreamInner(varEmbedUrlMetadataVideoStreamInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "codec_name")
+		delete(additionalProperties, "height_px")
+		delete(additionalProperties, "width_px")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEmbedUrlMetadataVideoStreamInner struct {

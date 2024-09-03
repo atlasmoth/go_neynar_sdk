@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type FrameActionButton struct {
 	Target *string `json:"target,omitempty"`
 	// Used specifically for the tx action type to post a successful transaction hash
 	PostUrl *string `json:"post_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrameActionButton FrameActionButton
@@ -218,6 +218,11 @@ func (o FrameActionButton) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PostUrl) {
 		toSerialize["post_url"] = o.PostUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -246,15 +251,24 @@ func (o *FrameActionButton) UnmarshalJSON(data []byte) (err error) {
 
 	varFrameActionButton := _FrameActionButton{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrameActionButton)
+	err = json.Unmarshal(data, &varFrameActionButton)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrameActionButton(varFrameActionButton)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "index")
+		delete(additionalProperties, "action_type")
+		delete(additionalProperties, "target")
+		delete(additionalProperties, "post_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

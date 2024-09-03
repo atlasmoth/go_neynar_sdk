@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &UrlEmbed{}
 // UrlEmbed struct for UrlEmbed
 type UrlEmbed struct {
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UrlEmbed UrlEmbed
@@ -79,6 +79,11 @@ func (o UrlEmbed) MarshalJSON() ([]byte, error) {
 func (o UrlEmbed) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *UrlEmbed) UnmarshalJSON(data []byte) (err error) {
 
 	varUrlEmbed := _UrlEmbed{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUrlEmbed)
+	err = json.Unmarshal(data, &varUrlEmbed)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UrlEmbed(varUrlEmbed)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

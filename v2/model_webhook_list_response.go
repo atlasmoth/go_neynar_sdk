@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &WebhookListResponse{}
 // WebhookListResponse struct for WebhookListResponse
 type WebhookListResponse struct {
 	Webhooks []Webhook `json:"webhooks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookListResponse WebhookListResponse
@@ -79,6 +79,11 @@ func (o WebhookListResponse) MarshalJSON() ([]byte, error) {
 func (o WebhookListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["webhooks"] = o.Webhooks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *WebhookListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varWebhookListResponse := _WebhookListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebhookListResponse)
+	err = json.Unmarshal(data, &varWebhookListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookListResponse(varWebhookListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "webhooks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
