@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MuteReqBody type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &MuteReqBody{}
 // MuteReqBody struct for MuteReqBody
 type MuteReqBody struct {
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
+	Fid *int32 `json:"fid,omitempty"`
 	// User identifier (unsigned integer)
-	MutedFid int32 `json:"muted_fid"`
-	AdditionalProperties map[string]interface{}
+	MutedFid *int32 `json:"muted_fid,omitempty"`
 }
-
-type _MuteReqBody MuteReqBody
 
 // NewMuteReqBody instantiates a new MuteReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMuteReqBody(fid int32, mutedFid int32) *MuteReqBody {
+func NewMuteReqBody() *MuteReqBody {
 	this := MuteReqBody{}
-	this.Fid = fid
-	this.MutedFid = mutedFid
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewMuteReqBodyWithDefaults() *MuteReqBody {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *MuteReqBody) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteReqBody) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *MuteReqBody) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *MuteReqBody) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetMutedFid returns the MutedFid field value
+// GetMutedFid returns the MutedFid field value if set, zero value otherwise.
 func (o *MuteReqBody) GetMutedFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.MutedFid) {
 		var ret int32
 		return ret
 	}
-
-	return o.MutedFid
+	return *o.MutedFid
 }
 
-// GetMutedFidOk returns a tuple with the MutedFid field value
+// GetMutedFidOk returns a tuple with the MutedFid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteReqBody) GetMutedFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MutedFid) {
 		return nil, false
 	}
-	return &o.MutedFid, true
+	return o.MutedFid, true
 }
 
-// SetMutedFid sets field value
+// HasMutedFid returns a boolean if a field has been set.
+func (o *MuteReqBody) HasMutedFid() bool {
+	if o != nil && !IsNil(o.MutedFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetMutedFid gets a reference to the given int32 and assigns it to the MutedFid field.
 func (o *MuteReqBody) SetMutedFid(v int32) {
-	o.MutedFid = v
+	o.MutedFid = &v
 }
 
 func (o MuteReqBody) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o MuteReqBody) MarshalJSON() ([]byte, error) {
 
 func (o MuteReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["muted_fid"] = o.MutedFid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.MutedFid) {
+		toSerialize["muted_fid"] = o.MutedFid
+	}
 	return toSerialize, nil
-}
-
-func (o *MuteReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"muted_fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMuteReqBody := _MuteReqBody{}
-
-	err = json.Unmarshal(data, &varMuteReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MuteReqBody(varMuteReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "muted_fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMuteReqBody struct {

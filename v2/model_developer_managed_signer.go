@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DeveloperManagedSigner type satisfies the MappedNullable interface at compile time
@@ -21,24 +20,19 @@ var _ MappedNullable = &DeveloperManagedSigner{}
 // DeveloperManagedSigner struct for DeveloperManagedSigner
 type DeveloperManagedSigner struct {
 	// Ed25519 public key
-	PublicKey string `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
-	Status string `json:"status"`
+	PublicKey *string `json:"public_key,omitempty" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
+	Status *string `json:"status,omitempty"`
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
 	// User identifier (unsigned integer)
 	Fid *int32 `json:"fid,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _DeveloperManagedSigner DeveloperManagedSigner
 
 // NewDeveloperManagedSigner instantiates a new DeveloperManagedSigner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeveloperManagedSigner(publicKey string, status string) *DeveloperManagedSigner {
+func NewDeveloperManagedSigner() *DeveloperManagedSigner {
 	this := DeveloperManagedSigner{}
-	this.PublicKey = publicKey
-	this.Status = status
 	return &this
 }
 
@@ -50,52 +44,68 @@ func NewDeveloperManagedSignerWithDefaults() *DeveloperManagedSigner {
 	return &this
 }
 
-// GetPublicKey returns the PublicKey field value
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *DeveloperManagedSigner) GetPublicKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
-
-	return o.PublicKey
+	return *o.PublicKey
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeveloperManagedSigner) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
-	return &o.PublicKey, true
+	return o.PublicKey, true
 }
 
-// SetPublicKey sets field value
+// HasPublicKey returns a boolean if a field has been set.
+func (o *DeveloperManagedSigner) HasPublicKey() bool {
+	if o != nil && !IsNil(o.PublicKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
 func (o *DeveloperManagedSigner) SetPublicKey(v string) {
-	o.PublicKey = v
+	o.PublicKey = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DeveloperManagedSigner) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeveloperManagedSigner) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *DeveloperManagedSigner) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *DeveloperManagedSigner) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
 // GetSignerApprovalUrl returns the SignerApprovalUrl field value if set, zero value otherwise.
@@ -172,66 +182,19 @@ func (o DeveloperManagedSigner) MarshalJSON() ([]byte, error) {
 
 func (o DeveloperManagedSigner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["public_key"] = o.PublicKey
-	toSerialize["status"] = o.Status
+	if !IsNil(o.PublicKey) {
+		toSerialize["public_key"] = o.PublicKey
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.SignerApprovalUrl) {
 		toSerialize["signer_approval_url"] = o.SignerApprovalUrl
 	}
 	if !IsNil(o.Fid) {
 		toSerialize["fid"] = o.Fid
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *DeveloperManagedSigner) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"public_key",
-		"status",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDeveloperManagedSigner := _DeveloperManagedSigner{}
-
-	err = json.Unmarshal(data, &varDeveloperManagedSigner)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DeveloperManagedSigner(varDeveloperManagedSigner)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "public_key")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "signer_approval_url")
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableDeveloperManagedSigner struct {

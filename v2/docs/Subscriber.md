@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**User** | [**User**](User.md) |  | 
-**SubscribedTo** | [**SubscribedToObject**](SubscribedToObject.md) |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**User** | Pointer to [**User**](User.md) |  | [optional] 
+**SubscribedTo** | Pointer to [**SubscribedToObject**](SubscribedToObject.md) |  | [optional] 
 
 ## Methods
 
 ### NewSubscriber
 
-`func NewSubscriber(object string, user User, subscribedTo SubscribedToObject, ) *Subscriber`
+`func NewSubscriber() *Subscriber`
 
 NewSubscriber instantiates a new Subscriber object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Subscriber) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetUser
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetUser sets User field to given value.
 
+### HasUser
+
+`func (o *Subscriber) HasUser() bool`
+
+HasUser returns a boolean if a field has been set.
 
 ### GetSubscribedTo
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetSubscribedTo sets SubscribedTo field to given value.
 
+### HasSubscribedTo
+
+`func (o *Subscriber) HasSubscribedTo() bool`
+
+HasSubscribedTo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

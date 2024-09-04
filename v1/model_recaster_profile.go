@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RecasterProfile type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &RecasterProfile{}
 
 // RecasterProfile struct for RecasterProfile
 type RecasterProfile struct {
-	Bio RecasterProfileBio `json:"bio"`
-	AdditionalProperties map[string]interface{}
+	Bio *RecasterProfileBio `json:"bio,omitempty"`
 }
-
-type _RecasterProfile RecasterProfile
 
 // NewRecasterProfile instantiates a new RecasterProfile object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecasterProfile(bio RecasterProfileBio) *RecasterProfile {
+func NewRecasterProfile() *RecasterProfile {
 	this := RecasterProfile{}
-	this.Bio = bio
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewRecasterProfileWithDefaults() *RecasterProfile {
 	return &this
 }
 
-// GetBio returns the Bio field value
+// GetBio returns the Bio field value if set, zero value otherwise.
 func (o *RecasterProfile) GetBio() RecasterProfileBio {
-	if o == nil {
+	if o == nil || IsNil(o.Bio) {
 		var ret RecasterProfileBio
 		return ret
 	}
-
-	return o.Bio
+	return *o.Bio
 }
 
-// GetBioOk returns a tuple with the Bio field value
+// GetBioOk returns a tuple with the Bio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecasterProfile) GetBioOk() (*RecasterProfileBio, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Bio) {
 		return nil, false
 	}
-	return &o.Bio, true
+	return o.Bio, true
 }
 
-// SetBio sets field value
+// HasBio returns a boolean if a field has been set.
+func (o *RecasterProfile) HasBio() bool {
+	if o != nil && !IsNil(o.Bio) {
+		return true
+	}
+
+	return false
+}
+
+// SetBio gets a reference to the given RecasterProfileBio and assigns it to the Bio field.
 func (o *RecasterProfile) SetBio(v RecasterProfileBio) {
-	o.Bio = v
+	o.Bio = &v
 }
 
 func (o RecasterProfile) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o RecasterProfile) MarshalJSON() ([]byte, error) {
 
 func (o RecasterProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bio"] = o.Bio
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Bio) {
+		toSerialize["bio"] = o.Bio
 	}
-
 	return toSerialize, nil
-}
-
-func (o *RecasterProfile) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"bio",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRecasterProfile := _RecasterProfile{}
-
-	err = json.Unmarshal(data, &varRecasterProfile)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RecasterProfile(varRecasterProfile)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bio")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRecasterProfile struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserViewerContext type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &UserViewerContext{}
 // UserViewerContext Adds context on the viewer's follow relationship with the user.
 type UserViewerContext struct {
 	// Indicates if the viewer is following the user.
-	Following bool `json:"following"`
+	Following *bool `json:"following,omitempty"`
 	// Indicates if the viewer is followed by the user.
-	FollowedBy bool `json:"followed_by"`
-	AdditionalProperties map[string]interface{}
+	FollowedBy *bool `json:"followed_by,omitempty"`
 }
-
-type _UserViewerContext UserViewerContext
 
 // NewUserViewerContext instantiates a new UserViewerContext object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserViewerContext(following bool, followedBy bool) *UserViewerContext {
+func NewUserViewerContext() *UserViewerContext {
 	this := UserViewerContext{}
-	this.Following = following
-	this.FollowedBy = followedBy
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewUserViewerContextWithDefaults() *UserViewerContext {
 	return &this
 }
 
-// GetFollowing returns the Following field value
+// GetFollowing returns the Following field value if set, zero value otherwise.
 func (o *UserViewerContext) GetFollowing() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		var ret bool
 		return ret
 	}
-
-	return o.Following
+	return *o.Following
 }
 
-// GetFollowingOk returns a tuple with the Following field value
+// GetFollowingOk returns a tuple with the Following field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserViewerContext) GetFollowingOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		return nil, false
 	}
-	return &o.Following, true
+	return o.Following, true
 }
 
-// SetFollowing sets field value
+// HasFollowing returns a boolean if a field has been set.
+func (o *UserViewerContext) HasFollowing() bool {
+	if o != nil && !IsNil(o.Following) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowing gets a reference to the given bool and assigns it to the Following field.
 func (o *UserViewerContext) SetFollowing(v bool) {
-	o.Following = v
+	o.Following = &v
 }
 
-// GetFollowedBy returns the FollowedBy field value
+// GetFollowedBy returns the FollowedBy field value if set, zero value otherwise.
 func (o *UserViewerContext) GetFollowedBy() bool {
-	if o == nil {
+	if o == nil || IsNil(o.FollowedBy) {
 		var ret bool
 		return ret
 	}
-
-	return o.FollowedBy
+	return *o.FollowedBy
 }
 
-// GetFollowedByOk returns a tuple with the FollowedBy field value
+// GetFollowedByOk returns a tuple with the FollowedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserViewerContext) GetFollowedByOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowedBy) {
 		return nil, false
 	}
-	return &o.FollowedBy, true
+	return o.FollowedBy, true
 }
 
-// SetFollowedBy sets field value
+// HasFollowedBy returns a boolean if a field has been set.
+func (o *UserViewerContext) HasFollowedBy() bool {
+	if o != nil && !IsNil(o.FollowedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowedBy gets a reference to the given bool and assigns it to the FollowedBy field.
 func (o *UserViewerContext) SetFollowedBy(v bool) {
-	o.FollowedBy = v
+	o.FollowedBy = &v
 }
 
 func (o UserViewerContext) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o UserViewerContext) MarshalJSON() ([]byte, error) {
 
 func (o UserViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["following"] = o.Following
-	toSerialize["followed_by"] = o.FollowedBy
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Following) {
+		toSerialize["following"] = o.Following
 	}
-
+	if !IsNil(o.FollowedBy) {
+		toSerialize["followed_by"] = o.FollowedBy
+	}
 	return toSerialize, nil
-}
-
-func (o *UserViewerContext) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"following",
-		"followed_by",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserViewerContext := _UserViewerContext{}
-
-	err = json.Unmarshal(data, &varUserViewerContext)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserViewerContext(varUserViewerContext)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "following")
-		delete(additionalProperties, "followed_by")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserViewerContext struct {

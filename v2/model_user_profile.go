@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserProfile type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &UserProfile{}
 
 // UserProfile struct for UserProfile
 type UserProfile struct {
-	Bio UserProfileBio `json:"bio"`
-	AdditionalProperties map[string]interface{}
+	Bio *UserProfileBio `json:"bio,omitempty"`
 }
-
-type _UserProfile UserProfile
 
 // NewUserProfile instantiates a new UserProfile object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserProfile(bio UserProfileBio) *UserProfile {
+func NewUserProfile() *UserProfile {
 	this := UserProfile{}
-	this.Bio = bio
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewUserProfileWithDefaults() *UserProfile {
 	return &this
 }
 
-// GetBio returns the Bio field value
+// GetBio returns the Bio field value if set, zero value otherwise.
 func (o *UserProfile) GetBio() UserProfileBio {
-	if o == nil {
+	if o == nil || IsNil(o.Bio) {
 		var ret UserProfileBio
 		return ret
 	}
-
-	return o.Bio
+	return *o.Bio
 }
 
-// GetBioOk returns a tuple with the Bio field value
+// GetBioOk returns a tuple with the Bio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserProfile) GetBioOk() (*UserProfileBio, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Bio) {
 		return nil, false
 	}
-	return &o.Bio, true
+	return o.Bio, true
 }
 
-// SetBio sets field value
+// HasBio returns a boolean if a field has been set.
+func (o *UserProfile) HasBio() bool {
+	if o != nil && !IsNil(o.Bio) {
+		return true
+	}
+
+	return false
+}
+
+// SetBio gets a reference to the given UserProfileBio and assigns it to the Bio field.
 func (o *UserProfile) SetBio(v UserProfileBio) {
-	o.Bio = v
+	o.Bio = &v
 }
 
 func (o UserProfile) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o UserProfile) MarshalJSON() ([]byte, error) {
 
 func (o UserProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bio"] = o.Bio
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Bio) {
+		toSerialize["bio"] = o.Bio
 	}
-
 	return toSerialize, nil
-}
-
-func (o *UserProfile) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"bio",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserProfile := _UserProfile{}
-
-	err = json.Unmarshal(data, &varUserProfile)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserProfile(varUserProfile)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bio")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserProfile struct {

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Height** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 **Width** | Pointer to **int32** |  | [optional] 
 **Alt** | Pointer to **string** |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewImageObject
 
-`func NewImageObject(url string, ) *ImageObject`
+`func NewImageObject() *ImageObject`
 
 NewImageObject instantiates a new ImageObject object
 This constructor will assign default values to properties that have it defined,
@@ -98,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *ImageObject) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetWidth
 

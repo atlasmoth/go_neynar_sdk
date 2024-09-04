@@ -15,7 +15,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -24,7 +24,7 @@ paths:
         explode: true
         in: query
         name: dbstats
-        required: true
+        required: false
         schema:
           type: boolean
         style: form
@@ -52,7 +52,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -62,7 +62,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -71,7 +71,7 @@ paths:
         explode: true
         in: query
         name: hash
-        required: true
+        required: false
         schema:
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
@@ -100,7 +100,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -110,7 +110,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -163,7 +163,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -173,7 +173,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -226,7 +226,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -306,7 +306,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -315,7 +315,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -323,7 +323,7 @@ paths:
         explode: true
         in: query
         name: target_fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -331,7 +331,7 @@ paths:
         explode: true
         in: query
         name: target_hash
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -340,7 +340,7 @@ paths:
         explode: true
         in: query
         name: reaction_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
@@ -368,7 +368,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -377,7 +377,7 @@ paths:
         explode: true
         in: query
         name: target_fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -385,7 +385,7 @@ paths:
         explode: true
         in: query
         name: target_hash
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -394,7 +394,7 @@ paths:
         explode: true
         in: query
         name: reaction_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
@@ -447,7 +447,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -456,7 +456,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -465,7 +465,7 @@ paths:
         explode: true
         in: query
         name: reaction_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
@@ -518,7 +518,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -528,7 +528,7 @@ paths:
         explode: true
         in: query
         name: url
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -537,7 +537,7 @@ paths:
         explode: true
         in: query
         name: reaction_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
@@ -590,7 +590,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -599,7 +599,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -607,7 +607,7 @@ paths:
         explode: true
         in: query
         name: target_fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -615,7 +615,7 @@ paths:
         explode: true
         in: query
         name: link_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/LinkType'
         style: form
@@ -643,7 +643,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -652,7 +652,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -713,7 +713,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -722,7 +722,7 @@ paths:
         explode: true
         in: query
         name: target_fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -777,7 +777,7 @@ paths:
       - Links
   /v1/userDataByFid:
     get:
-      description: "**Note:** one of two different response schemas is returned based\
+      description: "**Note:** one of two different response schemas is returned  based\
         \ on whether the caller provides the `user_data_type` parameter. If included,\
         \ a single `UserDataAdd` message is returned (or a `not_found` error). If\
         \ omitted, a paginated list of `UserDataAdd` messages is returned instead"
@@ -787,7 +787,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -796,7 +796,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -858,7 +858,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -912,7 +912,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -920,7 +920,7 @@ paths:
       - explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -949,7 +949,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -958,7 +958,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -986,7 +986,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1000,7 +1000,7 @@ paths:
         explode: true
         in: query
         name: name
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1028,7 +1028,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1037,7 +1037,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -1099,7 +1099,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1108,7 +1108,7 @@ paths:
         explode: true
         in: query
         name: address
-        required: true
+        required: false
         schema:
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
@@ -1137,7 +1137,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1146,7 +1146,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -1154,7 +1154,7 @@ paths:
         explode: true
         in: query
         name: event_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/OnChainEventType'
         style: form
@@ -1176,17 +1176,17 @@ paths:
       - OnChainEvents
   /v1/onChainSignersByFid:
     get:
-      description: "**Note:** one of two different response schemas is returned based\
+      description: "**Note:** one of two different response schemas is returned  based\
         \ on whether the caller provides the `signer` parameter. If included, a single\
         \ `OnChainEventSigner` message is returned (or a `not_found` error). If omitted,\
-        \ a non-paginated list of `OnChainEventSigner` messages is returned instead"
+        \ a  non-paginated list of `OnChainEventSigner` messages is returned instead"
       operationId: ListOnChainSignersByFid
       parameters:
       - description: API key required for authentication.
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1195,7 +1195,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -1236,7 +1236,6 @@ paths:
         description: "* \nA Message is a delta operation on the Farcaster network.\
           \ The message protobuf is an envelope \nthat wraps a MessageData object\
           \ and contains a hash and signature which can verify its authenticity."
-        required: true
       responses:
         "200":
           content:
@@ -1264,7 +1263,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1278,7 +1277,6 @@ paths:
         description: "* \nA Message is a delta operation on the Farcaster network.\
           \ The message protobuf is an envelope \nthat wraps a MessageData object\
           \ and contains a hash and signature which can verify its authenticity."
-        required: true
       responses:
         "200":
           content:
@@ -1306,14 +1304,14 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
         style: simple
-      - description: "An optional Hub Id to start getting events from. This is also\
-          \ returned from the API as nextPageEventId, which can be used to page through\
-          \ all the Hub events. Set it to 0 to start from the first event"
+      - description: "An optional Hub Id to start getting events from.  This is also\
+          \ returned from the API as nextPageEventId, which  can be used to page through\
+          \ all the Hub events. Set it to 0  to start from the first event"
         explode: true
         in: query
         name: from_event_id
@@ -1345,7 +1343,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1354,7 +1352,7 @@ paths:
         explode: true
         in: query
         name: event_id
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -1381,7 +1379,7 @@ components:
       explode: false
       in: header
       name: api_key
-      required: true
+      required: false
       schema:
         default: NEYNAR_API_DOCS
         type: string
@@ -1428,8 +1426,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/CastAdd_allOf_data'
-        required:
-        - data
         type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
@@ -1521,12 +1517,6 @@ components:
             $ref: '#/components/schemas/Embed'
           title: URLs or cast ids to be embedded in the cast
           type: array
-      required:
-      - embeds
-      - embedsDeprecated
-      - mentions
-      - mentionsPositions
-      - text
       type: object
     CastEmbed:
       example:
@@ -1536,8 +1526,6 @@ components:
       properties:
         castId:
           $ref: '#/components/schemas/CastId'
-      required:
-      - castId
       type: object
     CastRemove:
       allOf:
@@ -1545,8 +1533,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/CastRemove_allOf_data'
-        required:
-        - data
         type: object
     CastId:
       description: Identifier used to look up a Cast
@@ -1561,9 +1547,6 @@ components:
         hash:
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
-      required:
-      - fid
-      - hash
       type: object
     CastHash:
       pattern: "^0x[0-9a-fA-F]{40}$"
@@ -1576,8 +1559,6 @@ components:
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           title: Hash of the cast to remove
           type: string
-      required:
-      - targetHash
       type: object
     DbStats:
       example:
@@ -1594,10 +1575,6 @@ components:
         numFnameEvents:
           format: uint64
           type: integer
-      required:
-      - numFidEvents
-      - numFnameEvents
-      - numMessages
       type: object
     Embed:
       oneOf:
@@ -1627,13 +1604,6 @@ components:
           type: string
         metadata:
           $ref: '#/components/schemas/ErrorResponse_metadata'
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
       type: object
     FarcasterNetwork:
       default: FARCASTER_NETWORK_MAINNET
@@ -1663,9 +1633,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - fids
-      - nextPageToken
       type: object
     FrameActionBody:
       description: A Farcaster Frame action
@@ -1681,10 +1648,6 @@ components:
           type: integer
         castId:
           $ref: '#/components/schemas/CastId'
-      required:
-      - buttonIndex
-      - castId
-      - url
       type: object
     HashScheme:
       default: HASH_SCHEME_BLAKE3
@@ -1817,10 +1780,6 @@ components:
           type: integer
         mergeMessageBody:
           $ref: '#/components/schemas/MergeMessageBody'
-      required:
-      - id
-      - mergeMessageBody
-      - type
       type: object
     HubEventPruneMessage:
       properties:
@@ -1832,10 +1791,6 @@ components:
           type: integer
         pruneMessageBody:
           $ref: '#/components/schemas/PruneMessageBody'
-      required:
-      - id
-      - pruneMessageBody
-      - type
       type: object
     HubEventRevokeMessage:
       properties:
@@ -1847,10 +1802,6 @@ components:
           type: integer
         revokeMessageBody:
           $ref: '#/components/schemas/RevokeMessageBody'
-      required:
-      - id
-      - revokeMessageBody
-      - type
       type: object
     HubEventMergeUsernameProof:
       properties:
@@ -1862,10 +1813,6 @@ components:
           type: integer
         mergeUsernameProofBody:
           $ref: '#/components/schemas/MergeUserNameProofBody'
-      required:
-      - id
-      - mergeUsernameProofBody
-      - type
       type: object
     HubEventMergeOnChainEvent:
       properties:
@@ -1877,10 +1824,6 @@ components:
           type: integer
         mergeOnChainEventBody:
           $ref: '#/components/schemas/MergeOnChainEventBody'
-      required:
-      - id
-      - mergeOnChainEventBody
-      - type
       type: object
     HubInfoResponse:
       example:
@@ -1910,13 +1853,6 @@ components:
         hubOperatorFid:
           format: uint64
           type: integer
-      required:
-      - hubOperatorFid
-      - isSyncing
-      - nickname
-      - peerId
-      - rootHash
-      - version
       title: Response Types for the Sync RPC Methods
       type: object
     IdRegisterEventBody:
@@ -1940,11 +1876,6 @@ components:
           example: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
           pattern: "^0x[a-fA-F0-9]*$"
           type: string
-      required:
-      - eventType
-      - from
-      - recoveryAddress
-      - to
       type: object
     IdRegisterEventType:
       default: ID_REGISTER_EVENT_TYPE_REGISTER
@@ -1959,8 +1890,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/LinkAdd_allOf_data'
-        required:
-        - data
         type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
@@ -1995,9 +1924,6 @@ components:
           format: uint64
           title: The fid the link relates to
           type: integer
-      required:
-      - targetFid
-      - type
       type: object
     LinkRemove:
       allOf:
@@ -2005,8 +1931,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/LinkRemove_allOf_data'
-        required:
-        - data
         type: object
     LinkType:
       default: follow
@@ -2120,16 +2044,11 @@ components:
           items:
             $ref: '#/components/schemas/Message'
           type: array
-      required:
-      - deletedMessages
-      - message
       type: object
     MergeOnChainEventBody:
       properties:
         onChainEvent:
           $ref: '#/components/schemas/OnChainEvent'
-      required:
-      - onChainEvent
       type: object
     MergeUserNameProofBody:
       properties:
@@ -2147,8 +2066,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/Message_allOf_data'
-        required:
-        - data
         type: object
       - $ref: '#/components/schemas/MessageCommon'
       description: "* \nA Message is a delta operation on the Farcaster network. The\
@@ -2206,12 +2123,6 @@ components:
           pattern: "^0x[0-9a-fA-F]+$"
           title: Public key or address of the key pair that produced the signature
           type: string
-      required:
-      - hash
-      - hashScheme
-      - signature
-      - signatureScheme
-      - signer
       type: object
     MessageDataCommon:
       properties:
@@ -2227,10 +2138,6 @@ components:
           type: integer
         network:
           $ref: '#/components/schemas/FarcasterNetwork'
-      required:
-      - fid
-      - network
-      - timestamp
       type: object
     MessageDataCastAdd:
       allOf:
@@ -2238,8 +2145,6 @@ components:
       - properties:
           castAddBody:
             $ref: '#/components/schemas/CastAddBody'
-        required:
-        - castAddBody
         type: object
       example:
         fid: 2
@@ -2273,8 +2178,6 @@ components:
       - properties:
           castRemoveBody:
             $ref: '#/components/schemas/CastRemoveBody'
-        required:
-        - castRemoveBody
         type: object
     MessageDataFrameAction:
       allOf:
@@ -2282,8 +2185,6 @@ components:
       - properties:
           frameActionBody:
             $ref: '#/components/schemas/FrameActionBody'
-        required:
-        - frameActionBody
         type: object
     MessageDataLink:
       allOf:
@@ -2291,8 +2192,6 @@ components:
       - properties:
           linkBody:
             $ref: '#/components/schemas/LinkBody'
-        required:
-        - linkBody
         type: object
     MessageDataReaction:
       allOf:
@@ -2300,8 +2199,6 @@ components:
       - properties:
           reactionBody:
             $ref: '#/components/schemas/ReactionBody'
-        required:
-        - reactionBody
         type: object
     MessageDataUserDataAdd:
       allOf:
@@ -2309,8 +2206,6 @@ components:
       - properties:
           userDataBody:
             $ref: '#/components/schemas/UserDataBody'
-        required:
-        - userDataBody
         type: object
     MessageDataUsernameProof:
       allOf:
@@ -2318,8 +2213,6 @@ components:
       - properties:
           usernameProofBody:
             $ref: '#/components/schemas/UserNameProof'
-        required:
-        - usernameProofBody
         type: object
     MessageDataVerificationAdd:
       allOf:
@@ -2327,8 +2220,6 @@ components:
       - properties:
           verificationAddEthAddressBody:
             $ref: '#/components/schemas/VerificationAddEthAddressBody'
-        required:
-        - verificationAddEthAddressBody
         type: object
     MessageDataVerificationRemove:
       allOf:
@@ -2336,8 +2227,6 @@ components:
       - properties:
           verificationRemoveBody:
             $ref: '#/components/schemas/VerificationRemoveBody'
-        required:
-        - verificationRemoveBody
         type: object
     MessageType:
       default: MESSAGE_TYPE_CAST_ADD
@@ -2403,16 +2292,6 @@ components:
           type: integer
         fid:
           type: integer
-      required:
-      - blockHash
-      - blockNumber
-      - blockTimestamp
-      - chainId
-      - fid
-      - logIndex
-      - transactionHash
-      - txIndex
-      - type
       type: object
     OnChainEventSigner:
       allOf:
@@ -2420,8 +2299,6 @@ components:
       - properties:
           signerEventBody:
             $ref: '#/components/schemas/SignerEventBody'
-        required:
-        - signerEventBody
         type: object
       example:
         fid: 2
@@ -2445,8 +2322,6 @@ components:
       - properties:
           signerMigratedEventBody:
             $ref: '#/components/schemas/SignerMigratedEventBody'
-        required:
-        - signerMigratedEventBody
         type: object
     OnChainEventIdRegister:
       allOf:
@@ -2454,8 +2329,6 @@ components:
       - properties:
           idRegisterEventBody:
             $ref: '#/components/schemas/IdRegisterEventBody'
-        required:
-        - idRegisterEventBody
         type: object
       example:
         fid: 2
@@ -2478,8 +2351,6 @@ components:
       - properties:
           storageRentEventBody:
             $ref: '#/components/schemas/StorageRentEventBody'
-        required:
-        - storageRentEventBody
         type: object
     OnChainEventType:
       default: EVENT_TYPE_SIGNER
@@ -2493,8 +2364,6 @@ components:
       properties:
         message:
           $ref: '#/components/schemas/Message'
-      required:
-      - message
       type: object
     Reaction:
       allOf:
@@ -2502,8 +2371,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/Reaction_allOf_data'
-        required:
-        - data
         type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
@@ -2538,8 +2405,6 @@ components:
         targetUrl:
           title: URL to react to
           type: string
-      required:
-      - type
       type: object
     ReactionRemove:
       allOf:
@@ -2547,8 +2412,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/MessageDataReaction'
-        required:
-        - data
         type: object
     ReactionType:
       default: REACTION_TYPE_LIKE
@@ -2564,8 +2427,6 @@ components:
       properties:
         message:
           $ref: '#/components/schemas/Message'
-      required:
-      - message
       type: object
     SignatureScheme:
       default: SIGNATURE_SCHEME_ED25519
@@ -2600,12 +2461,6 @@ components:
         metadataType:
           format: int64
           type: integer
-      required:
-      - eventType
-      - key
-      - keyType
-      - metadata
-      - metadataType
       type: object
     SignerEventType:
       default: SIGNER_EVENT_TYPE_ADD
@@ -2619,8 +2474,6 @@ components:
         migratedAt:
           format: int64
           type: integer
-      required:
-      - migratedAt
       type: object
     StorageLimit:
       example:
@@ -2632,9 +2485,6 @@ components:
         limit:
           format: uint64
           type: integer
-      required:
-      - limit
-      - storeType
       type: object
     StorageLimitsResponse:
       example:
@@ -2648,8 +2498,6 @@ components:
           items:
             $ref: '#/components/schemas/StorageLimit'
           type: array
-      required:
-      - limits
       type: object
     StorageRentEventBody:
       properties:
@@ -2663,10 +2511,6 @@ components:
         expiry:
           format: int64
           type: integer
-      required:
-      - expiry
-      - payer
-      - units
       type: object
     StoreType:
       default: STORE_TYPE_CASTS
@@ -2683,8 +2527,6 @@ components:
         url:
           format: uri
           type: string
-      required:
-      - url
       type: object
     UserDataAdd:
       allOf:
@@ -2692,8 +2534,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/UserDataAdd_allOf_data'
-        required:
-        - data
         type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
@@ -2720,9 +2560,6 @@ components:
         value:
           title: Value of the metadata
           type: string
-      required:
-      - type
-      - value
       type: object
     UserDataType:
       default: USER_DATA_TYPE_PFP
@@ -2767,13 +2604,6 @@ components:
           type: integer
         type:
           $ref: '#/components/schemas/UserNameType'
-      required:
-      - fid
-      - name
-      - owner
-      - signature
-      - timestamp
-      - type
       type: object
     UsernameProofsResponse:
       example:
@@ -2795,8 +2625,6 @@ components:
           items:
             $ref: '#/components/schemas/UserNameProof'
           type: array
-      required:
-      - proofs
       type: object
     UserNameType:
       default: USERNAME_TYPE_FNAME
@@ -2844,9 +2672,6 @@ components:
           type: boolean
         message:
           $ref: '#/components/schemas/Message'
-      required:
-      - message
-      - valid
       type: object
     Verification:
       allOf:
@@ -2854,8 +2679,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/Verification_allOf_data'
-        required:
-        - data
         type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
@@ -2892,10 +2715,6 @@ components:
           pattern: "^(0x[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{44})$"
           title: Hash of the latest Ethereum/Solana block when the signature was produced
           type: string
-      required:
-      - address
-      - blockHash
-      - ethSignature
       type: object
     VerificationRemove:
       allOf:
@@ -2903,8 +2722,6 @@ components:
       - properties:
           data:
             $ref: '#/components/schemas/VerificationRemove_allOf_data'
-        required:
-        - data
         type: object
     VerificationRemoveBody:
       description: Removes a Verification of any type
@@ -2913,8 +2730,6 @@ components:
           pattern: "^0x[A-Za-z0-9]{40}$"
           title: Address of the Verification to remove
           type: string
-      required:
-      - address
       type: object
     ListCastsByFid_200_response:
       example:
@@ -2993,9 +2808,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - messages
-      - nextPageToken
       type: object
     ListReactionsByCast_200_response:
       example:
@@ -3042,9 +2854,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - messages
-      - nextPageToken
       type: object
     ListLinksByFid_200_response:
       example:
@@ -3087,9 +2896,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - messages
-      - nextPageToken
       type: object
     GetUserDataByFid_200_response_oneOf:
       properties:
@@ -3101,9 +2907,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - messages
-      - nextPageToken
       type: object
     GetUserDataByFid_200_response:
       oneOf:
@@ -3150,9 +2953,6 @@ components:
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
-      required:
-      - messages
-      - nextPageToken
       type: object
     ListOnChainEventsByFid_200_response:
       example:
@@ -3192,8 +2992,6 @@ components:
           items:
             $ref: '#/components/schemas/OnChainEvent'
           type: array
-      required:
-      - events
       type: object
     ListOnChainSignersByFid_200_response_oneOf:
       properties:
@@ -3201,8 +2999,6 @@ components:
           items:
             $ref: '#/components/schemas/OnChainEventSigner'
           type: array
-      required:
-      - events
       type: object
     ListOnChainSignersByFid_200_response:
       oneOf:
@@ -3415,9 +3211,6 @@ components:
           items:
             $ref: '#/components/schemas/HubEvent'
           type: array
-      required:
-      - events
-      - nextPageEventId
       type: object
     CastAdd_allOf_data:
       allOf:
@@ -3425,8 +3218,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
       example:
         fid: 2
@@ -3461,8 +3252,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
     ErrorResponse_metadata:
       example:
@@ -3474,8 +3263,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - errcode
       type: object
     LinkAdd_allOf_data:
       allOf:
@@ -3483,8 +3270,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
       example:
         fid: 2
@@ -3501,8 +3286,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
     Message_allOf_data:
       discriminator:
@@ -3535,8 +3318,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
       example:
         fid: 2
@@ -3555,8 +3336,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
       example:
         fid: 2
@@ -3572,8 +3351,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
       example:
         fid: 2
@@ -3590,8 +3367,6 @@ components:
       - properties:
           type:
             $ref: '#/components/schemas/MessageType'
-        required:
-        - type
         type: object
   securitySchemes:
     usernamePassword:

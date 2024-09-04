@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**ParentHash** | **NullableString** |  | 
-**ParentUrl** | **NullableString** |  | 
-**ThreadHash** | **string** |  | 
-**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
-**MentionedProfiles** | [**[]User**](User.md) |  | 
-**Author** | [**CastAuthor**](CastAuthor.md) |  | 
-**Text** | **string** |  | 
-**Timestamp** | **time.Time** |  | 
-**Embeds** | [**[]EmbedUrl**](EmbedUrl.md) |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**ParentHash** | Pointer to **NullableString** |  | [optional] 
+**ParentUrl** | Pointer to **NullableString** |  | [optional] 
+**ThreadHash** | Pointer to **string** |  | [optional] 
+**ParentAuthor** | Pointer to [**CastParentAuthor**](CastParentAuthor.md) |  | [optional] 
+**MentionedProfiles** | Pointer to [**[]User**](User.md) |  | [optional] 
+**Author** | Pointer to [**CastAuthor**](CastAuthor.md) |  | [optional] 
+**Text** | Pointer to **string** |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**Embeds** | Pointer to [**[]EmbedUrl**](EmbedUrl.md) |  | [optional] 
 **Type** | Pointer to [**CastType**](CastType.md) |  | [optional] 
-**Reactions** | [**CastWithInteractionsReactions**](CastWithInteractionsReactions.md) |  | 
-**Recasts** | [**CastWithInteractionsRecasts**](CastWithInteractionsRecasts.md) |  | 
-**Recasters** | **[]string** |  | 
+**Reactions** | Pointer to [**CastWithInteractionsReactions**](CastWithInteractionsReactions.md) |  | [optional] 
+**Recasts** | Pointer to [**CastWithInteractionsRecasts**](CastWithInteractionsRecasts.md) |  | [optional] 
+**Recasters** | Pointer to **[]string** |  | [optional] 
 **ViewerContext** | Pointer to [**ViewerContext**](ViewerContext.md) |  | [optional] 
-**Replies** | [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | 
+**Replies** | Pointer to [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | [optional] 
 
 ## Methods
 
 ### NewCastWithInteractions
 
-`func NewCastWithInteractions(hash string, parentHash NullableString, parentUrl NullableString, threadHash string, parentAuthor CastParentAuthor, mentionedProfiles []User, author CastAuthor, text string, timestamp time.Time, embeds []EmbedUrl, reactions CastWithInteractionsReactions, recasts CastWithInteractionsRecasts, recasters []string, replies CastWithInteractionsReplies, ) *CastWithInteractions`
+`func NewCastWithInteractions() *CastWithInteractions`
 
 NewCastWithInteractions instantiates a new CastWithInteractions object
 This constructor will assign default values to properties that have it defined,
@@ -59,6 +59,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *CastWithInteractions) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetParentHash
 
@@ -79,6 +84,11 @@ and a boolean to check if the value has been set.
 
 SetParentHash sets ParentHash field to given value.
 
+### HasParentHash
+
+`func (o *CastWithInteractions) HasParentHash() bool`
+
+HasParentHash returns a boolean if a field has been set.
 
 ### SetParentHashNil
 
@@ -109,6 +119,11 @@ and a boolean to check if the value has been set.
 
 SetParentUrl sets ParentUrl field to given value.
 
+### HasParentUrl
+
+`func (o *CastWithInteractions) HasParentUrl() bool`
+
+HasParentUrl returns a boolean if a field has been set.
 
 ### SetParentUrlNil
 
@@ -139,6 +154,11 @@ and a boolean to check if the value has been set.
 
 SetThreadHash sets ThreadHash field to given value.
 
+### HasThreadHash
+
+`func (o *CastWithInteractions) HasThreadHash() bool`
+
+HasThreadHash returns a boolean if a field has been set.
 
 ### GetParentAuthor
 
@@ -159,6 +179,11 @@ and a boolean to check if the value has been set.
 
 SetParentAuthor sets ParentAuthor field to given value.
 
+### HasParentAuthor
+
+`func (o *CastWithInteractions) HasParentAuthor() bool`
+
+HasParentAuthor returns a boolean if a field has been set.
 
 ### GetMentionedProfiles
 
@@ -179,6 +204,11 @@ and a boolean to check if the value has been set.
 
 SetMentionedProfiles sets MentionedProfiles field to given value.
 
+### HasMentionedProfiles
+
+`func (o *CastWithInteractions) HasMentionedProfiles() bool`
+
+HasMentionedProfiles returns a boolean if a field has been set.
 
 ### GetAuthor
 
@@ -199,6 +229,11 @@ and a boolean to check if the value has been set.
 
 SetAuthor sets Author field to given value.
 
+### HasAuthor
+
+`func (o *CastWithInteractions) HasAuthor() bool`
+
+HasAuthor returns a boolean if a field has been set.
 
 ### GetText
 
@@ -219,6 +254,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *CastWithInteractions) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -239,6 +279,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *CastWithInteractions) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetEmbeds
 
@@ -259,6 +304,11 @@ and a boolean to check if the value has been set.
 
 SetEmbeds sets Embeds field to given value.
 
+### HasEmbeds
+
+`func (o *CastWithInteractions) HasEmbeds() bool`
+
+HasEmbeds returns a boolean if a field has been set.
 
 ### GetType
 
@@ -304,6 +354,11 @@ and a boolean to check if the value has been set.
 
 SetReactions sets Reactions field to given value.
 
+### HasReactions
+
+`func (o *CastWithInteractions) HasReactions() bool`
+
+HasReactions returns a boolean if a field has been set.
 
 ### GetRecasts
 
@@ -324,6 +379,11 @@ and a boolean to check if the value has been set.
 
 SetRecasts sets Recasts field to given value.
 
+### HasRecasts
+
+`func (o *CastWithInteractions) HasRecasts() bool`
+
+HasRecasts returns a boolean if a field has been set.
 
 ### GetRecasters
 
@@ -344,6 +404,11 @@ and a boolean to check if the value has been set.
 
 SetRecasters sets Recasters field to given value.
 
+### HasRecasters
+
+`func (o *CastWithInteractions) HasRecasters() bool`
+
+HasRecasters returns a boolean if a field has been set.
 
 ### GetViewerContext
 
@@ -389,6 +454,11 @@ and a boolean to check if the value has been set.
 
 SetReplies sets Replies field to given value.
 
+### HasReplies
+
+`func (o *CastWithInteractions) HasReplies() bool`
+
+HasReplies returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserProfileBio type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &UserProfileBio{}
 
 // UserProfileBio struct for UserProfileBio
 type UserProfileBio struct {
-	Text string `json:"text"`
-	MentionedProfiles []string `json:"mentionedProfiles"`
-	AdditionalProperties map[string]interface{}
+	Text *string `json:"text,omitempty"`
+	MentionedProfiles []string `json:"mentionedProfiles,omitempty"`
 }
-
-type _UserProfileBio UserProfileBio
 
 // NewUserProfileBio instantiates a new UserProfileBio object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserProfileBio(text string, mentionedProfiles []string) *UserProfileBio {
+func NewUserProfileBio() *UserProfileBio {
 	this := UserProfileBio{}
-	this.Text = text
-	this.MentionedProfiles = mentionedProfiles
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewUserProfileBioWithDefaults() *UserProfileBio {
 	return &this
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *UserProfileBio) GetText() string {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserProfileBio) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Text, true
 }
 
-// SetText sets field value
+// HasText returns a boolean if a field has been set.
+func (o *UserProfileBio) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
+		return true
+	}
+
+	return false
+}
+
+// SetText gets a reference to the given string and assigns it to the Text field.
 func (o *UserProfileBio) SetText(v string) {
-	o.Text = v
+	o.Text = &v
 }
 
-// GetMentionedProfiles returns the MentionedProfiles field value
+// GetMentionedProfiles returns the MentionedProfiles field value if set, zero value otherwise.
 func (o *UserProfileBio) GetMentionedProfiles() []string {
-	if o == nil {
+	if o == nil || IsNil(o.MentionedProfiles) {
 		var ret []string
 		return ret
 	}
-
 	return o.MentionedProfiles
 }
 
-// GetMentionedProfilesOk returns a tuple with the MentionedProfiles field value
+// GetMentionedProfilesOk returns a tuple with the MentionedProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserProfileBio) GetMentionedProfilesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MentionedProfiles) {
 		return nil, false
 	}
 	return o.MentionedProfiles, true
 }
 
-// SetMentionedProfiles sets field value
+// HasMentionedProfiles returns a boolean if a field has been set.
+func (o *UserProfileBio) HasMentionedProfiles() bool {
+	if o != nil && !IsNil(o.MentionedProfiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetMentionedProfiles gets a reference to the given []string and assigns it to the MentionedProfiles field.
 func (o *UserProfileBio) SetMentionedProfiles(v []string) {
 	o.MentionedProfiles = v
 }
@@ -104,58 +114,13 @@ func (o UserProfileBio) MarshalJSON() ([]byte, error) {
 
 func (o UserProfileBio) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["text"] = o.Text
-	toSerialize["mentionedProfiles"] = o.MentionedProfiles
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
-
+	if !IsNil(o.MentionedProfiles) {
+		toSerialize["mentionedProfiles"] = o.MentionedProfiles
+	}
 	return toSerialize, nil
-}
-
-func (o *UserProfileBio) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"text",
-		"mentionedProfiles",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserProfileBio := _UserProfileBio{}
-
-	err = json.Unmarshal(data, &varUserProfileBio)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserProfileBio(varUserProfileBio)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "text")
-		delete(additionalProperties, "mentionedProfiles")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserProfileBio struct {

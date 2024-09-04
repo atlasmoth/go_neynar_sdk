@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NextPageEventId** | **int32** |  | 
-**Events** | [**[]HubEvent**](HubEvent.md) |  | 
+**NextPageEventId** | Pointer to **int32** |  | [optional] 
+**Events** | Pointer to [**[]HubEvent**](HubEvent.md) |  | [optional] 
 
 ## Methods
 
 ### NewListEvents200Response
 
-`func NewListEvents200Response(nextPageEventId int32, events []HubEvent, ) *ListEvents200Response`
+`func NewListEvents200Response() *ListEvents200Response`
 
 NewListEvents200Response instantiates a new ListEvents200Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageEventId sets NextPageEventId field to given value.
 
+### HasNextPageEventId
+
+`func (o *ListEvents200Response) HasNextPageEventId() bool`
+
+HasNextPageEventId returns a boolean if a field has been set.
 
 ### GetEvents
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetEvents sets Events field to given value.
 
+### HasEvents
+
+`func (o *ListEvents200Response) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

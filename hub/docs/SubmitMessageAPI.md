@@ -25,7 +25,7 @@ import (
 )
 
 func main() {
-	body := os.NewFile(1234, "some_file") // *os.File | *  A Message is a delta operation on the Farcaster network. The message protobuf is an envelope  that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
+	body := os.NewFile(1234, "some_file") // *os.File | *  A Message is a delta operation on the Farcaster network. The message protobuf is an envelope  that wraps a MessageData object and contains a hash and signature which can verify its authenticity. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

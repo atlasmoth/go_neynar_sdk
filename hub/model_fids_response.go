@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FidsResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &FidsResponse{}
 
 // FidsResponse struct for FidsResponse
 type FidsResponse struct {
-	Fids []int32 `json:"fids"`
-	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	AdditionalProperties map[string]interface{}
+	Fids []int32 `json:"fids,omitempty"`
+	NextPageToken *string `json:"nextPageToken,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 }
-
-type _FidsResponse FidsResponse
 
 // NewFidsResponse instantiates a new FidsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFidsResponse(fids []int32, nextPageToken string) *FidsResponse {
+func NewFidsResponse() *FidsResponse {
 	this := FidsResponse{}
-	this.Fids = fids
-	this.NextPageToken = nextPageToken
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewFidsResponseWithDefaults() *FidsResponse {
 	return &this
 }
 
-// GetFids returns the Fids field value
+// GetFids returns the Fids field value if set, zero value otherwise.
 func (o *FidsResponse) GetFids() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		var ret []int32
 		return ret
 	}
-
 	return o.Fids
 }
 
-// GetFidsOk returns a tuple with the Fids field value
+// GetFidsOk returns a tuple with the Fids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FidsResponse) GetFidsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		return nil, false
 	}
 	return o.Fids, true
 }
 
-// SetFids sets field value
+// HasFids returns a boolean if a field has been set.
+func (o *FidsResponse) HasFids() bool {
+	if o != nil && !IsNil(o.Fids) {
+		return true
+	}
+
+	return false
+}
+
+// SetFids gets a reference to the given []int32 and assigns it to the Fids field.
 func (o *FidsResponse) SetFids(v []int32) {
 	o.Fids = v
 }
 
-// GetNextPageToken returns the NextPageToken field value
+// GetNextPageToken returns the NextPageToken field value if set, zero value otherwise.
 func (o *FidsResponse) GetNextPageToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		var ret string
 		return ret
 	}
-
-	return o.NextPageToken
+	return *o.NextPageToken
 }
 
-// GetNextPageTokenOk returns a tuple with the NextPageToken field value
+// GetNextPageTokenOk returns a tuple with the NextPageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FidsResponse) GetNextPageTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		return nil, false
 	}
-	return &o.NextPageToken, true
+	return o.NextPageToken, true
 }
 
-// SetNextPageToken sets field value
+// HasNextPageToken returns a boolean if a field has been set.
+func (o *FidsResponse) HasNextPageToken() bool {
+	if o != nil && !IsNil(o.NextPageToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageToken gets a reference to the given string and assigns it to the NextPageToken field.
 func (o *FidsResponse) SetNextPageToken(v string) {
-	o.NextPageToken = v
+	o.NextPageToken = &v
 }
 
 func (o FidsResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o FidsResponse) MarshalJSON() ([]byte, error) {
 
 func (o FidsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fids"] = o.Fids
-	toSerialize["nextPageToken"] = o.NextPageToken
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fids) {
+		toSerialize["fids"] = o.Fids
 	}
-
+	if !IsNil(o.NextPageToken) {
+		toSerialize["nextPageToken"] = o.NextPageToken
+	}
 	return toSerialize, nil
-}
-
-func (o *FidsResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fids",
-		"nextPageToken",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFidsResponse := _FidsResponse{}
-
-	err = json.Unmarshal(data, &varFidsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FidsResponse(varFidsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fids")
-		delete(additionalProperties, "nextPageToken")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFidsResponse struct {

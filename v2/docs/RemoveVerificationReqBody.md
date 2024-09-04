@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
-**Address** | **string** | Ethereum address | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
+**Address** | Pointer to **string** | Ethereum address | [optional] 
 
 ## Methods
 
 ### NewRemoveVerificationReqBody
 
-`func NewRemoveVerificationReqBody(signerUuid string, address string, ) *RemoveVerificationReqBody`
+`func NewRemoveVerificationReqBody() *RemoveVerificationReqBody`
 
 NewRemoveVerificationReqBody instantiates a new RemoveVerificationReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *RemoveVerificationReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *RemoveVerificationReqBody) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

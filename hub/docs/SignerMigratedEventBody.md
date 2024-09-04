@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MigratedAt** | **int64** |  | 
+**MigratedAt** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
 ### NewSignerMigratedEventBody
 
-`func NewSignerMigratedEventBody(migratedAt int64, ) *SignerMigratedEventBody`
+`func NewSignerMigratedEventBody() *SignerMigratedEventBody`
 
 NewSignerMigratedEventBody instantiates a new SignerMigratedEventBody object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetMigratedAt sets MigratedAt field to given value.
 
+### HasMigratedAt
+
+`func (o *SignerMigratedEventBody) HasMigratedAt() bool`
+
+HasMigratedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -25,8 +25,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fname := "farcaster" // string |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fname := "farcaster" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastViewerContext type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &CastViewerContext{}
 // CastViewerContext Adds context on interactions the viewer has made with the cast.
 type CastViewerContext struct {
 	// Indicates if the viewer liked the cast.
-	Liked bool `json:"liked"`
+	Liked *bool `json:"liked,omitempty"`
 	// Indicates if the viewer recasted the cast.
-	Recasted bool `json:"recasted"`
-	AdditionalProperties map[string]interface{}
+	Recasted *bool `json:"recasted,omitempty"`
 }
-
-type _CastViewerContext CastViewerContext
 
 // NewCastViewerContext instantiates a new CastViewerContext object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastViewerContext(liked bool, recasted bool) *CastViewerContext {
+func NewCastViewerContext() *CastViewerContext {
 	this := CastViewerContext{}
-	this.Liked = liked
-	this.Recasted = recasted
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewCastViewerContextWithDefaults() *CastViewerContext {
 	return &this
 }
 
-// GetLiked returns the Liked field value
+// GetLiked returns the Liked field value if set, zero value otherwise.
 func (o *CastViewerContext) GetLiked() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Liked) {
 		var ret bool
 		return ret
 	}
-
-	return o.Liked
+	return *o.Liked
 }
 
-// GetLikedOk returns a tuple with the Liked field value
+// GetLikedOk returns a tuple with the Liked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastViewerContext) GetLikedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Liked) {
 		return nil, false
 	}
-	return &o.Liked, true
+	return o.Liked, true
 }
 
-// SetLiked sets field value
+// HasLiked returns a boolean if a field has been set.
+func (o *CastViewerContext) HasLiked() bool {
+	if o != nil && !IsNil(o.Liked) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiked gets a reference to the given bool and assigns it to the Liked field.
 func (o *CastViewerContext) SetLiked(v bool) {
-	o.Liked = v
+	o.Liked = &v
 }
 
-// GetRecasted returns the Recasted field value
+// GetRecasted returns the Recasted field value if set, zero value otherwise.
 func (o *CastViewerContext) GetRecasted() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Recasted) {
 		var ret bool
 		return ret
 	}
-
-	return o.Recasted
+	return *o.Recasted
 }
 
-// GetRecastedOk returns a tuple with the Recasted field value
+// GetRecastedOk returns a tuple with the Recasted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastViewerContext) GetRecastedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Recasted) {
 		return nil, false
 	}
-	return &o.Recasted, true
+	return o.Recasted, true
 }
 
-// SetRecasted sets field value
+// HasRecasted returns a boolean if a field has been set.
+func (o *CastViewerContext) HasRecasted() bool {
+	if o != nil && !IsNil(o.Recasted) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecasted gets a reference to the given bool and assigns it to the Recasted field.
 func (o *CastViewerContext) SetRecasted(v bool) {
-	o.Recasted = v
+	o.Recasted = &v
 }
 
 func (o CastViewerContext) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o CastViewerContext) MarshalJSON() ([]byte, error) {
 
 func (o CastViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["liked"] = o.Liked
-	toSerialize["recasted"] = o.Recasted
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Liked) {
+		toSerialize["liked"] = o.Liked
 	}
-
+	if !IsNil(o.Recasted) {
+		toSerialize["recasted"] = o.Recasted
+	}
 	return toSerialize, nil
-}
-
-func (o *CastViewerContext) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"liked",
-		"recasted",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastViewerContext := _CastViewerContext{}
-
-	err = json.Unmarshal(data, &varCastViewerContext)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastViewerContext(varCastViewerContext)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "liked")
-		delete(additionalProperties, "recasted")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastViewerContext struct {

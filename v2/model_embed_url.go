@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the EmbedUrl type satisfies the MappedNullable interface at compile time
@@ -20,20 +19,16 @@ var _ MappedNullable = &EmbedUrl{}
 
 // EmbedUrl struct for EmbedUrl
 type EmbedUrl struct {
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	Metadata *EmbedUrlMetadata `json:"metadata,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _EmbedUrl EmbedUrl
 
 // NewEmbedUrl instantiates a new EmbedUrl object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmbedUrl(url string) *EmbedUrl {
+func NewEmbedUrl() *EmbedUrl {
 	this := EmbedUrl{}
-	this.Url = url
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewEmbedUrlWithDefaults() *EmbedUrl {
 	return &this
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *EmbedUrl) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbedUrl) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *EmbedUrl) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *EmbedUrl) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -111,59 +114,13 @@ func (o EmbedUrl) MarshalJSON() ([]byte, error) {
 
 func (o EmbedUrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *EmbedUrl) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEmbedUrl := _EmbedUrl{}
-
-	err = json.Unmarshal(data, &varEmbedUrl)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EmbedUrl(varEmbedUrl)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "metadata")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableEmbedUrl struct {

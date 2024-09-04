@@ -79,12 +79,6 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.markNotificationsAsSeenReqBody == nil {
-		return localVarReturnValue, nil, reportError("markNotificationsAsSeenReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -103,7 +97,9 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.markNotificationsAsSeenReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -236,14 +232,10 @@ func (a *NotificationsAPIService) NotificationsExecute(r ApiNotificationsRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
@@ -267,7 +259,9 @@ func (a *NotificationsAPIService) NotificationsExecute(r ApiNotificationsRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -387,18 +381,13 @@ func (a *NotificationsAPIService) NotificationsChannelExecute(r ApiNotifications
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.channelIds == nil {
-		return localVarReturnValue, nil, reportError("channelIds is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "channel_ids", r.channelIds, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
+	if r.channelIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "channel_ids", r.channelIds, "form", "")
+	}
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
 	}
@@ -419,7 +408,9 @@ func (a *NotificationsAPIService) NotificationsChannelExecute(r ApiNotifications
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -539,18 +530,13 @@ func (a *NotificationsAPIService) NotificationsParentUrlExecute(r ApiNotificatio
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.parentUrls == nil {
-		return localVarReturnValue, nil, reportError("parentUrls is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "parent_urls", r.parentUrls, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
+	if r.parentUrls != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_urls", r.parentUrls, "form", "")
+	}
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
 	}
@@ -571,7 +557,9 @@ func (a *NotificationsAPIService) NotificationsParentUrlExecute(r ApiNotificatio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

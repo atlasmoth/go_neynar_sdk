@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **string** |  | [optional] 
-**Message** | **string** |  | 
+**Message** | Pointer to **string** |  | [optional] 
 **Property** | Pointer to **string** |  | [optional] 
 **Key** | Pointer to **string** |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewConflictErrorRes
 
-`func NewConflictErrorRes(message string, ) *ConflictErrorRes`
+`func NewConflictErrorRes() *ConflictErrorRes`
 
 NewConflictErrorRes instantiates a new ConflictErrorRes object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *ConflictErrorRes) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetProperty
 

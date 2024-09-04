@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **string** |  | 
-**Username** | **string** |  | 
-**DisplayName** | **string** |  | 
-**Verifications** | **[]string** |  | 
+**Fid** | Pointer to **string** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
+**Verifications** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewVerificationResponseResult
 
-`func NewVerificationResponseResult(fid string, username string, displayName string, verifications []string, ) *VerificationResponseResult`
+`func NewVerificationResponseResult() *VerificationResponseResult`
 
 NewVerificationResponseResult instantiates a new VerificationResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *VerificationResponseResult) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *VerificationResponseResult) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetDisplayName sets DisplayName field to given value.
 
+### HasDisplayName
+
+`func (o *VerificationResponseResult) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetVerifications
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetVerifications sets Verifications field to given value.
 
+### HasVerifications
+
+`func (o *VerificationResponseResult) HasVerifications() bool`
+
+HasVerifications returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

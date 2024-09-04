@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TargetHash** | **string** |  | 
+**TargetHash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCastRemoveBody
 
-`func NewCastRemoveBody(targetHash string, ) *CastRemoveBody`
+`func NewCastRemoveBody() *CastRemoveBody`
 
 NewCastRemoveBody instantiates a new CastRemoveBody object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetTargetHash sets TargetHash field to given value.
 
+### HasTargetHash
+
+`func (o *CastRemoveBody) HasTargetHash() bool`
+
+HasTargetHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

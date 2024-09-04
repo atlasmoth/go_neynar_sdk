@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
+**Hash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewIndividualHashObj
 
-`func NewIndividualHashObj(hash string, ) *IndividualHashObj`
+`func NewIndividualHashObj() *IndividualHashObj`
 
 NewIndividualHashObj instantiates a new IndividualHashObj object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *IndividualHashObj) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

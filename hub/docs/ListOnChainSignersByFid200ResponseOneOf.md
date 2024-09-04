@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | [**[]OnChainEventSigner**](OnChainEventSigner.md) |  | 
+**Events** | Pointer to [**[]OnChainEventSigner**](OnChainEventSigner.md) |  | [optional] 
 
 ## Methods
 
 ### NewListOnChainSignersByFid200ResponseOneOf
 
-`func NewListOnChainSignersByFid200ResponseOneOf(events []OnChainEventSigner, ) *ListOnChainSignersByFid200ResponseOneOf`
+`func NewListOnChainSignersByFid200ResponseOneOf() *ListOnChainSignersByFid200ResponseOneOf`
 
 NewListOnChainSignersByFid200ResponseOneOf instantiates a new ListOnChainSignersByFid200ResponseOneOf object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetEvents sets Events field to given value.
 
+### HasEvents
+
+`func (o *ListOnChainSignersByFid200ResponseOneOf) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

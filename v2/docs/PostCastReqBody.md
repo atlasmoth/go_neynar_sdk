@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
 **Text** | Pointer to **string** |  | [optional] 
 **Embeds** | Pointer to [**[]EmbeddedCast**](EmbeddedCast.md) |  | [optional] 
 **Parent** | Pointer to **string** | parent_url of the channel the cast is in, or hash of the cast | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewPostCastReqBody
 
-`func NewPostCastReqBody(signerUuid string, ) *PostCastReqBody`
+`func NewPostCastReqBody() *PostCastReqBody`
 
 NewPostCastReqBody instantiates a new PostCastReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *PostCastReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetText
 

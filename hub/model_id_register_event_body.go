@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the IdRegisterEventBody type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,20 @@ var _ MappedNullable = &IdRegisterEventBody{}
 
 // IdRegisterEventBody struct for IdRegisterEventBody
 type IdRegisterEventBody struct {
-	To string `json:"to" validate:"regexp=^0x[a-fA-F0-9]*$"`
-	EventType IdRegisterEventType `json:"eventType"`
-	From string `json:"from" validate:"regexp=^0x[a-fA-F0-9]*$|^$"`
-	RecoveryAddress string `json:"recoveryAddress" validate:"regexp=^0x[a-fA-F0-9]*$"`
-	AdditionalProperties map[string]interface{}
+	To *string `json:"to,omitempty" validate:"regexp=^0x[a-fA-F0-9]*$"`
+	EventType *IdRegisterEventType `json:"eventType,omitempty"`
+	From *string `json:"from,omitempty" validate:"regexp=^0x[a-fA-F0-9]*$|^$"`
+	RecoveryAddress *string `json:"recoveryAddress,omitempty" validate:"regexp=^0x[a-fA-F0-9]*$"`
 }
-
-type _IdRegisterEventBody IdRegisterEventBody
 
 // NewIdRegisterEventBody instantiates a new IdRegisterEventBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdRegisterEventBody(to string, eventType IdRegisterEventType, from string, recoveryAddress string) *IdRegisterEventBody {
+func NewIdRegisterEventBody() *IdRegisterEventBody {
 	this := IdRegisterEventBody{}
-	this.To = to
-	this.EventType = eventType
-	this.From = from
-	this.RecoveryAddress = recoveryAddress
+	var eventType IdRegisterEventType = IDREGISTEREVENTTYPE_REGISTER
+	this.EventType = &eventType
 	return &this
 }
 
@@ -48,104 +42,136 @@ func NewIdRegisterEventBody(to string, eventType IdRegisterEventType, from strin
 func NewIdRegisterEventBodyWithDefaults() *IdRegisterEventBody {
 	this := IdRegisterEventBody{}
 	var eventType IdRegisterEventType = IDREGISTEREVENTTYPE_REGISTER
-	this.EventType = eventType
+	this.EventType = &eventType
 	return &this
 }
 
-// GetTo returns the To field value
+// GetTo returns the To field value if set, zero value otherwise.
 func (o *IdRegisterEventBody) GetTo() string {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		var ret string
 		return ret
 	}
-
-	return o.To
+	return *o.To
 }
 
-// GetToOk returns a tuple with the To field value
+// GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdRegisterEventBody) GetToOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		return nil, false
 	}
-	return &o.To, true
+	return o.To, true
 }
 
-// SetTo sets field value
+// HasTo returns a boolean if a field has been set.
+func (o *IdRegisterEventBody) HasTo() bool {
+	if o != nil && !IsNil(o.To) {
+		return true
+	}
+
+	return false
+}
+
+// SetTo gets a reference to the given string and assigns it to the To field.
 func (o *IdRegisterEventBody) SetTo(v string) {
-	o.To = v
+	o.To = &v
 }
 
-// GetEventType returns the EventType field value
+// GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *IdRegisterEventBody) GetEventType() IdRegisterEventType {
-	if o == nil {
+	if o == nil || IsNil(o.EventType) {
 		var ret IdRegisterEventType
 		return ret
 	}
-
-	return o.EventType
+	return *o.EventType
 }
 
-// GetEventTypeOk returns a tuple with the EventType field value
+// GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdRegisterEventBody) GetEventTypeOk() (*IdRegisterEventType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EventType) {
 		return nil, false
 	}
-	return &o.EventType, true
+	return o.EventType, true
 }
 
-// SetEventType sets field value
+// HasEventType returns a boolean if a field has been set.
+func (o *IdRegisterEventBody) HasEventType() bool {
+	if o != nil && !IsNil(o.EventType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventType gets a reference to the given IdRegisterEventType and assigns it to the EventType field.
 func (o *IdRegisterEventBody) SetEventType(v IdRegisterEventType) {
-	o.EventType = v
+	o.EventType = &v
 }
 
-// GetFrom returns the From field value
+// GetFrom returns the From field value if set, zero value otherwise.
 func (o *IdRegisterEventBody) GetFrom() string {
-	if o == nil {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
-
-	return o.From
+	return *o.From
 }
 
-// GetFromOk returns a tuple with the From field value
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdRegisterEventBody) GetFromOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.From) {
 		return nil, false
 	}
-	return &o.From, true
+	return o.From, true
 }
 
-// SetFrom sets field value
+// HasFrom returns a boolean if a field has been set.
+func (o *IdRegisterEventBody) HasFrom() bool {
+	if o != nil && !IsNil(o.From) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given string and assigns it to the From field.
 func (o *IdRegisterEventBody) SetFrom(v string) {
-	o.From = v
+	o.From = &v
 }
 
-// GetRecoveryAddress returns the RecoveryAddress field value
+// GetRecoveryAddress returns the RecoveryAddress field value if set, zero value otherwise.
 func (o *IdRegisterEventBody) GetRecoveryAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.RecoveryAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.RecoveryAddress
+	return *o.RecoveryAddress
 }
 
-// GetRecoveryAddressOk returns a tuple with the RecoveryAddress field value
+// GetRecoveryAddressOk returns a tuple with the RecoveryAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdRegisterEventBody) GetRecoveryAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RecoveryAddress) {
 		return nil, false
 	}
-	return &o.RecoveryAddress, true
+	return o.RecoveryAddress, true
 }
 
-// SetRecoveryAddress sets field value
+// HasRecoveryAddress returns a boolean if a field has been set.
+func (o *IdRegisterEventBody) HasRecoveryAddress() bool {
+	if o != nil && !IsNil(o.RecoveryAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecoveryAddress gets a reference to the given string and assigns it to the RecoveryAddress field.
 func (o *IdRegisterEventBody) SetRecoveryAddress(v string) {
-	o.RecoveryAddress = v
+	o.RecoveryAddress = &v
 }
 
 func (o IdRegisterEventBody) MarshalJSON() ([]byte, error) {
@@ -158,64 +184,19 @@ func (o IdRegisterEventBody) MarshalJSON() ([]byte, error) {
 
 func (o IdRegisterEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["to"] = o.To
-	toSerialize["eventType"] = o.EventType
-	toSerialize["from"] = o.From
-	toSerialize["recoveryAddress"] = o.RecoveryAddress
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.To) {
+		toSerialize["to"] = o.To
 	}
-
+	if !IsNil(o.EventType) {
+		toSerialize["eventType"] = o.EventType
+	}
+	if !IsNil(o.From) {
+		toSerialize["from"] = o.From
+	}
+	if !IsNil(o.RecoveryAddress) {
+		toSerialize["recoveryAddress"] = o.RecoveryAddress
+	}
 	return toSerialize, nil
-}
-
-func (o *IdRegisterEventBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"to",
-		"eventType",
-		"from",
-		"recoveryAddress",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varIdRegisterEventBody := _IdRegisterEventBody{}
-
-	err = json.Unmarshal(data, &varIdRegisterEventBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = IdRegisterEventBody(varIdRegisterEventBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "to")
-		delete(additionalProperties, "eventType")
-		delete(additionalProperties, "from")
-		delete(additionalProperties, "recoveryAddress")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableIdRegisterEventBody struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StorageLimitsResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &StorageLimitsResponse{}
 
 // StorageLimitsResponse struct for StorageLimitsResponse
 type StorageLimitsResponse struct {
-	Limits []StorageLimit `json:"limits"`
-	AdditionalProperties map[string]interface{}
+	Limits []StorageLimit `json:"limits,omitempty"`
 }
-
-type _StorageLimitsResponse StorageLimitsResponse
 
 // NewStorageLimitsResponse instantiates a new StorageLimitsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageLimitsResponse(limits []StorageLimit) *StorageLimitsResponse {
+func NewStorageLimitsResponse() *StorageLimitsResponse {
 	this := StorageLimitsResponse{}
-	this.Limits = limits
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewStorageLimitsResponseWithDefaults() *StorageLimitsResponse {
 	return &this
 }
 
-// GetLimits returns the Limits field value
+// GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *StorageLimitsResponse) GetLimits() []StorageLimit {
-	if o == nil {
+	if o == nil || IsNil(o.Limits) {
 		var ret []StorageLimit
 		return ret
 	}
-
 	return o.Limits
 }
 
-// GetLimitsOk returns a tuple with the Limits field value
+// GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageLimitsResponse) GetLimitsOk() ([]StorageLimit, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Limits) {
 		return nil, false
 	}
 	return o.Limits, true
 }
 
-// SetLimits sets field value
+// HasLimits returns a boolean if a field has been set.
+func (o *StorageLimitsResponse) HasLimits() bool {
+	if o != nil && !IsNil(o.Limits) {
+		return true
+	}
+
+	return false
+}
+
+// SetLimits gets a reference to the given []StorageLimit and assigns it to the Limits field.
 func (o *StorageLimitsResponse) SetLimits(v []StorageLimit) {
 	o.Limits = v
 }
@@ -78,55 +81,10 @@ func (o StorageLimitsResponse) MarshalJSON() ([]byte, error) {
 
 func (o StorageLimitsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["limits"] = o.Limits
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Limits) {
+		toSerialize["limits"] = o.Limits
 	}
-
 	return toSerialize, nil
-}
-
-func (o *StorageLimitsResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"limits",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varStorageLimitsResponse := _StorageLimitsResponse{}
-
-	err = json.Unmarshal(data, &varStorageLimitsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StorageLimitsResponse(varStorageLimitsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "limits")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableStorageLimitsResponse struct {

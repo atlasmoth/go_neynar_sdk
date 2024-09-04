@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalInteractors** | **float32** |  | 
+**TotalInteractors** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsTotalInteractors
 
-`func NewFrameValidateAnalyticsTotalInteractors(totalInteractors float32, ) *FrameValidateAnalyticsTotalInteractors`
+`func NewFrameValidateAnalyticsTotalInteractors() *FrameValidateAnalyticsTotalInteractors`
 
 NewFrameValidateAnalyticsTotalInteractors instantiates a new FrameValidateAnalyticsTotalInteractors object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetTotalInteractors sets TotalInteractors field to given value.
 
+### HasTotalInteractors
+
+`func (o *FrameValidateAnalyticsTotalInteractors) HasTotalInteractors() bool`
+
+HasTotalInteractors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

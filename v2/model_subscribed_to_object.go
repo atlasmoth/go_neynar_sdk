@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the SubscribedToObject type satisfies the MappedNullable interface at compile time
@@ -21,27 +20,22 @@ var _ MappedNullable = &SubscribedToObject{}
 
 // SubscribedToObject struct for SubscribedToObject
 type SubscribedToObject struct {
-	Object string `json:"object"`
-	ProviderName string `json:"provider_name"`
+	Object *string `json:"object,omitempty"`
+	ProviderName *string `json:"provider_name,omitempty"`
 	ContractAddress *string `json:"contract_address,omitempty"`
 	ProtocolVersion *int32 `json:"protocol_version,omitempty"`
 	Chain *int32 `json:"chain,omitempty"`
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	SubscribedAt *time.Time `json:"subscribed_at,omitempty"`
 	TierId *string `json:"tier_id,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _SubscribedToObject SubscribedToObject
 
 // NewSubscribedToObject instantiates a new SubscribedToObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscribedToObject(object string, providerName string) *SubscribedToObject {
+func NewSubscribedToObject() *SubscribedToObject {
 	this := SubscribedToObject{}
-	this.Object = object
-	this.ProviderName = providerName
 	return &this
 }
 
@@ -53,52 +47,68 @@ func NewSubscribedToObjectWithDefaults() *SubscribedToObject {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *SubscribedToObject) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedToObject) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *SubscribedToObject) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *SubscribedToObject) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetProviderName returns the ProviderName field value
+// GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *SubscribedToObject) GetProviderName() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
-
-	return o.ProviderName
+	return *o.ProviderName
 }
 
-// GetProviderNameOk returns a tuple with the ProviderName field value
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedToObject) GetProviderNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
-	return &o.ProviderName, true
+	return o.ProviderName, true
 }
 
-// SetProviderName sets field value
+// HasProviderName returns a boolean if a field has been set.
+func (o *SubscribedToObject) HasProviderName() bool {
+	if o != nil && !IsNil(o.ProviderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
 func (o *SubscribedToObject) SetProviderName(v string) {
-	o.ProviderName = v
+	o.ProviderName = &v
 }
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
@@ -303,8 +313,12 @@ func (o SubscribedToObject) MarshalJSON() ([]byte, error) {
 
 func (o SubscribedToObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["provider_name"] = o.ProviderName
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.ProviderName) {
+		toSerialize["provider_name"] = o.ProviderName
+	}
 	if !IsNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
@@ -323,62 +337,7 @@ func (o SubscribedToObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TierId) {
 		toSerialize["tier_id"] = o.TierId
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *SubscribedToObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"provider_name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscribedToObject := _SubscribedToObject{}
-
-	err = json.Unmarshal(data, &varSubscribedToObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscribedToObject(varSubscribedToObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "provider_name")
-		delete(additionalProperties, "contract_address")
-		delete(additionalProperties, "protocol_version")
-		delete(additionalProperties, "chain")
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "subscribed_at")
-		delete(additionalProperties, "tier_id")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscribedToObject struct {

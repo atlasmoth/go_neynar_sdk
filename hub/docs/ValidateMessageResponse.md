@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Valid** | **bool** |  | 
-**Message** | [**Message**](Message.md) |  | 
+**Valid** | Pointer to **bool** |  | [optional] 
+**Message** | Pointer to [**Message**](Message.md) |  | [optional] 
 
 ## Methods
 
 ### NewValidateMessageResponse
 
-`func NewValidateMessageResponse(valid bool, message Message, ) *ValidateMessageResponse`
+`func NewValidateMessageResponse() *ValidateMessageResponse`
 
 NewValidateMessageResponse instantiates a new ValidateMessageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetValid sets Valid field to given value.
 
+### HasValid
+
+`func (o *ValidateMessageResponse) HasValid() bool`
+
+HasValid returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *ValidateMessageResponse) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

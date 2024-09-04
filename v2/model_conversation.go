@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Conversation type satisfies the MappedNullable interface at compile time
@@ -20,20 +19,16 @@ var _ MappedNullable = &Conversation{}
 
 // Conversation struct for Conversation
 type Conversation struct {
-	Conversation ConversationConversation `json:"conversation"`
+	Conversation *ConversationConversation `json:"conversation,omitempty"`
 	Next *NextCursor `json:"next,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Conversation Conversation
 
 // NewConversation instantiates a new Conversation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConversation(conversation ConversationConversation) *Conversation {
+func NewConversation() *Conversation {
 	this := Conversation{}
-	this.Conversation = conversation
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewConversationWithDefaults() *Conversation {
 	return &this
 }
 
-// GetConversation returns the Conversation field value
+// GetConversation returns the Conversation field value if set, zero value otherwise.
 func (o *Conversation) GetConversation() ConversationConversation {
-	if o == nil {
+	if o == nil || IsNil(o.Conversation) {
 		var ret ConversationConversation
 		return ret
 	}
-
-	return o.Conversation
+	return *o.Conversation
 }
 
-// GetConversationOk returns a tuple with the Conversation field value
+// GetConversationOk returns a tuple with the Conversation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Conversation) GetConversationOk() (*ConversationConversation, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Conversation) {
 		return nil, false
 	}
-	return &o.Conversation, true
+	return o.Conversation, true
 }
 
-// SetConversation sets field value
+// HasConversation returns a boolean if a field has been set.
+func (o *Conversation) HasConversation() bool {
+	if o != nil && !IsNil(o.Conversation) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversation gets a reference to the given ConversationConversation and assigns it to the Conversation field.
 func (o *Conversation) SetConversation(v ConversationConversation) {
-	o.Conversation = v
+	o.Conversation = &v
 }
 
 // GetNext returns the Next field value if set, zero value otherwise.
@@ -111,59 +114,13 @@ func (o Conversation) MarshalJSON() ([]byte, error) {
 
 func (o Conversation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["conversation"] = o.Conversation
+	if !IsNil(o.Conversation) {
+		toSerialize["conversation"] = o.Conversation
+	}
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Conversation) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"conversation",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varConversation := _Conversation{}
-
-	err = json.Unmarshal(data, &varConversation)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Conversation(varConversation)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "conversation")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableConversation struct {

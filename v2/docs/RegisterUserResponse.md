@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | 
-**Message** | **string** |  | 
-**Signer** | [**Signer**](Signer.md) |  | 
+**Success** | Pointer to **bool** |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
+**Signer** | Pointer to [**Signer**](Signer.md) |  | [optional] 
 
 ## Methods
 
 ### NewRegisterUserResponse
 
-`func NewRegisterUserResponse(success bool, message string, signer Signer, ) *RegisterUserResponse`
+`func NewRegisterUserResponse() *RegisterUserResponse`
 
 NewRegisterUserResponse instantiates a new RegisterUserResponse object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
+### HasSuccess
+
+`func (o *RegisterUserResponse) HasSuccess() bool`
+
+HasSuccess returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *RegisterUserResponse) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetSigner
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetSigner sets Signer field to given value.
 
+### HasSigner
+
+`func (o *RegisterUserResponse) HasSigner() bool`
+
+HasSigner returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

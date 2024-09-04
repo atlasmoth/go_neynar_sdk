@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MessageBytesInHex** | **string** | Hexadecimal string of message bytes. | 
+**MessageBytesInHex** | Pointer to **string** | Hexadecimal string of message bytes. | [optional] 
 **CastReactionContext** | Pointer to **bool** | Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame. | [optional] [default to true]
 **FollowContext** | Pointer to **bool** | Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author. | [optional] [default to false]
 **SignerContext** | Pointer to **bool** | Adds context about the app used by the user inside &#x60;frame.action&#x60;. | [optional] [default to false]
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewValidateFrameRequest
 
-`func NewValidateFrameRequest(messageBytesInHex string, ) *ValidateFrameRequest`
+`func NewValidateFrameRequest() *ValidateFrameRequest`
 
 NewValidateFrameRequest instantiates a new ValidateFrameRequest object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetMessageBytesInHex sets MessageBytesInHex field to given value.
 
+### HasMessageBytesInHex
+
+`func (o *ValidateFrameRequest) HasMessageBytesInHex() bool`
+
+HasMessageBytesInHex returns a boolean if a field has been set.
 
 ### GetCastReactionContext
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | **string** |  | 
-**EventType** | [**IdRegisterEventType**](IdRegisterEventType.md) |  | [default to IDREGISTEREVENTTYPE_REGISTER]
-**From** | **string** |  | 
-**RecoveryAddress** | **string** |  | 
+**To** | Pointer to **string** |  | [optional] 
+**EventType** | Pointer to [**IdRegisterEventType**](IdRegisterEventType.md) |  | [optional] [default to IDREGISTEREVENTTYPE_REGISTER]
+**From** | Pointer to **string** |  | [optional] 
+**RecoveryAddress** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewIdRegisterEventBody
 
-`func NewIdRegisterEventBody(to string, eventType IdRegisterEventType, from string, recoveryAddress string, ) *IdRegisterEventBody`
+`func NewIdRegisterEventBody() *IdRegisterEventBody`
 
 NewIdRegisterEventBody instantiates a new IdRegisterEventBody object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
+### HasTo
+
+`func (o *IdRegisterEventBody) HasTo() bool`
+
+HasTo returns a boolean if a field has been set.
 
 ### GetEventType
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetEventType sets EventType field to given value.
 
+### HasEventType
+
+`func (o *IdRegisterEventBody) HasEventType() bool`
+
+HasEventType returns a boolean if a field has been set.
 
 ### GetFrom
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetFrom sets From field to given value.
 
+### HasFrom
+
+`func (o *IdRegisterEventBody) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
 
 ### GetRecoveryAddress
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetRecoveryAddress sets RecoveryAddress field to given value.
 
+### HasRecoveryAddress
+
+`func (o *IdRegisterEventBody) HasRecoveryAddress() bool`
+
+HasRecoveryAddress returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

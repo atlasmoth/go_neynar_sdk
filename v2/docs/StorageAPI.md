@@ -27,8 +27,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	buyStorageReqBody := *openapiclient.NewBuyStorageReqBody(int32(1)) // BuyStorageReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	buyStorageReqBody := *openapiclient.NewBuyStorageReqBody() // BuyStorageReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -89,8 +89,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -151,8 +151,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

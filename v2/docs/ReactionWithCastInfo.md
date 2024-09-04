@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReactionType** | **string** |  | 
-**Cast** | [**CastWithInteractions**](CastWithInteractions.md) |  | 
-**ReactionTimestamp** | **time.Time** |  | 
-**Object** | **string** |  | 
-**User** | [**UserDehydrated**](UserDehydrated.md) |  | 
+**ReactionType** | Pointer to **string** |  | [optional] 
+**Cast** | Pointer to [**CastWithInteractions**](CastWithInteractions.md) |  | [optional] 
+**ReactionTimestamp** | Pointer to **time.Time** |  | [optional] 
+**Object** | Pointer to **string** |  | [optional] 
+**User** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
 
 ## Methods
 
 ### NewReactionWithCastInfo
 
-`func NewReactionWithCastInfo(reactionType string, cast CastWithInteractions, reactionTimestamp time.Time, object string, user UserDehydrated, ) *ReactionWithCastInfo`
+`func NewReactionWithCastInfo() *ReactionWithCastInfo`
 
 NewReactionWithCastInfo instantiates a new ReactionWithCastInfo object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetReactionType sets ReactionType field to given value.
 
+### HasReactionType
+
+`func (o *ReactionWithCastInfo) HasReactionType() bool`
+
+HasReactionType returns a boolean if a field has been set.
 
 ### GetCast
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetCast sets Cast field to given value.
 
+### HasCast
+
+`func (o *ReactionWithCastInfo) HasCast() bool`
+
+HasCast returns a boolean if a field has been set.
 
 ### GetReactionTimestamp
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetReactionTimestamp sets ReactionTimestamp field to given value.
 
+### HasReactionTimestamp
+
+`func (o *ReactionWithCastInfo) HasReactionTimestamp() bool`
+
+HasReactionTimestamp returns a boolean if a field has been set.
 
 ### GetObject
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *ReactionWithCastInfo) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetUser
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetUser sets User field to given value.
 
+### HasUser
+
+`func (o *ReactionWithCastInfo) HasUser() bool`
+
+HasUser returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

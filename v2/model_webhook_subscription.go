@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the WebhookSubscription type satisfies the MappedNullable interface at compile time
@@ -21,27 +20,19 @@ var _ MappedNullable = &WebhookSubscription{}
 
 // WebhookSubscription struct for WebhookSubscription
 type WebhookSubscription struct {
-	Object string `json:"object"`
-	SubscriptionId string `json:"subscription_id"`
-	Filters WebhookSubscriptionFilters `json:"filters"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	SubscriptionId *string `json:"subscription_id,omitempty"`
+	Filters *WebhookSubscriptionFilters `json:"filters,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
-
-type _WebhookSubscription WebhookSubscription
 
 // NewWebhookSubscription instantiates a new WebhookSubscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookSubscription(object string, subscriptionId string, filters WebhookSubscriptionFilters, createdAt time.Time, updatedAt time.Time) *WebhookSubscription {
+func NewWebhookSubscription() *WebhookSubscription {
 	this := WebhookSubscription{}
-	this.Object = object
-	this.SubscriptionId = subscriptionId
-	this.Filters = filters
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -53,124 +44,164 @@ func NewWebhookSubscriptionWithDefaults() *WebhookSubscription {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *WebhookSubscription) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSubscription) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *WebhookSubscription) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *WebhookSubscription) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetSubscriptionId returns the SubscriptionId field value
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
 func (o *WebhookSubscription) GetSubscriptionId() string {
-	if o == nil {
+	if o == nil || IsNil(o.SubscriptionId) {
 		var ret string
 		return ret
 	}
-
-	return o.SubscriptionId
+	return *o.SubscriptionId
 }
 
-// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSubscription) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SubscriptionId) {
 		return nil, false
 	}
-	return &o.SubscriptionId, true
+	return o.SubscriptionId, true
 }
 
-// SetSubscriptionId sets field value
+// HasSubscriptionId returns a boolean if a field has been set.
+func (o *WebhookSubscription) HasSubscriptionId() bool {
+	if o != nil && !IsNil(o.SubscriptionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
 func (o *WebhookSubscription) SetSubscriptionId(v string) {
-	o.SubscriptionId = v
+	o.SubscriptionId = &v
 }
 
-// GetFilters returns the Filters field value
+// GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *WebhookSubscription) GetFilters() WebhookSubscriptionFilters {
-	if o == nil {
+	if o == nil || IsNil(o.Filters) {
 		var ret WebhookSubscriptionFilters
 		return ret
 	}
-
-	return o.Filters
+	return *o.Filters
 }
 
-// GetFiltersOk returns a tuple with the Filters field value
+// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSubscription) GetFiltersOk() (*WebhookSubscriptionFilters, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Filters) {
 		return nil, false
 	}
-	return &o.Filters, true
+	return o.Filters, true
 }
 
-// SetFilters sets field value
+// HasFilters returns a boolean if a field has been set.
+func (o *WebhookSubscription) HasFilters() bool {
+	if o != nil && !IsNil(o.Filters) {
+		return true
+	}
+
+	return false
+}
+
+// SetFilters gets a reference to the given WebhookSubscriptionFilters and assigns it to the Filters field.
 func (o *WebhookSubscription) SetFilters(v WebhookSubscriptionFilters) {
-	o.Filters = v
+	o.Filters = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *WebhookSubscription) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSubscription) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *WebhookSubscription) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *WebhookSubscription) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *WebhookSubscription) GetUpdatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSubscription) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *WebhookSubscription) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *WebhookSubscription) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o WebhookSubscription) MarshalJSON() ([]byte, error) {
@@ -183,67 +214,22 @@ func (o WebhookSubscription) MarshalJSON() ([]byte, error) {
 
 func (o WebhookSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["subscription_id"] = o.SubscriptionId
-	toSerialize["filters"] = o.Filters
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.SubscriptionId) {
+		toSerialize["subscription_id"] = o.SubscriptionId
+	}
+	if !IsNil(o.Filters) {
+		toSerialize["filters"] = o.Filters
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	return toSerialize, nil
-}
-
-func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"subscription_id",
-		"filters",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookSubscription := _WebhookSubscription{}
-
-	err = json.Unmarshal(data, &varWebhookSubscription)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookSubscription(varWebhookSubscription)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "subscription_id")
-		delete(additionalProperties, "filters")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookSubscription struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CustodyAddressResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CustodyAddressResponse{}
 
 // CustodyAddressResponse struct for CustodyAddressResponse
 type CustodyAddressResponse struct {
-	Result CustodyAddressResponseResult `json:"result"`
-	AdditionalProperties map[string]interface{}
+	Result *CustodyAddressResponseResult `json:"result,omitempty"`
 }
-
-type _CustodyAddressResponse CustodyAddressResponse
 
 // NewCustodyAddressResponse instantiates a new CustodyAddressResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustodyAddressResponse(result CustodyAddressResponseResult) *CustodyAddressResponse {
+func NewCustodyAddressResponse() *CustodyAddressResponse {
 	this := CustodyAddressResponse{}
-	this.Result = result
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCustodyAddressResponseWithDefaults() *CustodyAddressResponse {
 	return &this
 }
 
-// GetResult returns the Result field value
+// GetResult returns the Result field value if set, zero value otherwise.
 func (o *CustodyAddressResponse) GetResult() CustodyAddressResponseResult {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		var ret CustodyAddressResponseResult
 		return ret
 	}
-
-	return o.Result
+	return *o.Result
 }
 
-// GetResultOk returns a tuple with the Result field value
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustodyAddressResponse) GetResultOk() (*CustodyAddressResponseResult, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
-// SetResult sets field value
+// HasResult returns a boolean if a field has been set.
+func (o *CustodyAddressResponse) HasResult() bool {
+	if o != nil && !IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given CustodyAddressResponseResult and assigns it to the Result field.
 func (o *CustodyAddressResponse) SetResult(v CustodyAddressResponseResult) {
-	o.Result = v
+	o.Result = &v
 }
 
 func (o CustodyAddressResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CustodyAddressResponse) MarshalJSON() ([]byte, error) {
 
 func (o CustodyAddressResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["result"] = o.Result
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Result) {
+		toSerialize["result"] = o.Result
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CustodyAddressResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCustodyAddressResponse := _CustodyAddressResponse{}
-
-	err = json.Unmarshal(data, &varCustodyAddressResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CustodyAddressResponse(varCustodyAddressResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "result")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCustodyAddressResponse struct {

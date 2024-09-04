@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Url** | **string** |  | 
+**Name** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
 **Subscription** | Pointer to [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [optional] 
-**WebhookId** | **string** |  | 
+**WebhookId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewWebhookPutReqBody
 
-`func NewWebhookPutReqBody(name string, url string, webhookId string, ) *WebhookPutReqBody`
+`func NewWebhookPutReqBody() *WebhookPutReqBody`
 
 NewWebhookPutReqBody instantiates a new WebhookPutReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *WebhookPutReqBody) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetUrl
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *WebhookPutReqBody) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetSubscription
 
@@ -112,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetWebhookId sets WebhookId field to given value.
 
+### HasWebhookId
+
+`func (o *WebhookPutReqBody) HasWebhookId() bool`
+
+HasWebhookId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

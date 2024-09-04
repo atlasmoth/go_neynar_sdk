@@ -79,12 +79,6 @@ func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*We
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.webhookDeleteReqBody == nil {
-		return localVarReturnValue, nil, reportError("webhookDeleteReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -103,7 +97,9 @@ func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*We
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.webhookDeleteReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -204,9 +200,6 @@ func (a *WebhookAPIService) FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*We
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -225,7 +218,9 @@ func (a *WebhookAPIService) FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*We
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -320,14 +315,10 @@ func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*We
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.webhookId == nil {
-		return localVarReturnValue, nil, reportError("webhookId is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "webhook_id", r.webhookId, "form", "")
+	if r.webhookId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "webhook_id", r.webhookId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -345,7 +336,9 @@ func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*We
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -450,12 +443,6 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.webhookPostReqBody == nil {
-		return localVarReturnValue, nil, reportError("webhookPostReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -474,7 +461,9 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.webhookPostReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -592,12 +581,6 @@ func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*We
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.webhookPutReqBody == nil {
-		return localVarReturnValue, nil, reportError("webhookPutReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -616,7 +599,9 @@ func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*We
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.webhookPutReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -723,12 +708,6 @@ func (a *WebhookAPIService) UpdateWebhookActiveStatusExecute(r ApiUpdateWebhookA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.webhookPatchReqBody == nil {
-		return localVarReturnValue, nil, reportError("webhookPatchReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -747,7 +726,9 @@ func (a *WebhookAPIService) UpdateWebhookActiveStatusExecute(r ApiUpdateWebhookA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.webhookPatchReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

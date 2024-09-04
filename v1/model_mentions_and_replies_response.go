@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MentionsAndRepliesResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &MentionsAndRepliesResponse{}
 
 // MentionsAndRepliesResponse struct for MentionsAndRepliesResponse
 type MentionsAndRepliesResponse struct {
-	Result MentionsAndRepliesResponseResult `json:"result"`
-	AdditionalProperties map[string]interface{}
+	Result *MentionsAndRepliesResponseResult `json:"result,omitempty"`
 }
-
-type _MentionsAndRepliesResponse MentionsAndRepliesResponse
 
 // NewMentionsAndRepliesResponse instantiates a new MentionsAndRepliesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMentionsAndRepliesResponse(result MentionsAndRepliesResponseResult) *MentionsAndRepliesResponse {
+func NewMentionsAndRepliesResponse() *MentionsAndRepliesResponse {
 	this := MentionsAndRepliesResponse{}
-	this.Result = result
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewMentionsAndRepliesResponseWithDefaults() *MentionsAndRepliesResponse {
 	return &this
 }
 
-// GetResult returns the Result field value
+// GetResult returns the Result field value if set, zero value otherwise.
 func (o *MentionsAndRepliesResponse) GetResult() MentionsAndRepliesResponseResult {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		var ret MentionsAndRepliesResponseResult
 		return ret
 	}
-
-	return o.Result
+	return *o.Result
 }
 
-// GetResultOk returns a tuple with the Result field value
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MentionsAndRepliesResponse) GetResultOk() (*MentionsAndRepliesResponseResult, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
-// SetResult sets field value
+// HasResult returns a boolean if a field has been set.
+func (o *MentionsAndRepliesResponse) HasResult() bool {
+	if o != nil && !IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given MentionsAndRepliesResponseResult and assigns it to the Result field.
 func (o *MentionsAndRepliesResponse) SetResult(v MentionsAndRepliesResponseResult) {
-	o.Result = v
+	o.Result = &v
 }
 
 func (o MentionsAndRepliesResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o MentionsAndRepliesResponse) MarshalJSON() ([]byte, error) {
 
 func (o MentionsAndRepliesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["result"] = o.Result
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Result) {
+		toSerialize["result"] = o.Result
 	}
-
 	return toSerialize, nil
-}
-
-func (o *MentionsAndRepliesResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMentionsAndRepliesResponse := _MentionsAndRepliesResponse{}
-
-	err = json.Unmarshal(data, &varMentionsAndRepliesResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MentionsAndRepliesResponse(varMentionsAndRepliesResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "result")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMentionsAndRepliesResponse struct {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  | 
-**Symbol** | **string** |  | 
-**ArtUrl** | **string** |  | 
+**Title** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** |  | [optional] 
+**ArtUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewSubscriptionMetadata
 
-`func NewSubscriptionMetadata(title string, symbol string, artUrl string, ) *SubscriptionMetadata`
+`func NewSubscriptionMetadata() *SubscriptionMetadata`
 
 NewSubscriptionMetadata instantiates a new SubscriptionMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *SubscriptionMetadata) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetSymbol
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetSymbol sets Symbol field to given value.
 
+### HasSymbol
+
+`func (o *SubscriptionMetadata) HasSymbol() bool`
+
+HasSymbol returns a boolean if a field has been set.
 
 ### GetArtUrl
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetArtUrl sets ArtUrl field to given value.
 
+### HasArtUrl
+
+`func (o *SubscriptionMetadata) HasArtUrl() bool`
+
+HasArtUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

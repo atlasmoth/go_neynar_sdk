@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the WebhookListResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &WebhookListResponse{}
 
 // WebhookListResponse struct for WebhookListResponse
 type WebhookListResponse struct {
-	Webhooks []Webhook `json:"webhooks"`
-	AdditionalProperties map[string]interface{}
+	Webhooks []Webhook `json:"webhooks,omitempty"`
 }
-
-type _WebhookListResponse WebhookListResponse
 
 // NewWebhookListResponse instantiates a new WebhookListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookListResponse(webhooks []Webhook) *WebhookListResponse {
+func NewWebhookListResponse() *WebhookListResponse {
 	this := WebhookListResponse{}
-	this.Webhooks = webhooks
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewWebhookListResponseWithDefaults() *WebhookListResponse {
 	return &this
 }
 
-// GetWebhooks returns the Webhooks field value
+// GetWebhooks returns the Webhooks field value if set, zero value otherwise.
 func (o *WebhookListResponse) GetWebhooks() []Webhook {
-	if o == nil {
+	if o == nil || IsNil(o.Webhooks) {
 		var ret []Webhook
 		return ret
 	}
-
 	return o.Webhooks
 }
 
-// GetWebhooksOk returns a tuple with the Webhooks field value
+// GetWebhooksOk returns a tuple with the Webhooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookListResponse) GetWebhooksOk() ([]Webhook, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Webhooks) {
 		return nil, false
 	}
 	return o.Webhooks, true
 }
 
-// SetWebhooks sets field value
+// HasWebhooks returns a boolean if a field has been set.
+func (o *WebhookListResponse) HasWebhooks() bool {
+	if o != nil && !IsNil(o.Webhooks) {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhooks gets a reference to the given []Webhook and assigns it to the Webhooks field.
 func (o *WebhookListResponse) SetWebhooks(v []Webhook) {
 	o.Webhooks = v
 }
@@ -78,55 +81,10 @@ func (o WebhookListResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebhookListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["webhooks"] = o.Webhooks
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Webhooks) {
+		toSerialize["webhooks"] = o.Webhooks
 	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookListResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"webhooks",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookListResponse := _WebhookListResponse{}
-
-	err = json.Unmarshal(data, &varWebhookListResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookListResponse(varWebhookListResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "webhooks")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookListResponse struct {

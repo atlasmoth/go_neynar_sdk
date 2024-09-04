@@ -80,12 +80,6 @@ func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.deleteNeynarFrameRequest == nil {
-		return localVarReturnValue, nil, reportError("deleteNeynarFrameRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -104,7 +98,9 @@ func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.deleteNeynarFrameRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -205,9 +201,6 @@ func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -226,7 +219,9 @@ func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -332,14 +327,10 @@ func (a *FrameAPIService) FrameFromUrlExecute(r ApiFrameFromUrlRequest) (*FrameF
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.url == nil {
-		return localVarReturnValue, nil, reportError("url is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	if r.url != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -357,7 +348,9 @@ func (a *FrameAPIService) FrameFromUrlExecute(r ApiFrameFromUrlRequest) (*FrameF
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -476,14 +469,10 @@ func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.type_ == nil {
-		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	}
 	if r.uuid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "uuid", r.uuid, "form", "")
 	}
@@ -507,7 +496,9 @@ func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -616,12 +607,6 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.frameActionReqBody == nil {
-		return localVarReturnValue, nil, reportError("frameActionReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -640,7 +625,9 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.frameActionReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -761,12 +748,6 @@ func (a *FrameAPIService) PostFrameDeveloperManagedActionExecute(r ApiPostFrameD
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.frameDeveloperManagedActionReqBody == nil {
-		return localVarReturnValue, nil, reportError("frameDeveloperManagedActionReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -785,7 +766,9 @@ func (a *FrameAPIService) PostFrameDeveloperManagedActionExecute(r ApiPostFrameD
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.frameDeveloperManagedActionReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -903,12 +886,6 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.neynarFrameCreationRequest == nil {
-		return localVarReturnValue, nil, reportError("neynarFrameCreationRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -927,7 +904,9 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.neynarFrameCreationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1034,12 +1013,6 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.neynarFrameUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("neynarFrameUpdateRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1058,7 +1031,9 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.neynarFrameUpdateRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1083,7 +1058,7 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1094,7 +1069,7 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1178,12 +1153,6 @@ func (a *FrameAPIService) ValidateFrameExecute(r ApiValidateFrameRequest) (*Vali
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.validateFrameRequest == nil {
-		return localVarReturnValue, nil, reportError("validateFrameRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1202,7 +1171,9 @@ func (a *FrameAPIService) ValidateFrameExecute(r ApiValidateFrameRequest) (*Vali
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.validateFrameRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1345,26 +1316,19 @@ func (a *FrameAPIService) ValidateFrameAnalyticsExecute(r ApiValidateFrameAnalyt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.frameUrl == nil {
-		return localVarReturnValue, nil, reportError("frameUrl is required and must be specified")
-	}
-	if r.analyticsType == nil {
-		return localVarReturnValue, nil, reportError("analyticsType is required and must be specified")
-	}
-	if r.start == nil {
-		return localVarReturnValue, nil, reportError("start is required and must be specified")
-	}
-	if r.stop == nil {
-		return localVarReturnValue, nil, reportError("stop is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "frame_url", r.frameUrl, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "analytics_type", r.analyticsType, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "stop", r.stop, "form", "")
+	if r.frameUrl != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "frame_url", r.frameUrl, "form", "")
+	}
+	if r.analyticsType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "analytics_type", r.analyticsType, "form", "")
+	}
+	if r.start != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	} 
+	if r.stop != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "stop", r.stop, "form", "")
+	} 
 	if r.aggregateWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregate_window", r.aggregateWindow, "form", "")
 	}
@@ -1385,7 +1349,9 @@ func (a *FrameAPIService) ValidateFrameAnalyticsExecute(r ApiValidateFrameAnalyt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1517,9 +1483,6 @@ func (a *FrameAPIService) ValidateFrameListExecute(r ApiValidateFrameListRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1538,7 +1501,9 @@ func (a *FrameAPIService) ValidateFrameListExecute(r ApiValidateFrameListRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

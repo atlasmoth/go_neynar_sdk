@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fids** | **[]int32** |  | 
-**NextPageToken** | **string** |  | 
+**Fids** | Pointer to **[]int32** |  | [optional] 
+**NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewFidsResponse
 
-`func NewFidsResponse(fids []int32, nextPageToken string, ) *FidsResponse`
+`func NewFidsResponse() *FidsResponse`
 
 NewFidsResponse instantiates a new FidsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFids sets Fids field to given value.
 
+### HasFids
+
+`func (o *FidsResponse) HasFids() bool`
+
+HasFids returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageToken sets NextPageToken field to given value.
 
+### HasNextPageToken
+
+`func (o *FidsResponse) HasNextPageToken() bool`
+
+HasNextPageToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

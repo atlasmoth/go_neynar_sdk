@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameActionButton type satisfies the MappedNullable interface at compile time
@@ -23,25 +22,20 @@ type FrameActionButton struct {
 	// Title of the button
 	Title *string `json:"title,omitempty"`
 	// Index of the button
-	Index int32 `json:"index"`
-	ActionType FrameButtonActionType `json:"action_type"`
+	Index *int32 `json:"index,omitempty"`
+	ActionType *FrameButtonActionType `json:"action_type,omitempty"`
 	// Target of the button
 	Target *string `json:"target,omitempty"`
 	// Used specifically for the tx action type to post a successful transaction hash
 	PostUrl *string `json:"post_url,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _FrameActionButton FrameActionButton
 
 // NewFrameActionButton instantiates a new FrameActionButton object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameActionButton(index int32, actionType FrameButtonActionType) *FrameActionButton {
+func NewFrameActionButton() *FrameActionButton {
 	this := FrameActionButton{}
-	this.Index = index
-	this.ActionType = actionType
 	return &this
 }
 
@@ -85,52 +79,68 @@ func (o *FrameActionButton) SetTitle(v string) {
 	o.Title = &v
 }
 
-// GetIndex returns the Index field value
+// GetIndex returns the Index field value if set, zero value otherwise.
 func (o *FrameActionButton) GetIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		var ret int32
 		return ret
 	}
-
-	return o.Index
+	return *o.Index
 }
 
-// GetIndexOk returns a tuple with the Index field value
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionButton) GetIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		return nil, false
 	}
-	return &o.Index, true
+	return o.Index, true
 }
 
-// SetIndex sets field value
+// HasIndex returns a boolean if a field has been set.
+func (o *FrameActionButton) HasIndex() bool {
+	if o != nil && !IsNil(o.Index) {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex gets a reference to the given int32 and assigns it to the Index field.
 func (o *FrameActionButton) SetIndex(v int32) {
-	o.Index = v
+	o.Index = &v
 }
 
-// GetActionType returns the ActionType field value
+// GetActionType returns the ActionType field value if set, zero value otherwise.
 func (o *FrameActionButton) GetActionType() FrameButtonActionType {
-	if o == nil {
+	if o == nil || IsNil(o.ActionType) {
 		var ret FrameButtonActionType
 		return ret
 	}
-
-	return o.ActionType
+	return *o.ActionType
 }
 
-// GetActionTypeOk returns a tuple with the ActionType field value
+// GetActionTypeOk returns a tuple with the ActionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionButton) GetActionTypeOk() (*FrameButtonActionType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ActionType) {
 		return nil, false
 	}
-	return &o.ActionType, true
+	return o.ActionType, true
 }
 
-// SetActionType sets field value
+// HasActionType returns a boolean if a field has been set.
+func (o *FrameActionButton) HasActionType() bool {
+	if o != nil && !IsNil(o.ActionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetActionType gets a reference to the given FrameButtonActionType and assigns it to the ActionType field.
 func (o *FrameActionButton) SetActionType(v FrameButtonActionType) {
-	o.ActionType = v
+	o.ActionType = &v
 }
 
 // GetTarget returns the Target field value if set, zero value otherwise.
@@ -210,67 +220,19 @@ func (o FrameActionButton) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	toSerialize["index"] = o.Index
-	toSerialize["action_type"] = o.ActionType
+	if !IsNil(o.Index) {
+		toSerialize["index"] = o.Index
+	}
+	if !IsNil(o.ActionType) {
+		toSerialize["action_type"] = o.ActionType
+	}
 	if !IsNil(o.Target) {
 		toSerialize["target"] = o.Target
 	}
 	if !IsNil(o.PostUrl) {
 		toSerialize["post_url"] = o.PostUrl
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameActionButton) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"index",
-		"action_type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameActionButton := _FrameActionButton{}
-
-	err = json.Unmarshal(data, &varFrameActionButton)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameActionButton(varFrameActionButton)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "index")
-		delete(additionalProperties, "action_type")
-		delete(additionalProperties, "target")
-		delete(additionalProperties, "post_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameActionButton struct {

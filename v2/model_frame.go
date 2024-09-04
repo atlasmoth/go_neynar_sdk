@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Frame type satisfies the MappedNullable interface at compile time
@@ -21,32 +20,26 @@ var _ MappedNullable = &Frame{}
 // Frame struct for Frame
 type Frame struct {
 	// Version of the frame
-	Version string `json:"version"`
+	Version *string `json:"version,omitempty"`
 	// URL of the image
-	Image string `json:"image"`
+	Image *string `json:"image,omitempty"`
 	Buttons []FrameActionButton `json:"buttons,omitempty"`
 	// Post URL to take an action on this frame
 	PostUrl *string `json:"post_url,omitempty"`
 	// URL of the frames
-	FramesUrl string `json:"frames_url"`
+	FramesUrl *string `json:"frames_url,omitempty"`
 	Title *string `json:"title,omitempty"`
 	ImageAspectRatio *string `json:"image_aspect_ratio,omitempty"`
 	Input *FrameInput `json:"input,omitempty"`
 	State *FrameState `json:"state,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Frame Frame
 
 // NewFrame instantiates a new Frame object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrame(version string, image string, framesUrl string) *Frame {
+func NewFrame() *Frame {
 	this := Frame{}
-	this.Version = version
-	this.Image = image
-	this.FramesUrl = framesUrl
 	return &this
 }
 
@@ -58,52 +51,68 @@ func NewFrameWithDefaults() *Frame {
 	return &this
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Frame) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Frame) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *Frame) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *Frame) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *Frame) GetImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret string
 		return ret
 	}
-
-	return o.Image
+	return *o.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Frame) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		return nil, false
 	}
-	return &o.Image, true
+	return o.Image, true
 }
 
-// SetImage sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *Frame) HasImage() bool {
+	if o != nil && !IsNil(o.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given string and assigns it to the Image field.
 func (o *Frame) SetImage(v string) {
-	o.Image = v
+	o.Image = &v
 }
 
 // GetButtons returns the Buttons field value if set, zero value otherwise.
@@ -170,28 +179,36 @@ func (o *Frame) SetPostUrl(v string) {
 	o.PostUrl = &v
 }
 
-// GetFramesUrl returns the FramesUrl field value
+// GetFramesUrl returns the FramesUrl field value if set, zero value otherwise.
 func (o *Frame) GetFramesUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.FramesUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.FramesUrl
+	return *o.FramesUrl
 }
 
-// GetFramesUrlOk returns a tuple with the FramesUrl field value
+// GetFramesUrlOk returns a tuple with the FramesUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Frame) GetFramesUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FramesUrl) {
 		return nil, false
 	}
-	return &o.FramesUrl, true
+	return o.FramesUrl, true
 }
 
-// SetFramesUrl sets field value
+// HasFramesUrl returns a boolean if a field has been set.
+func (o *Frame) HasFramesUrl() bool {
+	if o != nil && !IsNil(o.FramesUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFramesUrl gets a reference to the given string and assigns it to the FramesUrl field.
 func (o *Frame) SetFramesUrl(v string) {
-	o.FramesUrl = v
+	o.FramesUrl = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -332,15 +349,21 @@ func (o Frame) MarshalJSON() ([]byte, error) {
 
 func (o Frame) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["version"] = o.Version
-	toSerialize["image"] = o.Image
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
 	if !IsNil(o.Buttons) {
 		toSerialize["buttons"] = o.Buttons
 	}
 	if !IsNil(o.PostUrl) {
 		toSerialize["post_url"] = o.PostUrl
 	}
-	toSerialize["frames_url"] = o.FramesUrl
+	if !IsNil(o.FramesUrl) {
+		toSerialize["frames_url"] = o.FramesUrl
+	}
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
@@ -353,64 +376,7 @@ func (o Frame) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Frame) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"version",
-		"image",
-		"frames_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrame := _Frame{}
-
-	err = json.Unmarshal(data, &varFrame)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Frame(varFrame)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "image")
-		delete(additionalProperties, "buttons")
-		delete(additionalProperties, "post_url")
-		delete(additionalProperties, "frames_url")
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "image_aspect_ratio")
-		delete(additionalProperties, "input")
-		delete(additionalProperties, "state")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrame struct {

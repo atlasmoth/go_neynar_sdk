@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReactorFid** | **int32** | User identifier (unsigned integer) | [default to 3]
-**ReactionType** | [**ReactionType**](ReactionType.md) |  | 
-**ReactionHash** | **string** |  | 
-**ReactionTargetHash** | **string** |  | 
-**ReactionTimestamp** | **time.Time** |  | 
+**ReactorFid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] [default to 3]
+**ReactionType** | Pointer to [**ReactionType**](ReactionType.md) |  | [optional] 
+**ReactionHash** | Pointer to **string** |  | [optional] 
+**ReactionTargetHash** | Pointer to **string** |  | [optional] 
+**ReactionTimestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewReactionWithCastMetaReaction
 
-`func NewReactionWithCastMetaReaction(reactorFid int32, reactionType ReactionType, reactionHash string, reactionTargetHash string, reactionTimestamp time.Time, ) *ReactionWithCastMetaReaction`
+`func NewReactionWithCastMetaReaction() *ReactionWithCastMetaReaction`
 
 NewReactionWithCastMetaReaction instantiates a new ReactionWithCastMetaReaction object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetReactorFid sets ReactorFid field to given value.
 
+### HasReactorFid
+
+`func (o *ReactionWithCastMetaReaction) HasReactorFid() bool`
+
+HasReactorFid returns a boolean if a field has been set.
 
 ### GetReactionType
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetReactionType sets ReactionType field to given value.
 
+### HasReactionType
+
+`func (o *ReactionWithCastMetaReaction) HasReactionType() bool`
+
+HasReactionType returns a boolean if a field has been set.
 
 ### GetReactionHash
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetReactionHash sets ReactionHash field to given value.
 
+### HasReactionHash
+
+`func (o *ReactionWithCastMetaReaction) HasReactionHash() bool`
+
+HasReactionHash returns a boolean if a field has been set.
 
 ### GetReactionTargetHash
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetReactionTargetHash sets ReactionTargetHash field to given value.
 
+### HasReactionTargetHash
+
+`func (o *ReactionWithCastMetaReaction) HasReactionTargetHash() bool`
+
+HasReactionTargetHash returns a boolean if a field has been set.
 
 ### GetReactionTimestamp
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetReactionTimestamp sets ReactionTimestamp field to given value.
 
+### HasReactionTimestamp
+
+`func (o *ReactionWithCastMetaReaction) HasReactionTimestamp() bool`
+
+HasReactionTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

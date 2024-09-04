@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RegisterUserResponse type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &RegisterUserResponse{}
 
 // RegisterUserResponse struct for RegisterUserResponse
 type RegisterUserResponse struct {
-	Success bool `json:"success"`
-	Message string `json:"message"`
-	Signer Signer `json:"signer"`
-	AdditionalProperties map[string]interface{}
+	Success *bool `json:"success,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Signer *Signer `json:"signer,omitempty"`
 }
-
-type _RegisterUserResponse RegisterUserResponse
 
 // NewRegisterUserResponse instantiates a new RegisterUserResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterUserResponse(success bool, message string, signer Signer) *RegisterUserResponse {
+func NewRegisterUserResponse() *RegisterUserResponse {
 	this := RegisterUserResponse{}
-	this.Success = success
-	this.Message = message
-	this.Signer = signer
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewRegisterUserResponseWithDefaults() *RegisterUserResponse {
 	return &this
 }
 
-// GetSuccess returns the Success field value
+// GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *RegisterUserResponse) GetSuccess() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		var ret bool
 		return ret
 	}
-
-	return o.Success
+	return *o.Success
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserResponse) GetSuccessOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		return nil, false
 	}
-	return &o.Success, true
+	return o.Success, true
 }
 
-// SetSuccess sets field value
+// HasSuccess returns a boolean if a field has been set.
+func (o *RegisterUserResponse) HasSuccess() bool {
+	if o != nil && !IsNil(o.Success) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccess gets a reference to the given bool and assigns it to the Success field.
 func (o *RegisterUserResponse) SetSuccess(v bool) {
-	o.Success = v
+	o.Success = &v
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *RegisterUserResponse) GetMessage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *RegisterUserResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *RegisterUserResponse) SetMessage(v string) {
-	o.Message = v
+	o.Message = &v
 }
 
-// GetSigner returns the Signer field value
+// GetSigner returns the Signer field value if set, zero value otherwise.
 func (o *RegisterUserResponse) GetSigner() Signer {
-	if o == nil {
+	if o == nil || IsNil(o.Signer) {
 		var ret Signer
 		return ret
 	}
-
-	return o.Signer
+	return *o.Signer
 }
 
-// GetSignerOk returns a tuple with the Signer field value
+// GetSignerOk returns a tuple with the Signer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserResponse) GetSignerOk() (*Signer, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Signer) {
 		return nil, false
 	}
-	return &o.Signer, true
+	return o.Signer, true
 }
 
-// SetSigner sets field value
+// HasSigner returns a boolean if a field has been set.
+func (o *RegisterUserResponse) HasSigner() bool {
+	if o != nil && !IsNil(o.Signer) {
+		return true
+	}
+
+	return false
+}
+
+// SetSigner gets a reference to the given Signer and assigns it to the Signer field.
 func (o *RegisterUserResponse) SetSigner(v Signer) {
-	o.Signer = v
+	o.Signer = &v
 }
 
 func (o RegisterUserResponse) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o RegisterUserResponse) MarshalJSON() ([]byte, error) {
 
 func (o RegisterUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["success"] = o.Success
-	toSerialize["message"] = o.Message
-	toSerialize["signer"] = o.Signer
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
 	}
-
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Signer) {
+		toSerialize["signer"] = o.Signer
+	}
 	return toSerialize, nil
-}
-
-func (o *RegisterUserResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"success",
-		"message",
-		"signer",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRegisterUserResponse := _RegisterUserResponse{}
-
-	err = json.Unmarshal(data, &varRegisterUserResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RegisterUserResponse(varRegisterUserResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "signer")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRegisterUserResponse struct {

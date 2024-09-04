@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**Fid** | **int32** | User identifier (unsigned integer) | 
-**Username** | **string** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
-**CustodyAddress** | **string** | Ethereum address | 
+**CustodyAddress** | Pointer to **string** | Ethereum address | [optional] 
 **PfpUrl** | Pointer to **string** | The URL of the user&#39;s profile picture | [optional] 
-**Profile** | [**UserProfile**](UserProfile.md) |  | 
-**FollowerCount** | **int32** | The number of followers the user has. | 
-**FollowingCount** | **int32** | The number of users the user is following. | 
-**Verifications** | **[]string** |  | 
-**VerifiedAddresses** | [**UserVerifiedAddresses**](UserVerifiedAddresses.md) |  | 
-**ActiveStatus** | [**ActiveStatus**](ActiveStatus.md) |  | 
-**PowerBadge** | **bool** |  | 
+**Profile** | Pointer to [**UserProfile**](UserProfile.md) |  | [optional] 
+**FollowerCount** | Pointer to **int32** | The number of followers the user has. | [optional] 
+**FollowingCount** | Pointer to **int32** | The number of users the user is following. | [optional] 
+**Verifications** | Pointer to **[]string** |  | [optional] 
+**VerifiedAddresses** | Pointer to [**UserVerifiedAddresses**](UserVerifiedAddresses.md) |  | [optional] 
+**ActiveStatus** | Pointer to [**ActiveStatus**](ActiveStatus.md) |  | [optional] 
+**PowerBadge** | Pointer to **bool** |  | [optional] 
 **ViewerContext** | Pointer to [**UserViewerContext**](UserViewerContext.md) |  | [optional] 
-**Pfp** | [**ProfileUrlPfp**](ProfileUrlPfp.md) |  | 
+**Pfp** | Pointer to [**ProfileUrlPfp**](ProfileUrlPfp.md) |  | [optional] 
 
 ## Methods
 
 ### NewSearchedUser
 
-`func NewSearchedUser(object string, fid int32, username string, custodyAddress string, profile UserProfile, followerCount int32, followingCount int32, verifications []string, verifiedAddresses UserVerifiedAddresses, activeStatus ActiveStatus, powerBadge bool, pfp ProfileUrlPfp, ) *SearchedUser`
+`func NewSearchedUser() *SearchedUser`
 
 NewSearchedUser instantiates a new SearchedUser object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +58,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *SearchedUser) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -78,6 +83,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *SearchedUser) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -98,6 +108,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *SearchedUser) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -143,6 +158,11 @@ and a boolean to check if the value has been set.
 
 SetCustodyAddress sets CustodyAddress field to given value.
 
+### HasCustodyAddress
+
+`func (o *SearchedUser) HasCustodyAddress() bool`
+
+HasCustodyAddress returns a boolean if a field has been set.
 
 ### GetPfpUrl
 
@@ -188,6 +208,11 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
+### HasProfile
+
+`func (o *SearchedUser) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
 
 ### GetFollowerCount
 
@@ -208,6 +233,11 @@ and a boolean to check if the value has been set.
 
 SetFollowerCount sets FollowerCount field to given value.
 
+### HasFollowerCount
+
+`func (o *SearchedUser) HasFollowerCount() bool`
+
+HasFollowerCount returns a boolean if a field has been set.
 
 ### GetFollowingCount
 
@@ -228,6 +258,11 @@ and a boolean to check if the value has been set.
 
 SetFollowingCount sets FollowingCount field to given value.
 
+### HasFollowingCount
+
+`func (o *SearchedUser) HasFollowingCount() bool`
+
+HasFollowingCount returns a boolean if a field has been set.
 
 ### GetVerifications
 
@@ -248,6 +283,11 @@ and a boolean to check if the value has been set.
 
 SetVerifications sets Verifications field to given value.
 
+### HasVerifications
+
+`func (o *SearchedUser) HasVerifications() bool`
+
+HasVerifications returns a boolean if a field has been set.
 
 ### GetVerifiedAddresses
 
@@ -268,6 +308,11 @@ and a boolean to check if the value has been set.
 
 SetVerifiedAddresses sets VerifiedAddresses field to given value.
 
+### HasVerifiedAddresses
+
+`func (o *SearchedUser) HasVerifiedAddresses() bool`
+
+HasVerifiedAddresses returns a boolean if a field has been set.
 
 ### GetActiveStatus
 
@@ -288,6 +333,11 @@ and a boolean to check if the value has been set.
 
 SetActiveStatus sets ActiveStatus field to given value.
 
+### HasActiveStatus
+
+`func (o *SearchedUser) HasActiveStatus() bool`
+
+HasActiveStatus returns a boolean if a field has been set.
 
 ### GetPowerBadge
 
@@ -308,6 +358,11 @@ and a boolean to check if the value has been set.
 
 SetPowerBadge sets PowerBadge field to given value.
 
+### HasPowerBadge
+
+`func (o *SearchedUser) HasPowerBadge() bool`
+
+HasPowerBadge returns a boolean if a field has been set.
 
 ### GetViewerContext
 
@@ -353,6 +408,11 @@ and a boolean to check if the value has been set.
 
 SetPfp sets Pfp field to given value.
 
+### HasPfp
+
+`func (o *SearchedUser) HasPfp() bool`
+
+HasPfp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

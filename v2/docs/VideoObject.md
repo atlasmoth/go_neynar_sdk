@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Height** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 **Width** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewVideoObject
 
-`func NewVideoObject(url string, ) *VideoObject`
+`func NewVideoObject() *VideoObject`
 
 NewVideoObject instantiates a new VideoObject object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *VideoObject) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetWidth
 

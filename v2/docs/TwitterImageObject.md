@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Alt** | Pointer to **string** |  | [optional] 
 **Height** | Pointer to **int32** |  | [optional] 
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 **Width** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewTwitterImageObject
 
-`func NewTwitterImageObject(url string, ) *TwitterImageObject`
+`func NewTwitterImageObject() *TwitterImageObject`
 
 NewTwitterImageObject instantiates a new TwitterImageObject object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *TwitterImageObject) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetWidth
 

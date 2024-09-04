@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **string** | Version of the frame | 
-**Image** | **string** | URL of the image | 
+**Version** | Pointer to **string** | Version of the frame | [optional] 
+**Image** | Pointer to **string** | URL of the image | [optional] 
 **Buttons** | Pointer to [**[]FrameActionButton**](FrameActionButton.md) |  | [optional] 
 **PostUrl** | Pointer to **string** | Post URL to take an action on this frame | [optional] 
-**FramesUrl** | **string** | URL of the frames | 
+**FramesUrl** | Pointer to **string** | URL of the frames | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **ImageAspectRatio** | Pointer to **string** |  | [optional] 
 **Input** | Pointer to [**FrameInput**](FrameInput.md) |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewFrame
 
-`func NewFrame(version string, image string, framesUrl string, ) *Frame`
+`func NewFrame() *Frame`
 
 NewFrame instantiates a new Frame object
 This constructor will assign default values to properties that have it defined,
@@ -52,6 +52,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *Frame) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetImage
 
@@ -72,6 +77,11 @@ and a boolean to check if the value has been set.
 
 SetImage sets Image field to given value.
 
+### HasImage
+
+`func (o *Frame) HasImage() bool`
+
+HasImage returns a boolean if a field has been set.
 
 ### GetButtons
 
@@ -142,6 +152,11 @@ and a boolean to check if the value has been set.
 
 SetFramesUrl sets FramesUrl field to given value.
 
+### HasFramesUrl
+
+`func (o *Frame) HasFramesUrl() bool`
+
+HasFramesUrl returns a boolean if a field has been set.
 
 ### GetTitle
 

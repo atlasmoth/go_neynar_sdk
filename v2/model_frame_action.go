@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameAction type satisfies the MappedNullable interface at compile time
@@ -23,30 +22,24 @@ type FrameAction struct {
 	Version *string `json:"version,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Image *string `json:"image,omitempty"`
-	Button FrameActionButton `json:"button"`
+	Button *FrameActionButton `json:"button,omitempty"`
 	Input *FrameInput `json:"input,omitempty"`
 	State *FrameState `json:"state,omitempty"`
 	Transaction *FrameTransaction `json:"transaction,omitempty"`
 	// The connected wallet address of the interacting user.
 	Address *string `json:"address,omitempty"`
 	// URL of the frames
-	FramesUrl string `json:"frames_url"`
+	FramesUrl *string `json:"frames_url,omitempty"`
 	// URL of the post to get the next frame
-	PostUrl string `json:"post_url"`
-	AdditionalProperties map[string]interface{}
+	PostUrl *string `json:"post_url,omitempty"`
 }
-
-type _FrameAction FrameAction
 
 // NewFrameAction instantiates a new FrameAction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameAction(button FrameActionButton, framesUrl string, postUrl string) *FrameAction {
+func NewFrameAction() *FrameAction {
 	this := FrameAction{}
-	this.Button = button
-	this.FramesUrl = framesUrl
-	this.PostUrl = postUrl
 	return &this
 }
 
@@ -154,28 +147,36 @@ func (o *FrameAction) SetImage(v string) {
 	o.Image = &v
 }
 
-// GetButton returns the Button field value
+// GetButton returns the Button field value if set, zero value otherwise.
 func (o *FrameAction) GetButton() FrameActionButton {
-	if o == nil {
+	if o == nil || IsNil(o.Button) {
 		var ret FrameActionButton
 		return ret
 	}
-
-	return o.Button
+	return *o.Button
 }
 
-// GetButtonOk returns a tuple with the Button field value
+// GetButtonOk returns a tuple with the Button field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameAction) GetButtonOk() (*FrameActionButton, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Button) {
 		return nil, false
 	}
-	return &o.Button, true
+	return o.Button, true
 }
 
-// SetButton sets field value
+// HasButton returns a boolean if a field has been set.
+func (o *FrameAction) HasButton() bool {
+	if o != nil && !IsNil(o.Button) {
+		return true
+	}
+
+	return false
+}
+
+// SetButton gets a reference to the given FrameActionButton and assigns it to the Button field.
 func (o *FrameAction) SetButton(v FrameActionButton) {
-	o.Button = v
+	o.Button = &v
 }
 
 // GetInput returns the Input field value if set, zero value otherwise.
@@ -306,52 +307,68 @@ func (o *FrameAction) SetAddress(v string) {
 	o.Address = &v
 }
 
-// GetFramesUrl returns the FramesUrl field value
+// GetFramesUrl returns the FramesUrl field value if set, zero value otherwise.
 func (o *FrameAction) GetFramesUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.FramesUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.FramesUrl
+	return *o.FramesUrl
 }
 
-// GetFramesUrlOk returns a tuple with the FramesUrl field value
+// GetFramesUrlOk returns a tuple with the FramesUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameAction) GetFramesUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FramesUrl) {
 		return nil, false
 	}
-	return &o.FramesUrl, true
+	return o.FramesUrl, true
 }
 
-// SetFramesUrl sets field value
+// HasFramesUrl returns a boolean if a field has been set.
+func (o *FrameAction) HasFramesUrl() bool {
+	if o != nil && !IsNil(o.FramesUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFramesUrl gets a reference to the given string and assigns it to the FramesUrl field.
 func (o *FrameAction) SetFramesUrl(v string) {
-	o.FramesUrl = v
+	o.FramesUrl = &v
 }
 
-// GetPostUrl returns the PostUrl field value
+// GetPostUrl returns the PostUrl field value if set, zero value otherwise.
 func (o *FrameAction) GetPostUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.PostUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.PostUrl
+	return *o.PostUrl
 }
 
-// GetPostUrlOk returns a tuple with the PostUrl field value
+// GetPostUrlOk returns a tuple with the PostUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameAction) GetPostUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PostUrl) {
 		return nil, false
 	}
-	return &o.PostUrl, true
+	return o.PostUrl, true
 }
 
-// SetPostUrl sets field value
+// HasPostUrl returns a boolean if a field has been set.
+func (o *FrameAction) HasPostUrl() bool {
+	if o != nil && !IsNil(o.PostUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetPostUrl gets a reference to the given string and assigns it to the PostUrl field.
 func (o *FrameAction) SetPostUrl(v string) {
-	o.PostUrl = v
+	o.PostUrl = &v
 }
 
 func (o FrameAction) MarshalJSON() ([]byte, error) {
@@ -373,7 +390,9 @@ func (o FrameAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Image) {
 		toSerialize["image"] = o.Image
 	}
-	toSerialize["button"] = o.Button
+	if !IsNil(o.Button) {
+		toSerialize["button"] = o.Button
+	}
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
 	}
@@ -386,67 +405,13 @@ func (o FrameAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	toSerialize["frames_url"] = o.FramesUrl
-	toSerialize["post_url"] = o.PostUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.FramesUrl) {
+		toSerialize["frames_url"] = o.FramesUrl
 	}
-
+	if !IsNil(o.PostUrl) {
+		toSerialize["post_url"] = o.PostUrl
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameAction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"button",
-		"frames_url",
-		"post_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameAction := _FrameAction{}
-
-	err = json.Unmarshal(data, &varFrameAction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameAction(varFrameAction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "image")
-		delete(additionalProperties, "button")
-		delete(additionalProperties, "input")
-		delete(additionalProperties, "state")
-		delete(additionalProperties, "transaction")
-		delete(additionalProperties, "address")
-		delete(additionalProperties, "frames_url")
-		delete(additionalProperties, "post_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameAction struct {

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Valid** | **bool** |  | 
-**Action** | [**ValidatedFrameAction**](ValidatedFrameAction.md) |  | 
+**Valid** | Pointer to **bool** |  | [optional] 
+**Action** | Pointer to [**ValidatedFrameAction**](ValidatedFrameAction.md) |  | [optional] 
 
 ## Methods
 
 ### NewValidateFrameActionResponse
 
-`func NewValidateFrameActionResponse(valid bool, action ValidatedFrameAction, ) *ValidateFrameActionResponse`
+`func NewValidateFrameActionResponse() *ValidateFrameActionResponse`
 
 NewValidateFrameActionResponse instantiates a new ValidateFrameActionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetValid sets Valid field to given value.
 
+### HasValid
+
+`func (o *ValidateFrameActionResponse) HasValid() bool`
+
+HasValid returns a boolean if a field has been set.
 
 ### GetAction
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAction sets Action field to given value.
 
+### HasAction
+
+`func (o *ValidateFrameActionResponse) HasAction() bool`
+
+HasAction returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

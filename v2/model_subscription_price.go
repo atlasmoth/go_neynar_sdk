@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SubscriptionPrice type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &SubscriptionPrice{}
 
 // SubscriptionPrice struct for SubscriptionPrice
 type SubscriptionPrice struct {
-	PeriodDurationSeconds int32 `json:"period_duration_seconds"`
-	TokensPerPeriod string `json:"tokens_per_period"`
-	InitialMintPrice string `json:"initial_mint_price"`
-	AdditionalProperties map[string]interface{}
+	PeriodDurationSeconds *int32 `json:"period_duration_seconds,omitempty"`
+	TokensPerPeriod *string `json:"tokens_per_period,omitempty"`
+	InitialMintPrice *string `json:"initial_mint_price,omitempty"`
 }
-
-type _SubscriptionPrice SubscriptionPrice
 
 // NewSubscriptionPrice instantiates a new SubscriptionPrice object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionPrice(periodDurationSeconds int32, tokensPerPeriod string, initialMintPrice string) *SubscriptionPrice {
+func NewSubscriptionPrice() *SubscriptionPrice {
 	this := SubscriptionPrice{}
-	this.PeriodDurationSeconds = periodDurationSeconds
-	this.TokensPerPeriod = tokensPerPeriod
-	this.InitialMintPrice = initialMintPrice
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewSubscriptionPriceWithDefaults() *SubscriptionPrice {
 	return &this
 }
 
-// GetPeriodDurationSeconds returns the PeriodDurationSeconds field value
+// GetPeriodDurationSeconds returns the PeriodDurationSeconds field value if set, zero value otherwise.
 func (o *SubscriptionPrice) GetPeriodDurationSeconds() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PeriodDurationSeconds) {
 		var ret int32
 		return ret
 	}
-
-	return o.PeriodDurationSeconds
+	return *o.PeriodDurationSeconds
 }
 
-// GetPeriodDurationSecondsOk returns a tuple with the PeriodDurationSeconds field value
+// GetPeriodDurationSecondsOk returns a tuple with the PeriodDurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPrice) GetPeriodDurationSecondsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PeriodDurationSeconds) {
 		return nil, false
 	}
-	return &o.PeriodDurationSeconds, true
+	return o.PeriodDurationSeconds, true
 }
 
-// SetPeriodDurationSeconds sets field value
+// HasPeriodDurationSeconds returns a boolean if a field has been set.
+func (o *SubscriptionPrice) HasPeriodDurationSeconds() bool {
+	if o != nil && !IsNil(o.PeriodDurationSeconds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodDurationSeconds gets a reference to the given int32 and assigns it to the PeriodDurationSeconds field.
 func (o *SubscriptionPrice) SetPeriodDurationSeconds(v int32) {
-	o.PeriodDurationSeconds = v
+	o.PeriodDurationSeconds = &v
 }
 
-// GetTokensPerPeriod returns the TokensPerPeriod field value
+// GetTokensPerPeriod returns the TokensPerPeriod field value if set, zero value otherwise.
 func (o *SubscriptionPrice) GetTokensPerPeriod() string {
-	if o == nil {
+	if o == nil || IsNil(o.TokensPerPeriod) {
 		var ret string
 		return ret
 	}
-
-	return o.TokensPerPeriod
+	return *o.TokensPerPeriod
 }
 
-// GetTokensPerPeriodOk returns a tuple with the TokensPerPeriod field value
+// GetTokensPerPeriodOk returns a tuple with the TokensPerPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPrice) GetTokensPerPeriodOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TokensPerPeriod) {
 		return nil, false
 	}
-	return &o.TokensPerPeriod, true
+	return o.TokensPerPeriod, true
 }
 
-// SetTokensPerPeriod sets field value
+// HasTokensPerPeriod returns a boolean if a field has been set.
+func (o *SubscriptionPrice) HasTokensPerPeriod() bool {
+	if o != nil && !IsNil(o.TokensPerPeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokensPerPeriod gets a reference to the given string and assigns it to the TokensPerPeriod field.
 func (o *SubscriptionPrice) SetTokensPerPeriod(v string) {
-	o.TokensPerPeriod = v
+	o.TokensPerPeriod = &v
 }
 
-// GetInitialMintPrice returns the InitialMintPrice field value
+// GetInitialMintPrice returns the InitialMintPrice field value if set, zero value otherwise.
 func (o *SubscriptionPrice) GetInitialMintPrice() string {
-	if o == nil {
+	if o == nil || IsNil(o.InitialMintPrice) {
 		var ret string
 		return ret
 	}
-
-	return o.InitialMintPrice
+	return *o.InitialMintPrice
 }
 
-// GetInitialMintPriceOk returns a tuple with the InitialMintPrice field value
+// GetInitialMintPriceOk returns a tuple with the InitialMintPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPrice) GetInitialMintPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InitialMintPrice) {
 		return nil, false
 	}
-	return &o.InitialMintPrice, true
+	return o.InitialMintPrice, true
 }
 
-// SetInitialMintPrice sets field value
+// HasInitialMintPrice returns a boolean if a field has been set.
+func (o *SubscriptionPrice) HasInitialMintPrice() bool {
+	if o != nil && !IsNil(o.InitialMintPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitialMintPrice gets a reference to the given string and assigns it to the InitialMintPrice field.
 func (o *SubscriptionPrice) SetInitialMintPrice(v string) {
-	o.InitialMintPrice = v
+	o.InitialMintPrice = &v
 }
 
 func (o SubscriptionPrice) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o SubscriptionPrice) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionPrice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["period_duration_seconds"] = o.PeriodDurationSeconds
-	toSerialize["tokens_per_period"] = o.TokensPerPeriod
-	toSerialize["initial_mint_price"] = o.InitialMintPrice
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.PeriodDurationSeconds) {
+		toSerialize["period_duration_seconds"] = o.PeriodDurationSeconds
 	}
-
+	if !IsNil(o.TokensPerPeriod) {
+		toSerialize["tokens_per_period"] = o.TokensPerPeriod
+	}
+	if !IsNil(o.InitialMintPrice) {
+		toSerialize["initial_mint_price"] = o.InitialMintPrice
+	}
 	return toSerialize, nil
-}
-
-func (o *SubscriptionPrice) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"period_duration_seconds",
-		"tokens_per_period",
-		"initial_mint_price",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscriptionPrice := _SubscriptionPrice{}
-
-	err = json.Unmarshal(data, &varSubscriptionPrice)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscriptionPrice(varSubscriptionPrice)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "period_duration_seconds")
-		delete(additionalProperties, "tokens_per_period")
-		delete(additionalProperties, "initial_mint_price")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptionPrice struct {

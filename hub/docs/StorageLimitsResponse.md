@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limits** | [**[]StorageLimit**](StorageLimit.md) |  | 
+**Limits** | Pointer to [**[]StorageLimit**](StorageLimit.md) |  | [optional] 
 
 ## Methods
 
 ### NewStorageLimitsResponse
 
-`func NewStorageLimitsResponse(limits []StorageLimit, ) *StorageLimitsResponse`
+`func NewStorageLimitsResponse() *StorageLimitsResponse`
 
 NewStorageLimitsResponse instantiates a new StorageLimitsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetLimits sets Limits field to given value.
 
+### HasLimits
+
+`func (o *StorageLimitsResponse) HasLimits() bool`
+
+HasLimits returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

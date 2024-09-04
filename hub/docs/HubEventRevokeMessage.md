@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**RevokeMessageBody** | [**RevokeMessageBody**](RevokeMessageBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**RevokeMessageBody** | Pointer to [**RevokeMessageBody**](RevokeMessageBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEventRevokeMessage
 
-`func NewHubEventRevokeMessage(type_ string, id int32, revokeMessageBody RevokeMessageBody, ) *HubEventRevokeMessage`
+`func NewHubEventRevokeMessage() *HubEventRevokeMessage`
 
 NewHubEventRevokeMessage instantiates a new HubEventRevokeMessage object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEventRevokeMessage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEventRevokeMessage) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetRevokeMessageBody
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetRevokeMessageBody sets RevokeMessageBody field to given value.
 
+### HasRevokeMessageBody
+
+`func (o *HubEventRevokeMessage) HasRevokeMessageBody() bool`
+
+HasRevokeMessageBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

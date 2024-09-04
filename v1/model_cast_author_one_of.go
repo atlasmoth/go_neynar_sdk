@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastAuthorOneOf type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastAuthorOneOf{}
 
 // CastAuthorOneOf struct for CastAuthorOneOf
 type CastAuthorOneOf struct {
-	Fid string `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Fid *string `json:"fid,omitempty"`
 }
-
-type _CastAuthorOneOf CastAuthorOneOf
 
 // NewCastAuthorOneOf instantiates a new CastAuthorOneOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastAuthorOneOf(fid string) *CastAuthorOneOf {
+func NewCastAuthorOneOf() *CastAuthorOneOf {
 	this := CastAuthorOneOf{}
-	this.Fid = fid
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCastAuthorOneOfWithDefaults() *CastAuthorOneOf {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *CastAuthorOneOf) GetFid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret string
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAuthorOneOf) GetFidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *CastAuthorOneOf) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given string and assigns it to the Fid field.
 func (o *CastAuthorOneOf) SetFid(v string) {
-	o.Fid = v
+	o.Fid = &v
 }
 
 func (o CastAuthorOneOf) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CastAuthorOneOf) MarshalJSON() ([]byte, error) {
 
 func (o CastAuthorOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastAuthorOneOf) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastAuthorOneOf := _CastAuthorOneOf{}
-
-	err = json.Unmarshal(data, &varCastAuthorOneOf)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastAuthorOneOf(varCastAuthorOneOf)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastAuthorOneOf struct {

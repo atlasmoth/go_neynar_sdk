@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the frame. | 
-**Pages** | [**[]NeynarFramePage**](NeynarFramePage.md) |  | 
+**Name** | Pointer to **string** | The name of the frame. | [optional] 
+**Pages** | Pointer to [**[]NeynarFramePage**](NeynarFramePage.md) |  | [optional] 
 
 ## Methods
 
 ### NewNeynarFrameCreationRequest
 
-`func NewNeynarFrameCreationRequest(name string, pages []NeynarFramePage, ) *NeynarFrameCreationRequest`
+`func NewNeynarFrameCreationRequest() *NeynarFrameCreationRequest`
 
 NewNeynarFrameCreationRequest instantiates a new NeynarFrameCreationRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *NeynarFrameCreationRequest) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetPages
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetPages sets Pages field to given value.
 
+### HasPages
+
+`func (o *NeynarFrameCreationRequest) HasPages() bool`
+
+HasPages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

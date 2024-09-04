@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner type satisfies the MappedNullable interface at compile time
@@ -21,27 +20,19 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractionsPerCastInteractionsPer
 
 // FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct for FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 type FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct {
-	Start time.Time `json:"start"`
-	Stop time.Time `json:"stop"`
-	Time time.Time `json:"time"`
-	InteractionCount float32 `json:"interaction_count"`
-	CastUrl string `json:"cast_url"`
-	AdditionalProperties map[string]interface{}
+	Start *time.Time `json:"start,omitempty"`
+	Stop *time.Time `json:"stop,omitempty"`
+	Time *time.Time `json:"time,omitempty"`
+	InteractionCount *float32 `json:"interaction_count,omitempty"`
+	CastUrl *string `json:"cast_url,omitempty"`
 }
-
-type _FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 
 // NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner instantiates a new FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner(start time.Time, stop time.Time, time time.Time, interactionCount float32, castUrl string) *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner {
+func NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner() *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner {
 	this := FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner{}
-	this.Start = start
-	this.Stop = stop
-	this.Time = time
-	this.InteractionCount = interactionCount
-	this.CastUrl = castUrl
 	return &this
 }
 
@@ -53,124 +44,164 @@ func NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInnerWithDef
 	return &this
 }
 
-// GetStart returns the Start field value
+// GetStart returns the Start field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStart() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Start
+	return *o.Start
 }
 
-// GetStartOk returns a tuple with the Start field value
+// GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStartOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
-	return &o.Start, true
+	return o.Start, true
 }
 
-// SetStart sets field value
+// HasStart returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasStart() bool {
+	if o != nil && !IsNil(o.Start) {
+		return true
+	}
+
+	return false
+}
+
+// SetStart gets a reference to the given time.Time and assigns it to the Start field.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetStart(v time.Time) {
-	o.Start = v
+	o.Start = &v
 }
 
-// GetStop returns the Stop field value
+// GetStop returns the Stop field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStop() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Stop) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Stop
+	return *o.Stop
 }
 
-// GetStopOk returns a tuple with the Stop field value
+// GetStopOk returns a tuple with the Stop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStopOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Stop) {
 		return nil, false
 	}
-	return &o.Stop, true
+	return o.Stop, true
 }
 
-// SetStop sets field value
+// HasStop returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasStop() bool {
+	if o != nil && !IsNil(o.Stop) {
+		return true
+	}
+
+	return false
+}
+
+// SetStop gets a reference to the given time.Time and assigns it to the Stop field.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetStop(v time.Time) {
-	o.Stop = v
+	o.Stop = &v
 }
 
-// GetTime returns the Time field value
+// GetTime returns the Time field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetTime() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Time
+	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetTimeOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Time) {
 		return nil, false
 	}
-	return &o.Time, true
+	return o.Time, true
 }
 
-// SetTime sets field value
+// HasTime returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasTime() bool {
+	if o != nil && !IsNil(o.Time) {
+		return true
+	}
+
+	return false
+}
+
+// SetTime gets a reference to the given time.Time and assigns it to the Time field.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetTime(v time.Time) {
-	o.Time = v
+	o.Time = &v
 }
 
-// GetInteractionCount returns the InteractionCount field value
+// GetInteractionCount returns the InteractionCount field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetInteractionCount() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionCount) {
 		var ret float32
 		return ret
 	}
-
-	return o.InteractionCount
+	return *o.InteractionCount
 }
 
-// GetInteractionCountOk returns a tuple with the InteractionCount field value
+// GetInteractionCountOk returns a tuple with the InteractionCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetInteractionCountOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionCount) {
 		return nil, false
 	}
-	return &o.InteractionCount, true
+	return o.InteractionCount, true
 }
 
-// SetInteractionCount sets field value
+// HasInteractionCount returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasInteractionCount() bool {
+	if o != nil && !IsNil(o.InteractionCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractionCount gets a reference to the given float32 and assigns it to the InteractionCount field.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetInteractionCount(v float32) {
-	o.InteractionCount = v
+	o.InteractionCount = &v
 }
 
-// GetCastUrl returns the CastUrl field value
+// GetCastUrl returns the CastUrl field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetCastUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.CastUrl
+	return *o.CastUrl
 }
 
-// GetCastUrlOk returns a tuple with the CastUrl field value
+// GetCastUrlOk returns a tuple with the CastUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetCastUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastUrl) {
 		return nil, false
 	}
-	return &o.CastUrl, true
+	return o.CastUrl, true
 }
 
-// SetCastUrl sets field value
+// HasCastUrl returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasCastUrl() bool {
+	if o != nil && !IsNil(o.CastUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastUrl gets a reference to the given string and assigns it to the CastUrl field.
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetCastUrl(v string) {
-	o.CastUrl = v
+	o.CastUrl = &v
 }
 
 func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) MarshalJSON() ([]byte, error) {
@@ -183,67 +214,22 @@ func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) Marsh
 
 func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["start"] = o.Start
-	toSerialize["stop"] = o.Stop
-	toSerialize["time"] = o.Time
-	toSerialize["interaction_count"] = o.InteractionCount
-	toSerialize["cast_url"] = o.CastUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
 	}
-
+	if !IsNil(o.Stop) {
+		toSerialize["stop"] = o.Stop
+	}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.InteractionCount) {
+		toSerialize["interaction_count"] = o.InteractionCount
+	}
+	if !IsNil(o.CastUrl) {
+		toSerialize["cast_url"] = o.CastUrl
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"start",
-		"stop",
-		"time",
-		"interaction_count",
-		"cast_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner := _FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner(varFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "start")
-		delete(additionalProperties, "stop")
-		delete(additionalProperties, "time")
-		delete(additionalProperties, "interaction_count")
-		delete(additionalProperties, "cast_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct {

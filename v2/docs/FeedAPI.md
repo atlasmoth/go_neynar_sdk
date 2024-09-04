@@ -34,8 +34,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	feedType := openapiclient.FeedType("following") // FeedType | Defaults to following (requires fid or address). If set to filter (requires filter_type)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	feedType := openapiclient.FeedType("following") // FeedType | Defaults to following (requires fid or address). If set to filter (requires filter_type) (optional)
 	filterType := openapiclient.FilterType("fids") // FilterType | Used when feed_type=filter. Can be set to fids (requires fids) or parent_url (requires parent_url) or channel_id (requires channel_id) (optional)
 	fid := int32(56) // int32 | (Optional) fid of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type (optional)
 	fids := "3,2,194" // string | Used when filter_type=fids . Create a feed based on a list of fids. Max array size is 250. Requires feed_type and filter_type. (optional)
@@ -118,8 +118,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	channelIds := "neynar,farcaster" // string | Comma separated list of channel ids e.g. neynar,farcaster
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	channelIds := "neynar,farcaster" // string | Comma separated list of channel ids e.g. neynar,farcaster (optional)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	viewerFid := int32(3) // int32 |  (optional)
 	withReplies := true // bool | Include replies in the response, false by default (optional) (default to false)
@@ -192,8 +192,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 | fid of user whose feed you want to create
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 | fid of user whose feed you want to create (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
@@ -262,8 +262,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | fid of user whose feed you want to create
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | fid of user whose feed you want to create (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 	provider := openapiclient.ForYouProvider("openrank") // ForYouProvider |  (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 50) (optional) (default to 25)
@@ -332,7 +332,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	viewerFid := int32(3) // int32 |  (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -398,8 +398,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated list of parent_urls
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated list of parent_urls (optional)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	viewerFid := int32(3) // int32 |  (optional)
 	withReplies := true // bool | Include replies in the response, false by default (optional) (default to false)
@@ -470,7 +470,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	limit := int32(56) // int32 | Number of results to retrieve (max 10) (optional) (default to 10)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 	viewerFid := int32(3) // int32 |  (optional)
@@ -542,8 +542,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of user whose recent casts you want to fetch
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | FID of user whose recent casts you want to fetch (optional)
 	viewerFid := int32(3) // int32 | FID of the user viewing the feed (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 50) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
@@ -616,8 +616,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | fid of user whose feed you want to create
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | fid of user whose feed you want to create (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -680,8 +680,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | fid of user whose replies and recasts you want to fetch
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | fid of user whose replies and recasts you want to fetch (optional)
 	filter := "replies" // string | filter to fetch only replies or recasts (optional) (default to "all")
 	limit := int32(25) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)

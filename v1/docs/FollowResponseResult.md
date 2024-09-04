@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | [**[]FollowResponseUser**](FollowResponseUser.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Users** | Pointer to [**[]FollowResponseUser**](FollowResponseUser.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewFollowResponseResult
 
-`func NewFollowResponseResult(users []FollowResponseUser, next NextCursor, ) *FollowResponseResult`
+`func NewFollowResponseResult() *FollowResponseResult`
 
 NewFollowResponseResult instantiates a new FollowResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUsers sets Users field to given value.
 
+### HasUsers
+
+`func (o *FollowResponseResult) HasUsers() bool`
+
+HasUsers returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *FollowResponseResult) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

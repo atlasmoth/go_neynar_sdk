@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
 **Bio** | Pointer to **string** |  | [optional] 
 **PfpUrl** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateUserReqBody
 
-`func NewUpdateUserReqBody(signerUuid string, ) *UpdateUserReqBody`
+`func NewUpdateUserReqBody() *UpdateUserReqBody`
 
 NewUpdateUserReqBody instantiates a new UpdateUserReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *UpdateUserReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetBio
 

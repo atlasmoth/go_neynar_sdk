@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Following** | **bool** | Indicates if the viewer is following the channel. | 
+**Following** | Pointer to **bool** | Indicates if the viewer is following the channel. | [optional] 
 
 ## Methods
 
 ### NewChannelViewerContext
 
-`func NewChannelViewerContext(following bool, ) *ChannelViewerContext`
+`func NewChannelViewerContext() *ChannelViewerContext`
 
 NewChannelViewerContext instantiates a new ChannelViewerContext object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFollowing sets Following field to given value.
 
+### HasFollowing
+
+`func (o *ChannelViewerContext) HasFollowing() bool`
+
+HasFollowing returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

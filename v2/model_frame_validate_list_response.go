@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateListResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameValidateListResponse{}
 
 // FrameValidateListResponse struct for FrameValidateListResponse
 type FrameValidateListResponse struct {
-	Frames []string `json:"frames"`
-	AdditionalProperties map[string]interface{}
+	Frames []string `json:"frames,omitempty"`
 }
-
-type _FrameValidateListResponse FrameValidateListResponse
 
 // NewFrameValidateListResponse instantiates a new FrameValidateListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateListResponse(frames []string) *FrameValidateListResponse {
+func NewFrameValidateListResponse() *FrameValidateListResponse {
 	this := FrameValidateListResponse{}
-	this.Frames = frames
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewFrameValidateListResponseWithDefaults() *FrameValidateListResponse {
 	return &this
 }
 
-// GetFrames returns the Frames field value
+// GetFrames returns the Frames field value if set, zero value otherwise.
 func (o *FrameValidateListResponse) GetFrames() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Frames) {
 		var ret []string
 		return ret
 	}
-
 	return o.Frames
 }
 
-// GetFramesOk returns a tuple with the Frames field value
+// GetFramesOk returns a tuple with the Frames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateListResponse) GetFramesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Frames) {
 		return nil, false
 	}
 	return o.Frames, true
 }
 
-// SetFrames sets field value
+// HasFrames returns a boolean if a field has been set.
+func (o *FrameValidateListResponse) HasFrames() bool {
+	if o != nil && !IsNil(o.Frames) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrames gets a reference to the given []string and assigns it to the Frames field.
 func (o *FrameValidateListResponse) SetFrames(v []string) {
 	o.Frames = v
 }
@@ -78,55 +81,10 @@ func (o FrameValidateListResponse) MarshalJSON() ([]byte, error) {
 
 func (o FrameValidateListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["frames"] = o.Frames
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Frames) {
+		toSerialize["frames"] = o.Frames
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameValidateListResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"frames",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateListResponse := _FrameValidateListResponse{}
-
-	err = json.Unmarshal(data, &varFrameValidateListResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateListResponse(varFrameValidateListResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "frames")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateListResponse struct {

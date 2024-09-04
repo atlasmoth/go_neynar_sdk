@@ -22,10 +22,7 @@ type WebhookResponse struct {
 	Message *string `json:"message,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Webhook *Webhook `json:"webhook,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _WebhookResponse WebhookResponse
 
 // NewWebhookResponse instantiates a new WebhookResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -159,35 +156,7 @@ func (o WebhookResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Webhook) {
 		toSerialize["webhook"] = o.Webhook
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookResponse) UnmarshalJSON(data []byte) (err error) {
-	varWebhookResponse := _WebhookResponse{}
-
-	err = json.Unmarshal(data, &varWebhookResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookResponse(varWebhookResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "webhook")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookResponse struct {

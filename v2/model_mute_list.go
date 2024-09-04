@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the MuteList type satisfies the MappedNullable interface at compile time
@@ -21,23 +20,17 @@ var _ MappedNullable = &MuteList{}
 
 // MuteList struct for MuteList
 type MuteList struct {
-	Object string `json:"object"`
-	Muted User `json:"muted"`
-	MutedAt time.Time `json:"muted_at"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	Muted *User `json:"muted,omitempty"`
+	MutedAt *time.Time `json:"muted_at,omitempty"`
 }
-
-type _MuteList MuteList
 
 // NewMuteList instantiates a new MuteList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMuteList(object string, muted User, mutedAt time.Time) *MuteList {
+func NewMuteList() *MuteList {
 	this := MuteList{}
-	this.Object = object
-	this.Muted = muted
-	this.MutedAt = mutedAt
 	return &this
 }
 
@@ -49,76 +42,100 @@ func NewMuteListWithDefaults() *MuteList {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *MuteList) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteList) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *MuteList) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *MuteList) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetMuted returns the Muted field value
+// GetMuted returns the Muted field value if set, zero value otherwise.
 func (o *MuteList) GetMuted() User {
-	if o == nil {
+	if o == nil || IsNil(o.Muted) {
 		var ret User
 		return ret
 	}
-
-	return o.Muted
+	return *o.Muted
 }
 
-// GetMutedOk returns a tuple with the Muted field value
+// GetMutedOk returns a tuple with the Muted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteList) GetMutedOk() (*User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Muted) {
 		return nil, false
 	}
-	return &o.Muted, true
+	return o.Muted, true
 }
 
-// SetMuted sets field value
+// HasMuted returns a boolean if a field has been set.
+func (o *MuteList) HasMuted() bool {
+	if o != nil && !IsNil(o.Muted) {
+		return true
+	}
+
+	return false
+}
+
+// SetMuted gets a reference to the given User and assigns it to the Muted field.
 func (o *MuteList) SetMuted(v User) {
-	o.Muted = v
+	o.Muted = &v
 }
 
-// GetMutedAt returns the MutedAt field value
+// GetMutedAt returns the MutedAt field value if set, zero value otherwise.
 func (o *MuteList) GetMutedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.MutedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.MutedAt
+	return *o.MutedAt
 }
 
-// GetMutedAtOk returns a tuple with the MutedAt field value
+// GetMutedAtOk returns a tuple with the MutedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteList) GetMutedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MutedAt) {
 		return nil, false
 	}
-	return &o.MutedAt, true
+	return o.MutedAt, true
 }
 
-// SetMutedAt sets field value
+// HasMutedAt returns a boolean if a field has been set.
+func (o *MuteList) HasMutedAt() bool {
+	if o != nil && !IsNil(o.MutedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetMutedAt gets a reference to the given time.Time and assigns it to the MutedAt field.
 func (o *MuteList) SetMutedAt(v time.Time) {
-	o.MutedAt = v
+	o.MutedAt = &v
 }
 
 func (o MuteList) MarshalJSON() ([]byte, error) {
@@ -131,61 +148,16 @@ func (o MuteList) MarshalJSON() ([]byte, error) {
 
 func (o MuteList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["muted"] = o.Muted
-	toSerialize["muted_at"] = o.MutedAt
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.Muted) {
+		toSerialize["muted"] = o.Muted
+	}
+	if !IsNil(o.MutedAt) {
+		toSerialize["muted_at"] = o.MutedAt
+	}
 	return toSerialize, nil
-}
-
-func (o *MuteList) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"muted",
-		"muted_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMuteList := _MuteList{}
-
-	err = json.Unmarshal(data, &varMuteList)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MuteList(varMuteList)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "muted")
-		delete(additionalProperties, "muted_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMuteList struct {

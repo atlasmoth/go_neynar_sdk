@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
-**PublicKey** | **string** | Ed25519 public key | 
-**Status** | **string** |  | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
+**PublicKey** | Pointer to **string** | Ed25519 public key | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 **SignerApprovalUrl** | Pointer to **string** |  | [optional] 
 **Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSigner
 
-`func NewSigner(signerUuid string, publicKey string, status string, ) *Signer`
+`func NewSigner() *Signer`
 
 NewSigner instantiates a new Signer object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *Signer) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetPublicKey
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetPublicKey sets PublicKey field to given value.
 
+### HasPublicKey
+
+`func (o *Signer) HasPublicKey() bool`
+
+HasPublicKey returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *Signer) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetSignerApprovalUrl
 

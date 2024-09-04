@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SubscriptionStatus type satisfies the MappedNullable interface at compile time
@@ -20,27 +19,19 @@ var _ MappedNullable = &SubscriptionStatus{}
 
 // SubscriptionStatus struct for SubscriptionStatus
 type SubscriptionStatus struct {
-	Object string `json:"object"`
-	Status bool `json:"status"`
-	ExpiresAt NullableInt64 `json:"expires_at"`
-	SubscribedAt NullableInt64 `json:"subscribed_at"`
-	Tier SubscriptionTier `json:"tier"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	Status *bool `json:"status,omitempty"`
+	ExpiresAt NullableInt64 `json:"expires_at,omitempty"`
+	SubscribedAt NullableInt64 `json:"subscribed_at,omitempty"`
+	Tier *SubscriptionTier `json:"tier,omitempty"`
 }
-
-type _SubscriptionStatus SubscriptionStatus
 
 // NewSubscriptionStatus instantiates a new SubscriptionStatus object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionTier) *SubscriptionStatus {
+func NewSubscriptionStatus() *SubscriptionStatus {
 	this := SubscriptionStatus{}
-	this.Object = object
-	this.Status = status
-	this.ExpiresAt = expiresAt
-	this.SubscribedAt = subscribedAt
-	this.Tier = tier
 	return &this
 }
 
@@ -52,66 +43,80 @@ func NewSubscriptionStatusWithDefaults() *SubscriptionStatus {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *SubscriptionStatus) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionStatus) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *SubscriptionStatus) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *SubscriptionStatus) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SubscriptionStatus) GetStatus() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret bool
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionStatus) GetStatusOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *SubscriptionStatus) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given bool and assigns it to the Status field.
 func (o *SubscriptionStatus) SetStatus(v bool) {
-	o.Status = v
+	o.Status = &v
 }
 
-// GetExpiresAt returns the ExpiresAt field value
-// If the value is explicit nil, the zero value for int64 will be returned
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionStatus) GetExpiresAt() int64 {
-	if o == nil || o.ExpiresAt.Get() == nil {
+	if o == nil || IsNil(o.ExpiresAt.Get()) {
 		var ret int64
 		return ret
 	}
-
 	return *o.ExpiresAt.Get()
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionStatus) GetExpiresAtOk() (*int64, bool) {
@@ -121,23 +126,39 @@ func (o *SubscriptionStatus) GetExpiresAtOk() (*int64, bool) {
 	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// SetExpiresAt sets field value
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *SubscriptionStatus) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableInt64 and assigns it to the ExpiresAt field.
 func (o *SubscriptionStatus) SetExpiresAt(v int64) {
 	o.ExpiresAt.Set(&v)
 }
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *SubscriptionStatus) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
 
-// GetSubscribedAt returns the SubscribedAt field value
-// If the value is explicit nil, the zero value for int64 will be returned
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *SubscriptionStatus) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
+// GetSubscribedAt returns the SubscribedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionStatus) GetSubscribedAt() int64 {
-	if o == nil || o.SubscribedAt.Get() == nil {
+	if o == nil || IsNil(o.SubscribedAt.Get()) {
 		var ret int64
 		return ret
 	}
-
 	return *o.SubscribedAt.Get()
 }
 
-// GetSubscribedAtOk returns a tuple with the SubscribedAt field value
+// GetSubscribedAtOk returns a tuple with the SubscribedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionStatus) GetSubscribedAtOk() (*int64, bool) {
@@ -147,33 +168,59 @@ func (o *SubscriptionStatus) GetSubscribedAtOk() (*int64, bool) {
 	return o.SubscribedAt.Get(), o.SubscribedAt.IsSet()
 }
 
-// SetSubscribedAt sets field value
+// HasSubscribedAt returns a boolean if a field has been set.
+func (o *SubscriptionStatus) HasSubscribedAt() bool {
+	if o != nil && o.SubscribedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedAt gets a reference to the given NullableInt64 and assigns it to the SubscribedAt field.
 func (o *SubscriptionStatus) SetSubscribedAt(v int64) {
 	o.SubscribedAt.Set(&v)
 }
+// SetSubscribedAtNil sets the value for SubscribedAt to be an explicit nil
+func (o *SubscriptionStatus) SetSubscribedAtNil() {
+	o.SubscribedAt.Set(nil)
+}
 
-// GetTier returns the Tier field value
+// UnsetSubscribedAt ensures that no value is present for SubscribedAt, not even an explicit nil
+func (o *SubscriptionStatus) UnsetSubscribedAt() {
+	o.SubscribedAt.Unset()
+}
+
+// GetTier returns the Tier field value if set, zero value otherwise.
 func (o *SubscriptionStatus) GetTier() SubscriptionTier {
-	if o == nil {
+	if o == nil || IsNil(o.Tier) {
 		var ret SubscriptionTier
 		return ret
 	}
-
-	return o.Tier
+	return *o.Tier
 }
 
-// GetTierOk returns a tuple with the Tier field value
+// GetTierOk returns a tuple with the Tier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tier) {
 		return nil, false
 	}
-	return &o.Tier, true
+	return o.Tier, true
 }
 
-// SetTier sets field value
+// HasTier returns a boolean if a field has been set.
+func (o *SubscriptionStatus) HasTier() bool {
+	if o != nil && !IsNil(o.Tier) {
+		return true
+	}
+
+	return false
+}
+
+// SetTier gets a reference to the given SubscriptionTier and assigns it to the Tier field.
 func (o *SubscriptionStatus) SetTier(v SubscriptionTier) {
-	o.Tier = v
+	o.Tier = &v
 }
 
 func (o SubscriptionStatus) MarshalJSON() ([]byte, error) {
@@ -186,67 +233,22 @@ func (o SubscriptionStatus) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["status"] = o.Status
-	toSerialize["expires_at"] = o.ExpiresAt.Get()
-	toSerialize["subscribed_at"] = o.SubscribedAt.Get()
-	toSerialize["tier"] = o.Tier
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
+	}
+	if o.SubscribedAt.IsSet() {
+		toSerialize["subscribed_at"] = o.SubscribedAt.Get()
+	}
+	if !IsNil(o.Tier) {
+		toSerialize["tier"] = o.Tier
+	}
 	return toSerialize, nil
-}
-
-func (o *SubscriptionStatus) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"status",
-		"expires_at",
-		"subscribed_at",
-		"tier",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscriptionStatus := _SubscriptionStatus{}
-
-	err = json.Unmarshal(data, &varSubscriptionStatus)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscriptionStatus(varSubscriptionStatus)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "subscribed_at")
-		delete(additionalProperties, "tier")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptionStatus struct {

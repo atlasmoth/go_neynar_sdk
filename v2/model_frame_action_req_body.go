@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameActionReqBody type satisfies the MappedNullable interface at compile time
@@ -21,25 +20,20 @@ var _ MappedNullable = &FrameActionReqBody{}
 // FrameActionReqBody struct for FrameActionReqBody
 type FrameActionReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	// Cast Hash
 	CastHash *string `json:"cast_hash,omitempty"`
-	Action FrameAction `json:"action"`
-	AdditionalProperties map[string]interface{}
+	Action *FrameAction `json:"action,omitempty"`
 }
-
-type _FrameActionReqBody FrameActionReqBody
 
 // NewFrameActionReqBody instantiates a new FrameActionReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameActionReqBody(signerUuid string, action FrameAction) *FrameActionReqBody {
+func NewFrameActionReqBody() *FrameActionReqBody {
 	this := FrameActionReqBody{}
-	this.SignerUuid = signerUuid
 	var castHash string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
 	this.CastHash = &castHash
-	this.Action = action
 	return &this
 }
 
@@ -53,28 +47,36 @@ func NewFrameActionReqBodyWithDefaults() *FrameActionReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *FrameActionReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *FrameActionReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *FrameActionReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
 // GetCastHash returns the CastHash field value if set, zero value otherwise.
@@ -109,28 +111,36 @@ func (o *FrameActionReqBody) SetCastHash(v string) {
 	o.CastHash = &v
 }
 
-// GetAction returns the Action field value
+// GetAction returns the Action field value if set, zero value otherwise.
 func (o *FrameActionReqBody) GetAction() FrameAction {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret FrameAction
 		return ret
 	}
-
-	return o.Action
+	return *o.Action
 }
 
-// GetActionOk returns a tuple with the Action field value
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionReqBody) GetActionOk() (*FrameAction, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
-	return &o.Action, true
+	return o.Action, true
 }
 
-// SetAction sets field value
+// HasAction returns a boolean if a field has been set.
+func (o *FrameActionReqBody) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given FrameAction and assigns it to the Action field.
 func (o *FrameActionReqBody) SetAction(v FrameAction) {
-	o.Action = v
+	o.Action = &v
 }
 
 func (o FrameActionReqBody) MarshalJSON() ([]byte, error) {
@@ -143,62 +153,16 @@ func (o FrameActionReqBody) MarshalJSON() ([]byte, error) {
 
 func (o FrameActionReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
+	}
 	if !IsNil(o.CastHash) {
 		toSerialize["cast_hash"] = o.CastHash
 	}
-	toSerialize["action"] = o.Action
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameActionReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-		"action",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameActionReqBody := _FrameActionReqBody{}
-
-	err = json.Unmarshal(data, &varFrameActionReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameActionReqBody(varFrameActionReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "cast_hash")
-		delete(additionalProperties, "action")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameActionReqBody struct {

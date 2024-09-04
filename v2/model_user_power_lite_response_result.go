@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserPowerLiteResponseResult type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &UserPowerLiteResponseResult{}
 // UserPowerLiteResponseResult struct for UserPowerLiteResponseResult
 type UserPowerLiteResponseResult struct {
 	// List of FIDs
-	Fids []int32 `json:"fids"`
-	AdditionalProperties map[string]interface{}
+	Fids []int32 `json:"fids,omitempty"`
 }
-
-type _UserPowerLiteResponseResult UserPowerLiteResponseResult
 
 // NewUserPowerLiteResponseResult instantiates a new UserPowerLiteResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPowerLiteResponseResult(fids []int32) *UserPowerLiteResponseResult {
+func NewUserPowerLiteResponseResult() *UserPowerLiteResponseResult {
 	this := UserPowerLiteResponseResult{}
-	this.Fids = fids
 	return &this
 }
 
@@ -45,26 +40,34 @@ func NewUserPowerLiteResponseResultWithDefaults() *UserPowerLiteResponseResult {
 	return &this
 }
 
-// GetFids returns the Fids field value
+// GetFids returns the Fids field value if set, zero value otherwise.
 func (o *UserPowerLiteResponseResult) GetFids() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		var ret []int32
 		return ret
 	}
-
 	return o.Fids
 }
 
-// GetFidsOk returns a tuple with the Fids field value
+// GetFidsOk returns a tuple with the Fids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserPowerLiteResponseResult) GetFidsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		return nil, false
 	}
 	return o.Fids, true
 }
 
-// SetFids sets field value
+// HasFids returns a boolean if a field has been set.
+func (o *UserPowerLiteResponseResult) HasFids() bool {
+	if o != nil && !IsNil(o.Fids) {
+		return true
+	}
+
+	return false
+}
+
+// SetFids gets a reference to the given []int32 and assigns it to the Fids field.
 func (o *UserPowerLiteResponseResult) SetFids(v []int32) {
 	o.Fids = v
 }
@@ -79,55 +82,10 @@ func (o UserPowerLiteResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o UserPowerLiteResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fids"] = o.Fids
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fids) {
+		toSerialize["fids"] = o.Fids
 	}
-
 	return toSerialize, nil
-}
-
-func (o *UserPowerLiteResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fids",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserPowerLiteResponseResult := _UserPowerLiteResponseResult{}
-
-	err = json.Unmarshal(data, &varUserPowerLiteResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserPowerLiteResponseResult(varUserPowerLiteResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserPowerLiteResponseResult struct {

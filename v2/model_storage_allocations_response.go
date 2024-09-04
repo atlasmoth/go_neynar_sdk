@@ -21,10 +21,7 @@ var _ MappedNullable = &StorageAllocationsResponse{}
 type StorageAllocationsResponse struct {
 	TotalActiveUnits *int32 `json:"total_active_units,omitempty"`
 	Allocations []StorageAllocation `json:"allocations,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _StorageAllocationsResponse StorageAllocationsResponse
 
 // NewStorageAllocationsResponse instantiates a new StorageAllocationsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -123,34 +120,7 @@ func (o StorageAllocationsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Allocations) {
 		toSerialize["allocations"] = o.Allocations
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *StorageAllocationsResponse) UnmarshalJSON(data []byte) (err error) {
-	varStorageAllocationsResponse := _StorageAllocationsResponse{}
-
-	err = json.Unmarshal(data, &varStorageAllocationsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StorageAllocationsResponse(varStorageAllocationsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "total_active_units")
-		delete(additionalProperties, "allocations")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableStorageAllocationsResponse struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RemoveVerificationReqBody type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &RemoveVerificationReqBody{}
 // RemoveVerificationReqBody struct for RemoveVerificationReqBody
 type RemoveVerificationReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	// Ethereum address
-	Address string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	AdditionalProperties map[string]interface{}
+	Address *string `json:"address,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 }
-
-type _RemoveVerificationReqBody RemoveVerificationReqBody
 
 // NewRemoveVerificationReqBody instantiates a new RemoveVerificationReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemoveVerificationReqBody(signerUuid string, address string) *RemoveVerificationReqBody {
+func NewRemoveVerificationReqBody() *RemoveVerificationReqBody {
 	this := RemoveVerificationReqBody{}
-	this.SignerUuid = signerUuid
-	this.Address = address
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewRemoveVerificationReqBodyWithDefaults() *RemoveVerificationReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *RemoveVerificationReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RemoveVerificationReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *RemoveVerificationReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *RemoveVerificationReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *RemoveVerificationReqBody) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RemoveVerificationReqBody) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *RemoveVerificationReqBody) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *RemoveVerificationReqBody) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
 func (o RemoveVerificationReqBody) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o RemoveVerificationReqBody) MarshalJSON() ([]byte, error) {
 
 func (o RemoveVerificationReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
-	toSerialize["address"] = o.Address
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
 	}
-
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
 	return toSerialize, nil
-}
-
-func (o *RemoveVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-		"address",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRemoveVerificationReqBody := _RemoveVerificationReqBody{}
-
-	err = json.Unmarshal(data, &varRemoveVerificationReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RemoveVerificationReqBody(varRemoveVerificationReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "address")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRemoveVerificationReqBody struct {

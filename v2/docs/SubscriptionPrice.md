@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PeriodDurationSeconds** | **int32** |  | 
-**TokensPerPeriod** | **string** |  | 
-**InitialMintPrice** | **string** |  | 
+**PeriodDurationSeconds** | Pointer to **int32** |  | [optional] 
+**TokensPerPeriod** | Pointer to **string** |  | [optional] 
+**InitialMintPrice** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewSubscriptionPrice
 
-`func NewSubscriptionPrice(periodDurationSeconds int32, tokensPerPeriod string, initialMintPrice string, ) *SubscriptionPrice`
+`func NewSubscriptionPrice() *SubscriptionPrice`
 
 NewSubscriptionPrice instantiates a new SubscriptionPrice object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetPeriodDurationSeconds sets PeriodDurationSeconds field to given value.
 
+### HasPeriodDurationSeconds
+
+`func (o *SubscriptionPrice) HasPeriodDurationSeconds() bool`
+
+HasPeriodDurationSeconds returns a boolean if a field has been set.
 
 ### GetTokensPerPeriod
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetTokensPerPeriod sets TokensPerPeriod field to given value.
 
+### HasTokensPerPeriod
+
+`func (o *SubscriptionPrice) HasTokensPerPeriod() bool`
+
+HasTokensPerPeriod returns a boolean if a field has been set.
 
 ### GetInitialMintPrice
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetInitialMintPrice sets InitialMintPrice field to given value.
 
+### HasInitialMintPrice
+
+`func (o *SubscriptionPrice) HasInitialMintPrice() bool`
+
+HasInitialMintPrice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

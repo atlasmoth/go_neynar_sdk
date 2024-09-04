@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameSignaturePacket type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &FrameSignaturePacket{}
 
 // FrameSignaturePacket The Frame Signature Packet (https://docs.farcaster.xyz/developers/frames/spec#frame-signature-packet)
 type FrameSignaturePacket struct {
-	UntrustedData FrameSignaturePacketUntrustedData `json:"untrustedData"`
-	TrustedData FrameSignaturePacketTrustedData `json:"trustedData"`
-	AdditionalProperties map[string]interface{}
+	UntrustedData *FrameSignaturePacketUntrustedData `json:"untrustedData,omitempty"`
+	TrustedData *FrameSignaturePacketTrustedData `json:"trustedData,omitempty"`
 }
-
-type _FrameSignaturePacket FrameSignaturePacket
 
 // NewFrameSignaturePacket instantiates a new FrameSignaturePacket object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameSignaturePacket(untrustedData FrameSignaturePacketUntrustedData, trustedData FrameSignaturePacketTrustedData) *FrameSignaturePacket {
+func NewFrameSignaturePacket() *FrameSignaturePacket {
 	this := FrameSignaturePacket{}
-	this.UntrustedData = untrustedData
-	this.TrustedData = trustedData
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewFrameSignaturePacketWithDefaults() *FrameSignaturePacket {
 	return &this
 }
 
-// GetUntrustedData returns the UntrustedData field value
+// GetUntrustedData returns the UntrustedData field value if set, zero value otherwise.
 func (o *FrameSignaturePacket) GetUntrustedData() FrameSignaturePacketUntrustedData {
-	if o == nil {
+	if o == nil || IsNil(o.UntrustedData) {
 		var ret FrameSignaturePacketUntrustedData
 		return ret
 	}
-
-	return o.UntrustedData
+	return *o.UntrustedData
 }
 
-// GetUntrustedDataOk returns a tuple with the UntrustedData field value
+// GetUntrustedDataOk returns a tuple with the UntrustedData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameSignaturePacket) GetUntrustedDataOk() (*FrameSignaturePacketUntrustedData, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UntrustedData) {
 		return nil, false
 	}
-	return &o.UntrustedData, true
+	return o.UntrustedData, true
 }
 
-// SetUntrustedData sets field value
+// HasUntrustedData returns a boolean if a field has been set.
+func (o *FrameSignaturePacket) HasUntrustedData() bool {
+	if o != nil && !IsNil(o.UntrustedData) {
+		return true
+	}
+
+	return false
+}
+
+// SetUntrustedData gets a reference to the given FrameSignaturePacketUntrustedData and assigns it to the UntrustedData field.
 func (o *FrameSignaturePacket) SetUntrustedData(v FrameSignaturePacketUntrustedData) {
-	o.UntrustedData = v
+	o.UntrustedData = &v
 }
 
-// GetTrustedData returns the TrustedData field value
+// GetTrustedData returns the TrustedData field value if set, zero value otherwise.
 func (o *FrameSignaturePacket) GetTrustedData() FrameSignaturePacketTrustedData {
-	if o == nil {
+	if o == nil || IsNil(o.TrustedData) {
 		var ret FrameSignaturePacketTrustedData
 		return ret
 	}
-
-	return o.TrustedData
+	return *o.TrustedData
 }
 
-// GetTrustedDataOk returns a tuple with the TrustedData field value
+// GetTrustedDataOk returns a tuple with the TrustedData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameSignaturePacket) GetTrustedDataOk() (*FrameSignaturePacketTrustedData, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TrustedData) {
 		return nil, false
 	}
-	return &o.TrustedData, true
+	return o.TrustedData, true
 }
 
-// SetTrustedData sets field value
+// HasTrustedData returns a boolean if a field has been set.
+func (o *FrameSignaturePacket) HasTrustedData() bool {
+	if o != nil && !IsNil(o.TrustedData) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrustedData gets a reference to the given FrameSignaturePacketTrustedData and assigns it to the TrustedData field.
 func (o *FrameSignaturePacket) SetTrustedData(v FrameSignaturePacketTrustedData) {
-	o.TrustedData = v
+	o.TrustedData = &v
 }
 
 func (o FrameSignaturePacket) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o FrameSignaturePacket) MarshalJSON() ([]byte, error) {
 
 func (o FrameSignaturePacket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["untrustedData"] = o.UntrustedData
-	toSerialize["trustedData"] = o.TrustedData
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.UntrustedData) {
+		toSerialize["untrustedData"] = o.UntrustedData
 	}
-
+	if !IsNil(o.TrustedData) {
+		toSerialize["trustedData"] = o.TrustedData
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameSignaturePacket) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"untrustedData",
-		"trustedData",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameSignaturePacket := _FrameSignaturePacket{}
-
-	err = json.Unmarshal(data, &varFrameSignaturePacket)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameSignaturePacket(varFrameSignaturePacket)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "untrustedData")
-		delete(additionalProperties, "trustedData")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameSignaturePacket struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StorageRentEventBody type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &StorageRentEventBody{}
 
 // StorageRentEventBody struct for StorageRentEventBody
 type StorageRentEventBody struct {
-	Payer string `json:"payer" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	Units int64 `json:"units"`
-	Expiry int64 `json:"expiry"`
-	AdditionalProperties map[string]interface{}
+	Payer *string `json:"payer,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	Units *int64 `json:"units,omitempty"`
+	Expiry *int64 `json:"expiry,omitempty"`
 }
-
-type _StorageRentEventBody StorageRentEventBody
 
 // NewStorageRentEventBody instantiates a new StorageRentEventBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageRentEventBody(payer string, units int64, expiry int64) *StorageRentEventBody {
+func NewStorageRentEventBody() *StorageRentEventBody {
 	this := StorageRentEventBody{}
-	this.Payer = payer
-	this.Units = units
-	this.Expiry = expiry
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewStorageRentEventBodyWithDefaults() *StorageRentEventBody {
 	return &this
 }
 
-// GetPayer returns the Payer field value
+// GetPayer returns the Payer field value if set, zero value otherwise.
 func (o *StorageRentEventBody) GetPayer() string {
-	if o == nil {
+	if o == nil || IsNil(o.Payer) {
 		var ret string
 		return ret
 	}
-
-	return o.Payer
+	return *o.Payer
 }
 
-// GetPayerOk returns a tuple with the Payer field value
+// GetPayerOk returns a tuple with the Payer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageRentEventBody) GetPayerOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Payer) {
 		return nil, false
 	}
-	return &o.Payer, true
+	return o.Payer, true
 }
 
-// SetPayer sets field value
+// HasPayer returns a boolean if a field has been set.
+func (o *StorageRentEventBody) HasPayer() bool {
+	if o != nil && !IsNil(o.Payer) {
+		return true
+	}
+
+	return false
+}
+
+// SetPayer gets a reference to the given string and assigns it to the Payer field.
 func (o *StorageRentEventBody) SetPayer(v string) {
-	o.Payer = v
+	o.Payer = &v
 }
 
-// GetUnits returns the Units field value
+// GetUnits returns the Units field value if set, zero value otherwise.
 func (o *StorageRentEventBody) GetUnits() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret int64
 		return ret
 	}
-
-	return o.Units
+	return *o.Units
 }
 
-// GetUnitsOk returns a tuple with the Units field value
+// GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageRentEventBody) GetUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
-	return &o.Units, true
+	return o.Units, true
 }
 
-// SetUnits sets field value
+// HasUnits returns a boolean if a field has been set.
+func (o *StorageRentEventBody) HasUnits() bool {
+	if o != nil && !IsNil(o.Units) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnits gets a reference to the given int64 and assigns it to the Units field.
 func (o *StorageRentEventBody) SetUnits(v int64) {
-	o.Units = v
+	o.Units = &v
 }
 
-// GetExpiry returns the Expiry field value
+// GetExpiry returns the Expiry field value if set, zero value otherwise.
 func (o *StorageRentEventBody) GetExpiry() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Expiry) {
 		var ret int64
 		return ret
 	}
-
-	return o.Expiry
+	return *o.Expiry
 }
 
-// GetExpiryOk returns a tuple with the Expiry field value
+// GetExpiryOk returns a tuple with the Expiry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageRentEventBody) GetExpiryOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Expiry) {
 		return nil, false
 	}
-	return &o.Expiry, true
+	return o.Expiry, true
 }
 
-// SetExpiry sets field value
+// HasExpiry returns a boolean if a field has been set.
+func (o *StorageRentEventBody) HasExpiry() bool {
+	if o != nil && !IsNil(o.Expiry) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiry gets a reference to the given int64 and assigns it to the Expiry field.
 func (o *StorageRentEventBody) SetExpiry(v int64) {
-	o.Expiry = v
+	o.Expiry = &v
 }
 
 func (o StorageRentEventBody) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o StorageRentEventBody) MarshalJSON() ([]byte, error) {
 
 func (o StorageRentEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["payer"] = o.Payer
-	toSerialize["units"] = o.Units
-	toSerialize["expiry"] = o.Expiry
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Payer) {
+		toSerialize["payer"] = o.Payer
 	}
-
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	if !IsNil(o.Expiry) {
+		toSerialize["expiry"] = o.Expiry
+	}
 	return toSerialize, nil
-}
-
-func (o *StorageRentEventBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"payer",
-		"units",
-		"expiry",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varStorageRentEventBody := _StorageRentEventBody{}
-
-	err = json.Unmarshal(data, &varStorageRentEventBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StorageRentEventBody(varStorageRentEventBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "payer")
-		delete(additionalProperties, "units")
-		delete(additionalProperties, "expiry")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableStorageRentEventBody struct {

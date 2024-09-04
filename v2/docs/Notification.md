@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**MostRecentTimestamp** | **time.Time** |  | 
-**Type** | **string** |  | 
-**Seen** | **bool** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**MostRecentTimestamp** | Pointer to **time.Time** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Seen** | Pointer to **bool** |  | [optional] 
 **Follows** | Pointer to [**[]Follow**](Follow.md) |  | [optional] 
 **Cast** | Pointer to [**CastWithInteractions**](CastWithInteractions.md) |  | [optional] 
 **Reactions** | Pointer to [**[]ReactionWithUserInfo**](ReactionWithUserInfo.md) |  | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewNotification
 
-`func NewNotification(object string, mostRecentTimestamp time.Time, type_ string, seen bool, ) *Notification`
+`func NewNotification() *Notification`
 
 NewNotification instantiates a new Notification object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Notification) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetMostRecentTimestamp
 
@@ -70,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetMostRecentTimestamp sets MostRecentTimestamp field to given value.
 
+### HasMostRecentTimestamp
+
+`func (o *Notification) HasMostRecentTimestamp() bool`
+
+HasMostRecentTimestamp returns a boolean if a field has been set.
 
 ### GetType
 
@@ -90,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Notification) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetSeen
 
@@ -110,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetSeen sets Seen field to given value.
 
+### HasSeen
+
+`func (o *Notification) HasSeen() bool`
+
+HasSeen returns a boolean if a field has been set.
 
 ### GetFollows
 

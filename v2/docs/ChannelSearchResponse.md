@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | [**[]Channel**](Channel.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Channels** | Pointer to [**[]Channel**](Channel.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewChannelSearchResponse
 
-`func NewChannelSearchResponse(channels []Channel, next NextCursor, ) *ChannelSearchResponse`
+`func NewChannelSearchResponse() *ChannelSearchResponse`
 
 NewChannelSearchResponse instantiates a new ChannelSearchResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetChannels sets Channels field to given value.
 
+### HasChannels
+
+`func (o *ChannelSearchResponse) HasChannels() bool`
+
+HasChannels returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *ChannelSearchResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -35,8 +35,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	deleteNeynarFrameRequest := *openapiclient.NewDeleteNeynarFrameRequest() // DeleteNeynarFrameRequest |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	deleteNeynarFrameRequest := *openapiclient.NewDeleteNeynarFrameRequest() // DeleteNeynarFrameRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -157,8 +157,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	url := "https://frames.neynar.com/f/862277df/ff7be6a4" // string | The frame URL to crawl
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	url := "https://frames.neynar.com/f/862277df/ff7be6a4" // string | The frame URL to crawl (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -219,8 +219,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	type_ := openapiclient.FrameType("uuid") // FrameType |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	type_ := openapiclient.FrameType("uuid") // FrameType |  (optional)
 	uuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the frame to retrieve (optional)
 	url := "url_example" // string | URL of the Neynar frame to retrieve (optional)
 
@@ -285,8 +285,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	frameActionReqBody := *openapiclient.NewFrameActionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", *openapiclient.NewFrameAction(*openapiclient.NewFrameActionButton(int32(123), openapiclient.FrameButtonActionType("post")), "FramesUrl_example", "PostUrl_example")) // FrameActionReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	frameActionReqBody := *openapiclient.NewFrameActionReqBody() // FrameActionReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -347,8 +347,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	frameDeveloperManagedActionReqBody := *openapiclient.NewFrameDeveloperManagedActionReqBody(*openapiclient.NewFrameAction(*openapiclient.NewFrameActionButton(int32(123), openapiclient.FrameButtonActionType("post")), "FramesUrl_example", "PostUrl_example"), *openapiclient.NewFrameSignaturePacket(*openapiclient.NewFrameSignaturePacketUntrustedData(), *openapiclient.NewFrameSignaturePacketTrustedData())) // FrameDeveloperManagedActionReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	frameDeveloperManagedActionReqBody := *openapiclient.NewFrameDeveloperManagedActionReqBody() // FrameDeveloperManagedActionReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -409,8 +409,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	neynarFrameCreationRequest := *openapiclient.NewNeynarFrameCreationRequest("Name_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameCreationRequest |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	neynarFrameCreationRequest := *openapiclient.NewNeynarFrameCreationRequest() // NeynarFrameCreationRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -471,8 +471,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	neynarFrameUpdateRequest := *openapiclient.NewNeynarFrameUpdateRequest("Uuid_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameUpdateRequest |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	neynarFrameUpdateRequest := *openapiclient.NewNeynarFrameUpdateRequest() // NeynarFrameUpdateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -533,8 +533,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	validateFrameRequest := *openapiclient.NewValidateFrameRequest("MessageBytesInHex_example") // ValidateFrameRequest |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	validateFrameRequest := *openapiclient.NewValidateFrameRequest() // ValidateFrameRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -596,11 +596,11 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	frameUrl := "https://shorturl.at/bDRY9" // string |
-	analyticsType := openapiclient.ValidateFrameAnalyticsType("total-interactors") // ValidateFrameAnalyticsType |
-	start := time.Now() // time.Time |  (default to "2024-04-06T06:44:56.811Z")
-	stop := time.Now() // time.Time |  (default to "2024-04-08T06:44:56.811Z")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	frameUrl := "https://shorturl.at/bDRY9" // string |  (optional)
+	analyticsType := openapiclient.ValidateFrameAnalyticsType("total-interactors") // ValidateFrameAnalyticsType |  (optional)
+	start := time.Now() // time.Time |  (optional) (default to "2024-04-06T06:44:56.811Z")
+	stop := time.Now() // time.Time |  (optional) (default to "2024-04-08T06:44:56.811Z")
 	aggregateWindow := "aggregateWindow_example" // string | Required for `analytics_type=interactions-per-cast` (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -666,7 +666,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

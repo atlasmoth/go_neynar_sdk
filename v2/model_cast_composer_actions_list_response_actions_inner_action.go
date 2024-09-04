@@ -23,10 +23,7 @@ type CastComposerActionsListResponseActionsInnerAction struct {
 	ActionType *string `json:"action_type,omitempty"`
 	// URL to post the action.
 	PostUrl *string `json:"post_url,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _CastComposerActionsListResponseActionsInnerAction CastComposerActionsListResponseActionsInnerAction
 
 // NewCastComposerActionsListResponseActionsInnerAction instantiates a new CastComposerActionsListResponseActionsInnerAction object
 // This constructor will assign default values to properties that have it defined,
@@ -125,34 +122,7 @@ func (o CastComposerActionsListResponseActionsInnerAction) ToMap() (map[string]i
 	if !IsNil(o.PostUrl) {
 		toSerialize["post_url"] = o.PostUrl
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *CastComposerActionsListResponseActionsInnerAction) UnmarshalJSON(data []byte) (err error) {
-	varCastComposerActionsListResponseActionsInnerAction := _CastComposerActionsListResponseActionsInnerAction{}
-
-	err = json.Unmarshal(data, &varCastComposerActionsListResponseActionsInnerAction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastComposerActionsListResponseActionsInnerAction(varCastComposerActionsListResponseActionsInnerAction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "action_type")
-		delete(additionalProperties, "post_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastComposerActionsListResponseActionsInnerAction struct {

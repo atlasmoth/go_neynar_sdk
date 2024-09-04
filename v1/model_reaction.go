@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the Reaction type satisfies the MappedNullable interface at compile time
@@ -21,29 +20,25 @@ var _ MappedNullable = &Reaction{}
 
 // Reaction struct for Reaction
 type Reaction struct {
-	Type ReactionType `json:"type"`
+	Type *ReactionType `json:"type,omitempty"`
 	// Ethereum address
-	Hash string `json:"hash"`
-	Reactor Reactor `json:"reactor"`
-	Timestamp time.Time `json:"timestamp"`
+	Hash *string `json:"hash,omitempty"`
+	Reactor *Reactor `json:"reactor,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// Cast Hash
-	CastHash string `json:"castHash"`
-	AdditionalProperties map[string]interface{}
+	CastHash *string `json:"castHash,omitempty"`
 }
-
-type _Reaction Reaction
 
 // NewReaction instantiates a new Reaction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReaction(type_ ReactionType, hash string, reactor Reactor, timestamp time.Time, castHash string) *Reaction {
+func NewReaction() *Reaction {
 	this := Reaction{}
-	this.Type = type_
-	this.Hash = hash
-	this.Reactor = reactor
-	this.Timestamp = timestamp
-	this.CastHash = castHash
+	var hash string = "0x5A927Ac639636E534b678e81768CA19e2C6280B7"
+	this.Hash = &hash
+	var castHash string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+	this.CastHash = &castHash
 	return &this
 }
 
@@ -53,130 +48,170 @@ func NewReaction(type_ ReactionType, hash string, reactor Reactor, timestamp tim
 func NewReactionWithDefaults() *Reaction {
 	this := Reaction{}
 	var hash string = "0x5A927Ac639636E534b678e81768CA19e2C6280B7"
-	this.Hash = hash
+	this.Hash = &hash
 	var castHash string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
-	this.CastHash = castHash
+	this.CastHash = &castHash
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Reaction) GetType() ReactionType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret ReactionType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reaction) GetTypeOk() (*ReactionType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Reaction) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ReactionType and assigns it to the Type field.
 func (o *Reaction) SetType(v ReactionType) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *Reaction) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reaction) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *Reaction) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *Reaction) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
-// GetReactor returns the Reactor field value
+// GetReactor returns the Reactor field value if set, zero value otherwise.
 func (o *Reaction) GetReactor() Reactor {
-	if o == nil {
+	if o == nil || IsNil(o.Reactor) {
 		var ret Reactor
 		return ret
 	}
-
-	return o.Reactor
+	return *o.Reactor
 }
 
-// GetReactorOk returns a tuple with the Reactor field value
+// GetReactorOk returns a tuple with the Reactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reaction) GetReactorOk() (*Reactor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Reactor) {
 		return nil, false
 	}
-	return &o.Reactor, true
+	return o.Reactor, true
 }
 
-// SetReactor sets field value
+// HasReactor returns a boolean if a field has been set.
+func (o *Reaction) HasReactor() bool {
+	if o != nil && !IsNil(o.Reactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactor gets a reference to the given Reactor and assigns it to the Reactor field.
 func (o *Reaction) SetReactor(v Reactor) {
-	o.Reactor = v
+	o.Reactor = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *Reaction) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reaction) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *Reaction) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
 func (o *Reaction) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetCastHash returns the CastHash field value
+// GetCastHash returns the CastHash field value if set, zero value otherwise.
 func (o *Reaction) GetCastHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastHash) {
 		var ret string
 		return ret
 	}
-
-	return o.CastHash
+	return *o.CastHash
 }
 
-// GetCastHashOk returns a tuple with the CastHash field value
+// GetCastHashOk returns a tuple with the CastHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reaction) GetCastHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastHash) {
 		return nil, false
 	}
-	return &o.CastHash, true
+	return o.CastHash, true
 }
 
-// SetCastHash sets field value
+// HasCastHash returns a boolean if a field has been set.
+func (o *Reaction) HasCastHash() bool {
+	if o != nil && !IsNil(o.CastHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastHash gets a reference to the given string and assigns it to the CastHash field.
 func (o *Reaction) SetCastHash(v string) {
-	o.CastHash = v
+	o.CastHash = &v
 }
 
 func (o Reaction) MarshalJSON() ([]byte, error) {
@@ -189,67 +224,22 @@ func (o Reaction) MarshalJSON() ([]byte, error) {
 
 func (o Reaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["hash"] = o.Hash
-	toSerialize["reactor"] = o.Reactor
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["castHash"] = o.CastHash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
+	}
+	if !IsNil(o.Reactor) {
+		toSerialize["reactor"] = o.Reactor
+	}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.CastHash) {
+		toSerialize["castHash"] = o.CastHash
+	}
 	return toSerialize, nil
-}
-
-func (o *Reaction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"hash",
-		"reactor",
-		"timestamp",
-		"castHash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReaction := _Reaction{}
-
-	err = json.Unmarshal(data, &varReaction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Reaction(varReaction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "hash")
-		delete(additionalProperties, "reactor")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "castHash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReaction struct {

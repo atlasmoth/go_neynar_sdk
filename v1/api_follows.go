@@ -101,14 +101,13 @@ func (a *FollowsAPIService) FollowersExecute(r ApiFollowersRequest) (*FollowResp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	} else {
+		var defaultValue int32 = 3
+		r.fid = &defaultValue
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewerFid", r.viewerFid, "form", "")
 	} else {
@@ -141,7 +140,9 @@ func (a *FollowsAPIService) FollowersExecute(r ApiFollowersRequest) (*FollowResp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -268,14 +269,13 @@ func (a *FollowsAPIService) FollowingExecute(r ApiFollowingRequest) (*FollowResp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	} else {
+		var defaultValue int32 = 3
+		r.fid = &defaultValue
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewerFid", r.viewerFid, "form", "")
 	} else {
@@ -308,7 +308,9 @@ func (a *FollowsAPIService) FollowingExecute(r ApiFollowingRequest) (*FollowResp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

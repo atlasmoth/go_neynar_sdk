@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrCode** | **string** |  | 
-**Presentable** | **bool** |  | 
-**Name** | **string** |  | 
-**Code** | **int32** |  | 
-**Details** | **string** |  | 
-**Metadata** | [**ErrorResponseMetadata**](ErrorResponseMetadata.md) |  | 
+**ErrCode** | Pointer to **string** |  | [optional] 
+**Presentable** | Pointer to **bool** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **int32** |  | [optional] 
+**Details** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to [**ErrorResponseMetadata**](ErrorResponseMetadata.md) |  | [optional] 
 
 ## Methods
 
 ### NewErrorResponse
 
-`func NewErrorResponse(errCode string, presentable bool, name string, code int32, details string, metadata ErrorResponseMetadata, ) *ErrorResponse`
+`func NewErrorResponse() *ErrorResponse`
 
 NewErrorResponse instantiates a new ErrorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetErrCode sets ErrCode field to given value.
 
+### HasErrCode
+
+`func (o *ErrorResponse) HasErrCode() bool`
+
+HasErrCode returns a boolean if a field has been set.
 
 ### GetPresentable
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetPresentable sets Presentable field to given value.
 
+### HasPresentable
+
+`func (o *ErrorResponse) HasPresentable() bool`
+
+HasPresentable returns a boolean if a field has been set.
 
 ### GetName
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *ErrorResponse) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
+
+`func (o *ErrorResponse) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 ### GetDetails
 
@@ -129,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetDetails sets Details field to given value.
 
+### HasDetails
+
+`func (o *ErrorResponse) HasDetails() bool`
+
+HasDetails returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -149,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *ErrorResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

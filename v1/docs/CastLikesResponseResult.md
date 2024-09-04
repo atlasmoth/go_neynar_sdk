@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Likes** | [**[]Reaction**](Reaction.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Likes** | Pointer to [**[]Reaction**](Reaction.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewCastLikesResponseResult
 
-`func NewCastLikesResponseResult(likes []Reaction, next NextCursor, ) *CastLikesResponseResult`
+`func NewCastLikesResponseResult() *CastLikesResponseResult`
 
 NewCastLikesResponseResult instantiates a new CastLikesResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetLikes sets Likes field to given value.
 
+### HasLikes
+
+`func (o *CastLikesResponseResult) HasLikes() bool`
+
+HasLikes returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *CastLikesResponseResult) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

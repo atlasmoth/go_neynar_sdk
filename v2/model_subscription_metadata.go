@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SubscriptionMetadata type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &SubscriptionMetadata{}
 
 // SubscriptionMetadata struct for SubscriptionMetadata
 type SubscriptionMetadata struct {
-	Title string `json:"title"`
-	Symbol string `json:"symbol"`
-	ArtUrl string `json:"art_url"`
-	AdditionalProperties map[string]interface{}
+	Title *string `json:"title,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	ArtUrl *string `json:"art_url,omitempty"`
 }
-
-type _SubscriptionMetadata SubscriptionMetadata
 
 // NewSubscriptionMetadata instantiates a new SubscriptionMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionMetadata(title string, symbol string, artUrl string) *SubscriptionMetadata {
+func NewSubscriptionMetadata() *SubscriptionMetadata {
 	this := SubscriptionMetadata{}
-	this.Title = title
-	this.Symbol = symbol
-	this.ArtUrl = artUrl
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewSubscriptionMetadataWithDefaults() *SubscriptionMetadata {
 	return &this
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SubscriptionMetadata) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionMetadata) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *SubscriptionMetadata) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *SubscriptionMetadata) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetSymbol returns the Symbol field value
+// GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *SubscriptionMetadata) GetSymbol() string {
-	if o == nil {
+	if o == nil || IsNil(o.Symbol) {
 		var ret string
 		return ret
 	}
-
-	return o.Symbol
+	return *o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value
+// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionMetadata) GetSymbolOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Symbol) {
 		return nil, false
 	}
-	return &o.Symbol, true
+	return o.Symbol, true
 }
 
-// SetSymbol sets field value
+// HasSymbol returns a boolean if a field has been set.
+func (o *SubscriptionMetadata) HasSymbol() bool {
+	if o != nil && !IsNil(o.Symbol) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
 func (o *SubscriptionMetadata) SetSymbol(v string) {
-	o.Symbol = v
+	o.Symbol = &v
 }
 
-// GetArtUrl returns the ArtUrl field value
+// GetArtUrl returns the ArtUrl field value if set, zero value otherwise.
 func (o *SubscriptionMetadata) GetArtUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.ArtUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.ArtUrl
+	return *o.ArtUrl
 }
 
-// GetArtUrlOk returns a tuple with the ArtUrl field value
+// GetArtUrlOk returns a tuple with the ArtUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionMetadata) GetArtUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ArtUrl) {
 		return nil, false
 	}
-	return &o.ArtUrl, true
+	return o.ArtUrl, true
 }
 
-// SetArtUrl sets field value
+// HasArtUrl returns a boolean if a field has been set.
+func (o *SubscriptionMetadata) HasArtUrl() bool {
+	if o != nil && !IsNil(o.ArtUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetArtUrl gets a reference to the given string and assigns it to the ArtUrl field.
 func (o *SubscriptionMetadata) SetArtUrl(v string) {
-	o.ArtUrl = v
+	o.ArtUrl = &v
 }
 
 func (o SubscriptionMetadata) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o SubscriptionMetadata) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["title"] = o.Title
-	toSerialize["symbol"] = o.Symbol
-	toSerialize["art_url"] = o.ArtUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
 	}
-
+	if !IsNil(o.Symbol) {
+		toSerialize["symbol"] = o.Symbol
+	}
+	if !IsNil(o.ArtUrl) {
+		toSerialize["art_url"] = o.ArtUrl
+	}
 	return toSerialize, nil
-}
-
-func (o *SubscriptionMetadata) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"title",
-		"symbol",
-		"art_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscriptionMetadata := _SubscriptionMetadata{}
-
-	err = json.Unmarshal(data, &varSubscriptionMetadata)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscriptionMetadata(varSubscriptionMetadata)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "art_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptionMetadata struct {

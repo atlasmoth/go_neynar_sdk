@@ -21,10 +21,7 @@ var _ MappedNullable = &FrameState{}
 type FrameState struct {
 	// State for the frame in a serialized format
 	Serialized *string `json:"serialized,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _FrameState FrameState
 
 // NewFrameState instantiates a new FrameState object
 // This constructor will assign default values to properties that have it defined,
@@ -88,33 +85,7 @@ func (o FrameState) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Serialized) {
 		toSerialize["serialized"] = o.Serialized
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameState) UnmarshalJSON(data []byte) (err error) {
-	varFrameState := _FrameState{}
-
-	err = json.Unmarshal(data, &varFrameState)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameState(varFrameState)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "serialized")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameState struct {

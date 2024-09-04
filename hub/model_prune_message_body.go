@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PruneMessageBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &PruneMessageBody{}
 
 // PruneMessageBody struct for PruneMessageBody
 type PruneMessageBody struct {
-	Message Message `json:"message"`
-	AdditionalProperties map[string]interface{}
+	Message *Message `json:"message,omitempty"`
 }
-
-type _PruneMessageBody PruneMessageBody
 
 // NewPruneMessageBody instantiates a new PruneMessageBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPruneMessageBody(message Message) *PruneMessageBody {
+func NewPruneMessageBody() *PruneMessageBody {
 	this := PruneMessageBody{}
-	this.Message = message
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewPruneMessageBodyWithDefaults() *PruneMessageBody {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *PruneMessageBody) GetMessage() Message {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret Message
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PruneMessageBody) GetMessageOk() (*Message, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *PruneMessageBody) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given Message and assigns it to the Message field.
 func (o *PruneMessageBody) SetMessage(v Message) {
-	o.Message = v
+	o.Message = &v
 }
 
 func (o PruneMessageBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o PruneMessageBody) MarshalJSON() ([]byte, error) {
 
 func (o PruneMessageBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
-
 	return toSerialize, nil
-}
-
-func (o *PruneMessageBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"message",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPruneMessageBody := _PruneMessageBody{}
-
-	err = json.Unmarshal(data, &varPruneMessageBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PruneMessageBody(varPruneMessageBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "message")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePruneMessageBody struct {

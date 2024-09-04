@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AuthorizationUrlResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &AuthorizationUrlResponse{}
 
 // AuthorizationUrlResponse struct for AuthorizationUrlResponse
 type AuthorizationUrlResponse struct {
-	AuthorizationUrl string `json:"authorization_url"`
-	AdditionalProperties map[string]interface{}
+	AuthorizationUrl *string `json:"authorization_url,omitempty"`
 }
-
-type _AuthorizationUrlResponse AuthorizationUrlResponse
 
 // NewAuthorizationUrlResponse instantiates a new AuthorizationUrlResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthorizationUrlResponse(authorizationUrl string) *AuthorizationUrlResponse {
+func NewAuthorizationUrlResponse() *AuthorizationUrlResponse {
 	this := AuthorizationUrlResponse{}
-	this.AuthorizationUrl = authorizationUrl
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewAuthorizationUrlResponseWithDefaults() *AuthorizationUrlResponse {
 	return &this
 }
 
-// GetAuthorizationUrl returns the AuthorizationUrl field value
+// GetAuthorizationUrl returns the AuthorizationUrl field value if set, zero value otherwise.
 func (o *AuthorizationUrlResponse) GetAuthorizationUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.AuthorizationUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.AuthorizationUrl
+	return *o.AuthorizationUrl
 }
 
-// GetAuthorizationUrlOk returns a tuple with the AuthorizationUrl field value
+// GetAuthorizationUrlOk returns a tuple with the AuthorizationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthorizationUrlResponse) GetAuthorizationUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AuthorizationUrl) {
 		return nil, false
 	}
-	return &o.AuthorizationUrl, true
+	return o.AuthorizationUrl, true
 }
 
-// SetAuthorizationUrl sets field value
+// HasAuthorizationUrl returns a boolean if a field has been set.
+func (o *AuthorizationUrlResponse) HasAuthorizationUrl() bool {
+	if o != nil && !IsNil(o.AuthorizationUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizationUrl gets a reference to the given string and assigns it to the AuthorizationUrl field.
 func (o *AuthorizationUrlResponse) SetAuthorizationUrl(v string) {
-	o.AuthorizationUrl = v
+	o.AuthorizationUrl = &v
 }
 
 func (o AuthorizationUrlResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o AuthorizationUrlResponse) MarshalJSON() ([]byte, error) {
 
 func (o AuthorizationUrlResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authorization_url"] = o.AuthorizationUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.AuthorizationUrl) {
+		toSerialize["authorization_url"] = o.AuthorizationUrl
 	}
-
 	return toSerialize, nil
-}
-
-func (o *AuthorizationUrlResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"authorization_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAuthorizationUrlResponse := _AuthorizationUrlResponse{}
-
-	err = json.Unmarshal(data, &varAuthorizationUrlResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = AuthorizationUrlResponse(varAuthorizationUrlResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorization_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableAuthorizationUrlResponse struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MergeOnChainEventBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &MergeOnChainEventBody{}
 
 // MergeOnChainEventBody struct for MergeOnChainEventBody
 type MergeOnChainEventBody struct {
-	OnChainEvent OnChainEvent `json:"onChainEvent"`
-	AdditionalProperties map[string]interface{}
+	OnChainEvent *OnChainEvent `json:"onChainEvent,omitempty"`
 }
-
-type _MergeOnChainEventBody MergeOnChainEventBody
 
 // NewMergeOnChainEventBody instantiates a new MergeOnChainEventBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMergeOnChainEventBody(onChainEvent OnChainEvent) *MergeOnChainEventBody {
+func NewMergeOnChainEventBody() *MergeOnChainEventBody {
 	this := MergeOnChainEventBody{}
-	this.OnChainEvent = onChainEvent
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewMergeOnChainEventBodyWithDefaults() *MergeOnChainEventBody {
 	return &this
 }
 
-// GetOnChainEvent returns the OnChainEvent field value
+// GetOnChainEvent returns the OnChainEvent field value if set, zero value otherwise.
 func (o *MergeOnChainEventBody) GetOnChainEvent() OnChainEvent {
-	if o == nil {
+	if o == nil || IsNil(o.OnChainEvent) {
 		var ret OnChainEvent
 		return ret
 	}
-
-	return o.OnChainEvent
+	return *o.OnChainEvent
 }
 
-// GetOnChainEventOk returns a tuple with the OnChainEvent field value
+// GetOnChainEventOk returns a tuple with the OnChainEvent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeOnChainEventBody) GetOnChainEventOk() (*OnChainEvent, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OnChainEvent) {
 		return nil, false
 	}
-	return &o.OnChainEvent, true
+	return o.OnChainEvent, true
 }
 
-// SetOnChainEvent sets field value
+// HasOnChainEvent returns a boolean if a field has been set.
+func (o *MergeOnChainEventBody) HasOnChainEvent() bool {
+	if o != nil && !IsNil(o.OnChainEvent) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnChainEvent gets a reference to the given OnChainEvent and assigns it to the OnChainEvent field.
 func (o *MergeOnChainEventBody) SetOnChainEvent(v OnChainEvent) {
-	o.OnChainEvent = v
+	o.OnChainEvent = &v
 }
 
 func (o MergeOnChainEventBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o MergeOnChainEventBody) MarshalJSON() ([]byte, error) {
 
 func (o MergeOnChainEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["onChainEvent"] = o.OnChainEvent
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.OnChainEvent) {
+		toSerialize["onChainEvent"] = o.OnChainEvent
 	}
-
 	return toSerialize, nil
-}
-
-func (o *MergeOnChainEventBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"onChainEvent",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMergeOnChainEventBody := _MergeOnChainEventBody{}
-
-	err = json.Unmarshal(data, &varMergeOnChainEventBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MergeOnChainEventBody(varMergeOnChainEventBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "onChainEvent")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMergeOnChainEventBody struct {

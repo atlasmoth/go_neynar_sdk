@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to [**EmbedUrlMetadata**](EmbedUrlMetadata.md) |  | [optional] 
 
 ## Methods
 
 ### NewEmbedUrl
 
-`func NewEmbedUrl(url string, ) *EmbedUrl`
+`func NewEmbedUrl() *EmbedUrl`
 
 NewEmbedUrl instantiates a new EmbedUrl object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *EmbedUrl) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetMetadata
 

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VerificationAddEthAddressBody type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &VerificationAddEthAddressBody{}
 
 // VerificationAddEthAddressBody Adds a Verification of ownership of an Ethereum Address
 type VerificationAddEthAddressBody struct {
-	Address string `json:"address" validate:"regexp=^(?:0x[a-fA-F0-9]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$"`
-	EthSignature string `json:"ethSignature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	BlockHash string `json:"blockHash" validate:"regexp=^(0x[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{44})$"`
-	AdditionalProperties map[string]interface{}
+	Address *string `json:"address,omitempty" validate:"regexp=^(?:0x[a-fA-F0-9]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$"`
+	EthSignature *string `json:"ethSignature,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{44})$"`
 }
-
-type _VerificationAddEthAddressBody VerificationAddEthAddressBody
 
 // NewVerificationAddEthAddressBody instantiates a new VerificationAddEthAddressBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerificationAddEthAddressBody(address string, ethSignature string, blockHash string) *VerificationAddEthAddressBody {
+func NewVerificationAddEthAddressBody() *VerificationAddEthAddressBody {
 	this := VerificationAddEthAddressBody{}
-	this.Address = address
-	this.EthSignature = ethSignature
-	this.BlockHash = blockHash
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewVerificationAddEthAddressBodyWithDefaults() *VerificationAddEthAddressBo
 	return &this
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *VerificationAddEthAddressBody) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationAddEthAddressBody) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *VerificationAddEthAddressBody) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *VerificationAddEthAddressBody) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
-// GetEthSignature returns the EthSignature field value
+// GetEthSignature returns the EthSignature field value if set, zero value otherwise.
 func (o *VerificationAddEthAddressBody) GetEthSignature() string {
-	if o == nil {
+	if o == nil || IsNil(o.EthSignature) {
 		var ret string
 		return ret
 	}
-
-	return o.EthSignature
+	return *o.EthSignature
 }
 
-// GetEthSignatureOk returns a tuple with the EthSignature field value
+// GetEthSignatureOk returns a tuple with the EthSignature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationAddEthAddressBody) GetEthSignatureOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EthSignature) {
 		return nil, false
 	}
-	return &o.EthSignature, true
+	return o.EthSignature, true
 }
 
-// SetEthSignature sets field value
+// HasEthSignature returns a boolean if a field has been set.
+func (o *VerificationAddEthAddressBody) HasEthSignature() bool {
+	if o != nil && !IsNil(o.EthSignature) {
+		return true
+	}
+
+	return false
+}
+
+// SetEthSignature gets a reference to the given string and assigns it to the EthSignature field.
 func (o *VerificationAddEthAddressBody) SetEthSignature(v string) {
-	o.EthSignature = v
+	o.EthSignature = &v
 }
 
-// GetBlockHash returns the BlockHash field value
+// GetBlockHash returns the BlockHash field value if set, zero value otherwise.
 func (o *VerificationAddEthAddressBody) GetBlockHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.BlockHash) {
 		var ret string
 		return ret
 	}
-
-	return o.BlockHash
+	return *o.BlockHash
 }
 
-// GetBlockHashOk returns a tuple with the BlockHash field value
+// GetBlockHashOk returns a tuple with the BlockHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationAddEthAddressBody) GetBlockHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BlockHash) {
 		return nil, false
 	}
-	return &o.BlockHash, true
+	return o.BlockHash, true
 }
 
-// SetBlockHash sets field value
+// HasBlockHash returns a boolean if a field has been set.
+func (o *VerificationAddEthAddressBody) HasBlockHash() bool {
+	if o != nil && !IsNil(o.BlockHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockHash gets a reference to the given string and assigns it to the BlockHash field.
 func (o *VerificationAddEthAddressBody) SetBlockHash(v string) {
-	o.BlockHash = v
+	o.BlockHash = &v
 }
 
 func (o VerificationAddEthAddressBody) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o VerificationAddEthAddressBody) MarshalJSON() ([]byte, error) {
 
 func (o VerificationAddEthAddressBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
-	toSerialize["ethSignature"] = o.EthSignature
-	toSerialize["blockHash"] = o.BlockHash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
 	}
-
+	if !IsNil(o.EthSignature) {
+		toSerialize["ethSignature"] = o.EthSignature
+	}
+	if !IsNil(o.BlockHash) {
+		toSerialize["blockHash"] = o.BlockHash
+	}
 	return toSerialize, nil
-}
-
-func (o *VerificationAddEthAddressBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-		"ethSignature",
-		"blockHash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varVerificationAddEthAddressBody := _VerificationAddEthAddressBody{}
-
-	err = json.Unmarshal(data, &varVerificationAddEthAddressBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = VerificationAddEthAddressBody(varVerificationAddEthAddressBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "address")
-		delete(additionalProperties, "ethSignature")
-		delete(additionalProperties, "blockHash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableVerificationAddEthAddressBody struct {

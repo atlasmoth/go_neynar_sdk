@@ -28,8 +28,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	threadHash := "threadHash_example" // string | The hash of the thread to retrieve casts from. (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	threadHash := "threadHash_example" // string | The hash of the thread to retrieve casts from. (optional) (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 
 	configuration := openapiclient.NewConfiguration()
@@ -92,8 +92,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	hash := "hash_example" // string | Cast hash (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	hash := "hash_example" // string | Cast hash (optional) (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 
 	configuration := openapiclient.NewConfiguration()
@@ -156,8 +156,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | fid of a user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | fid of a user (optional) (default to 3)
 	parentUrl := "https://ethereum.org" // string | A cast can be part of a certain channel. The channel is identified by `parent_url`. All casts in the channel ladder up to the same parent_url. (optional)
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 150) (optional) (default to 25)
@@ -226,7 +226,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RedirectUrl** | **string** | The URL to redirect to. | 
+**RedirectUrl** | Pointer to **string** | The URL to redirect to. | [optional] 
 
 ## Methods
 
 ### NewNeynarNextFramePageRedirect
 
-`func NewNeynarNextFramePageRedirect(redirectUrl string, ) *NeynarNextFramePageRedirect`
+`func NewNeynarNextFramePageRedirect() *NeynarNextFramePageRedirect`
 
 NewNeynarNextFramePageRedirect instantiates a new NeynarNextFramePageRedirect object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetRedirectUrl sets RedirectUrl field to given value.
 
+### HasRedirectUrl
+
+`func (o *NeynarNextFramePageRedirect) HasRedirectUrl() bool`
+
+HasRedirectUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

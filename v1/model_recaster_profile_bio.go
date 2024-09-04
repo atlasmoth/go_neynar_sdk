@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RecasterProfileBio type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &RecasterProfileBio{}
 
 // RecasterProfileBio struct for RecasterProfileBio
 type RecasterProfileBio struct {
-	Text string `json:"text"`
-	Mentions []string `json:"mentions"`
-	AdditionalProperties map[string]interface{}
+	Text *string `json:"text,omitempty"`
+	Mentions []string `json:"mentions,omitempty"`
 }
-
-type _RecasterProfileBio RecasterProfileBio
 
 // NewRecasterProfileBio instantiates a new RecasterProfileBio object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecasterProfileBio(text string, mentions []string) *RecasterProfileBio {
+func NewRecasterProfileBio() *RecasterProfileBio {
 	this := RecasterProfileBio{}
-	this.Text = text
-	this.Mentions = mentions
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewRecasterProfileBioWithDefaults() *RecasterProfileBio {
 	return &this
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *RecasterProfileBio) GetText() string {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecasterProfileBio) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Text, true
 }
 
-// SetText sets field value
+// HasText returns a boolean if a field has been set.
+func (o *RecasterProfileBio) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
+		return true
+	}
+
+	return false
+}
+
+// SetText gets a reference to the given string and assigns it to the Text field.
 func (o *RecasterProfileBio) SetText(v string) {
-	o.Text = v
+	o.Text = &v
 }
 
-// GetMentions returns the Mentions field value
+// GetMentions returns the Mentions field value if set, zero value otherwise.
 func (o *RecasterProfileBio) GetMentions() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Mentions) {
 		var ret []string
 		return ret
 	}
-
 	return o.Mentions
 }
 
-// GetMentionsOk returns a tuple with the Mentions field value
+// GetMentionsOk returns a tuple with the Mentions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecasterProfileBio) GetMentionsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Mentions) {
 		return nil, false
 	}
 	return o.Mentions, true
 }
 
-// SetMentions sets field value
+// HasMentions returns a boolean if a field has been set.
+func (o *RecasterProfileBio) HasMentions() bool {
+	if o != nil && !IsNil(o.Mentions) {
+		return true
+	}
+
+	return false
+}
+
+// SetMentions gets a reference to the given []string and assigns it to the Mentions field.
 func (o *RecasterProfileBio) SetMentions(v []string) {
 	o.Mentions = v
 }
@@ -104,58 +114,13 @@ func (o RecasterProfileBio) MarshalJSON() ([]byte, error) {
 
 func (o RecasterProfileBio) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["text"] = o.Text
-	toSerialize["mentions"] = o.Mentions
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
-
+	if !IsNil(o.Mentions) {
+		toSerialize["mentions"] = o.Mentions
+	}
 	return toSerialize, nil
-}
-
-func (o *RecasterProfileBio) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"text",
-		"mentions",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRecasterProfileBio := _RecasterProfileBio{}
-
-	err = json.Unmarshal(data, &varRecasterProfileBio)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RecasterProfileBio(varRecasterProfileBio)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "text")
-		delete(additionalProperties, "mentions")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRecasterProfileBio struct {

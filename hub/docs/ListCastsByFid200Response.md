@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Messages** | [**[]CastAdd**](CastAdd.md) |  | 
-**NextPageToken** | **string** |  | 
+**Messages** | Pointer to [**[]CastAdd**](CastAdd.md) |  | [optional] 
+**NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewListCastsByFid200Response
 
-`func NewListCastsByFid200Response(messages []CastAdd, nextPageToken string, ) *ListCastsByFid200Response`
+`func NewListCastsByFid200Response() *ListCastsByFid200Response`
 
 NewListCastsByFid200Response instantiates a new ListCastsByFid200Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetMessages sets Messages field to given value.
 
+### HasMessages
+
+`func (o *ListCastsByFid200Response) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageToken sets NextPageToken field to given value.
 
+### HasNextPageToken
+
+`func (o *ListCastsByFid200Response) HasNextPageToken() bool`
+
+HasNextPageToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

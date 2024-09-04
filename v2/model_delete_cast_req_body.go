@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DeleteCastReqBody type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &DeleteCastReqBody{}
 // DeleteCastReqBody struct for DeleteCastReqBody
 type DeleteCastReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	// Ethereum address
-	TargetHash string `json:"target_hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	AdditionalProperties map[string]interface{}
+	TargetHash *string `json:"target_hash,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 }
-
-type _DeleteCastReqBody DeleteCastReqBody
 
 // NewDeleteCastReqBody instantiates a new DeleteCastReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteCastReqBody(signerUuid string, targetHash string) *DeleteCastReqBody {
+func NewDeleteCastReqBody() *DeleteCastReqBody {
 	this := DeleteCastReqBody{}
-	this.SignerUuid = signerUuid
-	this.TargetHash = targetHash
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewDeleteCastReqBodyWithDefaults() *DeleteCastReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *DeleteCastReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteCastReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *DeleteCastReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *DeleteCastReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
-// GetTargetHash returns the TargetHash field value
+// GetTargetHash returns the TargetHash field value if set, zero value otherwise.
 func (o *DeleteCastReqBody) GetTargetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.TargetHash) {
 		var ret string
 		return ret
 	}
-
-	return o.TargetHash
+	return *o.TargetHash
 }
 
-// GetTargetHashOk returns a tuple with the TargetHash field value
+// GetTargetHashOk returns a tuple with the TargetHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteCastReqBody) GetTargetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetHash) {
 		return nil, false
 	}
-	return &o.TargetHash, true
+	return o.TargetHash, true
 }
 
-// SetTargetHash sets field value
+// HasTargetHash returns a boolean if a field has been set.
+func (o *DeleteCastReqBody) HasTargetHash() bool {
+	if o != nil && !IsNil(o.TargetHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetHash gets a reference to the given string and assigns it to the TargetHash field.
 func (o *DeleteCastReqBody) SetTargetHash(v string) {
-	o.TargetHash = v
+	o.TargetHash = &v
 }
 
 func (o DeleteCastReqBody) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o DeleteCastReqBody) MarshalJSON() ([]byte, error) {
 
 func (o DeleteCastReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
-	toSerialize["target_hash"] = o.TargetHash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
 	}
-
+	if !IsNil(o.TargetHash) {
+		toSerialize["target_hash"] = o.TargetHash
+	}
 	return toSerialize, nil
-}
-
-func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-		"target_hash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDeleteCastReqBody := _DeleteCastReqBody{}
-
-	err = json.Unmarshal(data, &varDeleteCastReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DeleteCastReqBody(varDeleteCastReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "target_hash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableDeleteCastReqBody struct {

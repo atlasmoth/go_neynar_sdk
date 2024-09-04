@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**Object** | **string** |  | 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Object** | Pointer to **string** |  | [optional] 
 **ImageUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewDehydratedChannel
 
-`func NewDehydratedChannel(id string, name string, object string, ) *DehydratedChannel`
+`func NewDehydratedChannel() *DehydratedChannel`
 
 NewDehydratedChannel instantiates a new DehydratedChannel object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *DehydratedChannel) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *DehydratedChannel) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetObject
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *DehydratedChannel) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetImageUrl
 

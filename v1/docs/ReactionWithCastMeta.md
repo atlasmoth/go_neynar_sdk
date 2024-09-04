@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reaction** | [**ReactionWithCastMetaReaction**](ReactionWithCastMetaReaction.md) |  | 
+**Reaction** | Pointer to [**ReactionWithCastMetaReaction**](ReactionWithCastMetaReaction.md) |  | [optional] 
 **Cast** | Pointer to [**ReactionWithCastMetaCast**](ReactionWithCastMetaCast.md) |  | [optional] 
 **CastAuthor** | Pointer to [**User**](User.md) |  | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewReactionWithCastMeta
 
-`func NewReactionWithCastMeta(reaction ReactionWithCastMetaReaction, ) *ReactionWithCastMeta`
+`func NewReactionWithCastMeta() *ReactionWithCastMeta`
 
 NewReactionWithCastMeta instantiates a new ReactionWithCastMeta object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetReaction sets Reaction field to given value.
 
+### HasReaction
+
+`func (o *ReactionWithCastMeta) HasReaction() bool`
+
+HasReaction returns a boolean if a field has been set.
 
 ### GetCast
 

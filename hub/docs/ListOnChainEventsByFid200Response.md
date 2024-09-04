@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | [**[]OnChainEvent**](OnChainEvent.md) |  | 
+**Events** | Pointer to [**[]OnChainEvent**](OnChainEvent.md) |  | [optional] 
 
 ## Methods
 
 ### NewListOnChainEventsByFid200Response
 
-`func NewListOnChainEventsByFid200Response(events []OnChainEvent, ) *ListOnChainEventsByFid200Response`
+`func NewListOnChainEventsByFid200Response() *ListOnChainEventsByFid200Response`
 
 NewListOnChainEventsByFid200Response instantiates a new ListOnChainEventsByFid200Response object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetEvents sets Events field to given value.
 
+### HasEvents
+
+`func (o *ListOnChainEventsByFid200Response) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

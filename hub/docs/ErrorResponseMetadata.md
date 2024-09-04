@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errcode** | **[]string** |  | 
+**Errcode** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewErrorResponseMetadata
 
-`func NewErrorResponseMetadata(errcode []string, ) *ErrorResponseMetadata`
+`func NewErrorResponseMetadata() *ErrorResponseMetadata`
 
 NewErrorResponseMetadata instantiates a new ErrorResponseMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetErrcode sets Errcode field to given value.
 
+### HasErrcode
+
+`func (o *ErrorResponseMetadata) HasErrcode() bool`
+
+HasErrcode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

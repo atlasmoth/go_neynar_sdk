@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VerificationRemoveBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &VerificationRemoveBody{}
 
 // VerificationRemoveBody Removes a Verification of any type
 type VerificationRemoveBody struct {
-	Address string `json:"address" validate:"regexp=^0x[A-Za-z0-9]{40}$"`
-	AdditionalProperties map[string]interface{}
+	Address *string `json:"address,omitempty" validate:"regexp=^0x[A-Za-z0-9]{40}$"`
 }
-
-type _VerificationRemoveBody VerificationRemoveBody
 
 // NewVerificationRemoveBody instantiates a new VerificationRemoveBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerificationRemoveBody(address string) *VerificationRemoveBody {
+func NewVerificationRemoveBody() *VerificationRemoveBody {
 	this := VerificationRemoveBody{}
-	this.Address = address
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewVerificationRemoveBodyWithDefaults() *VerificationRemoveBody {
 	return &this
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *VerificationRemoveBody) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationRemoveBody) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *VerificationRemoveBody) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *VerificationRemoveBody) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
 func (o VerificationRemoveBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o VerificationRemoveBody) MarshalJSON() ([]byte, error) {
 
 func (o VerificationRemoveBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
 	}
-
 	return toSerialize, nil
-}
-
-func (o *VerificationRemoveBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varVerificationRemoveBody := _VerificationRemoveBody{}
-
-	err = json.Unmarshal(data, &varVerificationRemoveBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = VerificationRemoveBody(varVerificationRemoveBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "address")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableVerificationRemoveBody struct {

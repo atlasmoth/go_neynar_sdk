@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ValidateFrameRequest type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &ValidateFrameRequest{}
 // ValidateFrameRequest struct for ValidateFrameRequest
 type ValidateFrameRequest struct {
 	// Hexadecimal string of message bytes.
-	MessageBytesInHex string `json:"message_bytes_in_hex"`
+	MessageBytesInHex *string `json:"message_bytes_in_hex,omitempty"`
 	// Adds viewer_context inside the cast object to indicate whether the interactor reacted to the cast housing the frame.
 	CastReactionContext *bool `json:"cast_reaction_context,omitempty"`
 	// Adds viewer_context inside the user (interactor) object to indicate whether the interactor follows or is followed by the cast author.
@@ -30,18 +29,14 @@ type ValidateFrameRequest struct {
 	SignerContext *bool `json:"signer_context,omitempty"`
 	// Adds context about the channel that the cast belongs to inside of the cast object.
 	ChannelFollowContext *bool `json:"channel_follow_context,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ValidateFrameRequest ValidateFrameRequest
 
 // NewValidateFrameRequest instantiates a new ValidateFrameRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidateFrameRequest(messageBytesInHex string) *ValidateFrameRequest {
+func NewValidateFrameRequest() *ValidateFrameRequest {
 	this := ValidateFrameRequest{}
-	this.MessageBytesInHex = messageBytesInHex
 	var castReactionContext bool = true
 	this.CastReactionContext = &castReactionContext
 	var followContext bool = false
@@ -69,28 +64,36 @@ func NewValidateFrameRequestWithDefaults() *ValidateFrameRequest {
 	return &this
 }
 
-// GetMessageBytesInHex returns the MessageBytesInHex field value
+// GetMessageBytesInHex returns the MessageBytesInHex field value if set, zero value otherwise.
 func (o *ValidateFrameRequest) GetMessageBytesInHex() string {
-	if o == nil {
+	if o == nil || IsNil(o.MessageBytesInHex) {
 		var ret string
 		return ret
 	}
-
-	return o.MessageBytesInHex
+	return *o.MessageBytesInHex
 }
 
-// GetMessageBytesInHexOk returns a tuple with the MessageBytesInHex field value
+// GetMessageBytesInHexOk returns a tuple with the MessageBytesInHex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidateFrameRequest) GetMessageBytesInHexOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MessageBytesInHex) {
 		return nil, false
 	}
-	return &o.MessageBytesInHex, true
+	return o.MessageBytesInHex, true
 }
 
-// SetMessageBytesInHex sets field value
+// HasMessageBytesInHex returns a boolean if a field has been set.
+func (o *ValidateFrameRequest) HasMessageBytesInHex() bool {
+	if o != nil && !IsNil(o.MessageBytesInHex) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageBytesInHex gets a reference to the given string and assigns it to the MessageBytesInHex field.
 func (o *ValidateFrameRequest) SetMessageBytesInHex(v string) {
-	o.MessageBytesInHex = v
+	o.MessageBytesInHex = &v
 }
 
 // GetCastReactionContext returns the CastReactionContext field value if set, zero value otherwise.
@@ -231,7 +234,9 @@ func (o ValidateFrameRequest) MarshalJSON() ([]byte, error) {
 
 func (o ValidateFrameRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message_bytes_in_hex"] = o.MessageBytesInHex
+	if !IsNil(o.MessageBytesInHex) {
+		toSerialize["message_bytes_in_hex"] = o.MessageBytesInHex
+	}
 	if !IsNil(o.CastReactionContext) {
 		toSerialize["cast_reaction_context"] = o.CastReactionContext
 	}
@@ -244,58 +249,7 @@ func (o ValidateFrameRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChannelFollowContext) {
 		toSerialize["channel_follow_context"] = o.ChannelFollowContext
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ValidateFrameRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"message_bytes_in_hex",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varValidateFrameRequest := _ValidateFrameRequest{}
-
-	err = json.Unmarshal(data, &varValidateFrameRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ValidateFrameRequest(varValidateFrameRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "message_bytes_in_hex")
-		delete(additionalProperties, "cast_reaction_context")
-		delete(additionalProperties, "follow_context")
-		delete(additionalProperties, "signer_context")
-		delete(additionalProperties, "channel_follow_context")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableValidateFrameRequest struct {

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cursor** | **NullableString** |  | 
+**Cursor** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewNextCursor
 
-`func NewNextCursor(cursor NullableString, ) *NextCursor`
+`func NewNextCursor() *NextCursor`
 
 NewNextCursor instantiates a new NextCursor object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetCursor sets Cursor field to given value.
 
+### HasCursor
+
+`func (o *NextCursor) HasCursor() bool`
+
+HasCursor returns a boolean if a field has been set.
 
 ### SetCursorNil
 

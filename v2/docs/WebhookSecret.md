@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uid** | **string** |  | 
-**Value** | **string** |  | 
-**ExpiresAt** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**DeletedAt** | **string** |  | 
+**Uid** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
+**ExpiresAt** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **string** |  | [optional] 
+**DeletedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewWebhookSecret
 
-`func NewWebhookSecret(uid string, value string, expiresAt string, createdAt string, updatedAt string, deletedAt string, ) *WebhookSecret`
+`func NewWebhookSecret() *WebhookSecret`
 
 NewWebhookSecret instantiates a new WebhookSecret object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetUid sets Uid field to given value.
 
+### HasUid
+
+`func (o *WebhookSecret) HasUid() bool`
+
+HasUid returns a boolean if a field has been set.
 
 ### GetValue
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
+### HasValue
+
+`func (o *WebhookSecret) HasValue() bool`
+
+HasValue returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetExpiresAt sets ExpiresAt field to given value.
 
+### HasExpiresAt
+
+`func (o *WebhookSecret) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *WebhookSecret) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -129,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
+
+`func (o *WebhookSecret) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetDeletedAt
 
@@ -149,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetDeletedAt sets DeletedAt field to given value.
 
+### HasDeletedAt
+
+`func (o *WebhookSecret) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

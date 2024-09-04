@@ -27,8 +27,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	muteReqBody := *openapiclient.NewMuteReqBody(int32(123), int32(123)) // MuteReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	muteReqBody := *openapiclient.NewMuteReqBody() // MuteReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -89,8 +89,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	muteReqBody := *openapiclient.NewMuteReqBody(int32(123), int32(123)) // MuteReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	muteReqBody := *openapiclient.NewMuteReqBody() // MuteReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -151,8 +151,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | The user's fid (identifier)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | The user's fid (identifier) (optional)
 	limit := int32(20) // int32 | Number of results to retrieve (default 20, max 100). (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 

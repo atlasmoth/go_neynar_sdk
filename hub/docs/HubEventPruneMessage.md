@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**PruneMessageBody** | [**PruneMessageBody**](PruneMessageBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**PruneMessageBody** | Pointer to [**PruneMessageBody**](PruneMessageBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEventPruneMessage
 
-`func NewHubEventPruneMessage(type_ string, id int32, pruneMessageBody PruneMessageBody, ) *HubEventPruneMessage`
+`func NewHubEventPruneMessage() *HubEventPruneMessage`
 
 NewHubEventPruneMessage instantiates a new HubEventPruneMessage object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEventPruneMessage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEventPruneMessage) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetPruneMessageBody
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetPruneMessageBody sets PruneMessageBody field to given value.
 
+### HasPruneMessageBody
+
+`func (o *HubEventPruneMessage) HasPruneMessageBody() bool`
+
+HasPruneMessageBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

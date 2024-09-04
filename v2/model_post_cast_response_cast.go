@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PostCastResponseCast type satisfies the MappedNullable interface at compile time
@@ -21,23 +20,17 @@ var _ MappedNullable = &PostCastResponseCast{}
 // PostCastResponseCast struct for PostCastResponseCast
 type PostCastResponseCast struct {
 	// Ethereum address
-	Hash string `json:"hash" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	Author PostCastResponseCastAuthor `json:"author"`
-	Text string `json:"text"`
-	AdditionalProperties map[string]interface{}
+	Hash *string `json:"hash,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	Author *PostCastResponseCastAuthor `json:"author,omitempty"`
+	Text *string `json:"text,omitempty"`
 }
-
-type _PostCastResponseCast PostCastResponseCast
 
 // NewPostCastResponseCast instantiates a new PostCastResponseCast object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastResponseCast(hash string, author PostCastResponseCastAuthor, text string) *PostCastResponseCast {
+func NewPostCastResponseCast() *PostCastResponseCast {
 	this := PostCastResponseCast{}
-	this.Hash = hash
-	this.Author = author
-	this.Text = text
 	return &this
 }
 
@@ -49,76 +42,100 @@ func NewPostCastResponseCastWithDefaults() *PostCastResponseCast {
 	return &this
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *PostCastResponseCast) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponseCast) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *PostCastResponseCast) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *PostCastResponseCast) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
-// GetAuthor returns the Author field value
+// GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *PostCastResponseCast) GetAuthor() PostCastResponseCastAuthor {
-	if o == nil {
+	if o == nil || IsNil(o.Author) {
 		var ret PostCastResponseCastAuthor
 		return ret
 	}
-
-	return o.Author
+	return *o.Author
 }
 
-// GetAuthorOk returns a tuple with the Author field value
+// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponseCast) GetAuthorOk() (*PostCastResponseCastAuthor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Author) {
 		return nil, false
 	}
-	return &o.Author, true
+	return o.Author, true
 }
 
-// SetAuthor sets field value
+// HasAuthor returns a boolean if a field has been set.
+func (o *PostCastResponseCast) HasAuthor() bool {
+	if o != nil && !IsNil(o.Author) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthor gets a reference to the given PostCastResponseCastAuthor and assigns it to the Author field.
 func (o *PostCastResponseCast) SetAuthor(v PostCastResponseCastAuthor) {
-	o.Author = v
+	o.Author = &v
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *PostCastResponseCast) GetText() string {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponseCast) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Text, true
 }
 
-// SetText sets field value
+// HasText returns a boolean if a field has been set.
+func (o *PostCastResponseCast) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
+		return true
+	}
+
+	return false
+}
+
+// SetText gets a reference to the given string and assigns it to the Text field.
 func (o *PostCastResponseCast) SetText(v string) {
-	o.Text = v
+	o.Text = &v
 }
 
 func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
@@ -131,61 +148,16 @@ func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
 
 func (o PostCastResponseCast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hash"] = o.Hash
-	toSerialize["author"] = o.Author
-	toSerialize["text"] = o.Text
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
 	}
-
+	if !IsNil(o.Author) {
+		toSerialize["author"] = o.Author
+	}
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
+	}
 	return toSerialize, nil
-}
-
-func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-		"author",
-		"text",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPostCastResponseCast := _PostCastResponseCast{}
-
-	err = json.Unmarshal(data, &varPostCastResponseCast)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PostCastResponseCast(varPostCastResponseCast)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hash")
-		delete(additionalProperties, "author")
-		delete(additionalProperties, "text")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePostCastResponseCast struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PostCastResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &PostCastResponse{}
 
 // PostCastResponse struct for PostCastResponse
 type PostCastResponse struct {
-	Success bool `json:"success"`
-	Cast PostCastResponseCast `json:"cast"`
-	AdditionalProperties map[string]interface{}
+	Success *bool `json:"success,omitempty"`
+	Cast *PostCastResponseCast `json:"cast,omitempty"`
 }
-
-type _PostCastResponse PostCastResponse
 
 // NewPostCastResponse instantiates a new PostCastResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastResponse(success bool, cast PostCastResponseCast) *PostCastResponse {
+func NewPostCastResponse() *PostCastResponse {
 	this := PostCastResponse{}
-	this.Success = success
-	this.Cast = cast
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewPostCastResponseWithDefaults() *PostCastResponse {
 	return &this
 }
 
-// GetSuccess returns the Success field value
+// GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *PostCastResponse) GetSuccess() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		var ret bool
 		return ret
 	}
-
-	return o.Success
+	return *o.Success
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponse) GetSuccessOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		return nil, false
 	}
-	return &o.Success, true
+	return o.Success, true
 }
 
-// SetSuccess sets field value
+// HasSuccess returns a boolean if a field has been set.
+func (o *PostCastResponse) HasSuccess() bool {
+	if o != nil && !IsNil(o.Success) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccess gets a reference to the given bool and assigns it to the Success field.
 func (o *PostCastResponse) SetSuccess(v bool) {
-	o.Success = v
+	o.Success = &v
 }
 
-// GetCast returns the Cast field value
+// GetCast returns the Cast field value if set, zero value otherwise.
 func (o *PostCastResponse) GetCast() PostCastResponseCast {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		var ret PostCastResponseCast
 		return ret
 	}
-
-	return o.Cast
+	return *o.Cast
 }
 
-// GetCastOk returns a tuple with the Cast field value
+// GetCastOk returns a tuple with the Cast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponse) GetCastOk() (*PostCastResponseCast, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		return nil, false
 	}
-	return &o.Cast, true
+	return o.Cast, true
 }
 
-// SetCast sets field value
+// HasCast returns a boolean if a field has been set.
+func (o *PostCastResponse) HasCast() bool {
+	if o != nil && !IsNil(o.Cast) {
+		return true
+	}
+
+	return false
+}
+
+// SetCast gets a reference to the given PostCastResponseCast and assigns it to the Cast field.
 func (o *PostCastResponse) SetCast(v PostCastResponseCast) {
-	o.Cast = v
+	o.Cast = &v
 }
 
 func (o PostCastResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o PostCastResponse) MarshalJSON() ([]byte, error) {
 
 func (o PostCastResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["success"] = o.Success
-	toSerialize["cast"] = o.Cast
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
 	}
-
+	if !IsNil(o.Cast) {
+		toSerialize["cast"] = o.Cast
+	}
 	return toSerialize, nil
-}
-
-func (o *PostCastResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"success",
-		"cast",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPostCastResponse := _PostCastResponse{}
-
-	err = json.Unmarshal(data, &varPostCastResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PostCastResponse(varPostCastResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "cast")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePostCastResponse struct {

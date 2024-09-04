@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the ReactionWithCastMetaCast type satisfies the MappedNullable interface at compile time
@@ -22,27 +21,21 @@ var _ MappedNullable = &ReactionWithCastMetaCast{}
 // ReactionWithCastMetaCast struct for ReactionWithCastMetaCast
 type ReactionWithCastMetaCast struct {
 	// User identifier (unsigned integer)
-	CastFid int32 `json:"cast_fid"`
-	CastHash string `json:"cast_hash"`
-	CastText string `json:"cast_text"`
-	CastEmbeds []EmbedUrl `json:"cast_embeds"`
-	CastTimestamp time.Time `json:"cast_timestamp"`
-	AdditionalProperties map[string]interface{}
+	CastFid *int32 `json:"cast_fid,omitempty"`
+	CastHash *string `json:"cast_hash,omitempty"`
+	CastText *string `json:"cast_text,omitempty"`
+	CastEmbeds []EmbedUrl `json:"cast_embeds,omitempty"`
+	CastTimestamp *time.Time `json:"cast_timestamp,omitempty"`
 }
-
-type _ReactionWithCastMetaCast ReactionWithCastMetaCast
 
 // NewReactionWithCastMetaCast instantiates a new ReactionWithCastMetaCast object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionWithCastMetaCast(castFid int32, castHash string, castText string, castEmbeds []EmbedUrl, castTimestamp time.Time) *ReactionWithCastMetaCast {
+func NewReactionWithCastMetaCast() *ReactionWithCastMetaCast {
 	this := ReactionWithCastMetaCast{}
-	this.CastFid = castFid
-	this.CastHash = castHash
-	this.CastText = castText
-	this.CastEmbeds = castEmbeds
-	this.CastTimestamp = castTimestamp
+	var castFid int32 = 3
+	this.CastFid = &castFid
 	return &this
 }
 
@@ -52,128 +45,168 @@ func NewReactionWithCastMetaCast(castFid int32, castHash string, castText string
 func NewReactionWithCastMetaCastWithDefaults() *ReactionWithCastMetaCast {
 	this := ReactionWithCastMetaCast{}
 	var castFid int32 = 3
-	this.CastFid = castFid
+	this.CastFid = &castFid
 	return &this
 }
 
-// GetCastFid returns the CastFid field value
+// GetCastFid returns the CastFid field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaCast) GetCastFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CastFid) {
 		var ret int32
 		return ret
 	}
-
-	return o.CastFid
+	return *o.CastFid
 }
 
-// GetCastFidOk returns a tuple with the CastFid field value
+// GetCastFidOk returns a tuple with the CastFid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaCast) GetCastFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastFid) {
 		return nil, false
 	}
-	return &o.CastFid, true
+	return o.CastFid, true
 }
 
-// SetCastFid sets field value
+// HasCastFid returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaCast) HasCastFid() bool {
+	if o != nil && !IsNil(o.CastFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastFid gets a reference to the given int32 and assigns it to the CastFid field.
 func (o *ReactionWithCastMetaCast) SetCastFid(v int32) {
-	o.CastFid = v
+	o.CastFid = &v
 }
 
-// GetCastHash returns the CastHash field value
+// GetCastHash returns the CastHash field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaCast) GetCastHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastHash) {
 		var ret string
 		return ret
 	}
-
-	return o.CastHash
+	return *o.CastHash
 }
 
-// GetCastHashOk returns a tuple with the CastHash field value
+// GetCastHashOk returns a tuple with the CastHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaCast) GetCastHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastHash) {
 		return nil, false
 	}
-	return &o.CastHash, true
+	return o.CastHash, true
 }
 
-// SetCastHash sets field value
+// HasCastHash returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaCast) HasCastHash() bool {
+	if o != nil && !IsNil(o.CastHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastHash gets a reference to the given string and assigns it to the CastHash field.
 func (o *ReactionWithCastMetaCast) SetCastHash(v string) {
-	o.CastHash = v
+	o.CastHash = &v
 }
 
-// GetCastText returns the CastText field value
+// GetCastText returns the CastText field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaCast) GetCastText() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastText) {
 		var ret string
 		return ret
 	}
-
-	return o.CastText
+	return *o.CastText
 }
 
-// GetCastTextOk returns a tuple with the CastText field value
+// GetCastTextOk returns a tuple with the CastText field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaCast) GetCastTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastText) {
 		return nil, false
 	}
-	return &o.CastText, true
+	return o.CastText, true
 }
 
-// SetCastText sets field value
+// HasCastText returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaCast) HasCastText() bool {
+	if o != nil && !IsNil(o.CastText) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastText gets a reference to the given string and assigns it to the CastText field.
 func (o *ReactionWithCastMetaCast) SetCastText(v string) {
-	o.CastText = v
+	o.CastText = &v
 }
 
-// GetCastEmbeds returns the CastEmbeds field value
+// GetCastEmbeds returns the CastEmbeds field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaCast) GetCastEmbeds() []EmbedUrl {
-	if o == nil {
+	if o == nil || IsNil(o.CastEmbeds) {
 		var ret []EmbedUrl
 		return ret
 	}
-
 	return o.CastEmbeds
 }
 
-// GetCastEmbedsOk returns a tuple with the CastEmbeds field value
+// GetCastEmbedsOk returns a tuple with the CastEmbeds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaCast) GetCastEmbedsOk() ([]EmbedUrl, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastEmbeds) {
 		return nil, false
 	}
 	return o.CastEmbeds, true
 }
 
-// SetCastEmbeds sets field value
+// HasCastEmbeds returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaCast) HasCastEmbeds() bool {
+	if o != nil && !IsNil(o.CastEmbeds) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastEmbeds gets a reference to the given []EmbedUrl and assigns it to the CastEmbeds field.
 func (o *ReactionWithCastMetaCast) SetCastEmbeds(v []EmbedUrl) {
 	o.CastEmbeds = v
 }
 
-// GetCastTimestamp returns the CastTimestamp field value
+// GetCastTimestamp returns the CastTimestamp field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaCast) GetCastTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CastTimestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CastTimestamp
+	return *o.CastTimestamp
 }
 
-// GetCastTimestampOk returns a tuple with the CastTimestamp field value
+// GetCastTimestampOk returns a tuple with the CastTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaCast) GetCastTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastTimestamp) {
 		return nil, false
 	}
-	return &o.CastTimestamp, true
+	return o.CastTimestamp, true
 }
 
-// SetCastTimestamp sets field value
+// HasCastTimestamp returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaCast) HasCastTimestamp() bool {
+	if o != nil && !IsNil(o.CastTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastTimestamp gets a reference to the given time.Time and assigns it to the CastTimestamp field.
 func (o *ReactionWithCastMetaCast) SetCastTimestamp(v time.Time) {
-	o.CastTimestamp = v
+	o.CastTimestamp = &v
 }
 
 func (o ReactionWithCastMetaCast) MarshalJSON() ([]byte, error) {
@@ -186,67 +219,22 @@ func (o ReactionWithCastMetaCast) MarshalJSON() ([]byte, error) {
 
 func (o ReactionWithCastMetaCast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cast_fid"] = o.CastFid
-	toSerialize["cast_hash"] = o.CastHash
-	toSerialize["cast_text"] = o.CastText
-	toSerialize["cast_embeds"] = o.CastEmbeds
-	toSerialize["cast_timestamp"] = o.CastTimestamp
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.CastFid) {
+		toSerialize["cast_fid"] = o.CastFid
 	}
-
+	if !IsNil(o.CastHash) {
+		toSerialize["cast_hash"] = o.CastHash
+	}
+	if !IsNil(o.CastText) {
+		toSerialize["cast_text"] = o.CastText
+	}
+	if !IsNil(o.CastEmbeds) {
+		toSerialize["cast_embeds"] = o.CastEmbeds
+	}
+	if !IsNil(o.CastTimestamp) {
+		toSerialize["cast_timestamp"] = o.CastTimestamp
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionWithCastMetaCast) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"cast_fid",
-		"cast_hash",
-		"cast_text",
-		"cast_embeds",
-		"cast_timestamp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionWithCastMetaCast := _ReactionWithCastMetaCast{}
-
-	err = json.Unmarshal(data, &varReactionWithCastMetaCast)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionWithCastMetaCast(varReactionWithCastMetaCast)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "cast_fid")
-		delete(additionalProperties, "cast_hash")
-		delete(additionalProperties, "cast_text")
-		delete(additionalProperties, "cast_embeds")
-		delete(additionalProperties, "cast_timestamp")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionWithCastMetaCast struct {

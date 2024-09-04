@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NextCursor type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &NextCursor{}
 
 // NextCursor Returns next cursor
 type NextCursor struct {
-	Cursor NullableString `json:"cursor"`
-	AdditionalProperties map[string]interface{}
+	Cursor NullableString `json:"cursor,omitempty"`
 }
-
-type _NextCursor NextCursor
 
 // NewNextCursor instantiates a new NextCursor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNextCursor(cursor NullableString) *NextCursor {
+func NewNextCursor() *NextCursor {
 	this := NextCursor{}
-	this.Cursor = cursor
 	return &this
 }
 
@@ -44,18 +39,16 @@ func NewNextCursorWithDefaults() *NextCursor {
 	return &this
 }
 
-// GetCursor returns the Cursor field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetCursor returns the Cursor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NextCursor) GetCursor() string {
-	if o == nil || o.Cursor.Get() == nil {
+	if o == nil || IsNil(o.Cursor.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.Cursor.Get()
 }
 
-// GetCursorOk returns a tuple with the Cursor field value
+// GetCursorOk returns a tuple with the Cursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NextCursor) GetCursorOk() (*string, bool) {
@@ -65,9 +58,27 @@ func (o *NextCursor) GetCursorOk() (*string, bool) {
 	return o.Cursor.Get(), o.Cursor.IsSet()
 }
 
-// SetCursor sets field value
+// HasCursor returns a boolean if a field has been set.
+func (o *NextCursor) HasCursor() bool {
+	if o != nil && o.Cursor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCursor gets a reference to the given NullableString and assigns it to the Cursor field.
 func (o *NextCursor) SetCursor(v string) {
 	o.Cursor.Set(&v)
+}
+// SetCursorNil sets the value for Cursor to be an explicit nil
+func (o *NextCursor) SetCursorNil() {
+	o.Cursor.Set(nil)
+}
+
+// UnsetCursor ensures that no value is present for Cursor, not even an explicit nil
+func (o *NextCursor) UnsetCursor() {
+	o.Cursor.Unset()
 }
 
 func (o NextCursor) MarshalJSON() ([]byte, error) {
@@ -80,55 +91,10 @@ func (o NextCursor) MarshalJSON() ([]byte, error) {
 
 func (o NextCursor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cursor"] = o.Cursor.Get()
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if o.Cursor.IsSet() {
+		toSerialize["cursor"] = o.Cursor.Get()
 	}
-
 	return toSerialize, nil
-}
-
-func (o *NextCursor) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"cursor",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNextCursor := _NextCursor{}
-
-	err = json.Unmarshal(data, &varNextCursor)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NextCursor(varNextCursor)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "cursor")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNextCursor struct {

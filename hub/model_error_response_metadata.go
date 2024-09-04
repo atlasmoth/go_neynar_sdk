@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ErrorResponseMetadata type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ErrorResponseMetadata{}
 
 // ErrorResponseMetadata struct for ErrorResponseMetadata
 type ErrorResponseMetadata struct {
-	Errcode []string `json:"errcode"`
-	AdditionalProperties map[string]interface{}
+	Errcode []string `json:"errcode,omitempty"`
 }
-
-type _ErrorResponseMetadata ErrorResponseMetadata
 
 // NewErrorResponseMetadata instantiates a new ErrorResponseMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorResponseMetadata(errcode []string) *ErrorResponseMetadata {
+func NewErrorResponseMetadata() *ErrorResponseMetadata {
 	this := ErrorResponseMetadata{}
-	this.Errcode = errcode
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewErrorResponseMetadataWithDefaults() *ErrorResponseMetadata {
 	return &this
 }
 
-// GetErrcode returns the Errcode field value
+// GetErrcode returns the Errcode field value if set, zero value otherwise.
 func (o *ErrorResponseMetadata) GetErrcode() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Errcode) {
 		var ret []string
 		return ret
 	}
-
 	return o.Errcode
 }
 
-// GetErrcodeOk returns a tuple with the Errcode field value
+// GetErrcodeOk returns a tuple with the Errcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponseMetadata) GetErrcodeOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Errcode) {
 		return nil, false
 	}
 	return o.Errcode, true
 }
 
-// SetErrcode sets field value
+// HasErrcode returns a boolean if a field has been set.
+func (o *ErrorResponseMetadata) HasErrcode() bool {
+	if o != nil && !IsNil(o.Errcode) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrcode gets a reference to the given []string and assigns it to the Errcode field.
 func (o *ErrorResponseMetadata) SetErrcode(v []string) {
 	o.Errcode = v
 }
@@ -78,55 +81,10 @@ func (o ErrorResponseMetadata) MarshalJSON() ([]byte, error) {
 
 func (o ErrorResponseMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["errcode"] = o.Errcode
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Errcode) {
+		toSerialize["errcode"] = o.Errcode
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ErrorResponseMetadata) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"errcode",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varErrorResponseMetadata := _ErrorResponseMetadata{}
-
-	err = json.Unmarshal(data, &varErrorResponseMetadata)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ErrorResponseMetadata(varErrorResponseMetadata)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "errcode")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableErrorResponseMetadata struct {

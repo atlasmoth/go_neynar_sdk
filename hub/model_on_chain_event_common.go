@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the OnChainEventCommon type satisfies the MappedNullable interface at compile time
@@ -20,35 +19,23 @@ var _ MappedNullable = &OnChainEventCommon{}
 
 // OnChainEventCommon struct for OnChainEventCommon
 type OnChainEventCommon struct {
-	Type string `json:"type"`
-	ChainId int32 `json:"chainId"`
-	BlockNumber int32 `json:"blockNumber"`
-	BlockHash string `json:"blockHash"`
-	BlockTimestamp int32 `json:"blockTimestamp"`
-	TransactionHash string `json:"transactionHash"`
-	LogIndex int32 `json:"logIndex"`
-	TxIndex int32 `json:"txIndex"`
-	Fid int32 `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	ChainId *int32 `json:"chainId,omitempty"`
+	BlockNumber *int32 `json:"blockNumber,omitempty"`
+	BlockHash *string `json:"blockHash,omitempty"`
+	BlockTimestamp *int32 `json:"blockTimestamp,omitempty"`
+	TransactionHash *string `json:"transactionHash,omitempty"`
+	LogIndex *int32 `json:"logIndex,omitempty"`
+	TxIndex *int32 `json:"txIndex,omitempty"`
+	Fid *int32 `json:"fid,omitempty"`
 }
-
-type _OnChainEventCommon OnChainEventCommon
 
 // NewOnChainEventCommon instantiates a new OnChainEventCommon object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOnChainEventCommon(type_ string, chainId int32, blockNumber int32, blockHash string, blockTimestamp int32, transactionHash string, logIndex int32, txIndex int32, fid int32) *OnChainEventCommon {
+func NewOnChainEventCommon() *OnChainEventCommon {
 	this := OnChainEventCommon{}
-	this.Type = type_
-	this.ChainId = chainId
-	this.BlockNumber = blockNumber
-	this.BlockHash = blockHash
-	this.BlockTimestamp = blockTimestamp
-	this.TransactionHash = transactionHash
-	this.LogIndex = logIndex
-	this.TxIndex = txIndex
-	this.Fid = fid
 	return &this
 }
 
@@ -60,220 +47,292 @@ func NewOnChainEventCommonWithDefaults() *OnChainEventCommon {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *OnChainEventCommon) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetChainId returns the ChainId field value
+// GetChainId returns the ChainId field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetChainId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ChainId) {
 		var ret int32
 		return ret
 	}
-
-	return o.ChainId
+	return *o.ChainId
 }
 
-// GetChainIdOk returns a tuple with the ChainId field value
+// GetChainIdOk returns a tuple with the ChainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetChainIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ChainId) {
 		return nil, false
 	}
-	return &o.ChainId, true
+	return o.ChainId, true
 }
 
-// SetChainId sets field value
+// HasChainId returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasChainId() bool {
+	if o != nil && !IsNil(o.ChainId) {
+		return true
+	}
+
+	return false
+}
+
+// SetChainId gets a reference to the given int32 and assigns it to the ChainId field.
 func (o *OnChainEventCommon) SetChainId(v int32) {
-	o.ChainId = v
+	o.ChainId = &v
 }
 
-// GetBlockNumber returns the BlockNumber field value
+// GetBlockNumber returns the BlockNumber field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetBlockNumber() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BlockNumber) {
 		var ret int32
 		return ret
 	}
-
-	return o.BlockNumber
+	return *o.BlockNumber
 }
 
-// GetBlockNumberOk returns a tuple with the BlockNumber field value
+// GetBlockNumberOk returns a tuple with the BlockNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetBlockNumberOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BlockNumber) {
 		return nil, false
 	}
-	return &o.BlockNumber, true
+	return o.BlockNumber, true
 }
 
-// SetBlockNumber sets field value
+// HasBlockNumber returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasBlockNumber() bool {
+	if o != nil && !IsNil(o.BlockNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockNumber gets a reference to the given int32 and assigns it to the BlockNumber field.
 func (o *OnChainEventCommon) SetBlockNumber(v int32) {
-	o.BlockNumber = v
+	o.BlockNumber = &v
 }
 
-// GetBlockHash returns the BlockHash field value
+// GetBlockHash returns the BlockHash field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetBlockHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.BlockHash) {
 		var ret string
 		return ret
 	}
-
-	return o.BlockHash
+	return *o.BlockHash
 }
 
-// GetBlockHashOk returns a tuple with the BlockHash field value
+// GetBlockHashOk returns a tuple with the BlockHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetBlockHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BlockHash) {
 		return nil, false
 	}
-	return &o.BlockHash, true
+	return o.BlockHash, true
 }
 
-// SetBlockHash sets field value
+// HasBlockHash returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasBlockHash() bool {
+	if o != nil && !IsNil(o.BlockHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockHash gets a reference to the given string and assigns it to the BlockHash field.
 func (o *OnChainEventCommon) SetBlockHash(v string) {
-	o.BlockHash = v
+	o.BlockHash = &v
 }
 
-// GetBlockTimestamp returns the BlockTimestamp field value
+// GetBlockTimestamp returns the BlockTimestamp field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetBlockTimestamp() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BlockTimestamp) {
 		var ret int32
 		return ret
 	}
-
-	return o.BlockTimestamp
+	return *o.BlockTimestamp
 }
 
-// GetBlockTimestampOk returns a tuple with the BlockTimestamp field value
+// GetBlockTimestampOk returns a tuple with the BlockTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetBlockTimestampOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BlockTimestamp) {
 		return nil, false
 	}
-	return &o.BlockTimestamp, true
+	return o.BlockTimestamp, true
 }
 
-// SetBlockTimestamp sets field value
+// HasBlockTimestamp returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasBlockTimestamp() bool {
+	if o != nil && !IsNil(o.BlockTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockTimestamp gets a reference to the given int32 and assigns it to the BlockTimestamp field.
 func (o *OnChainEventCommon) SetBlockTimestamp(v int32) {
-	o.BlockTimestamp = v
+	o.BlockTimestamp = &v
 }
 
-// GetTransactionHash returns the TransactionHash field value
+// GetTransactionHash returns the TransactionHash field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetTransactionHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.TransactionHash) {
 		var ret string
 		return ret
 	}
-
-	return o.TransactionHash
+	return *o.TransactionHash
 }
 
-// GetTransactionHashOk returns a tuple with the TransactionHash field value
+// GetTransactionHashOk returns a tuple with the TransactionHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetTransactionHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TransactionHash) {
 		return nil, false
 	}
-	return &o.TransactionHash, true
+	return o.TransactionHash, true
 }
 
-// SetTransactionHash sets field value
+// HasTransactionHash returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasTransactionHash() bool {
+	if o != nil && !IsNil(o.TransactionHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransactionHash gets a reference to the given string and assigns it to the TransactionHash field.
 func (o *OnChainEventCommon) SetTransactionHash(v string) {
-	o.TransactionHash = v
+	o.TransactionHash = &v
 }
 
-// GetLogIndex returns the LogIndex field value
+// GetLogIndex returns the LogIndex field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetLogIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LogIndex) {
 		var ret int32
 		return ret
 	}
-
-	return o.LogIndex
+	return *o.LogIndex
 }
 
-// GetLogIndexOk returns a tuple with the LogIndex field value
+// GetLogIndexOk returns a tuple with the LogIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetLogIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LogIndex) {
 		return nil, false
 	}
-	return &o.LogIndex, true
+	return o.LogIndex, true
 }
 
-// SetLogIndex sets field value
+// HasLogIndex returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasLogIndex() bool {
+	if o != nil && !IsNil(o.LogIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogIndex gets a reference to the given int32 and assigns it to the LogIndex field.
 func (o *OnChainEventCommon) SetLogIndex(v int32) {
-	o.LogIndex = v
+	o.LogIndex = &v
 }
 
-// GetTxIndex returns the TxIndex field value
+// GetTxIndex returns the TxIndex field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetTxIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TxIndex) {
 		var ret int32
 		return ret
 	}
-
-	return o.TxIndex
+	return *o.TxIndex
 }
 
-// GetTxIndexOk returns a tuple with the TxIndex field value
+// GetTxIndexOk returns a tuple with the TxIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetTxIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TxIndex) {
 		return nil, false
 	}
-	return &o.TxIndex, true
+	return o.TxIndex, true
 }
 
-// SetTxIndex sets field value
+// HasTxIndex returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasTxIndex() bool {
+	if o != nil && !IsNil(o.TxIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetTxIndex gets a reference to the given int32 and assigns it to the TxIndex field.
 func (o *OnChainEventCommon) SetTxIndex(v int32) {
-	o.TxIndex = v
+	o.TxIndex = &v
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *OnChainEventCommon) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnChainEventCommon) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *OnChainEventCommon) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *OnChainEventCommon) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
 func (o OnChainEventCommon) MarshalJSON() ([]byte, error) {
@@ -286,79 +345,34 @@ func (o OnChainEventCommon) MarshalJSON() ([]byte, error) {
 
 func (o OnChainEventCommon) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["chainId"] = o.ChainId
-	toSerialize["blockNumber"] = o.BlockNumber
-	toSerialize["blockHash"] = o.BlockHash
-	toSerialize["blockTimestamp"] = o.BlockTimestamp
-	toSerialize["transactionHash"] = o.TransactionHash
-	toSerialize["logIndex"] = o.LogIndex
-	toSerialize["txIndex"] = o.TxIndex
-	toSerialize["fid"] = o.Fid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.ChainId) {
+		toSerialize["chainId"] = o.ChainId
+	}
+	if !IsNil(o.BlockNumber) {
+		toSerialize["blockNumber"] = o.BlockNumber
+	}
+	if !IsNil(o.BlockHash) {
+		toSerialize["blockHash"] = o.BlockHash
+	}
+	if !IsNil(o.BlockTimestamp) {
+		toSerialize["blockTimestamp"] = o.BlockTimestamp
+	}
+	if !IsNil(o.TransactionHash) {
+		toSerialize["transactionHash"] = o.TransactionHash
+	}
+	if !IsNil(o.LogIndex) {
+		toSerialize["logIndex"] = o.LogIndex
+	}
+	if !IsNil(o.TxIndex) {
+		toSerialize["txIndex"] = o.TxIndex
+	}
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
 	return toSerialize, nil
-}
-
-func (o *OnChainEventCommon) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"chainId",
-		"blockNumber",
-		"blockHash",
-		"blockTimestamp",
-		"transactionHash",
-		"logIndex",
-		"txIndex",
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varOnChainEventCommon := _OnChainEventCommon{}
-
-	err = json.Unmarshal(data, &varOnChainEventCommon)
-
-	if err != nil {
-		return err
-	}
-
-	*o = OnChainEventCommon(varOnChainEventCommon)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "chainId")
-		delete(additionalProperties, "blockNumber")
-		delete(additionalProperties, "blockHash")
-		delete(additionalProperties, "blockTimestamp")
-		delete(additionalProperties, "transactionHash")
-		delete(additionalProperties, "logIndex")
-		delete(additionalProperties, "txIndex")
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableOnChainEventCommon struct {

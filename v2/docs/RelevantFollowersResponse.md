@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TopRelevantFollowersHydrated** | [**[]HydratedFollower**](HydratedFollower.md) |  | 
-**AllRelevantFollowersDehydrated** | [**[]DehydratedFollower**](DehydratedFollower.md) |  | 
+**TopRelevantFollowersHydrated** | Pointer to [**[]HydratedFollower**](HydratedFollower.md) |  | [optional] 
+**AllRelevantFollowersDehydrated** | Pointer to [**[]DehydratedFollower**](DehydratedFollower.md) |  | [optional] 
 
 ## Methods
 
 ### NewRelevantFollowersResponse
 
-`func NewRelevantFollowersResponse(topRelevantFollowersHydrated []HydratedFollower, allRelevantFollowersDehydrated []DehydratedFollower, ) *RelevantFollowersResponse`
+`func NewRelevantFollowersResponse() *RelevantFollowersResponse`
 
 NewRelevantFollowersResponse instantiates a new RelevantFollowersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetTopRelevantFollowersHydrated sets TopRelevantFollowersHydrated field to given value.
 
+### HasTopRelevantFollowersHydrated
+
+`func (o *RelevantFollowersResponse) HasTopRelevantFollowersHydrated() bool`
+
+HasTopRelevantFollowersHydrated returns a boolean if a field has been set.
 
 ### GetAllRelevantFollowersDehydrated
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAllRelevantFollowersDehydrated sets AllRelevantFollowersDehydrated field to given value.
 
+### HasAllRelevantFollowersDehydrated
+
+`func (o *RelevantFollowersResponse) HasAllRelevantFollowersDehydrated() bool`
+
+HasAllRelevantFollowersDehydrated returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

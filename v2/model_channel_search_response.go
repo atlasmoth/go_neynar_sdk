@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ChannelSearchResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ChannelSearchResponse{}
 
 // ChannelSearchResponse struct for ChannelSearchResponse
 type ChannelSearchResponse struct {
-	Channels []Channel `json:"channels"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Channels []Channel `json:"channels,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _ChannelSearchResponse ChannelSearchResponse
 
 // NewChannelSearchResponse instantiates a new ChannelSearchResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelSearchResponse(channels []Channel, next NextCursor) *ChannelSearchResponse {
+func NewChannelSearchResponse() *ChannelSearchResponse {
 	this := ChannelSearchResponse{}
-	this.Channels = channels
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewChannelSearchResponseWithDefaults() *ChannelSearchResponse {
 	return &this
 }
 
-// GetChannels returns the Channels field value
+// GetChannels returns the Channels field value if set, zero value otherwise.
 func (o *ChannelSearchResponse) GetChannels() []Channel {
-	if o == nil {
+	if o == nil || IsNil(o.Channels) {
 		var ret []Channel
 		return ret
 	}
-
 	return o.Channels
 }
 
-// GetChannelsOk returns a tuple with the Channels field value
+// GetChannelsOk returns a tuple with the Channels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSearchResponse) GetChannelsOk() ([]Channel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Channels) {
 		return nil, false
 	}
 	return o.Channels, true
 }
 
-// SetChannels sets field value
+// HasChannels returns a boolean if a field has been set.
+func (o *ChannelSearchResponse) HasChannels() bool {
+	if o != nil && !IsNil(o.Channels) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannels gets a reference to the given []Channel and assigns it to the Channels field.
 func (o *ChannelSearchResponse) SetChannels(v []Channel) {
 	o.Channels = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *ChannelSearchResponse) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSearchResponse) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *ChannelSearchResponse) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *ChannelSearchResponse) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o ChannelSearchResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ChannelSearchResponse) MarshalJSON() ([]byte, error) {
 
 func (o ChannelSearchResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["channels"] = o.Channels
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Channels) {
+		toSerialize["channels"] = o.Channels
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *ChannelSearchResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"channels",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varChannelSearchResponse := _ChannelSearchResponse{}
-
-	err = json.Unmarshal(data, &varChannelSearchResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ChannelSearchResponse(varChannelSearchResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "channels")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelSearchResponse struct {

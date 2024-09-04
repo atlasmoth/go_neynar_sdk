@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**MergeMessageBody** | [**MergeMessageBody**](MergeMessageBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**MergeMessageBody** | Pointer to [**MergeMessageBody**](MergeMessageBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEventMergeMessage
 
-`func NewHubEventMergeMessage(type_ string, id int32, mergeMessageBody MergeMessageBody, ) *HubEventMergeMessage`
+`func NewHubEventMergeMessage() *HubEventMergeMessage`
 
 NewHubEventMergeMessage instantiates a new HubEventMergeMessage object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEventMergeMessage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEventMergeMessage) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMergeMessageBody
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetMergeMessageBody sets MergeMessageBody field to given value.
 
+### HasMergeMessageBody
+
+`func (o *HubEventMergeMessage) HasMergeMessageBody() bool`
+
+HasMergeMessageBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

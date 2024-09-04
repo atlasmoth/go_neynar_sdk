@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**HashScheme** | [**HashScheme**](HashScheme.md) |  | [default to HASHSCHEME_HASH_SCHEME_BLAKE3]
-**Signature** | **string** |  | 
-**SignatureScheme** | [**SignatureScheme**](SignatureScheme.md) |  | [default to SIGNATURESCHEME_ED25519]
-**Signer** | **string** |  | 
-**Data** | [**UserDataAddAllOfData**](UserDataAddAllOfData.md) |  | 
-**Messages** | [**[]UserDataAdd**](UserDataAdd.md) |  | 
-**NextPageToken** | **string** |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**HashScheme** | Pointer to [**HashScheme**](HashScheme.md) |  | [optional] [default to HASHSCHEME_HASH_SCHEME_BLAKE3]
+**Signature** | Pointer to **string** |  | [optional] 
+**SignatureScheme** | Pointer to [**SignatureScheme**](SignatureScheme.md) |  | [optional] [default to SIGNATURESCHEME_ED25519]
+**Signer** | Pointer to **string** |  | [optional] 
+**Data** | Pointer to [**UserDataAddAllOfData**](UserDataAddAllOfData.md) |  | [optional] 
+**Messages** | Pointer to [**[]UserDataAdd**](UserDataAdd.md) |  | [optional] 
+**NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewGetUserDataByFid200Response
 
-`func NewGetUserDataByFid200Response(hash string, hashScheme HashScheme, signature string, signatureScheme SignatureScheme, signer string, data UserDataAddAllOfData, messages []UserDataAdd, nextPageToken string, ) *GetUserDataByFid200Response`
+`func NewGetUserDataByFid200Response() *GetUserDataByFid200Response`
 
 NewGetUserDataByFid200Response instantiates a new GetUserDataByFid200Response object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +51,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *GetUserDataByFid200Response) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetHashScheme
 
@@ -71,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetHashScheme sets HashScheme field to given value.
 
+### HasHashScheme
+
+`func (o *GetUserDataByFid200Response) HasHashScheme() bool`
+
+HasHashScheme returns a boolean if a field has been set.
 
 ### GetSignature
 
@@ -91,6 +101,11 @@ and a boolean to check if the value has been set.
 
 SetSignature sets Signature field to given value.
 
+### HasSignature
+
+`func (o *GetUserDataByFid200Response) HasSignature() bool`
+
+HasSignature returns a boolean if a field has been set.
 
 ### GetSignatureScheme
 
@@ -111,6 +126,11 @@ and a boolean to check if the value has been set.
 
 SetSignatureScheme sets SignatureScheme field to given value.
 
+### HasSignatureScheme
+
+`func (o *GetUserDataByFid200Response) HasSignatureScheme() bool`
+
+HasSignatureScheme returns a boolean if a field has been set.
 
 ### GetSigner
 
@@ -131,6 +151,11 @@ and a boolean to check if the value has been set.
 
 SetSigner sets Signer field to given value.
 
+### HasSigner
+
+`func (o *GetUserDataByFid200Response) HasSigner() bool`
+
+HasSigner returns a boolean if a field has been set.
 
 ### GetData
 
@@ -151,6 +176,11 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
+### HasData
+
+`func (o *GetUserDataByFid200Response) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### GetMessages
 
@@ -171,6 +201,11 @@ and a boolean to check if the value has been set.
 
 SetMessages sets Messages field to given value.
 
+### HasMessages
+
+`func (o *GetUserDataByFid200Response) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
@@ -191,6 +226,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageToken sets NextPageToken field to given value.
 
+### HasNextPageToken
+
+`func (o *GetUserDataByFid200Response) HasNextPageToken() bool`
+
+HasNextPageToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

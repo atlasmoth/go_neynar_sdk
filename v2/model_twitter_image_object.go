@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TwitterImageObject type satisfies the MappedNullable interface at compile time
@@ -22,20 +21,16 @@ var _ MappedNullable = &TwitterImageObject{}
 type TwitterImageObject struct {
 	Alt *string `json:"alt,omitempty"`
 	Height *int32 `json:"height,omitempty"`
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	Width *int32 `json:"width,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _TwitterImageObject TwitterImageObject
 
 // NewTwitterImageObject instantiates a new TwitterImageObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTwitterImageObject(url string) *TwitterImageObject {
+func NewTwitterImageObject() *TwitterImageObject {
 	this := TwitterImageObject{}
-	this.Url = url
 	return &this
 }
 
@@ -111,28 +106,36 @@ func (o *TwitterImageObject) SetHeight(v int32) {
 	o.Height = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *TwitterImageObject) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TwitterImageObject) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *TwitterImageObject) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *TwitterImageObject) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetWidth returns the Width field value if set, zero value otherwise.
@@ -183,61 +186,13 @@ func (o TwitterImageObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Height) {
 		toSerialize["height"] = o.Height
 	}
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *TwitterImageObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTwitterImageObject := _TwitterImageObject{}
-
-	err = json.Unmarshal(data, &varTwitterImageObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TwitterImageObject(varTwitterImageObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "alt")
-		delete(additionalProperties, "height")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "width")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableTwitterImageObject struct {

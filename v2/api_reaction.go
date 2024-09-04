@@ -81,12 +81,6 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.reactionReqBody == nil {
-		return localVarReturnValue, nil, reportError("reactionReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -105,7 +99,9 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.reactionReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -141,7 +137,7 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -152,7 +148,7 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -247,12 +243,6 @@ func (a *ReactionAPIService) PostReactionExecute(r ApiPostReactionRequest) (*Ope
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.reactionReqBody == nil {
-		return localVarReturnValue, nil, reportError("reactionReqBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -271,7 +261,9 @@ func (a *ReactionAPIService) PostReactionExecute(r ApiPostReactionRequest) (*Ope
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.reactionReqBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -307,7 +299,7 @@ func (a *ReactionAPIService) PostReactionExecute(r ApiPostReactionRequest) (*Ope
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -318,7 +310,7 @@ func (a *ReactionAPIService) PostReactionExecute(r ApiPostReactionRequest) (*Ope
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -438,18 +430,16 @@ func (a *ReactionAPIService) ReactionsCastExecute(r ApiReactionsCastRequest) (*R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.hash == nil {
-		return localVarReturnValue, nil, reportError("hash is required and must be specified")
-	}
-	if r.types == nil {
-		return localVarReturnValue, nil, reportError("types is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "form", "")
+	if r.hash != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
+	} else {
+		var defaultValue string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+		r.hash = &defaultValue
+	}
+	if r.types != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "form", "")
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
@@ -479,7 +469,9 @@ func (a *ReactionAPIService) ReactionsCastExecute(r ApiReactionsCastRequest) (*R
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -532,8 +524,8 @@ type ApiReactionsUserRequest struct {
 	ApiService *ReactionAPIService
 	apiKey *string
 	fid *int32
-	type_ *ReactionsType
 	viewerFid *int32
+	type_ *ReactionsType
 	limit *int32
 	cursor *string
 }
@@ -549,14 +541,14 @@ func (r ApiReactionsUserRequest) Fid(fid int32) ApiReactionsUserRequest {
 	return r
 }
 
-// Type of reaction to fetch (likes or recasts or all)
-func (r ApiReactionsUserRequest) Type_(type_ ReactionsType) ApiReactionsUserRequest {
-	r.type_ = &type_
+func (r ApiReactionsUserRequest) ViewerFid(viewerFid int32) ApiReactionsUserRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
-func (r ApiReactionsUserRequest) ViewerFid(viewerFid int32) ApiReactionsUserRequest {
-	r.viewerFid = &viewerFid
+// Type of reaction to fetch (likes or recasts or all)
+func (r ApiReactionsUserRequest) Type_(type_ ReactionsType) ApiReactionsUserRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -611,21 +603,16 @@ func (a *ReactionAPIService) ReactionsUserExecute(r ApiReactionsUserRequest) (*R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.type_ == nil {
-		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
@@ -652,7 +639,9 @@ func (a *ReactionAPIService) ReactionsUserExecute(r ApiReactionsUserRequest) (*R
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

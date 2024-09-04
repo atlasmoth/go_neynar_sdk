@@ -20,10 +20,7 @@ var _ MappedNullable = &WebhookSubscriptionFiltersUserUpdated{}
 // WebhookSubscriptionFiltersUserUpdated struct for WebhookSubscriptionFiltersUserUpdated
 type WebhookSubscriptionFiltersUserUpdated struct {
 	Fids []int32 `json:"fids,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _WebhookSubscriptionFiltersUserUpdated WebhookSubscriptionFiltersUserUpdated
 
 // NewWebhookSubscriptionFiltersUserUpdated instantiates a new WebhookSubscriptionFiltersUserUpdated object
 // This constructor will assign default values to properties that have it defined,
@@ -87,33 +84,7 @@ func (o WebhookSubscriptionFiltersUserUpdated) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Fids) {
 		toSerialize["fids"] = o.Fids
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookSubscriptionFiltersUserUpdated) UnmarshalJSON(data []byte) (err error) {
-	varWebhookSubscriptionFiltersUserUpdated := _WebhookSubscriptionFiltersUserUpdated{}
-
-	err = json.Unmarshal(data, &varWebhookSubscriptionFiltersUserUpdated)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookSubscriptionFiltersUserUpdated(varWebhookSubscriptionFiltersUserUpdated)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookSubscriptionFiltersUserUpdated struct {

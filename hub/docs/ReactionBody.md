@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**ReactionType**](ReactionType.md) |  | [default to REACTIONTYPE_LIKE]
+**Type** | Pointer to [**ReactionType**](ReactionType.md) |  | [optional] [default to REACTIONTYPE_LIKE]
 **TargetCastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 **TargetUrl** | Pointer to **string** |  | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewReactionBody
 
-`func NewReactionBody(type_ ReactionType, ) *ReactionBody`
+`func NewReactionBody() *ReactionBody`
 
 NewReactionBody instantiates a new ReactionBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *ReactionBody) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetTargetCastId
 

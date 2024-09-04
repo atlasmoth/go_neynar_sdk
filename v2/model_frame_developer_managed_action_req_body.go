@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameDeveloperManagedActionReqBody type satisfies the MappedNullable interface at compile time
@@ -22,23 +21,18 @@ var _ MappedNullable = &FrameDeveloperManagedActionReqBody{}
 type FrameDeveloperManagedActionReqBody struct {
 	// Cast Hash
 	CastHash *string `json:"cast_hash,omitempty"`
-	Action FrameAction `json:"action"`
-	SignaturePacket FrameSignaturePacket `json:"signature_packet"`
-	AdditionalProperties map[string]interface{}
+	Action *FrameAction `json:"action,omitempty"`
+	SignaturePacket *FrameSignaturePacket `json:"signature_packet,omitempty"`
 }
-
-type _FrameDeveloperManagedActionReqBody FrameDeveloperManagedActionReqBody
 
 // NewFrameDeveloperManagedActionReqBody instantiates a new FrameDeveloperManagedActionReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameDeveloperManagedActionReqBody(action FrameAction, signaturePacket FrameSignaturePacket) *FrameDeveloperManagedActionReqBody {
+func NewFrameDeveloperManagedActionReqBody() *FrameDeveloperManagedActionReqBody {
 	this := FrameDeveloperManagedActionReqBody{}
 	var castHash string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
 	this.CastHash = &castHash
-	this.Action = action
-	this.SignaturePacket = signaturePacket
 	return &this
 }
 
@@ -84,52 +78,68 @@ func (o *FrameDeveloperManagedActionReqBody) SetCastHash(v string) {
 	o.CastHash = &v
 }
 
-// GetAction returns the Action field value
+// GetAction returns the Action field value if set, zero value otherwise.
 func (o *FrameDeveloperManagedActionReqBody) GetAction() FrameAction {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret FrameAction
 		return ret
 	}
-
-	return o.Action
+	return *o.Action
 }
 
-// GetActionOk returns a tuple with the Action field value
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameDeveloperManagedActionReqBody) GetActionOk() (*FrameAction, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
-	return &o.Action, true
+	return o.Action, true
 }
 
-// SetAction sets field value
+// HasAction returns a boolean if a field has been set.
+func (o *FrameDeveloperManagedActionReqBody) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given FrameAction and assigns it to the Action field.
 func (o *FrameDeveloperManagedActionReqBody) SetAction(v FrameAction) {
-	o.Action = v
+	o.Action = &v
 }
 
-// GetSignaturePacket returns the SignaturePacket field value
+// GetSignaturePacket returns the SignaturePacket field value if set, zero value otherwise.
 func (o *FrameDeveloperManagedActionReqBody) GetSignaturePacket() FrameSignaturePacket {
-	if o == nil {
+	if o == nil || IsNil(o.SignaturePacket) {
 		var ret FrameSignaturePacket
 		return ret
 	}
-
-	return o.SignaturePacket
+	return *o.SignaturePacket
 }
 
-// GetSignaturePacketOk returns a tuple with the SignaturePacket field value
+// GetSignaturePacketOk returns a tuple with the SignaturePacket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameDeveloperManagedActionReqBody) GetSignaturePacketOk() (*FrameSignaturePacket, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignaturePacket) {
 		return nil, false
 	}
-	return &o.SignaturePacket, true
+	return o.SignaturePacket, true
 }
 
-// SetSignaturePacket sets field value
+// HasSignaturePacket returns a boolean if a field has been set.
+func (o *FrameDeveloperManagedActionReqBody) HasSignaturePacket() bool {
+	if o != nil && !IsNil(o.SignaturePacket) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignaturePacket gets a reference to the given FrameSignaturePacket and assigns it to the SignaturePacket field.
 func (o *FrameDeveloperManagedActionReqBody) SetSignaturePacket(v FrameSignaturePacket) {
-	o.SignaturePacket = v
+	o.SignaturePacket = &v
 }
 
 func (o FrameDeveloperManagedActionReqBody) MarshalJSON() ([]byte, error) {
@@ -145,59 +155,13 @@ func (o FrameDeveloperManagedActionReqBody) ToMap() (map[string]interface{}, err
 	if !IsNil(o.CastHash) {
 		toSerialize["cast_hash"] = o.CastHash
 	}
-	toSerialize["action"] = o.Action
-	toSerialize["signature_packet"] = o.SignaturePacket
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
 	}
-
+	if !IsNil(o.SignaturePacket) {
+		toSerialize["signature_packet"] = o.SignaturePacket
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameDeveloperManagedActionReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"action",
-		"signature_packet",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameDeveloperManagedActionReqBody := _FrameDeveloperManagedActionReqBody{}
-
-	err = json.Unmarshal(data, &varFrameDeveloperManagedActionReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameDeveloperManagedActionReqBody(varFrameDeveloperManagedActionReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "cast_hash")
-		delete(additionalProperties, "action")
-		delete(additionalProperties, "signature_packet")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameDeveloperManagedActionReqBody struct {

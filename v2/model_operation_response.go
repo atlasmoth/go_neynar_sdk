@@ -21,10 +21,7 @@ var _ MappedNullable = &OperationResponse{}
 type OperationResponse struct {
 	Success *bool `json:"success,omitempty"`
 	Message *string `json:"message,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _OperationResponse OperationResponse
 
 // NewOperationResponse instantiates a new OperationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -123,34 +120,7 @@ func (o OperationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *OperationResponse) UnmarshalJSON(data []byte) (err error) {
-	varOperationResponse := _OperationResponse{}
-
-	err = json.Unmarshal(data, &varOperationResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = OperationResponse(varOperationResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "message")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableOperationResponse struct {

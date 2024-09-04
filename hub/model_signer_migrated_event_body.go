@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SignerMigratedEventBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &SignerMigratedEventBody{}
 
 // SignerMigratedEventBody struct for SignerMigratedEventBody
 type SignerMigratedEventBody struct {
-	MigratedAt int64 `json:"migratedAt"`
-	AdditionalProperties map[string]interface{}
+	MigratedAt *int64 `json:"migratedAt,omitempty"`
 }
-
-type _SignerMigratedEventBody SignerMigratedEventBody
 
 // NewSignerMigratedEventBody instantiates a new SignerMigratedEventBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignerMigratedEventBody(migratedAt int64) *SignerMigratedEventBody {
+func NewSignerMigratedEventBody() *SignerMigratedEventBody {
 	this := SignerMigratedEventBody{}
-	this.MigratedAt = migratedAt
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewSignerMigratedEventBodyWithDefaults() *SignerMigratedEventBody {
 	return &this
 }
 
-// GetMigratedAt returns the MigratedAt field value
+// GetMigratedAt returns the MigratedAt field value if set, zero value otherwise.
 func (o *SignerMigratedEventBody) GetMigratedAt() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MigratedAt) {
 		var ret int64
 		return ret
 	}
-
-	return o.MigratedAt
+	return *o.MigratedAt
 }
 
-// GetMigratedAtOk returns a tuple with the MigratedAt field value
+// GetMigratedAtOk returns a tuple with the MigratedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerMigratedEventBody) GetMigratedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MigratedAt) {
 		return nil, false
 	}
-	return &o.MigratedAt, true
+	return o.MigratedAt, true
 }
 
-// SetMigratedAt sets field value
+// HasMigratedAt returns a boolean if a field has been set.
+func (o *SignerMigratedEventBody) HasMigratedAt() bool {
+	if o != nil && !IsNil(o.MigratedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetMigratedAt gets a reference to the given int64 and assigns it to the MigratedAt field.
 func (o *SignerMigratedEventBody) SetMigratedAt(v int64) {
-	o.MigratedAt = v
+	o.MigratedAt = &v
 }
 
 func (o SignerMigratedEventBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o SignerMigratedEventBody) MarshalJSON() ([]byte, error) {
 
 func (o SignerMigratedEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["migratedAt"] = o.MigratedAt
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.MigratedAt) {
+		toSerialize["migratedAt"] = o.MigratedAt
 	}
-
 	return toSerialize, nil
-}
-
-func (o *SignerMigratedEventBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"migratedAt",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSignerMigratedEventBody := _SignerMigratedEventBody{}
-
-	err = json.Unmarshal(data, &varSignerMigratedEventBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SignerMigratedEventBody(varSignerMigratedEventBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "migratedAt")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSignerMigratedEventBody struct {

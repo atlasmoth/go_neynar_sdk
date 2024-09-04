@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Text** | **string** |  | 
-**Mentions** | **[]string** |  | 
+**Text** | Pointer to **string** |  | [optional] 
+**Mentions** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewRecasterProfileBio
 
-`func NewRecasterProfileBio(text string, mentions []string, ) *RecasterProfileBio`
+`func NewRecasterProfileBio() *RecasterProfileBio`
 
 NewRecasterProfileBio instantiates a new RecasterProfileBio object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *RecasterProfileBio) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetMentions
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMentions sets Mentions field to given value.
 
+### HasMentions
+
+`func (o *RecasterProfileBio) HasMentions() bool`
+
+HasMentions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

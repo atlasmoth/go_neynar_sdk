@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Proofs** | [**[]UserNameProof**](UserNameProof.md) |  | 
+**Proofs** | Pointer to [**[]UserNameProof**](UserNameProof.md) |  | [optional] 
 
 ## Methods
 
 ### NewUsernameProofsResponse
 
-`func NewUsernameProofsResponse(proofs []UserNameProof, ) *UsernameProofsResponse`
+`func NewUsernameProofsResponse() *UsernameProofsResponse`
 
 NewUsernameProofsResponse instantiates a new UsernameProofsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetProofs sets Proofs field to given value.
 
+### HasProofs
+
+`func (o *UsernameProofsResponse) HasProofs() bool`
+
+HasProofs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

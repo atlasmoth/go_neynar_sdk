@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MessageDataUserDataAdd type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,20 @@ var _ MappedNullable = &MessageDataUserDataAdd{}
 
 // MessageDataUserDataAdd struct for MessageDataUserDataAdd
 type MessageDataUserDataAdd struct {
-	Fid int32 `json:"fid"`
-	Timestamp int64 `json:"timestamp"`
-	Network FarcasterNetwork `json:"network"`
-	UserDataBody UserDataBody `json:"userDataBody"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	Network *FarcasterNetwork `json:"network,omitempty"`
+	UserDataBody *UserDataBody `json:"userDataBody,omitempty"`
 }
-
-type _MessageDataUserDataAdd MessageDataUserDataAdd
 
 // NewMessageDataUserDataAdd instantiates a new MessageDataUserDataAdd object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataUserDataAdd(fid int32, timestamp int64, network FarcasterNetwork, userDataBody UserDataBody) *MessageDataUserDataAdd {
+func NewMessageDataUserDataAdd() *MessageDataUserDataAdd {
 	this := MessageDataUserDataAdd{}
-	this.Fid = fid
-	this.Timestamp = timestamp
-	this.Network = network
-	this.UserDataBody = userDataBody
+	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
+	this.Network = &network
 	return &this
 }
 
@@ -48,104 +42,136 @@ func NewMessageDataUserDataAdd(fid int32, timestamp int64, network FarcasterNetw
 func NewMessageDataUserDataAddWithDefaults() *MessageDataUserDataAdd {
 	this := MessageDataUserDataAdd{}
 	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
-	this.Network = network
+	this.Network = &network
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *MessageDataUserDataAdd) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataUserDataAdd) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *MessageDataUserDataAdd) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *MessageDataUserDataAdd) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *MessageDataUserDataAdd) GetTimestamp() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int64
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataUserDataAdd) GetTimestampOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *MessageDataUserDataAdd) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
 func (o *MessageDataUserDataAdd) SetTimestamp(v int64) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetNetwork returns the Network field value
+// GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *MessageDataUserDataAdd) GetNetwork() FarcasterNetwork {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		var ret FarcasterNetwork
 		return ret
 	}
-
-	return o.Network
+	return *o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataUserDataAdd) GetNetworkOk() (*FarcasterNetwork, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
-	return &o.Network, true
+	return o.Network, true
 }
 
-// SetNetwork sets field value
+// HasNetwork returns a boolean if a field has been set.
+func (o *MessageDataUserDataAdd) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given FarcasterNetwork and assigns it to the Network field.
 func (o *MessageDataUserDataAdd) SetNetwork(v FarcasterNetwork) {
-	o.Network = v
+	o.Network = &v
 }
 
-// GetUserDataBody returns the UserDataBody field value
+// GetUserDataBody returns the UserDataBody field value if set, zero value otherwise.
 func (o *MessageDataUserDataAdd) GetUserDataBody() UserDataBody {
-	if o == nil {
+	if o == nil || IsNil(o.UserDataBody) {
 		var ret UserDataBody
 		return ret
 	}
-
-	return o.UserDataBody
+	return *o.UserDataBody
 }
 
-// GetUserDataBodyOk returns a tuple with the UserDataBody field value
+// GetUserDataBodyOk returns a tuple with the UserDataBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataUserDataAdd) GetUserDataBodyOk() (*UserDataBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserDataBody) {
 		return nil, false
 	}
-	return &o.UserDataBody, true
+	return o.UserDataBody, true
 }
 
-// SetUserDataBody sets field value
+// HasUserDataBody returns a boolean if a field has been set.
+func (o *MessageDataUserDataAdd) HasUserDataBody() bool {
+	if o != nil && !IsNil(o.UserDataBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserDataBody gets a reference to the given UserDataBody and assigns it to the UserDataBody field.
 func (o *MessageDataUserDataAdd) SetUserDataBody(v UserDataBody) {
-	o.UserDataBody = v
+	o.UserDataBody = &v
 }
 
 func (o MessageDataUserDataAdd) MarshalJSON() ([]byte, error) {
@@ -158,64 +184,19 @@ func (o MessageDataUserDataAdd) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataUserDataAdd) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["network"] = o.Network
-	toSerialize["userDataBody"] = o.UserDataBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.UserDataBody) {
+		toSerialize["userDataBody"] = o.UserDataBody
+	}
 	return toSerialize, nil
-}
-
-func (o *MessageDataUserDataAdd) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"timestamp",
-		"network",
-		"userDataBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMessageDataUserDataAdd := _MessageDataUserDataAdd{}
-
-	err = json.Unmarshal(data, &varMessageDataUserDataAdd)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MessageDataUserDataAdd(varMessageDataUserDataAdd)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "network")
-		delete(additionalProperties, "userDataBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMessageDataUserDataAdd struct {

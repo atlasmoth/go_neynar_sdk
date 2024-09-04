@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastWithInteractionsReactions type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,18 @@ var _ MappedNullable = &CastWithInteractionsReactions{}
 
 // CastWithInteractionsReactions struct for CastWithInteractionsReactions
 type CastWithInteractionsReactions struct {
-	Likes []ReactionLike `json:"likes"`
-	Recasts []ReactionRecast `json:"recasts"`
-	LikesCount int32 `json:"likes_count"`
-	RecastsCount int32 `json:"recasts_count"`
-	AdditionalProperties map[string]interface{}
+	Likes []ReactionLike `json:"likes,omitempty"`
+	Recasts []ReactionRecast `json:"recasts,omitempty"`
+	LikesCount *int32 `json:"likes_count,omitempty"`
+	RecastsCount *int32 `json:"recasts_count,omitempty"`
 }
-
-type _CastWithInteractionsReactions CastWithInteractionsReactions
 
 // NewCastWithInteractionsReactions instantiates a new CastWithInteractionsReactions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsReactions(likes []ReactionLike, recasts []ReactionRecast, likesCount int32, recastsCount int32) *CastWithInteractionsReactions {
+func NewCastWithInteractionsReactions() *CastWithInteractionsReactions {
 	this := CastWithInteractionsReactions{}
-	this.Likes = likes
-	this.Recasts = recasts
-	this.LikesCount = likesCount
-	this.RecastsCount = recastsCount
 	return &this
 }
 
@@ -50,100 +42,132 @@ func NewCastWithInteractionsReactionsWithDefaults() *CastWithInteractionsReactio
 	return &this
 }
 
-// GetLikes returns the Likes field value
+// GetLikes returns the Likes field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetLikes() []ReactionLike {
-	if o == nil {
+	if o == nil || IsNil(o.Likes) {
 		var ret []ReactionLike
 		return ret
 	}
-
 	return o.Likes
 }
 
-// GetLikesOk returns a tuple with the Likes field value
+// GetLikesOk returns a tuple with the Likes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetLikesOk() ([]ReactionLike, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Likes) {
 		return nil, false
 	}
 	return o.Likes, true
 }
 
-// SetLikes sets field value
+// HasLikes returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasLikes() bool {
+	if o != nil && !IsNil(o.Likes) {
+		return true
+	}
+
+	return false
+}
+
+// SetLikes gets a reference to the given []ReactionLike and assigns it to the Likes field.
 func (o *CastWithInteractionsReactions) SetLikes(v []ReactionLike) {
 	o.Likes = v
 }
 
-// GetRecasts returns the Recasts field value
+// GetRecasts returns the Recasts field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetRecasts() []ReactionRecast {
-	if o == nil {
+	if o == nil || IsNil(o.Recasts) {
 		var ret []ReactionRecast
 		return ret
 	}
-
 	return o.Recasts
 }
 
-// GetRecastsOk returns a tuple with the Recasts field value
+// GetRecastsOk returns a tuple with the Recasts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetRecastsOk() ([]ReactionRecast, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Recasts) {
 		return nil, false
 	}
 	return o.Recasts, true
 }
 
-// SetRecasts sets field value
+// HasRecasts returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasRecasts() bool {
+	if o != nil && !IsNil(o.Recasts) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecasts gets a reference to the given []ReactionRecast and assigns it to the Recasts field.
 func (o *CastWithInteractionsReactions) SetRecasts(v []ReactionRecast) {
 	o.Recasts = v
 }
 
-// GetLikesCount returns the LikesCount field value
+// GetLikesCount returns the LikesCount field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetLikesCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LikesCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.LikesCount
+	return *o.LikesCount
 }
 
-// GetLikesCountOk returns a tuple with the LikesCount field value
+// GetLikesCountOk returns a tuple with the LikesCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetLikesCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LikesCount) {
 		return nil, false
 	}
-	return &o.LikesCount, true
+	return o.LikesCount, true
 }
 
-// SetLikesCount sets field value
+// HasLikesCount returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasLikesCount() bool {
+	if o != nil && !IsNil(o.LikesCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetLikesCount gets a reference to the given int32 and assigns it to the LikesCount field.
 func (o *CastWithInteractionsReactions) SetLikesCount(v int32) {
-	o.LikesCount = v
+	o.LikesCount = &v
 }
 
-// GetRecastsCount returns the RecastsCount field value
+// GetRecastsCount returns the RecastsCount field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetRecastsCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.RecastsCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.RecastsCount
+	return *o.RecastsCount
 }
 
-// GetRecastsCountOk returns a tuple with the RecastsCount field value
+// GetRecastsCountOk returns a tuple with the RecastsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetRecastsCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RecastsCount) {
 		return nil, false
 	}
-	return &o.RecastsCount, true
+	return o.RecastsCount, true
 }
 
-// SetRecastsCount sets field value
+// HasRecastsCount returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasRecastsCount() bool {
+	if o != nil && !IsNil(o.RecastsCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecastsCount gets a reference to the given int32 and assigns it to the RecastsCount field.
 func (o *CastWithInteractionsReactions) SetRecastsCount(v int32) {
-	o.RecastsCount = v
+	o.RecastsCount = &v
 }
 
 func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
@@ -156,64 +180,19 @@ func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
 
 func (o CastWithInteractionsReactions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["likes"] = o.Likes
-	toSerialize["recasts"] = o.Recasts
-	toSerialize["likes_count"] = o.LikesCount
-	toSerialize["recasts_count"] = o.RecastsCount
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Likes) {
+		toSerialize["likes"] = o.Likes
 	}
-
+	if !IsNil(o.Recasts) {
+		toSerialize["recasts"] = o.Recasts
+	}
+	if !IsNil(o.LikesCount) {
+		toSerialize["likes_count"] = o.LikesCount
+	}
+	if !IsNil(o.RecastsCount) {
+		toSerialize["recasts_count"] = o.RecastsCount
+	}
 	return toSerialize, nil
-}
-
-func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"likes",
-		"recasts",
-		"likes_count",
-		"recasts_count",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastWithInteractionsReactions := _CastWithInteractionsReactions{}
-
-	err = json.Unmarshal(data, &varCastWithInteractionsReactions)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastWithInteractionsReactions(varCastWithInteractionsReactions)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "likes")
-		delete(additionalProperties, "recasts")
-		delete(additionalProperties, "likes_count")
-		delete(additionalProperties, "recasts_count")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastWithInteractionsReactions struct {

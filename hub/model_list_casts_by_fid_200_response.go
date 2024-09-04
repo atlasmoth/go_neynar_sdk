@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListCastsByFid200Response type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ListCastsByFid200Response{}
 
 // ListCastsByFid200Response struct for ListCastsByFid200Response
 type ListCastsByFid200Response struct {
-	Messages []CastAdd `json:"messages"`
-	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	AdditionalProperties map[string]interface{}
+	Messages []CastAdd `json:"messages,omitempty"`
+	NextPageToken *string `json:"nextPageToken,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 }
-
-type _ListCastsByFid200Response ListCastsByFid200Response
 
 // NewListCastsByFid200Response instantiates a new ListCastsByFid200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListCastsByFid200Response(messages []CastAdd, nextPageToken string) *ListCastsByFid200Response {
+func NewListCastsByFid200Response() *ListCastsByFid200Response {
 	this := ListCastsByFid200Response{}
-	this.Messages = messages
-	this.NextPageToken = nextPageToken
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewListCastsByFid200ResponseWithDefaults() *ListCastsByFid200Response {
 	return &this
 }
 
-// GetMessages returns the Messages field value
+// GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *ListCastsByFid200Response) GetMessages() []CastAdd {
-	if o == nil {
+	if o == nil || IsNil(o.Messages) {
 		var ret []CastAdd
 		return ret
 	}
-
 	return o.Messages
 }
 
-// GetMessagesOk returns a tuple with the Messages field value
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCastsByFid200Response) GetMessagesOk() ([]CastAdd, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Messages) {
 		return nil, false
 	}
 	return o.Messages, true
 }
 
-// SetMessages sets field value
+// HasMessages returns a boolean if a field has been set.
+func (o *ListCastsByFid200Response) HasMessages() bool {
+	if o != nil && !IsNil(o.Messages) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []CastAdd and assigns it to the Messages field.
 func (o *ListCastsByFid200Response) SetMessages(v []CastAdd) {
 	o.Messages = v
 }
 
-// GetNextPageToken returns the NextPageToken field value
+// GetNextPageToken returns the NextPageToken field value if set, zero value otherwise.
 func (o *ListCastsByFid200Response) GetNextPageToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		var ret string
 		return ret
 	}
-
-	return o.NextPageToken
+	return *o.NextPageToken
 }
 
-// GetNextPageTokenOk returns a tuple with the NextPageToken field value
+// GetNextPageTokenOk returns a tuple with the NextPageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCastsByFid200Response) GetNextPageTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		return nil, false
 	}
-	return &o.NextPageToken, true
+	return o.NextPageToken, true
 }
 
-// SetNextPageToken sets field value
+// HasNextPageToken returns a boolean if a field has been set.
+func (o *ListCastsByFid200Response) HasNextPageToken() bool {
+	if o != nil && !IsNil(o.NextPageToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageToken gets a reference to the given string and assigns it to the NextPageToken field.
 func (o *ListCastsByFid200Response) SetNextPageToken(v string) {
-	o.NextPageToken = v
+	o.NextPageToken = &v
 }
 
 func (o ListCastsByFid200Response) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ListCastsByFid200Response) MarshalJSON() ([]byte, error) {
 
 func (o ListCastsByFid200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["messages"] = o.Messages
-	toSerialize["nextPageToken"] = o.NextPageToken
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
 	}
-
+	if !IsNil(o.NextPageToken) {
+		toSerialize["nextPageToken"] = o.NextPageToken
+	}
 	return toSerialize, nil
-}
-
-func (o *ListCastsByFid200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"messages",
-		"nextPageToken",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListCastsByFid200Response := _ListCastsByFid200Response{}
-
-	err = json.Unmarshal(data, &varListCastsByFid200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListCastsByFid200Response(varListCastsByFid200Response)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "messages")
-		delete(additionalProperties, "nextPageToken")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableListCastsByFid200Response struct {

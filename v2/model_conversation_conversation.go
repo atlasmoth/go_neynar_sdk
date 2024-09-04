@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ConversationConversation type satisfies the MappedNullable interface at compile time
@@ -20,20 +19,16 @@ var _ MappedNullable = &ConversationConversation{}
 
 // ConversationConversation struct for ConversationConversation
 type ConversationConversation struct {
-	Cast CastWithInteractionsAndConversations `json:"cast"`
+	Cast *CastWithInteractionsAndConversations `json:"cast,omitempty"`
 	ChronologicalParentCasts []CastWithInteractions `json:"chronological_parent_casts,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ConversationConversation ConversationConversation
 
 // NewConversationConversation instantiates a new ConversationConversation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConversationConversation(cast CastWithInteractionsAndConversations) *ConversationConversation {
+func NewConversationConversation() *ConversationConversation {
 	this := ConversationConversation{}
-	this.Cast = cast
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewConversationConversationWithDefaults() *ConversationConversation {
 	return &this
 }
 
-// GetCast returns the Cast field value
+// GetCast returns the Cast field value if set, zero value otherwise.
 func (o *ConversationConversation) GetCast() CastWithInteractionsAndConversations {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		var ret CastWithInteractionsAndConversations
 		return ret
 	}
-
-	return o.Cast
+	return *o.Cast
 }
 
-// GetCastOk returns a tuple with the Cast field value
+// GetCastOk returns a tuple with the Cast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConversationConversation) GetCastOk() (*CastWithInteractionsAndConversations, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		return nil, false
 	}
-	return &o.Cast, true
+	return o.Cast, true
 }
 
-// SetCast sets field value
+// HasCast returns a boolean if a field has been set.
+func (o *ConversationConversation) HasCast() bool {
+	if o != nil && !IsNil(o.Cast) {
+		return true
+	}
+
+	return false
+}
+
+// SetCast gets a reference to the given CastWithInteractionsAndConversations and assigns it to the Cast field.
 func (o *ConversationConversation) SetCast(v CastWithInteractionsAndConversations) {
-	o.Cast = v
+	o.Cast = &v
 }
 
 // GetChronologicalParentCasts returns the ChronologicalParentCasts field value if set, zero value otherwise.
@@ -111,59 +114,13 @@ func (o ConversationConversation) MarshalJSON() ([]byte, error) {
 
 func (o ConversationConversation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cast"] = o.Cast
+	if !IsNil(o.Cast) {
+		toSerialize["cast"] = o.Cast
+	}
 	if !IsNil(o.ChronologicalParentCasts) {
 		toSerialize["chronological_parent_casts"] = o.ChronologicalParentCasts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ConversationConversation) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"cast",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varConversationConversation := _ConversationConversation{}
-
-	err = json.Unmarshal(data, &varConversationConversation)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ConversationConversation(varConversationConversation)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "chronological_parent_casts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableConversationConversation struct {

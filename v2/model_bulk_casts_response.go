@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BulkCastsResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &BulkCastsResponse{}
 
 // BulkCastsResponse struct for BulkCastsResponse
 type BulkCastsResponse struct {
-	Casts []CastWithInteractions `json:"casts"`
-	AdditionalProperties map[string]interface{}
+	Casts []CastWithInteractions `json:"casts,omitempty"`
 }
-
-type _BulkCastsResponse BulkCastsResponse
 
 // NewBulkCastsResponse instantiates a new BulkCastsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBulkCastsResponse(casts []CastWithInteractions) *BulkCastsResponse {
+func NewBulkCastsResponse() *BulkCastsResponse {
 	this := BulkCastsResponse{}
-	this.Casts = casts
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewBulkCastsResponseWithDefaults() *BulkCastsResponse {
 	return &this
 }
 
-// GetCasts returns the Casts field value
+// GetCasts returns the Casts field value if set, zero value otherwise.
 func (o *BulkCastsResponse) GetCasts() []CastWithInteractions {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		var ret []CastWithInteractions
 		return ret
 	}
-
 	return o.Casts
 }
 
-// GetCastsOk returns a tuple with the Casts field value
+// GetCastsOk returns a tuple with the Casts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BulkCastsResponse) GetCastsOk() ([]CastWithInteractions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		return nil, false
 	}
 	return o.Casts, true
 }
 
-// SetCasts sets field value
+// HasCasts returns a boolean if a field has been set.
+func (o *BulkCastsResponse) HasCasts() bool {
+	if o != nil && !IsNil(o.Casts) {
+		return true
+	}
+
+	return false
+}
+
+// SetCasts gets a reference to the given []CastWithInteractions and assigns it to the Casts field.
 func (o *BulkCastsResponse) SetCasts(v []CastWithInteractions) {
 	o.Casts = v
 }
@@ -78,55 +81,10 @@ func (o BulkCastsResponse) MarshalJSON() ([]byte, error) {
 
 func (o BulkCastsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["casts"] = o.Casts
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Casts) {
+		toSerialize["casts"] = o.Casts
 	}
-
 	return toSerialize, nil
-}
-
-func (o *BulkCastsResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"casts",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBulkCastsResponse := _BulkCastsResponse{}
-
-	err = json.Unmarshal(data, &varBulkCastsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BulkCastsResponse(varBulkCastsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "casts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBulkCastsResponse struct {

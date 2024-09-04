@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**ChainId** | **int32** |  | 
-**BlockNumber** | **int32** |  | 
-**BlockHash** | **string** |  | 
-**BlockTimestamp** | **int32** |  | 
-**TransactionHash** | **string** |  | 
-**LogIndex** | **int32** |  | 
-**TxIndex** | **int32** |  | 
-**Fid** | **int32** |  | 
-**SignerEventBody** | [**SignerEventBody**](SignerEventBody.md) |  | 
-**Events** | [**[]OnChainEventSigner**](OnChainEventSigner.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**ChainId** | Pointer to **int32** |  | [optional] 
+**BlockNumber** | Pointer to **int32** |  | [optional] 
+**BlockHash** | Pointer to **string** |  | [optional] 
+**BlockTimestamp** | Pointer to **int32** |  | [optional] 
+**TransactionHash** | Pointer to **string** |  | [optional] 
+**LogIndex** | Pointer to **int32** |  | [optional] 
+**TxIndex** | Pointer to **int32** |  | [optional] 
+**Fid** | Pointer to **int32** |  | [optional] 
+**SignerEventBody** | Pointer to [**SignerEventBody**](SignerEventBody.md) |  | [optional] 
+**Events** | Pointer to [**[]OnChainEventSigner**](OnChainEventSigner.md) |  | [optional] 
 
 ## Methods
 
 ### NewListOnChainSignersByFid200Response
 
-`func NewListOnChainSignersByFid200Response(type_ string, chainId int32, blockNumber int32, blockHash string, blockTimestamp int32, transactionHash string, logIndex int32, txIndex int32, fid int32, signerEventBody SignerEventBody, events []OnChainEventSigner, ) *ListOnChainSignersByFid200Response`
+`func NewListOnChainSignersByFid200Response() *ListOnChainSignersByFid200Response`
 
 NewListOnChainSignersByFid200Response instantiates a new ListOnChainSignersByFid200Response object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *ListOnChainSignersByFid200Response) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetChainId
 
@@ -74,6 +79,11 @@ and a boolean to check if the value has been set.
 
 SetChainId sets ChainId field to given value.
 
+### HasChainId
+
+`func (o *ListOnChainSignersByFid200Response) HasChainId() bool`
+
+HasChainId returns a boolean if a field has been set.
 
 ### GetBlockNumber
 
@@ -94,6 +104,11 @@ and a boolean to check if the value has been set.
 
 SetBlockNumber sets BlockNumber field to given value.
 
+### HasBlockNumber
+
+`func (o *ListOnChainSignersByFid200Response) HasBlockNumber() bool`
+
+HasBlockNumber returns a boolean if a field has been set.
 
 ### GetBlockHash
 
@@ -114,6 +129,11 @@ and a boolean to check if the value has been set.
 
 SetBlockHash sets BlockHash field to given value.
 
+### HasBlockHash
+
+`func (o *ListOnChainSignersByFid200Response) HasBlockHash() bool`
+
+HasBlockHash returns a boolean if a field has been set.
 
 ### GetBlockTimestamp
 
@@ -134,6 +154,11 @@ and a boolean to check if the value has been set.
 
 SetBlockTimestamp sets BlockTimestamp field to given value.
 
+### HasBlockTimestamp
+
+`func (o *ListOnChainSignersByFid200Response) HasBlockTimestamp() bool`
+
+HasBlockTimestamp returns a boolean if a field has been set.
 
 ### GetTransactionHash
 
@@ -154,6 +179,11 @@ and a boolean to check if the value has been set.
 
 SetTransactionHash sets TransactionHash field to given value.
 
+### HasTransactionHash
+
+`func (o *ListOnChainSignersByFid200Response) HasTransactionHash() bool`
+
+HasTransactionHash returns a boolean if a field has been set.
 
 ### GetLogIndex
 
@@ -174,6 +204,11 @@ and a boolean to check if the value has been set.
 
 SetLogIndex sets LogIndex field to given value.
 
+### HasLogIndex
+
+`func (o *ListOnChainSignersByFid200Response) HasLogIndex() bool`
+
+HasLogIndex returns a boolean if a field has been set.
 
 ### GetTxIndex
 
@@ -194,6 +229,11 @@ and a boolean to check if the value has been set.
 
 SetTxIndex sets TxIndex field to given value.
 
+### HasTxIndex
+
+`func (o *ListOnChainSignersByFid200Response) HasTxIndex() bool`
+
+HasTxIndex returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -214,6 +254,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *ListOnChainSignersByFid200Response) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetSignerEventBody
 
@@ -234,6 +279,11 @@ and a boolean to check if the value has been set.
 
 SetSignerEventBody sets SignerEventBody field to given value.
 
+### HasSignerEventBody
+
+`func (o *ListOnChainSignersByFid200Response) HasSignerEventBody() bool`
+
+HasSignerEventBody returns a boolean if a field has been set.
 
 ### GetEvents
 
@@ -254,6 +304,11 @@ and a boolean to check if the value has been set.
 
 SetEvents sets Events field to given value.
 
+### HasEvents
+
+`func (o *ListOnChainSignersByFid200Response) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

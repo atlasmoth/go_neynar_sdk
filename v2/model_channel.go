@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Channel type satisfies the MappedNullable interface at compile time
@@ -20,11 +19,11 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	Id string `json:"id"`
-	Url string `json:"url"`
+	Id *string `json:"id,omitempty"`
+	Url *string `json:"url,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Object string `json:"object"`
+	Object *string `json:"object,omitempty"`
 	// Epoch timestamp in seconds.
 	CreatedAt *float32 `json:"created_at,omitempty"`
 	// Number of followers the channel has.
@@ -35,20 +34,14 @@ type Channel struct {
 	Moderator *User `json:"moderator,omitempty"`
 	Hosts []User `json:"hosts,omitempty"`
 	ViewerContext *ChannelViewerContext `json:"viewer_context,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Channel Channel
 
 // NewChannel instantiates a new Channel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannel(id string, url string, object string) *Channel {
+func NewChannel() *Channel {
 	this := Channel{}
-	this.Id = id
-	this.Url = url
-	this.Object = object
 	return &this
 }
 
@@ -60,52 +53,68 @@ func NewChannelWithDefaults() *Channel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Channel) GetId() string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Channel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Channel) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Channel) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *Channel) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *Channel) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -172,28 +181,36 @@ func (o *Channel) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *Channel) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *Channel) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *Channel) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -462,15 +479,21 @@ func (o Channel) MarshalJSON() ([]byte, error) {
 
 func (o Channel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["object"] = o.Object
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -495,68 +518,7 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Channel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"url",
-		"object",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varChannel := _Channel{}
-
-	err = json.Unmarshal(data, &varChannel)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Channel(varChannel)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "follower_count")
-		delete(additionalProperties, "image_url")
-		delete(additionalProperties, "parent_url")
-		delete(additionalProperties, "lead")
-		delete(additionalProperties, "moderator")
-		delete(additionalProperties, "hosts")
-		delete(additionalProperties, "viewer_context")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannel struct {

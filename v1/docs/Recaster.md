@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | The unique identifier of the recaster. | 
-**Username** | **string** | The username of the recaster. | 
-**DisplayName** | **string** | The display name of the recaster. | 
-**Pfp** | [**RecasterPfp**](RecasterPfp.md) |  | 
-**Profile** | [**RecasterProfile**](RecasterProfile.md) |  | 
-**FollowerCount** | **int32** | The number of followers the recaster has. | 
-**FollowingCount** | **int32** | The number of users the recaster is following. | 
-**Timestamp** | **time.Time** |  | 
+**Fid** | Pointer to **int32** | The unique identifier of the recaster. | [optional] 
+**Username** | Pointer to **string** | The username of the recaster. | [optional] 
+**DisplayName** | Pointer to **string** | The display name of the recaster. | [optional] 
+**Pfp** | Pointer to [**RecasterPfp**](RecasterPfp.md) |  | [optional] 
+**Profile** | Pointer to [**RecasterProfile**](RecasterProfile.md) |  | [optional] 
+**FollowerCount** | Pointer to **int32** | The number of followers the recaster has. | [optional] 
+**FollowingCount** | Pointer to **int32** | The number of users the recaster is following. | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
 **ViewerContext** | Pointer to [**RecasterViewerContext**](RecasterViewerContext.md) |  | [optional] 
 
 ## Methods
 
 ### NewRecaster
 
-`func NewRecaster(fid int32, username string, displayName string, pfp RecasterPfp, profile RecasterProfile, followerCount int32, followingCount int32, timestamp time.Time, ) *Recaster`
+`func NewRecaster() *Recaster`
 
 NewRecaster instantiates a new Recaster object
 This constructor will assign default values to properties that have it defined,
@@ -52,6 +52,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *Recaster) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -72,6 +77,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *Recaster) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -92,6 +102,11 @@ and a boolean to check if the value has been set.
 
 SetDisplayName sets DisplayName field to given value.
 
+### HasDisplayName
+
+`func (o *Recaster) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetPfp
 
@@ -112,6 +127,11 @@ and a boolean to check if the value has been set.
 
 SetPfp sets Pfp field to given value.
 
+### HasPfp
+
+`func (o *Recaster) HasPfp() bool`
+
+HasPfp returns a boolean if a field has been set.
 
 ### GetProfile
 
@@ -132,6 +152,11 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
+### HasProfile
+
+`func (o *Recaster) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
 
 ### GetFollowerCount
 
@@ -152,6 +177,11 @@ and a boolean to check if the value has been set.
 
 SetFollowerCount sets FollowerCount field to given value.
 
+### HasFollowerCount
+
+`func (o *Recaster) HasFollowerCount() bool`
+
+HasFollowerCount returns a boolean if a field has been set.
 
 ### GetFollowingCount
 
@@ -172,6 +202,11 @@ and a boolean to check if the value has been set.
 
 SetFollowingCount sets FollowingCount field to given value.
 
+### HasFollowingCount
+
+`func (o *Recaster) HasFollowingCount() bool`
+
+HasFollowingCount returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -192,6 +227,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *Recaster) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetViewerContext
 

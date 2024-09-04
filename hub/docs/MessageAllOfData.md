@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**CastAddBody** | [**CastAddBody**](CastAddBody.md) |  | 
-**CastRemoveBody** | [**CastRemoveBody**](CastRemoveBody.md) |  | 
-**ReactionBody** | [**ReactionBody**](ReactionBody.md) |  | 
-**LinkBody** | [**LinkBody**](LinkBody.md) |  | 
-**VerificationAddEthAddressBody** | [**VerificationAddEthAddressBody**](VerificationAddEthAddressBody.md) |  | 
-**VerificationRemoveBody** | [**VerificationRemoveBody**](VerificationRemoveBody.md) |  | 
-**UserDataBody** | [**UserDataBody**](UserDataBody.md) |  | 
-**UsernameProofBody** | [**UserNameProof**](UserNameProof.md) |  | 
-**FrameActionBody** | [**FrameActionBody**](FrameActionBody.md) |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**CastAddBody** | Pointer to [**CastAddBody**](CastAddBody.md) |  | [optional] 
+**CastRemoveBody** | Pointer to [**CastRemoveBody**](CastRemoveBody.md) |  | [optional] 
+**ReactionBody** | Pointer to [**ReactionBody**](ReactionBody.md) |  | [optional] 
+**LinkBody** | Pointer to [**LinkBody**](LinkBody.md) |  | [optional] 
+**VerificationAddEthAddressBody** | Pointer to [**VerificationAddEthAddressBody**](VerificationAddEthAddressBody.md) |  | [optional] 
+**VerificationRemoveBody** | Pointer to [**VerificationRemoveBody**](VerificationRemoveBody.md) |  | [optional] 
+**UserDataBody** | Pointer to [**UserDataBody**](UserDataBody.md) |  | [optional] 
+**UsernameProofBody** | Pointer to [**UserNameProof**](UserNameProof.md) |  | [optional] 
+**FrameActionBody** | Pointer to [**FrameActionBody**](FrameActionBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewMessageAllOfData
 
-`func NewMessageAllOfData(fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody, castRemoveBody CastRemoveBody, reactionBody ReactionBody, linkBody LinkBody, verificationAddEthAddressBody VerificationAddEthAddressBody, verificationRemoveBody VerificationRemoveBody, userDataBody UserDataBody, usernameProofBody UserNameProof, frameActionBody FrameActionBody, ) *MessageAllOfData`
+`func NewMessageAllOfData() *MessageAllOfData`
 
 NewMessageAllOfData instantiates a new MessageAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +55,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *MessageAllOfData) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -75,6 +80,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *MessageAllOfData) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -95,6 +105,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *MessageAllOfData) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetCastAddBody
 
@@ -115,6 +130,11 @@ and a boolean to check if the value has been set.
 
 SetCastAddBody sets CastAddBody field to given value.
 
+### HasCastAddBody
+
+`func (o *MessageAllOfData) HasCastAddBody() bool`
+
+HasCastAddBody returns a boolean if a field has been set.
 
 ### GetCastRemoveBody
 
@@ -135,6 +155,11 @@ and a boolean to check if the value has been set.
 
 SetCastRemoveBody sets CastRemoveBody field to given value.
 
+### HasCastRemoveBody
+
+`func (o *MessageAllOfData) HasCastRemoveBody() bool`
+
+HasCastRemoveBody returns a boolean if a field has been set.
 
 ### GetReactionBody
 
@@ -155,6 +180,11 @@ and a boolean to check if the value has been set.
 
 SetReactionBody sets ReactionBody field to given value.
 
+### HasReactionBody
+
+`func (o *MessageAllOfData) HasReactionBody() bool`
+
+HasReactionBody returns a boolean if a field has been set.
 
 ### GetLinkBody
 
@@ -175,6 +205,11 @@ and a boolean to check if the value has been set.
 
 SetLinkBody sets LinkBody field to given value.
 
+### HasLinkBody
+
+`func (o *MessageAllOfData) HasLinkBody() bool`
+
+HasLinkBody returns a boolean if a field has been set.
 
 ### GetVerificationAddEthAddressBody
 
@@ -195,6 +230,11 @@ and a boolean to check if the value has been set.
 
 SetVerificationAddEthAddressBody sets VerificationAddEthAddressBody field to given value.
 
+### HasVerificationAddEthAddressBody
+
+`func (o *MessageAllOfData) HasVerificationAddEthAddressBody() bool`
+
+HasVerificationAddEthAddressBody returns a boolean if a field has been set.
 
 ### GetVerificationRemoveBody
 
@@ -215,6 +255,11 @@ and a boolean to check if the value has been set.
 
 SetVerificationRemoveBody sets VerificationRemoveBody field to given value.
 
+### HasVerificationRemoveBody
+
+`func (o *MessageAllOfData) HasVerificationRemoveBody() bool`
+
+HasVerificationRemoveBody returns a boolean if a field has been set.
 
 ### GetUserDataBody
 
@@ -235,6 +280,11 @@ and a boolean to check if the value has been set.
 
 SetUserDataBody sets UserDataBody field to given value.
 
+### HasUserDataBody
+
+`func (o *MessageAllOfData) HasUserDataBody() bool`
+
+HasUserDataBody returns a boolean if a field has been set.
 
 ### GetUsernameProofBody
 
@@ -255,6 +305,11 @@ and a boolean to check if the value has been set.
 
 SetUsernameProofBody sets UsernameProofBody field to given value.
 
+### HasUsernameProofBody
+
+`func (o *MessageAllOfData) HasUsernameProofBody() bool`
+
+HasUsernameProofBody returns a boolean if a field has been set.
 
 ### GetFrameActionBody
 
@@ -275,6 +330,11 @@ and a boolean to check if the value has been set.
 
 SetFrameActionBody sets FrameActionBody field to given value.
 
+### HasFrameActionBody
+
+`func (o *MessageAllOfData) HasFrameActionBody() bool`
+
+HasFrameActionBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

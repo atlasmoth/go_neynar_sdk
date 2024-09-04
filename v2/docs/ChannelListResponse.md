@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | [**[]Channel**](Channel.md) |  | 
+**Channels** | Pointer to [**[]Channel**](Channel.md) |  | [optional] 
 **Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewChannelListResponse
 
-`func NewChannelListResponse(channels []Channel, ) *ChannelListResponse`
+`func NewChannelListResponse() *ChannelListResponse`
 
 NewChannelListResponse instantiates a new ChannelListResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetChannels sets Channels field to given value.
 
+### HasChannels
+
+`func (o *ChannelListResponse) HasChannels() bool`
+
+HasChannels returns a boolean if a field has been set.
 
 ### GetNext
 

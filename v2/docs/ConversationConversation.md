@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cast** | [**CastWithInteractionsAndConversations**](CastWithInteractionsAndConversations.md) |  | 
+**Cast** | Pointer to [**CastWithInteractionsAndConversations**](CastWithInteractionsAndConversations.md) |  | [optional] 
 **ChronologicalParentCasts** | Pointer to [**[]CastWithInteractions**](CastWithInteractions.md) |  | [optional] 
 
 ## Methods
 
 ### NewConversationConversation
 
-`func NewConversationConversation(cast CastWithInteractionsAndConversations, ) *ConversationConversation`
+`func NewConversationConversation() *ConversationConversation`
 
 NewConversationConversation instantiates a new ConversationConversation object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetCast sets Cast field to given value.
 
+### HasCast
+
+`func (o *ConversationConversation) HasCast() bool`
+
+HasCast returns a boolean if a field has been set.
 
 ### GetChronologicalParentCasts
 

@@ -26,10 +26,7 @@ type WebhookSubscriptionFilters struct {
 	FollowDeleted *WebhookSubscriptionFiltersFollow `json:"follow.deleted,omitempty"`
 	ReactionCreated *WebhookSubscriptionFiltersReaction `json:"reaction.created,omitempty"`
 	ReactionDeleted *WebhookSubscriptionFiltersReaction `json:"reaction.deleted,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _WebhookSubscriptionFilters WebhookSubscriptionFilters
 
 // NewWebhookSubscriptionFilters instantiates a new WebhookSubscriptionFilters object
 // This constructor will assign default values to properties that have it defined,
@@ -303,39 +300,7 @@ func (o WebhookSubscriptionFilters) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReactionDeleted) {
 		toSerialize["reaction.deleted"] = o.ReactionDeleted
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookSubscriptionFilters) UnmarshalJSON(data []byte) (err error) {
-	varWebhookSubscriptionFilters := _WebhookSubscriptionFilters{}
-
-	err = json.Unmarshal(data, &varWebhookSubscriptionFilters)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookSubscriptionFilters(varWebhookSubscriptionFilters)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "cast.created")
-		delete(additionalProperties, "user.created")
-		delete(additionalProperties, "user.updated")
-		delete(additionalProperties, "follow.created")
-		delete(additionalProperties, "follow.deleted")
-		delete(additionalProperties, "reaction.created")
-		delete(additionalProperties, "reaction.deleted")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookSubscriptionFilters struct {

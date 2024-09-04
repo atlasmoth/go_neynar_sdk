@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastParentAuthor type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastParentAuthor{}
 
 // CastParentAuthor struct for CastParentAuthor
 type CastParentAuthor struct {
-	Fid NullableString `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Fid NullableString `json:"fid,omitempty"`
 }
-
-type _CastParentAuthor CastParentAuthor
 
 // NewCastParentAuthor instantiates a new CastParentAuthor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastParentAuthor(fid NullableString) *CastParentAuthor {
+func NewCastParentAuthor() *CastParentAuthor {
 	this := CastParentAuthor{}
-	this.Fid = fid
 	return &this
 }
 
@@ -44,18 +39,16 @@ func NewCastParentAuthorWithDefaults() *CastParentAuthor {
 	return &this
 }
 
-// GetFid returns the Fid field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetFid returns the Fid field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CastParentAuthor) GetFid() string {
-	if o == nil || o.Fid.Get() == nil {
+	if o == nil || IsNil(o.Fid.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.Fid.Get()
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastParentAuthor) GetFidOk() (*string, bool) {
@@ -65,9 +58,27 @@ func (o *CastParentAuthor) GetFidOk() (*string, bool) {
 	return o.Fid.Get(), o.Fid.IsSet()
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *CastParentAuthor) HasFid() bool {
+	if o != nil && o.Fid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given NullableString and assigns it to the Fid field.
 func (o *CastParentAuthor) SetFid(v string) {
 	o.Fid.Set(&v)
+}
+// SetFidNil sets the value for Fid to be an explicit nil
+func (o *CastParentAuthor) SetFidNil() {
+	o.Fid.Set(nil)
+}
+
+// UnsetFid ensures that no value is present for Fid, not even an explicit nil
+func (o *CastParentAuthor) UnsetFid() {
+	o.Fid.Unset()
 }
 
 func (o CastParentAuthor) MarshalJSON() ([]byte, error) {
@@ -80,55 +91,10 @@ func (o CastParentAuthor) MarshalJSON() ([]byte, error) {
 
 func (o CastParentAuthor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid.Get()
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if o.Fid.IsSet() {
+		toSerialize["fid"] = o.Fid.Get()
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastParentAuthor) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastParentAuthor := _CastParentAuthor{}
-
-	err = json.Unmarshal(data, &varCastParentAuthor)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastParentAuthor(varCastParentAuthor)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastParentAuthor struct {

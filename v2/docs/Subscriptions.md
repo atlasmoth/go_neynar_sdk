@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**SubscriptionsCreated** | [**[]Subscription**](Subscription.md) |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**SubscriptionsCreated** | Pointer to [**[]Subscription**](Subscription.md) |  | [optional] 
 
 ## Methods
 
 ### NewSubscriptions
 
-`func NewSubscriptions(object string, subscriptionsCreated []Subscription, ) *Subscriptions`
+`func NewSubscriptions() *Subscriptions`
 
 NewSubscriptions instantiates a new Subscriptions object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Subscriptions) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetSubscriptionsCreated
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetSubscriptionsCreated sets SubscriptionsCreated field to given value.
 
+### HasSubscriptionsCreated
+
+`func (o *Subscriptions) HasSubscriptionsCreated() bool`
+
+HasSubscriptionsCreated returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

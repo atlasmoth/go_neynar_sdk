@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bio** | [**RecasterProfileBio**](RecasterProfileBio.md) |  | 
+**Bio** | Pointer to [**RecasterProfileBio**](RecasterProfileBio.md) |  | [optional] 
 
 ## Methods
 
 ### NewRecasterProfile
 
-`func NewRecasterProfile(bio RecasterProfileBio, ) *RecasterProfile`
+`func NewRecasterProfile() *RecasterProfile`
 
 NewRecasterProfile instantiates a new RecasterProfile object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetBio sets Bio field to given value.
 
+### HasBio
+
+`func (o *RecasterProfile) HasBio() bool`
+
+HasBio returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

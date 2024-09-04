@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AllCastsInThreadResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &AllCastsInThreadResponse{}
 
 // AllCastsInThreadResponse struct for AllCastsInThreadResponse
 type AllCastsInThreadResponse struct {
-	Result AllCastsInThreadResponseResult `json:"result"`
-	AdditionalProperties map[string]interface{}
+	Result *AllCastsInThreadResponseResult `json:"result,omitempty"`
 }
-
-type _AllCastsInThreadResponse AllCastsInThreadResponse
 
 // NewAllCastsInThreadResponse instantiates a new AllCastsInThreadResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAllCastsInThreadResponse(result AllCastsInThreadResponseResult) *AllCastsInThreadResponse {
+func NewAllCastsInThreadResponse() *AllCastsInThreadResponse {
 	this := AllCastsInThreadResponse{}
-	this.Result = result
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewAllCastsInThreadResponseWithDefaults() *AllCastsInThreadResponse {
 	return &this
 }
 
-// GetResult returns the Result field value
+// GetResult returns the Result field value if set, zero value otherwise.
 func (o *AllCastsInThreadResponse) GetResult() AllCastsInThreadResponseResult {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		var ret AllCastsInThreadResponseResult
 		return ret
 	}
-
-	return o.Result
+	return *o.Result
 }
 
-// GetResultOk returns a tuple with the Result field value
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AllCastsInThreadResponse) GetResultOk() (*AllCastsInThreadResponseResult, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
-// SetResult sets field value
+// HasResult returns a boolean if a field has been set.
+func (o *AllCastsInThreadResponse) HasResult() bool {
+	if o != nil && !IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given AllCastsInThreadResponseResult and assigns it to the Result field.
 func (o *AllCastsInThreadResponse) SetResult(v AllCastsInThreadResponseResult) {
-	o.Result = v
+	o.Result = &v
 }
 
 func (o AllCastsInThreadResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o AllCastsInThreadResponse) MarshalJSON() ([]byte, error) {
 
 func (o AllCastsInThreadResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["result"] = o.Result
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Result) {
+		toSerialize["result"] = o.Result
 	}
-
 	return toSerialize, nil
-}
-
-func (o *AllCastsInThreadResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAllCastsInThreadResponse := _AllCastsInThreadResponse{}
-
-	err = json.Unmarshal(data, &varAllCastsInThreadResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = AllCastsInThreadResponse(varAllCastsInThreadResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "result")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableAllCastsInThreadResponse struct {

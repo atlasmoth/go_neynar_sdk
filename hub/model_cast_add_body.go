@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastAddBody type satisfies the MappedNullable interface at compile time
@@ -20,29 +19,21 @@ var _ MappedNullable = &CastAddBody{}
 
 // CastAddBody Adds a new Cast
 type CastAddBody struct {
-	EmbedsDeprecated []string `json:"embedsDeprecated"`
-	Mentions []int32 `json:"mentions"`
+	EmbedsDeprecated []string `json:"embedsDeprecated,omitempty"`
+	Mentions []int32 `json:"mentions,omitempty"`
 	ParentCastId *CastId `json:"parentCastId,omitempty"`
 	ParentUrl *string `json:"parentUrl,omitempty"`
-	Text string `json:"text"`
-	MentionsPositions []int64 `json:"mentionsPositions"`
-	Embeds []Embed `json:"embeds"`
-	AdditionalProperties map[string]interface{}
+	Text *string `json:"text,omitempty"`
+	MentionsPositions []int64 `json:"mentionsPositions,omitempty"`
+	Embeds []Embed `json:"embeds,omitempty"`
 }
-
-type _CastAddBody CastAddBody
 
 // NewCastAddBody instantiates a new CastAddBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastAddBody(embedsDeprecated []string, mentions []int32, text string, mentionsPositions []int64, embeds []Embed) *CastAddBody {
+func NewCastAddBody() *CastAddBody {
 	this := CastAddBody{}
-	this.EmbedsDeprecated = embedsDeprecated
-	this.Mentions = mentions
-	this.Text = text
-	this.MentionsPositions = mentionsPositions
-	this.Embeds = embeds
 	return &this
 }
 
@@ -54,50 +45,66 @@ func NewCastAddBodyWithDefaults() *CastAddBody {
 	return &this
 }
 
-// GetEmbedsDeprecated returns the EmbedsDeprecated field value
+// GetEmbedsDeprecated returns the EmbedsDeprecated field value if set, zero value otherwise.
 func (o *CastAddBody) GetEmbedsDeprecated() []string {
-	if o == nil {
+	if o == nil || IsNil(o.EmbedsDeprecated) {
 		var ret []string
 		return ret
 	}
-
 	return o.EmbedsDeprecated
 }
 
-// GetEmbedsDeprecatedOk returns a tuple with the EmbedsDeprecated field value
+// GetEmbedsDeprecatedOk returns a tuple with the EmbedsDeprecated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAddBody) GetEmbedsDeprecatedOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EmbedsDeprecated) {
 		return nil, false
 	}
 	return o.EmbedsDeprecated, true
 }
 
-// SetEmbedsDeprecated sets field value
+// HasEmbedsDeprecated returns a boolean if a field has been set.
+func (o *CastAddBody) HasEmbedsDeprecated() bool {
+	if o != nil && !IsNil(o.EmbedsDeprecated) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbedsDeprecated gets a reference to the given []string and assigns it to the EmbedsDeprecated field.
 func (o *CastAddBody) SetEmbedsDeprecated(v []string) {
 	o.EmbedsDeprecated = v
 }
 
-// GetMentions returns the Mentions field value
+// GetMentions returns the Mentions field value if set, zero value otherwise.
 func (o *CastAddBody) GetMentions() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Mentions) {
 		var ret []int32
 		return ret
 	}
-
 	return o.Mentions
 }
 
-// GetMentionsOk returns a tuple with the Mentions field value
+// GetMentionsOk returns a tuple with the Mentions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAddBody) GetMentionsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Mentions) {
 		return nil, false
 	}
 	return o.Mentions, true
 }
 
-// SetMentions sets field value
+// HasMentions returns a boolean if a field has been set.
+func (o *CastAddBody) HasMentions() bool {
+	if o != nil && !IsNil(o.Mentions) {
+		return true
+	}
+
+	return false
+}
+
+// SetMentions gets a reference to the given []int32 and assigns it to the Mentions field.
 func (o *CastAddBody) SetMentions(v []int32) {
 	o.Mentions = v
 }
@@ -166,74 +173,98 @@ func (o *CastAddBody) SetParentUrl(v string) {
 	o.ParentUrl = &v
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *CastAddBody) GetText() string {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAddBody) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Text, true
 }
 
-// SetText sets field value
+// HasText returns a boolean if a field has been set.
+func (o *CastAddBody) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
+		return true
+	}
+
+	return false
+}
+
+// SetText gets a reference to the given string and assigns it to the Text field.
 func (o *CastAddBody) SetText(v string) {
-	o.Text = v
+	o.Text = &v
 }
 
-// GetMentionsPositions returns the MentionsPositions field value
+// GetMentionsPositions returns the MentionsPositions field value if set, zero value otherwise.
 func (o *CastAddBody) GetMentionsPositions() []int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MentionsPositions) {
 		var ret []int64
 		return ret
 	}
-
 	return o.MentionsPositions
 }
 
-// GetMentionsPositionsOk returns a tuple with the MentionsPositions field value
+// GetMentionsPositionsOk returns a tuple with the MentionsPositions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAddBody) GetMentionsPositionsOk() ([]int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MentionsPositions) {
 		return nil, false
 	}
 	return o.MentionsPositions, true
 }
 
-// SetMentionsPositions sets field value
+// HasMentionsPositions returns a boolean if a field has been set.
+func (o *CastAddBody) HasMentionsPositions() bool {
+	if o != nil && !IsNil(o.MentionsPositions) {
+		return true
+	}
+
+	return false
+}
+
+// SetMentionsPositions gets a reference to the given []int64 and assigns it to the MentionsPositions field.
 func (o *CastAddBody) SetMentionsPositions(v []int64) {
 	o.MentionsPositions = v
 }
 
-// GetEmbeds returns the Embeds field value
+// GetEmbeds returns the Embeds field value if set, zero value otherwise.
 func (o *CastAddBody) GetEmbeds() []Embed {
-	if o == nil {
+	if o == nil || IsNil(o.Embeds) {
 		var ret []Embed
 		return ret
 	}
-
 	return o.Embeds
 }
 
-// GetEmbedsOk returns a tuple with the Embeds field value
+// GetEmbedsOk returns a tuple with the Embeds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastAddBody) GetEmbedsOk() ([]Embed, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Embeds) {
 		return nil, false
 	}
 	return o.Embeds, true
 }
 
-// SetEmbeds sets field value
+// HasEmbeds returns a boolean if a field has been set.
+func (o *CastAddBody) HasEmbeds() bool {
+	if o != nil && !IsNil(o.Embeds) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbeds gets a reference to the given []Embed and assigns it to the Embeds field.
 func (o *CastAddBody) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
@@ -248,75 +279,28 @@ func (o CastAddBody) MarshalJSON() ([]byte, error) {
 
 func (o CastAddBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["embedsDeprecated"] = o.EmbedsDeprecated
-	toSerialize["mentions"] = o.Mentions
+	if !IsNil(o.EmbedsDeprecated) {
+		toSerialize["embedsDeprecated"] = o.EmbedsDeprecated
+	}
+	if !IsNil(o.Mentions) {
+		toSerialize["mentions"] = o.Mentions
+	}
 	if !IsNil(o.ParentCastId) {
 		toSerialize["parentCastId"] = o.ParentCastId
 	}
 	if !IsNil(o.ParentUrl) {
 		toSerialize["parentUrl"] = o.ParentUrl
 	}
-	toSerialize["text"] = o.Text
-	toSerialize["mentionsPositions"] = o.MentionsPositions
-	toSerialize["embeds"] = o.Embeds
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
-
+	if !IsNil(o.MentionsPositions) {
+		toSerialize["mentionsPositions"] = o.MentionsPositions
+	}
+	if !IsNil(o.Embeds) {
+		toSerialize["embeds"] = o.Embeds
+	}
 	return toSerialize, nil
-}
-
-func (o *CastAddBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"embedsDeprecated",
-		"mentions",
-		"text",
-		"mentionsPositions",
-		"embeds",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastAddBody := _CastAddBody{}
-
-	err = json.Unmarshal(data, &varCastAddBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastAddBody(varCastAddBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "embedsDeprecated")
-		delete(additionalProperties, "mentions")
-		delete(additionalProperties, "parentCastId")
-		delete(additionalProperties, "parentUrl")
-		delete(additionalProperties, "text")
-		delete(additionalProperties, "mentionsPositions")
-		delete(additionalProperties, "embeds")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastAddBody struct {

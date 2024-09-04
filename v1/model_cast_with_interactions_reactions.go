@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastWithInteractionsReactions type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &CastWithInteractionsReactions{}
 
 // CastWithInteractionsReactions struct for CastWithInteractionsReactions
 type CastWithInteractionsReactions struct {
-	Count int32 `json:"count"`
-	Fids []int32 `json:"fids"`
-	Fnames []string `json:"fnames"`
-	AdditionalProperties map[string]interface{}
+	Count *int32 `json:"count,omitempty"`
+	Fids []int32 `json:"fids,omitempty"`
+	Fnames []string `json:"fnames,omitempty"`
 }
-
-type _CastWithInteractionsReactions CastWithInteractionsReactions
 
 // NewCastWithInteractionsReactions instantiates a new CastWithInteractionsReactions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsReactions(count int32, fids []int32, fnames []string) *CastWithInteractionsReactions {
+func NewCastWithInteractionsReactions() *CastWithInteractionsReactions {
 	this := CastWithInteractionsReactions{}
-	this.Count = count
-	this.Fids = fids
-	this.Fnames = fnames
 	return &this
 }
 
@@ -48,74 +41,98 @@ func NewCastWithInteractionsReactionsWithDefaults() *CastWithInteractionsReactio
 	return &this
 }
 
-// GetCount returns the Count field value
+// GetCount returns the Count field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
-
-	return o.Count
+	return *o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
-	return &o.Count, true
+	return o.Count, true
 }
 
-// SetCount sets field value
+// HasCount returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasCount() bool {
+	if o != nil && !IsNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
 func (o *CastWithInteractionsReactions) SetCount(v int32) {
-	o.Count = v
+	o.Count = &v
 }
 
-// GetFids returns the Fids field value
+// GetFids returns the Fids field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetFids() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		var ret []int32
 		return ret
 	}
-
 	return o.Fids
 }
 
-// GetFidsOk returns a tuple with the Fids field value
+// GetFidsOk returns a tuple with the Fids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetFidsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		return nil, false
 	}
 	return o.Fids, true
 }
 
-// SetFids sets field value
+// HasFids returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasFids() bool {
+	if o != nil && !IsNil(o.Fids) {
+		return true
+	}
+
+	return false
+}
+
+// SetFids gets a reference to the given []int32 and assigns it to the Fids field.
 func (o *CastWithInteractionsReactions) SetFids(v []int32) {
 	o.Fids = v
 }
 
-// GetFnames returns the Fnames field value
+// GetFnames returns the Fnames field value if set, zero value otherwise.
 func (o *CastWithInteractionsReactions) GetFnames() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Fnames) {
 		var ret []string
 		return ret
 	}
-
 	return o.Fnames
 }
 
-// GetFnamesOk returns a tuple with the Fnames field value
+// GetFnamesOk returns a tuple with the Fnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReactions) GetFnamesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fnames) {
 		return nil, false
 	}
 	return o.Fnames, true
 }
 
-// SetFnames sets field value
+// HasFnames returns a boolean if a field has been set.
+func (o *CastWithInteractionsReactions) HasFnames() bool {
+	if o != nil && !IsNil(o.Fnames) {
+		return true
+	}
+
+	return false
+}
+
+// SetFnames gets a reference to the given []string and assigns it to the Fnames field.
 func (o *CastWithInteractionsReactions) SetFnames(v []string) {
 	o.Fnames = v
 }
@@ -130,61 +147,16 @@ func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
 
 func (o CastWithInteractionsReactions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["count"] = o.Count
-	toSerialize["fids"] = o.Fids
-	toSerialize["fnames"] = o.Fnames
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
 	}
-
+	if !IsNil(o.Fids) {
+		toSerialize["fids"] = o.Fids
+	}
+	if !IsNil(o.Fnames) {
+		toSerialize["fnames"] = o.Fnames
+	}
 	return toSerialize, nil
-}
-
-func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"count",
-		"fids",
-		"fnames",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastWithInteractionsReactions := _CastWithInteractionsReactions{}
-
-	err = json.Unmarshal(data, &varCastWithInteractionsReactions)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastWithInteractionsReactions(varCastWithInteractionsReactions)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "count")
-		delete(additionalProperties, "fids")
-		delete(additionalProperties, "fnames")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastWithInteractionsReactions struct {

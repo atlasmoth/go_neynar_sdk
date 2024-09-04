@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the WebhookPostReqBody type satisfies the MappedNullable interface at compile time
@@ -20,22 +19,17 @@ var _ MappedNullable = &WebhookPostReqBody{}
 
 // WebhookPostReqBody struct for WebhookPostReqBody
 type WebhookPostReqBody struct {
-	Name string `json:"name"`
-	Url string `json:"url"`
+	Name *string `json:"name,omitempty"`
+	Url *string `json:"url,omitempty"`
 	Subscription *WebhookSubscriptionFilters `json:"subscription,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _WebhookPostReqBody WebhookPostReqBody
 
 // NewWebhookPostReqBody instantiates a new WebhookPostReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookPostReqBody(name string, url string) *WebhookPostReqBody {
+func NewWebhookPostReqBody() *WebhookPostReqBody {
 	this := WebhookPostReqBody{}
-	this.Name = name
-	this.Url = url
 	return &this
 }
 
@@ -47,52 +41,68 @@ func NewWebhookPostReqBodyWithDefaults() *WebhookPostReqBody {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *WebhookPostReqBody) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookPostReqBody) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *WebhookPostReqBody) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *WebhookPostReqBody) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *WebhookPostReqBody) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookPostReqBody) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *WebhookPostReqBody) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *WebhookPostReqBody) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
@@ -137,62 +147,16 @@ func (o WebhookPostReqBody) MarshalJSON() ([]byte, error) {
 
 func (o WebhookPostReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookPostReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookPostReqBody := _WebhookPostReqBody{}
-
-	err = json.Unmarshal(data, &varWebhookPostReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookPostReqBody(varWebhookPostReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "subscription")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookPostReqBody struct {

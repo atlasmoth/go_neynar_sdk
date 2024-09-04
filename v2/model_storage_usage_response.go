@@ -28,10 +28,7 @@ type StorageUsageResponse struct {
 	UsernameProofs *StorageObject `json:"username_proofs,omitempty"`
 	Signers *StorageObject `json:"signers,omitempty"`
 	TotalActiveUnits *int32 `json:"total_active_units,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _StorageUsageResponse StorageUsageResponse
 
 // NewStorageUsageResponse instantiates a new StorageUsageResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -375,41 +372,7 @@ func (o StorageUsageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TotalActiveUnits) {
 		toSerialize["total_active_units"] = o.TotalActiveUnits
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *StorageUsageResponse) UnmarshalJSON(data []byte) (err error) {
-	varStorageUsageResponse := _StorageUsageResponse{}
-
-	err = json.Unmarshal(data, &varStorageUsageResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StorageUsageResponse(varStorageUsageResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "user")
-		delete(additionalProperties, "casts")
-		delete(additionalProperties, "reactions")
-		delete(additionalProperties, "links")
-		delete(additionalProperties, "verified_addresses")
-		delete(additionalProperties, "username_proofs")
-		delete(additionalProperties, "signers")
-		delete(additionalProperties, "total_active_units")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableStorageUsageResponse struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VideoObject type satisfies the MappedNullable interface at compile time
@@ -22,20 +21,16 @@ var _ MappedNullable = &VideoObject{}
 type VideoObject struct {
 	Height *int32 `json:"height,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	Width *int32 `json:"width,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _VideoObject VideoObject
 
 // NewVideoObject instantiates a new VideoObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVideoObject(url string) *VideoObject {
+func NewVideoObject() *VideoObject {
 	this := VideoObject{}
-	this.Url = url
 	return &this
 }
 
@@ -111,28 +106,36 @@ func (o *VideoObject) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *VideoObject) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VideoObject) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *VideoObject) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *VideoObject) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetWidth returns the Width field value if set, zero value otherwise.
@@ -183,61 +186,13 @@ func (o VideoObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *VideoObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varVideoObject := _VideoObject{}
-
-	err = json.Unmarshal(data, &varVideoObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = VideoObject(varVideoObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "height")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "width")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableVideoObject struct {

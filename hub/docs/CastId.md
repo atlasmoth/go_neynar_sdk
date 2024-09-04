@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Hash** | **string** |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Hash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCastId
 
-`func NewCastId(fid int32, hash string, ) *CastId`
+`func NewCastId() *CastId`
 
 NewCastId instantiates a new CastId object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *CastId) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetHash
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *CastId) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

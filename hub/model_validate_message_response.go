@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ValidateMessageResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ValidateMessageResponse{}
 
 // ValidateMessageResponse struct for ValidateMessageResponse
 type ValidateMessageResponse struct {
-	Valid bool `json:"valid"`
-	Message Message `json:"message"`
-	AdditionalProperties map[string]interface{}
+	Valid *bool `json:"valid,omitempty"`
+	Message *Message `json:"message,omitempty"`
 }
-
-type _ValidateMessageResponse ValidateMessageResponse
 
 // NewValidateMessageResponse instantiates a new ValidateMessageResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidateMessageResponse(valid bool, message Message) *ValidateMessageResponse {
+func NewValidateMessageResponse() *ValidateMessageResponse {
 	this := ValidateMessageResponse{}
-	this.Valid = valid
-	this.Message = message
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewValidateMessageResponseWithDefaults() *ValidateMessageResponse {
 	return &this
 }
 
-// GetValid returns the Valid field value
+// GetValid returns the Valid field value if set, zero value otherwise.
 func (o *ValidateMessageResponse) GetValid() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
-
-	return o.Valid
+	return *o.Valid
 }
 
-// GetValidOk returns a tuple with the Valid field value
+// GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidateMessageResponse) GetValidOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
-	return &o.Valid, true
+	return o.Valid, true
 }
 
-// SetValid sets field value
+// HasValid returns a boolean if a field has been set.
+func (o *ValidateMessageResponse) HasValid() bool {
+	if o != nil && !IsNil(o.Valid) {
+		return true
+	}
+
+	return false
+}
+
+// SetValid gets a reference to the given bool and assigns it to the Valid field.
 func (o *ValidateMessageResponse) SetValid(v bool) {
-	o.Valid = v
+	o.Valid = &v
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ValidateMessageResponse) GetMessage() Message {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret Message
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidateMessageResponse) GetMessageOk() (*Message, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *ValidateMessageResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given Message and assigns it to the Message field.
 func (o *ValidateMessageResponse) SetMessage(v Message) {
-	o.Message = v
+	o.Message = &v
 }
 
 func (o ValidateMessageResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ValidateMessageResponse) MarshalJSON() ([]byte, error) {
 
 func (o ValidateMessageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["valid"] = o.Valid
-	toSerialize["message"] = o.Message
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Valid) {
+		toSerialize["valid"] = o.Valid
 	}
-
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
 	return toSerialize, nil
-}
-
-func (o *ValidateMessageResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"valid",
-		"message",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varValidateMessageResponse := _ValidateMessageResponse{}
-
-	err = json.Unmarshal(data, &varValidateMessageResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ValidateMessageResponse(varValidateMessageResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "valid")
-		delete(additionalProperties, "message")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableValidateMessageResponse struct {

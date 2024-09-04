@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the IndividualHashObj type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &IndividualHashObj{}
 
 // IndividualHashObj struct for IndividualHashObj
 type IndividualHashObj struct {
-	Hash string `json:"hash"`
-	AdditionalProperties map[string]interface{}
+	Hash *string `json:"hash,omitempty"`
 }
-
-type _IndividualHashObj IndividualHashObj
 
 // NewIndividualHashObj instantiates a new IndividualHashObj object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndividualHashObj(hash string) *IndividualHashObj {
+func NewIndividualHashObj() *IndividualHashObj {
 	this := IndividualHashObj{}
-	this.Hash = hash
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewIndividualHashObjWithDefaults() *IndividualHashObj {
 	return &this
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *IndividualHashObj) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndividualHashObj) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *IndividualHashObj) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *IndividualHashObj) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
 func (o IndividualHashObj) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o IndividualHashObj) MarshalJSON() ([]byte, error) {
 
 func (o IndividualHashObj) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hash"] = o.Hash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
 	}
-
 	return toSerialize, nil
-}
-
-func (o *IndividualHashObj) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varIndividualHashObj := _IndividualHashObj{}
-
-	err = json.Unmarshal(data, &varIndividualHashObj)
-
-	if err != nil {
-		return err
-	}
-
-	*o = IndividualHashObj(varIndividualHashObj)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableIndividualHashObj struct {

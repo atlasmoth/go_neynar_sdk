@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Reactor type satisfies the MappedNullable interface at compile time
@@ -21,34 +20,25 @@ var _ MappedNullable = &Reactor{}
 // Reactor struct for Reactor
 type Reactor struct {
 	// The unique identifier of the reactor.
-	Fid int32 `json:"fid"`
+	Fid *int32 `json:"fid,omitempty"`
 	// The username of the reactor.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 	// The display name of the reactor.
-	DisplayName string `json:"displayName"`
-	Pfp ReactorPfp `json:"pfp"`
+	DisplayName *string `json:"displayName,omitempty"`
+	Pfp *ReactorPfp `json:"pfp,omitempty"`
 	// The number of followers the reactor has.
-	FollowerCount int32 `json:"followerCount"`
+	FollowerCount *int32 `json:"followerCount,omitempty"`
 	// The number of users the reactor is following.
-	FollowingCount int32 `json:"followingCount"`
+	FollowingCount *int32 `json:"followingCount,omitempty"`
 	ViewerContext *ReactorViewerContext `json:"viewerContext,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Reactor Reactor
 
 // NewReactor instantiates a new Reactor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactor(fid int32, username string, displayName string, pfp ReactorPfp, followerCount int32, followingCount int32) *Reactor {
+func NewReactor() *Reactor {
 	this := Reactor{}
-	this.Fid = fid
-	this.Username = username
-	this.DisplayName = displayName
-	this.Pfp = pfp
-	this.FollowerCount = followerCount
-	this.FollowingCount = followingCount
 	return &this
 }
 
@@ -60,148 +50,196 @@ func NewReactorWithDefaults() *Reactor {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *Reactor) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *Reactor) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *Reactor) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *Reactor) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *Reactor) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *Reactor) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetDisplayName returns the DisplayName field value
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *Reactor) GetDisplayName() string {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
-
-	return o.DisplayName
+	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return &o.DisplayName, true
+	return o.DisplayName, true
 }
 
-// SetDisplayName sets field value
+// HasDisplayName returns a boolean if a field has been set.
+func (o *Reactor) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *Reactor) SetDisplayName(v string) {
-	o.DisplayName = v
+	o.DisplayName = &v
 }
 
-// GetPfp returns the Pfp field value
+// GetPfp returns the Pfp field value if set, zero value otherwise.
 func (o *Reactor) GetPfp() ReactorPfp {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		var ret ReactorPfp
 		return ret
 	}
-
-	return o.Pfp
+	return *o.Pfp
 }
 
-// GetPfpOk returns a tuple with the Pfp field value
+// GetPfpOk returns a tuple with the Pfp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetPfpOk() (*ReactorPfp, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		return nil, false
 	}
-	return &o.Pfp, true
+	return o.Pfp, true
 }
 
-// SetPfp sets field value
+// HasPfp returns a boolean if a field has been set.
+func (o *Reactor) HasPfp() bool {
+	if o != nil && !IsNil(o.Pfp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPfp gets a reference to the given ReactorPfp and assigns it to the Pfp field.
 func (o *Reactor) SetPfp(v ReactorPfp) {
-	o.Pfp = v
+	o.Pfp = &v
 }
 
-// GetFollowerCount returns the FollowerCount field value
+// GetFollowerCount returns the FollowerCount field value if set, zero value otherwise.
 func (o *Reactor) GetFollowerCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowerCount
+	return *o.FollowerCount
 }
 
-// GetFollowerCountOk returns a tuple with the FollowerCount field value
+// GetFollowerCountOk returns a tuple with the FollowerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetFollowerCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		return nil, false
 	}
-	return &o.FollowerCount, true
+	return o.FollowerCount, true
 }
 
-// SetFollowerCount sets field value
+// HasFollowerCount returns a boolean if a field has been set.
+func (o *Reactor) HasFollowerCount() bool {
+	if o != nil && !IsNil(o.FollowerCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowerCount gets a reference to the given int32 and assigns it to the FollowerCount field.
 func (o *Reactor) SetFollowerCount(v int32) {
-	o.FollowerCount = v
+	o.FollowerCount = &v
 }
 
-// GetFollowingCount returns the FollowingCount field value
+// GetFollowingCount returns the FollowingCount field value if set, zero value otherwise.
 func (o *Reactor) GetFollowingCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowingCount
+	return *o.FollowingCount
 }
 
-// GetFollowingCountOk returns a tuple with the FollowingCount field value
+// GetFollowingCountOk returns a tuple with the FollowingCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetFollowingCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		return nil, false
 	}
-	return &o.FollowingCount, true
+	return o.FollowingCount, true
 }
 
-// SetFollowingCount sets field value
+// HasFollowingCount returns a boolean if a field has been set.
+func (o *Reactor) HasFollowingCount() bool {
+	if o != nil && !IsNil(o.FollowingCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowingCount gets a reference to the given int32 and assigns it to the FollowingCount field.
 func (o *Reactor) SetFollowingCount(v int32) {
-	o.FollowingCount = v
+	o.FollowingCount = &v
 }
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
@@ -246,74 +284,28 @@ func (o Reactor) MarshalJSON() ([]byte, error) {
 
 func (o Reactor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["username"] = o.Username
-	toSerialize["displayName"] = o.DisplayName
-	toSerialize["pfp"] = o.Pfp
-	toSerialize["followerCount"] = o.FollowerCount
-	toSerialize["followingCount"] = o.FollowingCount
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.Pfp) {
+		toSerialize["pfp"] = o.Pfp
+	}
+	if !IsNil(o.FollowerCount) {
+		toSerialize["followerCount"] = o.FollowerCount
+	}
+	if !IsNil(o.FollowingCount) {
+		toSerialize["followingCount"] = o.FollowingCount
+	}
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Reactor) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"username",
-		"displayName",
-		"pfp",
-		"followerCount",
-		"followingCount",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactor := _Reactor{}
-
-	err = json.Unmarshal(data, &varReactor)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Reactor(varReactor)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "pfp")
-		delete(additionalProperties, "followerCount")
-		delete(additionalProperties, "followingCount")
-		delete(additionalProperties, "viewerContext")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactor struct {

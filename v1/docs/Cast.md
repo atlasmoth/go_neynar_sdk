@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**ParentHash** | **NullableString** |  | 
-**ParentUrl** | **NullableString** |  | 
-**ThreadHash** | **string** |  | 
-**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
-**MentionedProfiles** | [**[]User**](User.md) |  | 
-**Author** | [**CastAuthor**](CastAuthor.md) |  | 
-**Text** | **string** |  | 
-**Timestamp** | **time.Time** |  | 
-**Embeds** | [**[]EmbedUrl**](EmbedUrl.md) |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**ParentHash** | Pointer to **NullableString** |  | [optional] 
+**ParentUrl** | Pointer to **NullableString** |  | [optional] 
+**ThreadHash** | Pointer to **string** |  | [optional] 
+**ParentAuthor** | Pointer to [**CastParentAuthor**](CastParentAuthor.md) |  | [optional] 
+**MentionedProfiles** | Pointer to [**[]User**](User.md) |  | [optional] 
+**Author** | Pointer to [**CastAuthor**](CastAuthor.md) |  | [optional] 
+**Text** | Pointer to **string** |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**Embeds** | Pointer to [**[]EmbedUrl**](EmbedUrl.md) |  | [optional] 
 **Type** | Pointer to [**CastType**](CastType.md) |  | [optional] 
 
 ## Methods
 
 ### NewCast
 
-`func NewCast(hash string, parentHash NullableString, parentUrl NullableString, threadHash string, parentAuthor CastParentAuthor, mentionedProfiles []User, author CastAuthor, text string, timestamp time.Time, embeds []EmbedUrl, ) *Cast`
+`func NewCast() *Cast`
 
 NewCast instantiates a new Cast object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *Cast) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetParentHash
 
@@ -74,6 +79,11 @@ and a boolean to check if the value has been set.
 
 SetParentHash sets ParentHash field to given value.
 
+### HasParentHash
+
+`func (o *Cast) HasParentHash() bool`
+
+HasParentHash returns a boolean if a field has been set.
 
 ### SetParentHashNil
 
@@ -104,6 +114,11 @@ and a boolean to check if the value has been set.
 
 SetParentUrl sets ParentUrl field to given value.
 
+### HasParentUrl
+
+`func (o *Cast) HasParentUrl() bool`
+
+HasParentUrl returns a boolean if a field has been set.
 
 ### SetParentUrlNil
 
@@ -134,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetThreadHash sets ThreadHash field to given value.
 
+### HasThreadHash
+
+`func (o *Cast) HasThreadHash() bool`
+
+HasThreadHash returns a boolean if a field has been set.
 
 ### GetParentAuthor
 
@@ -154,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetParentAuthor sets ParentAuthor field to given value.
 
+### HasParentAuthor
+
+`func (o *Cast) HasParentAuthor() bool`
+
+HasParentAuthor returns a boolean if a field has been set.
 
 ### GetMentionedProfiles
 
@@ -174,6 +199,11 @@ and a boolean to check if the value has been set.
 
 SetMentionedProfiles sets MentionedProfiles field to given value.
 
+### HasMentionedProfiles
+
+`func (o *Cast) HasMentionedProfiles() bool`
+
+HasMentionedProfiles returns a boolean if a field has been set.
 
 ### GetAuthor
 
@@ -194,6 +224,11 @@ and a boolean to check if the value has been set.
 
 SetAuthor sets Author field to given value.
 
+### HasAuthor
+
+`func (o *Cast) HasAuthor() bool`
+
+HasAuthor returns a boolean if a field has been set.
 
 ### GetText
 
@@ -214,6 +249,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *Cast) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -234,6 +274,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *Cast) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetEmbeds
 
@@ -254,6 +299,11 @@ and a boolean to check if the value has been set.
 
 SetEmbeds sets Embeds field to given value.
 
+### HasEmbeds
+
+`func (o *Cast) HasEmbeds() bool`
+
+HasEmbeds returns a boolean if a field has been set.
 
 ### GetType
 

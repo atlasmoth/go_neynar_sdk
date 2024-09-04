@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reactor** | [**User**](User.md) |  | 
-**Likes** | [**[]ReactionWithCastMeta**](ReactionWithCastMeta.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Reactor** | Pointer to [**User**](User.md) |  | [optional] 
+**Likes** | Pointer to [**[]ReactionWithCastMeta**](ReactionWithCastMeta.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserCastLikeResponseResult
 
-`func NewUserCastLikeResponseResult(reactor User, likes []ReactionWithCastMeta, next NextCursor, ) *UserCastLikeResponseResult`
+`func NewUserCastLikeResponseResult() *UserCastLikeResponseResult`
 
 NewUserCastLikeResponseResult instantiates a new UserCastLikeResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetReactor sets Reactor field to given value.
 
+### HasReactor
+
+`func (o *UserCastLikeResponseResult) HasReactor() bool`
+
+HasReactor returns a boolean if a field has been set.
 
 ### GetLikes
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetLikes sets Likes field to given value.
 
+### HasLikes
+
+`func (o *UserCastLikeResponseResult) HasLikes() bool`
+
+HasLikes returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *UserCastLikeResponseResult) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

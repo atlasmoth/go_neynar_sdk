@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Frame** | [**Frame**](Frame.md) |  | 
+**Frame** | Pointer to [**Frame**](Frame.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameFromUrl200Response
 
-`func NewFrameFromUrl200Response(frame Frame, ) *FrameFromUrl200Response`
+`func NewFrameFromUrl200Response() *FrameFromUrl200Response`
 
 NewFrameFromUrl200Response instantiates a new FrameFromUrl200Response object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFrame sets Frame field to given value.
 
+### HasFrame
+
+`func (o *FrameFromUrl200Response) HasFrame() bool`
+
+HasFrame returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

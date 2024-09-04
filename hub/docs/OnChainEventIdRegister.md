@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**ChainId** | **int32** |  | 
-**BlockNumber** | **int32** |  | 
-**BlockHash** | **string** |  | 
-**BlockTimestamp** | **int32** |  | 
-**TransactionHash** | **string** |  | 
-**LogIndex** | **int32** |  | 
-**TxIndex** | **int32** |  | 
-**Fid** | **int32** |  | 
-**IdRegisterEventBody** | [**IdRegisterEventBody**](IdRegisterEventBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**ChainId** | Pointer to **int32** |  | [optional] 
+**BlockNumber** | Pointer to **int32** |  | [optional] 
+**BlockHash** | Pointer to **string** |  | [optional] 
+**BlockTimestamp** | Pointer to **int32** |  | [optional] 
+**TransactionHash** | Pointer to **string** |  | [optional] 
+**LogIndex** | Pointer to **int32** |  | [optional] 
+**TxIndex** | Pointer to **int32** |  | [optional] 
+**Fid** | Pointer to **int32** |  | [optional] 
+**IdRegisterEventBody** | Pointer to [**IdRegisterEventBody**](IdRegisterEventBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewOnChainEventIdRegister
 
-`func NewOnChainEventIdRegister(type_ string, chainId int32, blockNumber int32, blockHash string, blockTimestamp int32, transactionHash string, logIndex int32, txIndex int32, fid int32, idRegisterEventBody IdRegisterEventBody, ) *OnChainEventIdRegister`
+`func NewOnChainEventIdRegister() *OnChainEventIdRegister`
 
 NewOnChainEventIdRegister instantiates a new OnChainEventIdRegister object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *OnChainEventIdRegister) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetChainId
 
@@ -73,6 +78,11 @@ and a boolean to check if the value has been set.
 
 SetChainId sets ChainId field to given value.
 
+### HasChainId
+
+`func (o *OnChainEventIdRegister) HasChainId() bool`
+
+HasChainId returns a boolean if a field has been set.
 
 ### GetBlockNumber
 
@@ -93,6 +103,11 @@ and a boolean to check if the value has been set.
 
 SetBlockNumber sets BlockNumber field to given value.
 
+### HasBlockNumber
+
+`func (o *OnChainEventIdRegister) HasBlockNumber() bool`
+
+HasBlockNumber returns a boolean if a field has been set.
 
 ### GetBlockHash
 
@@ -113,6 +128,11 @@ and a boolean to check if the value has been set.
 
 SetBlockHash sets BlockHash field to given value.
 
+### HasBlockHash
+
+`func (o *OnChainEventIdRegister) HasBlockHash() bool`
+
+HasBlockHash returns a boolean if a field has been set.
 
 ### GetBlockTimestamp
 
@@ -133,6 +153,11 @@ and a boolean to check if the value has been set.
 
 SetBlockTimestamp sets BlockTimestamp field to given value.
 
+### HasBlockTimestamp
+
+`func (o *OnChainEventIdRegister) HasBlockTimestamp() bool`
+
+HasBlockTimestamp returns a boolean if a field has been set.
 
 ### GetTransactionHash
 
@@ -153,6 +178,11 @@ and a boolean to check if the value has been set.
 
 SetTransactionHash sets TransactionHash field to given value.
 
+### HasTransactionHash
+
+`func (o *OnChainEventIdRegister) HasTransactionHash() bool`
+
+HasTransactionHash returns a boolean if a field has been set.
 
 ### GetLogIndex
 
@@ -173,6 +203,11 @@ and a boolean to check if the value has been set.
 
 SetLogIndex sets LogIndex field to given value.
 
+### HasLogIndex
+
+`func (o *OnChainEventIdRegister) HasLogIndex() bool`
+
+HasLogIndex returns a boolean if a field has been set.
 
 ### GetTxIndex
 
@@ -193,6 +228,11 @@ and a boolean to check if the value has been set.
 
 SetTxIndex sets TxIndex field to given value.
 
+### HasTxIndex
+
+`func (o *OnChainEventIdRegister) HasTxIndex() bool`
+
+HasTxIndex returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -213,6 +253,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *OnChainEventIdRegister) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetIdRegisterEventBody
 
@@ -233,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetIdRegisterEventBody sets IdRegisterEventBody field to given value.
 
+### HasIdRegisterEventBody
+
+`func (o *OnChainEventIdRegister) HasIdRegisterEventBody() bool`
+
+HasIdRegisterEventBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

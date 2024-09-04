@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **NullableInt32** |  | 
+**Fid** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
 ### NewCastParentAuthor
 
-`func NewCastParentAuthor(fid NullableInt32, ) *CastParentAuthor`
+`func NewCastParentAuthor() *CastParentAuthor`
 
 NewCastParentAuthor instantiates a new CastParentAuthor object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *CastParentAuthor) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### SetFidNil
 

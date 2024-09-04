@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**Fid** | **int32** | User identifier (unsigned integer) | 
+**Object** | Pointer to **string** |  | [optional] 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
 
 ## Methods
 
 ### NewUserDehydrated
 
-`func NewUserDehydrated(object string, fid int32, ) *UserDehydrated`
+`func NewUserDehydrated() *UserDehydrated`
 
 NewUserDehydrated instantiates a new UserDehydrated object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *UserDehydrated) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *UserDehydrated) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

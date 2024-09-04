@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NumMessages** | **int32** |  | 
-**NumFidEvents** | **int32** |  | 
-**NumFnameEvents** | **int32** |  | 
+**NumMessages** | Pointer to **int32** |  | [optional] 
+**NumFidEvents** | Pointer to **int32** |  | [optional] 
+**NumFnameEvents** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewDbStats
 
-`func NewDbStats(numMessages int32, numFidEvents int32, numFnameEvents int32, ) *DbStats`
+`func NewDbStats() *DbStats`
 
 NewDbStats instantiates a new DbStats object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetNumMessages sets NumMessages field to given value.
 
+### HasNumMessages
+
+`func (o *DbStats) HasNumMessages() bool`
+
+HasNumMessages returns a boolean if a field has been set.
 
 ### GetNumFidEvents
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetNumFidEvents sets NumFidEvents field to given value.
 
+### HasNumFidEvents
+
+`func (o *DbStats) HasNumFidEvents() bool`
+
+HasNumFidEvents returns a boolean if a field has been set.
 
 ### GetNumFnameEvents
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetNumFnameEvents sets NumFnameEvents field to given value.
 
+### HasNumFnameEvents
+
+`func (o *DbStats) HasNumFnameEvents() bool`
+
+HasNumFnameEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

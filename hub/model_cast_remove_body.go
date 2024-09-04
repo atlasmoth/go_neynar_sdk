@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastRemoveBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastRemoveBody{}
 
 // CastRemoveBody Removes an existing Cast
 type CastRemoveBody struct {
-	TargetHash string `json:"targetHash" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	AdditionalProperties map[string]interface{}
+	TargetHash *string `json:"targetHash,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 }
-
-type _CastRemoveBody CastRemoveBody
 
 // NewCastRemoveBody instantiates a new CastRemoveBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastRemoveBody(targetHash string) *CastRemoveBody {
+func NewCastRemoveBody() *CastRemoveBody {
 	this := CastRemoveBody{}
-	this.TargetHash = targetHash
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCastRemoveBodyWithDefaults() *CastRemoveBody {
 	return &this
 }
 
-// GetTargetHash returns the TargetHash field value
+// GetTargetHash returns the TargetHash field value if set, zero value otherwise.
 func (o *CastRemoveBody) GetTargetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.TargetHash) {
 		var ret string
 		return ret
 	}
-
-	return o.TargetHash
+	return *o.TargetHash
 }
 
-// GetTargetHashOk returns a tuple with the TargetHash field value
+// GetTargetHashOk returns a tuple with the TargetHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastRemoveBody) GetTargetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetHash) {
 		return nil, false
 	}
-	return &o.TargetHash, true
+	return o.TargetHash, true
 }
 
-// SetTargetHash sets field value
+// HasTargetHash returns a boolean if a field has been set.
+func (o *CastRemoveBody) HasTargetHash() bool {
+	if o != nil && !IsNil(o.TargetHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetHash gets a reference to the given string and assigns it to the TargetHash field.
 func (o *CastRemoveBody) SetTargetHash(v string) {
-	o.TargetHash = v
+	o.TargetHash = &v
 }
 
 func (o CastRemoveBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CastRemoveBody) MarshalJSON() ([]byte, error) {
 
 func (o CastRemoveBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["targetHash"] = o.TargetHash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.TargetHash) {
+		toSerialize["targetHash"] = o.TargetHash
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastRemoveBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"targetHash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastRemoveBody := _CastRemoveBody{}
-
-	err = json.Unmarshal(data, &varCastRemoveBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastRemoveBody(varCastRemoveBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "targetHash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastRemoveBody struct {

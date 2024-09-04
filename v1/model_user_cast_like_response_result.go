@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserCastLikeResponseResult type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &UserCastLikeResponseResult{}
 
 // UserCastLikeResponseResult struct for UserCastLikeResponseResult
 type UserCastLikeResponseResult struct {
-	Reactor User `json:"reactor"`
-	Likes []ReactionWithCastMeta `json:"likes"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Reactor *User `json:"reactor,omitempty"`
+	Likes []ReactionWithCastMeta `json:"likes,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _UserCastLikeResponseResult UserCastLikeResponseResult
 
 // NewUserCastLikeResponseResult instantiates a new UserCastLikeResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserCastLikeResponseResult(reactor User, likes []ReactionWithCastMeta, next NextCursor) *UserCastLikeResponseResult {
+func NewUserCastLikeResponseResult() *UserCastLikeResponseResult {
 	this := UserCastLikeResponseResult{}
-	this.Reactor = reactor
-	this.Likes = likes
-	this.Next = next
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewUserCastLikeResponseResultWithDefaults() *UserCastLikeResponseResult {
 	return &this
 }
 
-// GetReactor returns the Reactor field value
+// GetReactor returns the Reactor field value if set, zero value otherwise.
 func (o *UserCastLikeResponseResult) GetReactor() User {
-	if o == nil {
+	if o == nil || IsNil(o.Reactor) {
 		var ret User
 		return ret
 	}
-
-	return o.Reactor
+	return *o.Reactor
 }
 
-// GetReactorOk returns a tuple with the Reactor field value
+// GetReactorOk returns a tuple with the Reactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCastLikeResponseResult) GetReactorOk() (*User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Reactor) {
 		return nil, false
 	}
-	return &o.Reactor, true
+	return o.Reactor, true
 }
 
-// SetReactor sets field value
+// HasReactor returns a boolean if a field has been set.
+func (o *UserCastLikeResponseResult) HasReactor() bool {
+	if o != nil && !IsNil(o.Reactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactor gets a reference to the given User and assigns it to the Reactor field.
 func (o *UserCastLikeResponseResult) SetReactor(v User) {
-	o.Reactor = v
+	o.Reactor = &v
 }
 
-// GetLikes returns the Likes field value
+// GetLikes returns the Likes field value if set, zero value otherwise.
 func (o *UserCastLikeResponseResult) GetLikes() []ReactionWithCastMeta {
-	if o == nil {
+	if o == nil || IsNil(o.Likes) {
 		var ret []ReactionWithCastMeta
 		return ret
 	}
-
 	return o.Likes
 }
 
-// GetLikesOk returns a tuple with the Likes field value
+// GetLikesOk returns a tuple with the Likes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCastLikeResponseResult) GetLikesOk() ([]ReactionWithCastMeta, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Likes) {
 		return nil, false
 	}
 	return o.Likes, true
 }
 
-// SetLikes sets field value
+// HasLikes returns a boolean if a field has been set.
+func (o *UserCastLikeResponseResult) HasLikes() bool {
+	if o != nil && !IsNil(o.Likes) {
+		return true
+	}
+
+	return false
+}
+
+// SetLikes gets a reference to the given []ReactionWithCastMeta and assigns it to the Likes field.
 func (o *UserCastLikeResponseResult) SetLikes(v []ReactionWithCastMeta) {
 	o.Likes = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *UserCastLikeResponseResult) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCastLikeResponseResult) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *UserCastLikeResponseResult) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *UserCastLikeResponseResult) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o UserCastLikeResponseResult) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o UserCastLikeResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o UserCastLikeResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["reactor"] = o.Reactor
-	toSerialize["likes"] = o.Likes
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Reactor) {
+		toSerialize["reactor"] = o.Reactor
 	}
-
+	if !IsNil(o.Likes) {
+		toSerialize["likes"] = o.Likes
+	}
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *UserCastLikeResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"reactor",
-		"likes",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserCastLikeResponseResult := _UserCastLikeResponseResult{}
-
-	err = json.Unmarshal(data, &varUserCastLikeResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserCastLikeResponseResult(varUserCastLikeResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reactor")
-		delete(additionalProperties, "likes")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserCastLikeResponseResult struct {

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**Code** | **string** |  | 
-**Errors** | [**[]ZodErrorErrorsInner**](ZodErrorErrorsInner.md) |  | 
+**Message** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **string** |  | [optional] 
+**Errors** | Pointer to [**[]ZodErrorErrorsInner**](ZodErrorErrorsInner.md) |  | [optional] 
 **Property** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int32** |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewFeedTrending400Response
 
-`func NewFeedTrending400Response(message string, code string, errors []ZodErrorErrorsInner, ) *FeedTrending400Response`
+`func NewFeedTrending400Response() *FeedTrending400Response`
 
 NewFeedTrending400Response instantiates a new FeedTrending400Response object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *FeedTrending400Response) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
+
+`func (o *FeedTrending400Response) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 ### GetErrors
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetErrors sets Errors field to given value.
 
+### HasErrors
+
+`func (o *FeedTrending400Response) HasErrors() bool`
+
+HasErrors returns a boolean if a field has been set.
 
 ### GetProperty
 

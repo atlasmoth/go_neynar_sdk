@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserDataBody type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,18 @@ var _ MappedNullable = &UserDataBody{}
 
 // UserDataBody Adds metadata about a user
 type UserDataBody struct {
-	Type UserDataType `json:"type"`
-	Value string `json:"value"`
-	AdditionalProperties map[string]interface{}
+	Type *UserDataType `json:"type,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
-
-type _UserDataBody UserDataBody
 
 // NewUserDataBody instantiates a new UserDataBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserDataBody(type_ UserDataType, value string) *UserDataBody {
+func NewUserDataBody() *UserDataBody {
 	this := UserDataBody{}
-	this.Type = type_
-	this.Value = value
+	var type_ UserDataType = USERDATATYPE_PFP
+	this.Type = &type_
 	return &this
 }
 
@@ -44,56 +40,72 @@ func NewUserDataBody(type_ UserDataType, value string) *UserDataBody {
 func NewUserDataBodyWithDefaults() *UserDataBody {
 	this := UserDataBody{}
 	var type_ UserDataType = USERDATATYPE_PFP
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *UserDataBody) GetType() UserDataType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret UserDataType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserDataBody) GetTypeOk() (*UserDataType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *UserDataBody) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given UserDataType and assigns it to the Type field.
 func (o *UserDataBody) SetType(v UserDataType) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *UserDataBody) GetValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-
-	return o.Value
+	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserDataBody) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *UserDataBody) HasValue() bool {
+	if o != nil && !IsNil(o.Value) {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
 func (o *UserDataBody) SetValue(v string) {
-	o.Value = v
+	o.Value = &v
 }
 
 func (o UserDataBody) MarshalJSON() ([]byte, error) {
@@ -106,58 +118,13 @@ func (o UserDataBody) MarshalJSON() ([]byte, error) {
 
 func (o UserDataBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["value"] = o.Value
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
 	return toSerialize, nil
-}
-
-func (o *UserDataBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"value",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserDataBody := _UserDataBody{}
-
-	err = json.Unmarshal(data, &varUserDataBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserDataBody(varUserDataBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "value")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserDataBody struct {

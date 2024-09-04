@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**SubscriptionId** | **string** |  | 
-**Filters** | [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**SubscriptionId** | Pointer to **string** |  | [optional] 
+**Filters** | Pointer to [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewWebhookSubscription
 
-`func NewWebhookSubscription(object string, subscriptionId string, filters WebhookSubscriptionFilters, createdAt time.Time, updatedAt time.Time, ) *WebhookSubscription`
+`func NewWebhookSubscription() *WebhookSubscription`
 
 NewWebhookSubscription instantiates a new WebhookSubscription object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *WebhookSubscription) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetSubscriptionId
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetSubscriptionId sets SubscriptionId field to given value.
 
+### HasSubscriptionId
+
+`func (o *WebhookSubscription) HasSubscriptionId() bool`
+
+HasSubscriptionId returns a boolean if a field has been set.
 
 ### GetFilters
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetFilters sets Filters field to given value.
 
+### HasFilters
+
+`func (o *WebhookSubscription) HasFilters() bool`
+
+HasFilters returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *WebhookSubscription) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
+
+`func (o *WebhookSubscription) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

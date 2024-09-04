@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
+**Object** | Pointer to **string** |  | [optional] 
 **ProviderName** | Pointer to **string** |  | [optional] 
-**ContractAddress** | **string** |  | 
-**Chain** | **int32** |  | 
-**Metadata** | [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | 
-**OwnerAddress** | **string** |  | 
-**Price** | [**SubscriptionPrice**](SubscriptionPrice.md) |  | 
+**ContractAddress** | Pointer to **string** |  | [optional] 
+**Chain** | Pointer to **int32** |  | [optional] 
+**Metadata** | Pointer to [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | [optional] 
+**OwnerAddress** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to [**SubscriptionPrice**](SubscriptionPrice.md) |  | [optional] 
 **Tiers** | Pointer to [**[]SubscriptionTier**](SubscriptionTier.md) |  | [optional] 
-**ProtocolVersion** | **int32** |  | 
-**Token** | [**SubscriptionToken**](SubscriptionToken.md) |  | 
-**ExpiresAt** | **time.Time** |  | 
-**SubscribedAt** | **time.Time** |  | 
-**Tier** | [**SubscriptionTier**](SubscriptionTier.md) |  | 
-**Creator** | [**User**](User.md) |  | 
+**ProtocolVersion** | Pointer to **int32** |  | [optional] 
+**Token** | Pointer to [**SubscriptionToken**](SubscriptionToken.md) |  | [optional] 
+**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
+**SubscribedAt** | Pointer to **time.Time** |  | [optional] 
+**Tier** | Pointer to [**SubscriptionTier**](SubscriptionTier.md) |  | [optional] 
+**Creator** | Pointer to [**User**](User.md) |  | [optional] 
 
 ## Methods
 
 ### NewSubscribedTo
 
-`func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User, ) *SubscribedTo`
+`func NewSubscribedTo() *SubscribedTo`
 
 NewSubscribedTo instantiates a new SubscribedTo object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +57,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *SubscribedTo) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetProviderName
 
@@ -102,6 +107,11 @@ and a boolean to check if the value has been set.
 
 SetContractAddress sets ContractAddress field to given value.
 
+### HasContractAddress
+
+`func (o *SubscribedTo) HasContractAddress() bool`
+
+HasContractAddress returns a boolean if a field has been set.
 
 ### GetChain
 
@@ -122,6 +132,11 @@ and a boolean to check if the value has been set.
 
 SetChain sets Chain field to given value.
 
+### HasChain
+
+`func (o *SubscribedTo) HasChain() bool`
+
+HasChain returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -142,6 +157,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *SubscribedTo) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetOwnerAddress
 
@@ -162,6 +182,11 @@ and a boolean to check if the value has been set.
 
 SetOwnerAddress sets OwnerAddress field to given value.
 
+### HasOwnerAddress
+
+`func (o *SubscribedTo) HasOwnerAddress() bool`
+
+HasOwnerAddress returns a boolean if a field has been set.
 
 ### GetPrice
 
@@ -182,6 +207,11 @@ and a boolean to check if the value has been set.
 
 SetPrice sets Price field to given value.
 
+### HasPrice
+
+`func (o *SubscribedTo) HasPrice() bool`
+
+HasPrice returns a boolean if a field has been set.
 
 ### GetTiers
 
@@ -227,6 +257,11 @@ and a boolean to check if the value has been set.
 
 SetProtocolVersion sets ProtocolVersion field to given value.
 
+### HasProtocolVersion
+
+`func (o *SubscribedTo) HasProtocolVersion() bool`
+
+HasProtocolVersion returns a boolean if a field has been set.
 
 ### GetToken
 
@@ -247,6 +282,11 @@ and a boolean to check if the value has been set.
 
 SetToken sets Token field to given value.
 
+### HasToken
+
+`func (o *SubscribedTo) HasToken() bool`
+
+HasToken returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -267,6 +307,11 @@ and a boolean to check if the value has been set.
 
 SetExpiresAt sets ExpiresAt field to given value.
 
+### HasExpiresAt
+
+`func (o *SubscribedTo) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetSubscribedAt
 
@@ -287,6 +332,11 @@ and a boolean to check if the value has been set.
 
 SetSubscribedAt sets SubscribedAt field to given value.
 
+### HasSubscribedAt
+
+`func (o *SubscribedTo) HasSubscribedAt() bool`
+
+HasSubscribedAt returns a boolean if a field has been set.
 
 ### GetTier
 
@@ -307,6 +357,11 @@ and a boolean to check if the value has been set.
 
 SetTier sets Tier field to given value.
 
+### HasTier
+
+`func (o *SubscribedTo) HasTier() bool`
+
+HasTier returns a boolean if a field has been set.
 
 ### GetCreator
 
@@ -327,6 +382,11 @@ and a boolean to check if the value has been set.
 
 SetCreator sets Creator field to given value.
 
+### HasCreator
+
+`func (o *SubscribedTo) HasCreator() bool`
+
+HasCreator returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

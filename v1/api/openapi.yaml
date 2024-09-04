@@ -49,7 +49,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -58,7 +58,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -78,18 +78,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserResponse'
           description: Successful operation.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
       summary: DEPRECATED - Get User Information by FID
       tags:
       - User
@@ -105,7 +105,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -114,7 +114,7 @@ paths:
         explode: true
         in: query
         name: username
-        required: true
+        required: false
         schema:
           default: shreyas-chorge
           type: string
@@ -163,7 +163,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -172,7 +172,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -232,7 +232,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -296,7 +296,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -305,7 +305,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -338,7 +338,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -347,7 +347,7 @@ paths:
         explode: true
         in: query
         name: hash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -390,7 +390,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -399,7 +399,7 @@ paths:
         explode: true
         in: query
         name: threadHash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -435,7 +435,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -444,7 +444,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -514,7 +514,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -576,7 +576,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -585,7 +585,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -621,7 +621,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -629,7 +629,7 @@ paths:
       - explode: true
         in: query
         name: address
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Address'
         style: form
@@ -661,7 +661,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -670,7 +670,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -719,7 +719,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -729,7 +729,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -791,7 +791,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -800,7 +800,7 @@ paths:
         explode: true
         in: query
         name: castHash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -861,7 +861,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -870,7 +870,7 @@ paths:
         explode: true
         in: query
         name: castHash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -931,7 +931,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -940,7 +940,7 @@ paths:
         explode: true
         in: query
         name: castHash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -1000,7 +1000,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1010,7 +1010,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1071,7 +1071,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1081,7 +1081,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1137,7 +1137,7 @@ components:
       explode: false
       in: header
       name: api_key
-      required: true
+      required: false
       schema:
         default: NEYNAR_API_DOCS
         type: string
@@ -1171,9 +1171,6 @@ components:
           type: boolean
         recasted:
           type: boolean
-      required:
-      - followedBy
-      - following
       type: object
     Fid:
       default: 3
@@ -1229,8 +1226,6 @@ components:
           type: string
         property:
           type: string
-      required:
-      - message
       type: object
     User:
       example:
@@ -1292,17 +1287,6 @@ components:
           $ref: '#/components/schemas/ActiveStatus'
         viewerContext:
           $ref: '#/components/schemas/ViewerContext'
-      required:
-      - activeStatus
-      - custodyAddress
-      - displayName
-      - fid
-      - followerCount
-      - followingCount
-      - pfp
-      - profile
-      - username
-      - verifications
       type: object
     Reactor:
       example:
@@ -1339,13 +1323,6 @@ components:
           type: integer
         viewerContext:
           $ref: '#/components/schemas/Reactor_viewerContext'
-      required:
-      - displayName
-      - fid
-      - followerCount
-      - followingCount
-      - pfp
-      - username
       type: object
     Recaster:
       example:
@@ -1394,15 +1371,6 @@ components:
           type: string
         viewerContext:
           $ref: '#/components/schemas/Recaster_viewerContext'
-      required:
-      - displayName
-      - fid
-      - followerCount
-      - followingCount
-      - pfp
-      - profile
-      - timestamp
-      - username
       type: object
     EmbedUrl:
       example:
@@ -1410,8 +1378,6 @@ components:
       properties:
         url:
           type: string
-      required:
-      - url
       type: object
     ReactionWithCastMeta:
       description: "Reaction of a user (either like or recast), along with its associated\
@@ -1462,8 +1428,6 @@ components:
           $ref: '#/components/schemas/ReactionWithCastMeta_cast'
         cast_author:
           $ref: '#/components/schemas/User'
-      required:
-      - reaction
       type: object
     Reaction:
       example:
@@ -1498,12 +1462,6 @@ components:
           default: 0xfe90f9de682273e05b201629ad2338bdcd89b6be
           description: Cast Hash
           type: string
-      required:
-      - castHash
-      - hash
-      - reactor
-      - timestamp
-      - type
       type: object
     Cast:
       properties:
@@ -1536,17 +1494,6 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/CastType'
-      required:
-      - author
-      - embeds
-      - hash
-      - mentionedProfiles
-      - parentAuthor
-      - parentHash
-      - parentUrl
-      - text
-      - threadHash
-      - timestamp
       type: object
     CastWithInteractionsReactions:
       example:
@@ -1569,10 +1516,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - count
-      - fids
-      - fnames
       type: object
     CastWithInteractionsRecasts:
       example:
@@ -1588,9 +1531,6 @@ components:
           items:
             $ref: '#/components/schemas/Fid'
           type: array
-      required:
-      - count
-      - fids
       type: object
     CastWithInteractionsReplies:
       example:
@@ -1599,8 +1539,6 @@ components:
         count:
           format: int32
           type: integer
-      required:
-      - count
       type: object
     CastWithInteractions:
       allOf:
@@ -1618,11 +1556,6 @@ components:
             $ref: '#/components/schemas/ViewerContext'
           replies:
             $ref: '#/components/schemas/CastWithInteractionsReplies'
-        required:
-        - reactions
-        - recasters
-        - recasts
-        - replies
       example:
         threadHash: threadHash
         recasts:
@@ -1739,8 +1672,6 @@ components:
         cursor:
           nullable: true
           type: string
-      required:
-      - cursor
       type: object
     ReactionsAndRecastsNotification:
       allOf:
@@ -1995,8 +1926,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserCastLikeResponse_result'
-      required:
-      - result
       type: object
     RecentUsersResponse:
       example:
@@ -2053,8 +1982,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/RecentUsersResponse_result'
-      required:
-      - result
       type: object
     CastResponse:
       example:
@@ -2169,8 +2096,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastResponse_result'
-      required:
-      - result
       type: object
     AllCastsInThreadResponse:
       example:
@@ -2391,8 +2316,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/AllCastsInThreadResponse_result'
-      required:
-      - result
       type: object
     CastsResponse:
       example:
@@ -2615,8 +2538,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastsResponse_result'
-      required:
-      - result
       type: object
     RecentCastsResponse:
       example:
@@ -2839,8 +2760,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastsResponse_result'
-      required:
-      - result
       type: object
     VerificationResponse:
       example:
@@ -2854,8 +2773,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/VerificationResponse_result'
-      required:
-      - result
       type: object
     MentionsAndRepliesResponse:
       example:
@@ -3078,8 +2995,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/MentionsAndRepliesResponse_result'
-      required:
-      - result
       type: object
     ReactionsAndRecastsResponse:
       example:
@@ -3352,8 +3267,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/ReactionsAndRecastsResponse_result'
-      required:
-      - result
       type: object
     CustodyAddressResponse:
       example:
@@ -3363,8 +3276,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CustodyAddressResponse_result'
-      required:
-      - result
       type: object
     CastLikesResponse:
       example:
@@ -3405,8 +3316,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastLikesResponse_result'
-      required:
-      - result
       type: object
     CastReactionsResponse:
       example:
@@ -3447,8 +3356,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastReactionsResponse_result'
-      required:
-      - result
       type: object
     CastRecasterResponse:
       example:
@@ -3493,8 +3400,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastRecasterResponse_result'
-      required:
-      - result
       type: object
     FollowResponseUser:
       allOf:
@@ -3503,8 +3408,6 @@ components:
           timestamp:
             format: date-time
             type: string
-        required:
-        - timestamp
       example:
         fid: 0
         custodyAddress: custodyAddress
@@ -3587,8 +3490,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/FollowResponse_result'
-      required:
-      - result
       type: object
     UserResponse:
       example:
@@ -3620,8 +3521,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserResponse_result'
-      required:
-      - result
       type: object
     User_pfp:
       example:
@@ -3630,8 +3529,6 @@ components:
         url:
           description: The URL of the user's profile picture.
           type: string
-      required:
-      - url
       type: object
     User_profile_bio:
       example:
@@ -3647,9 +3544,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - mentionedProfiles
-      - text
       type: object
     User_profile:
       example:
@@ -3661,8 +3555,6 @@ components:
       properties:
         bio:
           $ref: '#/components/schemas/User_profile_bio'
-      required:
-      - bio
       type: object
     Reactor_pfp:
       example:
@@ -3671,8 +3563,6 @@ components:
         url:
           description: The URL of the reactor's profile picture.
           type: string
-      required:
-      - url
       type: object
     Reactor_viewerContext:
       example:
@@ -3685,9 +3575,6 @@ components:
         followedBy:
           description: Indicates if the reactor is followed by the viewer.
           type: boolean
-      required:
-      - followedBy
-      - following
       type: object
     Recaster_pfp:
       example:
@@ -3696,8 +3583,6 @@ components:
         url:
           description: The URL of the recaster's profile picture.
           type: string
-      required:
-      - url
       type: object
     Recaster_profile_bio:
       example:
@@ -3713,9 +3598,6 @@ components:
             properties: {}
             type: string
           type: array
-      required:
-      - mentions
-      - text
       type: object
     Recaster_profile:
       example:
@@ -3727,8 +3609,6 @@ components:
       properties:
         bio:
           $ref: '#/components/schemas/Recaster_profile_bio'
-      required:
-      - bio
       type: object
     Recaster_viewerContext:
       example:
@@ -3741,9 +3621,6 @@ components:
         followedBy:
           description: Indicates if the recaster is followed by the viewer.
           type: boolean
-      required:
-      - followedBy
-      - following
       type: object
     ReactionWithCastMeta_reaction:
       example:
@@ -3767,12 +3644,6 @@ components:
         reaction_timestamp:
           format: date-time
           type: string
-      required:
-      - reaction_hash
-      - reaction_target_hash
-      - reaction_timestamp
-      - reaction_type
-      - reactor_fid
       type: object
     ReactionWithCastMeta_cast:
       example:
@@ -3800,12 +3671,6 @@ components:
         cast_timestamp:
           format: date-time
           type: string
-      required:
-      - cast_embeds
-      - cast_fid
-      - cast_hash
-      - cast_text
-      - cast_timestamp
       type: object
     Cast_parentAuthor:
       allOf:
@@ -3814,8 +3679,6 @@ components:
           fid:
             nullable: true
             type: string
-        required:
-        - fid
       example:
         fid: fid
       type: object
@@ -3823,8 +3686,6 @@ components:
       properties:
         fid:
           type: string
-      required:
-      - fid
       type: object
     Cast_author:
       oneOf:
@@ -3944,10 +3805,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - likes
-      - next
-      - reactor
       type: object
     RecentUsersResponse_result:
       example:
@@ -4007,9 +3864,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - users
       type: object
     CastResponse_result:
       example:
@@ -4123,8 +3977,6 @@ components:
       properties:
         cast:
           $ref: '#/components/schemas/CastWithInteractions'
-      required:
-      - cast
       type: object
     AllCastsInThreadResponse_result:
       example:
@@ -4346,8 +4198,6 @@ components:
           items:
             $ref: '#/components/schemas/CastWithInteractions'
           type: array
-      required:
-      - casts
       type: object
     CastsResponse_result:
       example:
@@ -4573,9 +4423,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - casts
-      - next
       type: object
     VerificationResponse_result:
       example:
@@ -4596,11 +4443,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - display_name
-      - fid
-      - username
-      - verifications
       type: object
     MentionsAndRepliesResponse_result:
       example:
@@ -4826,9 +4668,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - notifications
       type: object
     ReactionsAndRecastsResponse_result:
       example:
@@ -5104,9 +4943,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - notifications
       type: object
     CustodyAddressResponse_result:
       example:
@@ -5121,9 +4957,6 @@ components:
         custodyAddress:
           nullable: true
           type: string
-      required:
-      - custodyAddress
-      - fid
       type: object
     CastLikesResponse_result:
       example:
@@ -5167,9 +5000,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - likes
-      - next
       type: object
     CastReactionsResponse_result:
       example:
@@ -5213,9 +5043,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - casts
-      - next
       type: object
     CastRecasterResponse_result:
       example:
@@ -5263,9 +5090,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - users
       type: object
     FollowResponse_result:
       example:
@@ -5327,9 +5151,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - users
       type: object
     UserResponse_result:
       example:
@@ -5360,6 +5181,4 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/User'
-      required:
-      - user
       type: object

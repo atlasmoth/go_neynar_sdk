@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CastId** | [**CastId**](CastId.md) |  | 
+**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 
 ## Methods
 
 ### NewCastEmbed
 
-`func NewCastEmbed(castId CastId, ) *CastEmbed`
+`func NewCastEmbed() *CastEmbed`
 
 NewCastEmbed instantiates a new CastEmbed object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetCastId sets CastId field to given value.
 
+### HasCastId
+
+`func (o *CastEmbed) HasCastId() bool`
+
+HasCastId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

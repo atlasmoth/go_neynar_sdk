@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputTexts** | [**[]FrameValidateAnalyticsInputTextInputTextsInner**](FrameValidateAnalyticsInputTextInputTextsInner.md) |  | 
+**InputTexts** | Pointer to [**[]FrameValidateAnalyticsInputTextInputTextsInner**](FrameValidateAnalyticsInputTextInputTextsInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInputText
 
-`func NewFrameValidateAnalyticsInputText(inputTexts []FrameValidateAnalyticsInputTextInputTextsInner, ) *FrameValidateAnalyticsInputText`
+`func NewFrameValidateAnalyticsInputText() *FrameValidateAnalyticsInputText`
 
 NewFrameValidateAnalyticsInputText instantiates a new FrameValidateAnalyticsInputText object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetInputTexts sets InputTexts field to given value.
 
+### HasInputTexts
+
+`func (o *FrameValidateAnalyticsInputText) HasInputTexts() bool`
+
+HasInputTexts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

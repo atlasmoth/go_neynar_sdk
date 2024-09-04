@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MessageDataLink type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,20 @@ var _ MappedNullable = &MessageDataLink{}
 
 // MessageDataLink struct for MessageDataLink
 type MessageDataLink struct {
-	Fid int32 `json:"fid"`
-	Timestamp int64 `json:"timestamp"`
-	Network FarcasterNetwork `json:"network"`
-	LinkBody LinkBody `json:"linkBody"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	Network *FarcasterNetwork `json:"network,omitempty"`
+	LinkBody *LinkBody `json:"linkBody,omitempty"`
 }
-
-type _MessageDataLink MessageDataLink
 
 // NewMessageDataLink instantiates a new MessageDataLink object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataLink(fid int32, timestamp int64, network FarcasterNetwork, linkBody LinkBody) *MessageDataLink {
+func NewMessageDataLink() *MessageDataLink {
 	this := MessageDataLink{}
-	this.Fid = fid
-	this.Timestamp = timestamp
-	this.Network = network
-	this.LinkBody = linkBody
+	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
+	this.Network = &network
 	return &this
 }
 
@@ -48,104 +42,136 @@ func NewMessageDataLink(fid int32, timestamp int64, network FarcasterNetwork, li
 func NewMessageDataLinkWithDefaults() *MessageDataLink {
 	this := MessageDataLink{}
 	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
-	this.Network = network
+	this.Network = &network
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *MessageDataLink) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataLink) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *MessageDataLink) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *MessageDataLink) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *MessageDataLink) GetTimestamp() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int64
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataLink) GetTimestampOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *MessageDataLink) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
 func (o *MessageDataLink) SetTimestamp(v int64) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetNetwork returns the Network field value
+// GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *MessageDataLink) GetNetwork() FarcasterNetwork {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		var ret FarcasterNetwork
 		return ret
 	}
-
-	return o.Network
+	return *o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataLink) GetNetworkOk() (*FarcasterNetwork, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
-	return &o.Network, true
+	return o.Network, true
 }
 
-// SetNetwork sets field value
+// HasNetwork returns a boolean if a field has been set.
+func (o *MessageDataLink) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given FarcasterNetwork and assigns it to the Network field.
 func (o *MessageDataLink) SetNetwork(v FarcasterNetwork) {
-	o.Network = v
+	o.Network = &v
 }
 
-// GetLinkBody returns the LinkBody field value
+// GetLinkBody returns the LinkBody field value if set, zero value otherwise.
 func (o *MessageDataLink) GetLinkBody() LinkBody {
-	if o == nil {
+	if o == nil || IsNil(o.LinkBody) {
 		var ret LinkBody
 		return ret
 	}
-
-	return o.LinkBody
+	return *o.LinkBody
 }
 
-// GetLinkBodyOk returns a tuple with the LinkBody field value
+// GetLinkBodyOk returns a tuple with the LinkBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataLink) GetLinkBodyOk() (*LinkBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinkBody) {
 		return nil, false
 	}
-	return &o.LinkBody, true
+	return o.LinkBody, true
 }
 
-// SetLinkBody sets field value
+// HasLinkBody returns a boolean if a field has been set.
+func (o *MessageDataLink) HasLinkBody() bool {
+	if o != nil && !IsNil(o.LinkBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkBody gets a reference to the given LinkBody and assigns it to the LinkBody field.
 func (o *MessageDataLink) SetLinkBody(v LinkBody) {
-	o.LinkBody = v
+	o.LinkBody = &v
 }
 
 func (o MessageDataLink) MarshalJSON() ([]byte, error) {
@@ -158,64 +184,19 @@ func (o MessageDataLink) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataLink) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["network"] = o.Network
-	toSerialize["linkBody"] = o.LinkBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.LinkBody) {
+		toSerialize["linkBody"] = o.LinkBody
+	}
 	return toSerialize, nil
-}
-
-func (o *MessageDataLink) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"timestamp",
-		"network",
-		"linkBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMessageDataLink := _MessageDataLink{}
-
-	err = json.Unmarshal(data, &varMessageDataLink)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MessageDataLink(varMessageDataLink)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "network")
-		delete(additionalProperties, "linkBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMessageDataLink struct {

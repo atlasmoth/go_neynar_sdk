@@ -7,19 +7,19 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **Image** | Pointer to **string** |  | [optional] 
-**Button** | [**FrameActionButton**](FrameActionButton.md) |  | 
+**Button** | Pointer to [**FrameActionButton**](FrameActionButton.md) |  | [optional] 
 **Input** | Pointer to [**FrameInput**](FrameInput.md) |  | [optional] 
 **State** | Pointer to [**FrameState**](FrameState.md) |  | [optional] 
 **Transaction** | Pointer to [**FrameTransaction**](FrameTransaction.md) |  | [optional] 
 **Address** | Pointer to **string** | The connected wallet address of the interacting user. | [optional] 
-**FramesUrl** | **string** | URL of the frames | 
-**PostUrl** | **string** | URL of the post to get the next frame | 
+**FramesUrl** | Pointer to **string** | URL of the frames | [optional] 
+**PostUrl** | Pointer to **string** | URL of the post to get the next frame | [optional] 
 
 ## Methods
 
 ### NewFrameAction
 
-`func NewFrameAction(button FrameActionButton, framesUrl string, postUrl string, ) *FrameAction`
+`func NewFrameAction() *FrameAction`
 
 NewFrameAction instantiates a new FrameAction object
 This constructor will assign default values to properties that have it defined,
@@ -128,6 +128,11 @@ and a boolean to check if the value has been set.
 
 SetButton sets Button field to given value.
 
+### HasButton
+
+`func (o *FrameAction) HasButton() bool`
+
+HasButton returns a boolean if a field has been set.
 
 ### GetInput
 
@@ -248,6 +253,11 @@ and a boolean to check if the value has been set.
 
 SetFramesUrl sets FramesUrl field to given value.
 
+### HasFramesUrl
+
+`func (o *FrameAction) HasFramesUrl() bool`
+
+HasFramesUrl returns a boolean if a field has been set.
 
 ### GetPostUrl
 
@@ -268,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetPostUrl sets PostUrl field to given value.
 
+### HasPostUrl
+
+`func (o *FrameAction) HasPostUrl() bool`
+
+HasPostUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

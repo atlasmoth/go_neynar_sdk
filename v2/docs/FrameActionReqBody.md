@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
 **CastHash** | Pointer to **string** | Cast Hash | [optional] [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
-**Action** | [**FrameAction**](FrameAction.md) |  | 
+**Action** | Pointer to [**FrameAction**](FrameAction.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameActionReqBody
 
-`func NewFrameActionReqBody(signerUuid string, action FrameAction, ) *FrameActionReqBody`
+`func NewFrameActionReqBody() *FrameActionReqBody`
 
 NewFrameActionReqBody instantiates a new FrameActionReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *FrameActionReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetCastHash
 
@@ -91,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetAction sets Action field to given value.
 
+### HasAction
+
+`func (o *FrameActionReqBody) HasAction() bool`
+
+HasAction returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastWithInteractionsReplies type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastWithInteractionsReplies{}
 
 // CastWithInteractionsReplies struct for CastWithInteractionsReplies
 type CastWithInteractionsReplies struct {
-	Count int32 `json:"count"`
-	AdditionalProperties map[string]interface{}
+	Count *int32 `json:"count,omitempty"`
 }
-
-type _CastWithInteractionsReplies CastWithInteractionsReplies
 
 // NewCastWithInteractionsReplies instantiates a new CastWithInteractionsReplies object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsReplies(count int32) *CastWithInteractionsReplies {
+func NewCastWithInteractionsReplies() *CastWithInteractionsReplies {
 	this := CastWithInteractionsReplies{}
-	this.Count = count
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCastWithInteractionsRepliesWithDefaults() *CastWithInteractionsReplies {
 	return &this
 }
 
-// GetCount returns the Count field value
+// GetCount returns the Count field value if set, zero value otherwise.
 func (o *CastWithInteractionsReplies) GetCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
-
-	return o.Count
+	return *o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsReplies) GetCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
-	return &o.Count, true
+	return o.Count, true
 }
 
-// SetCount sets field value
+// HasCount returns a boolean if a field has been set.
+func (o *CastWithInteractionsReplies) HasCount() bool {
+	if o != nil && !IsNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
 func (o *CastWithInteractionsReplies) SetCount(v int32) {
-	o.Count = v
+	o.Count = &v
 }
 
 func (o CastWithInteractionsReplies) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CastWithInteractionsReplies) MarshalJSON() ([]byte, error) {
 
 func (o CastWithInteractionsReplies) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["count"] = o.Count
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastWithInteractionsReplies) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"count",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastWithInteractionsReplies := _CastWithInteractionsReplies{}
-
-	err = json.Unmarshal(data, &varCastWithInteractionsReplies)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastWithInteractionsReplies(varCastWithInteractionsReplies)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "count")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastWithInteractionsReplies struct {

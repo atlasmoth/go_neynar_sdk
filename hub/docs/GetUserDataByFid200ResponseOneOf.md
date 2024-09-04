@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Messages** | [**[]UserDataAdd**](UserDataAdd.md) |  | 
-**NextPageToken** | **string** |  | 
+**Messages** | Pointer to [**[]UserDataAdd**](UserDataAdd.md) |  | [optional] 
+**NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewGetUserDataByFid200ResponseOneOf
 
-`func NewGetUserDataByFid200ResponseOneOf(messages []UserDataAdd, nextPageToken string, ) *GetUserDataByFid200ResponseOneOf`
+`func NewGetUserDataByFid200ResponseOneOf() *GetUserDataByFid200ResponseOneOf`
 
 NewGetUserDataByFid200ResponseOneOf instantiates a new GetUserDataByFid200ResponseOneOf object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetMessages sets Messages field to given value.
 
+### HasMessages
+
+`func (o *GetUserDataByFid200ResponseOneOf) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageToken sets NextPageToken field to given value.
 
+### HasNextPageToken
+
+`func (o *GetUserDataByFid200ResponseOneOf) HasNextPageToken() bool`
+
+HasNextPageToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

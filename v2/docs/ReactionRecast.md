@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | 
-**Fname** | **string** |  | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**Fname** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewReactionRecast
 
-`func NewReactionRecast(fid int32, fname string, ) *ReactionRecast`
+`func NewReactionRecast() *ReactionRecast`
 
 NewReactionRecast instantiates a new ReactionRecast object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *ReactionRecast) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetFname
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetFname sets Fname field to given value.
 
+### HasFname
+
+`func (o *ReactionRecast) HasFname() bool`
+
+HasFname returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

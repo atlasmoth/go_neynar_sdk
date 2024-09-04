@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ValidateFrameActionResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ValidateFrameActionResponse{}
 
 // ValidateFrameActionResponse struct for ValidateFrameActionResponse
 type ValidateFrameActionResponse struct {
-	Valid bool `json:"valid"`
-	Action ValidatedFrameAction `json:"action"`
-	AdditionalProperties map[string]interface{}
+	Valid *bool `json:"valid,omitempty"`
+	Action *ValidatedFrameAction `json:"action,omitempty"`
 }
-
-type _ValidateFrameActionResponse ValidateFrameActionResponse
 
 // NewValidateFrameActionResponse instantiates a new ValidateFrameActionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidateFrameActionResponse(valid bool, action ValidatedFrameAction) *ValidateFrameActionResponse {
+func NewValidateFrameActionResponse() *ValidateFrameActionResponse {
 	this := ValidateFrameActionResponse{}
-	this.Valid = valid
-	this.Action = action
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewValidateFrameActionResponseWithDefaults() *ValidateFrameActionResponse {
 	return &this
 }
 
-// GetValid returns the Valid field value
+// GetValid returns the Valid field value if set, zero value otherwise.
 func (o *ValidateFrameActionResponse) GetValid() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
-
-	return o.Valid
+	return *o.Valid
 }
 
-// GetValidOk returns a tuple with the Valid field value
+// GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidateFrameActionResponse) GetValidOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
-	return &o.Valid, true
+	return o.Valid, true
 }
 
-// SetValid sets field value
+// HasValid returns a boolean if a field has been set.
+func (o *ValidateFrameActionResponse) HasValid() bool {
+	if o != nil && !IsNil(o.Valid) {
+		return true
+	}
+
+	return false
+}
+
+// SetValid gets a reference to the given bool and assigns it to the Valid field.
 func (o *ValidateFrameActionResponse) SetValid(v bool) {
-	o.Valid = v
+	o.Valid = &v
 }
 
-// GetAction returns the Action field value
+// GetAction returns the Action field value if set, zero value otherwise.
 func (o *ValidateFrameActionResponse) GetAction() ValidatedFrameAction {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret ValidatedFrameAction
 		return ret
 	}
-
-	return o.Action
+	return *o.Action
 }
 
-// GetActionOk returns a tuple with the Action field value
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidateFrameActionResponse) GetActionOk() (*ValidatedFrameAction, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
-	return &o.Action, true
+	return o.Action, true
 }
 
-// SetAction sets field value
+// HasAction returns a boolean if a field has been set.
+func (o *ValidateFrameActionResponse) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given ValidatedFrameAction and assigns it to the Action field.
 func (o *ValidateFrameActionResponse) SetAction(v ValidatedFrameAction) {
-	o.Action = v
+	o.Action = &v
 }
 
 func (o ValidateFrameActionResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ValidateFrameActionResponse) MarshalJSON() ([]byte, error) {
 
 func (o ValidateFrameActionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["valid"] = o.Valid
-	toSerialize["action"] = o.Action
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Valid) {
+		toSerialize["valid"] = o.Valid
 	}
-
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
 	return toSerialize, nil
-}
-
-func (o *ValidateFrameActionResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"valid",
-		"action",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varValidateFrameActionResponse := _ValidateFrameActionResponse{}
-
-	err = json.Unmarshal(data, &varValidateFrameActionResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ValidateFrameActionResponse(varValidateFrameActionResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "valid")
-		delete(additionalProperties, "action")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableValidateFrameActionResponse struct {

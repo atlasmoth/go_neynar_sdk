@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserFIDResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &UserFIDResponse{}
 
 // UserFIDResponse struct for UserFIDResponse
 type UserFIDResponse struct {
-	Fid int32 `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
 }
-
-type _UserFIDResponse UserFIDResponse
 
 // NewUserFIDResponse instantiates a new UserFIDResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserFIDResponse(fid int32) *UserFIDResponse {
+func NewUserFIDResponse() *UserFIDResponse {
 	this := UserFIDResponse{}
-	this.Fid = fid
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewUserFIDResponseWithDefaults() *UserFIDResponse {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *UserFIDResponse) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserFIDResponse) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *UserFIDResponse) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *UserFIDResponse) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
 func (o UserFIDResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o UserFIDResponse) MarshalJSON() ([]byte, error) {
 
 func (o UserFIDResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
 	return toSerialize, nil
-}
-
-func (o *UserFIDResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserFIDResponse := _UserFIDResponse{}
-
-	err = json.Unmarshal(data, &varUserFIDResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserFIDResponse(varUserFIDResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserFIDResponse struct {

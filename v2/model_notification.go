@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the Notification type satisfies the MappedNullable interface at compile time
@@ -21,28 +20,21 @@ var _ MappedNullable = &Notification{}
 
 // Notification struct for Notification
 type Notification struct {
-	Object string `json:"object"`
-	MostRecentTimestamp time.Time `json:"most_recent_timestamp"`
-	Type string `json:"type"`
-	Seen bool `json:"seen"`
+	Object *string `json:"object,omitempty"`
+	MostRecentTimestamp *time.Time `json:"most_recent_timestamp,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Seen *bool `json:"seen,omitempty"`
 	Follows []Follow `json:"follows,omitempty"`
 	Cast *CastWithInteractions `json:"cast,omitempty"`
 	Reactions []ReactionWithUserInfo `json:"reactions,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Notification Notification
 
 // NewNotification instantiates a new Notification object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotification(object string, mostRecentTimestamp time.Time, type_ string, seen bool) *Notification {
+func NewNotification() *Notification {
 	this := Notification{}
-	this.Object = object
-	this.MostRecentTimestamp = mostRecentTimestamp
-	this.Type = type_
-	this.Seen = seen
 	return &this
 }
 
@@ -54,100 +46,132 @@ func NewNotificationWithDefaults() *Notification {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *Notification) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *Notification) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *Notification) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetMostRecentTimestamp returns the MostRecentTimestamp field value
+// GetMostRecentTimestamp returns the MostRecentTimestamp field value if set, zero value otherwise.
 func (o *Notification) GetMostRecentTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.MostRecentTimestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.MostRecentTimestamp
+	return *o.MostRecentTimestamp
 }
 
-// GetMostRecentTimestampOk returns a tuple with the MostRecentTimestamp field value
+// GetMostRecentTimestampOk returns a tuple with the MostRecentTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetMostRecentTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MostRecentTimestamp) {
 		return nil, false
 	}
-	return &o.MostRecentTimestamp, true
+	return o.MostRecentTimestamp, true
 }
 
-// SetMostRecentTimestamp sets field value
+// HasMostRecentTimestamp returns a boolean if a field has been set.
+func (o *Notification) HasMostRecentTimestamp() bool {
+	if o != nil && !IsNil(o.MostRecentTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetMostRecentTimestamp gets a reference to the given time.Time and assigns it to the MostRecentTimestamp field.
 func (o *Notification) SetMostRecentTimestamp(v time.Time) {
-	o.MostRecentTimestamp = v
+	o.MostRecentTimestamp = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Notification) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Notification) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *Notification) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetSeen returns the Seen field value
+// GetSeen returns the Seen field value if set, zero value otherwise.
 func (o *Notification) GetSeen() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Seen) {
 		var ret bool
 		return ret
 	}
-
-	return o.Seen
+	return *o.Seen
 }
 
-// GetSeenOk returns a tuple with the Seen field value
+// GetSeenOk returns a tuple with the Seen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetSeenOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Seen) {
 		return nil, false
 	}
-	return &o.Seen, true
+	return o.Seen, true
 }
 
-// SetSeen sets field value
+// HasSeen returns a boolean if a field has been set.
+func (o *Notification) HasSeen() bool {
+	if o != nil && !IsNil(o.Seen) {
+		return true
+	}
+
+	return false
+}
+
+// SetSeen gets a reference to the given bool and assigns it to the Seen field.
 func (o *Notification) SetSeen(v bool) {
-	o.Seen = v
+	o.Seen = &v
 }
 
 // GetFollows returns the Follows field value if set, zero value otherwise.
@@ -256,10 +280,18 @@ func (o Notification) MarshalJSON() ([]byte, error) {
 
 func (o Notification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["most_recent_timestamp"] = o.MostRecentTimestamp
-	toSerialize["type"] = o.Type
-	toSerialize["seen"] = o.Seen
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.MostRecentTimestamp) {
+		toSerialize["most_recent_timestamp"] = o.MostRecentTimestamp
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Seen) {
+		toSerialize["seen"] = o.Seen
+	}
 	if !IsNil(o.Follows) {
 		toSerialize["follows"] = o.Follows
 	}
@@ -269,63 +301,7 @@ func (o Notification) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reactions) {
 		toSerialize["reactions"] = o.Reactions
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Notification) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"most_recent_timestamp",
-		"type",
-		"seen",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNotification := _Notification{}
-
-	err = json.Unmarshal(data, &varNotification)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Notification(varNotification)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "most_recent_timestamp")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "seen")
-		delete(additionalProperties, "follows")
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "reactions")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNotification struct {

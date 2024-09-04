@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**LinkBody** | [**LinkBody**](LinkBody.md) |  | 
-**Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_CAST_ADD]
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**LinkBody** | Pointer to [**LinkBody**](LinkBody.md) |  | [optional] 
+**Type** | Pointer to [**MessageType**](MessageType.md) |  | [optional] [default to MESSAGETYPE_CAST_ADD]
 
 ## Methods
 
 ### NewLinkRemoveAllOfData
 
-`func NewLinkRemoveAllOfData(fid int32, timestamp int64, network FarcasterNetwork, linkBody LinkBody, type_ MessageType, ) *LinkRemoveAllOfData`
+`func NewLinkRemoveAllOfData() *LinkRemoveAllOfData`
 
 NewLinkRemoveAllOfData instantiates a new LinkRemoveAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *LinkRemoveAllOfData) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *LinkRemoveAllOfData) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *LinkRemoveAllOfData) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetLinkBody
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetLinkBody sets LinkBody field to given value.
 
+### HasLinkBody
+
+`func (o *LinkRemoveAllOfData) HasLinkBody() bool`
+
+HasLinkBody returns a boolean if a field has been set.
 
 ### GetType
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *LinkRemoveAllOfData) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

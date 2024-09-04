@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the WebhookPatchReqBody type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &WebhookPatchReqBody{}
 
 // WebhookPatchReqBody struct for WebhookPatchReqBody
 type WebhookPatchReqBody struct {
-	WebhookId string `json:"webhook_id"`
-	Active string `json:"active"`
-	AdditionalProperties map[string]interface{}
+	WebhookId *string `json:"webhook_id,omitempty"`
+	Active *string `json:"active,omitempty"`
 }
-
-type _WebhookPatchReqBody WebhookPatchReqBody
 
 // NewWebhookPatchReqBody instantiates a new WebhookPatchReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookPatchReqBody(webhookId string, active string) *WebhookPatchReqBody {
+func NewWebhookPatchReqBody() *WebhookPatchReqBody {
 	this := WebhookPatchReqBody{}
-	this.WebhookId = webhookId
-	this.Active = active
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewWebhookPatchReqBodyWithDefaults() *WebhookPatchReqBody {
 	return &this
 }
 
-// GetWebhookId returns the WebhookId field value
+// GetWebhookId returns the WebhookId field value if set, zero value otherwise.
 func (o *WebhookPatchReqBody) GetWebhookId() string {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		var ret string
 		return ret
 	}
-
-	return o.WebhookId
+	return *o.WebhookId
 }
 
-// GetWebhookIdOk returns a tuple with the WebhookId field value
+// GetWebhookIdOk returns a tuple with the WebhookId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookPatchReqBody) GetWebhookIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		return nil, false
 	}
-	return &o.WebhookId, true
+	return o.WebhookId, true
 }
 
-// SetWebhookId sets field value
+// HasWebhookId returns a boolean if a field has been set.
+func (o *WebhookPatchReqBody) HasWebhookId() bool {
+	if o != nil && !IsNil(o.WebhookId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhookId gets a reference to the given string and assigns it to the WebhookId field.
 func (o *WebhookPatchReqBody) SetWebhookId(v string) {
-	o.WebhookId = v
+	o.WebhookId = &v
 }
 
-// GetActive returns the Active field value
+// GetActive returns the Active field value if set, zero value otherwise.
 func (o *WebhookPatchReqBody) GetActive() string {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret string
 		return ret
 	}
-
-	return o.Active
+	return *o.Active
 }
 
-// GetActiveOk returns a tuple with the Active field value
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookPatchReqBody) GetActiveOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
-	return &o.Active, true
+	return o.Active, true
 }
 
-// SetActive sets field value
+// HasActive returns a boolean if a field has been set.
+func (o *WebhookPatchReqBody) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given string and assigns it to the Active field.
 func (o *WebhookPatchReqBody) SetActive(v string) {
-	o.Active = v
+	o.Active = &v
 }
 
 func (o WebhookPatchReqBody) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o WebhookPatchReqBody) MarshalJSON() ([]byte, error) {
 
 func (o WebhookPatchReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["webhook_id"] = o.WebhookId
-	toSerialize["active"] = o.Active
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.WebhookId) {
+		toSerialize["webhook_id"] = o.WebhookId
 	}
-
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
 	return toSerialize, nil
-}
-
-func (o *WebhookPatchReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"webhook_id",
-		"active",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookPatchReqBody := _WebhookPatchReqBody{}
-
-	err = json.Unmarshal(data, &varWebhookPatchReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookPatchReqBody(varWebhookPatchReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "webhook_id")
-		delete(additionalProperties, "active")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookPatchReqBody struct {

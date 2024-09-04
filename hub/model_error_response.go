@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ErrorResponse type satisfies the MappedNullable interface at compile time
@@ -20,29 +19,20 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
-	ErrCode string `json:"errCode"`
-	Presentable bool `json:"presentable"`
-	Name string `json:"name"`
-	Code int32 `json:"code"`
-	Details string `json:"details"`
-	Metadata ErrorResponseMetadata `json:"metadata"`
-	AdditionalProperties map[string]interface{}
+	ErrCode *string `json:"errCode,omitempty"`
+	Presentable *bool `json:"presentable,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Code *int32 `json:"code,omitempty"`
+	Details *string `json:"details,omitempty"`
+	Metadata *ErrorResponseMetadata `json:"metadata,omitempty"`
 }
-
-type _ErrorResponse ErrorResponse
 
 // NewErrorResponse instantiates a new ErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorResponse(errCode string, presentable bool, name string, code int32, details string, metadata ErrorResponseMetadata) *ErrorResponse {
+func NewErrorResponse() *ErrorResponse {
 	this := ErrorResponse{}
-	this.ErrCode = errCode
-	this.Presentable = presentable
-	this.Name = name
-	this.Code = code
-	this.Details = details
-	this.Metadata = metadata
 	return &this
 }
 
@@ -54,148 +44,196 @@ func NewErrorResponseWithDefaults() *ErrorResponse {
 	return &this
 }
 
-// GetErrCode returns the ErrCode field value
+// GetErrCode returns the ErrCode field value if set, zero value otherwise.
 func (o *ErrorResponse) GetErrCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.ErrCode) {
 		var ret string
 		return ret
 	}
-
-	return o.ErrCode
+	return *o.ErrCode
 }
 
-// GetErrCodeOk returns a tuple with the ErrCode field value
+// GetErrCodeOk returns a tuple with the ErrCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetErrCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ErrCode) {
 		return nil, false
 	}
-	return &o.ErrCode, true
+	return o.ErrCode, true
 }
 
-// SetErrCode sets field value
+// HasErrCode returns a boolean if a field has been set.
+func (o *ErrorResponse) HasErrCode() bool {
+	if o != nil && !IsNil(o.ErrCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrCode gets a reference to the given string and assigns it to the ErrCode field.
 func (o *ErrorResponse) SetErrCode(v string) {
-	o.ErrCode = v
+	o.ErrCode = &v
 }
 
-// GetPresentable returns the Presentable field value
+// GetPresentable returns the Presentable field value if set, zero value otherwise.
 func (o *ErrorResponse) GetPresentable() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Presentable) {
 		var ret bool
 		return ret
 	}
-
-	return o.Presentable
+	return *o.Presentable
 }
 
-// GetPresentableOk returns a tuple with the Presentable field value
+// GetPresentableOk returns a tuple with the Presentable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetPresentableOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Presentable) {
 		return nil, false
 	}
-	return &o.Presentable, true
+	return o.Presentable, true
 }
 
-// SetPresentable sets field value
+// HasPresentable returns a boolean if a field has been set.
+func (o *ErrorResponse) HasPresentable() bool {
+	if o != nil && !IsNil(o.Presentable) {
+		return true
+	}
+
+	return false
+}
+
+// SetPresentable gets a reference to the given bool and assigns it to the Presentable field.
 func (o *ErrorResponse) SetPresentable(v bool) {
-	o.Presentable = v
+	o.Presentable = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ErrorResponse) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *ErrorResponse) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *ErrorResponse) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetCode returns the Code field value
+// GetCode returns the Code field value if set, zero value otherwise.
 func (o *ErrorResponse) GetCode() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret int32
 		return ret
 	}
-
-	return o.Code
+	return *o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
-	return &o.Code, true
+	return o.Code, true
 }
 
-// SetCode sets field value
+// HasCode returns a boolean if a field has been set.
+func (o *ErrorResponse) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given int32 and assigns it to the Code field.
 func (o *ErrorResponse) SetCode(v int32) {
-	o.Code = v
+	o.Code = &v
 }
 
-// GetDetails returns the Details field value
+// GetDetails returns the Details field value if set, zero value otherwise.
 func (o *ErrorResponse) GetDetails() string {
-	if o == nil {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
-
-	return o.Details
+	return *o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetDetailsOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
-	return &o.Details, true
+	return o.Details, true
 }
 
-// SetDetails sets field value
+// HasDetails returns a boolean if a field has been set.
+func (o *ErrorResponse) HasDetails() bool {
+	if o != nil && !IsNil(o.Details) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given string and assigns it to the Details field.
 func (o *ErrorResponse) SetDetails(v string) {
-	o.Details = v
+	o.Details = &v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ErrorResponse) GetMetadata() ErrorResponseMetadata {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret ErrorResponseMetadata
 		return ret
 	}
-
-	return o.Metadata
+	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetMetadataOk() (*ErrorResponseMetadata, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *ErrorResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given ErrorResponseMetadata and assigns it to the Metadata field.
 func (o *ErrorResponse) SetMetadata(v ErrorResponseMetadata) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
 func (o ErrorResponse) MarshalJSON() ([]byte, error) {
@@ -208,70 +246,25 @@ func (o ErrorResponse) MarshalJSON() ([]byte, error) {
 
 func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["errCode"] = o.ErrCode
-	toSerialize["presentable"] = o.Presentable
-	toSerialize["name"] = o.Name
-	toSerialize["code"] = o.Code
-	toSerialize["details"] = o.Details
-	toSerialize["metadata"] = o.Metadata
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.ErrCode) {
+		toSerialize["errCode"] = o.ErrCode
 	}
-
+	if !IsNil(o.Presentable) {
+		toSerialize["presentable"] = o.Presentable
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
 	return toSerialize, nil
-}
-
-func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"errCode",
-		"presentable",
-		"name",
-		"code",
-		"details",
-		"metadata",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varErrorResponse := _ErrorResponse{}
-
-	err = json.Unmarshal(data, &varErrorResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ErrorResponse(varErrorResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "errCode")
-		delete(additionalProperties, "presentable")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "details")
-		delete(additionalProperties, "metadata")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableErrorResponse struct {

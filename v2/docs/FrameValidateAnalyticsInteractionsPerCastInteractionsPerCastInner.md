@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | **time.Time** |  | 
-**Stop** | **time.Time** |  | 
-**Time** | **time.Time** |  | 
-**InteractionCount** | **float32** |  | 
-**CastUrl** | **string** |  | 
+**Start** | Pointer to **time.Time** |  | [optional] 
+**Stop** | Pointer to **time.Time** |  | [optional] 
+**Time** | Pointer to **time.Time** |  | [optional] 
+**InteractionCount** | Pointer to **float32** |  | [optional] 
+**CastUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 
-`func NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner(start time.Time, stop time.Time, time time.Time, interactionCount float32, castUrl string, ) *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner`
+`func NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner() *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner`
 
 NewFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner instantiates a new FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetStart sets Start field to given value.
 
+### HasStart
+
+`func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
 
 ### GetStop
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetStop sets Stop field to given value.
 
+### HasStop
+
+`func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasStop() bool`
+
+HasStop returns a boolean if a field has been set.
 
 ### GetTime
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetTime sets Time field to given value.
 
+### HasTime
+
+`func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasTime() bool`
+
+HasTime returns a boolean if a field has been set.
 
 ### GetInteractionCount
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetInteractionCount sets InteractionCount field to given value.
 
+### HasInteractionCount
+
+`func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasInteractionCount() bool`
+
+HasInteractionCount returns a boolean if a field has been set.
 
 ### GetCastUrl
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetCastUrl sets CastUrl field to given value.
 
+### HasCastUrl
+
+`func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) HasCastUrl() bool`
+
+HasCastUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

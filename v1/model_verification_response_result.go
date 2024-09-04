@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VerificationResponseResult type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,18 @@ var _ MappedNullable = &VerificationResponseResult{}
 
 // VerificationResponseResult struct for VerificationResponseResult
 type VerificationResponseResult struct {
-	Fid string `json:"fid"`
-	Username string `json:"username"`
-	DisplayName string `json:"display_name"`
-	Verifications []string `json:"verifications"`
-	AdditionalProperties map[string]interface{}
+	Fid *string `json:"fid,omitempty"`
+	Username *string `json:"username,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
+	Verifications []string `json:"verifications,omitempty"`
 }
-
-type _VerificationResponseResult VerificationResponseResult
 
 // NewVerificationResponseResult instantiates a new VerificationResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerificationResponseResult(fid string, username string, displayName string, verifications []string) *VerificationResponseResult {
+func NewVerificationResponseResult() *VerificationResponseResult {
 	this := VerificationResponseResult{}
-	this.Fid = fid
-	this.Username = username
-	this.DisplayName = displayName
-	this.Verifications = verifications
 	return &this
 }
 
@@ -50,98 +42,130 @@ func NewVerificationResponseResultWithDefaults() *VerificationResponseResult {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *VerificationResponseResult) GetFid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret string
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationResponseResult) GetFidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *VerificationResponseResult) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given string and assigns it to the Fid field.
 func (o *VerificationResponseResult) SetFid(v string) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *VerificationResponseResult) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationResponseResult) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *VerificationResponseResult) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *VerificationResponseResult) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetDisplayName returns the DisplayName field value
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *VerificationResponseResult) GetDisplayName() string {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
-
-	return o.DisplayName
+	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationResponseResult) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return &o.DisplayName, true
+	return o.DisplayName, true
 }
 
-// SetDisplayName sets field value
+// HasDisplayName returns a boolean if a field has been set.
+func (o *VerificationResponseResult) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *VerificationResponseResult) SetDisplayName(v string) {
-	o.DisplayName = v
+	o.DisplayName = &v
 }
 
-// GetVerifications returns the Verifications field value
+// GetVerifications returns the Verifications field value if set, zero value otherwise.
 func (o *VerificationResponseResult) GetVerifications() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Verifications) {
 		var ret []string
 		return ret
 	}
-
 	return o.Verifications
 }
 
-// GetVerificationsOk returns a tuple with the Verifications field value
+// GetVerificationsOk returns a tuple with the Verifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationResponseResult) GetVerificationsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Verifications) {
 		return nil, false
 	}
 	return o.Verifications, true
 }
 
-// SetVerifications sets field value
+// HasVerifications returns a boolean if a field has been set.
+func (o *VerificationResponseResult) HasVerifications() bool {
+	if o != nil && !IsNil(o.Verifications) {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifications gets a reference to the given []string and assigns it to the Verifications field.
 func (o *VerificationResponseResult) SetVerifications(v []string) {
 	o.Verifications = v
 }
@@ -156,64 +180,19 @@ func (o VerificationResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o VerificationResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["username"] = o.Username
-	toSerialize["display_name"] = o.DisplayName
-	toSerialize["verifications"] = o.Verifications
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["display_name"] = o.DisplayName
+	}
+	if !IsNil(o.Verifications) {
+		toSerialize["verifications"] = o.Verifications
+	}
 	return toSerialize, nil
-}
-
-func (o *VerificationResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"username",
-		"display_name",
-		"verifications",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varVerificationResponseResult := _VerificationResponseResult{}
-
-	err = json.Unmarshal(data, &varVerificationResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = VerificationResponseResult(varVerificationResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "display_name")
-		delete(additionalProperties, "verifications")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableVerificationResponseResult struct {

@@ -21,10 +21,7 @@ var _ MappedNullable = &FrameSignaturePacketTrustedData{}
 type FrameSignaturePacketTrustedData struct {
 	// Message bytes
 	MessageBytes *string `json:"messageBytes,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _FrameSignaturePacketTrustedData FrameSignaturePacketTrustedData
 
 // NewFrameSignaturePacketTrustedData instantiates a new FrameSignaturePacketTrustedData object
 // This constructor will assign default values to properties that have it defined,
@@ -88,33 +85,7 @@ func (o FrameSignaturePacketTrustedData) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.MessageBytes) {
 		toSerialize["messageBytes"] = o.MessageBytes
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameSignaturePacketTrustedData) UnmarshalJSON(data []byte) (err error) {
-	varFrameSignaturePacketTrustedData := _FrameSignaturePacketTrustedData{}
-
-	err = json.Unmarshal(data, &varFrameSignaturePacketTrustedData)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameSignaturePacketTrustedData(varFrameSignaturePacketTrustedData)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "messageBytes")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameSignaturePacketTrustedData struct {

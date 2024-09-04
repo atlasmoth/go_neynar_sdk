@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ValidatedFrameActionTappedButton type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ValidatedFrameActionTappedButton{}
 
 // ValidatedFrameActionTappedButton struct for ValidatedFrameActionTappedButton
 type ValidatedFrameActionTappedButton struct {
-	Index int32 `json:"index"`
-	AdditionalProperties map[string]interface{}
+	Index *int32 `json:"index,omitempty"`
 }
-
-type _ValidatedFrameActionTappedButton ValidatedFrameActionTappedButton
 
 // NewValidatedFrameActionTappedButton instantiates a new ValidatedFrameActionTappedButton object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidatedFrameActionTappedButton(index int32) *ValidatedFrameActionTappedButton {
+func NewValidatedFrameActionTappedButton() *ValidatedFrameActionTappedButton {
 	this := ValidatedFrameActionTappedButton{}
-	this.Index = index
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewValidatedFrameActionTappedButtonWithDefaults() *ValidatedFrameActionTapp
 	return &this
 }
 
-// GetIndex returns the Index field value
+// GetIndex returns the Index field value if set, zero value otherwise.
 func (o *ValidatedFrameActionTappedButton) GetIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		var ret int32
 		return ret
 	}
-
-	return o.Index
+	return *o.Index
 }
 
-// GetIndexOk returns a tuple with the Index field value
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameActionTappedButton) GetIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		return nil, false
 	}
-	return &o.Index, true
+	return o.Index, true
 }
 
-// SetIndex sets field value
+// HasIndex returns a boolean if a field has been set.
+func (o *ValidatedFrameActionTappedButton) HasIndex() bool {
+	if o != nil && !IsNil(o.Index) {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex gets a reference to the given int32 and assigns it to the Index field.
 func (o *ValidatedFrameActionTappedButton) SetIndex(v int32) {
-	o.Index = v
+	o.Index = &v
 }
 
 func (o ValidatedFrameActionTappedButton) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o ValidatedFrameActionTappedButton) MarshalJSON() ([]byte, error) {
 
 func (o ValidatedFrameActionTappedButton) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["index"] = o.Index
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Index) {
+		toSerialize["index"] = o.Index
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ValidatedFrameActionTappedButton) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"index",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varValidatedFrameActionTappedButton := _ValidatedFrameActionTappedButton{}
-
-	err = json.Unmarshal(data, &varValidatedFrameActionTappedButton)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ValidatedFrameActionTappedButton(varValidatedFrameActionTappedButton)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "index")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableValidatedFrameActionTappedButton struct {

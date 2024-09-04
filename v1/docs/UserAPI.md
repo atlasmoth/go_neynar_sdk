@@ -29,8 +29,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | fid of a user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | fid of a user (optional) (default to 3)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -91,7 +91,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	limit := int32(56) // int32 | Number of results to retrieve (default 100, max 1000) (optional) (default to 100)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -157,8 +157,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | fid of a user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | fid of a user (optional) (default to 3)
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 
 	configuration := openapiclient.NewConfiguration()
@@ -221,8 +221,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	username := "username_example" // string | Username of the user (default to "shreyas-chorge")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	username := "username_example" // string | Username of the user (optional) (default to "shreyas-chorge")
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 
 	configuration := openapiclient.NewConfiguration()
@@ -285,8 +285,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | FID of the user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | FID of the user (optional) (default to 3)
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 150) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor (optional)

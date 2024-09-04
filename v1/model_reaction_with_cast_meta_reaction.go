@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the ReactionWithCastMetaReaction type satisfies the MappedNullable interface at compile time
@@ -22,27 +21,21 @@ var _ MappedNullable = &ReactionWithCastMetaReaction{}
 // ReactionWithCastMetaReaction struct for ReactionWithCastMetaReaction
 type ReactionWithCastMetaReaction struct {
 	// User identifier (unsigned integer)
-	ReactorFid int32 `json:"reactor_fid"`
-	ReactionType ReactionType `json:"reaction_type"`
-	ReactionHash string `json:"reaction_hash"`
-	ReactionTargetHash string `json:"reaction_target_hash"`
-	ReactionTimestamp time.Time `json:"reaction_timestamp"`
-	AdditionalProperties map[string]interface{}
+	ReactorFid *int32 `json:"reactor_fid,omitempty"`
+	ReactionType *ReactionType `json:"reaction_type,omitempty"`
+	ReactionHash *string `json:"reaction_hash,omitempty"`
+	ReactionTargetHash *string `json:"reaction_target_hash,omitempty"`
+	ReactionTimestamp *time.Time `json:"reaction_timestamp,omitempty"`
 }
-
-type _ReactionWithCastMetaReaction ReactionWithCastMetaReaction
 
 // NewReactionWithCastMetaReaction instantiates a new ReactionWithCastMetaReaction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionWithCastMetaReaction(reactorFid int32, reactionType ReactionType, reactionHash string, reactionTargetHash string, reactionTimestamp time.Time) *ReactionWithCastMetaReaction {
+func NewReactionWithCastMetaReaction() *ReactionWithCastMetaReaction {
 	this := ReactionWithCastMetaReaction{}
-	this.ReactorFid = reactorFid
-	this.ReactionType = reactionType
-	this.ReactionHash = reactionHash
-	this.ReactionTargetHash = reactionTargetHash
-	this.ReactionTimestamp = reactionTimestamp
+	var reactorFid int32 = 3
+	this.ReactorFid = &reactorFid
 	return &this
 }
 
@@ -52,128 +45,168 @@ func NewReactionWithCastMetaReaction(reactorFid int32, reactionType ReactionType
 func NewReactionWithCastMetaReactionWithDefaults() *ReactionWithCastMetaReaction {
 	this := ReactionWithCastMetaReaction{}
 	var reactorFid int32 = 3
-	this.ReactorFid = reactorFid
+	this.ReactorFid = &reactorFid
 	return &this
 }
 
-// GetReactorFid returns the ReactorFid field value
+// GetReactorFid returns the ReactorFid field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaReaction) GetReactorFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ReactorFid) {
 		var ret int32
 		return ret
 	}
-
-	return o.ReactorFid
+	return *o.ReactorFid
 }
 
-// GetReactorFidOk returns a tuple with the ReactorFid field value
+// GetReactorFidOk returns a tuple with the ReactorFid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaReaction) GetReactorFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactorFid) {
 		return nil, false
 	}
-	return &o.ReactorFid, true
+	return o.ReactorFid, true
 }
 
-// SetReactorFid sets field value
+// HasReactorFid returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaReaction) HasReactorFid() bool {
+	if o != nil && !IsNil(o.ReactorFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactorFid gets a reference to the given int32 and assigns it to the ReactorFid field.
 func (o *ReactionWithCastMetaReaction) SetReactorFid(v int32) {
-	o.ReactorFid = v
+	o.ReactorFid = &v
 }
 
-// GetReactionType returns the ReactionType field value
+// GetReactionType returns the ReactionType field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaReaction) GetReactionType() ReactionType {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionType) {
 		var ret ReactionType
 		return ret
 	}
-
-	return o.ReactionType
+	return *o.ReactionType
 }
 
-// GetReactionTypeOk returns a tuple with the ReactionType field value
+// GetReactionTypeOk returns a tuple with the ReactionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaReaction) GetReactionTypeOk() (*ReactionType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionType) {
 		return nil, false
 	}
-	return &o.ReactionType, true
+	return o.ReactionType, true
 }
 
-// SetReactionType sets field value
+// HasReactionType returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaReaction) HasReactionType() bool {
+	if o != nil && !IsNil(o.ReactionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionType gets a reference to the given ReactionType and assigns it to the ReactionType field.
 func (o *ReactionWithCastMetaReaction) SetReactionType(v ReactionType) {
-	o.ReactionType = v
+	o.ReactionType = &v
 }
 
-// GetReactionHash returns the ReactionHash field value
+// GetReactionHash returns the ReactionHash field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaReaction) GetReactionHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionHash) {
 		var ret string
 		return ret
 	}
-
-	return o.ReactionHash
+	return *o.ReactionHash
 }
 
-// GetReactionHashOk returns a tuple with the ReactionHash field value
+// GetReactionHashOk returns a tuple with the ReactionHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaReaction) GetReactionHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionHash) {
 		return nil, false
 	}
-	return &o.ReactionHash, true
+	return o.ReactionHash, true
 }
 
-// SetReactionHash sets field value
+// HasReactionHash returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaReaction) HasReactionHash() bool {
+	if o != nil && !IsNil(o.ReactionHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionHash gets a reference to the given string and assigns it to the ReactionHash field.
 func (o *ReactionWithCastMetaReaction) SetReactionHash(v string) {
-	o.ReactionHash = v
+	o.ReactionHash = &v
 }
 
-// GetReactionTargetHash returns the ReactionTargetHash field value
+// GetReactionTargetHash returns the ReactionTargetHash field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaReaction) GetReactionTargetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTargetHash) {
 		var ret string
 		return ret
 	}
-
-	return o.ReactionTargetHash
+	return *o.ReactionTargetHash
 }
 
-// GetReactionTargetHashOk returns a tuple with the ReactionTargetHash field value
+// GetReactionTargetHashOk returns a tuple with the ReactionTargetHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaReaction) GetReactionTargetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTargetHash) {
 		return nil, false
 	}
-	return &o.ReactionTargetHash, true
+	return o.ReactionTargetHash, true
 }
 
-// SetReactionTargetHash sets field value
+// HasReactionTargetHash returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaReaction) HasReactionTargetHash() bool {
+	if o != nil && !IsNil(o.ReactionTargetHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionTargetHash gets a reference to the given string and assigns it to the ReactionTargetHash field.
 func (o *ReactionWithCastMetaReaction) SetReactionTargetHash(v string) {
-	o.ReactionTargetHash = v
+	o.ReactionTargetHash = &v
 }
 
-// GetReactionTimestamp returns the ReactionTimestamp field value
+// GetReactionTimestamp returns the ReactionTimestamp field value if set, zero value otherwise.
 func (o *ReactionWithCastMetaReaction) GetReactionTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTimestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.ReactionTimestamp
+	return *o.ReactionTimestamp
 }
 
-// GetReactionTimestampOk returns a tuple with the ReactionTimestamp field value
+// GetReactionTimestampOk returns a tuple with the ReactionTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMetaReaction) GetReactionTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTimestamp) {
 		return nil, false
 	}
-	return &o.ReactionTimestamp, true
+	return o.ReactionTimestamp, true
 }
 
-// SetReactionTimestamp sets field value
+// HasReactionTimestamp returns a boolean if a field has been set.
+func (o *ReactionWithCastMetaReaction) HasReactionTimestamp() bool {
+	if o != nil && !IsNil(o.ReactionTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionTimestamp gets a reference to the given time.Time and assigns it to the ReactionTimestamp field.
 func (o *ReactionWithCastMetaReaction) SetReactionTimestamp(v time.Time) {
-	o.ReactionTimestamp = v
+	o.ReactionTimestamp = &v
 }
 
 func (o ReactionWithCastMetaReaction) MarshalJSON() ([]byte, error) {
@@ -186,67 +219,22 @@ func (o ReactionWithCastMetaReaction) MarshalJSON() ([]byte, error) {
 
 func (o ReactionWithCastMetaReaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["reactor_fid"] = o.ReactorFid
-	toSerialize["reaction_type"] = o.ReactionType
-	toSerialize["reaction_hash"] = o.ReactionHash
-	toSerialize["reaction_target_hash"] = o.ReactionTargetHash
-	toSerialize["reaction_timestamp"] = o.ReactionTimestamp
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.ReactorFid) {
+		toSerialize["reactor_fid"] = o.ReactorFid
 	}
-
+	if !IsNil(o.ReactionType) {
+		toSerialize["reaction_type"] = o.ReactionType
+	}
+	if !IsNil(o.ReactionHash) {
+		toSerialize["reaction_hash"] = o.ReactionHash
+	}
+	if !IsNil(o.ReactionTargetHash) {
+		toSerialize["reaction_target_hash"] = o.ReactionTargetHash
+	}
+	if !IsNil(o.ReactionTimestamp) {
+		toSerialize["reaction_timestamp"] = o.ReactionTimestamp
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionWithCastMetaReaction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"reactor_fid",
-		"reaction_type",
-		"reaction_hash",
-		"reaction_target_hash",
-		"reaction_timestamp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionWithCastMetaReaction := _ReactionWithCastMetaReaction{}
-
-	err = json.Unmarshal(data, &varReactionWithCastMetaReaction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionWithCastMetaReaction(varReactionWithCastMetaReaction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reactor_fid")
-		delete(additionalProperties, "reaction_type")
-		delete(additionalProperties, "reaction_hash")
-		delete(additionalProperties, "reaction_target_hash")
-		delete(additionalProperties, "reaction_timestamp")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionWithCastMetaReaction struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastsSearchResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastsSearchResponse{}
 
 // CastsSearchResponse struct for CastsSearchResponse
 type CastsSearchResponse struct {
-	Result CastsSearchResponseResult `json:"result"`
-	AdditionalProperties map[string]interface{}
+	Result *CastsSearchResponseResult `json:"result,omitempty"`
 }
-
-type _CastsSearchResponse CastsSearchResponse
 
 // NewCastsSearchResponse instantiates a new CastsSearchResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastsSearchResponse(result CastsSearchResponseResult) *CastsSearchResponse {
+func NewCastsSearchResponse() *CastsSearchResponse {
 	this := CastsSearchResponse{}
-	this.Result = result
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCastsSearchResponseWithDefaults() *CastsSearchResponse {
 	return &this
 }
 
-// GetResult returns the Result field value
+// GetResult returns the Result field value if set, zero value otherwise.
 func (o *CastsSearchResponse) GetResult() CastsSearchResponseResult {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		var ret CastsSearchResponseResult
 		return ret
 	}
-
-	return o.Result
+	return *o.Result
 }
 
-// GetResultOk returns a tuple with the Result field value
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastsSearchResponse) GetResultOk() (*CastsSearchResponseResult, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
-// SetResult sets field value
+// HasResult returns a boolean if a field has been set.
+func (o *CastsSearchResponse) HasResult() bool {
+	if o != nil && !IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given CastsSearchResponseResult and assigns it to the Result field.
 func (o *CastsSearchResponse) SetResult(v CastsSearchResponseResult) {
-	o.Result = v
+	o.Result = &v
 }
 
 func (o CastsSearchResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CastsSearchResponse) MarshalJSON() ([]byte, error) {
 
 func (o CastsSearchResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["result"] = o.Result
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Result) {
+		toSerialize["result"] = o.Result
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastsSearchResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastsSearchResponse := _CastsSearchResponse{}
-
-	err = json.Unmarshal(data, &varCastsSearchResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastsSearchResponse(varCastsSearchResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "result")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastsSearchResponse struct {

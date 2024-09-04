@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | [**UserResponseResult**](UserResponseResult.md) |  | 
+**Result** | Pointer to [**UserResponseResult**](UserResponseResult.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserResponse
 
-`func NewUserResponse(result UserResponseResult, ) *UserResponse`
+`func NewUserResponse() *UserResponse`
 
 NewUserResponse instantiates a new UserResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetResult sets Result field to given value.
 
+### HasResult
+
+`func (o *UserResponse) HasResult() bool`
+
+HasResult returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

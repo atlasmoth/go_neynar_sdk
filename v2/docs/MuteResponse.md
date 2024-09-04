@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | 
+**Success** | Pointer to **bool** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewMuteResponse
 
-`func NewMuteResponse(success bool, ) *MuteResponse`
+`func NewMuteResponse() *MuteResponse`
 
 NewMuteResponse instantiates a new MuteResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
+### HasSuccess
+
+`func (o *MuteResponse) HasSuccess() bool`
+
+HasSuccess returns a boolean if a field has been set.
 
 ### GetMessage
 

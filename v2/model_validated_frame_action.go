@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the ValidatedFrameAction type satisfies the MappedNullable interface at compile time
@@ -21,36 +20,26 @@ var _ MappedNullable = &ValidatedFrameAction{}
 
 // ValidatedFrameAction struct for ValidatedFrameAction
 type ValidatedFrameAction struct {
-	Object string `json:"object"`
-	Url string `json:"url"`
-	Interactor User `json:"interactor"`
-	TappedButton ValidatedFrameActionTappedButton `json:"tapped_button"`
+	Object *string `json:"object,omitempty"`
+	Url *string `json:"url,omitempty"`
+	Interactor *User `json:"interactor,omitempty"`
+	TappedButton *ValidatedFrameActionTappedButton `json:"tapped_button,omitempty"`
 	Input *FrameInput `json:"input,omitempty"`
-	State FrameState `json:"state"`
-	Cast CastWithInteractions `json:"cast"`
-	Timestamp time.Time `json:"timestamp"`
+	State *FrameState `json:"state,omitempty"`
+	Cast *CastWithInteractions `json:"cast,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 	Signer *ValidatedFrameActionSigner `json:"signer,omitempty"`
 	Transaction *FrameTransaction `json:"transaction,omitempty"`
 	// The connected wallet address of the interacting user.
 	Address *string `json:"address,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ValidatedFrameAction ValidatedFrameAction
 
 // NewValidatedFrameAction instantiates a new ValidatedFrameAction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidatedFrameAction(object string, url string, interactor User, tappedButton ValidatedFrameActionTappedButton, state FrameState, cast CastWithInteractions, timestamp time.Time) *ValidatedFrameAction {
+func NewValidatedFrameAction() *ValidatedFrameAction {
 	this := ValidatedFrameAction{}
-	this.Object = object
-	this.Url = url
-	this.Interactor = interactor
-	this.TappedButton = tappedButton
-	this.State = state
-	this.Cast = cast
-	this.Timestamp = timestamp
 	return &this
 }
 
@@ -62,100 +51,132 @@ func NewValidatedFrameActionWithDefaults() *ValidatedFrameAction {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *ValidatedFrameAction) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *ValidatedFrameAction) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
-// GetInteractor returns the Interactor field value
+// GetInteractor returns the Interactor field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetInteractor() User {
-	if o == nil {
+	if o == nil || IsNil(o.Interactor) {
 		var ret User
 		return ret
 	}
-
-	return o.Interactor
+	return *o.Interactor
 }
 
-// GetInteractorOk returns a tuple with the Interactor field value
+// GetInteractorOk returns a tuple with the Interactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetInteractorOk() (*User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Interactor) {
 		return nil, false
 	}
-	return &o.Interactor, true
+	return o.Interactor, true
 }
 
-// SetInteractor sets field value
+// HasInteractor returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasInteractor() bool {
+	if o != nil && !IsNil(o.Interactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractor gets a reference to the given User and assigns it to the Interactor field.
 func (o *ValidatedFrameAction) SetInteractor(v User) {
-	o.Interactor = v
+	o.Interactor = &v
 }
 
-// GetTappedButton returns the TappedButton field value
+// GetTappedButton returns the TappedButton field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetTappedButton() ValidatedFrameActionTappedButton {
-	if o == nil {
+	if o == nil || IsNil(o.TappedButton) {
 		var ret ValidatedFrameActionTappedButton
 		return ret
 	}
-
-	return o.TappedButton
+	return *o.TappedButton
 }
 
-// GetTappedButtonOk returns a tuple with the TappedButton field value
+// GetTappedButtonOk returns a tuple with the TappedButton field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetTappedButtonOk() (*ValidatedFrameActionTappedButton, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TappedButton) {
 		return nil, false
 	}
-	return &o.TappedButton, true
+	return o.TappedButton, true
 }
 
-// SetTappedButton sets field value
+// HasTappedButton returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasTappedButton() bool {
+	if o != nil && !IsNil(o.TappedButton) {
+		return true
+	}
+
+	return false
+}
+
+// SetTappedButton gets a reference to the given ValidatedFrameActionTappedButton and assigns it to the TappedButton field.
 func (o *ValidatedFrameAction) SetTappedButton(v ValidatedFrameActionTappedButton) {
-	o.TappedButton = v
+	o.TappedButton = &v
 }
 
 // GetInput returns the Input field value if set, zero value otherwise.
@@ -190,76 +211,100 @@ func (o *ValidatedFrameAction) SetInput(v FrameInput) {
 	o.Input = &v
 }
 
-// GetState returns the State field value
+// GetState returns the State field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetState() FrameState {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret FrameState
 		return ret
 	}
-
-	return o.State
+	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field value
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetStateOk() (*FrameState, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
-	return &o.State, true
+	return o.State, true
 }
 
-// SetState sets field value
+// HasState returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given FrameState and assigns it to the State field.
 func (o *ValidatedFrameAction) SetState(v FrameState) {
-	o.State = v
+	o.State = &v
 }
 
-// GetCast returns the Cast field value
+// GetCast returns the Cast field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetCast() CastWithInteractions {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		var ret CastWithInteractions
 		return ret
 	}
-
-	return o.Cast
+	return *o.Cast
 }
 
-// GetCastOk returns a tuple with the Cast field value
+// GetCastOk returns a tuple with the Cast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetCastOk() (*CastWithInteractions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		return nil, false
 	}
-	return &o.Cast, true
+	return o.Cast, true
 }
 
-// SetCast sets field value
+// HasCast returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasCast() bool {
+	if o != nil && !IsNil(o.Cast) {
+		return true
+	}
+
+	return false
+}
+
+// SetCast gets a reference to the given CastWithInteractions and assigns it to the Cast field.
 func (o *ValidatedFrameAction) SetCast(v CastWithInteractions) {
-	o.Cast = v
+	o.Cast = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidatedFrameAction) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *ValidatedFrameAction) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
 func (o *ValidatedFrameAction) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
 // GetSigner returns the Signer field value if set, zero value otherwise.
@@ -368,16 +413,30 @@ func (o ValidatedFrameAction) MarshalJSON() ([]byte, error) {
 
 func (o ValidatedFrameAction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["url"] = o.Url
-	toSerialize["interactor"] = o.Interactor
-	toSerialize["tapped_button"] = o.TappedButton
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Interactor) {
+		toSerialize["interactor"] = o.Interactor
+	}
+	if !IsNil(o.TappedButton) {
+		toSerialize["tapped_button"] = o.TappedButton
+	}
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
 	}
-	toSerialize["state"] = o.State
-	toSerialize["cast"] = o.Cast
-	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.Cast) {
+		toSerialize["cast"] = o.Cast
+	}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
 	if !IsNil(o.Signer) {
 		toSerialize["signer"] = o.Signer
 	}
@@ -387,70 +446,7 @@ func (o ValidatedFrameAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"url",
-		"interactor",
-		"tapped_button",
-		"state",
-		"cast",
-		"timestamp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varValidatedFrameAction := _ValidatedFrameAction{}
-
-	err = json.Unmarshal(data, &varValidatedFrameAction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ValidatedFrameAction(varValidatedFrameAction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "interactor")
-		delete(additionalProperties, "tapped_button")
-		delete(additionalProperties, "input")
-		delete(additionalProperties, "state")
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "signer")
-		delete(additionalProperties, "transaction")
-		delete(additionalProperties, "address")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableValidatedFrameAction struct {

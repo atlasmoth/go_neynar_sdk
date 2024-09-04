@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Signature** | **string** |  | 
-**Fid** | **float32** |  | 
-**RequestedUserCustodyAddress** | **string** |  | 
-**Deadline** | **float32** |  | 
+**Signature** | Pointer to **string** |  | [optional] 
+**Fid** | Pointer to **float32** |  | [optional] 
+**RequestedUserCustodyAddress** | Pointer to **string** |  | [optional] 
+**Deadline** | Pointer to **float32** |  | [optional] 
 **Fname** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewRegisterUserReqBody
 
-`func NewRegisterUserReqBody(signature string, fid float32, requestedUserCustodyAddress string, deadline float32, ) *RegisterUserReqBody`
+`func NewRegisterUserReqBody() *RegisterUserReqBody`
 
 NewRegisterUserReqBody instantiates a new RegisterUserReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetSignature sets Signature field to given value.
 
+### HasSignature
+
+`func (o *RegisterUserReqBody) HasSignature() bool`
+
+HasSignature returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *RegisterUserReqBody) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetRequestedUserCustodyAddress
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetRequestedUserCustodyAddress sets RequestedUserCustodyAddress field to given value.
 
+### HasRequestedUserCustodyAddress
+
+`func (o *RegisterUserReqBody) HasRequestedUserCustodyAddress() bool`
+
+HasRequestedUserCustodyAddress returns a boolean if a field has been set.
 
 ### GetDeadline
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetDeadline sets Deadline field to given value.
 
+### HasDeadline
+
+`func (o *RegisterUserReqBody) HasDeadline() bool`
+
+HasDeadline returns a boolean if a field has been set.
 
 ### GetFname
 

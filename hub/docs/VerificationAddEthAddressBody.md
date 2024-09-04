@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** |  | 
-**EthSignature** | **string** |  | 
-**BlockHash** | **string** |  | 
+**Address** | Pointer to **string** |  | [optional] 
+**EthSignature** | Pointer to **string** |  | [optional] 
+**BlockHash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewVerificationAddEthAddressBody
 
-`func NewVerificationAddEthAddressBody(address string, ethSignature string, blockHash string, ) *VerificationAddEthAddressBody`
+`func NewVerificationAddEthAddressBody() *VerificationAddEthAddressBody`
 
 NewVerificationAddEthAddressBody instantiates a new VerificationAddEthAddressBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *VerificationAddEthAddressBody) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetEthSignature
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetEthSignature sets EthSignature field to given value.
 
+### HasEthSignature
+
+`func (o *VerificationAddEthAddressBody) HasEthSignature() bool`
+
+HasEthSignature returns a boolean if a field has been set.
 
 ### GetBlockHash
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetBlockHash sets BlockHash field to given value.
 
+### HasBlockHash
+
+`func (o *VerificationAddEthAddressBody) HasBlockHash() bool`
+
+HasBlockHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

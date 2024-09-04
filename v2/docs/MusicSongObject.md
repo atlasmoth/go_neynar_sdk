@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disc** | Pointer to **string** |  | [optional] 
 **Track** | Pointer to **int32** |  | [optional] 
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewMusicSongObject
 
-`func NewMusicSongObject(url string, ) *MusicSongObject`
+`func NewMusicSongObject() *MusicSongObject`
 
 NewMusicSongObject instantiates a new MusicSongObject object
 This constructor will assign default values to properties that have it defined,
@@ -96,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *MusicSongObject) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

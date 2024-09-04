@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** |  | 
-**Address** | **NullableString** |  | 
-**Decimals** | **int32** |  | 
-**Erc20** | **bool** |  | 
+**Symbol** | Pointer to **string** |  | [optional] 
+**Address** | Pointer to **NullableString** |  | [optional] 
+**Decimals** | Pointer to **int32** |  | [optional] 
+**Erc20** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewSubscriptionToken
 
-`func NewSubscriptionToken(symbol string, address NullableString, decimals int32, erc20 bool, ) *SubscriptionToken`
+`func NewSubscriptionToken() *SubscriptionToken`
 
 NewSubscriptionToken instantiates a new SubscriptionToken object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetSymbol sets Symbol field to given value.
 
+### HasSymbol
+
+`func (o *SubscriptionToken) HasSymbol() bool`
+
+HasSymbol returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *SubscriptionToken) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### SetAddressNil
 
@@ -97,6 +107,11 @@ and a boolean to check if the value has been set.
 
 SetDecimals sets Decimals field to given value.
 
+### HasDecimals
+
+`func (o *SubscriptionToken) HasDecimals() bool`
+
+HasDecimals returns a boolean if a field has been set.
 
 ### GetErc20
 
@@ -117,6 +132,11 @@ and a boolean to check if the value has been set.
 
 SetErc20 sets Erc20 field to given value.
 
+### HasErc20
+
+`func (o *SubscriptionToken) HasErc20() bool`
+
+HasErc20 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

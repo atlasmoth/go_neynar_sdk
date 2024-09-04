@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pfp** | [**ProfileUrlPfp**](ProfileUrlPfp.md) |  | 
+**Pfp** | Pointer to [**ProfileUrlPfp**](ProfileUrlPfp.md) |  | [optional] 
 
 ## Methods
 
 ### NewProfileUrl
 
-`func NewProfileUrl(pfp ProfileUrlPfp, ) *ProfileUrl`
+`func NewProfileUrl() *ProfileUrl`
 
 NewProfileUrl instantiates a new ProfileUrl object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetPfp sets Pfp field to given value.
 
+### HasPfp
+
+`func (o *ProfileUrl) HasPfp() bool`
+
+HasPfp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

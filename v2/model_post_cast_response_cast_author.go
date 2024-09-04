@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PostCastResponseCastAuthor type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &PostCastResponseCastAuthor{}
 // PostCastResponseCastAuthor struct for PostCastResponseCastAuthor
 type PostCastResponseCastAuthor struct {
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
 }
-
-type _PostCastResponseCastAuthor PostCastResponseCastAuthor
 
 // NewPostCastResponseCastAuthor instantiates a new PostCastResponseCastAuthor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastResponseCastAuthor(fid int32) *PostCastResponseCastAuthor {
+func NewPostCastResponseCastAuthor() *PostCastResponseCastAuthor {
 	this := PostCastResponseCastAuthor{}
-	this.Fid = fid
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewPostCastResponseCastAuthorWithDefaults() *PostCastResponseCastAuthor {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *PostCastResponseCastAuthor) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastResponseCastAuthor) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *PostCastResponseCastAuthor) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *PostCastResponseCastAuthor) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
 func (o PostCastResponseCastAuthor) MarshalJSON() ([]byte, error) {
@@ -79,55 +82,10 @@ func (o PostCastResponseCastAuthor) MarshalJSON() ([]byte, error) {
 
 func (o PostCastResponseCastAuthor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
 	return toSerialize, nil
-}
-
-func (o *PostCastResponseCastAuthor) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPostCastResponseCastAuthor := _PostCastResponseCastAuthor{}
-
-	err = json.Unmarshal(data, &varPostCastResponseCastAuthor)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PostCastResponseCastAuthor(varPostCastResponseCastAuthor)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePostCastResponseCastAuthor struct {

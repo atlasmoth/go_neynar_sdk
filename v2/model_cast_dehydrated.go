@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastDehydrated type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &CastDehydrated{}
 
 // CastDehydrated struct for CastDehydrated
 type CastDehydrated struct {
-	Hash string `json:"hash"`
-	Object string `json:"object"`
-	AdditionalProperties map[string]interface{}
+	Hash *string `json:"hash,omitempty"`
+	Object *string `json:"object,omitempty"`
 }
-
-type _CastDehydrated CastDehydrated
 
 // NewCastDehydrated instantiates a new CastDehydrated object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastDehydrated(hash string, object string) *CastDehydrated {
+func NewCastDehydrated() *CastDehydrated {
 	this := CastDehydrated{}
-	this.Hash = hash
-	this.Object = object
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewCastDehydratedWithDefaults() *CastDehydrated {
 	return &this
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *CastDehydrated) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastDehydrated) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *CastDehydrated) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *CastDehydrated) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *CastDehydrated) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastDehydrated) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *CastDehydrated) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *CastDehydrated) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
 func (o CastDehydrated) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o CastDehydrated) MarshalJSON() ([]byte, error) {
 
 func (o CastDehydrated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hash"] = o.Hash
-	toSerialize["object"] = o.Object
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
 	}
-
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	return toSerialize, nil
-}
-
-func (o *CastDehydrated) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-		"object",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastDehydrated := _CastDehydrated{}
-
-	err = json.Unmarshal(data, &varCastDehydrated)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastDehydrated(varCastDehydrated)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hash")
-		delete(additionalProperties, "object")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastDehydrated struct {

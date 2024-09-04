@@ -77,7 +77,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -109,7 +109,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -117,7 +117,7 @@ paths:
       - explode: true
         in: query
         name: public_key
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Ed25519PublicKey'
         style: form
@@ -149,7 +149,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -164,7 +164,6 @@ paths:
               signature: 0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b
             schema:
               $ref: '#/components/schemas/RegisterDeveloperManagedSignedKeyReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -199,7 +198,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -208,7 +207,7 @@ paths:
         explode: true
         in: query
         name: signer_uuid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/SignerUUID'
         style: form
@@ -225,18 +224,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -258,7 +257,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -291,7 +290,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -306,7 +305,6 @@ paths:
               signature: 0xe5d95c391e165dac8efea373efe301d3ea823e1f41713f8943713cbe2850566672e33ff3e17e19abb89703f650a2597f62b4fda0ce28ca15d59eb6d4e971ee531b
             schema:
               $ref: '#/components/schemas/RegisterSignerKeyReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -320,18 +318,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -352,7 +350,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -361,7 +359,7 @@ paths:
         explode: true
         in: query
         name: q
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -419,7 +417,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -429,7 +427,7 @@ paths:
         explode: true
         in: query
         name: fids
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -469,7 +467,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -529,7 +527,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -569,7 +567,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -625,7 +623,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -635,7 +633,7 @@ paths:
         explode: true
         in: query
         name: addresses
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -691,7 +689,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -700,7 +698,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -746,7 +744,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -762,7 +760,6 @@ paths:
               display_name: Dan Romero
             schema:
               $ref: '#/components/schemas/UpdateUserReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -776,18 +773,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -810,7 +807,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -826,7 +823,6 @@ paths:
               fname: desired_fname
             schema:
               $ref: '#/components/schemas/RegisterUserReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -881,7 +877,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -891,7 +887,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PublishMessageReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -927,7 +922,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -940,7 +935,6 @@ paths:
               target_hash: 0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f
             schema:
               $ref: '#/components/schemas/DeleteCastReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -954,18 +948,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -986,7 +980,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -996,7 +990,7 @@ paths:
         explode: true
         in: query
         name: identifier
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1004,7 +998,7 @@ paths:
         explode: true
         in: query
         name: type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastParamType'
         style: form
@@ -1045,7 +1039,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1058,7 +1052,6 @@ paths:
               text: Writing to @farcaster via the @neynar APIs 🪐
             schema:
               $ref: '#/components/schemas/PostCastReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -1072,18 +1065,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -1104,7 +1097,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1114,7 +1107,7 @@ paths:
         explode: true
         in: query
         name: casts
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1169,7 +1162,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1179,7 +1172,7 @@ paths:
         explode: true
         in: query
         name: q
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1257,7 +1250,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1267,7 +1260,7 @@ paths:
         explode: true
         in: query
         name: identifier
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1275,7 +1268,7 @@ paths:
         explode: true
         in: query
         name: type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastParamType'
         style: form
@@ -1352,7 +1345,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1363,7 +1356,7 @@ paths:
         explode: true
         in: query
         name: feed_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/FeedType'
         style: form
@@ -1498,7 +1491,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1508,7 +1501,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1575,7 +1568,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1585,7 +1578,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1650,7 +1643,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1659,14 +1652,14 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
       - explode: true
         in: query
         name: subscription_provider
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/SubscriptionProvider'
         style: form
@@ -1697,7 +1690,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1706,7 +1699,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1721,7 +1714,7 @@ paths:
       - explode: true
         in: query
         name: subscription_provider
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/SubscriptionProvider'
         style: form
@@ -1753,7 +1746,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1762,7 +1755,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -1777,7 +1770,7 @@ paths:
       - explode: true
         in: query
         name: subscription_provider
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/SubscriptionProviders'
         style: form
@@ -1808,7 +1801,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1818,7 +1811,7 @@ paths:
         explode: true
         in: query
         name: channel_ids
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1904,7 +1897,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -1914,7 +1907,7 @@ paths:
         explode: true
         in: query
         name: parent_urls
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -1990,7 +1983,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2050,7 +2043,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2156,7 +2149,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2166,7 +2159,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -2206,7 +2199,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2216,7 +2209,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -2290,7 +2283,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2300,7 +2293,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -2389,7 +2382,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2399,7 +2392,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/delete_neynar_frame_request'
-        required: true
       responses:
         "200":
           content:
@@ -2424,7 +2416,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2432,7 +2424,7 @@ paths:
       - explode: true
         in: query
         name: type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/FrameType'
         style: form
@@ -2477,7 +2469,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2487,7 +2479,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NeynarFrameCreationRequest'
-        required: true
       responses:
         "200":
           content:
@@ -2513,7 +2504,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2523,7 +2514,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NeynarFrameUpdateRequest'
-        required: true
       responses:
         "200":
           content:
@@ -2531,18 +2521,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/NeynarFrame'
           description: Frame updated successfully
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
       summary: Update an existing frame
       tags:
       - Frame
@@ -2556,7 +2546,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2588,7 +2578,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2598,7 +2588,7 @@ paths:
         explode: true
         in: query
         name: url
-        required: true
+        required: false
         schema:
           format: uri
           type: string
@@ -2632,7 +2622,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2646,7 +2636,6 @@ paths:
               reaction_type: like
             schema:
               $ref: '#/components/schemas/ReactionReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2660,18 +2649,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -2693,7 +2682,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2707,7 +2696,6 @@ paths:
               reaction_type: like
             schema:
               $ref: '#/components/schemas/ReactionReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2721,18 +2709,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -2754,7 +2742,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2767,7 +2755,6 @@ paths:
               address: 0x1ea99cbed57e4020314ba3fadd7c692d2de34d5f
             schema:
               $ref: '#/components/schemas/RemoveVerificationReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2789,7 +2776,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2804,7 +2791,6 @@ paths:
               eth_signature: 0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b
             schema:
               $ref: '#/components/schemas/AddVerificationReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2828,7 +2814,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2843,7 +2829,6 @@ paths:
               - 194
             schema:
               $ref: '#/components/schemas/FollowReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2857,18 +2842,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -2890,7 +2875,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2905,7 +2890,6 @@ paths:
               - 194
             schema:
               $ref: '#/components/schemas/FollowReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -2919,18 +2903,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Resource not found
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
         "500":
           content:
             application/json:
@@ -2951,7 +2935,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -2961,7 +2945,7 @@ paths:
         explode: true
         in: query
         name: custody_address
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -2999,7 +2983,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3007,7 +2991,7 @@ paths:
       - explode: true
         in: query
         name: client_id
-        required: true
+        required: false
         schema:
           format: uuid
           type: string
@@ -3015,7 +2999,7 @@ paths:
       - explode: true
         in: query
         name: response_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/AuthorizationUrlResponseType'
         style: form
@@ -3055,7 +3039,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3065,7 +3049,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FrameDeveloperManagedActionReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -3103,7 +3086,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3113,7 +3096,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FrameActionReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -3149,7 +3131,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3159,7 +3141,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/validate_frame_request'
-        required: true
       responses:
         "200":
           content:
@@ -3193,7 +3174,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3238,7 +3219,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3247,7 +3228,7 @@ paths:
         explode: true
         in: query
         name: frame_url
-        required: true
+        required: false
         schema:
           format: uri
           type: string
@@ -3255,14 +3236,14 @@ paths:
       - explode: true
         in: query
         name: analytics_type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ValidateFrameAnalyticsType'
         style: form
       - explode: true
         in: query
         name: start
-        required: true
+        required: false
         schema:
           default: 2024-04-06T06:44:56.811Z
           format: date-time
@@ -3271,7 +3252,7 @@ paths:
       - explode: true
         in: query
         name: stop
-        required: true
+        required: false
         schema:
           default: 2024-04-08T06:44:56.811Z
           format: date-time
@@ -3342,7 +3323,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3352,7 +3333,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -3399,7 +3380,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3409,7 +3390,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -3419,7 +3400,7 @@ paths:
         explode: true
         in: query
         name: channel_ids
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3458,7 +3439,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3468,7 +3449,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -3477,7 +3458,7 @@ paths:
         explode: true
         in: query
         name: parent_urls
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3516,7 +3497,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3529,7 +3510,6 @@ paths:
               type: likes
             schema:
               $ref: '#/components/schemas/MarkNotificationsAsSeenReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -3563,7 +3543,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3608,7 +3588,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3618,7 +3598,7 @@ paths:
         explode: true
         in: query
         name: q
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3662,7 +3642,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3673,7 +3653,7 @@ paths:
         explode: true
         in: query
         name: ids
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3723,7 +3703,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3733,7 +3713,7 @@ paths:
         explode: true
         in: query
         name: id
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3784,7 +3764,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3794,7 +3774,7 @@ paths:
         explode: true
         in: query
         name: id
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3843,7 +3823,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3853,7 +3833,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -3911,7 +3891,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -3921,7 +3901,7 @@ paths:
         explode: true
         in: query
         name: id
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -3930,7 +3910,7 @@ paths:
         explode: true
         in: query
         name: has_root_cast_authors
-        required: true
+        required: false
         schema:
           type: boolean
         style: form
@@ -4008,7 +3988,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4051,18 +4031,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/TrendingChannelResponse'
           description: Successful response
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorRes'
-          description: Server Error
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
       summary: Retrieve trending channels based on activity
       tags:
       - Channel
@@ -4077,7 +4057,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4086,7 +4066,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4158,7 +4138,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4167,7 +4147,7 @@ paths:
         explode: true
         in: query
         name: target_fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4175,7 +4155,7 @@ paths:
         explode: true
         in: query
         name: viewer_fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4207,7 +4187,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4217,7 +4197,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4291,7 +4271,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4300,7 +4280,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4317,7 +4297,7 @@ paths:
         explode: true
         in: query
         name: type
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/ReactionsType'
         style: form
@@ -4367,7 +4347,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4375,7 +4355,7 @@ paths:
       - explode: true
         in: query
         name: hash
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastHash'
         style: form
@@ -4385,7 +4365,7 @@ paths:
         explode: true
         in: query
         name: types
-        required: true
+        required: false
         schema:
           pattern: "^(likes,?|recasts,?|all,?)+$"
           type: string
@@ -4443,7 +4423,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4452,7 +4432,7 @@ paths:
         explode: true
         in: query
         name: fname
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -4483,7 +4463,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4492,7 +4472,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4523,7 +4503,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4532,7 +4512,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4565,7 +4545,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4575,7 +4555,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BuyStorageReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4615,7 +4594,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4625,7 +4604,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WebhookDeleteReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4652,7 +4630,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4660,7 +4638,7 @@ paths:
       - explode: true
         in: query
         name: webhook_id
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -4690,7 +4668,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4700,7 +4678,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WebhookPatchReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4727,7 +4704,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4737,7 +4714,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WebhookPostReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4770,7 +4746,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4780,7 +4756,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WebhookPutReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4808,7 +4783,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4832,7 +4807,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4842,7 +4817,7 @@ paths:
         explode: true
         in: query
         name: fid
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
@@ -4904,7 +4879,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4914,7 +4889,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MuteReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -4952,7 +4926,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -4962,7 +4936,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MuteReqBody'
-        required: true
       responses:
         "200":
           content:
@@ -5003,7 +4976,7 @@ paths:
         explode: false
         in: header
         name: api_key
-        required: true
+        required: false
         schema:
           default: NEYNAR_API_DOCS
           type: string
@@ -5013,7 +4986,7 @@ paths:
         explode: true
         in: query
         name: list
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/CastComposerType'
         style: form
@@ -5066,7 +5039,7 @@ components:
       explode: false
       in: header
       name: api_key
-      required: true
+      required: false
       schema:
         default: NEYNAR_API_DOCS
         type: string
@@ -5193,8 +5166,6 @@ components:
         cursor:
           nullable: true
           type: string
-      required:
-      - cursor
       type: object
     CastHash:
       default: 0xfe90f9de682273e05b201629ad2338bdcd89b6be
@@ -5240,8 +5211,6 @@ components:
         status:
           format: int32
           type: integer
-      required:
-      - message
       type: object
     ConflictErrorRes:
       description: Details for the conflict error response
@@ -5259,8 +5228,6 @@ components:
           type: string
         key:
           type: string
-      required:
-      - message
       type: object
     Ed25519PublicKey:
       description: Ed25519 public key
@@ -5274,8 +5241,6 @@ components:
       properties:
         hash:
           type: string
-      required:
-      - hash
       type: object
     EmbedUrl:
       example:
@@ -5515,8 +5480,6 @@ components:
           type: string
         metadata:
           $ref: '#/components/schemas/EmbedUrlMetadata'
-      required:
-      - url
       type: object
     TwitterImageObject:
       example:
@@ -5533,8 +5496,6 @@ components:
           type: string
         width:
           type: integer
-      required:
-      - url
       type: object
     TwitterPlayerObject:
       example:
@@ -5551,8 +5512,6 @@ components:
           type: string
         width:
           type: integer
-      required:
-      - url
       type: object
     ImageObject:
       example:
@@ -5572,8 +5531,6 @@ components:
           type: integer
         alt:
           type: string
-      required:
-      - url
       type: object
     VideoObject:
       example:
@@ -5590,8 +5547,6 @@ components:
           type: string
         width:
           type: integer
-      required:
-      - url
       type: object
     MusicSongObject:
       example:
@@ -5605,8 +5560,6 @@ components:
           type: integer
         url:
           type: string
-      required:
-      - url
       type: object
     OgObject:
       example:
@@ -6425,8 +6378,6 @@ components:
           $ref: '#/components/schemas/EmbedUrlMetadata_video'
         html:
           $ref: '#/components/schemas/OgObject'
-      required:
-      - _status
       type: object
     CastId:
       example:
@@ -6439,16 +6390,11 @@ components:
           type: integer
         hash:
           type: string
-      required:
-      - fid
-      - hash
       type: object
     EmbedCastId:
       properties:
         cast_id:
           $ref: '#/components/schemas/CastId'
-      required:
-      - cast_id
       type: object
     Frame:
       example:
@@ -6498,10 +6444,6 @@ components:
           $ref: '#/components/schemas/Frame_input'
         state:
           $ref: '#/components/schemas/Frame_state'
-      required:
-      - frames_url
-      - image
-      - version
       type: object
     SubscriptionTier:
       example:
@@ -6603,13 +6545,6 @@ components:
           period_duration_seconds: 2592000
         provider_name: fabric_stp
         object: subscription
-      required:
-      - creator
-      - expires_at
-      - object
-      - subscribed_at
-      - tier
-      - user
       type: object
     Subscriber:
       example:
@@ -6661,10 +6596,6 @@ components:
           $ref: '#/components/schemas/User'
         subscribed_to:
           $ref: '#/components/schemas/SubscribedToObject'
-      required:
-      - object
-      - subscribed_to
-      - user
       type: object
     Subscriptions:
       example:
@@ -6737,9 +6668,6 @@ components:
           items:
             $ref: '#/components/schemas/Subscription'
           type: array
-      required:
-      - object
-      - subscriptions_created
       type: object
     Subscription:
       example:
@@ -6802,15 +6730,6 @@ components:
           type: integer
         token:
           $ref: '#/components/schemas/Subscription_token'
-      required:
-      - chain
-      - contract_address
-      - metadata
-      - object
-      - owner_address
-      - price
-      - protocol_version
-      - token
       type: object
     SubscribedToObject:
       example:
@@ -6849,9 +6768,6 @@ components:
         tier_id:
           example: "0"
           type: string
-      required:
-      - object
-      - provider_name
       type: object
     SubscribersResponse:
       example:
@@ -7244,9 +7160,6 @@ components:
           $ref: '#/components/schemas/FrameSignaturePacket_untrustedData'
         trustedData:
           $ref: '#/components/schemas/FrameSignaturePacket_trustedData'
-      required:
-      - trustedData
-      - untrustedData
       type: object
     FrameAction:
       example:
@@ -7292,10 +7205,6 @@ components:
         post_url:
           description: URL of the post to get the next frame
           type: string
-      required:
-      - button
-      - frames_url
-      - post_url
       type: object
     FrameButtonActionType:
       enum:
@@ -7320,8 +7229,6 @@ components:
           description: State for the frame in a serialized format
           example: '%7B%22counter%22%3A1%7D'
           type: string
-      required:
-      - serialized
       type: object
     FrameAddress:
       description: The connected wallet address of the interacting user.
@@ -7334,8 +7241,6 @@ components:
           description: Transaction hash
           example: 0xa80de157a3ab4648db1ecfab7e6355b342215bc549f6e37be9e6da527cc024f7
           type: string
-      required:
-      - hash
       type: object
     FrameActionButton:
       example:
@@ -7360,9 +7265,6 @@ components:
           description: Used specifically for the tx action type to post a successful
             transaction hash
           type: string
-      required:
-      - action_type
-      - index
       type: object
     ReactionLike:
       example:
@@ -7372,8 +7274,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - fid
       type: object
     ReactionRecast:
       example:
@@ -7386,9 +7286,6 @@ components:
           type: integer
         fname:
           type: string
-      required:
-      - fid
-      - fname
       type: object
     User:
       example:
@@ -7463,18 +7360,6 @@ components:
           type: boolean
         viewer_context:
           $ref: '#/components/schemas/UserViewerContext'
-      required:
-      - active_status
-      - custody_address
-      - fid
-      - follower_count
-      - following_count
-      - object
-      - power_badge
-      - profile
-      - username
-      - verifications
-      - verified_addresses
       type: object
     EmbeddedCast:
       oneOf:
@@ -7508,23 +7393,11 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/CastNotificationType'
-      required:
-      - author
-      - embeds
-      - hash
-      - parent_author
-      - parent_hash
-      - parent_url
-      - root_parent_url
-      - text
-      - timestamp
       type: object
     ProfileUrl:
       properties:
         pfp:
           $ref: '#/components/schemas/ProfileUrl_pfp'
-      required:
-      - pfp
       type: object
     SearchedUser:
       allOf:
@@ -7590,11 +7463,6 @@ components:
           type: integer
         sponsor:
           $ref: '#/components/schemas/RegisterSignerKeyReqBody_sponsor'
-      required:
-      - app_fid
-      - deadline
-      - signature
-      - signer_uuid
       type: object
     RegisterDeveloperManagedSignedKeyReqBody:
       example:
@@ -7625,11 +7493,6 @@ components:
           type: integer
         sponsor:
           $ref: '#/components/schemas/RegisterSignerKeyReqBody_sponsor'
-      required:
-      - app_fid
-      - deadline
-      - public_key
-      - signature
       type: object
     CastParent:
       description: "parent_url of the channel the cast is in, or hash of the cast"
@@ -8135,8 +7998,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - signer_uuid
       type: object
     MuteReqBody:
       example:
@@ -8151,9 +8012,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - fid
-      - muted_fid
       type: object
     ReactionReqBody:
       example:
@@ -8182,10 +8040,6 @@ components:
             \ each request.\n3) Recommended format is a 16-character string generated\
             \ by the developer at the time of making this request.\n"
           type: string
-      required:
-      - reaction_type
-      - signer_uuid
-      - target
       type: object
     ChannelType:
       enum:
@@ -8216,9 +8070,6 @@ components:
           description: Ethereum address
           pattern: "^0x[a-fA-F0-9]{40}$"
           type: string
-      required:
-      - signer_uuid
-      - target_hash
       type: object
     FollowReqBody:
       example:
@@ -8235,9 +8086,6 @@ components:
           items:
             $ref: '#/components/schemas/Fid'
           type: array
-      required:
-      - signer_uuid
-      - target_fids
       type: object
     FrameDeveloperManagedActionReqBody:
       example:
@@ -8287,9 +8135,6 @@ components:
           $ref: '#/components/schemas/FrameAction'
         signature_packet:
           $ref: '#/components/schemas/FrameSignaturePacket'
-      required:
-      - action
-      - signature_packet
       type: object
     FrameActionReqBody:
       example:
@@ -8325,9 +8170,6 @@ components:
           type: string
         action:
           $ref: '#/components/schemas/FrameAction'
-      required:
-      - action
-      - signer_uuid
       type: object
     AddVerificationReqBody:
       example:
@@ -8354,11 +8196,6 @@ components:
           $ref: '#/components/schemas/VerificationType'
         chain_id:
           $ref: '#/components/schemas/VerificationChainId'
-      required:
-      - address
-      - block_hash
-      - eth_signature
-      - signer_uuid
       type: object
     RemoveVerificationReqBody:
       example:
@@ -8373,11 +8210,6 @@ components:
           description: Ethereum address
           pattern: "^0x[a-fA-F0-9]{40}$"
           type: string
-      required:
-      - address
-      - block_hash
-      - eth_signature
-      - signer_uuid
       type: object
     UpdateUserReqBody:
       example:
@@ -8402,8 +8234,6 @@ components:
           type: string
         display_name:
           type: string
-      required:
-      - signer_uuid
       type: object
     CastViewerContext:
       description: Adds context on interactions the viewer has made with the cast.
@@ -8417,9 +8247,6 @@ components:
         recasted:
           description: Indicates if the viewer recasted the cast.
           type: boolean
-      required:
-      - liked
-      - recasted
       type: object
     UserViewerContext:
       description: Adds context on the viewer's follow relationship with the user.
@@ -8433,9 +8260,6 @@ components:
         followed_by:
           description: Indicates if the viewer is followed by the user.
           type: boolean
-      required:
-      - followed_by
-      - following
       type: object
     CastWithInteractionsReactions:
       example:
@@ -8464,11 +8288,6 @@ components:
         recasts_count:
           format: int32
           type: integer
-      required:
-      - likes
-      - likes_count
-      - recasts
-      - recasts_count
       type: object
     CastWithInteractionsReplies:
       example:
@@ -8477,8 +8296,6 @@ components:
         count:
           format: int32
           type: integer
-      required:
-      - count
       type: object
     ChannelOrDehydratedChannel:
       discriminator:
@@ -8513,12 +8330,6 @@ components:
             $ref: '#/components/schemas/ChannelOrDehydratedChannel'
           viewer_context:
             $ref: '#/components/schemas/CastViewerContext'
-        required:
-        - channel
-        - mentioned_profiles
-        - reactions
-        - replies
-        - thread_hash
       example:
         parent_author:
           fid: 0
@@ -9283,8 +9094,6 @@ components:
               $ref: '#/components/schemas/CastWithInteractionsAndConversations'
             type: array
         type: object
-      required:
-      - direct_replies
       type: object
     Conversation:
       default:
@@ -9424,8 +9233,6 @@ components:
           $ref: '#/components/schemas/Conversation_conversation'
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - conversation
       type: object
     Signer:
       example:
@@ -9457,10 +9264,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - public_key
-      - signer_uuid
-      - status
       type: object
     DeveloperManagedSigner:
       example:
@@ -9486,9 +9289,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - public_key
-      - status
       type: object
     CastResponse:
       example:
@@ -10248,8 +10048,6 @@ components:
       properties:
         cast:
           $ref: '#/components/schemas/CastWithInteractions'
-      required:
-      - cast
       type: object
     DehydratedChannel:
       properties:
@@ -10263,10 +10061,6 @@ components:
           type: string
         image_url:
           type: string
-      required:
-      - id
-      - name
-      - object
       type: object
     Channel:
       example:
@@ -10434,10 +10228,6 @@ components:
           type: array
         viewer_context:
           $ref: '#/components/schemas/ChannelViewerContext'
-      required:
-      - id
-      - object
-      - url
       type: object
     ChannelViewerContext:
       example:
@@ -10446,8 +10236,6 @@ components:
         following:
           description: Indicates if the viewer is following the channel.
           type: boolean
-      required:
-      - following
       type: object
     ChannelListResponse:
       example:
@@ -10721,8 +10509,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - channels
       type: object
     ChannelSearchResponse:
       example:
@@ -10996,9 +10782,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - channels
-      - next
       type: object
     ChannelResponse:
       example:
@@ -11136,8 +10919,6 @@ components:
       properties:
         channel:
           $ref: '#/components/schemas/Channel'
-      required:
-      - channel
       type: object
     ChannelResponseBulk:
       example:
@@ -11407,8 +11188,6 @@ components:
           items:
             $ref: '#/components/schemas/Channel'
           type: array
-      required:
-      - channels
       type: object
     UserSearchResponse:
       example:
@@ -11481,8 +11260,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserSearchResponse_result'
-      required:
-      - result
       type: object
     ChannelActivity:
       example:
@@ -11634,12 +11411,6 @@ components:
           type: string
         channel:
           $ref: '#/components/schemas/Channel'
-      required:
-      - cast_count_1d
-      - cast_count_30d
-      - cast_count_7d
-      - channel
-      - object
       type: object
     TrendingChannelResponse:
       example:
@@ -11923,9 +11694,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - channels
-      - next
       type: object
     BulkCastsResponse:
       example:
@@ -13439,8 +13207,6 @@ components:
           items:
             $ref: '#/components/schemas/CastWithInteractions'
           type: array
-      required:
-      - casts
       type: object
     CastsResponse:
       example:
@@ -14953,8 +14719,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastsResponse_result'
-      required:
-      - result
       type: object
     CastsSearchResponse:
       example:
@@ -16469,8 +16233,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/CastsSearchResponse_result'
-      required:
-      - result
       type: object
     FeedResponse:
       example:
@@ -17988,9 +17750,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - casts
-      - next
       type: object
     PostCastResponse:
       example:
@@ -18005,9 +17764,6 @@ components:
           type: boolean
         cast:
           $ref: '#/components/schemas/PostCastResponse_cast'
-      required:
-      - cast
-      - success
       type: object
     OperationResponse:
       example:
@@ -18033,10 +17789,6 @@ components:
           type: integer
         hash:
           type: string
-      required:
-      - hash
-      - success
-      - target_fid
       type: object
     BulkFollowResponse:
       example:
@@ -18055,9 +17807,6 @@ components:
           items:
             $ref: '#/components/schemas/FollowResponse'
           type: array
-      required:
-      - details
-      - success
       type: object
     NotificationsResponse:
       example:
@@ -19853,10 +19602,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - notifications
-      - unseen_notifications_count
       type: object
     Notification:
       example:
@@ -20775,11 +20520,6 @@ components:
           items:
             $ref: '#/components/schemas/ReactionWithUserInfo'
           type: array
-      required:
-      - most_recent_timestamp
-      - object
-      - seen
-      - type
       type: object
     Follow:
       example:
@@ -20821,9 +20561,6 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/User'
-      required:
-      - object
-      - user
       type: object
     CastDehydrated:
       example:
@@ -20836,9 +20573,6 @@ components:
           enum:
           - cast_dehydrated
           type: string
-      required:
-      - hash
-      - object
       type: object
     ReactionWithUserInfo:
       example:
@@ -20886,10 +20620,6 @@ components:
           $ref: '#/components/schemas/CastDehydrated'
         user:
           $ref: '#/components/schemas/User'
-      required:
-      - cast
-      - object
-      - user
       type: object
     ReactionForCast:
       example:
@@ -20942,11 +20672,6 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/User'
-      required:
-      - object
-      - reaction_timestamp
-      - reaction_type
-      - user
       type: object
     ReactionWithCastInfo:
       example:
@@ -21727,12 +21452,6 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/UserDehydrated'
-      required:
-      - cast
-      - object
-      - reaction_timestamp
-      - reaction_type
-      - user
       type: object
     RelevantFollowersResponse:
       example:
@@ -21817,9 +21536,6 @@ components:
           items:
             $ref: '#/components/schemas/DehydratedFollower'
           type: array
-      required:
-      - all_relevant_followers_dehydrated
-      - top_relevant_followers_hydrated
       type: object
     HydratedFollower:
       example:
@@ -21889,9 +21605,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - fid
-      - object
       type: object
     UserResponse:
       example:
@@ -21928,8 +21641,6 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/User'
-      required:
-      - user
       type: object
     ReactionsResponse:
       example:
@@ -23461,9 +23172,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - reactions
       type: object
     ReactionsCastResponse:
       example:
@@ -23543,9 +23251,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - reactions
       type: object
     StorageAllocationsResponse:
       example:
@@ -23736,8 +23441,6 @@ components:
           items:
             $ref: '#/components/schemas/User'
           type: array
-      required:
-      - users
       type: object
     UsersResponse:
       example:
@@ -23809,9 +23512,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - next
-      - users
       type: object
     BulkUsersByAddressResponse:
       additionalProperties:
@@ -23862,8 +23562,6 @@ components:
       properties:
         available:
           type: boolean
-      required:
-      - available
       type: object
     NeynarFrame:
       example:
@@ -23933,11 +23631,6 @@ components:
         valid:
           description: Indicates if the frame is valid.
           type: boolean
-      required:
-      - link
-      - name
-      - pages
-      - uuid
       type: object
     NeynarFramePage:
       example:
@@ -23984,11 +23677,6 @@ components:
           type: array
         input:
           $ref: '#/components/schemas/NeynarPageInput'
-      required:
-      - image
-      - title
-      - uuid
-      - version
       type: object
     NeynarPageImage:
       example:
@@ -24006,9 +23694,6 @@ components:
           - 1.91:1
           - 1:1
           type: string
-      required:
-      - aspect_ratio
-      - url
       type: object
     NeynarPageButton:
       example:
@@ -24035,10 +23720,6 @@ components:
           type: string
         next_page:
           $ref: '#/components/schemas/NeynarPageButton_next_page'
-      required:
-      - action_type
-      - index
-      - title
       type: object
     NeynarPageInput:
       example:
@@ -24057,8 +23738,6 @@ components:
           description: The UUID of the next page.
           format: uuid
           type: string
-      required:
-      - uuid
       type: object
     NeynarNextFramePageRedirect:
       properties:
@@ -24066,16 +23745,12 @@ components:
           description: The URL to redirect to.
           format: uri
           type: string
-      required:
-      - redirect_url
       type: object
     NeynarNextFramePageMintUrl:
       properties:
         mint_url:
           description: "The URL for minting, specific to the mint action."
           type: string
-      required:
-      - mint_url
       type: object
     NeynarFrameCreationRequest:
       example:
@@ -24131,9 +23806,6 @@ components:
           items:
             $ref: '#/components/schemas/NeynarFramePage'
           type: array
-      required:
-      - name
-      - pages
       type: object
     NeynarFrameUpdateRequest:
       example:
@@ -24194,9 +23866,6 @@ components:
           items:
             $ref: '#/components/schemas/NeynarFramePage'
           type: array
-      required:
-      - pages
-      - uuid
       type: object
     ValidatedFrameAction:
       example:
@@ -25054,14 +24723,6 @@ components:
         address:
           description: The connected wallet address of the interacting user.
           type: string
-      required:
-      - cast
-      - interactor
-      - object
-      - state
-      - tapped_button
-      - timestamp
-      - url
       type: object
     ValidateFrameActionResponse:
       example:
@@ -25899,9 +25560,6 @@ components:
           type: boolean
         action:
           $ref: '#/components/schemas/ValidatedFrameAction'
-      required:
-      - action
-      - valid
       type: object
     UserFIDResponse:
       example:
@@ -25909,8 +25567,6 @@ components:
       properties:
         fid:
           type: integer
-      required:
-      - fid
       type: object
     RegisterUserReqBody:
       example:
@@ -25930,11 +25586,6 @@ components:
           type: number
         fname:
           type: string
-      required:
-      - deadline
-      - fid
-      - requested_user_custody_address
-      - signature
       type: object
     RegisterUserResponse:
       example:
@@ -25953,10 +25604,6 @@ components:
           type: string
         signer:
           $ref: '#/components/schemas/Signer'
-      required:
-      - message
-      - signer
-      - success
       type: object
     MuteList:
       example:
@@ -26002,11 +25649,6 @@ components:
         muted_at:
           format: date-time
           type: string
-      required:
-      - muted
-      - muted_at
-      - object
-      - timestamp
       type: object
     MuteListResponse:
       example:
@@ -26084,9 +25726,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - mutes
-      - next
       type: object
     MuteResponse:
       example:
@@ -26098,8 +25737,6 @@ components:
           type: boolean
         message:
           type: string
-      required:
-      - success
       type: object
     UsersActiveChannelsResponse:
       example:
@@ -26532,21 +26169,6 @@ components:
           type: string
         subscription:
           $ref: '#/components/schemas/WebhookSubscription'
-      required:
-      - active
-      - created_at
-      - deleted_at
-      - description
-      - developer_uuid
-      - http_timeout
-      - object
-      - rate_limit
-      - rate_limit_duration
-      - secrets
-      - target_url
-      - title
-      - updated_at
-      - webhook_id
       type: object
     WebhookSecret:
       example:
@@ -26569,13 +26191,6 @@ components:
           type: string
         deleted_at:
           type: string
-      required:
-      - created_at
-      - deleted_at
-      - expires_at
-      - uid
-      - updated_at
-      - value
       type: object
     WebhookSubscription:
       example:
@@ -26656,12 +26271,6 @@ components:
         updated_at:
           format: date-time
           type: string
-      required:
-      - created_at
-      - filters
-      - object
-      - subscription_id
-      - updated_at
       type: object
     WebhookSubscriptionFiltersFollow:
       example:
@@ -26843,9 +26452,6 @@ components:
           type: string
         subscription:
           $ref: '#/components/schemas/WebhookSubscriptionFilters'
-      required:
-      - name
-      - url
       type: object
     WebhookPutReqBody:
       allOf:
@@ -26853,8 +26459,6 @@ components:
       - properties:
           webhook_id:
             type: string
-        required:
-        - webhook_id
       example:
         webhook_id: webhook_id
         name: name
@@ -26930,9 +26534,6 @@ components:
           - "true"
           - "false"
           type: string
-      required:
-      - active
-      - webhook_id
       type: object
     WebhookDeleteReqBody:
       example:
@@ -26940,8 +26541,6 @@ components:
       properties:
         webhook_id:
           type: string
-      required:
-      - webhook_id
       type: object
     WebhookResponse:
       example:
@@ -27231,8 +26830,6 @@ components:
           items:
             $ref: '#/components/schemas/Webhook'
           type: array
-      required:
-      - webhooks
       type: object
     FrameType:
       description: Type of identifier (either 'uuid' or 'url')
@@ -27251,8 +26848,6 @@ components:
             format: uri
             type: string
           type: array
-      required:
-      - frames
       type: object
     FrameValidateAnalyticsInteractors:
       example:
@@ -27268,15 +26863,11 @@ components:
           items:
             $ref: '#/components/schemas/FrameValidateAnalyticsInteractors_interactors_inner'
           type: array
-      required:
-      - interactors
       type: object
     FrameValidateAnalyticsTotalInteractors:
       properties:
         total_interactors:
           type: number
-      required:
-      - total_interactors
       type: object
     FrameValidateAnalyticsInteractionsPerCast:
       properties:
@@ -27284,8 +26875,6 @@ components:
           items:
             $ref: '#/components/schemas/FrameValidateAnalyticsInteractionsPerCast_interactions_per_cast_inner'
           type: array
-      required:
-      - interactions_per_cast
       type: object
     FrameValidateAnalyticsInputText:
       properties:
@@ -27293,8 +26882,6 @@ components:
           items:
             $ref: '#/components/schemas/FrameValidateAnalyticsInputText_input_texts_inner'
           type: array
-      required:
-      - input_texts
       type: object
     FrameValidateAnalyticsResponse:
       oneOf:
@@ -27316,8 +26903,6 @@ components:
         authorization_url:
           format: uri
           type: string
-      required:
-      - authorization_url
       type: object
     AuthorizationUrlResponseType:
       enum:
@@ -27354,8 +26939,6 @@ components:
             \ each request.\n3) Recommended format is a 16-character string generated\
             \ by the developer at the time of making this request.\n"
           type: string
-      required:
-      - fid
       type: object
     ZodError:
       example:
@@ -27387,10 +26970,6 @@ components:
           items:
             $ref: '#/components/schemas/ZodError_errors_inner'
           type: array
-      required:
-      - code
-      - errors
-      - message
       type: object
     CastComposerType:
       enum:
@@ -27480,12 +27059,6 @@ components:
           type: integer
         tier:
           $ref: '#/components/schemas/SubscriptionTier'
-      required:
-      - expires_at
-      - object
-      - status
-      - subscribed_at
-      - tier
       type: object
     Fids:
       description: List of FIDs
@@ -27501,8 +27074,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserPowerLiteResponse_result'
-      required:
-      - result
       type: object
     NotificationType:
       enum:
@@ -27523,8 +27094,6 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/NotificationType'
-      required:
-      - signer_uuid
       type: object
     feed_trending_400_response:
       oneOf:
@@ -27564,8 +27133,6 @@ components:
       properties:
         frame:
           $ref: '#/components/schemas/Frame'
-      required:
-      - frame
       type: object
     validate_frame_request:
       example:
@@ -27597,8 +27164,6 @@ components:
           description: Adds context about the channel that the cast belongs to inside
             of the cast object.
           type: boolean
-      required:
-      - message_bytes_in_hex
       type: object
     EmbedUrlMetadata_image:
       example:
@@ -27688,10 +27253,6 @@ components:
         art_url:
           example: https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg
           type: string
-      required:
-      - art_url
-      - symbol
-      - title
       type: object
     Subscription_price:
       example:
@@ -27708,10 +27269,6 @@ components:
         initial_mint_price:
           example: "0"
           type: string
-      required:
-      - initial_mint_price
-      - period_duration_seconds
-      - tokens_per_period
       type: object
     Subscription_token:
       example:
@@ -27733,11 +27290,6 @@ components:
         erc20:
           example: false
           type: boolean
-      required:
-      - address
-      - decimals
-      - erc20
-      - symbol
       type: object
     FrameSignaturePacket_untrustedData:
       description: Untrusted data from the user
@@ -27814,9 +27366,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - mentioned_profiles
-      - text
       type: object
     User_profile:
       example:
@@ -27828,8 +27377,6 @@ components:
       properties:
         bio:
           $ref: '#/components/schemas/User_profile_bio'
-      required:
-      - bio
       type: object
     User_verified_addresses:
       example:
@@ -27848,9 +27395,6 @@ components:
           items:
             $ref: '#/components/schemas/SolAddress'
           type: array
-      required:
-      - eth_addresses
-      - sol_addresses
       type: object
     Cast_parent_author:
       allOf:
@@ -27859,8 +27403,6 @@ components:
           fid:
             nullable: true
             type: integer
-        required:
-        - fid
       example:
         fid: 0
       type: object
@@ -27870,8 +27412,6 @@ components:
       properties:
         url:
           type: string
-      required:
-      - url
       type: object
     RegisterSignerKeyReqBody_sponsor:
       example:
@@ -27886,9 +27426,6 @@ components:
           description: Signature generated by the fid of the sponsor and the signature
             generated from signKeyRequest for the app.
           type: string
-      required:
-      - fid
-      - signature
       type: object
     Conversation_conversation:
       properties:
@@ -27898,8 +27435,6 @@ components:
           items:
             $ref: '#/components/schemas/CastWithInteractions'
           type: array
-      required:
-      - cast
       type: object
     UserSearchResponse_result:
       example:
@@ -27975,8 +27510,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - users
       type: object
     CastsResponse_result:
       example:
@@ -29490,8 +29023,6 @@ components:
           items:
             $ref: '#/components/schemas/CastWithInteractions'
           type: array
-      required:
-      - casts
       type: object
     CastsSearchResponse_result:
       example:
@@ -31009,9 +30540,6 @@ components:
           type: array
         next:
           $ref: '#/components/schemas/NextCursor'
-      required:
-      - casts
-      - next
       type: object
     PostCastResponse_cast_author:
       example:
@@ -31021,8 +30549,6 @@ components:
           description: User identifier (unsigned integer)
           format: int32
           type: integer
-      required:
-      - fid
       type: object
     PostCastResponse_cast:
       example:
@@ -31039,10 +30565,6 @@ components:
           $ref: '#/components/schemas/PostCastResponse_cast_author'
         text:
           type: string
-      required:
-      - author
-      - hash
-      - text
       type: object
     NeynarPageButton_next_page:
       oneOf:
@@ -31061,8 +30583,6 @@ components:
         placeholder:
           description: The placeholder text for the input.
           type: string
-      required:
-      - enabled
       type: object
     ValidatedFrameAction_tapped_button:
       example:
@@ -31070,8 +30590,6 @@ components:
       properties:
         index:
           type: integer
-      required:
-      - index
       type: object
     ValidatedFrameAction_signer:
       example:
@@ -31210,10 +30728,6 @@ components:
           type: string
         interaction_count:
           type: number
-      required:
-      - fid
-      - interaction_count
-      - username
       type: object
     FrameValidateAnalyticsInteractionsPerCast_interactions_per_cast_inner:
       properties:
@@ -31231,12 +30745,6 @@ components:
         cast_url:
           format: uri
           type: string
-      required:
-      - cast_url
-      - interaction_count
-      - start
-      - stop
-      - time
       type: object
     FrameValidateAnalyticsInputText_input_texts_inner:
       properties:
@@ -31248,10 +30756,6 @@ components:
           type: string
         input_text:
           type: string
-      required:
-      - fid
-      - input_text
-      - username
       type: object
     ZodError_errors_inner:
       example:
@@ -31275,12 +30779,6 @@ components:
           type: array
         message:
           type: string
-      required:
-      - code
-      - expected
-      - message
-      - path
-      - received
       type: object
     CastComposerActionsListResponse_actions_inner_action:
       example:
@@ -31366,6 +30864,4 @@ components:
           items:
             $ref: '#/components/schemas/Fid'
           type: array
-      required:
-      - fids
       type: object

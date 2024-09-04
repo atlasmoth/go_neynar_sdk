@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**ProviderName** | **string** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**ProviderName** | Pointer to **string** |  | [optional] 
 **ContractAddress** | Pointer to **string** |  | [optional] 
 **ProtocolVersion** | Pointer to **int32** |  | [optional] 
 **Chain** | Pointer to **int32** |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewSubscribedToObject
 
-`func NewSubscribedToObject(object string, providerName string, ) *SubscribedToObject`
+`func NewSubscribedToObject() *SubscribedToObject`
 
 NewSubscribedToObject instantiates a new SubscribedToObject object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +51,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *SubscribedToObject) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetProviderName
 
@@ -71,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetProviderName sets ProviderName field to given value.
 
+### HasProviderName
+
+`func (o *SubscribedToObject) HasProviderName() bool`
+
+HasProviderName returns a boolean if a field has been set.
 
 ### GetContractAddress
 

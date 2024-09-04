@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MusicSongObject type satisfies the MappedNullable interface at compile time
@@ -22,19 +21,15 @@ var _ MappedNullable = &MusicSongObject{}
 type MusicSongObject struct {
 	Disc *string `json:"disc,omitempty"`
 	Track *int32 `json:"track,omitempty"`
-	Url string `json:"url"`
-	AdditionalProperties map[string]interface{}
+	Url *string `json:"url,omitempty"`
 }
-
-type _MusicSongObject MusicSongObject
 
 // NewMusicSongObject instantiates a new MusicSongObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMusicSongObject(url string) *MusicSongObject {
+func NewMusicSongObject() *MusicSongObject {
 	this := MusicSongObject{}
-	this.Url = url
 	return &this
 }
 
@@ -110,28 +105,36 @@ func (o *MusicSongObject) SetTrack(v int32) {
 	o.Track = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *MusicSongObject) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MusicSongObject) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *MusicSongObject) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *MusicSongObject) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 func (o MusicSongObject) MarshalJSON() ([]byte, error) {
@@ -150,57 +153,10 @@ func (o MusicSongObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Track) {
 		toSerialize["track"] = o.Track
 	}
-	toSerialize["url"] = o.Url
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
-
 	return toSerialize, nil
-}
-
-func (o *MusicSongObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMusicSongObject := _MusicSongObject{}
-
-	err = json.Unmarshal(data, &varMusicSongObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MusicSongObject(varMusicSongObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "disc")
-		delete(additionalProperties, "track")
-		delete(additionalProperties, "url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMusicSongObject struct {

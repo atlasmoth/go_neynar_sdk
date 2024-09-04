@@ -28,11 +28,11 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID of the reaction's creator
-	targetFid := int32(56) // int32 | The FID of the cast's creator
-	targetHash := "targetHash_example" // string | The cast's hash
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (default to "REACTION_TYPE_LIKE")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID of the reaction's creator (optional)
+	targetFid := int32(56) // int32 | The FID of the cast's creator (optional)
+	targetHash := "targetHash_example" // string | The cast's hash (optional)
+	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (optional) (default to "REACTION_TYPE_LIKE")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -96,10 +96,10 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	targetFid := int32(56) // int32 | The FID of the cast's creator
-	targetHash := "targetHash_example" // string | The hash of the cast
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (default to "REACTION_TYPE_LIKE")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	targetFid := int32(56) // int32 | The FID of the cast's creator (optional)
+	targetHash := "targetHash_example" // string | The hash of the cast (optional)
+	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (optional) (default to "REACTION_TYPE_LIKE")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -168,9 +168,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID of the reaction's creator
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (default to "REACTION_TYPE_LIKE")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID of the reaction's creator (optional)
+	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (optional) (default to "REACTION_TYPE_LIKE")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -238,9 +238,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string | The URL of the parent cast
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (default to "REACTION_TYPE_LIKE")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string | The URL of the parent cast (optional)
+	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType | The type of reaction, either as a numerical enum value or string representation (optional) (default to "REACTION_TYPE_LIKE")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)

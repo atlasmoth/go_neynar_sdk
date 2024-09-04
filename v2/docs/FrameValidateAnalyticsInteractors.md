@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Interactors** | [**[]FrameValidateAnalyticsInteractorsInteractorsInner**](FrameValidateAnalyticsInteractorsInteractorsInner.md) |  | 
+**Interactors** | Pointer to [**[]FrameValidateAnalyticsInteractorsInteractorsInner**](FrameValidateAnalyticsInteractorsInteractorsInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInteractors
 
-`func NewFrameValidateAnalyticsInteractors(interactors []FrameValidateAnalyticsInteractorsInteractorsInner, ) *FrameValidateAnalyticsInteractors`
+`func NewFrameValidateAnalyticsInteractors() *FrameValidateAnalyticsInteractors`
 
 NewFrameValidateAnalyticsInteractors instantiates a new FrameValidateAnalyticsInteractors object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetInteractors sets Interactors field to given value.
 
+### HasInteractors
+
+`func (o *FrameValidateAnalyticsInteractors) HasInteractors() bool`
+
+HasInteractors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

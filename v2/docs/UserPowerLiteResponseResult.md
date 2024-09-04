@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fids** | **[]int32** | List of FIDs | 
+**Fids** | Pointer to **[]int32** | List of FIDs | [optional] 
 
 ## Methods
 
 ### NewUserPowerLiteResponseResult
 
-`func NewUserPowerLiteResponseResult(fids []int32, ) *UserPowerLiteResponseResult`
+`func NewUserPowerLiteResponseResult() *UserPowerLiteResponseResult`
 
 NewUserPowerLiteResponseResult instantiates a new UserPowerLiteResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFids sets Fids field to given value.
 
+### HasFids
+
+`func (o *UserPowerLiteResponseResult) HasFids() bool`
+
+HasFids returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

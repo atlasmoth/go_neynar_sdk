@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the Webhook type satisfies the MappedNullable interface at compile time
@@ -21,46 +20,29 @@ var _ MappedNullable = &Webhook{}
 
 // Webhook struct for Webhook
 type Webhook struct {
-	Object string `json:"object"`
-	WebhookId string `json:"webhook_id"`
-	DeveloperUuid string `json:"developer_uuid"`
-	TargetUrl string `json:"target_url"`
-	Title string `json:"title"`
-	Secrets []WebhookSecret `json:"secrets"`
-	Description string `json:"description"`
-	HttpTimeout string `json:"http_timeout"`
-	RateLimit int32 `json:"rate_limit"`
-	Active bool `json:"active"`
-	RateLimitDuration string `json:"rate_limit_duration"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `json:"deleted_at"`
+	Object *string `json:"object,omitempty"`
+	WebhookId *string `json:"webhook_id,omitempty"`
+	DeveloperUuid *string `json:"developer_uuid,omitempty"`
+	TargetUrl *string `json:"target_url,omitempty"`
+	Title *string `json:"title,omitempty"`
+	Secrets []WebhookSecret `json:"secrets,omitempty"`
+	Description *string `json:"description,omitempty"`
+	HttpTimeout *string `json:"http_timeout,omitempty"`
+	RateLimit *int32 `json:"rate_limit,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	RateLimitDuration *string `json:"rate_limit_duration,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 	Subscription *WebhookSubscription `json:"subscription,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Webhook Webhook
 
 // NewWebhook instantiates a new Webhook object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhook(object string, webhookId string, developerUuid string, targetUrl string, title string, secrets []WebhookSecret, description string, httpTimeout string, rateLimit int32, active bool, rateLimitDuration string, createdAt time.Time, updatedAt time.Time, deletedAt time.Time) *Webhook {
+func NewWebhook() *Webhook {
 	this := Webhook{}
-	this.Object = object
-	this.WebhookId = webhookId
-	this.DeveloperUuid = developerUuid
-	this.TargetUrl = targetUrl
-	this.Title = title
-	this.Secrets = secrets
-	this.Description = description
-	this.HttpTimeout = httpTimeout
-	this.RateLimit = rateLimit
-	this.Active = active
-	this.RateLimitDuration = rateLimitDuration
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.DeletedAt = deletedAt
 	return &this
 }
 
@@ -72,340 +54,452 @@ func NewWebhookWithDefaults() *Webhook {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *Webhook) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *Webhook) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *Webhook) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetWebhookId returns the WebhookId field value
+// GetWebhookId returns the WebhookId field value if set, zero value otherwise.
 func (o *Webhook) GetWebhookId() string {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		var ret string
 		return ret
 	}
-
-	return o.WebhookId
+	return *o.WebhookId
 }
 
-// GetWebhookIdOk returns a tuple with the WebhookId field value
+// GetWebhookIdOk returns a tuple with the WebhookId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetWebhookIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		return nil, false
 	}
-	return &o.WebhookId, true
+	return o.WebhookId, true
 }
 
-// SetWebhookId sets field value
+// HasWebhookId returns a boolean if a field has been set.
+func (o *Webhook) HasWebhookId() bool {
+	if o != nil && !IsNil(o.WebhookId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhookId gets a reference to the given string and assigns it to the WebhookId field.
 func (o *Webhook) SetWebhookId(v string) {
-	o.WebhookId = v
+	o.WebhookId = &v
 }
 
-// GetDeveloperUuid returns the DeveloperUuid field value
+// GetDeveloperUuid returns the DeveloperUuid field value if set, zero value otherwise.
 func (o *Webhook) GetDeveloperUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeveloperUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.DeveloperUuid
+	return *o.DeveloperUuid
 }
 
-// GetDeveloperUuidOk returns a tuple with the DeveloperUuid field value
+// GetDeveloperUuidOk returns a tuple with the DeveloperUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetDeveloperUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeveloperUuid) {
 		return nil, false
 	}
-	return &o.DeveloperUuid, true
+	return o.DeveloperUuid, true
 }
 
-// SetDeveloperUuid sets field value
+// HasDeveloperUuid returns a boolean if a field has been set.
+func (o *Webhook) HasDeveloperUuid() bool {
+	if o != nil && !IsNil(o.DeveloperUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeveloperUuid gets a reference to the given string and assigns it to the DeveloperUuid field.
 func (o *Webhook) SetDeveloperUuid(v string) {
-	o.DeveloperUuid = v
+	o.DeveloperUuid = &v
 }
 
-// GetTargetUrl returns the TargetUrl field value
+// GetTargetUrl returns the TargetUrl field value if set, zero value otherwise.
 func (o *Webhook) GetTargetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.TargetUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.TargetUrl
+	return *o.TargetUrl
 }
 
-// GetTargetUrlOk returns a tuple with the TargetUrl field value
+// GetTargetUrlOk returns a tuple with the TargetUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetTargetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetUrl) {
 		return nil, false
 	}
-	return &o.TargetUrl, true
+	return o.TargetUrl, true
 }
 
-// SetTargetUrl sets field value
+// HasTargetUrl returns a boolean if a field has been set.
+func (o *Webhook) HasTargetUrl() bool {
+	if o != nil && !IsNil(o.TargetUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetUrl gets a reference to the given string and assigns it to the TargetUrl field.
 func (o *Webhook) SetTargetUrl(v string) {
-	o.TargetUrl = v
+	o.TargetUrl = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *Webhook) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *Webhook) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *Webhook) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetSecrets returns the Secrets field value
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
 func (o *Webhook) GetSecrets() []WebhookSecret {
-	if o == nil {
+	if o == nil || IsNil(o.Secrets) {
 		var ret []WebhookSecret
 		return ret
 	}
-
 	return o.Secrets
 }
 
-// GetSecretsOk returns a tuple with the Secrets field value
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetSecretsOk() ([]WebhookSecret, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Secrets) {
 		return nil, false
 	}
 	return o.Secrets, true
 }
 
-// SetSecrets sets field value
+// HasSecrets returns a boolean if a field has been set.
+func (o *Webhook) HasSecrets() bool {
+	if o != nil && !IsNil(o.Secrets) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecrets gets a reference to the given []WebhookSecret and assigns it to the Secrets field.
 func (o *Webhook) SetSecrets(v []WebhookSecret) {
 	o.Secrets = v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Webhook) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *Webhook) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *Webhook) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
-// GetHttpTimeout returns the HttpTimeout field value
+// GetHttpTimeout returns the HttpTimeout field value if set, zero value otherwise.
 func (o *Webhook) GetHttpTimeout() string {
-	if o == nil {
+	if o == nil || IsNil(o.HttpTimeout) {
 		var ret string
 		return ret
 	}
-
-	return o.HttpTimeout
+	return *o.HttpTimeout
 }
 
-// GetHttpTimeoutOk returns a tuple with the HttpTimeout field value
+// GetHttpTimeoutOk returns a tuple with the HttpTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetHttpTimeoutOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.HttpTimeout) {
 		return nil, false
 	}
-	return &o.HttpTimeout, true
+	return o.HttpTimeout, true
 }
 
-// SetHttpTimeout sets field value
+// HasHttpTimeout returns a boolean if a field has been set.
+func (o *Webhook) HasHttpTimeout() bool {
+	if o != nil && !IsNil(o.HttpTimeout) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpTimeout gets a reference to the given string and assigns it to the HttpTimeout field.
 func (o *Webhook) SetHttpTimeout(v string) {
-	o.HttpTimeout = v
+	o.HttpTimeout = &v
 }
 
-// GetRateLimit returns the RateLimit field value
+// GetRateLimit returns the RateLimit field value if set, zero value otherwise.
 func (o *Webhook) GetRateLimit() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.RateLimit) {
 		var ret int32
 		return ret
 	}
-
-	return o.RateLimit
+	return *o.RateLimit
 }
 
-// GetRateLimitOk returns a tuple with the RateLimit field value
+// GetRateLimitOk returns a tuple with the RateLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetRateLimitOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RateLimit) {
 		return nil, false
 	}
-	return &o.RateLimit, true
+	return o.RateLimit, true
 }
 
-// SetRateLimit sets field value
+// HasRateLimit returns a boolean if a field has been set.
+func (o *Webhook) HasRateLimit() bool {
+	if o != nil && !IsNil(o.RateLimit) {
+		return true
+	}
+
+	return false
+}
+
+// SetRateLimit gets a reference to the given int32 and assigns it to the RateLimit field.
 func (o *Webhook) SetRateLimit(v int32) {
-	o.RateLimit = v
+	o.RateLimit = &v
 }
 
-// GetActive returns the Active field value
+// GetActive returns the Active field value if set, zero value otherwise.
 func (o *Webhook) GetActive() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
 	}
-
-	return o.Active
+	return *o.Active
 }
 
-// GetActiveOk returns a tuple with the Active field value
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetActiveOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
-	return &o.Active, true
+	return o.Active, true
 }
 
-// SetActive sets field value
+// HasActive returns a boolean if a field has been set.
+func (o *Webhook) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *Webhook) SetActive(v bool) {
-	o.Active = v
+	o.Active = &v
 }
 
-// GetRateLimitDuration returns the RateLimitDuration field value
+// GetRateLimitDuration returns the RateLimitDuration field value if set, zero value otherwise.
 func (o *Webhook) GetRateLimitDuration() string {
-	if o == nil {
+	if o == nil || IsNil(o.RateLimitDuration) {
 		var ret string
 		return ret
 	}
-
-	return o.RateLimitDuration
+	return *o.RateLimitDuration
 }
 
-// GetRateLimitDurationOk returns a tuple with the RateLimitDuration field value
+// GetRateLimitDurationOk returns a tuple with the RateLimitDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetRateLimitDurationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RateLimitDuration) {
 		return nil, false
 	}
-	return &o.RateLimitDuration, true
+	return o.RateLimitDuration, true
 }
 
-// SetRateLimitDuration sets field value
+// HasRateLimitDuration returns a boolean if a field has been set.
+func (o *Webhook) HasRateLimitDuration() bool {
+	if o != nil && !IsNil(o.RateLimitDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetRateLimitDuration gets a reference to the given string and assigns it to the RateLimitDuration field.
 func (o *Webhook) SetRateLimitDuration(v string) {
-	o.RateLimitDuration = v
+	o.RateLimitDuration = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Webhook) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Webhook) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Webhook) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Webhook) GetUpdatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Webhook) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *Webhook) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetDeletedAt returns the DeletedAt field value
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *Webhook) GetDeletedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.DeletedAt
+	return *o.DeletedAt
 }
 
-// GetDeletedAtOk returns a tuple with the DeletedAt field value
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetDeletedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedAt) {
 		return nil, false
 	}
-	return &o.DeletedAt, true
+	return o.DeletedAt, true
 }
 
-// SetDeletedAt sets field value
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *Webhook) HasDeletedAt() bool {
+	if o != nil && !IsNil(o.DeletedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
 func (o *Webhook) SetDeletedAt(v time.Time) {
-	o.DeletedAt = v
+	o.DeletedAt = &v
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
@@ -450,98 +544,52 @@ func (o Webhook) MarshalJSON() ([]byte, error) {
 
 func (o Webhook) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["webhook_id"] = o.WebhookId
-	toSerialize["developer_uuid"] = o.DeveloperUuid
-	toSerialize["target_url"] = o.TargetUrl
-	toSerialize["title"] = o.Title
-	toSerialize["secrets"] = o.Secrets
-	toSerialize["description"] = o.Description
-	toSerialize["http_timeout"] = o.HttpTimeout
-	toSerialize["rate_limit"] = o.RateLimit
-	toSerialize["active"] = o.Active
-	toSerialize["rate_limit_duration"] = o.RateLimitDuration
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["deleted_at"] = o.DeletedAt
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.WebhookId) {
+		toSerialize["webhook_id"] = o.WebhookId
+	}
+	if !IsNil(o.DeveloperUuid) {
+		toSerialize["developer_uuid"] = o.DeveloperUuid
+	}
+	if !IsNil(o.TargetUrl) {
+		toSerialize["target_url"] = o.TargetUrl
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Secrets) {
+		toSerialize["secrets"] = o.Secrets
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.HttpTimeout) {
+		toSerialize["http_timeout"] = o.HttpTimeout
+	}
+	if !IsNil(o.RateLimit) {
+		toSerialize["rate_limit"] = o.RateLimit
+	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.RateLimitDuration) {
+		toSerialize["rate_limit_duration"] = o.RateLimitDuration
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.DeletedAt) {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Webhook) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"webhook_id",
-		"developer_uuid",
-		"target_url",
-		"title",
-		"secrets",
-		"description",
-		"http_timeout",
-		"rate_limit",
-		"active",
-		"rate_limit_duration",
-		"created_at",
-		"updated_at",
-		"deleted_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhook := _Webhook{}
-
-	err = json.Unmarshal(data, &varWebhook)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Webhook(varWebhook)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "webhook_id")
-		delete(additionalProperties, "developer_uuid")
-		delete(additionalProperties, "target_url")
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "secrets")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "http_timeout")
-		delete(additionalProperties, "rate_limit")
-		delete(additionalProperties, "active")
-		delete(additionalProperties, "rate_limit_duration")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		delete(additionalProperties, "deleted_at")
-		delete(additionalProperties, "subscription")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhook struct {

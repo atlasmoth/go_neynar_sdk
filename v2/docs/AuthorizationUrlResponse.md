@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorizationUrl** | **string** |  | 
+**AuthorizationUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewAuthorizationUrlResponse
 
-`func NewAuthorizationUrlResponse(authorizationUrl string, ) *AuthorizationUrlResponse`
+`func NewAuthorizationUrlResponse() *AuthorizationUrlResponse`
 
 NewAuthorizationUrlResponse instantiates a new AuthorizationUrlResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetAuthorizationUrl sets AuthorizationUrl field to given value.
 
+### HasAuthorizationUrl
+
+`func (o *AuthorizationUrlResponse) HasAuthorizationUrl() bool`
+
+HasAuthorizationUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

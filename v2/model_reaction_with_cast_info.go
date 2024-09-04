@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the ReactionWithCastInfo type satisfies the MappedNullable interface at compile time
@@ -21,27 +20,19 @@ var _ MappedNullable = &ReactionWithCastInfo{}
 
 // ReactionWithCastInfo struct for ReactionWithCastInfo
 type ReactionWithCastInfo struct {
-	ReactionType string `json:"reaction_type"`
-	Cast CastWithInteractions `json:"cast"`
-	ReactionTimestamp time.Time `json:"reaction_timestamp"`
-	Object string `json:"object"`
-	User UserDehydrated `json:"user"`
-	AdditionalProperties map[string]interface{}
+	ReactionType *string `json:"reaction_type,omitempty"`
+	Cast *CastWithInteractions `json:"cast,omitempty"`
+	ReactionTimestamp *time.Time `json:"reaction_timestamp,omitempty"`
+	Object *string `json:"object,omitempty"`
+	User *UserDehydrated `json:"user,omitempty"`
 }
-
-type _ReactionWithCastInfo ReactionWithCastInfo
 
 // NewReactionWithCastInfo instantiates a new ReactionWithCastInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionWithCastInfo(reactionType string, cast CastWithInteractions, reactionTimestamp time.Time, object string, user UserDehydrated) *ReactionWithCastInfo {
+func NewReactionWithCastInfo() *ReactionWithCastInfo {
 	this := ReactionWithCastInfo{}
-	this.ReactionType = reactionType
-	this.Cast = cast
-	this.ReactionTimestamp = reactionTimestamp
-	this.Object = object
-	this.User = user
 	return &this
 }
 
@@ -53,124 +44,164 @@ func NewReactionWithCastInfoWithDefaults() *ReactionWithCastInfo {
 	return &this
 }
 
-// GetReactionType returns the ReactionType field value
+// GetReactionType returns the ReactionType field value if set, zero value otherwise.
 func (o *ReactionWithCastInfo) GetReactionType() string {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionType) {
 		var ret string
 		return ret
 	}
-
-	return o.ReactionType
+	return *o.ReactionType
 }
 
-// GetReactionTypeOk returns a tuple with the ReactionType field value
+// GetReactionTypeOk returns a tuple with the ReactionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastInfo) GetReactionTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionType) {
 		return nil, false
 	}
-	return &o.ReactionType, true
+	return o.ReactionType, true
 }
 
-// SetReactionType sets field value
+// HasReactionType returns a boolean if a field has been set.
+func (o *ReactionWithCastInfo) HasReactionType() bool {
+	if o != nil && !IsNil(o.ReactionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionType gets a reference to the given string and assigns it to the ReactionType field.
 func (o *ReactionWithCastInfo) SetReactionType(v string) {
-	o.ReactionType = v
+	o.ReactionType = &v
 }
 
-// GetCast returns the Cast field value
+// GetCast returns the Cast field value if set, zero value otherwise.
 func (o *ReactionWithCastInfo) GetCast() CastWithInteractions {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		var ret CastWithInteractions
 		return ret
 	}
-
-	return o.Cast
+	return *o.Cast
 }
 
-// GetCastOk returns a tuple with the Cast field value
+// GetCastOk returns a tuple with the Cast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastInfo) GetCastOk() (*CastWithInteractions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		return nil, false
 	}
-	return &o.Cast, true
+	return o.Cast, true
 }
 
-// SetCast sets field value
+// HasCast returns a boolean if a field has been set.
+func (o *ReactionWithCastInfo) HasCast() bool {
+	if o != nil && !IsNil(o.Cast) {
+		return true
+	}
+
+	return false
+}
+
+// SetCast gets a reference to the given CastWithInteractions and assigns it to the Cast field.
 func (o *ReactionWithCastInfo) SetCast(v CastWithInteractions) {
-	o.Cast = v
+	o.Cast = &v
 }
 
-// GetReactionTimestamp returns the ReactionTimestamp field value
+// GetReactionTimestamp returns the ReactionTimestamp field value if set, zero value otherwise.
 func (o *ReactionWithCastInfo) GetReactionTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTimestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.ReactionTimestamp
+	return *o.ReactionTimestamp
 }
 
-// GetReactionTimestampOk returns a tuple with the ReactionTimestamp field value
+// GetReactionTimestampOk returns a tuple with the ReactionTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastInfo) GetReactionTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionTimestamp) {
 		return nil, false
 	}
-	return &o.ReactionTimestamp, true
+	return o.ReactionTimestamp, true
 }
 
-// SetReactionTimestamp sets field value
+// HasReactionTimestamp returns a boolean if a field has been set.
+func (o *ReactionWithCastInfo) HasReactionTimestamp() bool {
+	if o != nil && !IsNil(o.ReactionTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionTimestamp gets a reference to the given time.Time and assigns it to the ReactionTimestamp field.
 func (o *ReactionWithCastInfo) SetReactionTimestamp(v time.Time) {
-	o.ReactionTimestamp = v
+	o.ReactionTimestamp = &v
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *ReactionWithCastInfo) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastInfo) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *ReactionWithCastInfo) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *ReactionWithCastInfo) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetUser returns the User field value
+// GetUser returns the User field value if set, zero value otherwise.
 func (o *ReactionWithCastInfo) GetUser() UserDehydrated {
-	if o == nil {
+	if o == nil || IsNil(o.User) {
 		var ret UserDehydrated
 		return ret
 	}
-
-	return o.User
+	return *o.User
 }
 
-// GetUserOk returns a tuple with the User field value
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastInfo) GetUserOk() (*UserDehydrated, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
-	return &o.User, true
+	return o.User, true
 }
 
-// SetUser sets field value
+// HasUser returns a boolean if a field has been set.
+func (o *ReactionWithCastInfo) HasUser() bool {
+	if o != nil && !IsNil(o.User) {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given UserDehydrated and assigns it to the User field.
 func (o *ReactionWithCastInfo) SetUser(v UserDehydrated) {
-	o.User = v
+	o.User = &v
 }
 
 func (o ReactionWithCastInfo) MarshalJSON() ([]byte, error) {
@@ -183,67 +214,22 @@ func (o ReactionWithCastInfo) MarshalJSON() ([]byte, error) {
 
 func (o ReactionWithCastInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["reaction_type"] = o.ReactionType
-	toSerialize["cast"] = o.Cast
-	toSerialize["reaction_timestamp"] = o.ReactionTimestamp
-	toSerialize["object"] = o.Object
-	toSerialize["user"] = o.User
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.ReactionType) {
+		toSerialize["reaction_type"] = o.ReactionType
 	}
-
+	if !IsNil(o.Cast) {
+		toSerialize["cast"] = o.Cast
+	}
+	if !IsNil(o.ReactionTimestamp) {
+		toSerialize["reaction_timestamp"] = o.ReactionTimestamp
+	}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionWithCastInfo) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"reaction_type",
-		"cast",
-		"reaction_timestamp",
-		"object",
-		"user",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionWithCastInfo := _ReactionWithCastInfo{}
-
-	err = json.Unmarshal(data, &varReactionWithCastInfo)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionWithCastInfo(varReactionWithCastInfo)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reaction_type")
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "reaction_timestamp")
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "user")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionWithCastInfo struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RegisterUserReqBody type satisfies the MappedNullable interface at compile time
@@ -20,26 +19,19 @@ var _ MappedNullable = &RegisterUserReqBody{}
 
 // RegisterUserReqBody struct for RegisterUserReqBody
 type RegisterUserReqBody struct {
-	Signature string `json:"signature"`
-	Fid float32 `json:"fid"`
-	RequestedUserCustodyAddress string `json:"requested_user_custody_address"`
-	Deadline float32 `json:"deadline"`
+	Signature *string `json:"signature,omitempty"`
+	Fid *float32 `json:"fid,omitempty"`
+	RequestedUserCustodyAddress *string `json:"requested_user_custody_address,omitempty"`
+	Deadline *float32 `json:"deadline,omitempty"`
 	Fname *string `json:"fname,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _RegisterUserReqBody RegisterUserReqBody
 
 // NewRegisterUserReqBody instantiates a new RegisterUserReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterUserReqBody(signature string, fid float32, requestedUserCustodyAddress string, deadline float32) *RegisterUserReqBody {
+func NewRegisterUserReqBody() *RegisterUserReqBody {
 	this := RegisterUserReqBody{}
-	this.Signature = signature
-	this.Fid = fid
-	this.RequestedUserCustodyAddress = requestedUserCustodyAddress
-	this.Deadline = deadline
 	return &this
 }
 
@@ -51,100 +43,132 @@ func NewRegisterUserReqBodyWithDefaults() *RegisterUserReqBody {
 	return &this
 }
 
-// GetSignature returns the Signature field value
+// GetSignature returns the Signature field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetSignature() string {
-	if o == nil {
+	if o == nil || IsNil(o.Signature) {
 		var ret string
 		return ret
 	}
-
-	return o.Signature
+	return *o.Signature
 }
 
-// GetSignatureOk returns a tuple with the Signature field value
+// GetSignatureOk returns a tuple with the Signature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserReqBody) GetSignatureOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Signature) {
 		return nil, false
 	}
-	return &o.Signature, true
+	return o.Signature, true
 }
 
-// SetSignature sets field value
+// HasSignature returns a boolean if a field has been set.
+func (o *RegisterUserReqBody) HasSignature() bool {
+	if o != nil && !IsNil(o.Signature) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignature gets a reference to the given string and assigns it to the Signature field.
 func (o *RegisterUserReqBody) SetSignature(v string) {
-	o.Signature = v
+	o.Signature = &v
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetFid() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret float32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserReqBody) GetFidOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *RegisterUserReqBody) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given float32 and assigns it to the Fid field.
 func (o *RegisterUserReqBody) SetFid(v float32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetRequestedUserCustodyAddress returns the RequestedUserCustodyAddress field value
+// GetRequestedUserCustodyAddress returns the RequestedUserCustodyAddress field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetRequestedUserCustodyAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.RequestedUserCustodyAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.RequestedUserCustodyAddress
+	return *o.RequestedUserCustodyAddress
 }
 
-// GetRequestedUserCustodyAddressOk returns a tuple with the RequestedUserCustodyAddress field value
+// GetRequestedUserCustodyAddressOk returns a tuple with the RequestedUserCustodyAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserReqBody) GetRequestedUserCustodyAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RequestedUserCustodyAddress) {
 		return nil, false
 	}
-	return &o.RequestedUserCustodyAddress, true
+	return o.RequestedUserCustodyAddress, true
 }
 
-// SetRequestedUserCustodyAddress sets field value
+// HasRequestedUserCustodyAddress returns a boolean if a field has been set.
+func (o *RegisterUserReqBody) HasRequestedUserCustodyAddress() bool {
+	if o != nil && !IsNil(o.RequestedUserCustodyAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestedUserCustodyAddress gets a reference to the given string and assigns it to the RequestedUserCustodyAddress field.
 func (o *RegisterUserReqBody) SetRequestedUserCustodyAddress(v string) {
-	o.RequestedUserCustodyAddress = v
+	o.RequestedUserCustodyAddress = &v
 }
 
-// GetDeadline returns the Deadline field value
+// GetDeadline returns the Deadline field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetDeadline() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Deadline) {
 		var ret float32
 		return ret
 	}
-
-	return o.Deadline
+	return *o.Deadline
 }
 
-// GetDeadlineOk returns a tuple with the Deadline field value
+// GetDeadlineOk returns a tuple with the Deadline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegisterUserReqBody) GetDeadlineOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Deadline) {
 		return nil, false
 	}
-	return &o.Deadline, true
+	return o.Deadline, true
 }
 
-// SetDeadline sets field value
+// HasDeadline returns a boolean if a field has been set.
+func (o *RegisterUserReqBody) HasDeadline() bool {
+	if o != nil && !IsNil(o.Deadline) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeadline gets a reference to the given float32 and assigns it to the Deadline field.
 func (o *RegisterUserReqBody) SetDeadline(v float32) {
-	o.Deadline = v
+	o.Deadline = &v
 }
 
 // GetFname returns the Fname field value if set, zero value otherwise.
@@ -189,68 +213,22 @@ func (o RegisterUserReqBody) MarshalJSON() ([]byte, error) {
 
 func (o RegisterUserReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signature"] = o.Signature
-	toSerialize["fid"] = o.Fid
-	toSerialize["requested_user_custody_address"] = o.RequestedUserCustodyAddress
-	toSerialize["deadline"] = o.Deadline
+	if !IsNil(o.Signature) {
+		toSerialize["signature"] = o.Signature
+	}
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
+	if !IsNil(o.RequestedUserCustodyAddress) {
+		toSerialize["requested_user_custody_address"] = o.RequestedUserCustodyAddress
+	}
+	if !IsNil(o.Deadline) {
+		toSerialize["deadline"] = o.Deadline
+	}
 	if !IsNil(o.Fname) {
 		toSerialize["fname"] = o.Fname
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signature",
-		"fid",
-		"requested_user_custody_address",
-		"deadline",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRegisterUserReqBody := _RegisterUserReqBody{}
-
-	err = json.Unmarshal(data, &varRegisterUserReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RegisterUserReqBody(varRegisterUserReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signature")
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "requested_user_custody_address")
-		delete(additionalProperties, "deadline")
-		delete(additionalProperties, "fname")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRegisterUserReqBody struct {

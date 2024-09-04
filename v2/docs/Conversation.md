@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Conversation** | [**ConversationConversation**](ConversationConversation.md) |  | 
+**Conversation** | Pointer to [**ConversationConversation**](ConversationConversation.md) |  | [optional] 
 **Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewConversation
 
-`func NewConversation(conversation ConversationConversation, ) *Conversation`
+`func NewConversation() *Conversation`
 
 NewConversation instantiates a new Conversation object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetConversation sets Conversation field to given value.
 
+### HasConversation
+
+`func (o *Conversation) HasConversation() bool`
+
+HasConversation returns a boolean if a field has been set.
 
 ### GetNext
 

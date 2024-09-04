@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FollowReqBody type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,16 @@ var _ MappedNullable = &FollowReqBody{}
 // FollowReqBody struct for FollowReqBody
 type FollowReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
-	TargetFids []int32 `json:"target_fids"`
-	AdditionalProperties map[string]interface{}
+	SignerUuid *string `json:"signer_uuid,omitempty"`
+	TargetFids []int32 `json:"target_fids,omitempty"`
 }
-
-type _FollowReqBody FollowReqBody
 
 // NewFollowReqBody instantiates a new FollowReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFollowReqBody(signerUuid string, targetFids []int32) *FollowReqBody {
+func NewFollowReqBody() *FollowReqBody {
 	this := FollowReqBody{}
-	this.SignerUuid = signerUuid
-	this.TargetFids = targetFids
 	return &this
 }
 
@@ -47,50 +41,66 @@ func NewFollowReqBodyWithDefaults() *FollowReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *FollowReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FollowReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *FollowReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *FollowReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
-// GetTargetFids returns the TargetFids field value
+// GetTargetFids returns the TargetFids field value if set, zero value otherwise.
 func (o *FollowReqBody) GetTargetFids() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetFids) {
 		var ret []int32
 		return ret
 	}
-
 	return o.TargetFids
 }
 
-// GetTargetFidsOk returns a tuple with the TargetFids field value
+// GetTargetFidsOk returns a tuple with the TargetFids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FollowReqBody) GetTargetFidsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetFids) {
 		return nil, false
 	}
 	return o.TargetFids, true
 }
 
-// SetTargetFids sets field value
+// HasTargetFids returns a boolean if a field has been set.
+func (o *FollowReqBody) HasTargetFids() bool {
+	if o != nil && !IsNil(o.TargetFids) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetFids gets a reference to the given []int32 and assigns it to the TargetFids field.
 func (o *FollowReqBody) SetTargetFids(v []int32) {
 	o.TargetFids = v
 }
@@ -105,58 +115,13 @@ func (o FollowReqBody) MarshalJSON() ([]byte, error) {
 
 func (o FollowReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
-	toSerialize["target_fids"] = o.TargetFids
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
 	}
-
+	if !IsNil(o.TargetFids) {
+		toSerialize["target_fids"] = o.TargetFids
+	}
 	return toSerialize, nil
-}
-
-func (o *FollowReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-		"target_fids",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFollowReqBody := _FollowReqBody{}
-
-	err = json.Unmarshal(data, &varFollowReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FollowReqBody(varFollowReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "target_fids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFollowReqBody struct {

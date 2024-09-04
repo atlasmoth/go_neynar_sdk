@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MessageDataCastAdd type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,20 @@ var _ MappedNullable = &MessageDataCastAdd{}
 
 // MessageDataCastAdd struct for MessageDataCastAdd
 type MessageDataCastAdd struct {
-	Fid int32 `json:"fid"`
-	Timestamp int64 `json:"timestamp"`
-	Network FarcasterNetwork `json:"network"`
-	CastAddBody CastAddBody `json:"castAddBody"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	Network *FarcasterNetwork `json:"network,omitempty"`
+	CastAddBody *CastAddBody `json:"castAddBody,omitempty"`
 }
-
-type _MessageDataCastAdd MessageDataCastAdd
 
 // NewMessageDataCastAdd instantiates a new MessageDataCastAdd object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataCastAdd(fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody) *MessageDataCastAdd {
+func NewMessageDataCastAdd() *MessageDataCastAdd {
 	this := MessageDataCastAdd{}
-	this.Fid = fid
-	this.Timestamp = timestamp
-	this.Network = network
-	this.CastAddBody = castAddBody
+	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
+	this.Network = &network
 	return &this
 }
 
@@ -48,104 +42,136 @@ func NewMessageDataCastAdd(fid int32, timestamp int64, network FarcasterNetwork,
 func NewMessageDataCastAddWithDefaults() *MessageDataCastAdd {
 	this := MessageDataCastAdd{}
 	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
-	this.Network = network
+	this.Network = &network
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *MessageDataCastAdd) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataCastAdd) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *MessageDataCastAdd) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *MessageDataCastAdd) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *MessageDataCastAdd) GetTimestamp() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int64
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataCastAdd) GetTimestampOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *MessageDataCastAdd) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
 func (o *MessageDataCastAdd) SetTimestamp(v int64) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetNetwork returns the Network field value
+// GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *MessageDataCastAdd) GetNetwork() FarcasterNetwork {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		var ret FarcasterNetwork
 		return ret
 	}
-
-	return o.Network
+	return *o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataCastAdd) GetNetworkOk() (*FarcasterNetwork, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
-	return &o.Network, true
+	return o.Network, true
 }
 
-// SetNetwork sets field value
+// HasNetwork returns a boolean if a field has been set.
+func (o *MessageDataCastAdd) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given FarcasterNetwork and assigns it to the Network field.
 func (o *MessageDataCastAdd) SetNetwork(v FarcasterNetwork) {
-	o.Network = v
+	o.Network = &v
 }
 
-// GetCastAddBody returns the CastAddBody field value
+// GetCastAddBody returns the CastAddBody field value if set, zero value otherwise.
 func (o *MessageDataCastAdd) GetCastAddBody() CastAddBody {
-	if o == nil {
+	if o == nil || IsNil(o.CastAddBody) {
 		var ret CastAddBody
 		return ret
 	}
-
-	return o.CastAddBody
+	return *o.CastAddBody
 }
 
-// GetCastAddBodyOk returns a tuple with the CastAddBody field value
+// GetCastAddBodyOk returns a tuple with the CastAddBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataCastAdd) GetCastAddBodyOk() (*CastAddBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastAddBody) {
 		return nil, false
 	}
-	return &o.CastAddBody, true
+	return o.CastAddBody, true
 }
 
-// SetCastAddBody sets field value
+// HasCastAddBody returns a boolean if a field has been set.
+func (o *MessageDataCastAdd) HasCastAddBody() bool {
+	if o != nil && !IsNil(o.CastAddBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastAddBody gets a reference to the given CastAddBody and assigns it to the CastAddBody field.
 func (o *MessageDataCastAdd) SetCastAddBody(v CastAddBody) {
-	o.CastAddBody = v
+	o.CastAddBody = &v
 }
 
 func (o MessageDataCastAdd) MarshalJSON() ([]byte, error) {
@@ -158,64 +184,19 @@ func (o MessageDataCastAdd) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataCastAdd) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["network"] = o.Network
-	toSerialize["castAddBody"] = o.CastAddBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.CastAddBody) {
+		toSerialize["castAddBody"] = o.CastAddBody
+	}
 	return toSerialize, nil
-}
-
-func (o *MessageDataCastAdd) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"timestamp",
-		"network",
-		"castAddBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMessageDataCastAdd := _MessageDataCastAdd{}
-
-	err = json.Unmarshal(data, &varMessageDataCastAdd)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MessageDataCastAdd(varMessageDataCastAdd)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "network")
-		delete(additionalProperties, "castAddBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMessageDataCastAdd struct {

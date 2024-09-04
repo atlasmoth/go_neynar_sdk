@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**ChainId** | **int32** |  | 
-**BlockNumber** | **int32** |  | 
-**BlockHash** | **string** |  | 
-**BlockTimestamp** | **int32** |  | 
-**TransactionHash** | **string** |  | 
-**LogIndex** | **int32** |  | 
-**TxIndex** | **int32** |  | 
-**Fid** | **int32** |  | 
-**SignerEventBody** | [**SignerEventBody**](SignerEventBody.md) |  | 
-**SignerMigratedEventBody** | [**SignerMigratedEventBody**](SignerMigratedEventBody.md) |  | 
-**IdRegisterEventBody** | [**IdRegisterEventBody**](IdRegisterEventBody.md) |  | 
-**StorageRentEventBody** | [**StorageRentEventBody**](StorageRentEventBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**ChainId** | Pointer to **int32** |  | [optional] 
+**BlockNumber** | Pointer to **int32** |  | [optional] 
+**BlockHash** | Pointer to **string** |  | [optional] 
+**BlockTimestamp** | Pointer to **int32** |  | [optional] 
+**TransactionHash** | Pointer to **string** |  | [optional] 
+**LogIndex** | Pointer to **int32** |  | [optional] 
+**TxIndex** | Pointer to **int32** |  | [optional] 
+**Fid** | Pointer to **int32** |  | [optional] 
+**SignerEventBody** | Pointer to [**SignerEventBody**](SignerEventBody.md) |  | [optional] 
+**SignerMigratedEventBody** | Pointer to [**SignerMigratedEventBody**](SignerMigratedEventBody.md) |  | [optional] 
+**IdRegisterEventBody** | Pointer to [**IdRegisterEventBody**](IdRegisterEventBody.md) |  | [optional] 
+**StorageRentEventBody** | Pointer to [**StorageRentEventBody**](StorageRentEventBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewOnChainEvent
 
-`func NewOnChainEvent(type_ string, chainId int32, blockNumber int32, blockHash string, blockTimestamp int32, transactionHash string, logIndex int32, txIndex int32, fid int32, signerEventBody SignerEventBody, signerMigratedEventBody SignerMigratedEventBody, idRegisterEventBody IdRegisterEventBody, storageRentEventBody StorageRentEventBody, ) *OnChainEvent`
+`func NewOnChainEvent() *OnChainEvent`
 
 NewOnChainEvent instantiates a new OnChainEvent object
 This constructor will assign default values to properties that have it defined,
@@ -56,6 +56,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *OnChainEvent) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetChainId
 
@@ -76,6 +81,11 @@ and a boolean to check if the value has been set.
 
 SetChainId sets ChainId field to given value.
 
+### HasChainId
+
+`func (o *OnChainEvent) HasChainId() bool`
+
+HasChainId returns a boolean if a field has been set.
 
 ### GetBlockNumber
 
@@ -96,6 +106,11 @@ and a boolean to check if the value has been set.
 
 SetBlockNumber sets BlockNumber field to given value.
 
+### HasBlockNumber
+
+`func (o *OnChainEvent) HasBlockNumber() bool`
+
+HasBlockNumber returns a boolean if a field has been set.
 
 ### GetBlockHash
 
@@ -116,6 +131,11 @@ and a boolean to check if the value has been set.
 
 SetBlockHash sets BlockHash field to given value.
 
+### HasBlockHash
+
+`func (o *OnChainEvent) HasBlockHash() bool`
+
+HasBlockHash returns a boolean if a field has been set.
 
 ### GetBlockTimestamp
 
@@ -136,6 +156,11 @@ and a boolean to check if the value has been set.
 
 SetBlockTimestamp sets BlockTimestamp field to given value.
 
+### HasBlockTimestamp
+
+`func (o *OnChainEvent) HasBlockTimestamp() bool`
+
+HasBlockTimestamp returns a boolean if a field has been set.
 
 ### GetTransactionHash
 
@@ -156,6 +181,11 @@ and a boolean to check if the value has been set.
 
 SetTransactionHash sets TransactionHash field to given value.
 
+### HasTransactionHash
+
+`func (o *OnChainEvent) HasTransactionHash() bool`
+
+HasTransactionHash returns a boolean if a field has been set.
 
 ### GetLogIndex
 
@@ -176,6 +206,11 @@ and a boolean to check if the value has been set.
 
 SetLogIndex sets LogIndex field to given value.
 
+### HasLogIndex
+
+`func (o *OnChainEvent) HasLogIndex() bool`
+
+HasLogIndex returns a boolean if a field has been set.
 
 ### GetTxIndex
 
@@ -196,6 +231,11 @@ and a boolean to check if the value has been set.
 
 SetTxIndex sets TxIndex field to given value.
 
+### HasTxIndex
+
+`func (o *OnChainEvent) HasTxIndex() bool`
+
+HasTxIndex returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -216,6 +256,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *OnChainEvent) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetSignerEventBody
 
@@ -236,6 +281,11 @@ and a boolean to check if the value has been set.
 
 SetSignerEventBody sets SignerEventBody field to given value.
 
+### HasSignerEventBody
+
+`func (o *OnChainEvent) HasSignerEventBody() bool`
+
+HasSignerEventBody returns a boolean if a field has been set.
 
 ### GetSignerMigratedEventBody
 
@@ -256,6 +306,11 @@ and a boolean to check if the value has been set.
 
 SetSignerMigratedEventBody sets SignerMigratedEventBody field to given value.
 
+### HasSignerMigratedEventBody
+
+`func (o *OnChainEvent) HasSignerMigratedEventBody() bool`
+
+HasSignerMigratedEventBody returns a boolean if a field has been set.
 
 ### GetIdRegisterEventBody
 
@@ -276,6 +331,11 @@ and a boolean to check if the value has been set.
 
 SetIdRegisterEventBody sets IdRegisterEventBody field to given value.
 
+### HasIdRegisterEventBody
+
+`func (o *OnChainEvent) HasIdRegisterEventBody() bool`
+
+HasIdRegisterEventBody returns a boolean if a field has been set.
 
 ### GetStorageRentEventBody
 
@@ -296,6 +356,11 @@ and a boolean to check if the value has been set.
 
 SetStorageRentEventBody sets StorageRentEventBody field to given value.
 
+### HasStorageRentEventBody
+
+`func (o *OnChainEvent) HasStorageRentEventBody() bool`
+
+HasStorageRentEventBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

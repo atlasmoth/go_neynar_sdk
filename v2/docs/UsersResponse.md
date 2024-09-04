@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | [**[]User**](User.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Users** | Pointer to [**[]User**](User.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewUsersResponse
 
-`func NewUsersResponse(users []User, next NextCursor, ) *UsersResponse`
+`func NewUsersResponse() *UsersResponse`
 
 NewUsersResponse instantiates a new UsersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUsers sets Users field to given value.
 
+### HasUsers
+
+`func (o *UsersResponse) HasUsers() bool`
+
+HasUsers returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *UsersResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

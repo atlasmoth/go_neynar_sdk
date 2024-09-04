@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Following** | **bool** |  | 
-**FollowedBy** | **bool** |  | 
+**Following** | Pointer to **bool** |  | [optional] 
+**FollowedBy** | Pointer to **bool** |  | [optional] 
 **Liked** | Pointer to **bool** |  | [optional] 
 **Recasted** | Pointer to **bool** |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewViewerContext
 
-`func NewViewerContext(following bool, followedBy bool, ) *ViewerContext`
+`func NewViewerContext() *ViewerContext`
 
 NewViewerContext instantiates a new ViewerContext object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetFollowing sets Following field to given value.
 
+### HasFollowing
+
+`func (o *ViewerContext) HasFollowing() bool`
+
+HasFollowing returns a boolean if a field has been set.
 
 ### GetFollowedBy
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetFollowedBy sets FollowedBy field to given value.
 
+### HasFollowedBy
+
+`func (o *ViewerContext) HasFollowedBy() bool`
+
+HasFollowedBy returns a boolean if a field has been set.
 
 ### GetLiked
 

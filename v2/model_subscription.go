@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Subscription type satisfies the MappedNullable interface at compile time
@@ -20,35 +19,24 @@ var _ MappedNullable = &Subscription{}
 
 // Subscription struct for Subscription
 type Subscription struct {
-	Object string `json:"object"`
+	Object *string `json:"object,omitempty"`
 	ProviderName *string `json:"provider_name,omitempty"`
-	ContractAddress string `json:"contract_address"`
-	Chain int32 `json:"chain"`
-	Metadata SubscriptionMetadata `json:"metadata"`
-	OwnerAddress string `json:"owner_address"`
-	Price SubscriptionPrice `json:"price"`
+	ContractAddress *string `json:"contract_address,omitempty"`
+	Chain *int32 `json:"chain,omitempty"`
+	Metadata *SubscriptionMetadata `json:"metadata,omitempty"`
+	OwnerAddress *string `json:"owner_address,omitempty"`
+	Price *SubscriptionPrice `json:"price,omitempty"`
 	Tiers []SubscriptionTier `json:"tiers,omitempty"`
-	ProtocolVersion int32 `json:"protocol_version"`
-	Token SubscriptionToken `json:"token"`
-	AdditionalProperties map[string]interface{}
+	ProtocolVersion *int32 `json:"protocol_version,omitempty"`
+	Token *SubscriptionToken `json:"token,omitempty"`
 }
-
-type _Subscription Subscription
 
 // NewSubscription instantiates a new Subscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscription(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken) *Subscription {
+func NewSubscription() *Subscription {
 	this := Subscription{}
-	this.Object = object
-	this.ContractAddress = contractAddress
-	this.Chain = chain
-	this.Metadata = metadata
-	this.OwnerAddress = ownerAddress
-	this.Price = price
-	this.ProtocolVersion = protocolVersion
-	this.Token = token
 	return &this
 }
 
@@ -60,28 +48,36 @@ func NewSubscriptionWithDefaults() *Subscription {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *Subscription) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *Subscription) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *Subscription) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
@@ -116,124 +112,164 @@ func (o *Subscription) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
-// GetContractAddress returns the ContractAddress field value
+// GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *Subscription) GetContractAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.ContractAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.ContractAddress
+	return *o.ContractAddress
 }
 
-// GetContractAddressOk returns a tuple with the ContractAddress field value
+// GetContractAddressOk returns a tuple with the ContractAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetContractAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ContractAddress) {
 		return nil, false
 	}
-	return &o.ContractAddress, true
+	return o.ContractAddress, true
 }
 
-// SetContractAddress sets field value
+// HasContractAddress returns a boolean if a field has been set.
+func (o *Subscription) HasContractAddress() bool {
+	if o != nil && !IsNil(o.ContractAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractAddress gets a reference to the given string and assigns it to the ContractAddress field.
 func (o *Subscription) SetContractAddress(v string) {
-	o.ContractAddress = v
+	o.ContractAddress = &v
 }
 
-// GetChain returns the Chain field value
+// GetChain returns the Chain field value if set, zero value otherwise.
 func (o *Subscription) GetChain() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Chain) {
 		var ret int32
 		return ret
 	}
-
-	return o.Chain
+	return *o.Chain
 }
 
-// GetChainOk returns a tuple with the Chain field value
+// GetChainOk returns a tuple with the Chain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetChainOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Chain) {
 		return nil, false
 	}
-	return &o.Chain, true
+	return o.Chain, true
 }
 
-// SetChain sets field value
+// HasChain returns a boolean if a field has been set.
+func (o *Subscription) HasChain() bool {
+	if o != nil && !IsNil(o.Chain) {
+		return true
+	}
+
+	return false
+}
+
+// SetChain gets a reference to the given int32 and assigns it to the Chain field.
 func (o *Subscription) SetChain(v int32) {
-	o.Chain = v
+	o.Chain = &v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *Subscription) GetMetadata() SubscriptionMetadata {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret SubscriptionMetadata
 		return ret
 	}
-
-	return o.Metadata
+	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetMetadataOk() (*SubscriptionMetadata, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *Subscription) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given SubscriptionMetadata and assigns it to the Metadata field.
 func (o *Subscription) SetMetadata(v SubscriptionMetadata) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
-// GetOwnerAddress returns the OwnerAddress field value
+// GetOwnerAddress returns the OwnerAddress field value if set, zero value otherwise.
 func (o *Subscription) GetOwnerAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.OwnerAddress
+	return *o.OwnerAddress
 }
 
-// GetOwnerAddressOk returns a tuple with the OwnerAddress field value
+// GetOwnerAddressOk returns a tuple with the OwnerAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetOwnerAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerAddress) {
 		return nil, false
 	}
-	return &o.OwnerAddress, true
+	return o.OwnerAddress, true
 }
 
-// SetOwnerAddress sets field value
+// HasOwnerAddress returns a boolean if a field has been set.
+func (o *Subscription) HasOwnerAddress() bool {
+	if o != nil && !IsNil(o.OwnerAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerAddress gets a reference to the given string and assigns it to the OwnerAddress field.
 func (o *Subscription) SetOwnerAddress(v string) {
-	o.OwnerAddress = v
+	o.OwnerAddress = &v
 }
 
-// GetPrice returns the Price field value
+// GetPrice returns the Price field value if set, zero value otherwise.
 func (o *Subscription) GetPrice() SubscriptionPrice {
-	if o == nil {
+	if o == nil || IsNil(o.Price) {
 		var ret SubscriptionPrice
 		return ret
 	}
-
-	return o.Price
+	return *o.Price
 }
 
-// GetPriceOk returns a tuple with the Price field value
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetPriceOk() (*SubscriptionPrice, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
-	return &o.Price, true
+	return o.Price, true
 }
 
-// SetPrice sets field value
+// HasPrice returns a boolean if a field has been set.
+func (o *Subscription) HasPrice() bool {
+	if o != nil && !IsNil(o.Price) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrice gets a reference to the given SubscriptionPrice and assigns it to the Price field.
 func (o *Subscription) SetPrice(v SubscriptionPrice) {
-	o.Price = v
+	o.Price = &v
 }
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.
@@ -268,52 +304,68 @@ func (o *Subscription) SetTiers(v []SubscriptionTier) {
 	o.Tiers = v
 }
 
-// GetProtocolVersion returns the ProtocolVersion field value
+// GetProtocolVersion returns the ProtocolVersion field value if set, zero value otherwise.
 func (o *Subscription) GetProtocolVersion() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ProtocolVersion) {
 		var ret int32
 		return ret
 	}
-
-	return o.ProtocolVersion
+	return *o.ProtocolVersion
 }
 
-// GetProtocolVersionOk returns a tuple with the ProtocolVersion field value
+// GetProtocolVersionOk returns a tuple with the ProtocolVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetProtocolVersionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProtocolVersion) {
 		return nil, false
 	}
-	return &o.ProtocolVersion, true
+	return o.ProtocolVersion, true
 }
 
-// SetProtocolVersion sets field value
+// HasProtocolVersion returns a boolean if a field has been set.
+func (o *Subscription) HasProtocolVersion() bool {
+	if o != nil && !IsNil(o.ProtocolVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProtocolVersion gets a reference to the given int32 and assigns it to the ProtocolVersion field.
 func (o *Subscription) SetProtocolVersion(v int32) {
-	o.ProtocolVersion = v
+	o.ProtocolVersion = &v
 }
 
-// GetToken returns the Token field value
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *Subscription) GetToken() SubscriptionToken {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		var ret SubscriptionToken
 		return ret
 	}
-
-	return o.Token
+	return *o.Token
 }
 
-// GetTokenOk returns a tuple with the Token field value
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetTokenOk() (*SubscriptionToken, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return &o.Token, true
+	return o.Token, true
 }
 
-// SetToken sets field value
+// HasToken returns a boolean if a field has been set.
+func (o *Subscription) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given SubscriptionToken and assigns it to the Token field.
 func (o *Subscription) SetToken(v SubscriptionToken) {
-	o.Token = v
+	o.Token = &v
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
@@ -326,84 +378,37 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 
 func (o Subscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.ProviderName) {
 		toSerialize["provider_name"] = o.ProviderName
 	}
-	toSerialize["contract_address"] = o.ContractAddress
-	toSerialize["chain"] = o.Chain
-	toSerialize["metadata"] = o.Metadata
-	toSerialize["owner_address"] = o.OwnerAddress
-	toSerialize["price"] = o.Price
+	if !IsNil(o.ContractAddress) {
+		toSerialize["contract_address"] = o.ContractAddress
+	}
+	if !IsNil(o.Chain) {
+		toSerialize["chain"] = o.Chain
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.OwnerAddress) {
+		toSerialize["owner_address"] = o.OwnerAddress
+	}
+	if !IsNil(o.Price) {
+		toSerialize["price"] = o.Price
+	}
 	if !IsNil(o.Tiers) {
 		toSerialize["tiers"] = o.Tiers
 	}
-	toSerialize["protocol_version"] = o.ProtocolVersion
-	toSerialize["token"] = o.Token
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.ProtocolVersion) {
+		toSerialize["protocol_version"] = o.ProtocolVersion
 	}
-
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
 	return toSerialize, nil
-}
-
-func (o *Subscription) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"contract_address",
-		"chain",
-		"metadata",
-		"owner_address",
-		"price",
-		"protocol_version",
-		"token",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscription := _Subscription{}
-
-	err = json.Unmarshal(data, &varSubscription)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Subscription(varSubscription)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "provider_name")
-		delete(additionalProperties, "contract_address")
-		delete(additionalProperties, "chain")
-		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "owner_address")
-		delete(additionalProperties, "price")
-		delete(additionalProperties, "tiers")
-		delete(additionalProperties, "protocol_version")
-		delete(additionalProperties, "token")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscription struct {

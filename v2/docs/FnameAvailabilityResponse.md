@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Available** | **bool** |  | 
+**Available** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewFnameAvailabilityResponse
 
-`func NewFnameAvailabilityResponse(available bool, ) *FnameAvailabilityResponse`
+`func NewFnameAvailabilityResponse() *FnameAvailabilityResponse`
 
 NewFnameAvailabilityResponse instantiates a new FnameAvailabilityResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetAvailable sets Available field to given value.
 
+### HasAvailable
+
+`func (o *FnameAvailabilityResponse) HasAvailable() bool`
+
+HasAvailable returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

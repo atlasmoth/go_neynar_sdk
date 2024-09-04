@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Subscriptions type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &Subscriptions{}
 
 // Subscriptions struct for Subscriptions
 type Subscriptions struct {
-	Object string `json:"object"`
-	SubscriptionsCreated []Subscription `json:"subscriptions_created"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	SubscriptionsCreated []Subscription `json:"subscriptions_created,omitempty"`
 }
-
-type _Subscriptions Subscriptions
 
 // NewSubscriptions instantiates a new Subscriptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptions(object string, subscriptionsCreated []Subscription) *Subscriptions {
+func NewSubscriptions() *Subscriptions {
 	this := Subscriptions{}
-	this.Object = object
-	this.SubscriptionsCreated = subscriptionsCreated
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewSubscriptionsWithDefaults() *Subscriptions {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *Subscriptions) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriptions) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *Subscriptions) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *Subscriptions) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetSubscriptionsCreated returns the SubscriptionsCreated field value
+// GetSubscriptionsCreated returns the SubscriptionsCreated field value if set, zero value otherwise.
 func (o *Subscriptions) GetSubscriptionsCreated() []Subscription {
-	if o == nil {
+	if o == nil || IsNil(o.SubscriptionsCreated) {
 		var ret []Subscription
 		return ret
 	}
-
 	return o.SubscriptionsCreated
 }
 
-// GetSubscriptionsCreatedOk returns a tuple with the SubscriptionsCreated field value
+// GetSubscriptionsCreatedOk returns a tuple with the SubscriptionsCreated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriptions) GetSubscriptionsCreatedOk() ([]Subscription, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SubscriptionsCreated) {
 		return nil, false
 	}
 	return o.SubscriptionsCreated, true
 }
 
-// SetSubscriptionsCreated sets field value
+// HasSubscriptionsCreated returns a boolean if a field has been set.
+func (o *Subscriptions) HasSubscriptionsCreated() bool {
+	if o != nil && !IsNil(o.SubscriptionsCreated) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionsCreated gets a reference to the given []Subscription and assigns it to the SubscriptionsCreated field.
 func (o *Subscriptions) SetSubscriptionsCreated(v []Subscription) {
 	o.SubscriptionsCreated = v
 }
@@ -104,58 +114,13 @@ func (o Subscriptions) MarshalJSON() ([]byte, error) {
 
 func (o Subscriptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["subscriptions_created"] = o.SubscriptionsCreated
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.SubscriptionsCreated) {
+		toSerialize["subscriptions_created"] = o.SubscriptionsCreated
+	}
 	return toSerialize, nil
-}
-
-func (o *Subscriptions) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"subscriptions_created",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscriptions := _Subscriptions{}
-
-	err = json.Unmarshal(data, &varSubscriptions)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Subscriptions(varSubscriptions)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "subscriptions_created")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptions struct {

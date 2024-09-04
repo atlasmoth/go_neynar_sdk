@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Likes** | [**[]ReactionLike**](ReactionLike.md) |  | 
-**Recasts** | [**[]ReactionRecast**](ReactionRecast.md) |  | 
-**LikesCount** | **int32** |  | 
-**RecastsCount** | **int32** |  | 
+**Likes** | Pointer to [**[]ReactionLike**](ReactionLike.md) |  | [optional] 
+**Recasts** | Pointer to [**[]ReactionRecast**](ReactionRecast.md) |  | [optional] 
+**LikesCount** | Pointer to **int32** |  | [optional] 
+**RecastsCount** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewCastWithInteractionsReactions
 
-`func NewCastWithInteractionsReactions(likes []ReactionLike, recasts []ReactionRecast, likesCount int32, recastsCount int32, ) *CastWithInteractionsReactions`
+`func NewCastWithInteractionsReactions() *CastWithInteractionsReactions`
 
 NewCastWithInteractionsReactions instantiates a new CastWithInteractionsReactions object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetLikes sets Likes field to given value.
 
+### HasLikes
+
+`func (o *CastWithInteractionsReactions) HasLikes() bool`
+
+HasLikes returns a boolean if a field has been set.
 
 ### GetRecasts
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetRecasts sets Recasts field to given value.
 
+### HasRecasts
+
+`func (o *CastWithInteractionsReactions) HasRecasts() bool`
+
+HasRecasts returns a boolean if a field has been set.
 
 ### GetLikesCount
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetLikesCount sets LikesCount field to given value.
 
+### HasLikesCount
+
+`func (o *CastWithInteractionsReactions) HasLikesCount() bool`
+
+HasLikesCount returns a boolean if a field has been set.
 
 ### GetRecastsCount
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetRecastsCount sets RecastsCount field to given value.
 
+### HasRecastsCount
+
+`func (o *CastWithInteractionsReactions) HasRecastsCount() bool`
+
+HasRecastsCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

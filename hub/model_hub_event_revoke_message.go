@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubEventRevokeMessage type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &HubEventRevokeMessage{}
 
 // HubEventRevokeMessage struct for HubEventRevokeMessage
 type HubEventRevokeMessage struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
-	RevokeMessageBody RevokeMessageBody `json:"revokeMessageBody"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	RevokeMessageBody *RevokeMessageBody `json:"revokeMessageBody,omitempty"`
 }
-
-type _HubEventRevokeMessage HubEventRevokeMessage
 
 // NewHubEventRevokeMessage instantiates a new HubEventRevokeMessage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubEventRevokeMessage(type_ string, id int32, revokeMessageBody RevokeMessageBody) *HubEventRevokeMessage {
+func NewHubEventRevokeMessage() *HubEventRevokeMessage {
 	this := HubEventRevokeMessage{}
-	this.Type = type_
-	this.Id = id
-	this.RevokeMessageBody = revokeMessageBody
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewHubEventRevokeMessageWithDefaults() *HubEventRevokeMessage {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *HubEventRevokeMessage) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventRevokeMessage) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *HubEventRevokeMessage) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *HubEventRevokeMessage) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *HubEventRevokeMessage) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventRevokeMessage) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *HubEventRevokeMessage) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HubEventRevokeMessage) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetRevokeMessageBody returns the RevokeMessageBody field value
+// GetRevokeMessageBody returns the RevokeMessageBody field value if set, zero value otherwise.
 func (o *HubEventRevokeMessage) GetRevokeMessageBody() RevokeMessageBody {
-	if o == nil {
+	if o == nil || IsNil(o.RevokeMessageBody) {
 		var ret RevokeMessageBody
 		return ret
 	}
-
-	return o.RevokeMessageBody
+	return *o.RevokeMessageBody
 }
 
-// GetRevokeMessageBodyOk returns a tuple with the RevokeMessageBody field value
+// GetRevokeMessageBodyOk returns a tuple with the RevokeMessageBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventRevokeMessage) GetRevokeMessageBodyOk() (*RevokeMessageBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RevokeMessageBody) {
 		return nil, false
 	}
-	return &o.RevokeMessageBody, true
+	return o.RevokeMessageBody, true
 }
 
-// SetRevokeMessageBody sets field value
+// HasRevokeMessageBody returns a boolean if a field has been set.
+func (o *HubEventRevokeMessage) HasRevokeMessageBody() bool {
+	if o != nil && !IsNil(o.RevokeMessageBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetRevokeMessageBody gets a reference to the given RevokeMessageBody and assigns it to the RevokeMessageBody field.
 func (o *HubEventRevokeMessage) SetRevokeMessageBody(v RevokeMessageBody) {
-	o.RevokeMessageBody = v
+	o.RevokeMessageBody = &v
 }
 
 func (o HubEventRevokeMessage) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o HubEventRevokeMessage) MarshalJSON() ([]byte, error) {
 
 func (o HubEventRevokeMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["id"] = o.Id
-	toSerialize["revokeMessageBody"] = o.RevokeMessageBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.RevokeMessageBody) {
+		toSerialize["revokeMessageBody"] = o.RevokeMessageBody
+	}
 	return toSerialize, nil
-}
-
-func (o *HubEventRevokeMessage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"id",
-		"revokeMessageBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubEventRevokeMessage := _HubEventRevokeMessage{}
-
-	err = json.Unmarshal(data, &varHubEventRevokeMessage)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubEventRevokeMessage(varHubEventRevokeMessage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "revokeMessageBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubEventRevokeMessage struct {

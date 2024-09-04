@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | 
-**Details** | [**[]FollowResponse**](FollowResponse.md) |  | 
+**Success** | Pointer to **bool** |  | [optional] 
+**Details** | Pointer to [**[]FollowResponse**](FollowResponse.md) |  | [optional] 
 
 ## Methods
 
 ### NewBulkFollowResponse
 
-`func NewBulkFollowResponse(success bool, details []FollowResponse, ) *BulkFollowResponse`
+`func NewBulkFollowResponse() *BulkFollowResponse`
 
 NewBulkFollowResponse instantiates a new BulkFollowResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
+### HasSuccess
+
+`func (o *BulkFollowResponse) HasSuccess() bool`
+
+HasSuccess returns a boolean if a field has been set.
 
 ### GetDetails
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetDetails sets Details field to given value.
 
+### HasDetails
+
+`func (o *BulkFollowResponse) HasDetails() bool`
+
+HasDetails returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

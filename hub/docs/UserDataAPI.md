@@ -25,8 +25,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID that's being requested
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID that's being requested (optional)
 	userDataType := openapiclient.UserDataType("USER_DATA_TYPE_PFP") // UserDataType | The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned (optional) (default to "USER_DATA_TYPE_PFP")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)

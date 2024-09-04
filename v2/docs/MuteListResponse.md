@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mutes** | [**[]MuteList**](MuteList.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Mutes** | Pointer to [**[]MuteList**](MuteList.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewMuteListResponse
 
-`func NewMuteListResponse(mutes []MuteList, next NextCursor, ) *MuteListResponse`
+`func NewMuteListResponse() *MuteListResponse`
 
 NewMuteListResponse instantiates a new MuteListResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetMutes sets Mutes field to given value.
 
+### HasMutes
+
+`func (o *MuteListResponse) HasMutes() bool`
+
+HasMutes returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *MuteListResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

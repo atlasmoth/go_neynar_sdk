@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | 
-**TargetFid** | **int32** | User identifier (unsigned integer) | 
-**Hash** | **string** |  | 
+**Success** | Pointer to **bool** |  | [optional] 
+**TargetFid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**Hash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewFollowResponse
 
-`func NewFollowResponse(success bool, targetFid int32, hash string, ) *FollowResponse`
+`func NewFollowResponse() *FollowResponse`
 
 NewFollowResponse instantiates a new FollowResponse object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
+### HasSuccess
+
+`func (o *FollowResponse) HasSuccess() bool`
+
+HasSuccess returns a boolean if a field has been set.
 
 ### GetTargetFid
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetTargetFid sets TargetFid field to given value.
 
+### HasTargetFid
+
+`func (o *FollowResponse) HasTargetFid() bool`
+
+HasTargetFid returns a boolean if a field has been set.
 
 ### GetHash
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *FollowResponse) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

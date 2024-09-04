@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Payer** | **string** |  | 
-**Units** | **int64** |  | 
-**Expiry** | **int64** |  | 
+**Payer** | Pointer to **string** |  | [optional] 
+**Units** | Pointer to **int64** |  | [optional] 
+**Expiry** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
 ### NewStorageRentEventBody
 
-`func NewStorageRentEventBody(payer string, units int64, expiry int64, ) *StorageRentEventBody`
+`func NewStorageRentEventBody() *StorageRentEventBody`
 
 NewStorageRentEventBody instantiates a new StorageRentEventBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetPayer sets Payer field to given value.
 
+### HasPayer
+
+`func (o *StorageRentEventBody) HasPayer() bool`
+
+HasPayer returns a boolean if a field has been set.
 
 ### GetUnits
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetUnits sets Units field to given value.
 
+### HasUnits
+
+`func (o *StorageRentEventBody) HasUnits() bool`
+
+HasUnits returns a boolean if a field has been set.
 
 ### GetExpiry
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetExpiry sets Expiry field to given value.
 
+### HasExpiry
+
+`func (o *StorageRentEventBody) HasExpiry() bool`
+
+HasExpiry returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

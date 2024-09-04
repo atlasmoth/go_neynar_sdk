@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionsAndRecastsResponseResult type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ReactionsAndRecastsResponseResult{}
 
 // ReactionsAndRecastsResponseResult struct for ReactionsAndRecastsResponseResult
 type ReactionsAndRecastsResponseResult struct {
-	Notifications []ReactionsAndRecastsNotification `json:"notifications"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Notifications []ReactionsAndRecastsNotification `json:"notifications,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _ReactionsAndRecastsResponseResult ReactionsAndRecastsResponseResult
 
 // NewReactionsAndRecastsResponseResult instantiates a new ReactionsAndRecastsResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionsAndRecastsResponseResult(notifications []ReactionsAndRecastsNotification, next NextCursor) *ReactionsAndRecastsResponseResult {
+func NewReactionsAndRecastsResponseResult() *ReactionsAndRecastsResponseResult {
 	this := ReactionsAndRecastsResponseResult{}
-	this.Notifications = notifications
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewReactionsAndRecastsResponseResultWithDefaults() *ReactionsAndRecastsResp
 	return &this
 }
 
-// GetNotifications returns the Notifications field value
+// GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsResponseResult) GetNotifications() []ReactionsAndRecastsNotification {
-	if o == nil {
+	if o == nil || IsNil(o.Notifications) {
 		var ret []ReactionsAndRecastsNotification
 		return ret
 	}
-
 	return o.Notifications
 }
 
-// GetNotificationsOk returns a tuple with the Notifications field value
+// GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsResponseResult) GetNotificationsOk() ([]ReactionsAndRecastsNotification, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
 	return o.Notifications, true
 }
 
-// SetNotifications sets field value
+// HasNotifications returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsResponseResult) HasNotifications() bool {
+	if o != nil && !IsNil(o.Notifications) {
+		return true
+	}
+
+	return false
+}
+
+// SetNotifications gets a reference to the given []ReactionsAndRecastsNotification and assigns it to the Notifications field.
 func (o *ReactionsAndRecastsResponseResult) SetNotifications(v []ReactionsAndRecastsNotification) {
 	o.Notifications = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsResponseResult) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsResponseResult) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsResponseResult) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *ReactionsAndRecastsResponseResult) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o ReactionsAndRecastsResponseResult) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ReactionsAndRecastsResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o ReactionsAndRecastsResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["notifications"] = o.Notifications
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Notifications) {
+		toSerialize["notifications"] = o.Notifications
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionsAndRecastsResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"notifications",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionsAndRecastsResponseResult := _ReactionsAndRecastsResponseResult{}
-
-	err = json.Unmarshal(data, &varReactionsAndRecastsResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionsAndRecastsResponseResult(varReactionsAndRecastsResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "notifications")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionsAndRecastsResponseResult struct {

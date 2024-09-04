@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FnameAvailabilityResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FnameAvailabilityResponse{}
 
 // FnameAvailabilityResponse struct for FnameAvailabilityResponse
 type FnameAvailabilityResponse struct {
-	Available bool `json:"available"`
-	AdditionalProperties map[string]interface{}
+	Available *bool `json:"available,omitempty"`
 }
-
-type _FnameAvailabilityResponse FnameAvailabilityResponse
 
 // NewFnameAvailabilityResponse instantiates a new FnameAvailabilityResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFnameAvailabilityResponse(available bool) *FnameAvailabilityResponse {
+func NewFnameAvailabilityResponse() *FnameAvailabilityResponse {
 	this := FnameAvailabilityResponse{}
-	this.Available = available
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewFnameAvailabilityResponseWithDefaults() *FnameAvailabilityResponse {
 	return &this
 }
 
-// GetAvailable returns the Available field value
+// GetAvailable returns the Available field value if set, zero value otherwise.
 func (o *FnameAvailabilityResponse) GetAvailable() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Available) {
 		var ret bool
 		return ret
 	}
-
-	return o.Available
+	return *o.Available
 }
 
-// GetAvailableOk returns a tuple with the Available field value
+// GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FnameAvailabilityResponse) GetAvailableOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Available) {
 		return nil, false
 	}
-	return &o.Available, true
+	return o.Available, true
 }
 
-// SetAvailable sets field value
+// HasAvailable returns a boolean if a field has been set.
+func (o *FnameAvailabilityResponse) HasAvailable() bool {
+	if o != nil && !IsNil(o.Available) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailable gets a reference to the given bool and assigns it to the Available field.
 func (o *FnameAvailabilityResponse) SetAvailable(v bool) {
-	o.Available = v
+	o.Available = &v
 }
 
 func (o FnameAvailabilityResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o FnameAvailabilityResponse) MarshalJSON() ([]byte, error) {
 
 func (o FnameAvailabilityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["available"] = o.Available
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Available) {
+		toSerialize["available"] = o.Available
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FnameAvailabilityResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"available",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFnameAvailabilityResponse := _FnameAvailabilityResponse{}
-
-	err = json.Unmarshal(data, &varFnameAvailabilityResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FnameAvailabilityResponse(varFnameAvailabilityResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "available")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFnameAvailabilityResponse struct {

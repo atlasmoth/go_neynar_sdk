@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **int32** |  | 
+**Index** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewValidatedFrameActionTappedButton
 
-`func NewValidatedFrameActionTappedButton(index int32, ) *ValidatedFrameActionTappedButton`
+`func NewValidatedFrameActionTappedButton() *ValidatedFrameActionTappedButton`
 
 NewValidatedFrameActionTappedButton instantiates a new ValidatedFrameActionTappedButton object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetIndex sets Index field to given value.
 
+### HasIndex
+
+`func (o *ValidatedFrameActionTappedButton) HasIndex() bool`
+
+HasIndex returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

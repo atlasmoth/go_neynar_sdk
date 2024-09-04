@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsInteractors type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractors{}
 
 // FrameValidateAnalyticsInteractors struct for FrameValidateAnalyticsInteractors
 type FrameValidateAnalyticsInteractors struct {
-	Interactors []FrameValidateAnalyticsInteractorsInteractorsInner `json:"interactors"`
-	AdditionalProperties map[string]interface{}
+	Interactors []FrameValidateAnalyticsInteractorsInteractorsInner `json:"interactors,omitempty"`
 }
-
-type _FrameValidateAnalyticsInteractors FrameValidateAnalyticsInteractors
 
 // NewFrameValidateAnalyticsInteractors instantiates a new FrameValidateAnalyticsInteractors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsInteractors(interactors []FrameValidateAnalyticsInteractorsInteractorsInner) *FrameValidateAnalyticsInteractors {
+func NewFrameValidateAnalyticsInteractors() *FrameValidateAnalyticsInteractors {
 	this := FrameValidateAnalyticsInteractors{}
-	this.Interactors = interactors
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewFrameValidateAnalyticsInteractorsWithDefaults() *FrameValidateAnalyticsI
 	return &this
 }
 
-// GetInteractors returns the Interactors field value
+// GetInteractors returns the Interactors field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractors) GetInteractors() []FrameValidateAnalyticsInteractorsInteractorsInner {
-	if o == nil {
+	if o == nil || IsNil(o.Interactors) {
 		var ret []FrameValidateAnalyticsInteractorsInteractorsInner
 		return ret
 	}
-
 	return o.Interactors
 }
 
-// GetInteractorsOk returns a tuple with the Interactors field value
+// GetInteractorsOk returns a tuple with the Interactors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractors) GetInteractorsOk() ([]FrameValidateAnalyticsInteractorsInteractorsInner, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Interactors) {
 		return nil, false
 	}
 	return o.Interactors, true
 }
 
-// SetInteractors sets field value
+// HasInteractors returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractors) HasInteractors() bool {
+	if o != nil && !IsNil(o.Interactors) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractors gets a reference to the given []FrameValidateAnalyticsInteractorsInteractorsInner and assigns it to the Interactors field.
 func (o *FrameValidateAnalyticsInteractors) SetInteractors(v []FrameValidateAnalyticsInteractorsInteractorsInner) {
 	o.Interactors = v
 }
@@ -78,55 +81,10 @@ func (o FrameValidateAnalyticsInteractors) MarshalJSON() ([]byte, error) {
 
 func (o FrameValidateAnalyticsInteractors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["interactors"] = o.Interactors
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Interactors) {
+		toSerialize["interactors"] = o.Interactors
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsInteractors) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"interactors",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsInteractors := _FrameValidateAnalyticsInteractors{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractors)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsInteractors(varFrameValidateAnalyticsInteractors)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "interactors")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsInteractors struct {

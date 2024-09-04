@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Interactors** | [**[]FrameValidateAnalyticsInteractorsInteractorsInner**](FrameValidateAnalyticsInteractorsInteractorsInner.md) |  | 
-**TotalInteractors** | **float32** |  | 
-**InteractionsPerCast** | [**[]FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner**](FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner.md) |  | 
-**InputTexts** | [**[]FrameValidateAnalyticsInputTextInputTextsInner**](FrameValidateAnalyticsInputTextInputTextsInner.md) |  | 
+**Interactors** | Pointer to [**[]FrameValidateAnalyticsInteractorsInteractorsInner**](FrameValidateAnalyticsInteractorsInteractorsInner.md) |  | [optional] 
+**TotalInteractors** | Pointer to **float32** |  | [optional] 
+**InteractionsPerCast** | Pointer to [**[]FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner**](FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner.md) |  | [optional] 
+**InputTexts** | Pointer to [**[]FrameValidateAnalyticsInputTextInputTextsInner**](FrameValidateAnalyticsInputTextInputTextsInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsResponse
 
-`func NewFrameValidateAnalyticsResponse(interactors []FrameValidateAnalyticsInteractorsInteractorsInner, totalInteractors float32, interactionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner, inputTexts []FrameValidateAnalyticsInputTextInputTextsInner, ) *FrameValidateAnalyticsResponse`
+`func NewFrameValidateAnalyticsResponse() *FrameValidateAnalyticsResponse`
 
 NewFrameValidateAnalyticsResponse instantiates a new FrameValidateAnalyticsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetInteractors sets Interactors field to given value.
 
+### HasInteractors
+
+`func (o *FrameValidateAnalyticsResponse) HasInteractors() bool`
+
+HasInteractors returns a boolean if a field has been set.
 
 ### GetTotalInteractors
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetTotalInteractors sets TotalInteractors field to given value.
 
+### HasTotalInteractors
+
+`func (o *FrameValidateAnalyticsResponse) HasTotalInteractors() bool`
+
+HasTotalInteractors returns a boolean if a field has been set.
 
 ### GetInteractionsPerCast
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetInteractionsPerCast sets InteractionsPerCast field to given value.
 
+### HasInteractionsPerCast
+
+`func (o *FrameValidateAnalyticsResponse) HasInteractionsPerCast() bool`
+
+HasInteractionsPerCast returns a boolean if a field has been set.
 
 ### GetInputTexts
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetInputTexts sets InputTexts field to given value.
 
+### HasInputTexts
+
+`func (o *FrameValidateAnalyticsResponse) HasInputTexts() bool`
+
+HasInputTexts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

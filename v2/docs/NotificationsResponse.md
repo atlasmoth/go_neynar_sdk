@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnseenNotificationsCount** | **int32** |  | 
-**Notifications** | [**[]Notification**](Notification.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**UnseenNotificationsCount** | Pointer to **int32** |  | [optional] 
+**Notifications** | Pointer to [**[]Notification**](Notification.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewNotificationsResponse
 
-`func NewNotificationsResponse(unseenNotificationsCount int32, notifications []Notification, next NextCursor, ) *NotificationsResponse`
+`func NewNotificationsResponse() *NotificationsResponse`
 
 NewNotificationsResponse instantiates a new NotificationsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetUnseenNotificationsCount sets UnseenNotificationsCount field to given value.
 
+### HasUnseenNotificationsCount
+
+`func (o *NotificationsResponse) HasUnseenNotificationsCount() bool`
+
+HasUnseenNotificationsCount returns a boolean if a field has been set.
 
 ### GetNotifications
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetNotifications sets Notifications field to given value.
 
+### HasNotifications
+
+`func (o *NotificationsResponse) HasNotifications() bool`
+
+HasNotifications returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *NotificationsResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

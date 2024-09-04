@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubEventMergeUsernameProof type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &HubEventMergeUsernameProof{}
 
 // HubEventMergeUsernameProof struct for HubEventMergeUsernameProof
 type HubEventMergeUsernameProof struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
-	MergeUsernameProofBody MergeUserNameProofBody `json:"mergeUsernameProofBody"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	MergeUsernameProofBody *MergeUserNameProofBody `json:"mergeUsernameProofBody,omitempty"`
 }
-
-type _HubEventMergeUsernameProof HubEventMergeUsernameProof
 
 // NewHubEventMergeUsernameProof instantiates a new HubEventMergeUsernameProof object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubEventMergeUsernameProof(type_ string, id int32, mergeUsernameProofBody MergeUserNameProofBody) *HubEventMergeUsernameProof {
+func NewHubEventMergeUsernameProof() *HubEventMergeUsernameProof {
 	this := HubEventMergeUsernameProof{}
-	this.Type = type_
-	this.Id = id
-	this.MergeUsernameProofBody = mergeUsernameProofBody
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewHubEventMergeUsernameProofWithDefaults() *HubEventMergeUsernameProof {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *HubEventMergeUsernameProof) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeUsernameProof) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *HubEventMergeUsernameProof) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *HubEventMergeUsernameProof) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *HubEventMergeUsernameProof) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeUsernameProof) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *HubEventMergeUsernameProof) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HubEventMergeUsernameProof) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetMergeUsernameProofBody returns the MergeUsernameProofBody field value
+// GetMergeUsernameProofBody returns the MergeUsernameProofBody field value if set, zero value otherwise.
 func (o *HubEventMergeUsernameProof) GetMergeUsernameProofBody() MergeUserNameProofBody {
-	if o == nil {
+	if o == nil || IsNil(o.MergeUsernameProofBody) {
 		var ret MergeUserNameProofBody
 		return ret
 	}
-
-	return o.MergeUsernameProofBody
+	return *o.MergeUsernameProofBody
 }
 
-// GetMergeUsernameProofBodyOk returns a tuple with the MergeUsernameProofBody field value
+// GetMergeUsernameProofBodyOk returns a tuple with the MergeUsernameProofBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeUsernameProof) GetMergeUsernameProofBodyOk() (*MergeUserNameProofBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MergeUsernameProofBody) {
 		return nil, false
 	}
-	return &o.MergeUsernameProofBody, true
+	return o.MergeUsernameProofBody, true
 }
 
-// SetMergeUsernameProofBody sets field value
+// HasMergeUsernameProofBody returns a boolean if a field has been set.
+func (o *HubEventMergeUsernameProof) HasMergeUsernameProofBody() bool {
+	if o != nil && !IsNil(o.MergeUsernameProofBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetMergeUsernameProofBody gets a reference to the given MergeUserNameProofBody and assigns it to the MergeUsernameProofBody field.
 func (o *HubEventMergeUsernameProof) SetMergeUsernameProofBody(v MergeUserNameProofBody) {
-	o.MergeUsernameProofBody = v
+	o.MergeUsernameProofBody = &v
 }
 
 func (o HubEventMergeUsernameProof) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o HubEventMergeUsernameProof) MarshalJSON() ([]byte, error) {
 
 func (o HubEventMergeUsernameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["id"] = o.Id
-	toSerialize["mergeUsernameProofBody"] = o.MergeUsernameProofBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.MergeUsernameProofBody) {
+		toSerialize["mergeUsernameProofBody"] = o.MergeUsernameProofBody
+	}
 	return toSerialize, nil
-}
-
-func (o *HubEventMergeUsernameProof) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"id",
-		"mergeUsernameProofBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubEventMergeUsernameProof := _HubEventMergeUsernameProof{}
-
-	err = json.Unmarshal(data, &varHubEventMergeUsernameProof)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubEventMergeUsernameProof(varHubEventMergeUsernameProof)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "mergeUsernameProofBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubEventMergeUsernameProof struct {

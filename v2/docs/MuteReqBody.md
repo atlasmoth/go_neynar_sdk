@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | 
-**MutedFid** | **int32** | User identifier (unsigned integer) | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**MutedFid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
 
 ## Methods
 
 ### NewMuteReqBody
 
-`func NewMuteReqBody(fid int32, mutedFid int32, ) *MuteReqBody`
+`func NewMuteReqBody() *MuteReqBody`
 
 NewMuteReqBody instantiates a new MuteReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *MuteReqBody) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetMutedFid
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMutedFid sets MutedFid field to given value.
 
+### HasMutedFid
+
+`func (o *MuteReqBody) HasMutedFid() bool`
+
+HasMutedFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

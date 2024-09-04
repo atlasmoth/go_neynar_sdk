@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarPageButton type satisfies the MappedNullable interface at compile time
@@ -21,26 +20,20 @@ var _ MappedNullable = &NeynarPageButton{}
 // NeynarPageButton struct for NeynarPageButton
 type NeynarPageButton struct {
 	// The title of the button.
-	Title string `json:"title"`
+	Title *string `json:"title,omitempty"`
 	// The index of the button, first button should have index 1 and so on.
-	Index int32 `json:"index"`
+	Index *int32 `json:"index,omitempty"`
 	// The type of action that the button performs.
-	ActionType string `json:"action_type"`
+	ActionType *string `json:"action_type,omitempty"`
 	NextPage *NeynarPageButtonNextPage `json:"next_page,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _NeynarPageButton NeynarPageButton
 
 // NewNeynarPageButton instantiates a new NeynarPageButton object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarPageButton(title string, index int32, actionType string) *NeynarPageButton {
+func NewNeynarPageButton() *NeynarPageButton {
 	this := NeynarPageButton{}
-	this.Title = title
-	this.Index = index
-	this.ActionType = actionType
 	return &this
 }
 
@@ -52,76 +45,100 @@ func NewNeynarPageButtonWithDefaults() *NeynarPageButton {
 	return &this
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *NeynarPageButton) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageButton) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *NeynarPageButton) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *NeynarPageButton) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetIndex returns the Index field value
+// GetIndex returns the Index field value if set, zero value otherwise.
 func (o *NeynarPageButton) GetIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		var ret int32
 		return ret
 	}
-
-	return o.Index
+	return *o.Index
 }
 
-// GetIndexOk returns a tuple with the Index field value
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageButton) GetIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Index) {
 		return nil, false
 	}
-	return &o.Index, true
+	return o.Index, true
 }
 
-// SetIndex sets field value
+// HasIndex returns a boolean if a field has been set.
+func (o *NeynarPageButton) HasIndex() bool {
+	if o != nil && !IsNil(o.Index) {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex gets a reference to the given int32 and assigns it to the Index field.
 func (o *NeynarPageButton) SetIndex(v int32) {
-	o.Index = v
+	o.Index = &v
 }
 
-// GetActionType returns the ActionType field value
+// GetActionType returns the ActionType field value if set, zero value otherwise.
 func (o *NeynarPageButton) GetActionType() string {
-	if o == nil {
+	if o == nil || IsNil(o.ActionType) {
 		var ret string
 		return ret
 	}
-
-	return o.ActionType
+	return *o.ActionType
 }
 
-// GetActionTypeOk returns a tuple with the ActionType field value
+// GetActionTypeOk returns a tuple with the ActionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageButton) GetActionTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ActionType) {
 		return nil, false
 	}
-	return &o.ActionType, true
+	return o.ActionType, true
 }
 
-// SetActionType sets field value
+// HasActionType returns a boolean if a field has been set.
+func (o *NeynarPageButton) HasActionType() bool {
+	if o != nil && !IsNil(o.ActionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetActionType gets a reference to the given string and assigns it to the ActionType field.
 func (o *NeynarPageButton) SetActionType(v string) {
-	o.ActionType = v
+	o.ActionType = &v
 }
 
 // GetNextPage returns the NextPage field value if set, zero value otherwise.
@@ -166,65 +183,19 @@ func (o NeynarPageButton) MarshalJSON() ([]byte, error) {
 
 func (o NeynarPageButton) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["title"] = o.Title
-	toSerialize["index"] = o.Index
-	toSerialize["action_type"] = o.ActionType
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Index) {
+		toSerialize["index"] = o.Index
+	}
+	if !IsNil(o.ActionType) {
+		toSerialize["action_type"] = o.ActionType
+	}
 	if !IsNil(o.NextPage) {
 		toSerialize["next_page"] = o.NextPage
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarPageButton) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"title",
-		"index",
-		"action_type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarPageButton := _NeynarPageButton{}
-
-	err = json.Unmarshal(data, &varNeynarPageButton)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarPageButton(varNeynarPageButton)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "index")
-		delete(additionalProperties, "action_type")
-		delete(additionalProperties, "next_page")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarPageButton struct {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** | The UUID of the frame to update. | 
+**Uuid** | Pointer to **string** | The UUID of the frame to update. | [optional] 
 **Name** | Pointer to **string** | The name of the frame. | [optional] 
-**Pages** | [**[]NeynarFramePage**](NeynarFramePage.md) |  | 
+**Pages** | Pointer to [**[]NeynarFramePage**](NeynarFramePage.md) |  | [optional] 
 
 ## Methods
 
 ### NewNeynarFrameUpdateRequest
 
-`func NewNeynarFrameUpdateRequest(uuid string, pages []NeynarFramePage, ) *NeynarFrameUpdateRequest`
+`func NewNeynarFrameUpdateRequest() *NeynarFrameUpdateRequest`
 
 NewNeynarFrameUpdateRequest instantiates a new NeynarFrameUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
+### HasUuid
+
+`func (o *NeynarFrameUpdateRequest) HasUuid() bool`
+
+HasUuid returns a boolean if a field has been set.
 
 ### GetName
 
@@ -91,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetPages sets Pages field to given value.
 
+### HasPages
+
+`func (o *NeynarFrameUpdateRequest) HasPages() bool`
+
+HasPages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

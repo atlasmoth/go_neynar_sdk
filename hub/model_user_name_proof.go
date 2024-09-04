@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserNameProof type satisfies the MappedNullable interface at compile time
@@ -20,29 +19,22 @@ var _ MappedNullable = &UserNameProof{}
 
 // UserNameProof struct for UserNameProof
 type UserNameProof struct {
-	Timestamp int32 `json:"timestamp"`
-	Name string `json:"name"`
-	Owner string `json:"owner" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
-	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	Fid int32 `json:"fid"`
-	Type UserNameType `json:"type"`
-	AdditionalProperties map[string]interface{}
+	Timestamp *int32 `json:"timestamp,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Owner *string `json:"owner,omitempty" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
+	Signature *string `json:"signature,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	Fid *int32 `json:"fid,omitempty"`
+	Type *UserNameType `json:"type,omitempty"`
 }
-
-type _UserNameProof UserNameProof
 
 // NewUserNameProof instantiates a new UserNameProof object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserNameProof(timestamp int32, name string, owner string, signature string, fid int32, type_ UserNameType) *UserNameProof {
+func NewUserNameProof() *UserNameProof {
 	this := UserNameProof{}
-	this.Timestamp = timestamp
-	this.Name = name
-	this.Owner = owner
-	this.Signature = signature
-	this.Fid = fid
-	this.Type = type_
+	var type_ UserNameType = USERNAMETYPE_FNAME
+	this.Type = &type_
 	return &this
 }
 
@@ -52,152 +44,200 @@ func NewUserNameProof(timestamp int32, name string, owner string, signature stri
 func NewUserNameProofWithDefaults() *UserNameProof {
 	this := UserNameProof{}
 	var type_ UserNameType = USERNAMETYPE_FNAME
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *UserNameProof) GetTimestamp() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int32
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetTimestampOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *UserNameProof) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int32 and assigns it to the Timestamp field.
 func (o *UserNameProof) SetTimestamp(v int32) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *UserNameProof) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *UserNameProof) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UserNameProof) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetOwner returns the Owner field value
+// GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *UserNameProof) GetOwner() string {
-	if o == nil {
+	if o == nil || IsNil(o.Owner) {
 		var ret string
 		return ret
 	}
-
-	return o.Owner
+	return *o.Owner
 }
 
-// GetOwnerOk returns a tuple with the Owner field value
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetOwnerOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Owner) {
 		return nil, false
 	}
-	return &o.Owner, true
+	return o.Owner, true
 }
 
-// SetOwner sets field value
+// HasOwner returns a boolean if a field has been set.
+func (o *UserNameProof) HasOwner() bool {
+	if o != nil && !IsNil(o.Owner) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given string and assigns it to the Owner field.
 func (o *UserNameProof) SetOwner(v string) {
-	o.Owner = v
+	o.Owner = &v
 }
 
-// GetSignature returns the Signature field value
+// GetSignature returns the Signature field value if set, zero value otherwise.
 func (o *UserNameProof) GetSignature() string {
-	if o == nil {
+	if o == nil || IsNil(o.Signature) {
 		var ret string
 		return ret
 	}
-
-	return o.Signature
+	return *o.Signature
 }
 
-// GetSignatureOk returns a tuple with the Signature field value
+// GetSignatureOk returns a tuple with the Signature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetSignatureOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Signature) {
 		return nil, false
 	}
-	return &o.Signature, true
+	return o.Signature, true
 }
 
-// SetSignature sets field value
+// HasSignature returns a boolean if a field has been set.
+func (o *UserNameProof) HasSignature() bool {
+	if o != nil && !IsNil(o.Signature) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignature gets a reference to the given string and assigns it to the Signature field.
 func (o *UserNameProof) SetSignature(v string) {
-	o.Signature = v
+	o.Signature = &v
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *UserNameProof) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *UserNameProof) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *UserNameProof) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *UserNameProof) GetType() UserNameType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret UserNameType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNameProof) GetTypeOk() (*UserNameType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *UserNameProof) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given UserNameType and assigns it to the Type field.
 func (o *UserNameProof) SetType(v UserNameType) {
-	o.Type = v
+	o.Type = &v
 }
 
 func (o UserNameProof) MarshalJSON() ([]byte, error) {
@@ -210,70 +250,25 @@ func (o UserNameProof) MarshalJSON() ([]byte, error) {
 
 func (o UserNameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["name"] = o.Name
-	toSerialize["owner"] = o.Owner
-	toSerialize["signature"] = o.Signature
-	toSerialize["fid"] = o.Fid
-	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
 	}
-
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Owner) {
+		toSerialize["owner"] = o.Owner
+	}
+	if !IsNil(o.Signature) {
+		toSerialize["signature"] = o.Signature
+	}
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	return toSerialize, nil
-}
-
-func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"timestamp",
-		"name",
-		"owner",
-		"signature",
-		"fid",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserNameProof := _UserNameProof{}
-
-	err = json.Unmarshal(data, &varUserNameProof)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserNameProof(varUserNameProof)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "owner")
-		delete(additionalProperties, "signature")
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "type")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserNameProof struct {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | **int32** |  | 
-**Fids** | **[]int32** |  | 
-**Fnames** | **[]string** |  | 
+**Count** | Pointer to **int32** |  | [optional] 
+**Fids** | Pointer to **[]int32** |  | [optional] 
+**Fnames** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewCastWithInteractionsReactions
 
-`func NewCastWithInteractionsReactions(count int32, fids []int32, fnames []string, ) *CastWithInteractionsReactions`
+`func NewCastWithInteractionsReactions() *CastWithInteractionsReactions`
 
 NewCastWithInteractionsReactions instantiates a new CastWithInteractionsReactions object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetCount sets Count field to given value.
 
+### HasCount
+
+`func (o *CastWithInteractionsReactions) HasCount() bool`
+
+HasCount returns a boolean if a field has been set.
 
 ### GetFids
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetFids sets Fids field to given value.
 
+### HasFids
+
+`func (o *CastWithInteractionsReactions) HasFids() bool`
+
+HasFids returns a boolean if a field has been set.
 
 ### GetFnames
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetFnames sets Fnames field to given value.
 
+### HasFnames
+
+`func (o *CastWithInteractionsReactions) HasFnames() bool`
+
+HasFnames returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

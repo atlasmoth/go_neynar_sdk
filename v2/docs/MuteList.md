@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**Muted** | [**User**](User.md) |  | 
-**MutedAt** | **time.Time** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**Muted** | Pointer to [**User**](User.md) |  | [optional] 
+**MutedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewMuteList
 
-`func NewMuteList(object string, muted User, mutedAt time.Time, ) *MuteList`
+`func NewMuteList() *MuteList`
 
 NewMuteList instantiates a new MuteList object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *MuteList) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetMuted
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetMuted sets Muted field to given value.
 
+### HasMuted
+
+`func (o *MuteList) HasMuted() bool`
+
+HasMuted returns a boolean if a field has been set.
 
 ### GetMutedAt
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetMutedAt sets MutedAt field to given value.
 
+### HasMutedAt
+
+`func (o *MuteList) HasMutedAt() bool`
+
+HasMutedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

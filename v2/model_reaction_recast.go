@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionRecast type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,16 @@ var _ MappedNullable = &ReactionRecast{}
 // ReactionRecast struct for ReactionRecast
 type ReactionRecast struct {
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	Fname string `json:"fname"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Fname *string `json:"fname,omitempty"`
 }
-
-type _ReactionRecast ReactionRecast
 
 // NewReactionRecast instantiates a new ReactionRecast object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionRecast(fid int32, fname string) *ReactionRecast {
+func NewReactionRecast() *ReactionRecast {
 	this := ReactionRecast{}
-	this.Fid = fid
-	this.Fname = fname
 	return &this
 }
 
@@ -47,52 +41,68 @@ func NewReactionRecastWithDefaults() *ReactionRecast {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *ReactionRecast) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionRecast) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *ReactionRecast) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *ReactionRecast) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetFname returns the Fname field value
+// GetFname returns the Fname field value if set, zero value otherwise.
 func (o *ReactionRecast) GetFname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Fname) {
 		var ret string
 		return ret
 	}
-
-	return o.Fname
+	return *o.Fname
 }
 
-// GetFnameOk returns a tuple with the Fname field value
+// GetFnameOk returns a tuple with the Fname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionRecast) GetFnameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fname) {
 		return nil, false
 	}
-	return &o.Fname, true
+	return o.Fname, true
 }
 
-// SetFname sets field value
+// HasFname returns a boolean if a field has been set.
+func (o *ReactionRecast) HasFname() bool {
+	if o != nil && !IsNil(o.Fname) {
+		return true
+	}
+
+	return false
+}
+
+// SetFname gets a reference to the given string and assigns it to the Fname field.
 func (o *ReactionRecast) SetFname(v string) {
-	o.Fname = v
+	o.Fname = &v
 }
 
 func (o ReactionRecast) MarshalJSON() ([]byte, error) {
@@ -105,58 +115,13 @@ func (o ReactionRecast) MarshalJSON() ([]byte, error) {
 
 func (o ReactionRecast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["fname"] = o.Fname
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Fname) {
+		toSerialize["fname"] = o.Fname
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionRecast) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"fname",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionRecast := _ReactionRecast{}
-
-	err = json.Unmarshal(data, &varReactionRecast)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionRecast(varReactionRecast)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "fname")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionRecast struct {

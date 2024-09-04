@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UntrustedData** | [**FrameSignaturePacketUntrustedData**](FrameSignaturePacketUntrustedData.md) |  | 
-**TrustedData** | [**FrameSignaturePacketTrustedData**](FrameSignaturePacketTrustedData.md) |  | 
+**UntrustedData** | Pointer to [**FrameSignaturePacketUntrustedData**](FrameSignaturePacketUntrustedData.md) |  | [optional] 
+**TrustedData** | Pointer to [**FrameSignaturePacketTrustedData**](FrameSignaturePacketTrustedData.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameSignaturePacket
 
-`func NewFrameSignaturePacket(untrustedData FrameSignaturePacketUntrustedData, trustedData FrameSignaturePacketTrustedData, ) *FrameSignaturePacket`
+`func NewFrameSignaturePacket() *FrameSignaturePacket`
 
 NewFrameSignaturePacket instantiates a new FrameSignaturePacket object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUntrustedData sets UntrustedData field to given value.
 
+### HasUntrustedData
+
+`func (o *FrameSignaturePacket) HasUntrustedData() bool`
+
+HasUntrustedData returns a boolean if a field has been set.
 
 ### GetTrustedData
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetTrustedData sets TrustedData field to given value.
 
+### HasTrustedData
+
+`func (o *FrameSignaturePacket) HasTrustedData() bool`
+
+HasTrustedData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

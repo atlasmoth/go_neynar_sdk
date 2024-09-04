@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EthAddresses** | **[]string** |  | 
-**SolAddresses** | **[]string** |  | 
+**EthAddresses** | Pointer to **[]string** |  | [optional] 
+**SolAddresses** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewUserVerifiedAddresses
 
-`func NewUserVerifiedAddresses(ethAddresses []string, solAddresses []string, ) *UserVerifiedAddresses`
+`func NewUserVerifiedAddresses() *UserVerifiedAddresses`
 
 NewUserVerifiedAddresses instantiates a new UserVerifiedAddresses object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetEthAddresses sets EthAddresses field to given value.
 
+### HasEthAddresses
+
+`func (o *UserVerifiedAddresses) HasEthAddresses() bool`
+
+HasEthAddresses returns a boolean if a field has been set.
 
 ### GetSolAddresses
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetSolAddresses sets SolAddresses field to given value.
 
+### HasSolAddresses
+
+`func (o *UserVerifiedAddresses) HasSolAddresses() bool`
+
+HasSolAddresses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

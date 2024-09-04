@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PostCastReqBody type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &PostCastReqBody{}
 // PostCastReqBody struct for PostCastReqBody
 type PostCastReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Embeds []EmbeddedCast `json:"embeds,omitempty"`
 	// parent_url of the channel the cast is in, or hash of the cast
@@ -32,18 +31,14 @@ type PostCastReqBody struct {
 	Idem *string `json:"idem,omitempty"`
 	// User identifier (unsigned integer)
 	ParentAuthorFid *int32 `json:"parent_author_fid,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _PostCastReqBody PostCastReqBody
 
 // NewPostCastReqBody instantiates a new PostCastReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastReqBody(signerUuid string) *PostCastReqBody {
+func NewPostCastReqBody() *PostCastReqBody {
 	this := PostCastReqBody{}
-	this.SignerUuid = signerUuid
 	return &this
 }
 
@@ -55,28 +50,36 @@ func NewPostCastReqBodyWithDefaults() *PostCastReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *PostCastReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCastReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *PostCastReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *PostCastReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
 // GetText returns the Text field value if set, zero value otherwise.
@@ -281,7 +284,9 @@ func (o PostCastReqBody) MarshalJSON() ([]byte, error) {
 
 func (o PostCastReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
+	}
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
@@ -300,60 +305,7 @@ func (o PostCastReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentAuthorFid) {
 		toSerialize["parent_author_fid"] = o.ParentAuthorFid
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *PostCastReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPostCastReqBody := _PostCastReqBody{}
-
-	err = json.Unmarshal(data, &varPostCastReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PostCastReqBody(varPostCastReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "text")
-		delete(additionalProperties, "embeds")
-		delete(additionalProperties, "parent")
-		delete(additionalProperties, "channel_id")
-		delete(additionalProperties, "idem")
-		delete(additionalProperties, "parent_author_fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePostCastReqBody struct {

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bio** | [**UserProfileBio**](UserProfileBio.md) |  | 
+**Bio** | Pointer to [**UserProfileBio**](UserProfileBio.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserProfile
 
-`func NewUserProfile(bio UserProfileBio, ) *UserProfile`
+`func NewUserProfile() *UserProfile`
 
 NewUserProfile instantiates a new UserProfile object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetBio sets Bio field to given value.
 
+### HasBio
+
+`func (o *UserProfile) HasBio() bool`
+
+HasBio returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

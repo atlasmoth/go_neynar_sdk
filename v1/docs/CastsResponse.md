@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | [**CastsResponseResult**](CastsResponseResult.md) |  | 
+**Result** | Pointer to [**CastsResponseResult**](CastsResponseResult.md) |  | [optional] 
 
 ## Methods
 
 ### NewCastsResponse
 
-`func NewCastsResponse(result CastsResponseResult, ) *CastsResponse`
+`func NewCastsResponse() *CastsResponse`
 
 NewCastsResponse instantiates a new CastsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetResult sets Result field to given value.
 
+### HasResult
+
+`func (o *CastsResponse) HasResult() bool`
+
+HasResult returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

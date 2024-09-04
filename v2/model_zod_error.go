@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ZodError type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &ZodError{}
 
 // ZodError struct for ZodError
 type ZodError struct {
-	Message string `json:"message"`
-	Code string `json:"code"`
-	Errors []ZodErrorErrorsInner `json:"errors"`
-	AdditionalProperties map[string]interface{}
+	Message *string `json:"message,omitempty"`
+	Code *string `json:"code,omitempty"`
+	Errors []ZodErrorErrorsInner `json:"errors,omitempty"`
 }
-
-type _ZodError ZodError
 
 // NewZodError instantiates a new ZodError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZodError(message string, code string, errors []ZodErrorErrorsInner) *ZodError {
+func NewZodError() *ZodError {
 	this := ZodError{}
-	this.Message = message
-	this.Code = code
-	this.Errors = errors
 	return &this
 }
 
@@ -48,74 +41,98 @@ func NewZodErrorWithDefaults() *ZodError {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ZodError) GetMessage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ZodError) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *ZodError) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *ZodError) SetMessage(v string) {
-	o.Message = v
+	o.Message = &v
 }
 
-// GetCode returns the Code field value
+// GetCode returns the Code field value if set, zero value otherwise.
 func (o *ZodError) GetCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
-
-	return o.Code
+	return *o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ZodError) GetCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
-	return &o.Code, true
+	return o.Code, true
 }
 
-// SetCode sets field value
+// HasCode returns a boolean if a field has been set.
+func (o *ZodError) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
 func (o *ZodError) SetCode(v string) {
-	o.Code = v
+	o.Code = &v
 }
 
-// GetErrors returns the Errors field value
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *ZodError) GetErrors() []ZodErrorErrorsInner {
-	if o == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret []ZodErrorErrorsInner
 		return ret
 	}
-
 	return o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ZodError) GetErrorsOk() ([]ZodErrorErrorsInner, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
 }
 
-// SetErrors sets field value
+// HasErrors returns a boolean if a field has been set.
+func (o *ZodError) HasErrors() bool {
+	if o != nil && !IsNil(o.Errors) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrors gets a reference to the given []ZodErrorErrorsInner and assigns it to the Errors field.
 func (o *ZodError) SetErrors(v []ZodErrorErrorsInner) {
 	o.Errors = v
 }
@@ -130,61 +147,16 @@ func (o ZodError) MarshalJSON() ([]byte, error) {
 
 func (o ZodError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
-	toSerialize["code"] = o.Code
-	toSerialize["errors"] = o.Errors
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
-
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
 	return toSerialize, nil
-}
-
-func (o *ZodError) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"message",
-		"code",
-		"errors",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varZodError := _ZodError{}
-
-	err = json.Unmarshal(data, &varZodError)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ZodError(varZodError)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "errors")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableZodError struct {

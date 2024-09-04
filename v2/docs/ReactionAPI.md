@@ -28,8 +28,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "Target_example") // ReactionReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	reactionReqBody := *openapiclient.NewReactionReqBody() // ReactionReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -90,8 +90,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "Target_example") // ReactionReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	reactionReqBody := *openapiclient.NewReactionReqBody() // ReactionReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -152,9 +152,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	hash := "hash_example" // string |  (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
-	types := "likes,recasts" // string | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	hash := "hash_example" // string |  (optional) (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
+	types := "likes,recasts" // string | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.  (optional)
 	viewerFid := int32(56) // int32 |  (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -205,7 +205,7 @@ No authorization required
 
 ## ReactionsUser
 
-> ReactionsResponse ReactionsUser(ctx).ApiKey(apiKey).Fid(fid).Type*(type*).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
+> ReactionsResponse ReactionsUser(ctx).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).Type*(type*).Limit(limit).Cursor(cursor).Execute()
 
 Fetches reactions for a given user
 
@@ -222,16 +222,16 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 |
-	type_ := openapiclient.ReactionsType("all") // ReactionsType | Type of reaction to fetch (likes or recasts or all)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 |  (optional)
 	viewerFid := int32(3) // int32 |  (optional)
+	type_ := openapiclient.ReactionsType("all") // ReactionsType | Type of reaction to fetch (likes or recasts or all) (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReactionAPI.ReactionsUser(context.Background()).ApiKey(apiKey).Fid(fid).Type_(type_).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
+	resp, r, err := apiClient.ReactionAPI.ReactionsUser(context.Background()).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).Type_(type_).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReactionAPI.ReactionsUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -251,8 +251,8 @@ Other parameters are passed through a pointer to a apiReactionsUserRequest struc
 | ------------- | ------------------------------------- | --------------------------------------------------- | ---------------------------------------- |
 | **apiKey**    | **string**                            | API key required for authentication.                | [default to &quot;NEYNAR_API_DOCS&quot;] |
 | **fid**       | **int32**                             |                                                     |
-| **type\_**    | [**ReactionsType**](ReactionsType.md) | Type of reaction to fetch (likes or recasts or all) |
 | **viewerFid** | **int32**                             |                                                     |
+| **type\_**    | [**ReactionsType**](ReactionsType.md) | Type of reaction to fetch (likes or recasts or all) |
 | **limit**     | **int32**                             | Number of results to retrieve (default 25, max 100) | [default to 25]                          |
 | **cursor**    | **string**                            | Pagination cursor.                                  |
 

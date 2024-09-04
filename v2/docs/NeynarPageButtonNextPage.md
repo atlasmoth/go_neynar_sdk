@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** | The UUID of the next page. | 
-**RedirectUrl** | **string** | The URL to redirect to. | 
-**MintUrl** | **string** | The URL for minting, specific to the mint action. | 
+**Uuid** | Pointer to **string** | The UUID of the next page. | [optional] 
+**RedirectUrl** | Pointer to **string** | The URL to redirect to. | [optional] 
+**MintUrl** | Pointer to **string** | The URL for minting, specific to the mint action. | [optional] 
 
 ## Methods
 
 ### NewNeynarPageButtonNextPage
 
-`func NewNeynarPageButtonNextPage(uuid string, redirectUrl string, mintUrl string, ) *NeynarPageButtonNextPage`
+`func NewNeynarPageButtonNextPage() *NeynarPageButtonNextPage`
 
 NewNeynarPageButtonNextPage instantiates a new NeynarPageButtonNextPage object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
+### HasUuid
+
+`func (o *NeynarPageButtonNextPage) HasUuid() bool`
+
+HasUuid returns a boolean if a field has been set.
 
 ### GetRedirectUrl
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetRedirectUrl sets RedirectUrl field to given value.
 
+### HasRedirectUrl
+
+`func (o *NeynarPageButtonNextPage) HasRedirectUrl() bool`
+
+HasRedirectUrl returns a boolean if a field has been set.
 
 ### GetMintUrl
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetMintUrl sets MintUrl field to given value.
 
+### HasMintUrl
+
+`func (o *NeynarPageButtonNextPage) HasMintUrl() bool`
+
+HasMintUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarFrameUpdateRequest type satisfies the MappedNullable interface at compile time
@@ -21,23 +20,18 @@ var _ MappedNullable = &NeynarFrameUpdateRequest{}
 // NeynarFrameUpdateRequest struct for NeynarFrameUpdateRequest
 type NeynarFrameUpdateRequest struct {
 	// The UUID of the frame to update.
-	Uuid string `json:"uuid"`
+	Uuid *string `json:"uuid,omitempty"`
 	// The name of the frame.
 	Name *string `json:"name,omitempty"`
-	Pages []NeynarFramePage `json:"pages"`
-	AdditionalProperties map[string]interface{}
+	Pages []NeynarFramePage `json:"pages,omitempty"`
 }
-
-type _NeynarFrameUpdateRequest NeynarFrameUpdateRequest
 
 // NewNeynarFrameUpdateRequest instantiates a new NeynarFrameUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarFrameUpdateRequest(uuid string, pages []NeynarFramePage) *NeynarFrameUpdateRequest {
+func NewNeynarFrameUpdateRequest() *NeynarFrameUpdateRequest {
 	this := NeynarFrameUpdateRequest{}
-	this.Uuid = uuid
-	this.Pages = pages
 	return &this
 }
 
@@ -49,28 +43,36 @@ func NewNeynarFrameUpdateRequestWithDefaults() *NeynarFrameUpdateRequest {
 	return &this
 }
 
-// GetUuid returns the Uuid field value
+// GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *NeynarFrameUpdateRequest) GetUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
-
-	return o.Uuid
+	return *o.Uuid
 }
 
-// GetUuidOk returns a tuple with the Uuid field value
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFrameUpdateRequest) GetUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		return nil, false
 	}
-	return &o.Uuid, true
+	return o.Uuid, true
 }
 
-// SetUuid sets field value
+// HasUuid returns a boolean if a field has been set.
+func (o *NeynarFrameUpdateRequest) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
 func (o *NeynarFrameUpdateRequest) SetUuid(v string) {
-	o.Uuid = v
+	o.Uuid = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -105,26 +107,34 @@ func (o *NeynarFrameUpdateRequest) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPages returns the Pages field value
+// GetPages returns the Pages field value if set, zero value otherwise.
 func (o *NeynarFrameUpdateRequest) GetPages() []NeynarFramePage {
-	if o == nil {
+	if o == nil || IsNil(o.Pages) {
 		var ret []NeynarFramePage
 		return ret
 	}
-
 	return o.Pages
 }
 
-// GetPagesOk returns a tuple with the Pages field value
+// GetPagesOk returns a tuple with the Pages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFrameUpdateRequest) GetPagesOk() ([]NeynarFramePage, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Pages) {
 		return nil, false
 	}
 	return o.Pages, true
 }
 
-// SetPages sets field value
+// HasPages returns a boolean if a field has been set.
+func (o *NeynarFrameUpdateRequest) HasPages() bool {
+	if o != nil && !IsNil(o.Pages) {
+		return true
+	}
+
+	return false
+}
+
+// SetPages gets a reference to the given []NeynarFramePage and assigns it to the Pages field.
 func (o *NeynarFrameUpdateRequest) SetPages(v []NeynarFramePage) {
 	o.Pages = v
 }
@@ -139,62 +149,16 @@ func (o NeynarFrameUpdateRequest) MarshalJSON() ([]byte, error) {
 
 func (o NeynarFrameUpdateRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["uuid"] = o.Uuid
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	toSerialize["pages"] = o.Pages
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Pages) {
+		toSerialize["pages"] = o.Pages
 	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarFrameUpdateRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"uuid",
-		"pages",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarFrameUpdateRequest := _NeynarFrameUpdateRequest{}
-
-	err = json.Unmarshal(data, &varNeynarFrameUpdateRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarFrameUpdateRequest(varNeynarFrameUpdateRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "uuid")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "pages")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarFrameUpdateRequest struct {

@@ -31,9 +31,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash)
-	type_ := openapiclient.CastParamType("url") // CastParamType |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash) (optional)
+	type_ := openapiclient.CastParamType("url") // CastParamType |  (optional)
 	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -97,9 +97,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash)
-	type_ := openapiclient.CastParamType("url") // CastParamType |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash) (optional)
+	type_ := openapiclient.CastParamType("url") // CastParamType |  (optional)
 	replyDepth := int32(56) // int32 | The depth of replies in the conversation that will be returned (default 2) (optional) (default to 2)
 	includeChronologicalParentCasts := true // bool | Include all parent casts in chronological order (optional) (default to false)
 	viewerFid := int32(3) // int32 |  (optional)
@@ -171,8 +171,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	q := "star wars" // string | Query string to search for casts
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	q := "star wars" // string | Query string to search for casts (optional)
 	authorFid := int32(194) // int32 | Fid of the user whose casts you want to search (optional)
 	parentUrl := "parentUrl_example" // string | Parent URL of the casts you want to search (optional)
 	channelId := "channelId_example" // string | Channel ID of the casts you want to search (optional)
@@ -243,8 +243,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	casts := "0xa896906a5e397b4fec247c3ee0e9e4d4990b8004,0x27ff810f7f718afd8c40be236411f017982e0994" // string | Hashes of the cast to be retrived (Comma separated)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	casts := "0xa896906a5e397b4fec247c3ee0e9e4d4990b8004,0x27ff810f7f718afd8c40be236411f017982e0994" // string | Hashes of the cast to be retrived (Comma separated) (optional)
 	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
 	sortType := "sortType_example" // string | Optional parameter to sort the casts based on different criteria (optional)
 
@@ -309,8 +309,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	list := openapiclient.CastComposerType("top") // CastComposerType | Type of list to fetch.
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	list := openapiclient.CastComposerType("top") // CastComposerType | Type of list to fetch. (optional)
 	limit := int32(25) // int32 | Number of results to retrieve (default 25, max 25). (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -375,8 +375,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	deleteCastReqBody := *openapiclient.NewDeleteCastReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "TargetHash_example") // DeleteCastReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	deleteCastReqBody := *openapiclient.NewDeleteCastReqBody() // DeleteCastReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -437,8 +437,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	postCastReqBody := *openapiclient.NewPostCastReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec") // PostCastReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	postCastReqBody := *openapiclient.NewPostCastReqBody() // PostCastReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

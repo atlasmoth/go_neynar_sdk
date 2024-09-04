@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**VerificationAddEthAddressBody** | [**VerificationAddEthAddressBody**](VerificationAddEthAddressBody.md) |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**VerificationAddEthAddressBody** | Pointer to [**VerificationAddEthAddressBody**](VerificationAddEthAddressBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewMessageDataVerificationAdd
 
-`func NewMessageDataVerificationAdd(fid int32, timestamp int64, network FarcasterNetwork, verificationAddEthAddressBody VerificationAddEthAddressBody, ) *MessageDataVerificationAdd`
+`func NewMessageDataVerificationAdd() *MessageDataVerificationAdd`
 
 NewMessageDataVerificationAdd instantiates a new MessageDataVerificationAdd object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *MessageDataVerificationAdd) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *MessageDataVerificationAdd) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *MessageDataVerificationAdd) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetVerificationAddEthAddressBody
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetVerificationAddEthAddressBody sets VerificationAddEthAddressBody field to given value.
 
+### HasVerificationAddEthAddressBody
+
+`func (o *MessageDataVerificationAdd) HasVerificationAddEthAddressBody() bool`
+
+HasVerificationAddEthAddressBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

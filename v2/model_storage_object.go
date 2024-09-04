@@ -22,10 +22,7 @@ type StorageObject struct {
 	Object *string `json:"object,omitempty"`
 	Used *int32 `json:"used,omitempty"`
 	Capacity *int32 `json:"capacity,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _StorageObject StorageObject
 
 // NewStorageObject instantiates a new StorageObject object
 // This constructor will assign default values to properties that have it defined,
@@ -159,35 +156,7 @@ func (o StorageObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Capacity) {
 		toSerialize["capacity"] = o.Capacity
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *StorageObject) UnmarshalJSON(data []byte) (err error) {
-	varStorageObject := _StorageObject{}
-
-	err = json.Unmarshal(data, &varStorageObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StorageObject(varStorageObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "used")
-		delete(additionalProperties, "capacity")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableStorageObject struct {

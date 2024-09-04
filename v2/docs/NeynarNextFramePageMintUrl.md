@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MintUrl** | **string** | The URL for minting, specific to the mint action. | 
+**MintUrl** | Pointer to **string** | The URL for minting, specific to the mint action. | [optional] 
 
 ## Methods
 
 ### NewNeynarNextFramePageMintUrl
 
-`func NewNeynarNextFramePageMintUrl(mintUrl string, ) *NeynarNextFramePageMintUrl`
+`func NewNeynarNextFramePageMintUrl() *NeynarNextFramePageMintUrl`
 
 NewNeynarNextFramePageMintUrl instantiates a new NeynarNextFramePageMintUrl object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetMintUrl sets MintUrl field to given value.
 
+### HasMintUrl
+
+`func (o *NeynarNextFramePageMintUrl) HasMintUrl() bool`
+
+HasMintUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

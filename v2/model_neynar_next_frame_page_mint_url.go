@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarNextFramePageMintUrl type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &NeynarNextFramePageMintUrl{}
 // NeynarNextFramePageMintUrl struct for NeynarNextFramePageMintUrl
 type NeynarNextFramePageMintUrl struct {
 	// The URL for minting, specific to the mint action.
-	MintUrl string `json:"mint_url"`
-	AdditionalProperties map[string]interface{}
+	MintUrl *string `json:"mint_url,omitempty"`
 }
-
-type _NeynarNextFramePageMintUrl NeynarNextFramePageMintUrl
 
 // NewNeynarNextFramePageMintUrl instantiates a new NeynarNextFramePageMintUrl object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarNextFramePageMintUrl(mintUrl string) *NeynarNextFramePageMintUrl {
+func NewNeynarNextFramePageMintUrl() *NeynarNextFramePageMintUrl {
 	this := NeynarNextFramePageMintUrl{}
-	this.MintUrl = mintUrl
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewNeynarNextFramePageMintUrlWithDefaults() *NeynarNextFramePageMintUrl {
 	return &this
 }
 
-// GetMintUrl returns the MintUrl field value
+// GetMintUrl returns the MintUrl field value if set, zero value otherwise.
 func (o *NeynarNextFramePageMintUrl) GetMintUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.MintUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.MintUrl
+	return *o.MintUrl
 }
 
-// GetMintUrlOk returns a tuple with the MintUrl field value
+// GetMintUrlOk returns a tuple with the MintUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarNextFramePageMintUrl) GetMintUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MintUrl) {
 		return nil, false
 	}
-	return &o.MintUrl, true
+	return o.MintUrl, true
 }
 
-// SetMintUrl sets field value
+// HasMintUrl returns a boolean if a field has been set.
+func (o *NeynarNextFramePageMintUrl) HasMintUrl() bool {
+	if o != nil && !IsNil(o.MintUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetMintUrl gets a reference to the given string and assigns it to the MintUrl field.
 func (o *NeynarNextFramePageMintUrl) SetMintUrl(v string) {
-	o.MintUrl = v
+	o.MintUrl = &v
 }
 
 func (o NeynarNextFramePageMintUrl) MarshalJSON() ([]byte, error) {
@@ -79,55 +82,10 @@ func (o NeynarNextFramePageMintUrl) MarshalJSON() ([]byte, error) {
 
 func (o NeynarNextFramePageMintUrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["mint_url"] = o.MintUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.MintUrl) {
+		toSerialize["mint_url"] = o.MintUrl
 	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarNextFramePageMintUrl) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"mint_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarNextFramePageMintUrl := _NeynarNextFramePageMintUrl{}
-
-	err = json.Unmarshal(data, &varNeynarNextFramePageMintUrl)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarNextFramePageMintUrl(varNeynarNextFramePageMintUrl)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "mint_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarNextFramePageMintUrl struct {

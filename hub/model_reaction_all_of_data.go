@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionAllOfData type satisfies the MappedNullable interface at compile time
@@ -20,27 +19,23 @@ var _ MappedNullable = &ReactionAllOfData{}
 
 // ReactionAllOfData struct for ReactionAllOfData
 type ReactionAllOfData struct {
-	Fid int32 `json:"fid"`
-	Timestamp int64 `json:"timestamp"`
-	Network FarcasterNetwork `json:"network"`
-	ReactionBody ReactionBody `json:"reactionBody"`
-	Type MessageType `json:"type"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	Network *FarcasterNetwork `json:"network,omitempty"`
+	ReactionBody *ReactionBody `json:"reactionBody,omitempty"`
+	Type *MessageType `json:"type,omitempty"`
 }
-
-type _ReactionAllOfData ReactionAllOfData
 
 // NewReactionAllOfData instantiates a new ReactionAllOfData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionAllOfData(fid int32, timestamp int64, network FarcasterNetwork, reactionBody ReactionBody, type_ MessageType) *ReactionAllOfData {
+func NewReactionAllOfData() *ReactionAllOfData {
 	this := ReactionAllOfData{}
-	this.Fid = fid
-	this.Timestamp = timestamp
-	this.Network = network
-	this.ReactionBody = reactionBody
-	this.Type = type_
+	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
+	this.Network = &network
+	var type_ MessageType = MESSAGETYPE_CAST_ADD
+	this.Type = &type_
 	return &this
 }
 
@@ -50,130 +45,170 @@ func NewReactionAllOfData(fid int32, timestamp int64, network FarcasterNetwork, 
 func NewReactionAllOfDataWithDefaults() *ReactionAllOfData {
 	this := ReactionAllOfData{}
 	var network FarcasterNetwork = FARCASTERNETWORK_MAINNET
-	this.Network = network
+	this.Network = &network
 	var type_ MessageType = MESSAGETYPE_CAST_ADD
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *ReactionAllOfData) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionAllOfData) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *ReactionAllOfData) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *ReactionAllOfData) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ReactionAllOfData) GetTimestamp() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int64
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionAllOfData) GetTimestampOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *ReactionAllOfData) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
 func (o *ReactionAllOfData) SetTimestamp(v int64) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetNetwork returns the Network field value
+// GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *ReactionAllOfData) GetNetwork() FarcasterNetwork {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		var ret FarcasterNetwork
 		return ret
 	}
-
-	return o.Network
+	return *o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionAllOfData) GetNetworkOk() (*FarcasterNetwork, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
-	return &o.Network, true
+	return o.Network, true
 }
 
-// SetNetwork sets field value
+// HasNetwork returns a boolean if a field has been set.
+func (o *ReactionAllOfData) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given FarcasterNetwork and assigns it to the Network field.
 func (o *ReactionAllOfData) SetNetwork(v FarcasterNetwork) {
-	o.Network = v
+	o.Network = &v
 }
 
-// GetReactionBody returns the ReactionBody field value
+// GetReactionBody returns the ReactionBody field value if set, zero value otherwise.
 func (o *ReactionAllOfData) GetReactionBody() ReactionBody {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionBody) {
 		var ret ReactionBody
 		return ret
 	}
-
-	return o.ReactionBody
+	return *o.ReactionBody
 }
 
-// GetReactionBodyOk returns a tuple with the ReactionBody field value
+// GetReactionBodyOk returns a tuple with the ReactionBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionAllOfData) GetReactionBodyOk() (*ReactionBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReactionBody) {
 		return nil, false
 	}
-	return &o.ReactionBody, true
+	return o.ReactionBody, true
 }
 
-// SetReactionBody sets field value
+// HasReactionBody returns a boolean if a field has been set.
+func (o *ReactionAllOfData) HasReactionBody() bool {
+	if o != nil && !IsNil(o.ReactionBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactionBody gets a reference to the given ReactionBody and assigns it to the ReactionBody field.
 func (o *ReactionAllOfData) SetReactionBody(v ReactionBody) {
-	o.ReactionBody = v
+	o.ReactionBody = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *ReactionAllOfData) GetType() MessageType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret MessageType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionAllOfData) GetTypeOk() (*MessageType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *ReactionAllOfData) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given MessageType and assigns it to the Type field.
 func (o *ReactionAllOfData) SetType(v MessageType) {
-	o.Type = v
+	o.Type = &v
 }
 
 func (o ReactionAllOfData) MarshalJSON() ([]byte, error) {
@@ -186,67 +221,22 @@ func (o ReactionAllOfData) MarshalJSON() ([]byte, error) {
 
 func (o ReactionAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["network"] = o.Network
-	toSerialize["reactionBody"] = o.ReactionBody
-	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.ReactionBody) {
+		toSerialize["reactionBody"] = o.ReactionBody
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionAllOfData) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"timestamp",
-		"network",
-		"reactionBody",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionAllOfData := _ReactionAllOfData{}
-
-	err = json.Unmarshal(data, &varReactionAllOfData)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionAllOfData(varReactionAllOfData)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "network")
-		delete(additionalProperties, "reactionBody")
-		delete(additionalProperties, "type")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionAllOfData struct {

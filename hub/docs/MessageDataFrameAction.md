@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**FrameActionBody** | [**FrameActionBody**](FrameActionBody.md) |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**FrameActionBody** | Pointer to [**FrameActionBody**](FrameActionBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewMessageDataFrameAction
 
-`func NewMessageDataFrameAction(fid int32, timestamp int64, network FarcasterNetwork, frameActionBody FrameActionBody, ) *MessageDataFrameAction`
+`func NewMessageDataFrameAction() *MessageDataFrameAction`
 
 NewMessageDataFrameAction instantiates a new MessageDataFrameAction object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *MessageDataFrameAction) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *MessageDataFrameAction) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *MessageDataFrameAction) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetFrameActionBody
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetFrameActionBody sets FrameActionBody field to given value.
 
+### HasFrameActionBody
+
+`func (o *MessageDataFrameAction) HasFrameActionBody() bool`
+
+HasFrameActionBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

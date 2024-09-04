@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Notifications** | [**[]ReactionsAndRecastsNotification**](ReactionsAndRecastsNotification.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Notifications** | Pointer to [**[]ReactionsAndRecastsNotification**](ReactionsAndRecastsNotification.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewReactionsAndRecastsResponseResult
 
-`func NewReactionsAndRecastsResponseResult(notifications []ReactionsAndRecastsNotification, next NextCursor, ) *ReactionsAndRecastsResponseResult`
+`func NewReactionsAndRecastsResponseResult() *ReactionsAndRecastsResponseResult`
 
 NewReactionsAndRecastsResponseResult instantiates a new ReactionsAndRecastsResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetNotifications sets Notifications field to given value.
 
+### HasNotifications
+
+`func (o *ReactionsAndRecastsResponseResult) HasNotifications() bool`
+
+HasNotifications returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *ReactionsAndRecastsResponseResult) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

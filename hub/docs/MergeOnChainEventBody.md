@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OnChainEvent** | [**OnChainEvent**](OnChainEvent.md) |  | 
+**OnChainEvent** | Pointer to [**OnChainEvent**](OnChainEvent.md) |  | [optional] 
 
 ## Methods
 
 ### NewMergeOnChainEventBody
 
-`func NewMergeOnChainEventBody(onChainEvent OnChainEvent, ) *MergeOnChainEventBody`
+`func NewMergeOnChainEventBody() *MergeOnChainEventBody`
 
 NewMergeOnChainEventBody instantiates a new MergeOnChainEventBody object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetOnChainEvent sets OnChainEvent field to given value.
 
+### HasOnChainEvent
+
+`func (o *MergeOnChainEventBody) HasOnChainEvent() bool`
+
+HasOnChainEvent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

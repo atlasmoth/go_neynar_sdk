@@ -33,8 +33,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | The user's fid (identifier)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | The user's fid (identifier) (optional)
 	limit := int32(20) // int32 | Number of results to retrieve (default 20, max 100). (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -99,8 +99,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	id := "neynar" // string | Channel ID for the channel being queried
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	id := "neynar" // string | Channel ID for the channel being queried (optional)
 	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channel. Defaults to id. (optional)
 	viewerFid := int32(194) // int32 | FID of the user viewing the channel. (optional)
 
@@ -165,8 +165,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	ids := "neynar,warpcast" // string | Comma separated list of channel IDs or parent_urls, up to 100 at a time
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	ids := "neynar,warpcast" // string | Comma separated list of channel IDs or parent_urls, up to 100 at a time (optional)
 	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channels. Defaults to id. (optional)
 	viewerFid := int32(194) // int32 | FID of the user viewing the channels. (optional)
 
@@ -231,8 +231,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	id := "founders" // string | Channel ID for the channel being queried
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	id := "founders" // string | Channel ID for the channel being queried (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 	limit := int32(56) // int32 | Number of followers to retrieve (default 25, max 1000) (optional) (default to 25)
 
@@ -297,9 +297,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	id := "neynar" // string | Channel ID for the channel being queried
-	hasRootCastAuthors := false // bool | Include users who posted the root cast in the channel
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	id := "neynar" // string | Channel ID for the channel being queried (optional)
+	hasRootCastAuthors := false // bool | Include users who posted the root cast in the channel (optional)
 	hasCastLikers := false // bool | Include users who liked a cast in the channel (optional)
 	hasCastRecasters := false // bool | Include users who recasted a cast in the channel (optional)
 	hasReplyAuthors := false // bool | Include users who replied to a cast in the channel (optional)
@@ -371,7 +371,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	limit := int32(56) // int32 | Number of results to retrieve (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -435,8 +435,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	q := "neynar" // string | Channel ID or name for the channel being queried
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	q := "neynar" // string | Channel ID or name for the channel being queried (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -501,7 +501,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	timeWindow := "timeWindow_example" // string |  (optional)
 	limit := int32(10) // int32 | Number of results to retrieve (default 10, max 25) (optional) (default to 10)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -567,8 +567,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The fid of the user.
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The fid of the user. (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | The unique identifier of the reactor. | 
-**Username** | **string** | The username of the reactor. | 
-**DisplayName** | **string** | The display name of the reactor. | 
-**Pfp** | [**ReactorPfp**](ReactorPfp.md) |  | 
-**FollowerCount** | **int32** | The number of followers the reactor has. | 
-**FollowingCount** | **int32** | The number of users the reactor is following. | 
+**Fid** | Pointer to **int32** | The unique identifier of the reactor. | [optional] 
+**Username** | Pointer to **string** | The username of the reactor. | [optional] 
+**DisplayName** | Pointer to **string** | The display name of the reactor. | [optional] 
+**Pfp** | Pointer to [**ReactorPfp**](ReactorPfp.md) |  | [optional] 
+**FollowerCount** | Pointer to **int32** | The number of followers the reactor has. | [optional] 
+**FollowingCount** | Pointer to **int32** | The number of users the reactor is following. | [optional] 
 **ViewerContext** | Pointer to [**ReactorViewerContext**](ReactorViewerContext.md) |  | [optional] 
 
 ## Methods
 
 ### NewReactor
 
-`func NewReactor(fid int32, username string, displayName string, pfp ReactorPfp, followerCount int32, followingCount int32, ) *Reactor`
+`func NewReactor() *Reactor`
 
 NewReactor instantiates a new Reactor object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *Reactor) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -70,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *Reactor) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -90,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetDisplayName sets DisplayName field to given value.
 
+### HasDisplayName
+
+`func (o *Reactor) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetPfp
 
@@ -110,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetPfp sets Pfp field to given value.
 
+### HasPfp
+
+`func (o *Reactor) HasPfp() bool`
+
+HasPfp returns a boolean if a field has been set.
 
 ### GetFollowerCount
 
@@ -130,6 +150,11 @@ and a boolean to check if the value has been set.
 
 SetFollowerCount sets FollowerCount field to given value.
 
+### HasFollowerCount
+
+`func (o *Reactor) HasFollowerCount() bool`
+
+HasFollowerCount returns a boolean if a field has been set.
 
 ### GetFollowingCount
 
@@ -150,6 +175,11 @@ and a boolean to check if the value has been set.
 
 SetFollowingCount sets FollowingCount field to given value.
 
+### HasFollowingCount
+
+`func (o *Reactor) HasFollowingCount() bool`
+
+HasFollowingCount returns a boolean if a field has been set.
 
 ### GetViewerContext
 

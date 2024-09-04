@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ConflictErrorRes type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,17 @@ var _ MappedNullable = &ConflictErrorRes{}
 // ConflictErrorRes Details for the conflict error response
 type ConflictErrorRes struct {
 	Code *string `json:"code,omitempty"`
-	Message string `json:"message"`
+	Message *string `json:"message,omitempty"`
 	Property *string `json:"property,omitempty"`
 	Key *string `json:"key,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ConflictErrorRes ConflictErrorRes
 
 // NewConflictErrorRes instantiates a new ConflictErrorRes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConflictErrorRes(message string) *ConflictErrorRes {
+func NewConflictErrorRes() *ConflictErrorRes {
 	this := ConflictErrorRes{}
-	this.Message = message
 	return &this
 }
 
@@ -79,28 +74,36 @@ func (o *ConflictErrorRes) SetCode(v string) {
 	o.Code = &v
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ConflictErrorRes) GetMessage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConflictErrorRes) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *ConflictErrorRes) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *ConflictErrorRes) SetMessage(v string) {
-	o.Message = v
+	o.Message = &v
 }
 
 // GetProperty returns the Property field value if set, zero value otherwise.
@@ -180,64 +183,16 @@ func (o ConflictErrorRes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	toSerialize["message"] = o.Message
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
 	if !IsNil(o.Property) {
 		toSerialize["property"] = o.Property
 	}
 	if !IsNil(o.Key) {
 		toSerialize["key"] = o.Key
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ConflictErrorRes) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"message",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varConflictErrorRes := _ConflictErrorRes{}
-
-	err = json.Unmarshal(data, &varConflictErrorRes)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ConflictErrorRes(varConflictErrorRes)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "property")
-		delete(additionalProperties, "key")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableConflictErrorRes struct {

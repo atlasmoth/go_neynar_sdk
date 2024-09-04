@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**CastCount1d** | **string** |  | 
-**CastCount7d** | **string** |  | 
-**CastCount30d** | **string** |  | 
-**Channel** | [**Channel**](Channel.md) |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**CastCount1d** | Pointer to **string** |  | [optional] 
+**CastCount7d** | Pointer to **string** |  | [optional] 
+**CastCount30d** | Pointer to **string** |  | [optional] 
+**Channel** | Pointer to [**Channel**](Channel.md) |  | [optional] 
 
 ## Methods
 
 ### NewChannelActivity
 
-`func NewChannelActivity(object string, castCount1d string, castCount7d string, castCount30d string, channel Channel, ) *ChannelActivity`
+`func NewChannelActivity() *ChannelActivity`
 
 NewChannelActivity instantiates a new ChannelActivity object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *ChannelActivity) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetCastCount1d
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetCastCount1d sets CastCount1d field to given value.
 
+### HasCastCount1d
+
+`func (o *ChannelActivity) HasCastCount1d() bool`
+
+HasCastCount1d returns a boolean if a field has been set.
 
 ### GetCastCount7d
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetCastCount7d sets CastCount7d field to given value.
 
+### HasCastCount7d
+
+`func (o *ChannelActivity) HasCastCount7d() bool`
+
+HasCastCount7d returns a boolean if a field has been set.
 
 ### GetCastCount30d
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetCastCount30d sets CastCount30d field to given value.
 
+### HasCastCount30d
+
+`func (o *ChannelActivity) HasCastCount30d() bool`
+
+HasCastCount30d returns a boolean if a field has been set.
 
 ### GetChannel
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetChannel sets Channel field to given value.
 
+### HasChannel
+
+`func (o *ChannelActivity) HasChannel() bool`
+
+HasChannel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the SubscribedTo type satisfies the MappedNullable interface at compile time
@@ -21,43 +20,28 @@ var _ MappedNullable = &SubscribedTo{}
 
 // SubscribedTo struct for SubscribedTo
 type SubscribedTo struct {
-	Object string `json:"object"`
+	Object *string `json:"object,omitempty"`
 	ProviderName *string `json:"provider_name,omitempty"`
-	ContractAddress string `json:"contract_address"`
-	Chain int32 `json:"chain"`
-	Metadata SubscriptionMetadata `json:"metadata"`
-	OwnerAddress string `json:"owner_address"`
-	Price SubscriptionPrice `json:"price"`
+	ContractAddress *string `json:"contract_address,omitempty"`
+	Chain *int32 `json:"chain,omitempty"`
+	Metadata *SubscriptionMetadata `json:"metadata,omitempty"`
+	OwnerAddress *string `json:"owner_address,omitempty"`
+	Price *SubscriptionPrice `json:"price,omitempty"`
 	Tiers []SubscriptionTier `json:"tiers,omitempty"`
-	ProtocolVersion int32 `json:"protocol_version"`
-	Token SubscriptionToken `json:"token"`
-	ExpiresAt time.Time `json:"expires_at"`
-	SubscribedAt time.Time `json:"subscribed_at"`
-	Tier SubscriptionTier `json:"tier"`
-	Creator User `json:"creator"`
-	AdditionalProperties map[string]interface{}
+	ProtocolVersion *int32 `json:"protocol_version,omitempty"`
+	Token *SubscriptionToken `json:"token,omitempty"`
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+	SubscribedAt *time.Time `json:"subscribed_at,omitempty"`
+	Tier *SubscriptionTier `json:"tier,omitempty"`
+	Creator *User `json:"creator,omitempty"`
 }
-
-type _SubscribedTo SubscribedTo
 
 // NewSubscribedTo instantiates a new SubscribedTo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User) *SubscribedTo {
+func NewSubscribedTo() *SubscribedTo {
 	this := SubscribedTo{}
-	this.Object = object
-	this.ContractAddress = contractAddress
-	this.Chain = chain
-	this.Metadata = metadata
-	this.OwnerAddress = ownerAddress
-	this.Price = price
-	this.ProtocolVersion = protocolVersion
-	this.Token = token
-	this.ExpiresAt = expiresAt
-	this.SubscribedAt = subscribedAt
-	this.Tier = tier
-	this.Creator = creator
 	return &this
 }
 
@@ -69,28 +53,36 @@ func NewSubscribedToWithDefaults() *SubscribedTo {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *SubscribedTo) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *SubscribedTo) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *SubscribedTo) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
@@ -125,124 +117,164 @@ func (o *SubscribedTo) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
-// GetContractAddress returns the ContractAddress field value
+// GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *SubscribedTo) GetContractAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.ContractAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.ContractAddress
+	return *o.ContractAddress
 }
 
-// GetContractAddressOk returns a tuple with the ContractAddress field value
+// GetContractAddressOk returns a tuple with the ContractAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetContractAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ContractAddress) {
 		return nil, false
 	}
-	return &o.ContractAddress, true
+	return o.ContractAddress, true
 }
 
-// SetContractAddress sets field value
+// HasContractAddress returns a boolean if a field has been set.
+func (o *SubscribedTo) HasContractAddress() bool {
+	if o != nil && !IsNil(o.ContractAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractAddress gets a reference to the given string and assigns it to the ContractAddress field.
 func (o *SubscribedTo) SetContractAddress(v string) {
-	o.ContractAddress = v
+	o.ContractAddress = &v
 }
 
-// GetChain returns the Chain field value
+// GetChain returns the Chain field value if set, zero value otherwise.
 func (o *SubscribedTo) GetChain() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Chain) {
 		var ret int32
 		return ret
 	}
-
-	return o.Chain
+	return *o.Chain
 }
 
-// GetChainOk returns a tuple with the Chain field value
+// GetChainOk returns a tuple with the Chain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetChainOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Chain) {
 		return nil, false
 	}
-	return &o.Chain, true
+	return o.Chain, true
 }
 
-// SetChain sets field value
+// HasChain returns a boolean if a field has been set.
+func (o *SubscribedTo) HasChain() bool {
+	if o != nil && !IsNil(o.Chain) {
+		return true
+	}
+
+	return false
+}
+
+// SetChain gets a reference to the given int32 and assigns it to the Chain field.
 func (o *SubscribedTo) SetChain(v int32) {
-	o.Chain = v
+	o.Chain = &v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SubscribedTo) GetMetadata() SubscriptionMetadata {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret SubscriptionMetadata
 		return ret
 	}
-
-	return o.Metadata
+	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetMetadataOk() (*SubscriptionMetadata, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *SubscribedTo) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given SubscriptionMetadata and assigns it to the Metadata field.
 func (o *SubscribedTo) SetMetadata(v SubscriptionMetadata) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
-// GetOwnerAddress returns the OwnerAddress field value
+// GetOwnerAddress returns the OwnerAddress field value if set, zero value otherwise.
 func (o *SubscribedTo) GetOwnerAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.OwnerAddress
+	return *o.OwnerAddress
 }
 
-// GetOwnerAddressOk returns a tuple with the OwnerAddress field value
+// GetOwnerAddressOk returns a tuple with the OwnerAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetOwnerAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerAddress) {
 		return nil, false
 	}
-	return &o.OwnerAddress, true
+	return o.OwnerAddress, true
 }
 
-// SetOwnerAddress sets field value
+// HasOwnerAddress returns a boolean if a field has been set.
+func (o *SubscribedTo) HasOwnerAddress() bool {
+	if o != nil && !IsNil(o.OwnerAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerAddress gets a reference to the given string and assigns it to the OwnerAddress field.
 func (o *SubscribedTo) SetOwnerAddress(v string) {
-	o.OwnerAddress = v
+	o.OwnerAddress = &v
 }
 
-// GetPrice returns the Price field value
+// GetPrice returns the Price field value if set, zero value otherwise.
 func (o *SubscribedTo) GetPrice() SubscriptionPrice {
-	if o == nil {
+	if o == nil || IsNil(o.Price) {
 		var ret SubscriptionPrice
 		return ret
 	}
-
-	return o.Price
+	return *o.Price
 }
 
-// GetPriceOk returns a tuple with the Price field value
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetPriceOk() (*SubscriptionPrice, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
-	return &o.Price, true
+	return o.Price, true
 }
 
-// SetPrice sets field value
+// HasPrice returns a boolean if a field has been set.
+func (o *SubscribedTo) HasPrice() bool {
+	if o != nil && !IsNil(o.Price) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrice gets a reference to the given SubscriptionPrice and assigns it to the Price field.
 func (o *SubscribedTo) SetPrice(v SubscriptionPrice) {
-	o.Price = v
+	o.Price = &v
 }
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.
@@ -277,148 +309,196 @@ func (o *SubscribedTo) SetTiers(v []SubscriptionTier) {
 	o.Tiers = v
 }
 
-// GetProtocolVersion returns the ProtocolVersion field value
+// GetProtocolVersion returns the ProtocolVersion field value if set, zero value otherwise.
 func (o *SubscribedTo) GetProtocolVersion() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ProtocolVersion) {
 		var ret int32
 		return ret
 	}
-
-	return o.ProtocolVersion
+	return *o.ProtocolVersion
 }
 
-// GetProtocolVersionOk returns a tuple with the ProtocolVersion field value
+// GetProtocolVersionOk returns a tuple with the ProtocolVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetProtocolVersionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProtocolVersion) {
 		return nil, false
 	}
-	return &o.ProtocolVersion, true
+	return o.ProtocolVersion, true
 }
 
-// SetProtocolVersion sets field value
+// HasProtocolVersion returns a boolean if a field has been set.
+func (o *SubscribedTo) HasProtocolVersion() bool {
+	if o != nil && !IsNil(o.ProtocolVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProtocolVersion gets a reference to the given int32 and assigns it to the ProtocolVersion field.
 func (o *SubscribedTo) SetProtocolVersion(v int32) {
-	o.ProtocolVersion = v
+	o.ProtocolVersion = &v
 }
 
-// GetToken returns the Token field value
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *SubscribedTo) GetToken() SubscriptionToken {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		var ret SubscriptionToken
 		return ret
 	}
-
-	return o.Token
+	return *o.Token
 }
 
-// GetTokenOk returns a tuple with the Token field value
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetTokenOk() (*SubscriptionToken, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return &o.Token, true
+	return o.Token, true
 }
 
-// SetToken sets field value
+// HasToken returns a boolean if a field has been set.
+func (o *SubscribedTo) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given SubscriptionToken and assigns it to the Token field.
 func (o *SubscribedTo) SetToken(v SubscriptionToken) {
-	o.Token = v
+	o.Token = &v
 }
 
-// GetExpiresAt returns the ExpiresAt field value
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *SubscribedTo) GetExpiresAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.ExpiresAt
+	return *o.ExpiresAt
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
-	return &o.ExpiresAt, true
+	return o.ExpiresAt, true
 }
 
-// SetExpiresAt sets field value
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *SubscribedTo) HasExpiresAt() bool {
+	if o != nil && !IsNil(o.ExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
 func (o *SubscribedTo) SetExpiresAt(v time.Time) {
-	o.ExpiresAt = v
+	o.ExpiresAt = &v
 }
 
-// GetSubscribedAt returns the SubscribedAt field value
+// GetSubscribedAt returns the SubscribedAt field value if set, zero value otherwise.
 func (o *SubscribedTo) GetSubscribedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.SubscribedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.SubscribedAt
+	return *o.SubscribedAt
 }
 
-// GetSubscribedAtOk returns a tuple with the SubscribedAt field value
+// GetSubscribedAtOk returns a tuple with the SubscribedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetSubscribedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SubscribedAt) {
 		return nil, false
 	}
-	return &o.SubscribedAt, true
+	return o.SubscribedAt, true
 }
 
-// SetSubscribedAt sets field value
+// HasSubscribedAt returns a boolean if a field has been set.
+func (o *SubscribedTo) HasSubscribedAt() bool {
+	if o != nil && !IsNil(o.SubscribedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedAt gets a reference to the given time.Time and assigns it to the SubscribedAt field.
 func (o *SubscribedTo) SetSubscribedAt(v time.Time) {
-	o.SubscribedAt = v
+	o.SubscribedAt = &v
 }
 
-// GetTier returns the Tier field value
+// GetTier returns the Tier field value if set, zero value otherwise.
 func (o *SubscribedTo) GetTier() SubscriptionTier {
-	if o == nil {
+	if o == nil || IsNil(o.Tier) {
 		var ret SubscriptionTier
 		return ret
 	}
-
-	return o.Tier
+	return *o.Tier
 }
 
-// GetTierOk returns a tuple with the Tier field value
+// GetTierOk returns a tuple with the Tier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetTierOk() (*SubscriptionTier, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tier) {
 		return nil, false
 	}
-	return &o.Tier, true
+	return o.Tier, true
 }
 
-// SetTier sets field value
+// HasTier returns a boolean if a field has been set.
+func (o *SubscribedTo) HasTier() bool {
+	if o != nil && !IsNil(o.Tier) {
+		return true
+	}
+
+	return false
+}
+
+// SetTier gets a reference to the given SubscriptionTier and assigns it to the Tier field.
 func (o *SubscribedTo) SetTier(v SubscriptionTier) {
-	o.Tier = v
+	o.Tier = &v
 }
 
-// GetCreator returns the Creator field value
+// GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *SubscribedTo) GetCreator() User {
-	if o == nil {
+	if o == nil || IsNil(o.Creator) {
 		var ret User
 		return ret
 	}
-
-	return o.Creator
+	return *o.Creator
 }
 
-// GetCreatorOk returns a tuple with the Creator field value
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscribedTo) GetCreatorOk() (*User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Creator) {
 		return nil, false
 	}
-	return &o.Creator, true
+	return o.Creator, true
 }
 
-// SetCreator sets field value
+// HasCreator returns a boolean if a field has been set.
+func (o *SubscribedTo) HasCreator() bool {
+	if o != nil && !IsNil(o.Creator) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreator gets a reference to the given User and assigns it to the Creator field.
 func (o *SubscribedTo) SetCreator(v User) {
-	o.Creator = v
+	o.Creator = &v
 }
 
 func (o SubscribedTo) MarshalJSON() ([]byte, error) {
@@ -431,96 +511,49 @@ func (o SubscribedTo) MarshalJSON() ([]byte, error) {
 
 func (o SubscribedTo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.ProviderName) {
 		toSerialize["provider_name"] = o.ProviderName
 	}
-	toSerialize["contract_address"] = o.ContractAddress
-	toSerialize["chain"] = o.Chain
-	toSerialize["metadata"] = o.Metadata
-	toSerialize["owner_address"] = o.OwnerAddress
-	toSerialize["price"] = o.Price
+	if !IsNil(o.ContractAddress) {
+		toSerialize["contract_address"] = o.ContractAddress
+	}
+	if !IsNil(o.Chain) {
+		toSerialize["chain"] = o.Chain
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.OwnerAddress) {
+		toSerialize["owner_address"] = o.OwnerAddress
+	}
+	if !IsNil(o.Price) {
+		toSerialize["price"] = o.Price
+	}
 	if !IsNil(o.Tiers) {
 		toSerialize["tiers"] = o.Tiers
 	}
-	toSerialize["protocol_version"] = o.ProtocolVersion
-	toSerialize["token"] = o.Token
-	toSerialize["expires_at"] = o.ExpiresAt
-	toSerialize["subscribed_at"] = o.SubscribedAt
-	toSerialize["tier"] = o.Tier
-	toSerialize["creator"] = o.Creator
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.ProtocolVersion) {
+		toSerialize["protocol_version"] = o.ProtocolVersion
 	}
-
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	if !IsNil(o.SubscribedAt) {
+		toSerialize["subscribed_at"] = o.SubscribedAt
+	}
+	if !IsNil(o.Tier) {
+		toSerialize["tier"] = o.Tier
+	}
+	if !IsNil(o.Creator) {
+		toSerialize["creator"] = o.Creator
+	}
 	return toSerialize, nil
-}
-
-func (o *SubscribedTo) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"contract_address",
-		"chain",
-		"metadata",
-		"owner_address",
-		"price",
-		"protocol_version",
-		"token",
-		"expires_at",
-		"subscribed_at",
-		"tier",
-		"creator",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscribedTo := _SubscribedTo{}
-
-	err = json.Unmarshal(data, &varSubscribedTo)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscribedTo(varSubscribedTo)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "provider_name")
-		delete(additionalProperties, "contract_address")
-		delete(additionalProperties, "chain")
-		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "owner_address")
-		delete(additionalProperties, "price")
-		delete(additionalProperties, "tiers")
-		delete(additionalProperties, "protocol_version")
-		delete(additionalProperties, "token")
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "subscribed_at")
-		delete(additionalProperties, "tier")
-		delete(additionalProperties, "creator")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscribedTo struct {

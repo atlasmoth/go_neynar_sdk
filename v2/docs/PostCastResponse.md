@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | 
-**Cast** | [**PostCastResponseCast**](PostCastResponseCast.md) |  | 
+**Success** | Pointer to **bool** |  | [optional] 
+**Cast** | Pointer to [**PostCastResponseCast**](PostCastResponseCast.md) |  | [optional] 
 
 ## Methods
 
 ### NewPostCastResponse
 
-`func NewPostCastResponse(success bool, cast PostCastResponseCast, ) *PostCastResponse`
+`func NewPostCastResponse() *PostCastResponse`
 
 NewPostCastResponse instantiates a new PostCastResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
+### HasSuccess
+
+`func (o *PostCastResponse) HasSuccess() bool`
+
+HasSuccess returns a boolean if a field has been set.
 
 ### GetCast
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetCast sets Cast field to given value.
 
+### HasCast
+
+`func (o *PostCastResponse) HasCast() bool`
+
+HasCast returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

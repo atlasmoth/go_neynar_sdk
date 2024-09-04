@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
-**Address** | **string** | Ethereum address | 
-**BlockHash** | **string** |  | 
-**EthSignature** | **string** |  | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
+**Address** | Pointer to **string** | Ethereum address | [optional] 
+**BlockHash** | Pointer to **string** |  | [optional] 
+**EthSignature** | Pointer to **string** |  | [optional] 
 **VerificationType** | Pointer to [**VerificationType**](VerificationType.md) |  | [optional] [default to VERIFICATIONTYPE__0]
 **ChainId** | Pointer to [**VerificationChainId**](VerificationChainId.md) |  | [optional] [default to VERIFICATIONCHAINID__0]
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewAddVerificationReqBody
 
-`func NewAddVerificationReqBody(signerUuid string, address string, blockHash string, ethSignature string, ) *AddVerificationReqBody`
+`func NewAddVerificationReqBody() *AddVerificationReqBody`
 
 NewAddVerificationReqBody instantiates a new AddVerificationReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *AddVerificationReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *AddVerificationReqBody) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetBlockHash
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetBlockHash sets BlockHash field to given value.
 
+### HasBlockHash
+
+`func (o *AddVerificationReqBody) HasBlockHash() bool`
+
+HasBlockHash returns a boolean if a field has been set.
 
 ### GetEthSignature
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetEthSignature sets EthSignature field to given value.
 
+### HasEthSignature
+
+`func (o *AddVerificationReqBody) HasEthSignature() bool`
+
+HasEthSignature returns a boolean if a field has been set.
 
 ### GetVerificationType
 

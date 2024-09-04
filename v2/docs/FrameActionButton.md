@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | Pointer to **string** | Title of the button | [optional] 
-**Index** | **int32** | Index of the button | 
-**ActionType** | [**FrameButtonActionType**](FrameButtonActionType.md) |  | 
+**Index** | Pointer to **int32** | Index of the button | [optional] 
+**ActionType** | Pointer to [**FrameButtonActionType**](FrameButtonActionType.md) |  | [optional] 
 **Target** | Pointer to **string** | Target of the button | [optional] 
 **PostUrl** | Pointer to **string** | Used specifically for the tx action type to post a successful transaction hash | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewFrameActionButton
 
-`func NewFrameActionButton(index int32, actionType FrameButtonActionType, ) *FrameActionButton`
+`func NewFrameActionButton() *FrameActionButton`
 
 NewFrameActionButton instantiates a new FrameActionButton object
 This constructor will assign default values to properties that have it defined,
@@ -73,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetIndex sets Index field to given value.
 
+### HasIndex
+
+`func (o *FrameActionButton) HasIndex() bool`
+
+HasIndex returns a boolean if a field has been set.
 
 ### GetActionType
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetActionType sets ActionType field to given value.
 
+### HasActionType
+
+`func (o *FrameActionButton) HasActionType() bool`
+
+HasActionType returns a boolean if a field has been set.
 
 ### GetTarget
 

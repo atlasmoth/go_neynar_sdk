@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserVerifiedAddresses type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &UserVerifiedAddresses{}
 
 // UserVerifiedAddresses struct for UserVerifiedAddresses
 type UserVerifiedAddresses struct {
-	EthAddresses []string `json:"eth_addresses"`
-	SolAddresses []string `json:"sol_addresses"`
-	AdditionalProperties map[string]interface{}
+	EthAddresses []string `json:"eth_addresses,omitempty"`
+	SolAddresses []string `json:"sol_addresses,omitempty"`
 }
-
-type _UserVerifiedAddresses UserVerifiedAddresses
 
 // NewUserVerifiedAddresses instantiates a new UserVerifiedAddresses object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserVerifiedAddresses(ethAddresses []string, solAddresses []string) *UserVerifiedAddresses {
+func NewUserVerifiedAddresses() *UserVerifiedAddresses {
 	this := UserVerifiedAddresses{}
-	this.EthAddresses = ethAddresses
-	this.SolAddresses = solAddresses
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewUserVerifiedAddressesWithDefaults() *UserVerifiedAddresses {
 	return &this
 }
 
-// GetEthAddresses returns the EthAddresses field value
+// GetEthAddresses returns the EthAddresses field value if set, zero value otherwise.
 func (o *UserVerifiedAddresses) GetEthAddresses() []string {
-	if o == nil {
+	if o == nil || IsNil(o.EthAddresses) {
 		var ret []string
 		return ret
 	}
-
 	return o.EthAddresses
 }
 
-// GetEthAddressesOk returns a tuple with the EthAddresses field value
+// GetEthAddressesOk returns a tuple with the EthAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserVerifiedAddresses) GetEthAddressesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EthAddresses) {
 		return nil, false
 	}
 	return o.EthAddresses, true
 }
 
-// SetEthAddresses sets field value
+// HasEthAddresses returns a boolean if a field has been set.
+func (o *UserVerifiedAddresses) HasEthAddresses() bool {
+	if o != nil && !IsNil(o.EthAddresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetEthAddresses gets a reference to the given []string and assigns it to the EthAddresses field.
 func (o *UserVerifiedAddresses) SetEthAddresses(v []string) {
 	o.EthAddresses = v
 }
 
-// GetSolAddresses returns the SolAddresses field value
+// GetSolAddresses returns the SolAddresses field value if set, zero value otherwise.
 func (o *UserVerifiedAddresses) GetSolAddresses() []string {
-	if o == nil {
+	if o == nil || IsNil(o.SolAddresses) {
 		var ret []string
 		return ret
 	}
-
 	return o.SolAddresses
 }
 
-// GetSolAddressesOk returns a tuple with the SolAddresses field value
+// GetSolAddressesOk returns a tuple with the SolAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserVerifiedAddresses) GetSolAddressesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SolAddresses) {
 		return nil, false
 	}
 	return o.SolAddresses, true
 }
 
-// SetSolAddresses sets field value
+// HasSolAddresses returns a boolean if a field has been set.
+func (o *UserVerifiedAddresses) HasSolAddresses() bool {
+	if o != nil && !IsNil(o.SolAddresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetSolAddresses gets a reference to the given []string and assigns it to the SolAddresses field.
 func (o *UserVerifiedAddresses) SetSolAddresses(v []string) {
 	o.SolAddresses = v
 }
@@ -104,58 +114,13 @@ func (o UserVerifiedAddresses) MarshalJSON() ([]byte, error) {
 
 func (o UserVerifiedAddresses) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["eth_addresses"] = o.EthAddresses
-	toSerialize["sol_addresses"] = o.SolAddresses
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.EthAddresses) {
+		toSerialize["eth_addresses"] = o.EthAddresses
 	}
-
+	if !IsNil(o.SolAddresses) {
+		toSerialize["sol_addresses"] = o.SolAddresses
+	}
 	return toSerialize, nil
-}
-
-func (o *UserVerifiedAddresses) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"eth_addresses",
-		"sol_addresses",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserVerifiedAddresses := _UserVerifiedAddresses{}
-
-	err = json.Unmarshal(data, &varUserVerifiedAddresses)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserVerifiedAddresses(varUserVerifiedAddresses)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "eth_addresses")
-		delete(additionalProperties, "sol_addresses")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserVerifiedAddresses struct {

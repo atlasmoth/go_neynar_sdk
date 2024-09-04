@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** | Unique identifier for the page. | 
-**Version** | **string** | The version of the page schema. | [default to "vNext"]
-**Title** | **string** | The title of the page. | 
-**Image** | [**NeynarPageImage**](NeynarPageImage.md) |  | 
+**Uuid** | Pointer to **string** | Unique identifier for the page. | [optional] 
+**Version** | Pointer to **string** | The version of the page schema. | [optional] [default to "vNext"]
+**Title** | Pointer to **string** | The title of the page. | [optional] 
+**Image** | Pointer to [**NeynarPageImage**](NeynarPageImage.md) |  | [optional] 
 **Buttons** | Pointer to [**[]NeynarPageButton**](NeynarPageButton.md) |  | [optional] 
 **Input** | Pointer to [**NeynarPageInput**](NeynarPageInput.md) |  | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewNeynarFramePage
 
-`func NewNeynarFramePage(uuid string, version string, title string, image NeynarPageImage, ) *NeynarFramePage`
+`func NewNeynarFramePage() *NeynarFramePage`
 
 NewNeynarFramePage instantiates a new NeynarFramePage object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
+### HasUuid
+
+`func (o *NeynarFramePage) HasUuid() bool`
+
+HasUuid returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *NeynarFramePage) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetTitle
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *NeynarFramePage) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetImage
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetImage sets Image field to given value.
 
+### HasImage
+
+`func (o *NeynarFramePage) HasImage() bool`
+
+HasImage returns a boolean if a field has been set.
 
 ### GetButtons
 

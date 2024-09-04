@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastWithInteractionsRecasts type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &CastWithInteractionsRecasts{}
 
 // CastWithInteractionsRecasts struct for CastWithInteractionsRecasts
 type CastWithInteractionsRecasts struct {
-	Count int32 `json:"count"`
-	Fids []int32 `json:"fids"`
-	AdditionalProperties map[string]interface{}
+	Count *int32 `json:"count,omitempty"`
+	Fids []int32 `json:"fids,omitempty"`
 }
-
-type _CastWithInteractionsRecasts CastWithInteractionsRecasts
 
 // NewCastWithInteractionsRecasts instantiates a new CastWithInteractionsRecasts object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsRecasts(count int32, fids []int32) *CastWithInteractionsRecasts {
+func NewCastWithInteractionsRecasts() *CastWithInteractionsRecasts {
 	this := CastWithInteractionsRecasts{}
-	this.Count = count
-	this.Fids = fids
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewCastWithInteractionsRecastsWithDefaults() *CastWithInteractionsRecasts {
 	return &this
 }
 
-// GetCount returns the Count field value
+// GetCount returns the Count field value if set, zero value otherwise.
 func (o *CastWithInteractionsRecasts) GetCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
-
-	return o.Count
+	return *o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsRecasts) GetCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
-	return &o.Count, true
+	return o.Count, true
 }
 
-// SetCount sets field value
+// HasCount returns a boolean if a field has been set.
+func (o *CastWithInteractionsRecasts) HasCount() bool {
+	if o != nil && !IsNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
 func (o *CastWithInteractionsRecasts) SetCount(v int32) {
-	o.Count = v
+	o.Count = &v
 }
 
-// GetFids returns the Fids field value
+// GetFids returns the Fids field value if set, zero value otherwise.
 func (o *CastWithInteractionsRecasts) GetFids() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		var ret []int32
 		return ret
 	}
-
 	return o.Fids
 }
 
-// GetFidsOk returns a tuple with the Fids field value
+// GetFidsOk returns a tuple with the Fids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastWithInteractionsRecasts) GetFidsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fids) {
 		return nil, false
 	}
 	return o.Fids, true
 }
 
-// SetFids sets field value
+// HasFids returns a boolean if a field has been set.
+func (o *CastWithInteractionsRecasts) HasFids() bool {
+	if o != nil && !IsNil(o.Fids) {
+		return true
+	}
+
+	return false
+}
+
+// SetFids gets a reference to the given []int32 and assigns it to the Fids field.
 func (o *CastWithInteractionsRecasts) SetFids(v []int32) {
 	o.Fids = v
 }
@@ -104,58 +114,13 @@ func (o CastWithInteractionsRecasts) MarshalJSON() ([]byte, error) {
 
 func (o CastWithInteractionsRecasts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["count"] = o.Count
-	toSerialize["fids"] = o.Fids
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
 	}
-
+	if !IsNil(o.Fids) {
+		toSerialize["fids"] = o.Fids
+	}
 	return toSerialize, nil
-}
-
-func (o *CastWithInteractionsRecasts) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"count",
-		"fids",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastWithInteractionsRecasts := _CastWithInteractionsRecasts{}
-
-	err = json.Unmarshal(data, &varCastWithInteractionsRecasts)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastWithInteractionsRecasts(varCastWithInteractionsRecasts)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "count")
-		delete(additionalProperties, "fids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastWithInteractionsRecasts struct {

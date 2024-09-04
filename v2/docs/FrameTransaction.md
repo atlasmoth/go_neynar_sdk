@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** | Transaction hash | 
+**Hash** | Pointer to **string** | Transaction hash | [optional] 
 
 ## Methods
 
 ### NewFrameTransaction
 
-`func NewFrameTransaction(hash string, ) *FrameTransaction`
+`func NewFrameTransaction() *FrameTransaction`
 
 NewFrameTransaction instantiates a new FrameTransaction object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *FrameTransaction) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

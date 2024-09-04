@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | [default to 3]
-**CustodyAddress** | **NullableString** |  | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] [default to 3]
+**CustodyAddress** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewCustodyAddressResponseResult
 
-`func NewCustodyAddressResponseResult(fid int32, custodyAddress NullableString, ) *CustodyAddressResponseResult`
+`func NewCustodyAddressResponseResult() *CustodyAddressResponseResult`
 
 NewCustodyAddressResponseResult instantiates a new CustodyAddressResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *CustodyAddressResponseResult) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetCustodyAddress
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetCustodyAddress sets CustodyAddress field to given value.
 
+### HasCustodyAddress
+
+`func (o *CustodyAddressResponseResult) HasCustodyAddress() bool`
+
+HasCustodyAddress returns a boolean if a field has been set.
 
 ### SetCustodyAddressNil
 

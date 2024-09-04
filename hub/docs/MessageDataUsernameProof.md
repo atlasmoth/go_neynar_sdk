@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**UsernameProofBody** | [**UserNameProof**](UserNameProof.md) |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**UsernameProofBody** | Pointer to [**UserNameProof**](UserNameProof.md) |  | [optional] 
 
 ## Methods
 
 ### NewMessageDataUsernameProof
 
-`func NewMessageDataUsernameProof(fid int32, timestamp int64, network FarcasterNetwork, usernameProofBody UserNameProof, ) *MessageDataUsernameProof`
+`func NewMessageDataUsernameProof() *MessageDataUsernameProof`
 
 NewMessageDataUsernameProof instantiates a new MessageDataUsernameProof object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *MessageDataUsernameProof) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *MessageDataUsernameProof) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *MessageDataUsernameProof) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetUsernameProofBody
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetUsernameProofBody sets UsernameProofBody field to given value.
 
+### HasUsernameProofBody
+
+`func (o *MessageDataUsernameProof) HasUsernameProofBody() bool`
+
+HasUsernameProofBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Url** | **string** |  | 
+**Name** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
 **Subscription** | Pointer to [**WebhookSubscriptionFilters**](WebhookSubscriptionFilters.md) |  | [optional] 
 
 ## Methods
 
 ### NewWebhookPostReqBody
 
-`func NewWebhookPostReqBody(name string, url string, ) *WebhookPostReqBody`
+`func NewWebhookPostReqBody() *WebhookPostReqBody`
 
 NewWebhookPostReqBody instantiates a new WebhookPostReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *WebhookPostReqBody) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetUrl
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *WebhookPostReqBody) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetSubscription
 

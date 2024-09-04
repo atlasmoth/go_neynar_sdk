@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UpdateUserReqBody type satisfies the MappedNullable interface at compile time
@@ -21,24 +20,20 @@ var _ MappedNullable = &UpdateUserReqBody{}
 // UpdateUserReqBody struct for UpdateUserReqBody
 type UpdateUserReqBody struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	Bio *string `json:"bio,omitempty"`
 	PfpUrl *string `json:"pfp_url,omitempty"`
 	Url *string `json:"url,omitempty"`
 	Username *string `json:"username,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _UpdateUserReqBody UpdateUserReqBody
 
 // NewUpdateUserReqBody instantiates a new UpdateUserReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateUserReqBody(signerUuid string) *UpdateUserReqBody {
+func NewUpdateUserReqBody() *UpdateUserReqBody {
 	this := UpdateUserReqBody{}
-	this.SignerUuid = signerUuid
 	return &this
 }
 
@@ -50,28 +45,36 @@ func NewUpdateUserReqBodyWithDefaults() *UpdateUserReqBody {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *UpdateUserReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *UpdateUserReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *UpdateUserReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
 // GetBio returns the Bio field value if set, zero value otherwise.
@@ -244,7 +247,9 @@ func (o UpdateUserReqBody) MarshalJSON() ([]byte, error) {
 
 func (o UpdateUserReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
+	}
 	if !IsNil(o.Bio) {
 		toSerialize["bio"] = o.Bio
 	}
@@ -260,59 +265,7 @@ func (o UpdateUserReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayName) {
 		toSerialize["display_name"] = o.DisplayName
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *UpdateUserReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUpdateUserReqBody := _UpdateUserReqBody{}
-
-	err = json.Unmarshal(data, &varUpdateUserReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UpdateUserReqBody(varUpdateUserReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "bio")
-		delete(additionalProperties, "pfp_url")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "display_name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUpdateUserReqBody struct {

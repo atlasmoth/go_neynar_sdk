@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Liked** | **bool** | Indicates if the viewer liked the cast. | 
-**Recasted** | **bool** | Indicates if the viewer recasted the cast. | 
+**Liked** | Pointer to **bool** | Indicates if the viewer liked the cast. | [optional] 
+**Recasted** | Pointer to **bool** | Indicates if the viewer recasted the cast. | [optional] 
 
 ## Methods
 
 ### NewCastViewerContext
 
-`func NewCastViewerContext(liked bool, recasted bool, ) *CastViewerContext`
+`func NewCastViewerContext() *CastViewerContext`
 
 NewCastViewerContext instantiates a new CastViewerContext object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetLiked sets Liked field to given value.
 
+### HasLiked
+
+`func (o *CastViewerContext) HasLiked() bool`
+
+HasLiked returns a boolean if a field has been set.
 
 ### GetRecasted
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetRecasted sets Recasted field to given value.
 
+### HasRecasted
+
+`func (o *CastViewerContext) HasRecasted() bool`
+
+HasRecasted returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

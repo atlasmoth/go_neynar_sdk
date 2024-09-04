@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	limit := int32(10) // int32 |  (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -102,8 +102,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "Address_example") // RemoveVerificationReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody() // RemoveVerificationReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -164,8 +164,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "Address_example", "BlockHash_example", "EthSignature_example") // AddVerificationReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody() // AddVerificationReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -226,8 +226,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	followReqBody := *openapiclient.NewFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", []int32{int32(123)}) // FollowReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	followReqBody := *openapiclient.NewFollowReqBody() // FollowReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -288,7 +288,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -348,8 +348,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	custodyAddress := "0xd1b702203b1b3b641a699997746bd4a12d157909" // string | Custody Address associated with mnemonic
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	custodyAddress := "0xd1b702203b1b3b641a699997746bd4a12d157909" // string | Custody Address associated with mnemonic (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -410,7 +410,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	viewerFid := int32(3) // int32 |  (optional)
 	limit := int32(10) // int32 | Number of power users to fetch, max 100 (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -476,8 +476,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	registerUserReqBody := *openapiclient.NewRegisterUserReqBody("Signature_example", float32(123), "RequestedUserCustodyAddress_example", float32(123)) // RegisterUserReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	registerUserReqBody := *openapiclient.NewRegisterUserReqBody() // RegisterUserReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -538,8 +538,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	followReqBody := *openapiclient.NewFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", []int32{int32(123)}) // FollowReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	followReqBody := *openapiclient.NewFollowReqBody() // FollowReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -600,8 +600,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	updateUserReqBody := *openapiclient.NewUpdateUserReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec") // UpdateUserReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	updateUserReqBody := *openapiclient.NewUpdateUserReqBody() // UpdateUserReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -662,8 +662,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -726,8 +726,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	addresses := "0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce" // string | Comma separated list of Ethereum addresses, up to 350 at a time
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	addresses := "0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce" // string | Comma separated list of Ethereum addresses, up to 350 at a time (optional)
 	addressTypes := "custody_address,verified_address" // string | Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.  (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 
@@ -792,7 +792,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -852,8 +852,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	q := "r" // string |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	q := "r" // string |  (optional)
 	viewerFid := int32(3) // int32 |  (optional)
 	limit := int32(10) // int32 |  (optional) (default to 5)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)

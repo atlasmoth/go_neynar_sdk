@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CustodyAddressResponseResult type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,18 @@ var _ MappedNullable = &CustodyAddressResponseResult{}
 // CustodyAddressResponseResult struct for CustodyAddressResponseResult
 type CustodyAddressResponseResult struct {
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	CustodyAddress NullableString `json:"custodyAddress"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	CustodyAddress NullableString `json:"custodyAddress,omitempty"`
 }
-
-type _CustodyAddressResponseResult CustodyAddressResponseResult
 
 // NewCustodyAddressResponseResult instantiates a new CustodyAddressResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustodyAddressResponseResult(fid int32, custodyAddress NullableString) *CustodyAddressResponseResult {
+func NewCustodyAddressResponseResult() *CustodyAddressResponseResult {
 	this := CustodyAddressResponseResult{}
-	this.Fid = fid
-	this.CustodyAddress = custodyAddress
+	var fid int32 = 3
+	this.Fid = &fid
 	return &this
 }
 
@@ -45,46 +41,52 @@ func NewCustodyAddressResponseResult(fid int32, custodyAddress NullableString) *
 func NewCustodyAddressResponseResultWithDefaults() *CustodyAddressResponseResult {
 	this := CustodyAddressResponseResult{}
 	var fid int32 = 3
-	this.Fid = fid
+	this.Fid = &fid
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *CustodyAddressResponseResult) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustodyAddressResponseResult) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *CustodyAddressResponseResult) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *CustodyAddressResponseResult) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetCustodyAddress returns the CustodyAddress field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetCustodyAddress returns the CustodyAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CustodyAddressResponseResult) GetCustodyAddress() string {
-	if o == nil || o.CustodyAddress.Get() == nil {
+	if o == nil || IsNil(o.CustodyAddress.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.CustodyAddress.Get()
 }
 
-// GetCustodyAddressOk returns a tuple with the CustodyAddress field value
+// GetCustodyAddressOk returns a tuple with the CustodyAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustodyAddressResponseResult) GetCustodyAddressOk() (*string, bool) {
@@ -94,9 +96,27 @@ func (o *CustodyAddressResponseResult) GetCustodyAddressOk() (*string, bool) {
 	return o.CustodyAddress.Get(), o.CustodyAddress.IsSet()
 }
 
-// SetCustodyAddress sets field value
+// HasCustodyAddress returns a boolean if a field has been set.
+func (o *CustodyAddressResponseResult) HasCustodyAddress() bool {
+	if o != nil && o.CustodyAddress.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustodyAddress gets a reference to the given NullableString and assigns it to the CustodyAddress field.
 func (o *CustodyAddressResponseResult) SetCustodyAddress(v string) {
 	o.CustodyAddress.Set(&v)
+}
+// SetCustodyAddressNil sets the value for CustodyAddress to be an explicit nil
+func (o *CustodyAddressResponseResult) SetCustodyAddressNil() {
+	o.CustodyAddress.Set(nil)
+}
+
+// UnsetCustodyAddress ensures that no value is present for CustodyAddress, not even an explicit nil
+func (o *CustodyAddressResponseResult) UnsetCustodyAddress() {
+	o.CustodyAddress.Unset()
 }
 
 func (o CustodyAddressResponseResult) MarshalJSON() ([]byte, error) {
@@ -109,58 +129,13 @@ func (o CustodyAddressResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o CustodyAddressResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["custodyAddress"] = o.CustodyAddress.Get()
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if o.CustodyAddress.IsSet() {
+		toSerialize["custodyAddress"] = o.CustodyAddress.Get()
+	}
 	return toSerialize, nil
-}
-
-func (o *CustodyAddressResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"custodyAddress",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCustodyAddressResponseResult := _CustodyAddressResponseResult{}
-
-	err = json.Unmarshal(data, &varCustodyAddressResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CustodyAddressResponseResult(varCustodyAddressResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "custodyAddress")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCustodyAddressResponseResult struct {

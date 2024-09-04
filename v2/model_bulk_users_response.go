@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BulkUsersResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &BulkUsersResponse{}
 
 // BulkUsersResponse struct for BulkUsersResponse
 type BulkUsersResponse struct {
-	Users []User `json:"users"`
-	AdditionalProperties map[string]interface{}
+	Users []User `json:"users,omitempty"`
 }
-
-type _BulkUsersResponse BulkUsersResponse
 
 // NewBulkUsersResponse instantiates a new BulkUsersResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBulkUsersResponse(users []User) *BulkUsersResponse {
+func NewBulkUsersResponse() *BulkUsersResponse {
 	this := BulkUsersResponse{}
-	this.Users = users
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewBulkUsersResponseWithDefaults() *BulkUsersResponse {
 	return &this
 }
 
-// GetUsers returns the Users field value
+// GetUsers returns the Users field value if set, zero value otherwise.
 func (o *BulkUsersResponse) GetUsers() []User {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		var ret []User
 		return ret
 	}
-
 	return o.Users
 }
 
-// GetUsersOk returns a tuple with the Users field value
+// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BulkUsersResponse) GetUsersOk() ([]User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		return nil, false
 	}
 	return o.Users, true
 }
 
-// SetUsers sets field value
+// HasUsers returns a boolean if a field has been set.
+func (o *BulkUsersResponse) HasUsers() bool {
+	if o != nil && !IsNil(o.Users) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsers gets a reference to the given []User and assigns it to the Users field.
 func (o *BulkUsersResponse) SetUsers(v []User) {
 	o.Users = v
 }
@@ -78,55 +81,10 @@ func (o BulkUsersResponse) MarshalJSON() ([]byte, error) {
 
 func (o BulkUsersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["users"] = o.Users
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Users) {
+		toSerialize["users"] = o.Users
 	}
-
 	return toSerialize, nil
-}
-
-func (o *BulkUsersResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"users",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBulkUsersResponse := _BulkUsersResponse{}
-
-	err = json.Unmarshal(data, &varBulkUsersResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BulkUsersResponse(varBulkUsersResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "users")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBulkUsersResponse struct {

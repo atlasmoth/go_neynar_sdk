@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | [default to 3]
-**Username** | **string** | The username of the user. | 
-**CustodyAddress** | **string** | Custody Address of the user. | 
-**DisplayName** | **string** | The display of the reactor. | 
-**Pfp** | [**UserPfp**](UserPfp.md) |  | 
-**Profile** | [**UserProfile**](UserProfile.md) |  | 
-**FollowerCount** | **int32** | The number of followers the user has. | 
-**FollowingCount** | **int32** | The number of users the user is following. | 
-**Verifications** | **[]string** |  | 
-**ActiveStatus** | [**ActiveStatus**](ActiveStatus.md) |  | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] [default to 3]
+**Username** | Pointer to **string** | The username of the user. | [optional] 
+**CustodyAddress** | Pointer to **string** | Custody Address of the user. | [optional] 
+**DisplayName** | Pointer to **string** | The display of the reactor. | [optional] 
+**Pfp** | Pointer to [**UserPfp**](UserPfp.md) |  | [optional] 
+**Profile** | Pointer to [**UserProfile**](UserProfile.md) |  | [optional] 
+**FollowerCount** | Pointer to **int32** | The number of followers the user has. | [optional] 
+**FollowingCount** | Pointer to **int32** | The number of users the user is following. | [optional] 
+**Verifications** | Pointer to **[]string** |  | [optional] 
+**ActiveStatus** | Pointer to [**ActiveStatus**](ActiveStatus.md) |  | [optional] 
 **ViewerContext** | Pointer to [**ViewerContext**](ViewerContext.md) |  | [optional] 
-**Timestamp** | **time.Time** |  | 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewFollowResponseUser
 
-`func NewFollowResponseUser(fid int32, username string, custodyAddress string, displayName string, pfp UserPfp, profile UserProfile, followerCount int32, followingCount int32, verifications []string, activeStatus ActiveStatus, timestamp time.Time, ) *FollowResponseUser`
+`func NewFollowResponseUser() *FollowResponseUser`
 
 NewFollowResponseUser instantiates a new FollowResponseUser object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +55,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *FollowResponseUser) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -75,6 +80,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *FollowResponseUser) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetCustodyAddress
 
@@ -95,6 +105,11 @@ and a boolean to check if the value has been set.
 
 SetCustodyAddress sets CustodyAddress field to given value.
 
+### HasCustodyAddress
+
+`func (o *FollowResponseUser) HasCustodyAddress() bool`
+
+HasCustodyAddress returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -115,6 +130,11 @@ and a boolean to check if the value has been set.
 
 SetDisplayName sets DisplayName field to given value.
 
+### HasDisplayName
+
+`func (o *FollowResponseUser) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetPfp
 
@@ -135,6 +155,11 @@ and a boolean to check if the value has been set.
 
 SetPfp sets Pfp field to given value.
 
+### HasPfp
+
+`func (o *FollowResponseUser) HasPfp() bool`
+
+HasPfp returns a boolean if a field has been set.
 
 ### GetProfile
 
@@ -155,6 +180,11 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
+### HasProfile
+
+`func (o *FollowResponseUser) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
 
 ### GetFollowerCount
 
@@ -175,6 +205,11 @@ and a boolean to check if the value has been set.
 
 SetFollowerCount sets FollowerCount field to given value.
 
+### HasFollowerCount
+
+`func (o *FollowResponseUser) HasFollowerCount() bool`
+
+HasFollowerCount returns a boolean if a field has been set.
 
 ### GetFollowingCount
 
@@ -195,6 +230,11 @@ and a boolean to check if the value has been set.
 
 SetFollowingCount sets FollowingCount field to given value.
 
+### HasFollowingCount
+
+`func (o *FollowResponseUser) HasFollowingCount() bool`
+
+HasFollowingCount returns a boolean if a field has been set.
 
 ### GetVerifications
 
@@ -215,6 +255,11 @@ and a boolean to check if the value has been set.
 
 SetVerifications sets Verifications field to given value.
 
+### HasVerifications
+
+`func (o *FollowResponseUser) HasVerifications() bool`
+
+HasVerifications returns a boolean if a field has been set.
 
 ### GetActiveStatus
 
@@ -235,6 +280,11 @@ and a boolean to check if the value has been set.
 
 SetActiveStatus sets ActiveStatus field to given value.
 
+### HasActiveStatus
+
+`func (o *FollowResponseUser) HasActiveStatus() bool`
+
+HasActiveStatus returns a boolean if a field has been set.
 
 ### GetViewerContext
 
@@ -280,6 +330,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *FollowResponseUser) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

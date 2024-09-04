@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InteractionsPerCast** | [**[]FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner**](FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner.md) |  | 
+**InteractionsPerCast** | Pointer to [**[]FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner**](FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInteractionsPerCast
 
-`func NewFrameValidateAnalyticsInteractionsPerCast(interactionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner, ) *FrameValidateAnalyticsInteractionsPerCast`
+`func NewFrameValidateAnalyticsInteractionsPerCast() *FrameValidateAnalyticsInteractionsPerCast`
 
 NewFrameValidateAnalyticsInteractionsPerCast instantiates a new FrameValidateAnalyticsInteractionsPerCast object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetInteractionsPerCast sets InteractionsPerCast field to given value.
 
+### HasInteractionsPerCast
+
+`func (o *FrameValidateAnalyticsInteractionsPerCast) HasInteractionsPerCast() bool`
+
+HasInteractionsPerCast returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

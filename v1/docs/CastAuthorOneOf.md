@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **string** |  | 
+**Fid** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCastAuthorOneOf
 
-`func NewCastAuthorOneOf(fid string, ) *CastAuthorOneOf`
+`func NewCastAuthorOneOf() *CastAuthorOneOf`
 
 NewCastAuthorOneOf instantiates a new CastAuthorOneOf object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *CastAuthorOneOf) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

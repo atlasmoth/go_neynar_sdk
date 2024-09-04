@@ -20,10 +20,7 @@ var _ MappedNullable = &NeynarPageInput{}
 // NeynarPageInput struct for NeynarPageInput
 type NeynarPageInput struct {
 	Text *NeynarPageInputText `json:"text,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _NeynarPageInput NeynarPageInput
 
 // NewNeynarPageInput instantiates a new NeynarPageInput object
 // This constructor will assign default values to properties that have it defined,
@@ -87,33 +84,7 @@ func (o NeynarPageInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarPageInput) UnmarshalJSON(data []byte) (err error) {
-	varNeynarPageInput := _NeynarPageInput{}
-
-	err = json.Unmarshal(data, &varNeynarPageInput)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarPageInput(varNeynarPageInput)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "text")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarPageInput struct {

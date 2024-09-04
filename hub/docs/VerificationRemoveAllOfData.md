@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
-**Timestamp** | **int64** |  | 
-**Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_MAINNET]
-**VerificationRemoveBody** | [**VerificationRemoveBody**](VerificationRemoveBody.md) |  | 
-**Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_CAST_ADD]
+**Fid** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **int64** |  | [optional] 
+**Network** | Pointer to [**FarcasterNetwork**](FarcasterNetwork.md) |  | [optional] [default to FARCASTERNETWORK_MAINNET]
+**VerificationRemoveBody** | Pointer to [**VerificationRemoveBody**](VerificationRemoveBody.md) |  | [optional] 
+**Type** | Pointer to [**MessageType**](MessageType.md) |  | [optional] [default to MESSAGETYPE_CAST_ADD]
 
 ## Methods
 
 ### NewVerificationRemoveAllOfData
 
-`func NewVerificationRemoveAllOfData(fid int32, timestamp int64, network FarcasterNetwork, verificationRemoveBody VerificationRemoveBody, type_ MessageType, ) *VerificationRemoveAllOfData`
+`func NewVerificationRemoveAllOfData() *VerificationRemoveAllOfData`
 
 NewVerificationRemoveAllOfData instantiates a new VerificationRemoveAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *VerificationRemoveAllOfData) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *VerificationRemoveAllOfData) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
+### HasNetwork
+
+`func (o *VerificationRemoveAllOfData) HasNetwork() bool`
+
+HasNetwork returns a boolean if a field has been set.
 
 ### GetVerificationRemoveBody
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetVerificationRemoveBody sets VerificationRemoveBody field to given value.
 
+### HasVerificationRemoveBody
+
+`func (o *VerificationRemoveAllOfData) HasVerificationRemoveBody() bool`
+
+HasVerificationRemoveBody returns a boolean if a field has been set.
 
 ### GetType
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *VerificationRemoveAllOfData) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

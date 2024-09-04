@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
+**Object** | Pointer to **string** |  | [optional] 
 **ProviderName** | Pointer to **string** |  | [optional] 
-**ContractAddress** | **string** |  | 
-**Chain** | **int32** |  | 
-**Metadata** | [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | 
-**OwnerAddress** | **string** |  | 
-**Price** | [**SubscriptionPrice**](SubscriptionPrice.md) |  | 
+**ContractAddress** | Pointer to **string** |  | [optional] 
+**Chain** | Pointer to **int32** |  | [optional] 
+**Metadata** | Pointer to [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | [optional] 
+**OwnerAddress** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to [**SubscriptionPrice**](SubscriptionPrice.md) |  | [optional] 
 **Tiers** | Pointer to [**[]SubscriptionTier**](SubscriptionTier.md) |  | [optional] 
-**ProtocolVersion** | **int32** |  | 
-**Token** | [**SubscriptionToken**](SubscriptionToken.md) |  | 
+**ProtocolVersion** | Pointer to **int32** |  | [optional] 
+**Token** | Pointer to [**SubscriptionToken**](SubscriptionToken.md) |  | [optional] 
 
 ## Methods
 
 ### NewSubscription
 
-`func NewSubscription(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken, ) *Subscription`
+`func NewSubscription() *Subscription`
 
 NewSubscription instantiates a new Subscription object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Subscription) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetProviderName
 
@@ -98,6 +103,11 @@ and a boolean to check if the value has been set.
 
 SetContractAddress sets ContractAddress field to given value.
 
+### HasContractAddress
+
+`func (o *Subscription) HasContractAddress() bool`
+
+HasContractAddress returns a boolean if a field has been set.
 
 ### GetChain
 
@@ -118,6 +128,11 @@ and a boolean to check if the value has been set.
 
 SetChain sets Chain field to given value.
 
+### HasChain
+
+`func (o *Subscription) HasChain() bool`
+
+HasChain returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -138,6 +153,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *Subscription) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetOwnerAddress
 
@@ -158,6 +178,11 @@ and a boolean to check if the value has been set.
 
 SetOwnerAddress sets OwnerAddress field to given value.
 
+### HasOwnerAddress
+
+`func (o *Subscription) HasOwnerAddress() bool`
+
+HasOwnerAddress returns a boolean if a field has been set.
 
 ### GetPrice
 
@@ -178,6 +203,11 @@ and a boolean to check if the value has been set.
 
 SetPrice sets Price field to given value.
 
+### HasPrice
+
+`func (o *Subscription) HasPrice() bool`
+
+HasPrice returns a boolean if a field has been set.
 
 ### GetTiers
 
@@ -223,6 +253,11 @@ and a boolean to check if the value has been set.
 
 SetProtocolVersion sets ProtocolVersion field to given value.
 
+### HasProtocolVersion
+
+`func (o *Subscription) HasProtocolVersion() bool`
+
+HasProtocolVersion returns a boolean if a field has been set.
 
 ### GetToken
 
@@ -243,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetToken sets Token field to given value.
 
+### HasToken
+
+`func (o *Subscription) HasToken() bool`
+
+HasToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the WebhookDeleteReqBody type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &WebhookDeleteReqBody{}
 
 // WebhookDeleteReqBody struct for WebhookDeleteReqBody
 type WebhookDeleteReqBody struct {
-	WebhookId string `json:"webhook_id"`
-	AdditionalProperties map[string]interface{}
+	WebhookId *string `json:"webhook_id,omitempty"`
 }
-
-type _WebhookDeleteReqBody WebhookDeleteReqBody
 
 // NewWebhookDeleteReqBody instantiates a new WebhookDeleteReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookDeleteReqBody(webhookId string) *WebhookDeleteReqBody {
+func NewWebhookDeleteReqBody() *WebhookDeleteReqBody {
 	this := WebhookDeleteReqBody{}
-	this.WebhookId = webhookId
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewWebhookDeleteReqBodyWithDefaults() *WebhookDeleteReqBody {
 	return &this
 }
 
-// GetWebhookId returns the WebhookId field value
+// GetWebhookId returns the WebhookId field value if set, zero value otherwise.
 func (o *WebhookDeleteReqBody) GetWebhookId() string {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		var ret string
 		return ret
 	}
-
-	return o.WebhookId
+	return *o.WebhookId
 }
 
-// GetWebhookIdOk returns a tuple with the WebhookId field value
+// GetWebhookIdOk returns a tuple with the WebhookId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookDeleteReqBody) GetWebhookIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WebhookId) {
 		return nil, false
 	}
-	return &o.WebhookId, true
+	return o.WebhookId, true
 }
 
-// SetWebhookId sets field value
+// HasWebhookId returns a boolean if a field has been set.
+func (o *WebhookDeleteReqBody) HasWebhookId() bool {
+	if o != nil && !IsNil(o.WebhookId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhookId gets a reference to the given string and assigns it to the WebhookId field.
 func (o *WebhookDeleteReqBody) SetWebhookId(v string) {
-	o.WebhookId = v
+	o.WebhookId = &v
 }
 
 func (o WebhookDeleteReqBody) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o WebhookDeleteReqBody) MarshalJSON() ([]byte, error) {
 
 func (o WebhookDeleteReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["webhook_id"] = o.WebhookId
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.WebhookId) {
+		toSerialize["webhook_id"] = o.WebhookId
 	}
-
 	return toSerialize, nil
-}
-
-func (o *WebhookDeleteReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"webhook_id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookDeleteReqBody := _WebhookDeleteReqBody{}
-
-	err = json.Unmarshal(data, &varWebhookDeleteReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookDeleteReqBody(varWebhookDeleteReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "webhook_id")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookDeleteReqBody struct {

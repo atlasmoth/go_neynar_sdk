@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the WebhookSecret type satisfies the MappedNullable interface at compile time
@@ -20,29 +19,20 @@ var _ MappedNullable = &WebhookSecret{}
 
 // WebhookSecret struct for WebhookSecret
 type WebhookSecret struct {
-	Uid string `json:"uid"`
-	Value string `json:"value"`
-	ExpiresAt string `json:"expires_at"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
-	DeletedAt string `json:"deleted_at"`
-	AdditionalProperties map[string]interface{}
+	Uid *string `json:"uid,omitempty"`
+	Value *string `json:"value,omitempty"`
+	ExpiresAt *string `json:"expires_at,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	DeletedAt *string `json:"deleted_at,omitempty"`
 }
-
-type _WebhookSecret WebhookSecret
 
 // NewWebhookSecret instantiates a new WebhookSecret object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookSecret(uid string, value string, expiresAt string, createdAt string, updatedAt string, deletedAt string) *WebhookSecret {
+func NewWebhookSecret() *WebhookSecret {
 	this := WebhookSecret{}
-	this.Uid = uid
-	this.Value = value
-	this.ExpiresAt = expiresAt
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.DeletedAt = deletedAt
 	return &this
 }
 
@@ -54,148 +44,196 @@ func NewWebhookSecretWithDefaults() *WebhookSecret {
 	return &this
 }
 
-// GetUid returns the Uid field value
+// GetUid returns the Uid field value if set, zero value otherwise.
 func (o *WebhookSecret) GetUid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Uid) {
 		var ret string
 		return ret
 	}
-
-	return o.Uid
+	return *o.Uid
 }
 
-// GetUidOk returns a tuple with the Uid field value
+// GetUidOk returns a tuple with the Uid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetUidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Uid) {
 		return nil, false
 	}
-	return &o.Uid, true
+	return o.Uid, true
 }
 
-// SetUid sets field value
+// HasUid returns a boolean if a field has been set.
+func (o *WebhookSecret) HasUid() bool {
+	if o != nil && !IsNil(o.Uid) {
+		return true
+	}
+
+	return false
+}
+
+// SetUid gets a reference to the given string and assigns it to the Uid field.
 func (o *WebhookSecret) SetUid(v string) {
-	o.Uid = v
+	o.Uid = &v
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *WebhookSecret) GetValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-
-	return o.Value
+	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *WebhookSecret) HasValue() bool {
+	if o != nil && !IsNil(o.Value) {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
 func (o *WebhookSecret) SetValue(v string) {
-	o.Value = v
+	o.Value = &v
 }
 
-// GetExpiresAt returns the ExpiresAt field value
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *WebhookSecret) GetExpiresAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret string
 		return ret
 	}
-
-	return o.ExpiresAt
+	return *o.ExpiresAt
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetExpiresAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
-	return &o.ExpiresAt, true
+	return o.ExpiresAt, true
 }
 
-// SetExpiresAt sets field value
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *WebhookSecret) HasExpiresAt() bool {
+	if o != nil && !IsNil(o.ExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given string and assigns it to the ExpiresAt field.
 func (o *WebhookSecret) SetExpiresAt(v string) {
-	o.ExpiresAt = v
+	o.ExpiresAt = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *WebhookSecret) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *WebhookSecret) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *WebhookSecret) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *WebhookSecret) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *WebhookSecret) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *WebhookSecret) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetDeletedAt returns the DeletedAt field value
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *WebhookSecret) GetDeletedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.DeletedAt
+	return *o.DeletedAt
 }
 
-// GetDeletedAtOk returns a tuple with the DeletedAt field value
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookSecret) GetDeletedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedAt) {
 		return nil, false
 	}
-	return &o.DeletedAt, true
+	return o.DeletedAt, true
 }
 
-// SetDeletedAt sets field value
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *WebhookSecret) HasDeletedAt() bool {
+	if o != nil && !IsNil(o.DeletedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
 func (o *WebhookSecret) SetDeletedAt(v string) {
-	o.DeletedAt = v
+	o.DeletedAt = &v
 }
 
 func (o WebhookSecret) MarshalJSON() ([]byte, error) {
@@ -208,70 +246,25 @@ func (o WebhookSecret) MarshalJSON() ([]byte, error) {
 
 func (o WebhookSecret) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["uid"] = o.Uid
-	toSerialize["value"] = o.Value
-	toSerialize["expires_at"] = o.ExpiresAt
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["deleted_at"] = o.DeletedAt
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Uid) {
+		toSerialize["uid"] = o.Uid
 	}
-
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.DeletedAt) {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
 	return toSerialize, nil
-}
-
-func (o *WebhookSecret) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"uid",
-		"value",
-		"expires_at",
-		"created_at",
-		"updated_at",
-		"deleted_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebhookSecret := _WebhookSecret{}
-
-	err = json.Unmarshal(data, &varWebhookSecret)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebhookSecret(varWebhookSecret)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "uid")
-		delete(additionalProperties, "value")
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		delete(additionalProperties, "deleted_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebhookSecret struct {

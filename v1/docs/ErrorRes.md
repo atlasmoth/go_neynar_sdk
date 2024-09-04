@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **string** |  | [optional] 
-**Message** | **string** |  | 
+**Message** | Pointer to **string** |  | [optional] 
 **Property** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewErrorRes
 
-`func NewErrorRes(message string, ) *ErrorRes`
+`func NewErrorRes() *ErrorRes`
 
 NewErrorRes instantiates a new ErrorRes object
 This constructor will assign default values to properties that have it defined,
@@ -71,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *ErrorRes) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetProperty
 

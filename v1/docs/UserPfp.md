@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** | The URL of the user&#39;s profile picture. | 
+**Url** | Pointer to **string** | The URL of the user&#39;s profile picture. | [optional] 
 
 ## Methods
 
 ### NewUserPfp
 
-`func NewUserPfp(url string, ) *UserPfp`
+`func NewUserPfp() *UserPfp`
 
 NewUserPfp instantiates a new UserPfp object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *UserPfp) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

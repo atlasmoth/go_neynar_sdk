@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** | The title of the button. | 
-**Index** | **int32** | The index of the button, first button should have index 1 and so on. | 
-**ActionType** | **string** | The type of action that the button performs. | 
+**Title** | Pointer to **string** | The title of the button. | [optional] 
+**Index** | Pointer to **int32** | The index of the button, first button should have index 1 and so on. | [optional] 
+**ActionType** | Pointer to **string** | The type of action that the button performs. | [optional] 
 **NextPage** | Pointer to [**NeynarPageButtonNextPage**](NeynarPageButtonNextPage.md) |  | [optional] 
 
 ## Methods
 
 ### NewNeynarPageButton
 
-`func NewNeynarPageButton(title string, index int32, actionType string, ) *NeynarPageButton`
+`func NewNeynarPageButton() *NeynarPageButton`
 
 NewNeynarPageButton instantiates a new NeynarPageButton object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *NeynarPageButton) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetIndex
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetIndex sets Index field to given value.
 
+### HasIndex
+
+`func (o *NeynarPageButton) HasIndex() bool`
+
+HasIndex returns a boolean if a field has been set.
 
 ### GetActionType
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetActionType sets ActionType field to given value.
 
+### HasActionType
+
+`func (o *NeynarPageButton) HasActionType() bool`
+
+HasActionType returns a boolean if a field has been set.
 
 ### GetNextPage
 

@@ -28,9 +28,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 | The FID of the cast's creator
-	hash := "0x03aff391a6eb1772b20b4ead9a89f732be75fe27" // string | The cast's hash
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 | The FID of the cast's creator (optional)
+	hash := "0x03aff391a6eb1772b20b4ead9a89f732be75fe27" // string | The cast's hash (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -92,8 +92,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 | The FID of the casts' creator
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 | The FID of the casts' creator (optional)
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -160,8 +160,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 | The FID that is mentioned in a cast
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3) // int32 | The FID that is mentioned in a cast (optional)
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -228,7 +228,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 	fid := int32(226) // int32 | The FID of the parent cast (optional)
 	hash := "0x03aff391a6eb1772b20b4ead9a89f732be75fe27" // string | The parent cast's hash (optional)
 	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string |  (optional)

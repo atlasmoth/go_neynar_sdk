@@ -27,8 +27,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | User who's profile you are looking at
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | User who's profile you are looking at (optional)
 	viewerFid := int32(56) // int32 | Viewer who's looking at the profile. (optional)
 	sortType := openapiclient.FollowSortType("desc_chron") // FollowSortType | Sort type for retrieve followers. Default is `desc_chron` (optional)
 	limit := int32(56) // int32 | Number of results to retrieve (default 20, max 100) (optional) (default to 20)
@@ -97,8 +97,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(2) // int32 | FID of the user whose following you want to fetch.
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(2) // int32 | FID of the user whose following you want to fetch. (optional)
 	viewerFid := int32(3) // int32 | FID of the user viewing the user. (optional)
 	sortType := openapiclient.FollowSortType("desc_chron") // FollowSortType | Optional parameter to sort the users based on different criteria. (optional)
 	limit := int32(25) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
@@ -167,9 +167,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	targetFid := int32(56) // int32 | User who's profile you are looking at
-	viewerFid := int32(56) // int32 | Viewer who's looking at the profile
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	targetFid := int32(56) // int32 | User who's profile you are looking at (optional)
+	viewerFid := int32(56) // int32 | Viewer who's looking at the profile (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

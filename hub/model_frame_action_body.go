@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameActionBody type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &FrameActionBody{}
 
 // FrameActionBody A Farcaster Frame action
 type FrameActionBody struct {
-	Url string `json:"url"`
-	ButtonIndex int32 `json:"buttonIndex"`
-	CastId CastId `json:"castId"`
-	AdditionalProperties map[string]interface{}
+	Url *string `json:"url,omitempty"`
+	ButtonIndex *int32 `json:"buttonIndex,omitempty"`
+	CastId *CastId `json:"castId,omitempty"`
 }
-
-type _FrameActionBody FrameActionBody
 
 // NewFrameActionBody instantiates a new FrameActionBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameActionBody(url string, buttonIndex int32, castId CastId) *FrameActionBody {
+func NewFrameActionBody() *FrameActionBody {
 	this := FrameActionBody{}
-	this.Url = url
-	this.ButtonIndex = buttonIndex
-	this.CastId = castId
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewFrameActionBodyWithDefaults() *FrameActionBody {
 	return &this
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *FrameActionBody) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionBody) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *FrameActionBody) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *FrameActionBody) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
-// GetButtonIndex returns the ButtonIndex field value
+// GetButtonIndex returns the ButtonIndex field value if set, zero value otherwise.
 func (o *FrameActionBody) GetButtonIndex() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ButtonIndex) {
 		var ret int32
 		return ret
 	}
-
-	return o.ButtonIndex
+	return *o.ButtonIndex
 }
 
-// GetButtonIndexOk returns a tuple with the ButtonIndex field value
+// GetButtonIndexOk returns a tuple with the ButtonIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionBody) GetButtonIndexOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ButtonIndex) {
 		return nil, false
 	}
-	return &o.ButtonIndex, true
+	return o.ButtonIndex, true
 }
 
-// SetButtonIndex sets field value
+// HasButtonIndex returns a boolean if a field has been set.
+func (o *FrameActionBody) HasButtonIndex() bool {
+	if o != nil && !IsNil(o.ButtonIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetButtonIndex gets a reference to the given int32 and assigns it to the ButtonIndex field.
 func (o *FrameActionBody) SetButtonIndex(v int32) {
-	o.ButtonIndex = v
+	o.ButtonIndex = &v
 }
 
-// GetCastId returns the CastId field value
+// GetCastId returns the CastId field value if set, zero value otherwise.
 func (o *FrameActionBody) GetCastId() CastId {
-	if o == nil {
+	if o == nil || IsNil(o.CastId) {
 		var ret CastId
 		return ret
 	}
-
-	return o.CastId
+	return *o.CastId
 }
 
-// GetCastIdOk returns a tuple with the CastId field value
+// GetCastIdOk returns a tuple with the CastId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameActionBody) GetCastIdOk() (*CastId, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastId) {
 		return nil, false
 	}
-	return &o.CastId, true
+	return o.CastId, true
 }
 
-// SetCastId sets field value
+// HasCastId returns a boolean if a field has been set.
+func (o *FrameActionBody) HasCastId() bool {
+	if o != nil && !IsNil(o.CastId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastId gets a reference to the given CastId and assigns it to the CastId field.
 func (o *FrameActionBody) SetCastId(v CastId) {
-	o.CastId = v
+	o.CastId = &v
 }
 
 func (o FrameActionBody) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o FrameActionBody) MarshalJSON() ([]byte, error) {
 
 func (o FrameActionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["url"] = o.Url
-	toSerialize["buttonIndex"] = o.ButtonIndex
-	toSerialize["castId"] = o.CastId
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
-
+	if !IsNil(o.ButtonIndex) {
+		toSerialize["buttonIndex"] = o.ButtonIndex
+	}
+	if !IsNil(o.CastId) {
+		toSerialize["castId"] = o.CastId
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameActionBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-		"buttonIndex",
-		"castId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameActionBody := _FrameActionBody{}
-
-	err = json.Unmarshal(data, &varFrameActionBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameActionBody(varFrameActionBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "buttonIndex")
-		delete(additionalProperties, "castId")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameActionBody struct {

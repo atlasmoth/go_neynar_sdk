@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListOnChainEventsByFid200Response type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ListOnChainEventsByFid200Response{}
 
 // ListOnChainEventsByFid200Response struct for ListOnChainEventsByFid200Response
 type ListOnChainEventsByFid200Response struct {
-	Events []OnChainEvent `json:"events"`
-	AdditionalProperties map[string]interface{}
+	Events []OnChainEvent `json:"events,omitempty"`
 }
-
-type _ListOnChainEventsByFid200Response ListOnChainEventsByFid200Response
 
 // NewListOnChainEventsByFid200Response instantiates a new ListOnChainEventsByFid200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOnChainEventsByFid200Response(events []OnChainEvent) *ListOnChainEventsByFid200Response {
+func NewListOnChainEventsByFid200Response() *ListOnChainEventsByFid200Response {
 	this := ListOnChainEventsByFid200Response{}
-	this.Events = events
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewListOnChainEventsByFid200ResponseWithDefaults() *ListOnChainEventsByFid2
 	return &this
 }
 
-// GetEvents returns the Events field value
+// GetEvents returns the Events field value if set, zero value otherwise.
 func (o *ListOnChainEventsByFid200Response) GetEvents() []OnChainEvent {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		var ret []OnChainEvent
 		return ret
 	}
-
 	return o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListOnChainEventsByFid200Response) GetEventsOk() ([]OnChainEvent, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
 	return o.Events, true
 }
 
-// SetEvents sets field value
+// HasEvents returns a boolean if a field has been set.
+func (o *ListOnChainEventsByFid200Response) HasEvents() bool {
+	if o != nil && !IsNil(o.Events) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []OnChainEvent and assigns it to the Events field.
 func (o *ListOnChainEventsByFid200Response) SetEvents(v []OnChainEvent) {
 	o.Events = v
 }
@@ -78,55 +81,10 @@ func (o ListOnChainEventsByFid200Response) MarshalJSON() ([]byte, error) {
 
 func (o ListOnChainEventsByFid200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["events"] = o.Events
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Events) {
+		toSerialize["events"] = o.Events
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ListOnChainEventsByFid200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"events",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListOnChainEventsByFid200Response := _ListOnChainEventsByFid200Response{}
-
-	err = json.Unmarshal(data, &varListOnChainEventsByFid200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListOnChainEventsByFid200Response(varListOnChainEventsByFid200Response)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "events")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableListOnChainEventsByFid200Response struct {

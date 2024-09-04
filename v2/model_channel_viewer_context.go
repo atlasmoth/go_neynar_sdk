@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ChannelViewerContext type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &ChannelViewerContext{}
 // ChannelViewerContext struct for ChannelViewerContext
 type ChannelViewerContext struct {
 	// Indicates if the viewer is following the channel.
-	Following bool `json:"following"`
-	AdditionalProperties map[string]interface{}
+	Following *bool `json:"following,omitempty"`
 }
-
-type _ChannelViewerContext ChannelViewerContext
 
 // NewChannelViewerContext instantiates a new ChannelViewerContext object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelViewerContext(following bool) *ChannelViewerContext {
+func NewChannelViewerContext() *ChannelViewerContext {
 	this := ChannelViewerContext{}
-	this.Following = following
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewChannelViewerContextWithDefaults() *ChannelViewerContext {
 	return &this
 }
 
-// GetFollowing returns the Following field value
+// GetFollowing returns the Following field value if set, zero value otherwise.
 func (o *ChannelViewerContext) GetFollowing() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		var ret bool
 		return ret
 	}
-
-	return o.Following
+	return *o.Following
 }
 
-// GetFollowingOk returns a tuple with the Following field value
+// GetFollowingOk returns a tuple with the Following field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelViewerContext) GetFollowingOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		return nil, false
 	}
-	return &o.Following, true
+	return o.Following, true
 }
 
-// SetFollowing sets field value
+// HasFollowing returns a boolean if a field has been set.
+func (o *ChannelViewerContext) HasFollowing() bool {
+	if o != nil && !IsNil(o.Following) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowing gets a reference to the given bool and assigns it to the Following field.
 func (o *ChannelViewerContext) SetFollowing(v bool) {
-	o.Following = v
+	o.Following = &v
 }
 
 func (o ChannelViewerContext) MarshalJSON() ([]byte, error) {
@@ -79,55 +82,10 @@ func (o ChannelViewerContext) MarshalJSON() ([]byte, error) {
 
 func (o ChannelViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["following"] = o.Following
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Following) {
+		toSerialize["following"] = o.Following
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ChannelViewerContext) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"following",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varChannelViewerContext := _ChannelViewerContext{}
-
-	err = json.Unmarshal(data, &varChannelViewerContext)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ChannelViewerContext(varChannelViewerContext)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "following")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelViewerContext struct {

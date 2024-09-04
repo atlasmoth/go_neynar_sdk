@@ -27,10 +27,10 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID of the link's originator
-	targetFid := int32(56) // int32 | The FID of the target of the link
-	linkType := openapiclient.LinkType("follow") // LinkType | The type of link, as a string value (default to "follow")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID of the link's originator (optional)
+	targetFid := int32(56) // int32 | The FID of the target of the link (optional)
+	linkType := openapiclient.LinkType("follow") // LinkType | The type of link, as a string value (optional) (default to "follow")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -93,8 +93,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID of the link's originator
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID of the link's originator (optional)
 	linkType := openapiclient.LinkType("follow") // LinkType | The type of link, as a string value (optional) (default to "follow")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
@@ -163,8 +163,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	targetFid := int32(56) // int32 | The FID of the target of the link
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	targetFid := int32(56) // int32 | The FID of the target of the link (optional)
 	linkType := openapiclient.LinkType("follow") // LinkType | The type of link, as a string value (optional) (default to "follow")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)

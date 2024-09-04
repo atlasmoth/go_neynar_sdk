@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the RelevantFollowersResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &RelevantFollowersResponse{}
 
 // RelevantFollowersResponse struct for RelevantFollowersResponse
 type RelevantFollowersResponse struct {
-	TopRelevantFollowersHydrated []HydratedFollower `json:"top_relevant_followers_hydrated"`
-	AllRelevantFollowersDehydrated []DehydratedFollower `json:"all_relevant_followers_dehydrated"`
-	AdditionalProperties map[string]interface{}
+	TopRelevantFollowersHydrated []HydratedFollower `json:"top_relevant_followers_hydrated,omitempty"`
+	AllRelevantFollowersDehydrated []DehydratedFollower `json:"all_relevant_followers_dehydrated,omitempty"`
 }
-
-type _RelevantFollowersResponse RelevantFollowersResponse
 
 // NewRelevantFollowersResponse instantiates a new RelevantFollowersResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRelevantFollowersResponse(topRelevantFollowersHydrated []HydratedFollower, allRelevantFollowersDehydrated []DehydratedFollower) *RelevantFollowersResponse {
+func NewRelevantFollowersResponse() *RelevantFollowersResponse {
 	this := RelevantFollowersResponse{}
-	this.TopRelevantFollowersHydrated = topRelevantFollowersHydrated
-	this.AllRelevantFollowersDehydrated = allRelevantFollowersDehydrated
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewRelevantFollowersResponseWithDefaults() *RelevantFollowersResponse {
 	return &this
 }
 
-// GetTopRelevantFollowersHydrated returns the TopRelevantFollowersHydrated field value
+// GetTopRelevantFollowersHydrated returns the TopRelevantFollowersHydrated field value if set, zero value otherwise.
 func (o *RelevantFollowersResponse) GetTopRelevantFollowersHydrated() []HydratedFollower {
-	if o == nil {
+	if o == nil || IsNil(o.TopRelevantFollowersHydrated) {
 		var ret []HydratedFollower
 		return ret
 	}
-
 	return o.TopRelevantFollowersHydrated
 }
 
-// GetTopRelevantFollowersHydratedOk returns a tuple with the TopRelevantFollowersHydrated field value
+// GetTopRelevantFollowersHydratedOk returns a tuple with the TopRelevantFollowersHydrated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelevantFollowersResponse) GetTopRelevantFollowersHydratedOk() ([]HydratedFollower, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TopRelevantFollowersHydrated) {
 		return nil, false
 	}
 	return o.TopRelevantFollowersHydrated, true
 }
 
-// SetTopRelevantFollowersHydrated sets field value
+// HasTopRelevantFollowersHydrated returns a boolean if a field has been set.
+func (o *RelevantFollowersResponse) HasTopRelevantFollowersHydrated() bool {
+	if o != nil && !IsNil(o.TopRelevantFollowersHydrated) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopRelevantFollowersHydrated gets a reference to the given []HydratedFollower and assigns it to the TopRelevantFollowersHydrated field.
 func (o *RelevantFollowersResponse) SetTopRelevantFollowersHydrated(v []HydratedFollower) {
 	o.TopRelevantFollowersHydrated = v
 }
 
-// GetAllRelevantFollowersDehydrated returns the AllRelevantFollowersDehydrated field value
+// GetAllRelevantFollowersDehydrated returns the AllRelevantFollowersDehydrated field value if set, zero value otherwise.
 func (o *RelevantFollowersResponse) GetAllRelevantFollowersDehydrated() []DehydratedFollower {
-	if o == nil {
+	if o == nil || IsNil(o.AllRelevantFollowersDehydrated) {
 		var ret []DehydratedFollower
 		return ret
 	}
-
 	return o.AllRelevantFollowersDehydrated
 }
 
-// GetAllRelevantFollowersDehydratedOk returns a tuple with the AllRelevantFollowersDehydrated field value
+// GetAllRelevantFollowersDehydratedOk returns a tuple with the AllRelevantFollowersDehydrated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelevantFollowersResponse) GetAllRelevantFollowersDehydratedOk() ([]DehydratedFollower, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllRelevantFollowersDehydrated) {
 		return nil, false
 	}
 	return o.AllRelevantFollowersDehydrated, true
 }
 
-// SetAllRelevantFollowersDehydrated sets field value
+// HasAllRelevantFollowersDehydrated returns a boolean if a field has been set.
+func (o *RelevantFollowersResponse) HasAllRelevantFollowersDehydrated() bool {
+	if o != nil && !IsNil(o.AllRelevantFollowersDehydrated) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllRelevantFollowersDehydrated gets a reference to the given []DehydratedFollower and assigns it to the AllRelevantFollowersDehydrated field.
 func (o *RelevantFollowersResponse) SetAllRelevantFollowersDehydrated(v []DehydratedFollower) {
 	o.AllRelevantFollowersDehydrated = v
 }
@@ -104,58 +114,13 @@ func (o RelevantFollowersResponse) MarshalJSON() ([]byte, error) {
 
 func (o RelevantFollowersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["top_relevant_followers_hydrated"] = o.TopRelevantFollowersHydrated
-	toSerialize["all_relevant_followers_dehydrated"] = o.AllRelevantFollowersDehydrated
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.TopRelevantFollowersHydrated) {
+		toSerialize["top_relevant_followers_hydrated"] = o.TopRelevantFollowersHydrated
 	}
-
+	if !IsNil(o.AllRelevantFollowersDehydrated) {
+		toSerialize["all_relevant_followers_dehydrated"] = o.AllRelevantFollowersDehydrated
+	}
 	return toSerialize, nil
-}
-
-func (o *RelevantFollowersResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"top_relevant_followers_hydrated",
-		"all_relevant_followers_dehydrated",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRelevantFollowersResponse := _RelevantFollowersResponse{}
-
-	err = json.Unmarshal(data, &varRelevantFollowersResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = RelevantFollowersResponse(varRelevantFollowersResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "top_relevant_followers_hydrated")
-		delete(additionalProperties, "all_relevant_followers_dehydrated")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRelevantFollowersResponse struct {

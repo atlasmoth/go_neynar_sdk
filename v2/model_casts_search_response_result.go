@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastsSearchResponseResult type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &CastsSearchResponseResult{}
 
 // CastsSearchResponseResult struct for CastsSearchResponseResult
 type CastsSearchResponseResult struct {
-	Casts []CastWithInteractions `json:"casts"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Casts []CastWithInteractions `json:"casts,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _CastsSearchResponseResult CastsSearchResponseResult
 
 // NewCastsSearchResponseResult instantiates a new CastsSearchResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastsSearchResponseResult(casts []CastWithInteractions, next NextCursor) *CastsSearchResponseResult {
+func NewCastsSearchResponseResult() *CastsSearchResponseResult {
 	this := CastsSearchResponseResult{}
-	this.Casts = casts
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewCastsSearchResponseResultWithDefaults() *CastsSearchResponseResult {
 	return &this
 }
 
-// GetCasts returns the Casts field value
+// GetCasts returns the Casts field value if set, zero value otherwise.
 func (o *CastsSearchResponseResult) GetCasts() []CastWithInteractions {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		var ret []CastWithInteractions
 		return ret
 	}
-
 	return o.Casts
 }
 
-// GetCastsOk returns a tuple with the Casts field value
+// GetCastsOk returns a tuple with the Casts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastsSearchResponseResult) GetCastsOk() ([]CastWithInteractions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		return nil, false
 	}
 	return o.Casts, true
 }
 
-// SetCasts sets field value
+// HasCasts returns a boolean if a field has been set.
+func (o *CastsSearchResponseResult) HasCasts() bool {
+	if o != nil && !IsNil(o.Casts) {
+		return true
+	}
+
+	return false
+}
+
+// SetCasts gets a reference to the given []CastWithInteractions and assigns it to the Casts field.
 func (o *CastsSearchResponseResult) SetCasts(v []CastWithInteractions) {
 	o.Casts = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *CastsSearchResponseResult) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastsSearchResponseResult) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *CastsSearchResponseResult) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *CastsSearchResponseResult) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o CastsSearchResponseResult) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o CastsSearchResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o CastsSearchResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["casts"] = o.Casts
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Casts) {
+		toSerialize["casts"] = o.Casts
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *CastsSearchResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"casts",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastsSearchResponseResult := _CastsSearchResponseResult{}
-
-	err = json.Unmarshal(data, &varCastsSearchResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastsSearchResponseResult(varCastsSearchResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "casts")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastsSearchResponseResult struct {

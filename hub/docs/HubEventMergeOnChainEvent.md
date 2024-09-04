@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**MergeOnChainEventBody** | [**MergeOnChainEventBody**](MergeOnChainEventBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**MergeOnChainEventBody** | Pointer to [**MergeOnChainEventBody**](MergeOnChainEventBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEventMergeOnChainEvent
 
-`func NewHubEventMergeOnChainEvent(type_ string, id int32, mergeOnChainEventBody MergeOnChainEventBody, ) *HubEventMergeOnChainEvent`
+`func NewHubEventMergeOnChainEvent() *HubEventMergeOnChainEvent`
 
 NewHubEventMergeOnChainEvent instantiates a new HubEventMergeOnChainEvent object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEventMergeOnChainEvent) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEventMergeOnChainEvent) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMergeOnChainEventBody
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetMergeOnChainEventBody sets MergeOnChainEventBody field to given value.
 
+### HasMergeOnChainEventBody
+
+`func (o *HubEventMergeOnChainEvent) HasMergeOnChainEventBody() bool`
+
+HasMergeOnChainEventBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

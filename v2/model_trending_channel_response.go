@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TrendingChannelResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &TrendingChannelResponse{}
 
 // TrendingChannelResponse struct for TrendingChannelResponse
 type TrendingChannelResponse struct {
-	Channels []ChannelActivity `json:"channels"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Channels []ChannelActivity `json:"channels,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _TrendingChannelResponse TrendingChannelResponse
 
 // NewTrendingChannelResponse instantiates a new TrendingChannelResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrendingChannelResponse(channels []ChannelActivity, next NextCursor) *TrendingChannelResponse {
+func NewTrendingChannelResponse() *TrendingChannelResponse {
 	this := TrendingChannelResponse{}
-	this.Channels = channels
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewTrendingChannelResponseWithDefaults() *TrendingChannelResponse {
 	return &this
 }
 
-// GetChannels returns the Channels field value
+// GetChannels returns the Channels field value if set, zero value otherwise.
 func (o *TrendingChannelResponse) GetChannels() []ChannelActivity {
-	if o == nil {
+	if o == nil || IsNil(o.Channels) {
 		var ret []ChannelActivity
 		return ret
 	}
-
 	return o.Channels
 }
 
-// GetChannelsOk returns a tuple with the Channels field value
+// GetChannelsOk returns a tuple with the Channels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrendingChannelResponse) GetChannelsOk() ([]ChannelActivity, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Channels) {
 		return nil, false
 	}
 	return o.Channels, true
 }
 
-// SetChannels sets field value
+// HasChannels returns a boolean if a field has been set.
+func (o *TrendingChannelResponse) HasChannels() bool {
+	if o != nil && !IsNil(o.Channels) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannels gets a reference to the given []ChannelActivity and assigns it to the Channels field.
 func (o *TrendingChannelResponse) SetChannels(v []ChannelActivity) {
 	o.Channels = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *TrendingChannelResponse) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrendingChannelResponse) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *TrendingChannelResponse) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *TrendingChannelResponse) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o TrendingChannelResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o TrendingChannelResponse) MarshalJSON() ([]byte, error) {
 
 func (o TrendingChannelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["channels"] = o.Channels
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Channels) {
+		toSerialize["channels"] = o.Channels
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *TrendingChannelResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"channels",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTrendingChannelResponse := _TrendingChannelResponse{}
-
-	err = json.Unmarshal(data, &varTrendingChannelResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TrendingChannelResponse(varTrendingChannelResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "channels")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableTrendingChannelResponse struct {

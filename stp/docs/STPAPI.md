@@ -25,10 +25,10 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	addresses := "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7" // string | Comma separated list of Ethereum addresses, up to 350 at a time
-	contractAddress := "0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b" // string | Ethereum address of the STP contract
-	chainId := "8453" // string | Chain ID of the STP contract
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	addresses := "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7" // string | Comma separated list of Ethereum addresses, up to 350 at a time (optional)
+	contractAddress := "0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b" // string | Ethereum address of the STP contract (optional)
+	chainId := "8453" // string | Chain ID of the STP contract (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

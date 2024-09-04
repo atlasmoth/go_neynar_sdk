@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarPageImage type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &NeynarPageImage{}
 // NeynarPageImage struct for NeynarPageImage
 type NeynarPageImage struct {
 	// The URL of the page's image.
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	// The aspect ratio of the image.
-	AspectRatio string `json:"aspect_ratio"`
-	AdditionalProperties map[string]interface{}
+	AspectRatio *string `json:"aspect_ratio,omitempty"`
 }
-
-type _NeynarPageImage NeynarPageImage
 
 // NewNeynarPageImage instantiates a new NeynarPageImage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarPageImage(url string, aspectRatio string) *NeynarPageImage {
+func NewNeynarPageImage() *NeynarPageImage {
 	this := NeynarPageImage{}
-	this.Url = url
-	this.AspectRatio = aspectRatio
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewNeynarPageImageWithDefaults() *NeynarPageImage {
 	return &this
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *NeynarPageImage) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageImage) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *NeynarPageImage) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *NeynarPageImage) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
-// GetAspectRatio returns the AspectRatio field value
+// GetAspectRatio returns the AspectRatio field value if set, zero value otherwise.
 func (o *NeynarPageImage) GetAspectRatio() string {
-	if o == nil {
+	if o == nil || IsNil(o.AspectRatio) {
 		var ret string
 		return ret
 	}
-
-	return o.AspectRatio
+	return *o.AspectRatio
 }
 
-// GetAspectRatioOk returns a tuple with the AspectRatio field value
+// GetAspectRatioOk returns a tuple with the AspectRatio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageImage) GetAspectRatioOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AspectRatio) {
 		return nil, false
 	}
-	return &o.AspectRatio, true
+	return o.AspectRatio, true
 }
 
-// SetAspectRatio sets field value
+// HasAspectRatio returns a boolean if a field has been set.
+func (o *NeynarPageImage) HasAspectRatio() bool {
+	if o != nil && !IsNil(o.AspectRatio) {
+		return true
+	}
+
+	return false
+}
+
+// SetAspectRatio gets a reference to the given string and assigns it to the AspectRatio field.
 func (o *NeynarPageImage) SetAspectRatio(v string) {
-	o.AspectRatio = v
+	o.AspectRatio = &v
 }
 
 func (o NeynarPageImage) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o NeynarPageImage) MarshalJSON() ([]byte, error) {
 
 func (o NeynarPageImage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["url"] = o.Url
-	toSerialize["aspect_ratio"] = o.AspectRatio
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
-
+	if !IsNil(o.AspectRatio) {
+		toSerialize["aspect_ratio"] = o.AspectRatio
+	}
 	return toSerialize, nil
-}
-
-func (o *NeynarPageImage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-		"aspect_ratio",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarPageImage := _NeynarPageImage{}
-
-	err = json.Unmarshal(data, &varNeynarPageImage)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarPageImage(varNeynarPageImage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "aspect_ratio")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarPageImage struct {

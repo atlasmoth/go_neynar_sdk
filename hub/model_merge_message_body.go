@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MergeMessageBody type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &MergeMessageBody{}
 
 // MergeMessageBody struct for MergeMessageBody
 type MergeMessageBody struct {
-	Message Message `json:"message"`
-	DeletedMessages []Message `json:"deletedMessages"`
-	AdditionalProperties map[string]interface{}
+	Message *Message `json:"message,omitempty"`
+	DeletedMessages []Message `json:"deletedMessages,omitempty"`
 }
-
-type _MergeMessageBody MergeMessageBody
 
 // NewMergeMessageBody instantiates a new MergeMessageBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMergeMessageBody(message Message, deletedMessages []Message) *MergeMessageBody {
+func NewMergeMessageBody() *MergeMessageBody {
 	this := MergeMessageBody{}
-	this.Message = message
-	this.DeletedMessages = deletedMessages
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewMergeMessageBodyWithDefaults() *MergeMessageBody {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MergeMessageBody) GetMessage() Message {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret Message
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeMessageBody) GetMessageOk() (*Message, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *MergeMessageBody) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given Message and assigns it to the Message field.
 func (o *MergeMessageBody) SetMessage(v Message) {
-	o.Message = v
+	o.Message = &v
 }
 
-// GetDeletedMessages returns the DeletedMessages field value
+// GetDeletedMessages returns the DeletedMessages field value if set, zero value otherwise.
 func (o *MergeMessageBody) GetDeletedMessages() []Message {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedMessages) {
 		var ret []Message
 		return ret
 	}
-
 	return o.DeletedMessages
 }
 
-// GetDeletedMessagesOk returns a tuple with the DeletedMessages field value
+// GetDeletedMessagesOk returns a tuple with the DeletedMessages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeMessageBody) GetDeletedMessagesOk() ([]Message, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeletedMessages) {
 		return nil, false
 	}
 	return o.DeletedMessages, true
 }
 
-// SetDeletedMessages sets field value
+// HasDeletedMessages returns a boolean if a field has been set.
+func (o *MergeMessageBody) HasDeletedMessages() bool {
+	if o != nil && !IsNil(o.DeletedMessages) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedMessages gets a reference to the given []Message and assigns it to the DeletedMessages field.
 func (o *MergeMessageBody) SetDeletedMessages(v []Message) {
 	o.DeletedMessages = v
 }
@@ -104,58 +114,13 @@ func (o MergeMessageBody) MarshalJSON() ([]byte, error) {
 
 func (o MergeMessageBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
-	toSerialize["deletedMessages"] = o.DeletedMessages
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
-
+	if !IsNil(o.DeletedMessages) {
+		toSerialize["deletedMessages"] = o.DeletedMessages
+	}
 	return toSerialize, nil
-}
-
-func (o *MergeMessageBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"message",
-		"deletedMessages",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMergeMessageBody := _MergeMessageBody{}
-
-	err = json.Unmarshal(data, &varMergeMessageBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MergeMessageBody(varMergeMessageBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "deletedMessages")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMergeMessageBody struct {

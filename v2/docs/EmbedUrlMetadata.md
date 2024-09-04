@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **string** |  | 
+**Status** | Pointer to **string** |  | [optional] 
 **ContentType** | Pointer to **NullableString** |  | [optional] 
 **ContentLength** | Pointer to **NullableInt32** |  | [optional] 
 **Image** | Pointer to [**EmbedUrlMetadataImage**](EmbedUrlMetadataImage.md) |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewEmbedUrlMetadata
 
-`func NewEmbedUrlMetadata(status string, ) *EmbedUrlMetadata`
+`func NewEmbedUrlMetadata() *EmbedUrlMetadata`
 
 NewEmbedUrlMetadata instantiates a new EmbedUrlMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *EmbedUrlMetadata) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetContentType
 

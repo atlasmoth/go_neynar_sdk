@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | [**[]Channel**](Channel.md) |  | 
+**Channels** | Pointer to [**[]Channel**](Channel.md) |  | [optional] 
 
 ## Methods
 
 ### NewChannelResponseBulk
 
-`func NewChannelResponseBulk(channels []Channel, ) *ChannelResponseBulk`
+`func NewChannelResponseBulk() *ChannelResponseBulk`
 
 NewChannelResponseBulk instantiates a new ChannelResponseBulk object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetChannels sets Channels field to given value.
 
+### HasChannels
+
+`func (o *ChannelResponseBulk) HasChannels() bool`
+
+HasChannels returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

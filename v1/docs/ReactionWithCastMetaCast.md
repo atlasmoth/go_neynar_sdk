@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CastFid** | **int32** | User identifier (unsigned integer) | [default to 3]
-**CastHash** | **string** |  | 
-**CastText** | **string** |  | 
-**CastEmbeds** | [**[]EmbedUrl**](EmbedUrl.md) |  | 
-**CastTimestamp** | **time.Time** |  | 
+**CastFid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] [default to 3]
+**CastHash** | Pointer to **string** |  | [optional] 
+**CastText** | Pointer to **string** |  | [optional] 
+**CastEmbeds** | Pointer to [**[]EmbedUrl**](EmbedUrl.md) |  | [optional] 
+**CastTimestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewReactionWithCastMetaCast
 
-`func NewReactionWithCastMetaCast(castFid int32, castHash string, castText string, castEmbeds []EmbedUrl, castTimestamp time.Time, ) *ReactionWithCastMetaCast`
+`func NewReactionWithCastMetaCast() *ReactionWithCastMetaCast`
 
 NewReactionWithCastMetaCast instantiates a new ReactionWithCastMetaCast object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetCastFid sets CastFid field to given value.
 
+### HasCastFid
+
+`func (o *ReactionWithCastMetaCast) HasCastFid() bool`
+
+HasCastFid returns a boolean if a field has been set.
 
 ### GetCastHash
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetCastHash sets CastHash field to given value.
 
+### HasCastHash
+
+`func (o *ReactionWithCastMetaCast) HasCastHash() bool`
+
+HasCastHash returns a boolean if a field has been set.
 
 ### GetCastText
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetCastText sets CastText field to given value.
 
+### HasCastText
+
+`func (o *ReactionWithCastMetaCast) HasCastText() bool`
+
+HasCastText returns a boolean if a field has been set.
 
 ### GetCastEmbeds
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetCastEmbeds sets CastEmbeds field to given value.
 
+### HasCastEmbeds
+
+`func (o *ReactionWithCastMetaCast) HasCastEmbeds() bool`
+
+HasCastEmbeds returns a boolean if a field has been set.
 
 ### GetCastTimestamp
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetCastTimestamp sets CastTimestamp field to given value.
 
+### HasCastTimestamp
+
+`func (o *ReactionWithCastMetaCast) HasCastTimestamp() bool`
+
+HasCastTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

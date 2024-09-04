@@ -27,8 +27,8 @@ type ApiSubscribedToRequest struct {
 	ApiService *SubscribersAPIService
 	apiKey *string
 	fid *int32
-	subscriptionProvider *SubscriptionProvider
 	viewerFid *int32
+	subscriptionProvider *SubscriptionProvider
 }
 
 // API key required for authentication.
@@ -42,13 +42,13 @@ func (r ApiSubscribedToRequest) Fid(fid int32) ApiSubscribedToRequest {
 	return r
 }
 
-func (r ApiSubscribedToRequest) SubscriptionProvider(subscriptionProvider SubscriptionProvider) ApiSubscribedToRequest {
-	r.subscriptionProvider = &subscriptionProvider
+func (r ApiSubscribedToRequest) ViewerFid(viewerFid int32) ApiSubscribedToRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
-func (r ApiSubscribedToRequest) ViewerFid(viewerFid int32) ApiSubscribedToRequest {
-	r.viewerFid = &viewerFid
+func (r ApiSubscribedToRequest) SubscriptionProvider(subscriptionProvider SubscriptionProvider) ApiSubscribedToRequest {
+	r.subscriptionProvider = &subscriptionProvider
 	return r
 }
 
@@ -91,21 +91,16 @@ func (a *SubscribersAPIService) SubscribedToExecute(r ApiSubscribedToRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.subscriptionProvider == nil {
-		return localVarReturnValue, nil, reportError("subscriptionProvider is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	if r.subscriptionProvider != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -123,7 +118,9 @@ func (a *SubscribersAPIService) SubscribedToExecute(r ApiSubscribedToRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -176,8 +173,8 @@ type ApiSubscribersRequest struct {
 	ApiService *SubscribersAPIService
 	apiKey *string
 	fid *int32
-	subscriptionProvider *SubscriptionProviders
 	viewerFid *int32
+	subscriptionProvider *SubscriptionProviders
 }
 
 // API key required for authentication.
@@ -191,13 +188,13 @@ func (r ApiSubscribersRequest) Fid(fid int32) ApiSubscribersRequest {
 	return r
 }
 
-func (r ApiSubscribersRequest) SubscriptionProvider(subscriptionProvider SubscriptionProviders) ApiSubscribersRequest {
-	r.subscriptionProvider = &subscriptionProvider
+func (r ApiSubscribersRequest) ViewerFid(viewerFid int32) ApiSubscribersRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
-func (r ApiSubscribersRequest) ViewerFid(viewerFid int32) ApiSubscribersRequest {
-	r.viewerFid = &viewerFid
+func (r ApiSubscribersRequest) SubscriptionProvider(subscriptionProvider SubscriptionProviders) ApiSubscribersRequest {
+	r.subscriptionProvider = &subscriptionProvider
 	return r
 }
 
@@ -240,21 +237,16 @@ func (a *SubscribersAPIService) SubscribersExecute(r ApiSubscribersRequest) (*Su
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.subscriptionProvider == nil {
-		return localVarReturnValue, nil, reportError("subscriptionProvider is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	if r.subscriptionProvider != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -272,7 +264,9 @@ func (a *SubscribersAPIService) SubscribersExecute(r ApiSubscribersRequest) (*Su
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -383,18 +377,13 @@ func (a *SubscribersAPIService) SubscriptionsCreatedExecute(r ApiSubscriptionsCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.subscriptionProvider == nil {
-		return localVarReturnValue, nil, reportError("subscriptionProvider is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
+	if r.subscriptionProvider != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_provider", r.subscriptionProvider, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -412,7 +401,9 @@ func (a *SubscribersAPIService) SubscriptionsCreatedExecute(r ApiSubscriptionsCr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

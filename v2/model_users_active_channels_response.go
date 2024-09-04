@@ -21,10 +21,7 @@ var _ MappedNullable = &UsersActiveChannelsResponse{}
 type UsersActiveChannelsResponse struct {
 	Channels []Channel `json:"channels,omitempty"`
 	Next *NextCursor `json:"next,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _UsersActiveChannelsResponse UsersActiveChannelsResponse
 
 // NewUsersActiveChannelsResponse instantiates a new UsersActiveChannelsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -123,34 +120,7 @@ func (o UsersActiveChannelsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Next) {
 		toSerialize["next"] = o.Next
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *UsersActiveChannelsResponse) UnmarshalJSON(data []byte) (err error) {
-	varUsersActiveChannelsResponse := _UsersActiveChannelsResponse{}
-
-	err = json.Unmarshal(data, &varUsersActiveChannelsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UsersActiveChannelsResponse(varUsersActiveChannelsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "channels")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUsersActiveChannelsResponse struct {

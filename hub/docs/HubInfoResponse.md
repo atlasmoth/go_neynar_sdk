@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **string** |  | 
-**IsSyncing** | **bool** |  | 
-**Nickname** | **string** |  | 
-**RootHash** | **string** |  | 
+**Version** | Pointer to **string** |  | [optional] 
+**IsSyncing** | Pointer to **bool** |  | [optional] 
+**Nickname** | Pointer to **string** |  | [optional] 
+**RootHash** | Pointer to **string** |  | [optional] 
 **DbStats** | Pointer to [**DbStats**](DbStats.md) |  | [optional] 
-**PeerId** | **string** |  | 
-**HubOperatorFid** | **int32** |  | 
+**PeerId** | Pointer to **string** |  | [optional] 
+**HubOperatorFid** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewHubInfoResponse
 
-`func NewHubInfoResponse(version string, isSyncing bool, nickname string, rootHash string, peerId string, hubOperatorFid int32, ) *HubInfoResponse`
+`func NewHubInfoResponse() *HubInfoResponse`
 
 NewHubInfoResponse instantiates a new HubInfoResponse object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *HubInfoResponse) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetIsSyncing
 
@@ -70,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetIsSyncing sets IsSyncing field to given value.
 
+### HasIsSyncing
+
+`func (o *HubInfoResponse) HasIsSyncing() bool`
+
+HasIsSyncing returns a boolean if a field has been set.
 
 ### GetNickname
 
@@ -90,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetNickname sets Nickname field to given value.
 
+### HasNickname
+
+`func (o *HubInfoResponse) HasNickname() bool`
+
+HasNickname returns a boolean if a field has been set.
 
 ### GetRootHash
 
@@ -110,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetRootHash sets RootHash field to given value.
 
+### HasRootHash
+
+`func (o *HubInfoResponse) HasRootHash() bool`
+
+HasRootHash returns a boolean if a field has been set.
 
 ### GetDbStats
 
@@ -155,6 +175,11 @@ and a boolean to check if the value has been set.
 
 SetPeerId sets PeerId field to given value.
 
+### HasPeerId
+
+`func (o *HubInfoResponse) HasPeerId() bool`
+
+HasPeerId returns a boolean if a field has been set.
 
 ### GetHubOperatorFid
 
@@ -175,6 +200,11 @@ and a boolean to check if the value has been set.
 
 SetHubOperatorFid sets HubOperatorFid field to given value.
 
+### HasHubOperatorFid
+
+`func (o *HubInfoResponse) HasHubOperatorFid() bool`
+
+HasHubOperatorFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

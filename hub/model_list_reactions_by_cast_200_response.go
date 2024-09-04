@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListReactionsByCast200Response type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ListReactionsByCast200Response{}
 
 // ListReactionsByCast200Response struct for ListReactionsByCast200Response
 type ListReactionsByCast200Response struct {
-	Messages []Reaction `json:"messages"`
-	NextPageToken string `json:"nextPageToken" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	AdditionalProperties map[string]interface{}
+	Messages []Reaction `json:"messages,omitempty"`
+	NextPageToken *string `json:"nextPageToken,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 }
-
-type _ListReactionsByCast200Response ListReactionsByCast200Response
 
 // NewListReactionsByCast200Response instantiates a new ListReactionsByCast200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListReactionsByCast200Response(messages []Reaction, nextPageToken string) *ListReactionsByCast200Response {
+func NewListReactionsByCast200Response() *ListReactionsByCast200Response {
 	this := ListReactionsByCast200Response{}
-	this.Messages = messages
-	this.NextPageToken = nextPageToken
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewListReactionsByCast200ResponseWithDefaults() *ListReactionsByCast200Resp
 	return &this
 }
 
-// GetMessages returns the Messages field value
+// GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *ListReactionsByCast200Response) GetMessages() []Reaction {
-	if o == nil {
+	if o == nil || IsNil(o.Messages) {
 		var ret []Reaction
 		return ret
 	}
-
 	return o.Messages
 }
 
-// GetMessagesOk returns a tuple with the Messages field value
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListReactionsByCast200Response) GetMessagesOk() ([]Reaction, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Messages) {
 		return nil, false
 	}
 	return o.Messages, true
 }
 
-// SetMessages sets field value
+// HasMessages returns a boolean if a field has been set.
+func (o *ListReactionsByCast200Response) HasMessages() bool {
+	if o != nil && !IsNil(o.Messages) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []Reaction and assigns it to the Messages field.
 func (o *ListReactionsByCast200Response) SetMessages(v []Reaction) {
 	o.Messages = v
 }
 
-// GetNextPageToken returns the NextPageToken field value
+// GetNextPageToken returns the NextPageToken field value if set, zero value otherwise.
 func (o *ListReactionsByCast200Response) GetNextPageToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		var ret string
 		return ret
 	}
-
-	return o.NextPageToken
+	return *o.NextPageToken
 }
 
-// GetNextPageTokenOk returns a tuple with the NextPageToken field value
+// GetNextPageTokenOk returns a tuple with the NextPageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListReactionsByCast200Response) GetNextPageTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		return nil, false
 	}
-	return &o.NextPageToken, true
+	return o.NextPageToken, true
 }
 
-// SetNextPageToken sets field value
+// HasNextPageToken returns a boolean if a field has been set.
+func (o *ListReactionsByCast200Response) HasNextPageToken() bool {
+	if o != nil && !IsNil(o.NextPageToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageToken gets a reference to the given string and assigns it to the NextPageToken field.
 func (o *ListReactionsByCast200Response) SetNextPageToken(v string) {
-	o.NextPageToken = v
+	o.NextPageToken = &v
 }
 
 func (o ListReactionsByCast200Response) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ListReactionsByCast200Response) MarshalJSON() ([]byte, error) {
 
 func (o ListReactionsByCast200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["messages"] = o.Messages
-	toSerialize["nextPageToken"] = o.NextPageToken
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
 	}
-
+	if !IsNil(o.NextPageToken) {
+		toSerialize["nextPageToken"] = o.NextPageToken
+	}
 	return toSerialize, nil
-}
-
-func (o *ListReactionsByCast200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"messages",
-		"nextPageToken",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListReactionsByCast200Response := _ListReactionsByCast200Response{}
-
-	err = json.Unmarshal(data, &varListReactionsByCast200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListReactionsByCast200Response(varListReactionsByCast200Response)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "messages")
-		delete(additionalProperties, "nextPageToken")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableListReactionsByCast200Response struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MuteListResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &MuteListResponse{}
 
 // MuteListResponse struct for MuteListResponse
 type MuteListResponse struct {
-	Mutes []MuteList `json:"mutes"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Mutes []MuteList `json:"mutes,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _MuteListResponse MuteListResponse
 
 // NewMuteListResponse instantiates a new MuteListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMuteListResponse(mutes []MuteList, next NextCursor) *MuteListResponse {
+func NewMuteListResponse() *MuteListResponse {
 	this := MuteListResponse{}
-	this.Mutes = mutes
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewMuteListResponseWithDefaults() *MuteListResponse {
 	return &this
 }
 
-// GetMutes returns the Mutes field value
+// GetMutes returns the Mutes field value if set, zero value otherwise.
 func (o *MuteListResponse) GetMutes() []MuteList {
-	if o == nil {
+	if o == nil || IsNil(o.Mutes) {
 		var ret []MuteList
 		return ret
 	}
-
 	return o.Mutes
 }
 
-// GetMutesOk returns a tuple with the Mutes field value
+// GetMutesOk returns a tuple with the Mutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteListResponse) GetMutesOk() ([]MuteList, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Mutes) {
 		return nil, false
 	}
 	return o.Mutes, true
 }
 
-// SetMutes sets field value
+// HasMutes returns a boolean if a field has been set.
+func (o *MuteListResponse) HasMutes() bool {
+	if o != nil && !IsNil(o.Mutes) {
+		return true
+	}
+
+	return false
+}
+
+// SetMutes gets a reference to the given []MuteList and assigns it to the Mutes field.
 func (o *MuteListResponse) SetMutes(v []MuteList) {
 	o.Mutes = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *MuteListResponse) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteListResponse) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *MuteListResponse) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *MuteListResponse) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o MuteListResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o MuteListResponse) MarshalJSON() ([]byte, error) {
 
 func (o MuteListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["mutes"] = o.Mutes
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Mutes) {
+		toSerialize["mutes"] = o.Mutes
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *MuteListResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"mutes",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMuteListResponse := _MuteListResponse{}
-
-	err = json.Unmarshal(data, &varMuteListResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MuteListResponse(varMuteListResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "mutes")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMuteListResponse struct {

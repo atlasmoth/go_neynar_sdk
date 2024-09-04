@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UsersResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &UsersResponse{}
 
 // UsersResponse struct for UsersResponse
 type UsersResponse struct {
-	Users []User `json:"users"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Users []User `json:"users,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _UsersResponse UsersResponse
 
 // NewUsersResponse instantiates a new UsersResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsersResponse(users []User, next NextCursor) *UsersResponse {
+func NewUsersResponse() *UsersResponse {
 	this := UsersResponse{}
-	this.Users = users
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewUsersResponseWithDefaults() *UsersResponse {
 	return &this
 }
 
-// GetUsers returns the Users field value
+// GetUsers returns the Users field value if set, zero value otherwise.
 func (o *UsersResponse) GetUsers() []User {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		var ret []User
 		return ret
 	}
-
 	return o.Users
 }
 
-// GetUsersOk returns a tuple with the Users field value
+// GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UsersResponse) GetUsersOk() ([]User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		return nil, false
 	}
 	return o.Users, true
 }
 
-// SetUsers sets field value
+// HasUsers returns a boolean if a field has been set.
+func (o *UsersResponse) HasUsers() bool {
+	if o != nil && !IsNil(o.Users) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsers gets a reference to the given []User and assigns it to the Users field.
 func (o *UsersResponse) SetUsers(v []User) {
 	o.Users = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *UsersResponse) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UsersResponse) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *UsersResponse) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *UsersResponse) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o UsersResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 
 func (o UsersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["users"] = o.Users
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Users) {
+		toSerialize["users"] = o.Users
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *UsersResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"users",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUsersResponse := _UsersResponse{}
-
-	err = json.Unmarshal(data, &varUsersResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UsersResponse(varUsersResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "users")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUsersResponse struct {

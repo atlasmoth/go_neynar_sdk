@@ -10,7 +10,7 @@ All URIs are relative to *https://api.neynar.com/v2*
 
 ## SubscribedTo
 
-> SubscribedToResponse SubscribedTo(ctx).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).ViewerFid(viewerFid).Execute()
+> SubscribedToResponse SubscribedTo(ctx).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
 
 Fetch what a given fid is subscribed to
 
@@ -27,14 +27,14 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3206) // int32 |
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3206) // int32 |  (optional)
 	viewerFid := int32(3) // int32 |  (optional)
+	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.SubscribedTo(context.Background()).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).ViewerFid(viewerFid).Execute()
+	resp, r, err := apiClient.SubscribersAPI.SubscribedTo(context.Background()).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.SubscribedTo``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,8 +54,8 @@ Other parameters are passed through a pointer to a apiSubscribedToRequest struct
 | ------------------------ | --------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
 | **apiKey**               | **string**                                          | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
 | **fid**                  | **int32**                                           |                                      |
-| **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |                                      |
 | **viewerFid**            | **int32**                                           |                                      |
+| **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |                                      |
 
 ### Return type
 
@@ -76,7 +76,7 @@ No authorization required
 
 ## Subscribers
 
-> SubscribersResponse Subscribers(ctx).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).ViewerFid(viewerFid).Execute()
+> SubscribersResponse Subscribers(ctx).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
 
 Fetch subscribers for a given fid
 
@@ -93,14 +93,14 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(3206) // int32 |
-	subscriptionProvider := openapiclient.SubscriptionProviders("fabric_stp") // SubscriptionProviders |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(3206) // int32 |  (optional)
 	viewerFid := int32(3) // int32 |  (optional)
+	subscriptionProvider := openapiclient.SubscriptionProviders("fabric_stp") // SubscriptionProviders |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.Subscribers(context.Background()).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).ViewerFid(viewerFid).Execute()
+	resp, r, err := apiClient.SubscribersAPI.Subscribers(context.Background()).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.Subscribers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -120,8 +120,8 @@ Other parameters are passed through a pointer to a apiSubscribersRequest struct 
 | ------------------------ | ----------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
 | **apiKey**               | **string**                                            | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
 | **fid**                  | **int32**                                             |                                      |
-| **subscriptionProvider** | [**SubscriptionProviders**](SubscriptionProviders.md) |                                      |
 | **viewerFid**            | **int32**                                             |                                      |
+| **subscriptionProvider** | [**SubscriptionProviders**](SubscriptionProviders.md) |                                      |
 
 ### Return type
 
@@ -159,9 +159,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(528) // int32 |
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(528) // int32 |  (optional)
+	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

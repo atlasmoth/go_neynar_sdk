@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | [**[]SearchedUser**](SearchedUser.md) |  | 
+**Users** | Pointer to [**[]SearchedUser**](SearchedUser.md) |  | [optional] 
 **Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserSearchResponseResult
 
-`func NewUserSearchResponseResult(users []SearchedUser, ) *UserSearchResponseResult`
+`func NewUserSearchResponseResult() *UserSearchResponseResult`
 
 NewUserSearchResponseResult instantiates a new UserSearchResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUsers sets Users field to given value.
 
+### HasUsers
+
+`func (o *UserSearchResponseResult) HasUsers() bool`
+
+HasUsers returns a boolean if a field has been set.
 
 ### GetNext
 

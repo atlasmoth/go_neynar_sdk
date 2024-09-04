@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserDehydrated type satisfies the MappedNullable interface at compile time
@@ -20,22 +19,17 @@ var _ MappedNullable = &UserDehydrated{}
 
 // UserDehydrated struct for UserDehydrated
 type UserDehydrated struct {
-	Object string `json:"object"`
+	Object *string `json:"object,omitempty"`
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
 }
-
-type _UserDehydrated UserDehydrated
 
 // NewUserDehydrated instantiates a new UserDehydrated object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserDehydrated(object string, fid int32) *UserDehydrated {
+func NewUserDehydrated() *UserDehydrated {
 	this := UserDehydrated{}
-	this.Object = object
-	this.Fid = fid
 	return &this
 }
 
@@ -47,52 +41,68 @@ func NewUserDehydratedWithDefaults() *UserDehydrated {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *UserDehydrated) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserDehydrated) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *UserDehydrated) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *UserDehydrated) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *UserDehydrated) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserDehydrated) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *UserDehydrated) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *UserDehydrated) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
 func (o UserDehydrated) MarshalJSON() ([]byte, error) {
@@ -105,58 +115,13 @@ func (o UserDehydrated) MarshalJSON() ([]byte, error) {
 
 func (o UserDehydrated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["fid"] = o.Fid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
 	return toSerialize, nil
-}
-
-func (o *UserDehydrated) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"fid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUserDehydrated := _UserDehydrated{}
-
-	err = json.Unmarshal(data, &varUserDehydrated)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UserDehydrated(varUserDehydrated)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUserDehydrated struct {

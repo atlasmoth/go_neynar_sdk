@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubEventPruneMessage type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &HubEventPruneMessage{}
 
 // HubEventPruneMessage struct for HubEventPruneMessage
 type HubEventPruneMessage struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
-	PruneMessageBody PruneMessageBody `json:"pruneMessageBody"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	PruneMessageBody *PruneMessageBody `json:"pruneMessageBody,omitempty"`
 }
-
-type _HubEventPruneMessage HubEventPruneMessage
 
 // NewHubEventPruneMessage instantiates a new HubEventPruneMessage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubEventPruneMessage(type_ string, id int32, pruneMessageBody PruneMessageBody) *HubEventPruneMessage {
+func NewHubEventPruneMessage() *HubEventPruneMessage {
 	this := HubEventPruneMessage{}
-	this.Type = type_
-	this.Id = id
-	this.PruneMessageBody = pruneMessageBody
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewHubEventPruneMessageWithDefaults() *HubEventPruneMessage {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *HubEventPruneMessage) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventPruneMessage) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *HubEventPruneMessage) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *HubEventPruneMessage) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *HubEventPruneMessage) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventPruneMessage) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *HubEventPruneMessage) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HubEventPruneMessage) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetPruneMessageBody returns the PruneMessageBody field value
+// GetPruneMessageBody returns the PruneMessageBody field value if set, zero value otherwise.
 func (o *HubEventPruneMessage) GetPruneMessageBody() PruneMessageBody {
-	if o == nil {
+	if o == nil || IsNil(o.PruneMessageBody) {
 		var ret PruneMessageBody
 		return ret
 	}
-
-	return o.PruneMessageBody
+	return *o.PruneMessageBody
 }
 
-// GetPruneMessageBodyOk returns a tuple with the PruneMessageBody field value
+// GetPruneMessageBodyOk returns a tuple with the PruneMessageBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventPruneMessage) GetPruneMessageBodyOk() (*PruneMessageBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PruneMessageBody) {
 		return nil, false
 	}
-	return &o.PruneMessageBody, true
+	return o.PruneMessageBody, true
 }
 
-// SetPruneMessageBody sets field value
+// HasPruneMessageBody returns a boolean if a field has been set.
+func (o *HubEventPruneMessage) HasPruneMessageBody() bool {
+	if o != nil && !IsNil(o.PruneMessageBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetPruneMessageBody gets a reference to the given PruneMessageBody and assigns it to the PruneMessageBody field.
 func (o *HubEventPruneMessage) SetPruneMessageBody(v PruneMessageBody) {
-	o.PruneMessageBody = v
+	o.PruneMessageBody = &v
 }
 
 func (o HubEventPruneMessage) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o HubEventPruneMessage) MarshalJSON() ([]byte, error) {
 
 func (o HubEventPruneMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["id"] = o.Id
-	toSerialize["pruneMessageBody"] = o.PruneMessageBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.PruneMessageBody) {
+		toSerialize["pruneMessageBody"] = o.PruneMessageBody
+	}
 	return toSerialize, nil
-}
-
-func (o *HubEventPruneMessage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"id",
-		"pruneMessageBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubEventPruneMessage := _HubEventPruneMessage{}
-
-	err = json.Unmarshal(data, &varHubEventPruneMessage)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubEventPruneMessage(varHubEventPruneMessage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "pruneMessageBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubEventPruneMessage struct {

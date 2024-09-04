@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListOnChainSignersByFid200ResponseOneOf type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ListOnChainSignersByFid200ResponseOneOf{}
 
 // ListOnChainSignersByFid200ResponseOneOf struct for ListOnChainSignersByFid200ResponseOneOf
 type ListOnChainSignersByFid200ResponseOneOf struct {
-	Events []OnChainEventSigner `json:"events"`
-	AdditionalProperties map[string]interface{}
+	Events []OnChainEventSigner `json:"events,omitempty"`
 }
-
-type _ListOnChainSignersByFid200ResponseOneOf ListOnChainSignersByFid200ResponseOneOf
 
 // NewListOnChainSignersByFid200ResponseOneOf instantiates a new ListOnChainSignersByFid200ResponseOneOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOnChainSignersByFid200ResponseOneOf(events []OnChainEventSigner) *ListOnChainSignersByFid200ResponseOneOf {
+func NewListOnChainSignersByFid200ResponseOneOf() *ListOnChainSignersByFid200ResponseOneOf {
 	this := ListOnChainSignersByFid200ResponseOneOf{}
-	this.Events = events
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewListOnChainSignersByFid200ResponseOneOfWithDefaults() *ListOnChainSigner
 	return &this
 }
 
-// GetEvents returns the Events field value
+// GetEvents returns the Events field value if set, zero value otherwise.
 func (o *ListOnChainSignersByFid200ResponseOneOf) GetEvents() []OnChainEventSigner {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		var ret []OnChainEventSigner
 		return ret
 	}
-
 	return o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListOnChainSignersByFid200ResponseOneOf) GetEventsOk() ([]OnChainEventSigner, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
 	return o.Events, true
 }
 
-// SetEvents sets field value
+// HasEvents returns a boolean if a field has been set.
+func (o *ListOnChainSignersByFid200ResponseOneOf) HasEvents() bool {
+	if o != nil && !IsNil(o.Events) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []OnChainEventSigner and assigns it to the Events field.
 func (o *ListOnChainSignersByFid200ResponseOneOf) SetEvents(v []OnChainEventSigner) {
 	o.Events = v
 }
@@ -78,55 +81,10 @@ func (o ListOnChainSignersByFid200ResponseOneOf) MarshalJSON() ([]byte, error) {
 
 func (o ListOnChainSignersByFid200ResponseOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["events"] = o.Events
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Events) {
+		toSerialize["events"] = o.Events
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ListOnChainSignersByFid200ResponseOneOf) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"events",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListOnChainSignersByFid200ResponseOneOf := _ListOnChainSignersByFid200ResponseOneOf{}
-
-	err = json.Unmarshal(data, &varListOnChainSignersByFid200ResponseOneOf)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListOnChainSignersByFid200ResponseOneOf(varListOnChainSignersByFid200ResponseOneOf)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "events")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableListOnChainSignersByFid200ResponseOneOf struct {

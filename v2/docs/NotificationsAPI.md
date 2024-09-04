@@ -28,8 +28,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody("SignerUuid_example") // MarkNotificationsAsSeenReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody() // MarkNotificationsAsSeenReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -90,8 +90,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
 	type_ := openapiclient.NotificationType("follows") // NotificationType | Notification type to fetch. (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -156,9 +156,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for
-	channelIds := "neynar,farcaster" // string | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
+	channelIds := "neynar,farcaster" // string | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels) (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -222,9 +222,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for
-	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated parent_urls
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
+	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated parent_urls (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()

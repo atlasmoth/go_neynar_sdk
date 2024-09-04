@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsInteractorsInteractorsInner type satisfies the MappedNullable interface at compile time
@@ -21,23 +20,17 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractorsInteractorsInner{}
 // FrameValidateAnalyticsInteractorsInteractorsInner struct for FrameValidateAnalyticsInteractorsInteractorsInner
 type FrameValidateAnalyticsInteractorsInteractorsInner struct {
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	Username string `json:"username"`
-	InteractionCount float32 `json:"interaction_count"`
-	AdditionalProperties map[string]interface{}
+	Fid *int32 `json:"fid,omitempty"`
+	Username *string `json:"username,omitempty"`
+	InteractionCount *float32 `json:"interaction_count,omitempty"`
 }
-
-type _FrameValidateAnalyticsInteractorsInteractorsInner FrameValidateAnalyticsInteractorsInteractorsInner
 
 // NewFrameValidateAnalyticsInteractorsInteractorsInner instantiates a new FrameValidateAnalyticsInteractorsInteractorsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsInteractorsInteractorsInner(fid int32, username string, interactionCount float32) *FrameValidateAnalyticsInteractorsInteractorsInner {
+func NewFrameValidateAnalyticsInteractorsInteractorsInner() *FrameValidateAnalyticsInteractorsInteractorsInner {
 	this := FrameValidateAnalyticsInteractorsInteractorsInner{}
-	this.Fid = fid
-	this.Username = username
-	this.InteractionCount = interactionCount
 	return &this
 }
 
@@ -49,76 +42,100 @@ func NewFrameValidateAnalyticsInteractorsInteractorsInnerWithDefaults() *FrameVa
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetInteractionCount returns the InteractionCount field value
+// GetInteractionCount returns the InteractionCount field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetInteractionCount() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionCount) {
 		var ret float32
 		return ret
 	}
-
-	return o.InteractionCount
+	return *o.InteractionCount
 }
 
-// GetInteractionCountOk returns a tuple with the InteractionCount field value
+// GetInteractionCountOk returns a tuple with the InteractionCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetInteractionCountOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionCount) {
 		return nil, false
 	}
-	return &o.InteractionCount, true
+	return o.InteractionCount, true
 }
 
-// SetInteractionCount sets field value
+// HasInteractionCount returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasInteractionCount() bool {
+	if o != nil && !IsNil(o.InteractionCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractionCount gets a reference to the given float32 and assigns it to the InteractionCount field.
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetInteractionCount(v float32) {
-	o.InteractionCount = v
+	o.InteractionCount = &v
 }
 
 func (o FrameValidateAnalyticsInteractorsInteractorsInner) MarshalJSON() ([]byte, error) {
@@ -131,61 +148,16 @@ func (o FrameValidateAnalyticsInteractorsInteractorsInner) MarshalJSON() ([]byte
 
 func (o FrameValidateAnalyticsInteractorsInteractorsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["username"] = o.Username
-	toSerialize["interaction_count"] = o.InteractionCount
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
 	}
-
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.InteractionCount) {
+		toSerialize["interaction_count"] = o.InteractionCount
+	}
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"username",
-		"interaction_count",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsInteractorsInteractorsInner := _FrameValidateAnalyticsInteractorsInteractorsInner{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractorsInteractorsInner)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsInteractorsInteractorsInner(varFrameValidateAnalyticsInteractorsInteractorsInner)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "interaction_count")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsInteractorsInteractorsInner struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CastEmbed type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &CastEmbed{}
 
 // CastEmbed struct for CastEmbed
 type CastEmbed struct {
-	CastId CastId `json:"castId"`
-	AdditionalProperties map[string]interface{}
+	CastId *CastId `json:"castId,omitempty"`
 }
-
-type _CastEmbed CastEmbed
 
 // NewCastEmbed instantiates a new CastEmbed object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastEmbed(castId CastId) *CastEmbed {
+func NewCastEmbed() *CastEmbed {
 	this := CastEmbed{}
-	this.CastId = castId
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewCastEmbedWithDefaults() *CastEmbed {
 	return &this
 }
 
-// GetCastId returns the CastId field value
+// GetCastId returns the CastId field value if set, zero value otherwise.
 func (o *CastEmbed) GetCastId() CastId {
-	if o == nil {
+	if o == nil || IsNil(o.CastId) {
 		var ret CastId
 		return ret
 	}
-
-	return o.CastId
+	return *o.CastId
 }
 
-// GetCastIdOk returns a tuple with the CastId field value
+// GetCastIdOk returns a tuple with the CastId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CastEmbed) GetCastIdOk() (*CastId, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastId) {
 		return nil, false
 	}
-	return &o.CastId, true
+	return o.CastId, true
 }
 
-// SetCastId sets field value
+// HasCastId returns a boolean if a field has been set.
+func (o *CastEmbed) HasCastId() bool {
+	if o != nil && !IsNil(o.CastId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastId gets a reference to the given CastId and assigns it to the CastId field.
 func (o *CastEmbed) SetCastId(v CastId) {
-	o.CastId = v
+	o.CastId = &v
 }
 
 func (o CastEmbed) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o CastEmbed) MarshalJSON() ([]byte, error) {
 
 func (o CastEmbed) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["castId"] = o.CastId
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.CastId) {
+		toSerialize["castId"] = o.CastId
 	}
-
 	return toSerialize, nil
-}
-
-func (o *CastEmbed) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"castId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCastEmbed := _CastEmbed{}
-
-	err = json.Unmarshal(data, &varCastEmbed)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CastEmbed(varCastEmbed)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "castId")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCastEmbed struct {

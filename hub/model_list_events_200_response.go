@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListEvents200Response type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ListEvents200Response{}
 
 // ListEvents200Response struct for ListEvents200Response
 type ListEvents200Response struct {
-	NextPageEventId int32 `json:"nextPageEventId"`
-	Events []HubEvent `json:"events"`
-	AdditionalProperties map[string]interface{}
+	NextPageEventId *int32 `json:"nextPageEventId,omitempty"`
+	Events []HubEvent `json:"events,omitempty"`
 }
-
-type _ListEvents200Response ListEvents200Response
 
 // NewListEvents200Response instantiates a new ListEvents200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListEvents200Response(nextPageEventId int32, events []HubEvent) *ListEvents200Response {
+func NewListEvents200Response() *ListEvents200Response {
 	this := ListEvents200Response{}
-	this.NextPageEventId = nextPageEventId
-	this.Events = events
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewListEvents200ResponseWithDefaults() *ListEvents200Response {
 	return &this
 }
 
-// GetNextPageEventId returns the NextPageEventId field value
+// GetNextPageEventId returns the NextPageEventId field value if set, zero value otherwise.
 func (o *ListEvents200Response) GetNextPageEventId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageEventId) {
 		var ret int32
 		return ret
 	}
-
-	return o.NextPageEventId
+	return *o.NextPageEventId
 }
 
-// GetNextPageEventIdOk returns a tuple with the NextPageEventId field value
+// GetNextPageEventIdOk returns a tuple with the NextPageEventId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListEvents200Response) GetNextPageEventIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NextPageEventId) {
 		return nil, false
 	}
-	return &o.NextPageEventId, true
+	return o.NextPageEventId, true
 }
 
-// SetNextPageEventId sets field value
+// HasNextPageEventId returns a boolean if a field has been set.
+func (o *ListEvents200Response) HasNextPageEventId() bool {
+	if o != nil && !IsNil(o.NextPageEventId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageEventId gets a reference to the given int32 and assigns it to the NextPageEventId field.
 func (o *ListEvents200Response) SetNextPageEventId(v int32) {
-	o.NextPageEventId = v
+	o.NextPageEventId = &v
 }
 
-// GetEvents returns the Events field value
+// GetEvents returns the Events field value if set, zero value otherwise.
 func (o *ListEvents200Response) GetEvents() []HubEvent {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		var ret []HubEvent
 		return ret
 	}
-
 	return o.Events
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListEvents200Response) GetEventsOk() ([]HubEvent, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
 	return o.Events, true
 }
 
-// SetEvents sets field value
+// HasEvents returns a boolean if a field has been set.
+func (o *ListEvents200Response) HasEvents() bool {
+	if o != nil && !IsNil(o.Events) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []HubEvent and assigns it to the Events field.
 func (o *ListEvents200Response) SetEvents(v []HubEvent) {
 	o.Events = v
 }
@@ -104,58 +114,13 @@ func (o ListEvents200Response) MarshalJSON() ([]byte, error) {
 
 func (o ListEvents200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["nextPageEventId"] = o.NextPageEventId
-	toSerialize["events"] = o.Events
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.NextPageEventId) {
+		toSerialize["nextPageEventId"] = o.NextPageEventId
 	}
-
+	if !IsNil(o.Events) {
+		toSerialize["events"] = o.Events
+	}
 	return toSerialize, nil
-}
-
-func (o *ListEvents200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"nextPageEventId",
-		"events",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListEvents200Response := _ListEvents200Response{}
-
-	err = json.Unmarshal(data, &varListEvents200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListEvents200Response(varListEvents200Response)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "nextPageEventId")
-		delete(additionalProperties, "events")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableListEvents200Response struct {

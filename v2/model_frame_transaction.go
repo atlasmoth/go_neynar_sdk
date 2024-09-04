@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameTransaction type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &FrameTransaction{}
 // FrameTransaction struct for FrameTransaction
 type FrameTransaction struct {
 	// Transaction hash
-	Hash string `json:"hash"`
-	AdditionalProperties map[string]interface{}
+	Hash *string `json:"hash,omitempty"`
 }
-
-type _FrameTransaction FrameTransaction
 
 // NewFrameTransaction instantiates a new FrameTransaction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameTransaction(hash string) *FrameTransaction {
+func NewFrameTransaction() *FrameTransaction {
 	this := FrameTransaction{}
-	this.Hash = hash
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewFrameTransactionWithDefaults() *FrameTransaction {
 	return &this
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *FrameTransaction) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameTransaction) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *FrameTransaction) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *FrameTransaction) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
 func (o FrameTransaction) MarshalJSON() ([]byte, error) {
@@ -79,55 +82,10 @@ func (o FrameTransaction) MarshalJSON() ([]byte, error) {
 
 func (o FrameTransaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hash"] = o.Hash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameTransaction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameTransaction := _FrameTransaction{}
-
-	err = json.Unmarshal(data, &varFrameTransaction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameTransaction(varFrameTransaction)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameTransaction struct {

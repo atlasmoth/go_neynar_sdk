@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ChannelActivity type satisfies the MappedNullable interface at compile time
@@ -20,27 +19,19 @@ var _ MappedNullable = &ChannelActivity{}
 
 // ChannelActivity struct for ChannelActivity
 type ChannelActivity struct {
-	Object string `json:"object"`
-	CastCount1d string `json:"cast_count_1d"`
-	CastCount7d string `json:"cast_count_7d"`
-	CastCount30d string `json:"cast_count_30d"`
-	Channel Channel `json:"channel"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	CastCount1d *string `json:"cast_count_1d,omitempty"`
+	CastCount7d *string `json:"cast_count_7d,omitempty"`
+	CastCount30d *string `json:"cast_count_30d,omitempty"`
+	Channel *Channel `json:"channel,omitempty"`
 }
-
-type _ChannelActivity ChannelActivity
 
 // NewChannelActivity instantiates a new ChannelActivity object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelActivity(object string, castCount1d string, castCount7d string, castCount30d string, channel Channel) *ChannelActivity {
+func NewChannelActivity() *ChannelActivity {
 	this := ChannelActivity{}
-	this.Object = object
-	this.CastCount1d = castCount1d
-	this.CastCount7d = castCount7d
-	this.CastCount30d = castCount30d
-	this.Channel = channel
 	return &this
 }
 
@@ -52,124 +43,164 @@ func NewChannelActivityWithDefaults() *ChannelActivity {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *ChannelActivity) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelActivity) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *ChannelActivity) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *ChannelActivity) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetCastCount1d returns the CastCount1d field value
+// GetCastCount1d returns the CastCount1d field value if set, zero value otherwise.
 func (o *ChannelActivity) GetCastCount1d() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount1d) {
 		var ret string
 		return ret
 	}
-
-	return o.CastCount1d
+	return *o.CastCount1d
 }
 
-// GetCastCount1dOk returns a tuple with the CastCount1d field value
+// GetCastCount1dOk returns a tuple with the CastCount1d field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelActivity) GetCastCount1dOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount1d) {
 		return nil, false
 	}
-	return &o.CastCount1d, true
+	return o.CastCount1d, true
 }
 
-// SetCastCount1d sets field value
+// HasCastCount1d returns a boolean if a field has been set.
+func (o *ChannelActivity) HasCastCount1d() bool {
+	if o != nil && !IsNil(o.CastCount1d) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastCount1d gets a reference to the given string and assigns it to the CastCount1d field.
 func (o *ChannelActivity) SetCastCount1d(v string) {
-	o.CastCount1d = v
+	o.CastCount1d = &v
 }
 
-// GetCastCount7d returns the CastCount7d field value
+// GetCastCount7d returns the CastCount7d field value if set, zero value otherwise.
 func (o *ChannelActivity) GetCastCount7d() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount7d) {
 		var ret string
 		return ret
 	}
-
-	return o.CastCount7d
+	return *o.CastCount7d
 }
 
-// GetCastCount7dOk returns a tuple with the CastCount7d field value
+// GetCastCount7dOk returns a tuple with the CastCount7d field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelActivity) GetCastCount7dOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount7d) {
 		return nil, false
 	}
-	return &o.CastCount7d, true
+	return o.CastCount7d, true
 }
 
-// SetCastCount7d sets field value
+// HasCastCount7d returns a boolean if a field has been set.
+func (o *ChannelActivity) HasCastCount7d() bool {
+	if o != nil && !IsNil(o.CastCount7d) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastCount7d gets a reference to the given string and assigns it to the CastCount7d field.
 func (o *ChannelActivity) SetCastCount7d(v string) {
-	o.CastCount7d = v
+	o.CastCount7d = &v
 }
 
-// GetCastCount30d returns the CastCount30d field value
+// GetCastCount30d returns the CastCount30d field value if set, zero value otherwise.
 func (o *ChannelActivity) GetCastCount30d() string {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount30d) {
 		var ret string
 		return ret
 	}
-
-	return o.CastCount30d
+	return *o.CastCount30d
 }
 
-// GetCastCount30dOk returns a tuple with the CastCount30d field value
+// GetCastCount30dOk returns a tuple with the CastCount30d field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelActivity) GetCastCount30dOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CastCount30d) {
 		return nil, false
 	}
-	return &o.CastCount30d, true
+	return o.CastCount30d, true
 }
 
-// SetCastCount30d sets field value
+// HasCastCount30d returns a boolean if a field has been set.
+func (o *ChannelActivity) HasCastCount30d() bool {
+	if o != nil && !IsNil(o.CastCount30d) {
+		return true
+	}
+
+	return false
+}
+
+// SetCastCount30d gets a reference to the given string and assigns it to the CastCount30d field.
 func (o *ChannelActivity) SetCastCount30d(v string) {
-	o.CastCount30d = v
+	o.CastCount30d = &v
 }
 
-// GetChannel returns the Channel field value
+// GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *ChannelActivity) GetChannel() Channel {
-	if o == nil {
+	if o == nil || IsNil(o.Channel) {
 		var ret Channel
 		return ret
 	}
-
-	return o.Channel
+	return *o.Channel
 }
 
-// GetChannelOk returns a tuple with the Channel field value
+// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelActivity) GetChannelOk() (*Channel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Channel) {
 		return nil, false
 	}
-	return &o.Channel, true
+	return o.Channel, true
 }
 
-// SetChannel sets field value
+// HasChannel returns a boolean if a field has been set.
+func (o *ChannelActivity) HasChannel() bool {
+	if o != nil && !IsNil(o.Channel) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannel gets a reference to the given Channel and assigns it to the Channel field.
 func (o *ChannelActivity) SetChannel(v Channel) {
-	o.Channel = v
+	o.Channel = &v
 }
 
 func (o ChannelActivity) MarshalJSON() ([]byte, error) {
@@ -182,67 +213,22 @@ func (o ChannelActivity) MarshalJSON() ([]byte, error) {
 
 func (o ChannelActivity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["cast_count_1d"] = o.CastCount1d
-	toSerialize["cast_count_7d"] = o.CastCount7d
-	toSerialize["cast_count_30d"] = o.CastCount30d
-	toSerialize["channel"] = o.Channel
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.CastCount1d) {
+		toSerialize["cast_count_1d"] = o.CastCount1d
+	}
+	if !IsNil(o.CastCount7d) {
+		toSerialize["cast_count_7d"] = o.CastCount7d
+	}
+	if !IsNil(o.CastCount30d) {
+		toSerialize["cast_count_30d"] = o.CastCount30d
+	}
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
 	return toSerialize, nil
-}
-
-func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"cast_count_1d",
-		"cast_count_7d",
-		"cast_count_30d",
-		"channel",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varChannelActivity := _ChannelActivity{}
-
-	err = json.Unmarshal(data, &varChannelActivity)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ChannelActivity(varChannelActivity)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "cast_count_1d")
-		delete(additionalProperties, "cast_count_7d")
-		delete(additionalProperties, "cast_count_30d")
-		delete(additionalProperties, "channel")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelActivity struct {

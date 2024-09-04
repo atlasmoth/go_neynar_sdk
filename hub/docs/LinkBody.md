@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**LinkType**](LinkType.md) |  | [default to LINKTYPE_FOLLOW]
+**Type** | Pointer to [**LinkType**](LinkType.md) |  | [optional] [default to LINKTYPE_FOLLOW]
 **DisplayTimestamp** | Pointer to **int64** |  | [optional] 
-**TargetFid** | **int32** |  | 
+**TargetFid** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewLinkBody
 
-`func NewLinkBody(type_ LinkType, targetFid int32, ) *LinkBody`
+`func NewLinkBody() *LinkBody`
 
 NewLinkBody instantiates a new LinkBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *LinkBody) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetDisplayTimestamp
 
@@ -91,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetTargetFid sets TargetFid field to given value.
 
+### HasTargetFid
+
+`func (o *LinkBody) HasTargetFid() bool`
+
+HasTargetFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

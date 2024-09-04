@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**MergeUsernameProofBody** | [**MergeUserNameProofBody**](MergeUserNameProofBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**MergeUsernameProofBody** | Pointer to [**MergeUserNameProofBody**](MergeUserNameProofBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEventMergeUsernameProof
 
-`func NewHubEventMergeUsernameProof(type_ string, id int32, mergeUsernameProofBody MergeUserNameProofBody, ) *HubEventMergeUsernameProof`
+`func NewHubEventMergeUsernameProof() *HubEventMergeUsernameProof`
 
 NewHubEventMergeUsernameProof instantiates a new HubEventMergeUsernameProof object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEventMergeUsernameProof) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEventMergeUsernameProof) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMergeUsernameProofBody
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetMergeUsernameProofBody sets MergeUsernameProofBody field to given value.
 
+### HasMergeUsernameProofBody
+
+`func (o *HubEventMergeUsernameProof) HasMergeUsernameProofBody() bool`
+
+HasMergeUsernameProofBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

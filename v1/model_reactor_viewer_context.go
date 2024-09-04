@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactorViewerContext type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,17 @@ var _ MappedNullable = &ReactorViewerContext{}
 // ReactorViewerContext struct for ReactorViewerContext
 type ReactorViewerContext struct {
 	// Indicates if the viewer is following the reactor.
-	Following bool `json:"following"`
+	Following *bool `json:"following,omitempty"`
 	// Indicates if the reactor is followed by the viewer.
-	FollowedBy bool `json:"followedBy"`
-	AdditionalProperties map[string]interface{}
+	FollowedBy *bool `json:"followedBy,omitempty"`
 }
-
-type _ReactorViewerContext ReactorViewerContext
 
 // NewReactorViewerContext instantiates a new ReactorViewerContext object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactorViewerContext(following bool, followedBy bool) *ReactorViewerContext {
+func NewReactorViewerContext() *ReactorViewerContext {
 	this := ReactorViewerContext{}
-	this.Following = following
-	this.FollowedBy = followedBy
 	return &this
 }
 
@@ -48,52 +42,68 @@ func NewReactorViewerContextWithDefaults() *ReactorViewerContext {
 	return &this
 }
 
-// GetFollowing returns the Following field value
+// GetFollowing returns the Following field value if set, zero value otherwise.
 func (o *ReactorViewerContext) GetFollowing() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		var ret bool
 		return ret
 	}
-
-	return o.Following
+	return *o.Following
 }
 
-// GetFollowingOk returns a tuple with the Following field value
+// GetFollowingOk returns a tuple with the Following field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorViewerContext) GetFollowingOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Following) {
 		return nil, false
 	}
-	return &o.Following, true
+	return o.Following, true
 }
 
-// SetFollowing sets field value
+// HasFollowing returns a boolean if a field has been set.
+func (o *ReactorViewerContext) HasFollowing() bool {
+	if o != nil && !IsNil(o.Following) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowing gets a reference to the given bool and assigns it to the Following field.
 func (o *ReactorViewerContext) SetFollowing(v bool) {
-	o.Following = v
+	o.Following = &v
 }
 
-// GetFollowedBy returns the FollowedBy field value
+// GetFollowedBy returns the FollowedBy field value if set, zero value otherwise.
 func (o *ReactorViewerContext) GetFollowedBy() bool {
-	if o == nil {
+	if o == nil || IsNil(o.FollowedBy) {
 		var ret bool
 		return ret
 	}
-
-	return o.FollowedBy
+	return *o.FollowedBy
 }
 
-// GetFollowedByOk returns a tuple with the FollowedBy field value
+// GetFollowedByOk returns a tuple with the FollowedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorViewerContext) GetFollowedByOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowedBy) {
 		return nil, false
 	}
-	return &o.FollowedBy, true
+	return o.FollowedBy, true
 }
 
-// SetFollowedBy sets field value
+// HasFollowedBy returns a boolean if a field has been set.
+func (o *ReactorViewerContext) HasFollowedBy() bool {
+	if o != nil && !IsNil(o.FollowedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowedBy gets a reference to the given bool and assigns it to the FollowedBy field.
 func (o *ReactorViewerContext) SetFollowedBy(v bool) {
-	o.FollowedBy = v
+	o.FollowedBy = &v
 }
 
 func (o ReactorViewerContext) MarshalJSON() ([]byte, error) {
@@ -106,58 +116,13 @@ func (o ReactorViewerContext) MarshalJSON() ([]byte, error) {
 
 func (o ReactorViewerContext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["following"] = o.Following
-	toSerialize["followedBy"] = o.FollowedBy
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Following) {
+		toSerialize["following"] = o.Following
 	}
-
+	if !IsNil(o.FollowedBy) {
+		toSerialize["followedBy"] = o.FollowedBy
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactorViewerContext) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"following",
-		"followedBy",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactorViewerContext := _ReactorViewerContext{}
-
-	err = json.Unmarshal(data, &varReactorViewerContext)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactorViewerContext(varReactorViewerContext)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "following")
-		delete(additionalProperties, "followedBy")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactorViewerContext struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubEventMergeOnChainEvent type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &HubEventMergeOnChainEvent{}
 
 // HubEventMergeOnChainEvent struct for HubEventMergeOnChainEvent
 type HubEventMergeOnChainEvent struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
-	MergeOnChainEventBody MergeOnChainEventBody `json:"mergeOnChainEventBody"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	MergeOnChainEventBody *MergeOnChainEventBody `json:"mergeOnChainEventBody,omitempty"`
 }
-
-type _HubEventMergeOnChainEvent HubEventMergeOnChainEvent
 
 // NewHubEventMergeOnChainEvent instantiates a new HubEventMergeOnChainEvent object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubEventMergeOnChainEvent(type_ string, id int32, mergeOnChainEventBody MergeOnChainEventBody) *HubEventMergeOnChainEvent {
+func NewHubEventMergeOnChainEvent() *HubEventMergeOnChainEvent {
 	this := HubEventMergeOnChainEvent{}
-	this.Type = type_
-	this.Id = id
-	this.MergeOnChainEventBody = mergeOnChainEventBody
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewHubEventMergeOnChainEventWithDefaults() *HubEventMergeOnChainEvent {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *HubEventMergeOnChainEvent) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeOnChainEvent) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *HubEventMergeOnChainEvent) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *HubEventMergeOnChainEvent) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *HubEventMergeOnChainEvent) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeOnChainEvent) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *HubEventMergeOnChainEvent) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HubEventMergeOnChainEvent) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetMergeOnChainEventBody returns the MergeOnChainEventBody field value
+// GetMergeOnChainEventBody returns the MergeOnChainEventBody field value if set, zero value otherwise.
 func (o *HubEventMergeOnChainEvent) GetMergeOnChainEventBody() MergeOnChainEventBody {
-	if o == nil {
+	if o == nil || IsNil(o.MergeOnChainEventBody) {
 		var ret MergeOnChainEventBody
 		return ret
 	}
-
-	return o.MergeOnChainEventBody
+	return *o.MergeOnChainEventBody
 }
 
-// GetMergeOnChainEventBodyOk returns a tuple with the MergeOnChainEventBody field value
+// GetMergeOnChainEventBodyOk returns a tuple with the MergeOnChainEventBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeOnChainEvent) GetMergeOnChainEventBodyOk() (*MergeOnChainEventBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MergeOnChainEventBody) {
 		return nil, false
 	}
-	return &o.MergeOnChainEventBody, true
+	return o.MergeOnChainEventBody, true
 }
 
-// SetMergeOnChainEventBody sets field value
+// HasMergeOnChainEventBody returns a boolean if a field has been set.
+func (o *HubEventMergeOnChainEvent) HasMergeOnChainEventBody() bool {
+	if o != nil && !IsNil(o.MergeOnChainEventBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetMergeOnChainEventBody gets a reference to the given MergeOnChainEventBody and assigns it to the MergeOnChainEventBody field.
 func (o *HubEventMergeOnChainEvent) SetMergeOnChainEventBody(v MergeOnChainEventBody) {
-	o.MergeOnChainEventBody = v
+	o.MergeOnChainEventBody = &v
 }
 
 func (o HubEventMergeOnChainEvent) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o HubEventMergeOnChainEvent) MarshalJSON() ([]byte, error) {
 
 func (o HubEventMergeOnChainEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["id"] = o.Id
-	toSerialize["mergeOnChainEventBody"] = o.MergeOnChainEventBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.MergeOnChainEventBody) {
+		toSerialize["mergeOnChainEventBody"] = o.MergeOnChainEventBody
+	}
 	return toSerialize, nil
-}
-
-func (o *HubEventMergeOnChainEvent) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"id",
-		"mergeOnChainEventBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubEventMergeOnChainEvent := _HubEventMergeOnChainEvent{}
-
-	err = json.Unmarshal(data, &varHubEventMergeOnChainEvent)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubEventMergeOnChainEvent(varHubEventMergeOnChainEvent)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "mergeOnChainEventBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubEventMergeOnChainEvent struct {

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Id** | **int32** |  | 
-**MergeMessageBody** | [**MergeMessageBody**](MergeMessageBody.md) |  | 
-**PruneMessageBody** | [**PruneMessageBody**](PruneMessageBody.md) |  | 
-**RevokeMessageBody** | [**RevokeMessageBody**](RevokeMessageBody.md) |  | 
-**MergeUsernameProofBody** | [**MergeUserNameProofBody**](MergeUserNameProofBody.md) |  | 
-**MergeOnChainEventBody** | [**MergeOnChainEventBody**](MergeOnChainEventBody.md) |  | 
+**Type** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
+**MergeMessageBody** | Pointer to [**MergeMessageBody**](MergeMessageBody.md) |  | [optional] 
+**PruneMessageBody** | Pointer to [**PruneMessageBody**](PruneMessageBody.md) |  | [optional] 
+**RevokeMessageBody** | Pointer to [**RevokeMessageBody**](RevokeMessageBody.md) |  | [optional] 
+**MergeUsernameProofBody** | Pointer to [**MergeUserNameProofBody**](MergeUserNameProofBody.md) |  | [optional] 
+**MergeOnChainEventBody** | Pointer to [**MergeOnChainEventBody**](MergeOnChainEventBody.md) |  | [optional] 
 
 ## Methods
 
 ### NewHubEvent
 
-`func NewHubEvent(type_ string, id int32, mergeMessageBody MergeMessageBody, pruneMessageBody PruneMessageBody, revokeMessageBody RevokeMessageBody, mergeUsernameProofBody MergeUserNameProofBody, mergeOnChainEventBody MergeOnChainEventBody, ) *HubEvent`
+`func NewHubEvent() *HubEvent`
 
 NewHubEvent instantiates a new HubEvent object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *HubEvent) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -70,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *HubEvent) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMergeMessageBody
 
@@ -90,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetMergeMessageBody sets MergeMessageBody field to given value.
 
+### HasMergeMessageBody
+
+`func (o *HubEvent) HasMergeMessageBody() bool`
+
+HasMergeMessageBody returns a boolean if a field has been set.
 
 ### GetPruneMessageBody
 
@@ -110,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetPruneMessageBody sets PruneMessageBody field to given value.
 
+### HasPruneMessageBody
+
+`func (o *HubEvent) HasPruneMessageBody() bool`
+
+HasPruneMessageBody returns a boolean if a field has been set.
 
 ### GetRevokeMessageBody
 
@@ -130,6 +150,11 @@ and a boolean to check if the value has been set.
 
 SetRevokeMessageBody sets RevokeMessageBody field to given value.
 
+### HasRevokeMessageBody
+
+`func (o *HubEvent) HasRevokeMessageBody() bool`
+
+HasRevokeMessageBody returns a boolean if a field has been set.
 
 ### GetMergeUsernameProofBody
 
@@ -150,6 +175,11 @@ and a boolean to check if the value has been set.
 
 SetMergeUsernameProofBody sets MergeUsernameProofBody field to given value.
 
+### HasMergeUsernameProofBody
+
+`func (o *HubEvent) HasMergeUsernameProofBody() bool`
+
+HasMergeUsernameProofBody returns a boolean if a field has been set.
 
 ### GetMergeOnChainEventBody
 
@@ -170,6 +200,11 @@ and a boolean to check if the value has been set.
 
 SetMergeOnChainEventBody sets MergeOnChainEventBody field to given value.
 
+### HasMergeOnChainEventBody
+
+`func (o *HubEvent) HasMergeOnChainEventBody() bool`
+
+HasMergeOnChainEventBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

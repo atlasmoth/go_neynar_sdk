@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **int32** |  | 
-**Name** | **string** |  | 
-**Owner** | **string** |  | 
-**Signature** | **string** |  | 
-**Fid** | **int32** |  | 
-**Type** | [**UserNameType**](UserNameType.md) |  | [default to USERNAMETYPE_FNAME]
+**Timestamp** | Pointer to **int32** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Owner** | Pointer to **string** |  | [optional] 
+**Signature** | Pointer to **string** |  | [optional] 
+**Fid** | Pointer to **int32** |  | [optional] 
+**Type** | Pointer to [**UserNameType**](UserNameType.md) |  | [optional] [default to USERNAMETYPE_FNAME]
 
 ## Methods
 
 ### NewUserNameProof
 
-`func NewUserNameProof(timestamp int32, name string, owner string, signature string, fid int32, type_ UserNameType, ) *UserNameProof`
+`func NewUserNameProof() *UserNameProof`
 
 NewUserNameProof instantiates a new UserNameProof object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *UserNameProof) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetName
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UserNameProof) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOwner
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetOwner sets Owner field to given value.
 
+### HasOwner
+
+`func (o *UserNameProof) HasOwner() bool`
+
+HasOwner returns a boolean if a field has been set.
 
 ### GetSignature
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetSignature sets Signature field to given value.
 
+### HasSignature
+
+`func (o *UserNameProof) HasSignature() bool`
+
+HasSignature returns a boolean if a field has been set.
 
 ### GetFid
 
@@ -129,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *UserNameProof) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetType
 
@@ -149,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *UserNameProof) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

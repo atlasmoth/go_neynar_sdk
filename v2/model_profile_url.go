@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ProfileUrl type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ProfileUrl{}
 
 // ProfileUrl struct for ProfileUrl
 type ProfileUrl struct {
-	Pfp ProfileUrlPfp `json:"pfp"`
-	AdditionalProperties map[string]interface{}
+	Pfp *ProfileUrlPfp `json:"pfp,omitempty"`
 }
-
-type _ProfileUrl ProfileUrl
 
 // NewProfileUrl instantiates a new ProfileUrl object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProfileUrl(pfp ProfileUrlPfp) *ProfileUrl {
+func NewProfileUrl() *ProfileUrl {
 	this := ProfileUrl{}
-	this.Pfp = pfp
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewProfileUrlWithDefaults() *ProfileUrl {
 	return &this
 }
 
-// GetPfp returns the Pfp field value
+// GetPfp returns the Pfp field value if set, zero value otherwise.
 func (o *ProfileUrl) GetPfp() ProfileUrlPfp {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		var ret ProfileUrlPfp
 		return ret
 	}
-
-	return o.Pfp
+	return *o.Pfp
 }
 
-// GetPfpOk returns a tuple with the Pfp field value
+// GetPfpOk returns a tuple with the Pfp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProfileUrl) GetPfpOk() (*ProfileUrlPfp, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		return nil, false
 	}
-	return &o.Pfp, true
+	return o.Pfp, true
 }
 
-// SetPfp sets field value
+// HasPfp returns a boolean if a field has been set.
+func (o *ProfileUrl) HasPfp() bool {
+	if o != nil && !IsNil(o.Pfp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPfp gets a reference to the given ProfileUrlPfp and assigns it to the Pfp field.
 func (o *ProfileUrl) SetPfp(v ProfileUrlPfp) {
-	o.Pfp = v
+	o.Pfp = &v
 }
 
 func (o ProfileUrl) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o ProfileUrl) MarshalJSON() ([]byte, error) {
 
 func (o ProfileUrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["pfp"] = o.Pfp
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Pfp) {
+		toSerialize["pfp"] = o.Pfp
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ProfileUrl) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"pfp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varProfileUrl := _ProfileUrl{}
-
-	err = json.Unmarshal(data, &varProfileUrl)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ProfileUrl(varProfileUrl)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "pfp")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableProfileUrl struct {

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Url** | **string** |  | 
+**Id** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Object** | **string** |  | 
+**Object** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **float32** | Epoch timestamp in seconds. | [optional] 
 **FollowerCount** | Pointer to **float32** | Number of followers the channel has. | [optional] 
 **ImageUrl** | Pointer to **string** |  | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewChannel
 
-`func NewChannel(id string, url string, object string, ) *Channel`
+`func NewChannel() *Channel`
 
 NewChannel instantiates a new Channel object
 This constructor will assign default values to properties that have it defined,
@@ -56,6 +56,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Channel) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetUrl
 
@@ -76,6 +81,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *Channel) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetName
 
@@ -146,6 +156,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Channel) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

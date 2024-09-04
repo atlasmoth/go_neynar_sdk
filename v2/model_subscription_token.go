@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SubscriptionToken type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,18 @@ var _ MappedNullable = &SubscriptionToken{}
 
 // SubscriptionToken struct for SubscriptionToken
 type SubscriptionToken struct {
-	Symbol string `json:"symbol"`
-	Address NullableString `json:"address"`
-	Decimals int32 `json:"decimals"`
-	Erc20 bool `json:"erc20"`
-	AdditionalProperties map[string]interface{}
+	Symbol *string `json:"symbol,omitempty"`
+	Address NullableString `json:"address,omitempty"`
+	Decimals *int32 `json:"decimals,omitempty"`
+	Erc20 *bool `json:"erc20,omitempty"`
 }
-
-type _SubscriptionToken SubscriptionToken
 
 // NewSubscriptionToken instantiates a new SubscriptionToken object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionToken(symbol string, address NullableString, decimals int32, erc20 bool) *SubscriptionToken {
+func NewSubscriptionToken() *SubscriptionToken {
 	this := SubscriptionToken{}
-	this.Symbol = symbol
-	this.Address = address
-	this.Decimals = decimals
-	this.Erc20 = erc20
 	return &this
 }
 
@@ -50,42 +42,48 @@ func NewSubscriptionTokenWithDefaults() *SubscriptionToken {
 	return &this
 }
 
-// GetSymbol returns the Symbol field value
+// GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *SubscriptionToken) GetSymbol() string {
-	if o == nil {
+	if o == nil || IsNil(o.Symbol) {
 		var ret string
 		return ret
 	}
-
-	return o.Symbol
+	return *o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value
+// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionToken) GetSymbolOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Symbol) {
 		return nil, false
 	}
-	return &o.Symbol, true
+	return o.Symbol, true
 }
 
-// SetSymbol sets field value
+// HasSymbol returns a boolean if a field has been set.
+func (o *SubscriptionToken) HasSymbol() bool {
+	if o != nil && !IsNil(o.Symbol) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
 func (o *SubscriptionToken) SetSymbol(v string) {
-	o.Symbol = v
+	o.Symbol = &v
 }
 
-// GetAddress returns the Address field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionToken) GetAddress() string {
-	if o == nil || o.Address.Get() == nil {
+	if o == nil || IsNil(o.Address.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.Address.Get()
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionToken) GetAddressOk() (*string, bool) {
@@ -95,57 +93,91 @@ func (o *SubscriptionToken) GetAddressOk() (*string, bool) {
 	return o.Address.Get(), o.Address.IsSet()
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *SubscriptionToken) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableString and assigns it to the Address field.
 func (o *SubscriptionToken) SetAddress(v string) {
 	o.Address.Set(&v)
 }
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *SubscriptionToken) SetAddressNil() {
+	o.Address.Set(nil)
+}
 
-// GetDecimals returns the Decimals field value
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *SubscriptionToken) UnsetAddress() {
+	o.Address.Unset()
+}
+
+// GetDecimals returns the Decimals field value if set, zero value otherwise.
 func (o *SubscriptionToken) GetDecimals() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Decimals) {
 		var ret int32
 		return ret
 	}
-
-	return o.Decimals
+	return *o.Decimals
 }
 
-// GetDecimalsOk returns a tuple with the Decimals field value
+// GetDecimalsOk returns a tuple with the Decimals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionToken) GetDecimalsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Decimals) {
 		return nil, false
 	}
-	return &o.Decimals, true
+	return o.Decimals, true
 }
 
-// SetDecimals sets field value
+// HasDecimals returns a boolean if a field has been set.
+func (o *SubscriptionToken) HasDecimals() bool {
+	if o != nil && !IsNil(o.Decimals) {
+		return true
+	}
+
+	return false
+}
+
+// SetDecimals gets a reference to the given int32 and assigns it to the Decimals field.
 func (o *SubscriptionToken) SetDecimals(v int32) {
-	o.Decimals = v
+	o.Decimals = &v
 }
 
-// GetErc20 returns the Erc20 field value
+// GetErc20 returns the Erc20 field value if set, zero value otherwise.
 func (o *SubscriptionToken) GetErc20() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Erc20) {
 		var ret bool
 		return ret
 	}
-
-	return o.Erc20
+	return *o.Erc20
 }
 
-// GetErc20Ok returns a tuple with the Erc20 field value
+// GetErc20Ok returns a tuple with the Erc20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionToken) GetErc20Ok() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Erc20) {
 		return nil, false
 	}
-	return &o.Erc20, true
+	return o.Erc20, true
 }
 
-// SetErc20 sets field value
+// HasErc20 returns a boolean if a field has been set.
+func (o *SubscriptionToken) HasErc20() bool {
+	if o != nil && !IsNil(o.Erc20) {
+		return true
+	}
+
+	return false
+}
+
+// SetErc20 gets a reference to the given bool and assigns it to the Erc20 field.
 func (o *SubscriptionToken) SetErc20(v bool) {
-	o.Erc20 = v
+	o.Erc20 = &v
 }
 
 func (o SubscriptionToken) MarshalJSON() ([]byte, error) {
@@ -158,64 +190,19 @@ func (o SubscriptionToken) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["symbol"] = o.Symbol
-	toSerialize["address"] = o.Address.Get()
-	toSerialize["decimals"] = o.Decimals
-	toSerialize["erc20"] = o.Erc20
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Symbol) {
+		toSerialize["symbol"] = o.Symbol
 	}
-
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
+	}
+	if !IsNil(o.Decimals) {
+		toSerialize["decimals"] = o.Decimals
+	}
+	if !IsNil(o.Erc20) {
+		toSerialize["erc20"] = o.Erc20
+	}
 	return toSerialize, nil
-}
-
-func (o *SubscriptionToken) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"symbol",
-		"address",
-		"decimals",
-		"erc20",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSubscriptionToken := _SubscriptionToken{}
-
-	err = json.Unmarshal(data, &varSubscriptionToken)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscriptionToken(varSubscriptionToken)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "address")
-		delete(additionalProperties, "decimals")
-		delete(additionalProperties, "erc20")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptionToken struct {

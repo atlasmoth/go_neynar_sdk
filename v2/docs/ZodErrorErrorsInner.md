@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **string** |  | 
-**Expected** | **string** |  | 
-**Received** | **string** |  | 
-**Path** | **[]string** |  | 
-**Message** | **string** |  | 
+**Code** | Pointer to **string** |  | [optional] 
+**Expected** | Pointer to **string** |  | [optional] 
+**Received** | Pointer to **string** |  | [optional] 
+**Path** | Pointer to **[]string** |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewZodErrorErrorsInner
 
-`func NewZodErrorErrorsInner(code string, expected string, received string, path []string, message string, ) *ZodErrorErrorsInner`
+`func NewZodErrorErrorsInner() *ZodErrorErrorsInner`
 
 NewZodErrorErrorsInner instantiates a new ZodErrorErrorsInner object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
+
+`func (o *ZodErrorErrorsInner) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 ### GetExpected
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetExpected sets Expected field to given value.
 
+### HasExpected
+
+`func (o *ZodErrorErrorsInner) HasExpected() bool`
+
+HasExpected returns a boolean if a field has been set.
 
 ### GetReceived
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetReceived sets Received field to given value.
 
+### HasReceived
+
+`func (o *ZodErrorErrorsInner) HasReceived() bool`
+
+HasReceived returns a boolean if a field has been set.
 
 ### GetPath
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetPath sets Path field to given value.
 
+### HasPath
+
+`func (o *ZodErrorErrorsInner) HasPath() bool`
+
+HasPath returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *ZodErrorErrorsInner) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

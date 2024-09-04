@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionsCastResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &ReactionsCastResponse{}
 
 // ReactionsCastResponse struct for ReactionsCastResponse
 type ReactionsCastResponse struct {
-	Reactions []ReactionForCast `json:"reactions"`
-	Next NextCursor `json:"next"`
-	AdditionalProperties map[string]interface{}
+	Reactions []ReactionForCast `json:"reactions,omitempty"`
+	Next *NextCursor `json:"next,omitempty"`
 }
-
-type _ReactionsCastResponse ReactionsCastResponse
 
 // NewReactionsCastResponse instantiates a new ReactionsCastResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionsCastResponse(reactions []ReactionForCast, next NextCursor) *ReactionsCastResponse {
+func NewReactionsCastResponse() *ReactionsCastResponse {
 	this := ReactionsCastResponse{}
-	this.Reactions = reactions
-	this.Next = next
 	return &this
 }
 
@@ -46,52 +40,68 @@ func NewReactionsCastResponseWithDefaults() *ReactionsCastResponse {
 	return &this
 }
 
-// GetReactions returns the Reactions field value
+// GetReactions returns the Reactions field value if set, zero value otherwise.
 func (o *ReactionsCastResponse) GetReactions() []ReactionForCast {
-	if o == nil {
+	if o == nil || IsNil(o.Reactions) {
 		var ret []ReactionForCast
 		return ret
 	}
-
 	return o.Reactions
 }
 
-// GetReactionsOk returns a tuple with the Reactions field value
+// GetReactionsOk returns a tuple with the Reactions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsCastResponse) GetReactionsOk() ([]ReactionForCast, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Reactions) {
 		return nil, false
 	}
 	return o.Reactions, true
 }
 
-// SetReactions sets field value
+// HasReactions returns a boolean if a field has been set.
+func (o *ReactionsCastResponse) HasReactions() bool {
+	if o != nil && !IsNil(o.Reactions) {
+		return true
+	}
+
+	return false
+}
+
+// SetReactions gets a reference to the given []ReactionForCast and assigns it to the Reactions field.
 func (o *ReactionsCastResponse) SetReactions(v []ReactionForCast) {
 	o.Reactions = v
 }
 
-// GetNext returns the Next field value
+// GetNext returns the Next field value if set, zero value otherwise.
 func (o *ReactionsCastResponse) GetNext() NextCursor {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		var ret NextCursor
 		return ret
 	}
-
-	return o.Next
+	return *o.Next
 }
 
-// GetNextOk returns a tuple with the Next field value
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsCastResponse) GetNextOk() (*NextCursor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Next) {
 		return nil, false
 	}
-	return &o.Next, true
+	return o.Next, true
 }
 
-// SetNext sets field value
+// HasNext returns a boolean if a field has been set.
+func (o *ReactionsCastResponse) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NextCursor and assigns it to the Next field.
 func (o *ReactionsCastResponse) SetNext(v NextCursor) {
-	o.Next = v
+	o.Next = &v
 }
 
 func (o ReactionsCastResponse) MarshalJSON() ([]byte, error) {
@@ -104,58 +114,13 @@ func (o ReactionsCastResponse) MarshalJSON() ([]byte, error) {
 
 func (o ReactionsCastResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["reactions"] = o.Reactions
-	toSerialize["next"] = o.Next
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Reactions) {
+		toSerialize["reactions"] = o.Reactions
 	}
-
+	if !IsNil(o.Next) {
+		toSerialize["next"] = o.Next
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionsCastResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"reactions",
-		"next",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionsCastResponse := _ReactionsCastResponse{}
-
-	err = json.Unmarshal(data, &varReactionsCastResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionsCastResponse(varReactionsCastResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reactions")
-		delete(additionalProperties, "next")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionsCastResponse struct {

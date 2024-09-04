@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FollowResponse type satisfies the MappedNullable interface at compile time
@@ -20,24 +19,18 @@ var _ MappedNullable = &FollowResponse{}
 
 // FollowResponse struct for FollowResponse
 type FollowResponse struct {
-	Success bool `json:"success"`
+	Success *bool `json:"success,omitempty"`
 	// User identifier (unsigned integer)
-	TargetFid int32 `json:"target_fid"`
-	Hash string `json:"hash"`
-	AdditionalProperties map[string]interface{}
+	TargetFid *int32 `json:"target_fid,omitempty"`
+	Hash *string `json:"hash,omitempty"`
 }
-
-type _FollowResponse FollowResponse
 
 // NewFollowResponse instantiates a new FollowResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFollowResponse(success bool, targetFid int32, hash string) *FollowResponse {
+func NewFollowResponse() *FollowResponse {
 	this := FollowResponse{}
-	this.Success = success
-	this.TargetFid = targetFid
-	this.Hash = hash
 	return &this
 }
 
@@ -49,76 +42,100 @@ func NewFollowResponseWithDefaults() *FollowResponse {
 	return &this
 }
 
-// GetSuccess returns the Success field value
+// GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *FollowResponse) GetSuccess() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		var ret bool
 		return ret
 	}
-
-	return o.Success
+	return *o.Success
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FollowResponse) GetSuccessOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		return nil, false
 	}
-	return &o.Success, true
+	return o.Success, true
 }
 
-// SetSuccess sets field value
+// HasSuccess returns a boolean if a field has been set.
+func (o *FollowResponse) HasSuccess() bool {
+	if o != nil && !IsNil(o.Success) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccess gets a reference to the given bool and assigns it to the Success field.
 func (o *FollowResponse) SetSuccess(v bool) {
-	o.Success = v
+	o.Success = &v
 }
 
-// GetTargetFid returns the TargetFid field value
+// GetTargetFid returns the TargetFid field value if set, zero value otherwise.
 func (o *FollowResponse) GetTargetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetFid) {
 		var ret int32
 		return ret
 	}
-
-	return o.TargetFid
+	return *o.TargetFid
 }
 
-// GetTargetFidOk returns a tuple with the TargetFid field value
+// GetTargetFidOk returns a tuple with the TargetFid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FollowResponse) GetTargetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetFid) {
 		return nil, false
 	}
-	return &o.TargetFid, true
+	return o.TargetFid, true
 }
 
-// SetTargetFid sets field value
+// HasTargetFid returns a boolean if a field has been set.
+func (o *FollowResponse) HasTargetFid() bool {
+	if o != nil && !IsNil(o.TargetFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetFid gets a reference to the given int32 and assigns it to the TargetFid field.
 func (o *FollowResponse) SetTargetFid(v int32) {
-	o.TargetFid = v
+	o.TargetFid = &v
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *FollowResponse) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FollowResponse) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *FollowResponse) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *FollowResponse) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
 func (o FollowResponse) MarshalJSON() ([]byte, error) {
@@ -131,61 +148,16 @@ func (o FollowResponse) MarshalJSON() ([]byte, error) {
 
 func (o FollowResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["success"] = o.Success
-	toSerialize["target_fid"] = o.TargetFid
-	toSerialize["hash"] = o.Hash
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
 	}
-
+	if !IsNil(o.TargetFid) {
+		toSerialize["target_fid"] = o.TargetFid
+	}
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
+	}
 	return toSerialize, nil
-}
-
-func (o *FollowResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"success",
-		"target_fid",
-		"hash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFollowResponse := _FollowResponse{}
-
-	err = json.Unmarshal(data, &varFollowResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FollowResponse(varFollowResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "target_fid")
-		delete(additionalProperties, "hash")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFollowResponse struct {

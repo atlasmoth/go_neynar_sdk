@@ -22,10 +22,7 @@ type SubscriptionTierPrice struct {
 	PeriodDurationSeconds *int32 `json:"period_duration_seconds,omitempty"`
 	TokensPerPeriod *string `json:"tokens_per_period,omitempty"`
 	InitialMintPrice *string `json:"initial_mint_price,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _SubscriptionTierPrice SubscriptionTierPrice
 
 // NewSubscriptionTierPrice instantiates a new SubscriptionTierPrice object
 // This constructor will assign default values to properties that have it defined,
@@ -159,35 +156,7 @@ func (o SubscriptionTierPrice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InitialMintPrice) {
 		toSerialize["initial_mint_price"] = o.InitialMintPrice
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *SubscriptionTierPrice) UnmarshalJSON(data []byte) (err error) {
-	varSubscriptionTierPrice := _SubscriptionTierPrice{}
-
-	err = json.Unmarshal(data, &varSubscriptionTierPrice)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SubscriptionTierPrice(varSubscriptionTierPrice)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "period_duration_seconds")
-		delete(additionalProperties, "tokens_per_period")
-		delete(additionalProperties, "initial_mint_price")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSubscriptionTierPrice struct {

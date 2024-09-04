@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsInteractionsPerCast type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractionsPerCast{}
 
 // FrameValidateAnalyticsInteractionsPerCast struct for FrameValidateAnalyticsInteractionsPerCast
 type FrameValidateAnalyticsInteractionsPerCast struct {
-	InteractionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner `json:"interactions_per_cast"`
-	AdditionalProperties map[string]interface{}
+	InteractionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner `json:"interactions_per_cast,omitempty"`
 }
-
-type _FrameValidateAnalyticsInteractionsPerCast FrameValidateAnalyticsInteractionsPerCast
 
 // NewFrameValidateAnalyticsInteractionsPerCast instantiates a new FrameValidateAnalyticsInteractionsPerCast object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsInteractionsPerCast(interactionsPerCast []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) *FrameValidateAnalyticsInteractionsPerCast {
+func NewFrameValidateAnalyticsInteractionsPerCast() *FrameValidateAnalyticsInteractionsPerCast {
 	this := FrameValidateAnalyticsInteractionsPerCast{}
-	this.InteractionsPerCast = interactionsPerCast
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewFrameValidateAnalyticsInteractionsPerCastWithDefaults() *FrameValidateAn
 	return &this
 }
 
-// GetInteractionsPerCast returns the InteractionsPerCast field value
+// GetInteractionsPerCast returns the InteractionsPerCast field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInteractionsPerCast) GetInteractionsPerCast() []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionsPerCast) {
 		var ret []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 		return ret
 	}
-
 	return o.InteractionsPerCast
 }
 
-// GetInteractionsPerCastOk returns a tuple with the InteractionsPerCast field value
+// GetInteractionsPerCastOk returns a tuple with the InteractionsPerCast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInteractionsPerCast) GetInteractionsPerCastOk() ([]FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InteractionsPerCast) {
 		return nil, false
 	}
 	return o.InteractionsPerCast, true
 }
 
-// SetInteractionsPerCast sets field value
+// HasInteractionsPerCast returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInteractionsPerCast) HasInteractionsPerCast() bool {
+	if o != nil && !IsNil(o.InteractionsPerCast) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractionsPerCast gets a reference to the given []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner and assigns it to the InteractionsPerCast field.
 func (o *FrameValidateAnalyticsInteractionsPerCast) SetInteractionsPerCast(v []FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) {
 	o.InteractionsPerCast = v
 }
@@ -78,55 +81,10 @@ func (o FrameValidateAnalyticsInteractionsPerCast) MarshalJSON() ([]byte, error)
 
 func (o FrameValidateAnalyticsInteractionsPerCast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["interactions_per_cast"] = o.InteractionsPerCast
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.InteractionsPerCast) {
+		toSerialize["interactions_per_cast"] = o.InteractionsPerCast
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsInteractionsPerCast) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"interactions_per_cast",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsInteractionsPerCast := _FrameValidateAnalyticsInteractionsPerCast{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsInteractionsPerCast)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsInteractionsPerCast(varFrameValidateAnalyticsInteractionsPerCast)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "interactions_per_cast")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsInteractionsPerCast struct {

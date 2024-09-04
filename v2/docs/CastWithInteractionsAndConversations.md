@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**ParentHash** | **NullableString** |  | 
-**ParentUrl** | **NullableString** |  | 
-**RootParentUrl** | **NullableString** |  | 
-**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
-**Author** | [**User**](User.md) |  | 
-**Text** | **string** |  | 
-**Timestamp** | **time.Time** |  | 
-**Embeds** | [**[]EmbeddedCast**](EmbeddedCast.md) |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**ParentHash** | Pointer to **NullableString** |  | [optional] 
+**ParentUrl** | Pointer to **NullableString** |  | [optional] 
+**RootParentUrl** | Pointer to **NullableString** |  | [optional] 
+**ParentAuthor** | Pointer to [**CastParentAuthor**](CastParentAuthor.md) |  | [optional] 
+**Author** | Pointer to [**User**](User.md) |  | [optional] 
+**Text** | Pointer to **string** |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**Embeds** | Pointer to [**[]EmbeddedCast**](EmbeddedCast.md) |  | [optional] 
 **Type** | Pointer to [**CastNotificationType**](CastNotificationType.md) |  | [optional] 
 **Frames** | Pointer to [**[]Frame**](Frame.md) |  | [optional] 
-**Reactions** | [**CastWithInteractionsReactions**](CastWithInteractionsReactions.md) |  | 
-**Replies** | [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | 
-**ThreadHash** | **NullableString** |  | 
-**MentionedProfiles** | [**[]User**](User.md) |  | 
-**Channel** | [**ChannelOrDehydratedChannel**](ChannelOrDehydratedChannel.md) |  | 
+**Reactions** | Pointer to [**CastWithInteractionsReactions**](CastWithInteractionsReactions.md) |  | [optional] 
+**Replies** | Pointer to [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | [optional] 
+**ThreadHash** | Pointer to **NullableString** |  | [optional] 
+**MentionedProfiles** | Pointer to [**[]User**](User.md) |  | [optional] 
+**Channel** | Pointer to [**ChannelOrDehydratedChannel**](ChannelOrDehydratedChannel.md) |  | [optional] 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
-**DirectReplies** | [**[]CastWithInteractionsAndConversations**](CastWithInteractionsAndConversations.md) | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | 
+**DirectReplies** | Pointer to [**[]CastWithInteractionsAndConversations**](CastWithInteractionsAndConversations.md) | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | [optional] 
 
 ## Methods
 
 ### NewCastWithInteractionsAndConversations
 
-`func NewCastWithInteractionsAndConversations(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []EmbeddedCast, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, channel ChannelOrDehydratedChannel, directReplies []CastWithInteractionsAndConversations, ) *CastWithInteractionsAndConversations`
+`func NewCastWithInteractionsAndConversations() *CastWithInteractionsAndConversations`
 
 NewCastWithInteractionsAndConversations instantiates a new CastWithInteractionsAndConversations object
 This constructor will assign default values to properties that have it defined,
@@ -61,6 +61,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *CastWithInteractionsAndConversations) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetParentHash
 
@@ -81,6 +86,11 @@ and a boolean to check if the value has been set.
 
 SetParentHash sets ParentHash field to given value.
 
+### HasParentHash
+
+`func (o *CastWithInteractionsAndConversations) HasParentHash() bool`
+
+HasParentHash returns a boolean if a field has been set.
 
 ### SetParentHashNil
 
@@ -111,6 +121,11 @@ and a boolean to check if the value has been set.
 
 SetParentUrl sets ParentUrl field to given value.
 
+### HasParentUrl
+
+`func (o *CastWithInteractionsAndConversations) HasParentUrl() bool`
+
+HasParentUrl returns a boolean if a field has been set.
 
 ### SetParentUrlNil
 
@@ -141,6 +156,11 @@ and a boolean to check if the value has been set.
 
 SetRootParentUrl sets RootParentUrl field to given value.
 
+### HasRootParentUrl
+
+`func (o *CastWithInteractionsAndConversations) HasRootParentUrl() bool`
+
+HasRootParentUrl returns a boolean if a field has been set.
 
 ### SetRootParentUrlNil
 
@@ -171,6 +191,11 @@ and a boolean to check if the value has been set.
 
 SetParentAuthor sets ParentAuthor field to given value.
 
+### HasParentAuthor
+
+`func (o *CastWithInteractionsAndConversations) HasParentAuthor() bool`
+
+HasParentAuthor returns a boolean if a field has been set.
 
 ### GetAuthor
 
@@ -191,6 +216,11 @@ and a boolean to check if the value has been set.
 
 SetAuthor sets Author field to given value.
 
+### HasAuthor
+
+`func (o *CastWithInteractionsAndConversations) HasAuthor() bool`
+
+HasAuthor returns a boolean if a field has been set.
 
 ### GetText
 
@@ -211,6 +241,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *CastWithInteractionsAndConversations) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -231,6 +266,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *CastWithInteractionsAndConversations) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetEmbeds
 
@@ -251,6 +291,11 @@ and a boolean to check if the value has been set.
 
 SetEmbeds sets Embeds field to given value.
 
+### HasEmbeds
+
+`func (o *CastWithInteractionsAndConversations) HasEmbeds() bool`
+
+HasEmbeds returns a boolean if a field has been set.
 
 ### GetType
 
@@ -321,6 +366,11 @@ and a boolean to check if the value has been set.
 
 SetReactions sets Reactions field to given value.
 
+### HasReactions
+
+`func (o *CastWithInteractionsAndConversations) HasReactions() bool`
+
+HasReactions returns a boolean if a field has been set.
 
 ### GetReplies
 
@@ -341,6 +391,11 @@ and a boolean to check if the value has been set.
 
 SetReplies sets Replies field to given value.
 
+### HasReplies
+
+`func (o *CastWithInteractionsAndConversations) HasReplies() bool`
+
+HasReplies returns a boolean if a field has been set.
 
 ### GetThreadHash
 
@@ -361,6 +416,11 @@ and a boolean to check if the value has been set.
 
 SetThreadHash sets ThreadHash field to given value.
 
+### HasThreadHash
+
+`func (o *CastWithInteractionsAndConversations) HasThreadHash() bool`
+
+HasThreadHash returns a boolean if a field has been set.
 
 ### SetThreadHashNil
 
@@ -391,6 +451,11 @@ and a boolean to check if the value has been set.
 
 SetMentionedProfiles sets MentionedProfiles field to given value.
 
+### HasMentionedProfiles
+
+`func (o *CastWithInteractionsAndConversations) HasMentionedProfiles() bool`
+
+HasMentionedProfiles returns a boolean if a field has been set.
 
 ### GetChannel
 
@@ -411,6 +476,11 @@ and a boolean to check if the value has been set.
 
 SetChannel sets Channel field to given value.
 
+### HasChannel
+
+`func (o *CastWithInteractionsAndConversations) HasChannel() bool`
+
+HasChannel returns a boolean if a field has been set.
 
 ### GetViewerContext
 
@@ -456,6 +526,11 @@ and a boolean to check if the value has been set.
 
 SetDirectReplies sets DirectReplies field to given value.
 
+### HasDirectReplies
+
+`func (o *CastWithInteractionsAndConversations) HasDirectReplies() bool`
+
+HasDirectReplies returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

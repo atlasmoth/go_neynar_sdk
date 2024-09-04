@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameFromUrl200Response type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameFromUrl200Response{}
 
 // FrameFromUrl200Response The frame object containing the meta tags
 type FrameFromUrl200Response struct {
-	Frame Frame `json:"frame"`
-	AdditionalProperties map[string]interface{}
+	Frame *Frame `json:"frame,omitempty"`
 }
-
-type _FrameFromUrl200Response FrameFromUrl200Response
 
 // NewFrameFromUrl200Response instantiates a new FrameFromUrl200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameFromUrl200Response(frame Frame) *FrameFromUrl200Response {
+func NewFrameFromUrl200Response() *FrameFromUrl200Response {
 	this := FrameFromUrl200Response{}
-	this.Frame = frame
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewFrameFromUrl200ResponseWithDefaults() *FrameFromUrl200Response {
 	return &this
 }
 
-// GetFrame returns the Frame field value
+// GetFrame returns the Frame field value if set, zero value otherwise.
 func (o *FrameFromUrl200Response) GetFrame() Frame {
-	if o == nil {
+	if o == nil || IsNil(o.Frame) {
 		var ret Frame
 		return ret
 	}
-
-	return o.Frame
+	return *o.Frame
 }
 
-// GetFrameOk returns a tuple with the Frame field value
+// GetFrameOk returns a tuple with the Frame field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameFromUrl200Response) GetFrameOk() (*Frame, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Frame) {
 		return nil, false
 	}
-	return &o.Frame, true
+	return o.Frame, true
 }
 
-// SetFrame sets field value
+// HasFrame returns a boolean if a field has been set.
+func (o *FrameFromUrl200Response) HasFrame() bool {
+	if o != nil && !IsNil(o.Frame) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrame gets a reference to the given Frame and assigns it to the Frame field.
 func (o *FrameFromUrl200Response) SetFrame(v Frame) {
-	o.Frame = v
+	o.Frame = &v
 }
 
 func (o FrameFromUrl200Response) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o FrameFromUrl200Response) MarshalJSON() ([]byte, error) {
 
 func (o FrameFromUrl200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["frame"] = o.Frame
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Frame) {
+		toSerialize["frame"] = o.Frame
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameFromUrl200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"frame",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameFromUrl200Response := _FrameFromUrl200Response{}
-
-	err = json.Unmarshal(data, &varFrameFromUrl200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameFromUrl200Response(varFrameFromUrl200Response)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "frame")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameFromUrl200Response struct {

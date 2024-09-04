@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**HashScheme** | [**HashScheme**](HashScheme.md) |  | [default to HASHSCHEME_HASH_SCHEME_BLAKE3]
-**Signature** | **string** |  | 
-**SignatureScheme** | [**SignatureScheme**](SignatureScheme.md) |  | [default to SIGNATURESCHEME_ED25519]
-**Signer** | **string** |  | 
-**Data** | [**VerificationRemoveAllOfData**](VerificationRemoveAllOfData.md) |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**HashScheme** | Pointer to [**HashScheme**](HashScheme.md) |  | [optional] [default to HASHSCHEME_HASH_SCHEME_BLAKE3]
+**Signature** | Pointer to **string** |  | [optional] 
+**SignatureScheme** | Pointer to [**SignatureScheme**](SignatureScheme.md) |  | [optional] [default to SIGNATURESCHEME_ED25519]
+**Signer** | Pointer to **string** |  | [optional] 
+**Data** | Pointer to [**VerificationRemoveAllOfData**](VerificationRemoveAllOfData.md) |  | [optional] 
 
 ## Methods
 
 ### NewVerificationRemove
 
-`func NewVerificationRemove(hash string, hashScheme HashScheme, signature string, signatureScheme SignatureScheme, signer string, data VerificationRemoveAllOfData, ) *VerificationRemove`
+`func NewVerificationRemove() *VerificationRemove`
 
 NewVerificationRemove instantiates a new VerificationRemove object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *VerificationRemove) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetHashScheme
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetHashScheme sets HashScheme field to given value.
 
+### HasHashScheme
+
+`func (o *VerificationRemove) HasHashScheme() bool`
+
+HasHashScheme returns a boolean if a field has been set.
 
 ### GetSignature
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetSignature sets Signature field to given value.
 
+### HasSignature
+
+`func (o *VerificationRemove) HasSignature() bool`
+
+HasSignature returns a boolean if a field has been set.
 
 ### GetSignatureScheme
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetSignatureScheme sets SignatureScheme field to given value.
 
+### HasSignatureScheme
+
+`func (o *VerificationRemove) HasSignatureScheme() bool`
+
+HasSignatureScheme returns a boolean if a field has been set.
 
 ### GetSigner
 
@@ -129,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetSigner sets Signer field to given value.
 
+### HasSigner
+
+`func (o *VerificationRemove) HasSigner() bool`
+
+HasSigner returns a boolean if a field has been set.
 
 ### GetData
 
@@ -149,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
+### HasData
+
+`func (o *VerificationRemove) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EmbedsDeprecated** | **[]string** |  | 
-**Mentions** | **[]int32** |  | 
+**EmbedsDeprecated** | Pointer to **[]string** |  | [optional] 
+**Mentions** | Pointer to **[]int32** |  | [optional] 
 **ParentCastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 **ParentUrl** | Pointer to **string** |  | [optional] 
-**Text** | **string** |  | 
-**MentionsPositions** | **[]int64** |  | 
-**Embeds** | [**[]Embed**](Embed.md) |  | 
+**Text** | Pointer to **string** |  | [optional] 
+**MentionsPositions** | Pointer to **[]int64** |  | [optional] 
+**Embeds** | Pointer to [**[]Embed**](Embed.md) |  | [optional] 
 
 ## Methods
 
 ### NewCastAddBody
 
-`func NewCastAddBody(embedsDeprecated []string, mentions []int32, text string, mentionsPositions []int64, embeds []Embed, ) *CastAddBody`
+`func NewCastAddBody() *CastAddBody`
 
 NewCastAddBody instantiates a new CastAddBody object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetEmbedsDeprecated sets EmbedsDeprecated field to given value.
 
+### HasEmbedsDeprecated
+
+`func (o *CastAddBody) HasEmbedsDeprecated() bool`
+
+HasEmbedsDeprecated returns a boolean if a field has been set.
 
 ### GetMentions
 
@@ -70,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetMentions sets Mentions field to given value.
 
+### HasMentions
+
+`func (o *CastAddBody) HasMentions() bool`
+
+HasMentions returns a boolean if a field has been set.
 
 ### GetParentCastId
 
@@ -140,6 +150,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *CastAddBody) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetMentionsPositions
 
@@ -160,6 +175,11 @@ and a boolean to check if the value has been set.
 
 SetMentionsPositions sets MentionsPositions field to given value.
 
+### HasMentionsPositions
+
+`func (o *CastAddBody) HasMentionsPositions() bool`
+
+HasMentionsPositions returns a boolean if a field has been set.
 
 ### GetEmbeds
 
@@ -180,6 +200,11 @@ and a boolean to check if the value has been set.
 
 SetEmbeds sets Embeds field to given value.
 
+### HasEmbeds
+
+`func (o *CastAddBody) HasEmbeds() bool`
+
+HasEmbeds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

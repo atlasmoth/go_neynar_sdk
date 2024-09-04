@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**Status** | **bool** |  | 
-**ExpiresAt** | **NullableInt64** |  | 
-**SubscribedAt** | **NullableInt64** |  | 
-**Tier** | [**SubscriptionTier**](SubscriptionTier.md) |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **bool** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableInt64** |  | [optional] 
+**SubscribedAt** | Pointer to **NullableInt64** |  | [optional] 
+**Tier** | Pointer to [**SubscriptionTier**](SubscriptionTier.md) |  | [optional] 
 
 ## Methods
 
 ### NewSubscriptionStatus
 
-`func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionTier, ) *SubscriptionStatus`
+`func NewSubscriptionStatus() *SubscriptionStatus`
 
 NewSubscriptionStatus instantiates a new SubscriptionStatus object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *SubscriptionStatus) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *SubscriptionStatus) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetExpiresAt sets ExpiresAt field to given value.
 
+### HasExpiresAt
+
+`func (o *SubscriptionStatus) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### SetExpiresAtNil
 
@@ -118,6 +133,11 @@ and a boolean to check if the value has been set.
 
 SetSubscribedAt sets SubscribedAt field to given value.
 
+### HasSubscribedAt
+
+`func (o *SubscriptionStatus) HasSubscribedAt() bool`
+
+HasSubscribedAt returns a boolean if a field has been set.
 
 ### SetSubscribedAtNil
 
@@ -148,6 +168,11 @@ and a boolean to check if the value has been set.
 
 SetTier sets Tier field to given value.
 
+### HasTier
+
+`func (o *SubscriptionStatus) HasTier() bool`
+
+HasTier returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

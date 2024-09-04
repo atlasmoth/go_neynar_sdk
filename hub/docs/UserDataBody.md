@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**UserDataType**](UserDataType.md) |  | [default to USERDATATYPE_PFP]
-**Value** | **string** |  | 
+**Type** | Pointer to [**UserDataType**](UserDataType.md) |  | [optional] [default to USERDATATYPE_PFP]
+**Value** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewUserDataBody
 
-`func NewUserDataBody(type_ UserDataType, value string, ) *UserDataBody`
+`func NewUserDataBody() *UserDataBody`
 
 NewUserDataBody instantiates a new UserDataBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *UserDataBody) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetValue
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
+### HasValue
+
+`func (o *UserDataBody) HasValue() bool`
+
+HasValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** | Unique identifier for the frame. | 
-**Name** | **string** | Name of the frame. | 
-**Link** | **string** | Generated link for the frame&#39;s first page. | 
-**Pages** | [**[]NeynarFramePage**](NeynarFramePage.md) |  | 
+**Uuid** | Pointer to **string** | Unique identifier for the frame. | [optional] 
+**Name** | Pointer to **string** | Name of the frame. | [optional] 
+**Link** | Pointer to **string** | Generated link for the frame&#39;s first page. | [optional] 
+**Pages** | Pointer to [**[]NeynarFramePage**](NeynarFramePage.md) |  | [optional] 
 **Valid** | Pointer to **bool** | Indicates if the frame is valid. | [optional] 
 
 ## Methods
 
 ### NewNeynarFrame
 
-`func NewNeynarFrame(uuid string, name string, link string, pages []NeynarFramePage, ) *NeynarFrame`
+`func NewNeynarFrame() *NeynarFrame`
 
 NewNeynarFrame instantiates a new NeynarFrame object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
+### HasUuid
+
+`func (o *NeynarFrame) HasUuid() bool`
+
+HasUuid returns a boolean if a field has been set.
 
 ### GetName
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *NeynarFrame) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetLink
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetLink sets Link field to given value.
 
+### HasLink
+
+`func (o *NeynarFrame) HasLink() bool`
+
+HasLink returns a boolean if a field has been set.
 
 ### GetPages
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetPages sets Pages field to given value.
 
+### HasPages
+
+`func (o *NeynarFrame) HasPages() bool`
+
+HasPages returns a boolean if a field has been set.
 
 ### GetValid
 

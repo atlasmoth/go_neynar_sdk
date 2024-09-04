@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** | The URL of the page&#39;s image. | 
-**AspectRatio** | **string** | The aspect ratio of the image. | 
+**Url** | Pointer to **string** | The URL of the page&#39;s image. | [optional] 
+**AspectRatio** | Pointer to **string** | The aspect ratio of the image. | [optional] 
 
 ## Methods
 
 ### NewNeynarPageImage
 
-`func NewNeynarPageImage(url string, aspectRatio string, ) *NeynarPageImage`
+`func NewNeynarPageImage() *NeynarPageImage`
 
 NewNeynarPageImage instantiates a new NeynarPageImage object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *NeynarPageImage) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetAspectRatio
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAspectRatio sets AspectRatio field to given value.
 
+### HasAspectRatio
+
+`func (o *NeynarPageImage) HasAspectRatio() bool`
+
+HasAspectRatio returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

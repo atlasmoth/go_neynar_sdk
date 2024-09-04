@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | 
-**Username** | **string** |  | 
-**InputText** | **string** |  | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**InputText** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInputTextInputTextsInner
 
-`func NewFrameValidateAnalyticsInputTextInputTextsInner(fid int32, username string, inputText string, ) *FrameValidateAnalyticsInputTextInputTextsInner`
+`func NewFrameValidateAnalyticsInputTextInputTextsInner() *FrameValidateAnalyticsInputTextInputTextsInner`
 
 NewFrameValidateAnalyticsInputTextInputTextsInner instantiates a new FrameValidateAnalyticsInputTextInputTextsInner object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *FrameValidateAnalyticsInputTextInputTextsInner) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *FrameValidateAnalyticsInputTextInputTextsInner) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetInputText
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetInputText sets InputText field to given value.
 
+### HasInputText
+
+`func (o *FrameValidateAnalyticsInputTextInputTextsInner) HasInputText() bool`
+
+HasInputText returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WebhookId** | **string** |  | 
-**Active** | **string** |  | 
+**WebhookId** | Pointer to **string** |  | [optional] 
+**Active** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewWebhookPatchReqBody
 
-`func NewWebhookPatchReqBody(webhookId string, active string, ) *WebhookPatchReqBody`
+`func NewWebhookPatchReqBody() *WebhookPatchReqBody`
 
 NewWebhookPatchReqBody instantiates a new WebhookPatchReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetWebhookId sets WebhookId field to given value.
 
+### HasWebhookId
+
+`func (o *WebhookPatchReqBody) HasWebhookId() bool`
+
+HasWebhookId returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetActive sets Active field to given value.
 
+### HasActive
+
+`func (o *WebhookPatchReqBody) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

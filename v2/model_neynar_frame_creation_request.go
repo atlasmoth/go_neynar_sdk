@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarFrameCreationRequest type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,16 @@ var _ MappedNullable = &NeynarFrameCreationRequest{}
 // NeynarFrameCreationRequest struct for NeynarFrameCreationRequest
 type NeynarFrameCreationRequest struct {
 	// The name of the frame.
-	Name string `json:"name"`
-	Pages []NeynarFramePage `json:"pages"`
-	AdditionalProperties map[string]interface{}
+	Name *string `json:"name,omitempty"`
+	Pages []NeynarFramePage `json:"pages,omitempty"`
 }
-
-type _NeynarFrameCreationRequest NeynarFrameCreationRequest
 
 // NewNeynarFrameCreationRequest instantiates a new NeynarFrameCreationRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarFrameCreationRequest(name string, pages []NeynarFramePage) *NeynarFrameCreationRequest {
+func NewNeynarFrameCreationRequest() *NeynarFrameCreationRequest {
 	this := NeynarFrameCreationRequest{}
-	this.Name = name
-	this.Pages = pages
 	return &this
 }
 
@@ -47,50 +41,66 @@ func NewNeynarFrameCreationRequestWithDefaults() *NeynarFrameCreationRequest {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *NeynarFrameCreationRequest) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFrameCreationRequest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *NeynarFrameCreationRequest) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *NeynarFrameCreationRequest) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetPages returns the Pages field value
+// GetPages returns the Pages field value if set, zero value otherwise.
 func (o *NeynarFrameCreationRequest) GetPages() []NeynarFramePage {
-	if o == nil {
+	if o == nil || IsNil(o.Pages) {
 		var ret []NeynarFramePage
 		return ret
 	}
-
 	return o.Pages
 }
 
-// GetPagesOk returns a tuple with the Pages field value
+// GetPagesOk returns a tuple with the Pages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFrameCreationRequest) GetPagesOk() ([]NeynarFramePage, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Pages) {
 		return nil, false
 	}
 	return o.Pages, true
 }
 
-// SetPages sets field value
+// HasPages returns a boolean if a field has been set.
+func (o *NeynarFrameCreationRequest) HasPages() bool {
+	if o != nil && !IsNil(o.Pages) {
+		return true
+	}
+
+	return false
+}
+
+// SetPages gets a reference to the given []NeynarFramePage and assigns it to the Pages field.
 func (o *NeynarFrameCreationRequest) SetPages(v []NeynarFramePage) {
 	o.Pages = v
 }
@@ -105,58 +115,13 @@ func (o NeynarFrameCreationRequest) MarshalJSON() ([]byte, error) {
 
 func (o NeynarFrameCreationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["pages"] = o.Pages
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-
+	if !IsNil(o.Pages) {
+		toSerialize["pages"] = o.Pages
+	}
 	return toSerialize, nil
-}
-
-func (o *NeynarFrameCreationRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"pages",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarFrameCreationRequest := _NeynarFrameCreationRequest{}
-
-	err = json.Unmarshal(data, &varNeynarFrameCreationRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarFrameCreationRequest(varNeynarFrameCreationRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "pages")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarFrameCreationRequest struct {

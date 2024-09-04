@@ -78,14 +78,10 @@ func (a *HubEventsAPIService) GetEventByIdExecute(r ApiGetEventByIdRequest) (*Hu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.eventId == nil {
-		return localVarReturnValue, nil, reportError("eventId is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "event_id", r.eventId, "form", "")
+	if r.eventId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "event_id", r.eventId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -103,7 +99,9 @@ func (a *HubEventsAPIService) GetEventByIdExecute(r ApiGetEventByIdRequest) (*Hu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -162,7 +160,7 @@ func (r ApiListEventsRequest) ApiKey(apiKey string) ApiListEventsRequest {
 	return r
 }
 
-// An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event
+// An optional Hub Id to start getting events from.  This is also returned from the API as nextPageEventId, which  can be used to page through all the Hub events. Set it to 0  to start from the first event
 func (r ApiListEventsRequest) FromEventId(fromEventId int32) ApiListEventsRequest {
 	r.fromEventId = &fromEventId
 	return r
@@ -205,9 +203,6 @@ func (a *HubEventsAPIService) ListEventsExecute(r ApiListEventsRequest) (*ListEv
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
 
 	if r.fromEventId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "from_event_id", r.fromEventId, "form", "")
@@ -229,7 +224,9 @@ func (a *HubEventsAPIService) ListEventsExecute(r ApiListEventsRequest) (*ListEv
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

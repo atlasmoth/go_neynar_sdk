@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionWithCastMeta type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,17 @@ var _ MappedNullable = &ReactionWithCastMeta{}
 
 // ReactionWithCastMeta Reaction of a user (either like or recast), along with its associated cast
 type ReactionWithCastMeta struct {
-	Reaction ReactionWithCastMetaReaction `json:"reaction"`
+	Reaction *ReactionWithCastMetaReaction `json:"reaction,omitempty"`
 	Cast *ReactionWithCastMetaCast `json:"cast,omitempty"`
 	CastAuthor *User `json:"cast_author,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ReactionWithCastMeta ReactionWithCastMeta
 
 // NewReactionWithCastMeta instantiates a new ReactionWithCastMeta object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionWithCastMeta(reaction ReactionWithCastMetaReaction) *ReactionWithCastMeta {
+func NewReactionWithCastMeta() *ReactionWithCastMeta {
 	this := ReactionWithCastMeta{}
-	this.Reaction = reaction
 	return &this
 }
 
@@ -46,28 +41,36 @@ func NewReactionWithCastMetaWithDefaults() *ReactionWithCastMeta {
 	return &this
 }
 
-// GetReaction returns the Reaction field value
+// GetReaction returns the Reaction field value if set, zero value otherwise.
 func (o *ReactionWithCastMeta) GetReaction() ReactionWithCastMetaReaction {
-	if o == nil {
+	if o == nil || IsNil(o.Reaction) {
 		var ret ReactionWithCastMetaReaction
 		return ret
 	}
-
-	return o.Reaction
+	return *o.Reaction
 }
 
-// GetReactionOk returns a tuple with the Reaction field value
+// GetReactionOk returns a tuple with the Reaction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithCastMeta) GetReactionOk() (*ReactionWithCastMetaReaction, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Reaction) {
 		return nil, false
 	}
-	return &o.Reaction, true
+	return o.Reaction, true
 }
 
-// SetReaction sets field value
+// HasReaction returns a boolean if a field has been set.
+func (o *ReactionWithCastMeta) HasReaction() bool {
+	if o != nil && !IsNil(o.Reaction) {
+		return true
+	}
+
+	return false
+}
+
+// SetReaction gets a reference to the given ReactionWithCastMetaReaction and assigns it to the Reaction field.
 func (o *ReactionWithCastMeta) SetReaction(v ReactionWithCastMetaReaction) {
-	o.Reaction = v
+	o.Reaction = &v
 }
 
 // GetCast returns the Cast field value if set, zero value otherwise.
@@ -144,63 +147,16 @@ func (o ReactionWithCastMeta) MarshalJSON() ([]byte, error) {
 
 func (o ReactionWithCastMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["reaction"] = o.Reaction
+	if !IsNil(o.Reaction) {
+		toSerialize["reaction"] = o.Reaction
+	}
 	if !IsNil(o.Cast) {
 		toSerialize["cast"] = o.Cast
 	}
 	if !IsNil(o.CastAuthor) {
 		toSerialize["cast_author"] = o.CastAuthor
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ReactionWithCastMeta) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"reaction",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionWithCastMeta := _ReactionWithCastMeta{}
-
-	err = json.Unmarshal(data, &varReactionWithCastMeta)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionWithCastMeta(varReactionWithCastMeta)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reaction")
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "cast_author")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionWithCastMeta struct {

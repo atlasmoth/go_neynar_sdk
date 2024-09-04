@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarNextFramePageRedirect type satisfies the MappedNullable interface at compile time
@@ -21,19 +20,15 @@ var _ MappedNullable = &NeynarNextFramePageRedirect{}
 // NeynarNextFramePageRedirect struct for NeynarNextFramePageRedirect
 type NeynarNextFramePageRedirect struct {
 	// The URL to redirect to.
-	RedirectUrl string `json:"redirect_url"`
-	AdditionalProperties map[string]interface{}
+	RedirectUrl *string `json:"redirect_url,omitempty"`
 }
-
-type _NeynarNextFramePageRedirect NeynarNextFramePageRedirect
 
 // NewNeynarNextFramePageRedirect instantiates a new NeynarNextFramePageRedirect object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarNextFramePageRedirect(redirectUrl string) *NeynarNextFramePageRedirect {
+func NewNeynarNextFramePageRedirect() *NeynarNextFramePageRedirect {
 	this := NeynarNextFramePageRedirect{}
-	this.RedirectUrl = redirectUrl
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewNeynarNextFramePageRedirectWithDefaults() *NeynarNextFramePageRedirect {
 	return &this
 }
 
-// GetRedirectUrl returns the RedirectUrl field value
+// GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *NeynarNextFramePageRedirect) GetRedirectUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.RedirectUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.RedirectUrl
+	return *o.RedirectUrl
 }
 
-// GetRedirectUrlOk returns a tuple with the RedirectUrl field value
+// GetRedirectUrlOk returns a tuple with the RedirectUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarNextFramePageRedirect) GetRedirectUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RedirectUrl) {
 		return nil, false
 	}
-	return &o.RedirectUrl, true
+	return o.RedirectUrl, true
 }
 
-// SetRedirectUrl sets field value
+// HasRedirectUrl returns a boolean if a field has been set.
+func (o *NeynarNextFramePageRedirect) HasRedirectUrl() bool {
+	if o != nil && !IsNil(o.RedirectUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetRedirectUrl gets a reference to the given string and assigns it to the RedirectUrl field.
 func (o *NeynarNextFramePageRedirect) SetRedirectUrl(v string) {
-	o.RedirectUrl = v
+	o.RedirectUrl = &v
 }
 
 func (o NeynarNextFramePageRedirect) MarshalJSON() ([]byte, error) {
@@ -79,55 +82,10 @@ func (o NeynarNextFramePageRedirect) MarshalJSON() ([]byte, error) {
 
 func (o NeynarNextFramePageRedirect) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["redirect_url"] = o.RedirectUrl
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.RedirectUrl) {
+		toSerialize["redirect_url"] = o.RedirectUrl
 	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarNextFramePageRedirect) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"redirect_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarNextFramePageRedirect := _NeynarNextFramePageRedirect{}
-
-	err = json.Unmarshal(data, &varNeynarNextFramePageRedirect)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarNextFramePageRedirect(varNeynarNextFramePageRedirect)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "redirect_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarNextFramePageRedirect struct {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**Code** | **string** |  | 
-**Errors** | [**[]ZodErrorErrorsInner**](ZodErrorErrorsInner.md) |  | 
+**Message** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **string** |  | [optional] 
+**Errors** | Pointer to [**[]ZodErrorErrorsInner**](ZodErrorErrorsInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewZodError
 
-`func NewZodError(message string, code string, errors []ZodErrorErrorsInner, ) *ZodError`
+`func NewZodError() *ZodError`
 
 NewZodError instantiates a new ZodError object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *ZodError) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
+
+`func (o *ZodError) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 ### GetErrors
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetErrors sets Errors field to given value.
 
+### HasErrors
+
+`func (o *ZodError) HasErrors() bool`
+
+HasErrors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ImageObject type satisfies the MappedNullable interface at compile time
@@ -22,21 +21,17 @@ var _ MappedNullable = &ImageObject{}
 type ImageObject struct {
 	Height *int32 `json:"height,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	Width *int32 `json:"width,omitempty"`
 	Alt *string `json:"alt,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ImageObject ImageObject
 
 // NewImageObject instantiates a new ImageObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImageObject(url string) *ImageObject {
+func NewImageObject() *ImageObject {
 	this := ImageObject{}
-	this.Url = url
 	return &this
 }
 
@@ -112,28 +107,36 @@ func (o *ImageObject) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ImageObject) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ImageObject) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *ImageObject) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *ImageObject) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 // GetWidth returns the Width field value if set, zero value otherwise.
@@ -216,65 +219,16 @@ func (o ImageObject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
 	}
 	if !IsNil(o.Alt) {
 		toSerialize["alt"] = o.Alt
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ImageObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varImageObject := _ImageObject{}
-
-	err = json.Unmarshal(data, &varImageObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ImageObject(varImageObject)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "height")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "url")
-		delete(additionalProperties, "width")
-		delete(additionalProperties, "alt")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableImageObject struct {

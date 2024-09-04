@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsInputText type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameValidateAnalyticsInputText{}
 
 // FrameValidateAnalyticsInputText struct for FrameValidateAnalyticsInputText
 type FrameValidateAnalyticsInputText struct {
-	InputTexts []FrameValidateAnalyticsInputTextInputTextsInner `json:"input_texts"`
-	AdditionalProperties map[string]interface{}
+	InputTexts []FrameValidateAnalyticsInputTextInputTextsInner `json:"input_texts,omitempty"`
 }
-
-type _FrameValidateAnalyticsInputText FrameValidateAnalyticsInputText
 
 // NewFrameValidateAnalyticsInputText instantiates a new FrameValidateAnalyticsInputText object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsInputText(inputTexts []FrameValidateAnalyticsInputTextInputTextsInner) *FrameValidateAnalyticsInputText {
+func NewFrameValidateAnalyticsInputText() *FrameValidateAnalyticsInputText {
 	this := FrameValidateAnalyticsInputText{}
-	this.InputTexts = inputTexts
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewFrameValidateAnalyticsInputTextWithDefaults() *FrameValidateAnalyticsInp
 	return &this
 }
 
-// GetInputTexts returns the InputTexts field value
+// GetInputTexts returns the InputTexts field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsInputText) GetInputTexts() []FrameValidateAnalyticsInputTextInputTextsInner {
-	if o == nil {
+	if o == nil || IsNil(o.InputTexts) {
 		var ret []FrameValidateAnalyticsInputTextInputTextsInner
 		return ret
 	}
-
 	return o.InputTexts
 }
 
-// GetInputTextsOk returns a tuple with the InputTexts field value
+// GetInputTextsOk returns a tuple with the InputTexts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsInputText) GetInputTextsOk() ([]FrameValidateAnalyticsInputTextInputTextsInner, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InputTexts) {
 		return nil, false
 	}
 	return o.InputTexts, true
 }
 
-// SetInputTexts sets field value
+// HasInputTexts returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsInputText) HasInputTexts() bool {
+	if o != nil && !IsNil(o.InputTexts) {
+		return true
+	}
+
+	return false
+}
+
+// SetInputTexts gets a reference to the given []FrameValidateAnalyticsInputTextInputTextsInner and assigns it to the InputTexts field.
 func (o *FrameValidateAnalyticsInputText) SetInputTexts(v []FrameValidateAnalyticsInputTextInputTextsInner) {
 	o.InputTexts = v
 }
@@ -78,55 +81,10 @@ func (o FrameValidateAnalyticsInputText) MarshalJSON() ([]byte, error) {
 
 func (o FrameValidateAnalyticsInputText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["input_texts"] = o.InputTexts
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.InputTexts) {
+		toSerialize["input_texts"] = o.InputTexts
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsInputText) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"input_texts",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsInputText := _FrameValidateAnalyticsInputText{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsInputText)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsInputText(varFrameValidateAnalyticsInputText)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "input_texts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsInputText struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubInfoResponse type satisfies the MappedNullable interface at compile time
@@ -20,30 +19,21 @@ var _ MappedNullable = &HubInfoResponse{}
 
 // HubInfoResponse struct for HubInfoResponse
 type HubInfoResponse struct {
-	Version string `json:"version"`
-	IsSyncing bool `json:"isSyncing"`
-	Nickname string `json:"nickname"`
-	RootHash string `json:"rootHash"`
+	Version *string `json:"version,omitempty"`
+	IsSyncing *bool `json:"isSyncing,omitempty"`
+	Nickname *string `json:"nickname,omitempty"`
+	RootHash *string `json:"rootHash,omitempty"`
 	DbStats *DbStats `json:"dbStats,omitempty"`
-	PeerId string `json:"peerId"`
-	HubOperatorFid int32 `json:"hubOperatorFid"`
-	AdditionalProperties map[string]interface{}
+	PeerId *string `json:"peerId,omitempty"`
+	HubOperatorFid *int32 `json:"hubOperatorFid,omitempty"`
 }
-
-type _HubInfoResponse HubInfoResponse
 
 // NewHubInfoResponse instantiates a new HubInfoResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubInfoResponse(version string, isSyncing bool, nickname string, rootHash string, peerId string, hubOperatorFid int32) *HubInfoResponse {
+func NewHubInfoResponse() *HubInfoResponse {
 	this := HubInfoResponse{}
-	this.Version = version
-	this.IsSyncing = isSyncing
-	this.Nickname = nickname
-	this.RootHash = rootHash
-	this.PeerId = peerId
-	this.HubOperatorFid = hubOperatorFid
 	return &this
 }
 
@@ -55,100 +45,132 @@ func NewHubInfoResponseWithDefaults() *HubInfoResponse {
 	return &this
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *HubInfoResponse) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
-// GetIsSyncing returns the IsSyncing field value
+// GetIsSyncing returns the IsSyncing field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetIsSyncing() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsSyncing) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsSyncing
+	return *o.IsSyncing
 }
 
-// GetIsSyncingOk returns a tuple with the IsSyncing field value
+// GetIsSyncingOk returns a tuple with the IsSyncing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetIsSyncingOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsSyncing) {
 		return nil, false
 	}
-	return &o.IsSyncing, true
+	return o.IsSyncing, true
 }
 
-// SetIsSyncing sets field value
+// HasIsSyncing returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasIsSyncing() bool {
+	if o != nil && !IsNil(o.IsSyncing) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSyncing gets a reference to the given bool and assigns it to the IsSyncing field.
 func (o *HubInfoResponse) SetIsSyncing(v bool) {
-	o.IsSyncing = v
+	o.IsSyncing = &v
 }
 
-// GetNickname returns the Nickname field value
+// GetNickname returns the Nickname field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetNickname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		var ret string
 		return ret
 	}
-
-	return o.Nickname
+	return *o.Nickname
 }
 
-// GetNicknameOk returns a tuple with the Nickname field value
+// GetNicknameOk returns a tuple with the Nickname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetNicknameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		return nil, false
 	}
-	return &o.Nickname, true
+	return o.Nickname, true
 }
 
-// SetNickname sets field value
+// HasNickname returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasNickname() bool {
+	if o != nil && !IsNil(o.Nickname) {
+		return true
+	}
+
+	return false
+}
+
+// SetNickname gets a reference to the given string and assigns it to the Nickname field.
 func (o *HubInfoResponse) SetNickname(v string) {
-	o.Nickname = v
+	o.Nickname = &v
 }
 
-// GetRootHash returns the RootHash field value
+// GetRootHash returns the RootHash field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetRootHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.RootHash) {
 		var ret string
 		return ret
 	}
-
-	return o.RootHash
+	return *o.RootHash
 }
 
-// GetRootHashOk returns a tuple with the RootHash field value
+// GetRootHashOk returns a tuple with the RootHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetRootHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RootHash) {
 		return nil, false
 	}
-	return &o.RootHash, true
+	return o.RootHash, true
 }
 
-// SetRootHash sets field value
+// HasRootHash returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasRootHash() bool {
+	if o != nil && !IsNil(o.RootHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetRootHash gets a reference to the given string and assigns it to the RootHash field.
 func (o *HubInfoResponse) SetRootHash(v string) {
-	o.RootHash = v
+	o.RootHash = &v
 }
 
 // GetDbStats returns the DbStats field value if set, zero value otherwise.
@@ -183,52 +205,68 @@ func (o *HubInfoResponse) SetDbStats(v DbStats) {
 	o.DbStats = &v
 }
 
-// GetPeerId returns the PeerId field value
+// GetPeerId returns the PeerId field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetPeerId() string {
-	if o == nil {
+	if o == nil || IsNil(o.PeerId) {
 		var ret string
 		return ret
 	}
-
-	return o.PeerId
+	return *o.PeerId
 }
 
-// GetPeerIdOk returns a tuple with the PeerId field value
+// GetPeerIdOk returns a tuple with the PeerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetPeerIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PeerId) {
 		return nil, false
 	}
-	return &o.PeerId, true
+	return o.PeerId, true
 }
 
-// SetPeerId sets field value
+// HasPeerId returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasPeerId() bool {
+	if o != nil && !IsNil(o.PeerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeerId gets a reference to the given string and assigns it to the PeerId field.
 func (o *HubInfoResponse) SetPeerId(v string) {
-	o.PeerId = v
+	o.PeerId = &v
 }
 
-// GetHubOperatorFid returns the HubOperatorFid field value
+// GetHubOperatorFid returns the HubOperatorFid field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetHubOperatorFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.HubOperatorFid) {
 		var ret int32
 		return ret
 	}
-
-	return o.HubOperatorFid
+	return *o.HubOperatorFid
 }
 
-// GetHubOperatorFidOk returns a tuple with the HubOperatorFid field value
+// GetHubOperatorFidOk returns a tuple with the HubOperatorFid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubInfoResponse) GetHubOperatorFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.HubOperatorFid) {
 		return nil, false
 	}
-	return &o.HubOperatorFid, true
+	return o.HubOperatorFid, true
 }
 
-// SetHubOperatorFid sets field value
+// HasHubOperatorFid returns a boolean if a field has been set.
+func (o *HubInfoResponse) HasHubOperatorFid() bool {
+	if o != nil && !IsNil(o.HubOperatorFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetHubOperatorFid gets a reference to the given int32 and assigns it to the HubOperatorFid field.
 func (o *HubInfoResponse) SetHubOperatorFid(v int32) {
-	o.HubOperatorFid = v
+	o.HubOperatorFid = &v
 }
 
 func (o HubInfoResponse) MarshalJSON() ([]byte, error) {
@@ -241,74 +279,28 @@ func (o HubInfoResponse) MarshalJSON() ([]byte, error) {
 
 func (o HubInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["version"] = o.Version
-	toSerialize["isSyncing"] = o.IsSyncing
-	toSerialize["nickname"] = o.Nickname
-	toSerialize["rootHash"] = o.RootHash
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.IsSyncing) {
+		toSerialize["isSyncing"] = o.IsSyncing
+	}
+	if !IsNil(o.Nickname) {
+		toSerialize["nickname"] = o.Nickname
+	}
+	if !IsNil(o.RootHash) {
+		toSerialize["rootHash"] = o.RootHash
+	}
 	if !IsNil(o.DbStats) {
 		toSerialize["dbStats"] = o.DbStats
 	}
-	toSerialize["peerId"] = o.PeerId
-	toSerialize["hubOperatorFid"] = o.HubOperatorFid
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.PeerId) {
+		toSerialize["peerId"] = o.PeerId
 	}
-
+	if !IsNil(o.HubOperatorFid) {
+		toSerialize["hubOperatorFid"] = o.HubOperatorFid
+	}
 	return toSerialize, nil
-}
-
-func (o *HubInfoResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"version",
-		"isSyncing",
-		"nickname",
-		"rootHash",
-		"peerId",
-		"hubOperatorFid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubInfoResponse := _HubInfoResponse{}
-
-	err = json.Unmarshal(data, &varHubInfoResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubInfoResponse(varHubInfoResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "isSyncing")
-		delete(additionalProperties, "nickname")
-		delete(additionalProperties, "rootHash")
-		delete(additionalProperties, "dbStats")
-		delete(additionalProperties, "peerId")
-		delete(additionalProperties, "hubOperatorFid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubInfoResponse struct {

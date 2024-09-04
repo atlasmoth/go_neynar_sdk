@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SignerEventBody type satisfies the MappedNullable interface at compile time
@@ -20,27 +19,21 @@ var _ MappedNullable = &SignerEventBody{}
 
 // SignerEventBody struct for SignerEventBody
 type SignerEventBody struct {
-	Key string `json:"key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
-	KeyType int64 `json:"keyType"`
-	EventType SignerEventType `json:"eventType"`
-	Metadata string `json:"metadata" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	MetadataType int64 `json:"metadataType"`
-	AdditionalProperties map[string]interface{}
+	Key *string `json:"key,omitempty" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
+	KeyType *int64 `json:"keyType,omitempty"`
+	EventType *SignerEventType `json:"eventType,omitempty"`
+	Metadata *string `json:"metadata,omitempty" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	MetadataType *int64 `json:"metadataType,omitempty"`
 }
-
-type _SignerEventBody SignerEventBody
 
 // NewSignerEventBody instantiates a new SignerEventBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignerEventBody(key string, keyType int64, eventType SignerEventType, metadata string, metadataType int64) *SignerEventBody {
+func NewSignerEventBody() *SignerEventBody {
 	this := SignerEventBody{}
-	this.Key = key
-	this.KeyType = keyType
-	this.EventType = eventType
-	this.Metadata = metadata
-	this.MetadataType = metadataType
+	var eventType SignerEventType = SIGNEREVENTTYPE_ADD
+	this.EventType = &eventType
 	return &this
 }
 
@@ -50,128 +43,168 @@ func NewSignerEventBody(key string, keyType int64, eventType SignerEventType, me
 func NewSignerEventBodyWithDefaults() *SignerEventBody {
 	this := SignerEventBody{}
 	var eventType SignerEventType = SIGNEREVENTTYPE_ADD
-	this.EventType = eventType
+	this.EventType = &eventType
 	return &this
 }
 
-// GetKey returns the Key field value
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *SignerEventBody) GetKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-
-	return o.Key
+	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerEventBody) GetKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		return nil, false
 	}
-	return &o.Key, true
+	return o.Key, true
 }
 
-// SetKey sets field value
+// HasKey returns a boolean if a field has been set.
+func (o *SignerEventBody) HasKey() bool {
+	if o != nil && !IsNil(o.Key) {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
 func (o *SignerEventBody) SetKey(v string) {
-	o.Key = v
+	o.Key = &v
 }
 
-// GetKeyType returns the KeyType field value
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
 func (o *SignerEventBody) GetKeyType() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		var ret int64
 		return ret
 	}
-
-	return o.KeyType
+	return *o.KeyType
 }
 
-// GetKeyTypeOk returns a tuple with the KeyType field value
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerEventBody) GetKeyTypeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		return nil, false
 	}
-	return &o.KeyType, true
+	return o.KeyType, true
 }
 
-// SetKeyType sets field value
+// HasKeyType returns a boolean if a field has been set.
+func (o *SignerEventBody) HasKeyType() bool {
+	if o != nil && !IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given int64 and assigns it to the KeyType field.
 func (o *SignerEventBody) SetKeyType(v int64) {
-	o.KeyType = v
+	o.KeyType = &v
 }
 
-// GetEventType returns the EventType field value
+// GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *SignerEventBody) GetEventType() SignerEventType {
-	if o == nil {
+	if o == nil || IsNil(o.EventType) {
 		var ret SignerEventType
 		return ret
 	}
-
-	return o.EventType
+	return *o.EventType
 }
 
-// GetEventTypeOk returns a tuple with the EventType field value
+// GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerEventBody) GetEventTypeOk() (*SignerEventType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EventType) {
 		return nil, false
 	}
-	return &o.EventType, true
+	return o.EventType, true
 }
 
-// SetEventType sets field value
+// HasEventType returns a boolean if a field has been set.
+func (o *SignerEventBody) HasEventType() bool {
+	if o != nil && !IsNil(o.EventType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventType gets a reference to the given SignerEventType and assigns it to the EventType field.
 func (o *SignerEventBody) SetEventType(v SignerEventType) {
-	o.EventType = v
+	o.EventType = &v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SignerEventBody) GetMetadata() string {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret string
 		return ret
 	}
-
-	return o.Metadata
+	return *o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerEventBody) GetMetadataOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *SignerEventBody) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given string and assigns it to the Metadata field.
 func (o *SignerEventBody) SetMetadata(v string) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
-// GetMetadataType returns the MetadataType field value
+// GetMetadataType returns the MetadataType field value if set, zero value otherwise.
 func (o *SignerEventBody) GetMetadataType() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetadataType) {
 		var ret int64
 		return ret
 	}
-
-	return o.MetadataType
+	return *o.MetadataType
 }
 
-// GetMetadataTypeOk returns a tuple with the MetadataType field value
+// GetMetadataTypeOk returns a tuple with the MetadataType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SignerEventBody) GetMetadataTypeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MetadataType) {
 		return nil, false
 	}
-	return &o.MetadataType, true
+	return o.MetadataType, true
 }
 
-// SetMetadataType sets field value
+// HasMetadataType returns a boolean if a field has been set.
+func (o *SignerEventBody) HasMetadataType() bool {
+	if o != nil && !IsNil(o.MetadataType) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataType gets a reference to the given int64 and assigns it to the MetadataType field.
 func (o *SignerEventBody) SetMetadataType(v int64) {
-	o.MetadataType = v
+	o.MetadataType = &v
 }
 
 func (o SignerEventBody) MarshalJSON() ([]byte, error) {
@@ -184,67 +217,22 @@ func (o SignerEventBody) MarshalJSON() ([]byte, error) {
 
 func (o SignerEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.Key
-	toSerialize["keyType"] = o.KeyType
-	toSerialize["eventType"] = o.EventType
-	toSerialize["metadata"] = o.Metadata
-	toSerialize["metadataType"] = o.MetadataType
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Key) {
+		toSerialize["key"] = o.Key
 	}
-
+	if !IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
+	}
+	if !IsNil(o.EventType) {
+		toSerialize["eventType"] = o.EventType
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.MetadataType) {
+		toSerialize["metadataType"] = o.MetadataType
+	}
 	return toSerialize, nil
-}
-
-func (o *SignerEventBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"key",
-		"keyType",
-		"eventType",
-		"metadata",
-		"metadataType",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSignerEventBody := _SignerEventBody{}
-
-	err = json.Unmarshal(data, &varSignerEventBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SignerEventBody(varSignerEventBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "key")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "eventType")
-		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "metadataType")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSignerEventBody struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BulkFollowResponse type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,16 @@ var _ MappedNullable = &BulkFollowResponse{}
 
 // BulkFollowResponse struct for BulkFollowResponse
 type BulkFollowResponse struct {
-	Success bool `json:"success"`
-	Details []FollowResponse `json:"details"`
-	AdditionalProperties map[string]interface{}
+	Success *bool `json:"success,omitempty"`
+	Details []FollowResponse `json:"details,omitempty"`
 }
-
-type _BulkFollowResponse BulkFollowResponse
 
 // NewBulkFollowResponse instantiates a new BulkFollowResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBulkFollowResponse(success bool, details []FollowResponse) *BulkFollowResponse {
+func NewBulkFollowResponse() *BulkFollowResponse {
 	this := BulkFollowResponse{}
-	this.Success = success
-	this.Details = details
 	return &this
 }
 
@@ -46,50 +40,66 @@ func NewBulkFollowResponseWithDefaults() *BulkFollowResponse {
 	return &this
 }
 
-// GetSuccess returns the Success field value
+// GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *BulkFollowResponse) GetSuccess() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		var ret bool
 		return ret
 	}
-
-	return o.Success
+	return *o.Success
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BulkFollowResponse) GetSuccessOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		return nil, false
 	}
-	return &o.Success, true
+	return o.Success, true
 }
 
-// SetSuccess sets field value
+// HasSuccess returns a boolean if a field has been set.
+func (o *BulkFollowResponse) HasSuccess() bool {
+	if o != nil && !IsNil(o.Success) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccess gets a reference to the given bool and assigns it to the Success field.
 func (o *BulkFollowResponse) SetSuccess(v bool) {
-	o.Success = v
+	o.Success = &v
 }
 
-// GetDetails returns the Details field value
+// GetDetails returns the Details field value if set, zero value otherwise.
 func (o *BulkFollowResponse) GetDetails() []FollowResponse {
-	if o == nil {
+	if o == nil || IsNil(o.Details) {
 		var ret []FollowResponse
 		return ret
 	}
-
 	return o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BulkFollowResponse) GetDetailsOk() ([]FollowResponse, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
 	return o.Details, true
 }
 
-// SetDetails sets field value
+// HasDetails returns a boolean if a field has been set.
+func (o *BulkFollowResponse) HasDetails() bool {
+	if o != nil && !IsNil(o.Details) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given []FollowResponse and assigns it to the Details field.
 func (o *BulkFollowResponse) SetDetails(v []FollowResponse) {
 	o.Details = v
 }
@@ -104,58 +114,13 @@ func (o BulkFollowResponse) MarshalJSON() ([]byte, error) {
 
 func (o BulkFollowResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["success"] = o.Success
-	toSerialize["details"] = o.Details
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
 	}
-
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
 	return toSerialize, nil
-}
-
-func (o *BulkFollowResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"success",
-		"details",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBulkFollowResponse := _BulkFollowResponse{}
-
-	err = json.Unmarshal(data, &varBulkFollowResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BulkFollowResponse(varBulkFollowResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "details")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBulkFollowResponse struct {

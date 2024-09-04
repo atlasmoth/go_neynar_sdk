@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**WebhookId** | **string** |  | 
-**DeveloperUuid** | **string** |  | 
-**TargetUrl** | **string** |  | 
-**Title** | **string** |  | 
-**Secrets** | [**[]WebhookSecret**](WebhookSecret.md) |  | 
-**Description** | **string** |  | 
-**HttpTimeout** | **string** |  | 
-**RateLimit** | **int32** |  | 
-**Active** | **bool** |  | 
-**RateLimitDuration** | **string** |  | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
-**DeletedAt** | **time.Time** |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**WebhookId** | Pointer to **string** |  | [optional] 
+**DeveloperUuid** | Pointer to **string** |  | [optional] 
+**TargetUrl** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**Secrets** | Pointer to [**[]WebhookSecret**](WebhookSecret.md) |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**HttpTimeout** | Pointer to **string** |  | [optional] 
+**RateLimit** | Pointer to **int32** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
+**RateLimitDuration** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**DeletedAt** | Pointer to **time.Time** |  | [optional] 
 **Subscription** | Pointer to [**WebhookSubscription**](WebhookSubscription.md) |  | [optional] 
 
 ## Methods
 
 ### NewWebhook
 
-`func NewWebhook(object string, webhookId string, developerUuid string, targetUrl string, title string, secrets []WebhookSecret, description string, httpTimeout string, rateLimit int32, active bool, rateLimitDuration string, createdAt time.Time, updatedAt time.Time, deletedAt time.Time, ) *Webhook`
+`func NewWebhook() *Webhook`
 
 NewWebhook instantiates a new Webhook object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +58,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *Webhook) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetWebhookId
 
@@ -78,6 +83,11 @@ and a boolean to check if the value has been set.
 
 SetWebhookId sets WebhookId field to given value.
 
+### HasWebhookId
+
+`func (o *Webhook) HasWebhookId() bool`
+
+HasWebhookId returns a boolean if a field has been set.
 
 ### GetDeveloperUuid
 
@@ -98,6 +108,11 @@ and a boolean to check if the value has been set.
 
 SetDeveloperUuid sets DeveloperUuid field to given value.
 
+### HasDeveloperUuid
+
+`func (o *Webhook) HasDeveloperUuid() bool`
+
+HasDeveloperUuid returns a boolean if a field has been set.
 
 ### GetTargetUrl
 
@@ -118,6 +133,11 @@ and a boolean to check if the value has been set.
 
 SetTargetUrl sets TargetUrl field to given value.
 
+### HasTargetUrl
+
+`func (o *Webhook) HasTargetUrl() bool`
+
+HasTargetUrl returns a boolean if a field has been set.
 
 ### GetTitle
 
@@ -138,6 +158,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *Webhook) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetSecrets
 
@@ -158,6 +183,11 @@ and a boolean to check if the value has been set.
 
 SetSecrets sets Secrets field to given value.
 
+### HasSecrets
+
+`func (o *Webhook) HasSecrets() bool`
+
+HasSecrets returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -178,6 +208,11 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
+
+`func (o *Webhook) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetHttpTimeout
 
@@ -198,6 +233,11 @@ and a boolean to check if the value has been set.
 
 SetHttpTimeout sets HttpTimeout field to given value.
 
+### HasHttpTimeout
+
+`func (o *Webhook) HasHttpTimeout() bool`
+
+HasHttpTimeout returns a boolean if a field has been set.
 
 ### GetRateLimit
 
@@ -218,6 +258,11 @@ and a boolean to check if the value has been set.
 
 SetRateLimit sets RateLimit field to given value.
 
+### HasRateLimit
+
+`func (o *Webhook) HasRateLimit() bool`
+
+HasRateLimit returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -238,6 +283,11 @@ and a boolean to check if the value has been set.
 
 SetActive sets Active field to given value.
 
+### HasActive
+
+`func (o *Webhook) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
 
 ### GetRateLimitDuration
 
@@ -258,6 +308,11 @@ and a boolean to check if the value has been set.
 
 SetRateLimitDuration sets RateLimitDuration field to given value.
 
+### HasRateLimitDuration
+
+`func (o *Webhook) HasRateLimitDuration() bool`
+
+HasRateLimitDuration returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -278,6 +333,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Webhook) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -298,6 +358,11 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
+
+`func (o *Webhook) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetDeletedAt
 
@@ -318,6 +383,11 @@ and a boolean to check if the value has been set.
 
 SetDeletedAt sets DeletedAt field to given value.
 
+### HasDeletedAt
+
+`func (o *Webhook) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
 
 ### GetSubscription
 

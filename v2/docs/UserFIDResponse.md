@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
+**Fid** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewUserFIDResponse
 
-`func NewUserFIDResponse(fid int32, ) *UserFIDResponse`
+`func NewUserFIDResponse() *UserFIDResponse`
 
 NewUserFIDResponse instantiates a new UserFIDResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *UserFIDResponse) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

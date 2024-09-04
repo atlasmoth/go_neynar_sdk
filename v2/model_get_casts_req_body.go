@@ -20,10 +20,7 @@ var _ MappedNullable = &GetCastsReqBody{}
 // GetCastsReqBody struct for GetCastsReqBody
 type GetCastsReqBody struct {
 	Casts []IndividualHashObj `json:"casts,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _GetCastsReqBody GetCastsReqBody
 
 // NewGetCastsReqBody instantiates a new GetCastsReqBody object
 // This constructor will assign default values to properties that have it defined,
@@ -87,33 +84,7 @@ func (o GetCastsReqBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Casts) {
 		toSerialize["casts"] = o.Casts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *GetCastsReqBody) UnmarshalJSON(data []byte) (err error) {
-	varGetCastsReqBody := _GetCastsReqBody{}
-
-	err = json.Unmarshal(data, &varGetCastsReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = GetCastsReqBody(varGetCastsReqBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "casts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableGetCastsReqBody struct {

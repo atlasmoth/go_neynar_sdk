@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the Recaster type satisfies the MappedNullable interface at compile time
@@ -22,38 +21,27 @@ var _ MappedNullable = &Recaster{}
 // Recaster struct for Recaster
 type Recaster struct {
 	// The unique identifier of the recaster.
-	Fid int32 `json:"fid"`
+	Fid *int32 `json:"fid,omitempty"`
 	// The username of the recaster.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 	// The display name of the recaster.
-	DisplayName string `json:"displayName"`
-	Pfp RecasterPfp `json:"pfp"`
-	Profile RecasterProfile `json:"profile"`
+	DisplayName *string `json:"displayName,omitempty"`
+	Pfp *RecasterPfp `json:"pfp,omitempty"`
+	Profile *RecasterProfile `json:"profile,omitempty"`
 	// The number of followers the recaster has.
-	FollowerCount int32 `json:"followerCount"`
+	FollowerCount *int32 `json:"followerCount,omitempty"`
 	// The number of users the recaster is following.
-	FollowingCount int32 `json:"followingCount"`
-	Timestamp time.Time `json:"timestamp"`
+	FollowingCount *int32 `json:"followingCount,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 	ViewerContext *RecasterViewerContext `json:"viewerContext,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Recaster Recaster
 
 // NewRecaster instantiates a new Recaster object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecaster(fid int32, username string, displayName string, pfp RecasterPfp, profile RecasterProfile, followerCount int32, followingCount int32, timestamp time.Time) *Recaster {
+func NewRecaster() *Recaster {
 	this := Recaster{}
-	this.Fid = fid
-	this.Username = username
-	this.DisplayName = displayName
-	this.Pfp = pfp
-	this.Profile = profile
-	this.FollowerCount = followerCount
-	this.FollowingCount = followingCount
-	this.Timestamp = timestamp
 	return &this
 }
 
@@ -65,196 +53,260 @@ func NewRecasterWithDefaults() *Recaster {
 	return &this
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *Recaster) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *Recaster) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *Recaster) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *Recaster) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *Recaster) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *Recaster) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetDisplayName returns the DisplayName field value
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *Recaster) GetDisplayName() string {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
-
-	return o.DisplayName
+	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return &o.DisplayName, true
+	return o.DisplayName, true
 }
 
-// SetDisplayName sets field value
+// HasDisplayName returns a boolean if a field has been set.
+func (o *Recaster) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *Recaster) SetDisplayName(v string) {
-	o.DisplayName = v
+	o.DisplayName = &v
 }
 
-// GetPfp returns the Pfp field value
+// GetPfp returns the Pfp field value if set, zero value otherwise.
 func (o *Recaster) GetPfp() RecasterPfp {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		var ret RecasterPfp
 		return ret
 	}
-
-	return o.Pfp
+	return *o.Pfp
 }
 
-// GetPfpOk returns a tuple with the Pfp field value
+// GetPfpOk returns a tuple with the Pfp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetPfpOk() (*RecasterPfp, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Pfp) {
 		return nil, false
 	}
-	return &o.Pfp, true
+	return o.Pfp, true
 }
 
-// SetPfp sets field value
+// HasPfp returns a boolean if a field has been set.
+func (o *Recaster) HasPfp() bool {
+	if o != nil && !IsNil(o.Pfp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPfp gets a reference to the given RecasterPfp and assigns it to the Pfp field.
 func (o *Recaster) SetPfp(v RecasterPfp) {
-	o.Pfp = v
+	o.Pfp = &v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *Recaster) GetProfile() RecasterProfile {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret RecasterProfile
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetProfileOk() (*RecasterProfile, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *Recaster) HasProfile() bool {
+	if o != nil && !IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given RecasterProfile and assigns it to the Profile field.
 func (o *Recaster) SetProfile(v RecasterProfile) {
-	o.Profile = v
+	o.Profile = &v
 }
 
-// GetFollowerCount returns the FollowerCount field value
+// GetFollowerCount returns the FollowerCount field value if set, zero value otherwise.
 func (o *Recaster) GetFollowerCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowerCount
+	return *o.FollowerCount
 }
 
-// GetFollowerCountOk returns a tuple with the FollowerCount field value
+// GetFollowerCountOk returns a tuple with the FollowerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetFollowerCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		return nil, false
 	}
-	return &o.FollowerCount, true
+	return o.FollowerCount, true
 }
 
-// SetFollowerCount sets field value
+// HasFollowerCount returns a boolean if a field has been set.
+func (o *Recaster) HasFollowerCount() bool {
+	if o != nil && !IsNil(o.FollowerCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowerCount gets a reference to the given int32 and assigns it to the FollowerCount field.
 func (o *Recaster) SetFollowerCount(v int32) {
-	o.FollowerCount = v
+	o.FollowerCount = &v
 }
 
-// GetFollowingCount returns the FollowingCount field value
+// GetFollowingCount returns the FollowingCount field value if set, zero value otherwise.
 func (o *Recaster) GetFollowingCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowingCount
+	return *o.FollowingCount
 }
 
-// GetFollowingCountOk returns a tuple with the FollowingCount field value
+// GetFollowingCountOk returns a tuple with the FollowingCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetFollowingCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		return nil, false
 	}
-	return &o.FollowingCount, true
+	return o.FollowingCount, true
 }
 
-// SetFollowingCount sets field value
+// HasFollowingCount returns a boolean if a field has been set.
+func (o *Recaster) HasFollowingCount() bool {
+	if o != nil && !IsNil(o.FollowingCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowingCount gets a reference to the given int32 and assigns it to the FollowingCount field.
 func (o *Recaster) SetFollowingCount(v int32) {
-	o.FollowingCount = v
+	o.FollowingCount = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *Recaster) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Recaster) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *Recaster) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
 func (o *Recaster) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
@@ -299,80 +351,34 @@ func (o Recaster) MarshalJSON() ([]byte, error) {
 
 func (o Recaster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
-	toSerialize["username"] = o.Username
-	toSerialize["displayName"] = o.DisplayName
-	toSerialize["pfp"] = o.Pfp
-	toSerialize["profile"] = o.Profile
-	toSerialize["followerCount"] = o.FollowerCount
-	toSerialize["followingCount"] = o.FollowingCount
-	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.Pfp) {
+		toSerialize["pfp"] = o.Pfp
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	if !IsNil(o.FollowerCount) {
+		toSerialize["followerCount"] = o.FollowerCount
+	}
+	if !IsNil(o.FollowingCount) {
+		toSerialize["followingCount"] = o.FollowingCount
+	}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewerContext"] = o.ViewerContext
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Recaster) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fid",
-		"username",
-		"displayName",
-		"pfp",
-		"profile",
-		"followerCount",
-		"followingCount",
-		"timestamp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varRecaster := _Recaster{}
-
-	err = json.Unmarshal(data, &varRecaster)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Recaster(varRecaster)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "pfp")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "followerCount")
-		delete(additionalProperties, "followingCount")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "viewerContext")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRecaster struct {

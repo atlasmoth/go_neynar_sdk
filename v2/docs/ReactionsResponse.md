@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reactions** | [**[]ReactionWithCastInfo**](ReactionWithCastInfo.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Reactions** | Pointer to [**[]ReactionWithCastInfo**](ReactionWithCastInfo.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewReactionsResponse
 
-`func NewReactionsResponse(reactions []ReactionWithCastInfo, next NextCursor, ) *ReactionsResponse`
+`func NewReactionsResponse() *ReactionsResponse`
 
 NewReactionsResponse instantiates a new ReactionsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetReactions sets Reactions field to given value.
 
+### HasReactions
+
+`func (o *ReactionsResponse) HasReactions() bool`
+
+HasReactions returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *ReactionsResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

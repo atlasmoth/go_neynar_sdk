@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the EmbedUrlMetadata type satisfies the MappedNullable interface at compile time
@@ -20,24 +19,20 @@ var _ MappedNullable = &EmbedUrlMetadata{}
 
 // EmbedUrlMetadata struct for EmbedUrlMetadata
 type EmbedUrlMetadata struct {
-	Status string `json:"_status"`
+	Status *string `json:"_status,omitempty"`
 	ContentType NullableString `json:"content_type,omitempty"`
 	ContentLength NullableInt32 `json:"content_length,omitempty"`
 	Image *EmbedUrlMetadataImage `json:"image,omitempty"`
 	Video *EmbedUrlMetadataVideo `json:"video,omitempty"`
 	Html *OgObject `json:"html,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _EmbedUrlMetadata EmbedUrlMetadata
 
 // NewEmbedUrlMetadata instantiates a new EmbedUrlMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmbedUrlMetadata(status string) *EmbedUrlMetadata {
+func NewEmbedUrlMetadata() *EmbedUrlMetadata {
 	this := EmbedUrlMetadata{}
-	this.Status = status
 	return &this
 }
 
@@ -49,28 +44,36 @@ func NewEmbedUrlMetadataWithDefaults() *EmbedUrlMetadata {
 	return &this
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EmbedUrlMetadata) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmbedUrlMetadata) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *EmbedUrlMetadata) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *EmbedUrlMetadata) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
 // GetContentType returns the ContentType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -263,7 +266,9 @@ func (o EmbedUrlMetadata) MarshalJSON() ([]byte, error) {
 
 func (o EmbedUrlMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_status"] = o.Status
+	if !IsNil(o.Status) {
+		toSerialize["_status"] = o.Status
+	}
 	if o.ContentType.IsSet() {
 		toSerialize["content_type"] = o.ContentType.Get()
 	}
@@ -279,59 +284,7 @@ func (o EmbedUrlMetadata) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Html) {
 		toSerialize["html"] = o.Html
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *EmbedUrlMetadata) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"_status",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEmbedUrlMetadata := _EmbedUrlMetadata{}
-
-	err = json.Unmarshal(data, &varEmbedUrlMetadata)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EmbedUrlMetadata(varEmbedUrlMetadata)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "_status")
-		delete(additionalProperties, "content_type")
-		delete(additionalProperties, "content_length")
-		delete(additionalProperties, "image")
-		delete(additionalProperties, "video")
-		delete(additionalProperties, "html")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableEmbedUrlMetadata struct {

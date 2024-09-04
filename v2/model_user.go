@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the User type satisfies the MappedNullable interface at compile time
@@ -20,47 +19,33 @@ var _ MappedNullable = &User{}
 
 // User struct for User
 type User struct {
-	Object string `json:"object"`
+	Object *string `json:"object,omitempty"`
 	// User identifier (unsigned integer)
-	Fid int32 `json:"fid"`
-	Username string `json:"username"`
+	Fid *int32 `json:"fid,omitempty"`
+	Username *string `json:"username,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
 	// Ethereum address
-	CustodyAddress string `json:"custody_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	CustodyAddress *string `json:"custody_address,omitempty" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// The URL of the user's profile picture
 	PfpUrl *string `json:"pfp_url,omitempty"`
-	Profile UserProfile `json:"profile"`
+	Profile *UserProfile `json:"profile,omitempty"`
 	// The number of followers the user has.
-	FollowerCount int32 `json:"follower_count"`
+	FollowerCount *int32 `json:"follower_count,omitempty"`
 	// The number of users the user is following.
-	FollowingCount int32 `json:"following_count"`
-	Verifications []string `json:"verifications"`
-	VerifiedAddresses UserVerifiedAddresses `json:"verified_addresses"`
-	ActiveStatus ActiveStatus `json:"active_status"`
-	PowerBadge bool `json:"power_badge"`
+	FollowingCount *int32 `json:"following_count,omitempty"`
+	Verifications []string `json:"verifications,omitempty"`
+	VerifiedAddresses *UserVerifiedAddresses `json:"verified_addresses,omitempty"`
+	ActiveStatus *ActiveStatus `json:"active_status,omitempty"`
+	PowerBadge *bool `json:"power_badge,omitempty"`
 	ViewerContext *UserViewerContext `json:"viewer_context,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _User User
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(object string, fid int32, username string, custodyAddress string, profile UserProfile, followerCount int32, followingCount int32, verifications []string, verifiedAddresses UserVerifiedAddresses, activeStatus ActiveStatus, powerBadge bool) *User {
+func NewUser() *User {
 	this := User{}
-	this.Object = object
-	this.Fid = fid
-	this.Username = username
-	this.CustodyAddress = custodyAddress
-	this.Profile = profile
-	this.FollowerCount = followerCount
-	this.FollowingCount = followingCount
-	this.Verifications = verifications
-	this.VerifiedAddresses = verifiedAddresses
-	this.ActiveStatus = activeStatus
-	this.PowerBadge = powerBadge
 	return &this
 }
 
@@ -72,76 +57,100 @@ func NewUserWithDefaults() *User {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *User) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *User) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *User) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetFid returns the Fid field value
+// GetFid returns the Fid field value if set, zero value otherwise.
 func (o *User) GetFid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Fid
+	return *o.Fid
 }
 
-// GetFidOk returns a tuple with the Fid field value
+// GetFidOk returns a tuple with the Fid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Fid) {
 		return nil, false
 	}
-	return &o.Fid, true
+	return o.Fid, true
 }
 
-// SetFid sets field value
+// HasFid returns a boolean if a field has been set.
+func (o *User) HasFid() bool {
+	if o != nil && !IsNil(o.Fid) {
+		return true
+	}
+
+	return false
+}
+
+// SetFid gets a reference to the given int32 and assigns it to the Fid field.
 func (o *User) SetFid(v int32) {
-	o.Fid = v
+	o.Fid = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *User) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *User) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *User) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -176,28 +185,36 @@ func (o *User) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
-// GetCustodyAddress returns the CustodyAddress field value
+// GetCustodyAddress returns the CustodyAddress field value if set, zero value otherwise.
 func (o *User) GetCustodyAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.CustodyAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.CustodyAddress
+	return *o.CustodyAddress
 }
 
-// GetCustodyAddressOk returns a tuple with the CustodyAddress field value
+// GetCustodyAddressOk returns a tuple with the CustodyAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetCustodyAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustodyAddress) {
 		return nil, false
 	}
-	return &o.CustodyAddress, true
+	return o.CustodyAddress, true
 }
 
-// SetCustodyAddress sets field value
+// HasCustodyAddress returns a boolean if a field has been set.
+func (o *User) HasCustodyAddress() bool {
+	if o != nil && !IsNil(o.CustodyAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustodyAddress gets a reference to the given string and assigns it to the CustodyAddress field.
 func (o *User) SetCustodyAddress(v string) {
-	o.CustodyAddress = v
+	o.CustodyAddress = &v
 }
 
 // GetPfpUrl returns the PfpUrl field value if set, zero value otherwise.
@@ -232,172 +249,228 @@ func (o *User) SetPfpUrl(v string) {
 	o.PfpUrl = &v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *User) GetProfile() UserProfile {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret UserProfile
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetProfileOk() (*UserProfile, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *User) HasProfile() bool {
+	if o != nil && !IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given UserProfile and assigns it to the Profile field.
 func (o *User) SetProfile(v UserProfile) {
-	o.Profile = v
+	o.Profile = &v
 }
 
-// GetFollowerCount returns the FollowerCount field value
+// GetFollowerCount returns the FollowerCount field value if set, zero value otherwise.
 func (o *User) GetFollowerCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowerCount
+	return *o.FollowerCount
 }
 
-// GetFollowerCountOk returns a tuple with the FollowerCount field value
+// GetFollowerCountOk returns a tuple with the FollowerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFollowerCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowerCount) {
 		return nil, false
 	}
-	return &o.FollowerCount, true
+	return o.FollowerCount, true
 }
 
-// SetFollowerCount sets field value
+// HasFollowerCount returns a boolean if a field has been set.
+func (o *User) HasFollowerCount() bool {
+	if o != nil && !IsNil(o.FollowerCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowerCount gets a reference to the given int32 and assigns it to the FollowerCount field.
 func (o *User) SetFollowerCount(v int32) {
-	o.FollowerCount = v
+	o.FollowerCount = &v
 }
 
-// GetFollowingCount returns the FollowingCount field value
+// GetFollowingCount returns the FollowingCount field value if set, zero value otherwise.
 func (o *User) GetFollowingCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowingCount
+	return *o.FollowingCount
 }
 
-// GetFollowingCountOk returns a tuple with the FollowingCount field value
+// GetFollowingCountOk returns a tuple with the FollowingCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFollowingCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowingCount) {
 		return nil, false
 	}
-	return &o.FollowingCount, true
+	return o.FollowingCount, true
 }
 
-// SetFollowingCount sets field value
+// HasFollowingCount returns a boolean if a field has been set.
+func (o *User) HasFollowingCount() bool {
+	if o != nil && !IsNil(o.FollowingCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowingCount gets a reference to the given int32 and assigns it to the FollowingCount field.
 func (o *User) SetFollowingCount(v int32) {
-	o.FollowingCount = v
+	o.FollowingCount = &v
 }
 
-// GetVerifications returns the Verifications field value
+// GetVerifications returns the Verifications field value if set, zero value otherwise.
 func (o *User) GetVerifications() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Verifications) {
 		var ret []string
 		return ret
 	}
-
 	return o.Verifications
 }
 
-// GetVerificationsOk returns a tuple with the Verifications field value
+// GetVerificationsOk returns a tuple with the Verifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetVerificationsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Verifications) {
 		return nil, false
 	}
 	return o.Verifications, true
 }
 
-// SetVerifications sets field value
+// HasVerifications returns a boolean if a field has been set.
+func (o *User) HasVerifications() bool {
+	if o != nil && !IsNil(o.Verifications) {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifications gets a reference to the given []string and assigns it to the Verifications field.
 func (o *User) SetVerifications(v []string) {
 	o.Verifications = v
 }
 
-// GetVerifiedAddresses returns the VerifiedAddresses field value
+// GetVerifiedAddresses returns the VerifiedAddresses field value if set, zero value otherwise.
 func (o *User) GetVerifiedAddresses() UserVerifiedAddresses {
-	if o == nil {
+	if o == nil || IsNil(o.VerifiedAddresses) {
 		var ret UserVerifiedAddresses
 		return ret
 	}
-
-	return o.VerifiedAddresses
+	return *o.VerifiedAddresses
 }
 
-// GetVerifiedAddressesOk returns a tuple with the VerifiedAddresses field value
+// GetVerifiedAddressesOk returns a tuple with the VerifiedAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetVerifiedAddressesOk() (*UserVerifiedAddresses, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VerifiedAddresses) {
 		return nil, false
 	}
-	return &o.VerifiedAddresses, true
+	return o.VerifiedAddresses, true
 }
 
-// SetVerifiedAddresses sets field value
+// HasVerifiedAddresses returns a boolean if a field has been set.
+func (o *User) HasVerifiedAddresses() bool {
+	if o != nil && !IsNil(o.VerifiedAddresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifiedAddresses gets a reference to the given UserVerifiedAddresses and assigns it to the VerifiedAddresses field.
 func (o *User) SetVerifiedAddresses(v UserVerifiedAddresses) {
-	o.VerifiedAddresses = v
+	o.VerifiedAddresses = &v
 }
 
-// GetActiveStatus returns the ActiveStatus field value
+// GetActiveStatus returns the ActiveStatus field value if set, zero value otherwise.
 func (o *User) GetActiveStatus() ActiveStatus {
-	if o == nil {
+	if o == nil || IsNil(o.ActiveStatus) {
 		var ret ActiveStatus
 		return ret
 	}
-
-	return o.ActiveStatus
+	return *o.ActiveStatus
 }
 
-// GetActiveStatusOk returns a tuple with the ActiveStatus field value
+// GetActiveStatusOk returns a tuple with the ActiveStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetActiveStatusOk() (*ActiveStatus, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ActiveStatus) {
 		return nil, false
 	}
-	return &o.ActiveStatus, true
+	return o.ActiveStatus, true
 }
 
-// SetActiveStatus sets field value
+// HasActiveStatus returns a boolean if a field has been set.
+func (o *User) HasActiveStatus() bool {
+	if o != nil && !IsNil(o.ActiveStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetActiveStatus gets a reference to the given ActiveStatus and assigns it to the ActiveStatus field.
 func (o *User) SetActiveStatus(v ActiveStatus) {
-	o.ActiveStatus = v
+	o.ActiveStatus = &v
 }
 
-// GetPowerBadge returns the PowerBadge field value
+// GetPowerBadge returns the PowerBadge field value if set, zero value otherwise.
 func (o *User) GetPowerBadge() bool {
-	if o == nil {
+	if o == nil || IsNil(o.PowerBadge) {
 		var ret bool
 		return ret
 	}
-
-	return o.PowerBadge
+	return *o.PowerBadge
 }
 
-// GetPowerBadgeOk returns a tuple with the PowerBadge field value
+// GetPowerBadgeOk returns a tuple with the PowerBadge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetPowerBadgeOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PowerBadge) {
 		return nil, false
 	}
-	return &o.PowerBadge, true
+	return o.PowerBadge, true
 }
 
-// SetPowerBadge sets field value
+// HasPowerBadge returns a boolean if a field has been set.
+func (o *User) HasPowerBadge() bool {
+	if o != nil && !IsNil(o.PowerBadge) {
+		return true
+	}
+
+	return false
+}
+
+// SetPowerBadge gets a reference to the given bool and assigns it to the PowerBadge field.
 func (o *User) SetPowerBadge(v bool) {
-	o.PowerBadge = v
+	o.PowerBadge = &v
 }
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
@@ -442,97 +515,49 @@ func (o User) MarshalJSON() ([]byte, error) {
 
 func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["fid"] = o.Fid
-	toSerialize["username"] = o.Username
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.Fid) {
+		toSerialize["fid"] = o.Fid
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
 	if !IsNil(o.DisplayName) {
 		toSerialize["display_name"] = o.DisplayName
 	}
-	toSerialize["custody_address"] = o.CustodyAddress
+	if !IsNil(o.CustodyAddress) {
+		toSerialize["custody_address"] = o.CustodyAddress
+	}
 	if !IsNil(o.PfpUrl) {
 		toSerialize["pfp_url"] = o.PfpUrl
 	}
-	toSerialize["profile"] = o.Profile
-	toSerialize["follower_count"] = o.FollowerCount
-	toSerialize["following_count"] = o.FollowingCount
-	toSerialize["verifications"] = o.Verifications
-	toSerialize["verified_addresses"] = o.VerifiedAddresses
-	toSerialize["active_status"] = o.ActiveStatus
-	toSerialize["power_badge"] = o.PowerBadge
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	if !IsNil(o.FollowerCount) {
+		toSerialize["follower_count"] = o.FollowerCount
+	}
+	if !IsNil(o.FollowingCount) {
+		toSerialize["following_count"] = o.FollowingCount
+	}
+	if !IsNil(o.Verifications) {
+		toSerialize["verifications"] = o.Verifications
+	}
+	if !IsNil(o.VerifiedAddresses) {
+		toSerialize["verified_addresses"] = o.VerifiedAddresses
+	}
+	if !IsNil(o.ActiveStatus) {
+		toSerialize["active_status"] = o.ActiveStatus
+	}
+	if !IsNil(o.PowerBadge) {
+		toSerialize["power_badge"] = o.PowerBadge
+	}
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *User) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"fid",
-		"username",
-		"custody_address",
-		"profile",
-		"follower_count",
-		"following_count",
-		"verifications",
-		"verified_addresses",
-		"active_status",
-		"power_badge",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUser := _User{}
-
-	err = json.Unmarshal(data, &varUser)
-
-	if err != nil {
-		return err
-	}
-
-	*o = User(varUser)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "fid")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "display_name")
-		delete(additionalProperties, "custody_address")
-		delete(additionalProperties, "pfp_url")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "follower_count")
-		delete(additionalProperties, "following_count")
-		delete(additionalProperties, "verifications")
-		delete(additionalProperties, "verified_addresses")
-		delete(additionalProperties, "active_status")
-		delete(additionalProperties, "power_badge")
-		delete(additionalProperties, "viewer_context")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUser struct {

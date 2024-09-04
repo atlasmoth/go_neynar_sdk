@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Webhooks** | [**[]Webhook**](Webhook.md) |  | 
+**Webhooks** | Pointer to [**[]Webhook**](Webhook.md) |  | [optional] 
 
 ## Methods
 
 ### NewWebhookListResponse
 
-`func NewWebhookListResponse(webhooks []Webhook, ) *WebhookListResponse`
+`func NewWebhookListResponse() *WebhookListResponse`
 
 NewWebhookListResponse instantiates a new WebhookListResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetWebhooks sets Webhooks field to given value.
 
+### HasWebhooks
+
+`func (o *WebhookListResponse) HasWebhooks() bool`
+
+HasWebhooks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

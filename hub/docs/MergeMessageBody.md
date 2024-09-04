@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | [**Message**](Message.md) |  | 
-**DeletedMessages** | [**[]Message**](Message.md) |  | 
+**Message** | Pointer to [**Message**](Message.md) |  | [optional] 
+**DeletedMessages** | Pointer to [**[]Message**](Message.md) |  | [optional] 
 
 ## Methods
 
 ### NewMergeMessageBody
 
-`func NewMergeMessageBody(message Message, deletedMessages []Message, ) *MergeMessageBody`
+`func NewMergeMessageBody() *MergeMessageBody`
 
 NewMergeMessageBody instantiates a new MergeMessageBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+### HasMessage
+
+`func (o *MergeMessageBody) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetDeletedMessages
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetDeletedMessages sets DeletedMessages field to given value.
 
+### HasDeletedMessages
+
+`func (o *MergeMessageBody) HasDeletedMessages() bool`
+
+HasDeletedMessages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

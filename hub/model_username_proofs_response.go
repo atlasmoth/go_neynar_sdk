@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UsernameProofsResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &UsernameProofsResponse{}
 
 // UsernameProofsResponse struct for UsernameProofsResponse
 type UsernameProofsResponse struct {
-	Proofs []UserNameProof `json:"proofs"`
-	AdditionalProperties map[string]interface{}
+	Proofs []UserNameProof `json:"proofs,omitempty"`
 }
-
-type _UsernameProofsResponse UsernameProofsResponse
 
 // NewUsernameProofsResponse instantiates a new UsernameProofsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsernameProofsResponse(proofs []UserNameProof) *UsernameProofsResponse {
+func NewUsernameProofsResponse() *UsernameProofsResponse {
 	this := UsernameProofsResponse{}
-	this.Proofs = proofs
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewUsernameProofsResponseWithDefaults() *UsernameProofsResponse {
 	return &this
 }
 
-// GetProofs returns the Proofs field value
+// GetProofs returns the Proofs field value if set, zero value otherwise.
 func (o *UsernameProofsResponse) GetProofs() []UserNameProof {
-	if o == nil {
+	if o == nil || IsNil(o.Proofs) {
 		var ret []UserNameProof
 		return ret
 	}
-
 	return o.Proofs
 }
 
-// GetProofsOk returns a tuple with the Proofs field value
+// GetProofsOk returns a tuple with the Proofs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UsernameProofsResponse) GetProofsOk() ([]UserNameProof, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Proofs) {
 		return nil, false
 	}
 	return o.Proofs, true
 }
 
-// SetProofs sets field value
+// HasProofs returns a boolean if a field has been set.
+func (o *UsernameProofsResponse) HasProofs() bool {
+	if o != nil && !IsNil(o.Proofs) {
+		return true
+	}
+
+	return false
+}
+
+// SetProofs gets a reference to the given []UserNameProof and assigns it to the Proofs field.
 func (o *UsernameProofsResponse) SetProofs(v []UserNameProof) {
 	o.Proofs = v
 }
@@ -78,55 +81,10 @@ func (o UsernameProofsResponse) MarshalJSON() ([]byte, error) {
 
 func (o UsernameProofsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["proofs"] = o.Proofs
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Proofs) {
+		toSerialize["proofs"] = o.Proofs
 	}
-
 	return toSerialize, nil
-}
-
-func (o *UsernameProofsResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"proofs",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUsernameProofsResponse := _UsernameProofsResponse{}
-
-	err = json.Unmarshal(data, &varUsernameProofsResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UsernameProofsResponse(varUsernameProofsResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "proofs")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUsernameProofsResponse struct {

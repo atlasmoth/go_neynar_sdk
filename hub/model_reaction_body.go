@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionBody type satisfies the MappedNullable interface at compile time
@@ -20,21 +19,19 @@ var _ MappedNullable = &ReactionBody{}
 
 // ReactionBody Adds or removes a Reaction from a Cast
 type ReactionBody struct {
-	Type ReactionType `json:"type"`
+	Type *ReactionType `json:"type,omitempty"`
 	TargetCastId *CastId `json:"targetCastId,omitempty"`
 	TargetUrl *string `json:"targetUrl,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ReactionBody ReactionBody
 
 // NewReactionBody instantiates a new ReactionBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionBody(type_ ReactionType) *ReactionBody {
+func NewReactionBody() *ReactionBody {
 	this := ReactionBody{}
-	this.Type = type_
+	var type_ ReactionType = REACTIONTYPE_LIKE
+	this.Type = &type_
 	return &this
 }
 
@@ -44,32 +41,40 @@ func NewReactionBody(type_ ReactionType) *ReactionBody {
 func NewReactionBodyWithDefaults() *ReactionBody {
 	this := ReactionBody{}
 	var type_ ReactionType = REACTIONTYPE_LIKE
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *ReactionBody) GetType() ReactionType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret ReactionType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionBody) GetTypeOk() (*ReactionType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *ReactionBody) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ReactionType and assigns it to the Type field.
 func (o *ReactionBody) SetType(v ReactionType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetTargetCastId returns the TargetCastId field value if set, zero value otherwise.
@@ -146,63 +151,16 @@ func (o ReactionBody) MarshalJSON() ([]byte, error) {
 
 func (o ReactionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	if !IsNil(o.TargetCastId) {
 		toSerialize["targetCastId"] = o.TargetCastId
 	}
 	if !IsNil(o.TargetUrl) {
 		toSerialize["targetUrl"] = o.TargetUrl
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ReactionBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionBody := _ReactionBody{}
-
-	err = json.Unmarshal(data, &varReactionBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionBody(varReactionBody)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "targetCastId")
-		delete(additionalProperties, "targetUrl")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionBody struct {

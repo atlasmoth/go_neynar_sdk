@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | [**User**](User.md) |  | 
+**User** | Pointer to [**User**](User.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserResponse
 
-`func NewUserResponse(user User, ) *UserResponse`
+`func NewUserResponse() *UserResponse`
 
 NewUserResponse instantiates a new UserResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetUser sets User field to given value.
 
+### HasUser
+
+`func (o *UserResponse) HasUser() bool`
+
+HasUser returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

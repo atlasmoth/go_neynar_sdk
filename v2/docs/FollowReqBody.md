@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer | 
-**TargetFids** | **[]int32** |  | 
+**SignerUuid** | Pointer to **string** | UUID of the signer | [optional] 
+**TargetFids** | Pointer to **[]int32** |  | [optional] 
 
 ## Methods
 
 ### NewFollowReqBody
 
-`func NewFollowReqBody(signerUuid string, targetFids []int32, ) *FollowReqBody`
+`func NewFollowReqBody() *FollowReqBody`
 
 NewFollowReqBody instantiates a new FollowReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *FollowReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetTargetFids
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetTargetFids sets TargetFids field to given value.
 
+### HasTargetFids
+
+`func (o *FollowReqBody) HasTargetFids() bool`
+
+HasTargetFids returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

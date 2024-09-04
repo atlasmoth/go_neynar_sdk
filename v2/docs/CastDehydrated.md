@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** |  | 
-**Object** | **string** |  | 
+**Hash** | Pointer to **string** |  | [optional] 
+**Object** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCastDehydrated
 
-`func NewCastDehydrated(hash string, object string, ) *CastDehydrated`
+`func NewCastDehydrated() *CastDehydrated`
 
 NewCastDehydrated instantiates a new CastDehydrated object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *CastDehydrated) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetObject
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *CastDehydrated) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

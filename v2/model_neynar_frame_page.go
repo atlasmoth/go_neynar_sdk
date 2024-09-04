@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarFramePage type satisfies the MappedNullable interface at compile time
@@ -21,29 +20,24 @@ var _ MappedNullable = &NeynarFramePage{}
 // NeynarFramePage struct for NeynarFramePage
 type NeynarFramePage struct {
 	// Unique identifier for the page.
-	Uuid string `json:"uuid"`
+	Uuid *string `json:"uuid,omitempty"`
 	// The version of the page schema.
-	Version string `json:"version"`
+	Version *string `json:"version,omitempty"`
 	// The title of the page.
-	Title string `json:"title"`
-	Image NeynarPageImage `json:"image"`
+	Title *string `json:"title,omitempty"`
+	Image *NeynarPageImage `json:"image,omitempty"`
 	Buttons []NeynarPageButton `json:"buttons,omitempty"`
 	Input *NeynarPageInput `json:"input,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _NeynarFramePage NeynarFramePage
 
 // NewNeynarFramePage instantiates a new NeynarFramePage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarFramePage(uuid string, version string, title string, image NeynarPageImage) *NeynarFramePage {
+func NewNeynarFramePage() *NeynarFramePage {
 	this := NeynarFramePage{}
-	this.Uuid = uuid
-	this.Version = version
-	this.Title = title
-	this.Image = image
+	var version string = "vNext"
+	this.Version = &version
 	return &this
 }
 
@@ -53,104 +47,136 @@ func NewNeynarFramePage(uuid string, version string, title string, image NeynarP
 func NewNeynarFramePageWithDefaults() *NeynarFramePage {
 	this := NeynarFramePage{}
 	var version string = "vNext"
-	this.Version = version
+	this.Version = &version
 	return &this
 }
 
-// GetUuid returns the Uuid field value
+// GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
-
-	return o.Uuid
+	return *o.Uuid
 }
 
-// GetUuidOk returns a tuple with the Uuid field value
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFramePage) GetUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		return nil, false
 	}
-	return &o.Uuid, true
+	return o.Uuid, true
 }
 
-// SetUuid sets field value
+// HasUuid returns a boolean if a field has been set.
+func (o *NeynarFramePage) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
 func (o *NeynarFramePage) SetUuid(v string) {
-	o.Uuid = v
+	o.Uuid = &v
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFramePage) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *NeynarFramePage) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *NeynarFramePage) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFramePage) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *NeynarFramePage) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *NeynarFramePage) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetImage() NeynarPageImage {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret NeynarPageImage
 		return ret
 	}
-
-	return o.Image
+	return *o.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFramePage) GetImageOk() (*NeynarPageImage, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		return nil, false
 	}
-	return &o.Image, true
+	return o.Image, true
 }
 
-// SetImage sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *NeynarFramePage) HasImage() bool {
+	if o != nil && !IsNil(o.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given NeynarPageImage and assigns it to the Image field.
 func (o *NeynarFramePage) SetImage(v NeynarPageImage) {
-	o.Image = v
+	o.Image = &v
 }
 
 // GetButtons returns the Buttons field value if set, zero value otherwise.
@@ -227,72 +253,25 @@ func (o NeynarFramePage) MarshalJSON() ([]byte, error) {
 
 func (o NeynarFramePage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["uuid"] = o.Uuid
-	toSerialize["version"] = o.Version
-	toSerialize["title"] = o.Title
-	toSerialize["image"] = o.Image
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
 	if !IsNil(o.Buttons) {
 		toSerialize["buttons"] = o.Buttons
 	}
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"uuid",
-		"version",
-		"title",
-		"image",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNeynarFramePage := _NeynarFramePage{}
-
-	err = json.Unmarshal(data, &varNeynarFramePage)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarFramePage(varNeynarFramePage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "uuid")
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "title")
-		delete(additionalProperties, "image")
-		delete(additionalProperties, "buttons")
-		delete(additionalProperties, "input")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNeynarFramePage struct {

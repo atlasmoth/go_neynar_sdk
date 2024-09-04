@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**ReactionType**](ReactionType.md) |  | 
-**Hash** | **string** | Ethereum address | [default to "0x5A927Ac639636E534b678e81768CA19e2C6280B7"]
-**Reactor** | [**Reactor**](Reactor.md) |  | 
-**Timestamp** | **time.Time** |  | 
-**CastHash** | **string** | Cast Hash | [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
+**Type** | Pointer to [**ReactionType**](ReactionType.md) |  | [optional] 
+**Hash** | Pointer to **string** | Ethereum address | [optional] [default to "0x5A927Ac639636E534b678e81768CA19e2C6280B7"]
+**Reactor** | Pointer to [**Reactor**](Reactor.md) |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**CastHash** | Pointer to **string** | Cast Hash | [optional] [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
 
 ## Methods
 
 ### NewReaction
 
-`func NewReaction(type_ ReactionType, hash string, reactor Reactor, timestamp time.Time, castHash string, ) *Reaction`
+`func NewReaction() *Reaction`
 
 NewReaction instantiates a new Reaction object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Reaction) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetHash
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *Reaction) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetReactor
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetReactor sets Reactor field to given value.
 
+### HasReactor
+
+`func (o *Reaction) HasReactor() bool`
+
+HasReactor returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *Reaction) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetCastHash
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetCastHash sets CastHash field to given value.
 
+### HasCastHash
+
+`func (o *Reaction) HasCastHash() bool`
+
+HasCastHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

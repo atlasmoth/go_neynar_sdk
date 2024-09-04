@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | [**[]User**](User.md) |  | 
+**Users** | Pointer to [**[]User**](User.md) |  | [optional] 
 
 ## Methods
 
 ### NewBulkUsersResponse
 
-`func NewBulkUsersResponse(users []User, ) *BulkUsersResponse`
+`func NewBulkUsersResponse() *BulkUsersResponse`
 
 NewBulkUsersResponse instantiates a new BulkUsersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetUsers sets Users field to given value.
 
+### HasUsers
+
+`func (o *BulkUsersResponse) HasUsers() bool`
+
+HasUsers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

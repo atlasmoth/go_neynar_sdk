@@ -99,26 +99,22 @@ func (a *ReactionsAPIService) GetReactionByIdExecute(r ApiGetReactionByIdRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.targetFid == nil {
-		return localVarReturnValue, nil, reportError("targetFid is required and must be specified")
-	}
-	if r.targetHash == nil {
-		return localVarReturnValue, nil, reportError("targetHash is required and must be specified")
-	}
-	if r.reactionType == nil {
-		return localVarReturnValue, nil, reportError("reactionType is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "target_fid", r.targetFid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "target_hash", r.targetHash, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
+	if r.targetFid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "target_fid", r.targetFid, "form", "")
+	}
+	if r.targetHash != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "target_hash", r.targetHash, "form", "")
+	}
+	if r.reactionType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	} else {
+		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
+		r.reactionType = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -136,7 +132,9 @@ func (a *ReactionsAPIService) GetReactionByIdExecute(r ApiGetReactionByIdRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -273,22 +271,19 @@ func (a *ReactionsAPIService) ListReactionsByCastExecute(r ApiListReactionsByCas
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.targetFid == nil {
-		return localVarReturnValue, nil, reportError("targetFid is required and must be specified")
-	}
-	if r.targetHash == nil {
-		return localVarReturnValue, nil, reportError("targetHash is required and must be specified")
-	}
-	if r.reactionType == nil {
-		return localVarReturnValue, nil, reportError("reactionType is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "target_fid", r.targetFid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "target_hash", r.targetHash, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	if r.targetFid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "target_fid", r.targetFid, "form", "")
+	}
+	if r.targetHash != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "target_hash", r.targetHash, "form", "")
+	}
+	if r.reactionType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	} else {
+		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
+		r.reactionType = &defaultValue
+	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	}
@@ -315,7 +310,9 @@ func (a *ReactionsAPIService) ListReactionsByCastExecute(r ApiListReactionsByCas
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -445,18 +442,16 @@ func (a *ReactionsAPIService) ListReactionsByFidExecute(r ApiListReactionsByFidR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
-	if r.reactionType == nil {
-		return localVarReturnValue, nil, reportError("reactionType is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	}
+	if r.reactionType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	} else {
+		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
+		r.reactionType = &defaultValue
+	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	}
@@ -483,7 +478,9 @@ func (a *ReactionsAPIService) ListReactionsByFidExecute(r ApiListReactionsByFidR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -613,18 +610,16 @@ func (a *ReactionsAPIService) ListReactionsByTargetExecute(r ApiListReactionsByT
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.url == nil {
-		return localVarReturnValue, nil, reportError("url is required and must be specified")
-	}
-	if r.reactionType == nil {
-		return localVarReturnValue, nil, reportError("reactionType is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	if r.url != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	}
+	if r.reactionType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
+	} else {
+		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
+		r.reactionType = &defaultValue
+	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	}
@@ -651,7 +646,9 @@ func (a *ReactionsAPIService) ListReactionsByTargetExecute(r ApiListReactionsByT
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

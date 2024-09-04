@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ReactionWithUserInfo type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &ReactionWithUserInfo{}
 
 // ReactionWithUserInfo struct for ReactionWithUserInfo
 type ReactionWithUserInfo struct {
-	Object string `json:"object"`
-	Cast CastDehydrated `json:"cast"`
-	User User `json:"user"`
-	AdditionalProperties map[string]interface{}
+	Object *string `json:"object,omitempty"`
+	Cast *CastDehydrated `json:"cast,omitempty"`
+	User *User `json:"user,omitempty"`
 }
-
-type _ReactionWithUserInfo ReactionWithUserInfo
 
 // NewReactionWithUserInfo instantiates a new ReactionWithUserInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionWithUserInfo(object string, cast CastDehydrated, user User) *ReactionWithUserInfo {
+func NewReactionWithUserInfo() *ReactionWithUserInfo {
 	this := ReactionWithUserInfo{}
-	this.Object = object
-	this.Cast = cast
-	this.User = user
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewReactionWithUserInfoWithDefaults() *ReactionWithUserInfo {
 	return &this
 }
 
-// GetObject returns the Object field value
+// GetObject returns the Object field value if set, zero value otherwise.
 func (o *ReactionWithUserInfo) GetObject() string {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithUserInfo) GetObjectOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Object, true
 }
 
-// SetObject sets field value
+// HasObject returns a boolean if a field has been set.
+func (o *ReactionWithUserInfo) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *ReactionWithUserInfo) SetObject(v string) {
-	o.Object = v
+	o.Object = &v
 }
 
-// GetCast returns the Cast field value
+// GetCast returns the Cast field value if set, zero value otherwise.
 func (o *ReactionWithUserInfo) GetCast() CastDehydrated {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		var ret CastDehydrated
 		return ret
 	}
-
-	return o.Cast
+	return *o.Cast
 }
 
-// GetCastOk returns a tuple with the Cast field value
+// GetCastOk returns a tuple with the Cast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithUserInfo) GetCastOk() (*CastDehydrated, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cast) {
 		return nil, false
 	}
-	return &o.Cast, true
+	return o.Cast, true
 }
 
-// SetCast sets field value
+// HasCast returns a boolean if a field has been set.
+func (o *ReactionWithUserInfo) HasCast() bool {
+	if o != nil && !IsNil(o.Cast) {
+		return true
+	}
+
+	return false
+}
+
+// SetCast gets a reference to the given CastDehydrated and assigns it to the Cast field.
 func (o *ReactionWithUserInfo) SetCast(v CastDehydrated) {
-	o.Cast = v
+	o.Cast = &v
 }
 
-// GetUser returns the User field value
+// GetUser returns the User field value if set, zero value otherwise.
 func (o *ReactionWithUserInfo) GetUser() User {
-	if o == nil {
+	if o == nil || IsNil(o.User) {
 		var ret User
 		return ret
 	}
-
-	return o.User
+	return *o.User
 }
 
-// GetUserOk returns a tuple with the User field value
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionWithUserInfo) GetUserOk() (*User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
-	return &o.User, true
+	return o.User, true
 }
 
-// SetUser sets field value
+// HasUser returns a boolean if a field has been set.
+func (o *ReactionWithUserInfo) HasUser() bool {
+	if o != nil && !IsNil(o.User) {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given User and assigns it to the User field.
 func (o *ReactionWithUserInfo) SetUser(v User) {
-	o.User = v
+	o.User = &v
 }
 
 func (o ReactionWithUserInfo) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o ReactionWithUserInfo) MarshalJSON() ([]byte, error) {
 
 func (o ReactionWithUserInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
-	toSerialize["cast"] = o.Cast
-	toSerialize["user"] = o.User
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
 	}
-
+	if !IsNil(o.Cast) {
+		toSerialize["cast"] = o.Cast
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
 	return toSerialize, nil
-}
-
-func (o *ReactionWithUserInfo) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"object",
-		"cast",
-		"user",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionWithUserInfo := _ReactionWithUserInfo{}
-
-	err = json.Unmarshal(data, &varReactionWithUserInfo)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionWithUserInfo(varReactionWithUserInfo)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "cast")
-		delete(additionalProperties, "user")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionWithUserInfo struct {

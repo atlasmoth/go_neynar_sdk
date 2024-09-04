@@ -94,22 +94,16 @@ func (a *STPAPIService) SubscriptionCheckExecute(r ApiSubscriptionCheckRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.addresses == nil {
-		return localVarReturnValue, nil, reportError("addresses is required and must be specified")
-	}
-	if r.contractAddress == nil {
-		return localVarReturnValue, nil, reportError("contractAddress is required and must be specified")
-	}
-	if r.chainId == nil {
-		return localVarReturnValue, nil, reportError("chainId is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "addresses", r.addresses, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "chain_id", r.chainId, "form", "")
+	if r.addresses != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "addresses", r.addresses, "form", "")
+	}
+	if r.contractAddress != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
+	}
+	if r.chainId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain_id", r.chainId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -127,7 +121,9 @@ func (a *STPAPIService) SubscriptionCheckExecute(r ApiSubscriptionCheckRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

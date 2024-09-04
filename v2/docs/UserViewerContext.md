@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Following** | **bool** | Indicates if the viewer is following the user. | 
-**FollowedBy** | **bool** | Indicates if the viewer is followed by the user. | 
+**Following** | Pointer to **bool** | Indicates if the viewer is following the user. | [optional] 
+**FollowedBy** | Pointer to **bool** | Indicates if the viewer is followed by the user. | [optional] 
 
 ## Methods
 
 ### NewUserViewerContext
 
-`func NewUserViewerContext(following bool, followedBy bool, ) *UserViewerContext`
+`func NewUserViewerContext() *UserViewerContext`
 
 NewUserViewerContext instantiates a new UserViewerContext object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetFollowing sets Following field to given value.
 
+### HasFollowing
+
+`func (o *UserViewerContext) HasFollowing() bool`
+
+HasFollowing returns a boolean if a field has been set.
 
 ### GetFollowedBy
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetFollowedBy sets FollowedBy field to given value.
 
+### HasFollowedBy
+
+`func (o *UserViewerContext) HasFollowedBy() bool`
+
+HasFollowedBy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

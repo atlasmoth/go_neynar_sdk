@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hash** | **string** | Ethereum address | 
-**Author** | [**PostCastResponseCastAuthor**](PostCastResponseCastAuthor.md) |  | 
-**Text** | **string** |  | 
+**Hash** | Pointer to **string** | Ethereum address | [optional] 
+**Author** | Pointer to [**PostCastResponseCastAuthor**](PostCastResponseCastAuthor.md) |  | [optional] 
+**Text** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewPostCastResponseCast
 
-`func NewPostCastResponseCast(hash string, author PostCastResponseCastAuthor, text string, ) *PostCastResponseCast`
+`func NewPostCastResponseCast() *PostCastResponseCast`
 
 NewPostCastResponseCast instantiates a new PostCastResponseCast object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetHash sets Hash field to given value.
 
+### HasHash
+
+`func (o *PostCastResponseCast) HasHash() bool`
+
+HasHash returns a boolean if a field has been set.
 
 ### GetAuthor
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetAuthor sets Author field to given value.
 
+### HasAuthor
+
+`func (o *PostCastResponseCast) HasAuthor() bool`
+
+HasAuthor returns a boolean if a field has been set.
 
 ### GetText
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *PostCastResponseCast) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

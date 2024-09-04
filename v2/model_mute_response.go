@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MuteResponse type satisfies the MappedNullable interface at compile time
@@ -20,20 +19,16 @@ var _ MappedNullable = &MuteResponse{}
 
 // MuteResponse struct for MuteResponse
 type MuteResponse struct {
-	Success bool `json:"success"`
+	Success *bool `json:"success,omitempty"`
 	Message *string `json:"message,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _MuteResponse MuteResponse
 
 // NewMuteResponse instantiates a new MuteResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMuteResponse(success bool) *MuteResponse {
+func NewMuteResponse() *MuteResponse {
 	this := MuteResponse{}
-	this.Success = success
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewMuteResponseWithDefaults() *MuteResponse {
 	return &this
 }
 
-// GetSuccess returns the Success field value
+// GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *MuteResponse) GetSuccess() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		var ret bool
 		return ret
 	}
-
-	return o.Success
+	return *o.Success
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MuteResponse) GetSuccessOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Success) {
 		return nil, false
 	}
-	return &o.Success, true
+	return o.Success, true
 }
 
-// SetSuccess sets field value
+// HasSuccess returns a boolean if a field has been set.
+func (o *MuteResponse) HasSuccess() bool {
+	if o != nil && !IsNil(o.Success) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccess gets a reference to the given bool and assigns it to the Success field.
 func (o *MuteResponse) SetSuccess(v bool) {
-	o.Success = v
+	o.Success = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -111,59 +114,13 @@ func (o MuteResponse) MarshalJSON() ([]byte, error) {
 
 func (o MuteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["success"] = o.Success
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
+	}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *MuteResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"success",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMuteResponse := _MuteResponse{}
-
-	err = json.Unmarshal(data, &varMuteResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MuteResponse(varMuteResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "message")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableMuteResponse struct {

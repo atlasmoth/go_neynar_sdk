@@ -26,8 +26,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | fid of a user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | fid of a user (optional) (default to 3)
 	viewerFid := int32(56) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -92,8 +92,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(6131) // int32 | fid of a user (default to 3)
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(6131) // int32 | fid of a user (optional) (default to 3)
 	viewerFid := int32(3) // int32 | fid of the user viewing this information, needed for contextual information. (optional) (default to 3)
 	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 150) (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)

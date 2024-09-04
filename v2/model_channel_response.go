@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ChannelResponse type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &ChannelResponse{}
 
 // ChannelResponse struct for ChannelResponse
 type ChannelResponse struct {
-	Channel Channel `json:"channel"`
-	AdditionalProperties map[string]interface{}
+	Channel *Channel `json:"channel,omitempty"`
 }
-
-type _ChannelResponse ChannelResponse
 
 // NewChannelResponse instantiates a new ChannelResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelResponse(channel Channel) *ChannelResponse {
+func NewChannelResponse() *ChannelResponse {
 	this := ChannelResponse{}
-	this.Channel = channel
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewChannelResponseWithDefaults() *ChannelResponse {
 	return &this
 }
 
-// GetChannel returns the Channel field value
+// GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *ChannelResponse) GetChannel() Channel {
-	if o == nil {
+	if o == nil || IsNil(o.Channel) {
 		var ret Channel
 		return ret
 	}
-
-	return o.Channel
+	return *o.Channel
 }
 
-// GetChannelOk returns a tuple with the Channel field value
+// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelResponse) GetChannelOk() (*Channel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Channel) {
 		return nil, false
 	}
-	return &o.Channel, true
+	return o.Channel, true
 }
 
-// SetChannel sets field value
+// HasChannel returns a boolean if a field has been set.
+func (o *ChannelResponse) HasChannel() bool {
+	if o != nil && !IsNil(o.Channel) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannel gets a reference to the given Channel and assigns it to the Channel field.
 func (o *ChannelResponse) SetChannel(v Channel) {
-	o.Channel = v
+	o.Channel = &v
 }
 
 func (o ChannelResponse) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o ChannelResponse) MarshalJSON() ([]byte, error) {
 
 func (o ChannelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["channel"] = o.Channel
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
 	}
-
 	return toSerialize, nil
-}
-
-func (o *ChannelResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"channel",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varChannelResponse := _ChannelResponse{}
-
-	err = json.Unmarshal(data, &varChannelResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ChannelResponse(varChannelResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "channel")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelResponse struct {

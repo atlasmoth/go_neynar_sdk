@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Messages** | [**[]Reaction**](Reaction.md) |  | 
-**NextPageToken** | **string** |  | 
+**Messages** | Pointer to [**[]Reaction**](Reaction.md) |  | [optional] 
+**NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewListReactionsByCast200Response
 
-`func NewListReactionsByCast200Response(messages []Reaction, nextPageToken string, ) *ListReactionsByCast200Response`
+`func NewListReactionsByCast200Response() *ListReactionsByCast200Response`
 
 NewListReactionsByCast200Response instantiates a new ListReactionsByCast200Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetMessages sets Messages field to given value.
 
+### HasMessages
+
+`func (o *ListReactionsByCast200Response) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNextPageToken sets NextPageToken field to given value.
 
+### HasNextPageToken
+
+`func (o *ListReactionsByCast200Response) HasNextPageToken() bool`
+
+HasNextPageToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

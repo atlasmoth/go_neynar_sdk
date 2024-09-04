@@ -27,8 +27,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	address := "address_example" // string | The ETH address being requested
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	address := "address_example" // string | The ETH address being requested (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -89,9 +89,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID being requested
-	eventType := openapiclient.OnChainEventType("EVENT_TYPE_SIGNER") // OnChainEventType | The numeric of string value of the event type being requested. (default to "EVENT_TYPE_SIGNER")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID being requested (optional)
+	eventType := openapiclient.OnChainEventType("EVENT_TYPE_SIGNER") // OnChainEventType | The numeric of string value of the event type being requested. (optional) (default to "EVENT_TYPE_SIGNER")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -153,8 +153,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID being requested
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	fid := int32(56) // int32 | The FID being requested (optional)
 	signer := "0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd" // string | The optional key of signer (optional)
 
 	configuration := openapiclient.NewConfiguration()

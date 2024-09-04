@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**Url** | **string** |  | 
-**Interactor** | [**User**](User.md) |  | 
-**TappedButton** | [**ValidatedFrameActionTappedButton**](ValidatedFrameActionTappedButton.md) |  | 
+**Object** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Interactor** | Pointer to [**User**](User.md) |  | [optional] 
+**TappedButton** | Pointer to [**ValidatedFrameActionTappedButton**](ValidatedFrameActionTappedButton.md) |  | [optional] 
 **Input** | Pointer to [**FrameInput**](FrameInput.md) |  | [optional] 
-**State** | [**FrameState**](FrameState.md) |  | 
-**Cast** | [**CastWithInteractions**](CastWithInteractions.md) |  | 
-**Timestamp** | **time.Time** |  | 
+**State** | Pointer to [**FrameState**](FrameState.md) |  | [optional] 
+**Cast** | Pointer to [**CastWithInteractions**](CastWithInteractions.md) |  | [optional] 
+**Timestamp** | Pointer to **time.Time** |  | [optional] 
 **Signer** | Pointer to [**ValidatedFrameActionSigner**](ValidatedFrameActionSigner.md) |  | [optional] 
 **Transaction** | Pointer to [**FrameTransaction**](FrameTransaction.md) |  | [optional] 
 **Address** | Pointer to **string** | The connected wallet address of the interacting user. | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewValidatedFrameAction
 
-`func NewValidatedFrameAction(object string, url string, interactor User, tappedButton ValidatedFrameActionTappedButton, state FrameState, cast CastWithInteractions, timestamp time.Time, ) *ValidatedFrameAction`
+`func NewValidatedFrameAction() *ValidatedFrameAction`
 
 NewValidatedFrameAction instantiates a new ValidatedFrameAction object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,11 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### HasObject
+
+`func (o *ValidatedFrameAction) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetUrl
 
@@ -74,6 +79,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *ValidatedFrameAction) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetInteractor
 
@@ -94,6 +104,11 @@ and a boolean to check if the value has been set.
 
 SetInteractor sets Interactor field to given value.
 
+### HasInteractor
+
+`func (o *ValidatedFrameAction) HasInteractor() bool`
+
+HasInteractor returns a boolean if a field has been set.
 
 ### GetTappedButton
 
@@ -114,6 +129,11 @@ and a boolean to check if the value has been set.
 
 SetTappedButton sets TappedButton field to given value.
 
+### HasTappedButton
+
+`func (o *ValidatedFrameAction) HasTappedButton() bool`
+
+HasTappedButton returns a boolean if a field has been set.
 
 ### GetInput
 
@@ -159,6 +179,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *ValidatedFrameAction) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### GetCast
 
@@ -179,6 +204,11 @@ and a boolean to check if the value has been set.
 
 SetCast sets Cast field to given value.
 
+### HasCast
+
+`func (o *ValidatedFrameAction) HasCast() bool`
+
+HasCast returns a boolean if a field has been set.
 
 ### GetTimestamp
 
@@ -199,6 +229,11 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
+
+`func (o *ValidatedFrameAction) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetSigner
 

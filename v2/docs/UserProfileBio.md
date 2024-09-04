@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Text** | **string** |  | 
-**MentionedProfiles** | **[]string** |  | [default to []]
+**Text** | Pointer to **string** |  | [optional] 
+**MentionedProfiles** | Pointer to **[]string** |  | [optional] [default to []]
 
 ## Methods
 
 ### NewUserProfileBio
 
-`func NewUserProfileBio(text string, mentionedProfiles []string, ) *UserProfileBio`
+`func NewUserProfileBio() *UserProfileBio`
 
 NewUserProfileBio instantiates a new UserProfileBio object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
+### HasText
+
+`func (o *UserProfileBio) HasText() bool`
+
+HasText returns a boolean if a field has been set.
 
 ### GetMentionedProfiles
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMentionedProfiles sets MentionedProfiles field to given value.
 
+### HasMentionedProfiles
+
+`func (o *UserProfileBio) HasMentionedProfiles() bool`
+
+HasMentionedProfiles returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

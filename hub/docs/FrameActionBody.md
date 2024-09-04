@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** |  | 
-**ButtonIndex** | **int32** |  | 
-**CastId** | [**CastId**](CastId.md) |  | 
+**Url** | Pointer to **string** |  | [optional] 
+**ButtonIndex** | Pointer to **int32** |  | [optional] 
+**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 
 ## Methods
 
 ### NewFrameActionBody
 
-`func NewFrameActionBody(url string, buttonIndex int32, castId CastId, ) *FrameActionBody`
+`func NewFrameActionBody() *FrameActionBody`
 
 NewFrameActionBody instantiates a new FrameActionBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *FrameActionBody) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetButtonIndex
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetButtonIndex sets ButtonIndex field to given value.
 
+### HasButtonIndex
+
+`func (o *FrameActionBody) HasButtonIndex() bool`
+
+HasButtonIndex returns a boolean if a field has been set.
 
 ### GetCastId
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetCastId sets CastId field to given value.
 
+### HasCastId
+
+`func (o *FrameActionBody) HasCastId() bool`
+
+HasCastId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

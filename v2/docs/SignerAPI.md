@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -91,8 +91,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	publicKey := "publicKey_example" // string |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	publicKey := "publicKey_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -153,9 +153,9 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	clientId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |
-	responseType := openapiclient.AuthorizationUrlResponseType("code") // AuthorizationUrlResponseType |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	clientId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
+	responseType := openapiclient.AuthorizationUrlResponseType("code") // AuthorizationUrlResponseType |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -217,8 +217,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	body := map[string]interface{}{ ... } // map[string]interface{} |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	body := map[string]interface{}{ ... } // map[string]interface{} |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -279,8 +279,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	registerSignerKeyReqBody := *openapiclient.NewRegisterSignerKeyReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "Signature_example", int32(123), int32(123)) // RegisterSignerKeyReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	registerSignerKeyReqBody := *openapiclient.NewRegisterSignerKeyReqBody() // RegisterSignerKeyReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -341,8 +341,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody("0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "Signature_example", int32(123), int32(123)) // RegisterDeveloperManagedSignedKeyReqBody |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody() // RegisterDeveloperManagedSignedKeyReqBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -403,8 +403,8 @@ import (
 )
 
 func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (default to "NEYNAR_API_DOCS")
-	signerUuid := "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec" // string |
+	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
+	signerUuid := "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** |  | 
-**KeyType** | **int64** |  | 
-**EventType** | [**SignerEventType**](SignerEventType.md) |  | [default to SIGNEREVENTTYPE_ADD]
-**Metadata** | **string** |  | 
-**MetadataType** | **int64** |  | 
+**Key** | Pointer to **string** |  | [optional] 
+**KeyType** | Pointer to **int64** |  | [optional] 
+**EventType** | Pointer to [**SignerEventType**](SignerEventType.md) |  | [optional] [default to SIGNEREVENTTYPE_ADD]
+**Metadata** | Pointer to **string** |  | [optional] 
+**MetadataType** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
 ### NewSignerEventBody
 
-`func NewSignerEventBody(key string, keyType int64, eventType SignerEventType, metadata string, metadataType int64, ) *SignerEventBody`
+`func NewSignerEventBody() *SignerEventBody`
 
 NewSignerEventBody instantiates a new SignerEventBody object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetKey sets Key field to given value.
 
+### HasKey
+
+`func (o *SignerEventBody) HasKey() bool`
+
+HasKey returns a boolean if a field has been set.
 
 ### GetKeyType
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetKeyType sets KeyType field to given value.
 
+### HasKeyType
+
+`func (o *SignerEventBody) HasKeyType() bool`
+
+HasKeyType returns a boolean if a field has been set.
 
 ### GetEventType
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetEventType sets EventType field to given value.
 
+### HasEventType
+
+`func (o *SignerEventBody) HasEventType() bool`
+
+HasEventType returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *SignerEventBody) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetMetadataType
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetMetadataType sets MetadataType field to given value.
 
+### HasMetadataType
+
+`func (o *SignerEventBody) HasMetadataType() bool`
+
+HasMetadataType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to [**EmbedUrlMetadata**](EmbedUrlMetadata.md) |  | [optional] 
-**CastId** | [**CastId**](CastId.md) |  | 
+**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 
 ## Methods
 
 ### NewEmbeddedCast
 
-`func NewEmbeddedCast(url string, castId CastId, ) *EmbeddedCast`
+`func NewEmbeddedCast() *EmbeddedCast`
 
 NewEmbeddedCast instantiates a new EmbeddedCast object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *EmbeddedCast) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -91,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetCastId sets CastId field to given value.
 
+### HasCastId
+
+`func (o *EmbeddedCast) HasCastId() bool`
+
+HasCastId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

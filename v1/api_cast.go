@@ -90,14 +90,13 @@ func (a *CastAPIService) AllCastsInThreadExecute(r ApiAllCastsInThreadRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.threadHash == nil {
-		return localVarReturnValue, nil, reportError("threadHash is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "threadHash", r.threadHash, "form", "")
+	if r.threadHash != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "threadHash", r.threadHash, "form", "")
+	} else {
+		var defaultValue string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+		r.threadHash = &defaultValue
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewerFid", r.viewerFid, "form", "")
 	} else {
@@ -121,7 +120,9 @@ func (a *CastAPIService) AllCastsInThreadExecute(r ApiAllCastsInThreadRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -227,14 +228,13 @@ func (a *CastAPIService) CastExecute(r ApiCastRequest) (*CastResponse, *http.Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.hash == nil {
-		return localVarReturnValue, nil, reportError("hash is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
+	if r.hash != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
+	} else {
+		var defaultValue string = "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+		r.hash = &defaultValue
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewerFid", r.viewerFid, "form", "")
 	} else {
@@ -258,7 +258,9 @@ func (a *CastAPIService) CastExecute(r ApiCastRequest) (*CastResponse, *http.Res
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -395,14 +397,13 @@ func (a *CastAPIService) CastsExecute(r ApiCastsRequest) (*CastsResponse, *http.
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
-	if r.fid == nil {
-		return localVarReturnValue, nil, reportError("fid is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	if r.fid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
+	} else {
+		var defaultValue int32 = 3
+		r.fid = &defaultValue
+	}
 	if r.parentUrl != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_url", r.parentUrl, "form", "")
 	}
@@ -438,7 +439,9 @@ func (a *CastAPIService) CastsExecute(r ApiCastsRequest) (*CastsResponse, *http.
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -558,9 +561,6 @@ func (a *CastAPIService) RecentCastsExecute(r ApiRecentCastsRequest) (*RecentCas
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiKey == nil {
-		return localVarReturnValue, nil, reportError("apiKey is required and must be specified")
-	}
 
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewerFid", r.viewerFid, "form", "")
@@ -594,7 +594,9 @@ func (a *CastAPIService) RecentCastsExecute(r ApiRecentCastsRequest) (*RecentCas
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	if r.apiKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "api_key", r.apiKey, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

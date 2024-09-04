@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Frames** | **[]string** |  | 
+**Frames** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateListResponse
 
-`func NewFrameValidateListResponse(frames []string, ) *FrameValidateListResponse`
+`func NewFrameValidateListResponse() *FrameValidateListResponse`
 
 NewFrameValidateListResponse instantiates a new FrameValidateListResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetFrames sets Frames field to given value.
 
+### HasFrames
+
+`func (o *FrameValidateListResponse) HasFrames() bool`
+
+HasFrames returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

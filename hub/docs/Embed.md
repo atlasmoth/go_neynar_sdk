@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CastId** | [**CastId**](CastId.md) |  | 
-**Url** | **string** |  | 
+**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewEmbed
 
-`func NewEmbed(castId CastId, url string, ) *Embed`
+`func NewEmbed() *Embed`
 
 NewEmbed instantiates a new Embed object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetCastId sets CastId field to given value.
 
+### HasCastId
+
+`func (o *Embed) HasCastId() bool`
+
+HasCastId returns a boolean if a field has been set.
 
 ### GetUrl
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *Embed) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

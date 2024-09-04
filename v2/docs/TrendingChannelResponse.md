@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | [**[]ChannelActivity**](ChannelActivity.md) |  | 
-**Next** | [**NextCursor**](NextCursor.md) |  | 
+**Channels** | Pointer to [**[]ChannelActivity**](ChannelActivity.md) |  | [optional] 
+**Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewTrendingChannelResponse
 
-`func NewTrendingChannelResponse(channels []ChannelActivity, next NextCursor, ) *TrendingChannelResponse`
+`func NewTrendingChannelResponse() *TrendingChannelResponse`
 
 NewTrendingChannelResponse instantiates a new TrendingChannelResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetChannels sets Channels field to given value.
 
+### HasChannels
+
+`func (o *TrendingChannelResponse) HasChannels() bool`
+
+HasChannels returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNext sets Next field to given value.
 
+### HasNext
+
+`func (o *TrendingChannelResponse) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

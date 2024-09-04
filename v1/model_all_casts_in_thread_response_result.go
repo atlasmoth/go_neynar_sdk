@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AllCastsInThreadResponseResult type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &AllCastsInThreadResponseResult{}
 
 // AllCastsInThreadResponseResult struct for AllCastsInThreadResponseResult
 type AllCastsInThreadResponseResult struct {
-	Casts []CastWithInteractions `json:"casts"`
-	AdditionalProperties map[string]interface{}
+	Casts []CastWithInteractions `json:"casts,omitempty"`
 }
-
-type _AllCastsInThreadResponseResult AllCastsInThreadResponseResult
 
 // NewAllCastsInThreadResponseResult instantiates a new AllCastsInThreadResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAllCastsInThreadResponseResult(casts []CastWithInteractions) *AllCastsInThreadResponseResult {
+func NewAllCastsInThreadResponseResult() *AllCastsInThreadResponseResult {
 	this := AllCastsInThreadResponseResult{}
-	this.Casts = casts
 	return &this
 }
 
@@ -44,26 +39,34 @@ func NewAllCastsInThreadResponseResultWithDefaults() *AllCastsInThreadResponseRe
 	return &this
 }
 
-// GetCasts returns the Casts field value
+// GetCasts returns the Casts field value if set, zero value otherwise.
 func (o *AllCastsInThreadResponseResult) GetCasts() []CastWithInteractions {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		var ret []CastWithInteractions
 		return ret
 	}
-
 	return o.Casts
 }
 
-// GetCastsOk returns a tuple with the Casts field value
+// GetCastsOk returns a tuple with the Casts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AllCastsInThreadResponseResult) GetCastsOk() ([]CastWithInteractions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Casts) {
 		return nil, false
 	}
 	return o.Casts, true
 }
 
-// SetCasts sets field value
+// HasCasts returns a boolean if a field has been set.
+func (o *AllCastsInThreadResponseResult) HasCasts() bool {
+	if o != nil && !IsNil(o.Casts) {
+		return true
+	}
+
+	return false
+}
+
+// SetCasts gets a reference to the given []CastWithInteractions and assigns it to the Casts field.
 func (o *AllCastsInThreadResponseResult) SetCasts(v []CastWithInteractions) {
 	o.Casts = v
 }
@@ -78,55 +81,10 @@ func (o AllCastsInThreadResponseResult) MarshalJSON() ([]byte, error) {
 
 func (o AllCastsInThreadResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["casts"] = o.Casts
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Casts) {
+		toSerialize["casts"] = o.Casts
 	}
-
 	return toSerialize, nil
-}
-
-func (o *AllCastsInThreadResponseResult) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"casts",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAllCastsInThreadResponseResult := _AllCastsInThreadResponseResult{}
-
-	err = json.Unmarshal(data, &varAllCastsInThreadResponseResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = AllCastsInThreadResponseResult(varAllCastsInThreadResponseResult)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "casts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableAllCastsInThreadResponseResult struct {

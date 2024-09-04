@@ -21,10 +21,7 @@ var _ MappedNullable = &HydratedFollower{}
 type HydratedFollower struct {
 	Object *string `json:"object,omitempty"`
 	User *User `json:"user,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _HydratedFollower HydratedFollower
 
 // NewHydratedFollower instantiates a new HydratedFollower object
 // This constructor will assign default values to properties that have it defined,
@@ -123,34 +120,7 @@ func (o HydratedFollower) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *HydratedFollower) UnmarshalJSON(data []byte) (err error) {
-	varHydratedFollower := _HydratedFollower{}
-
-	err = json.Unmarshal(data, &varHydratedFollower)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HydratedFollower(varHydratedFollower)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "object")
-		delete(additionalProperties, "user")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHydratedFollower struct {

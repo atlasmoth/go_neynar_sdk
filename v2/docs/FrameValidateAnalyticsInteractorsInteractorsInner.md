@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | User identifier (unsigned integer) | 
-**Username** | **string** |  | 
-**InteractionCount** | **float32** |  | 
+**Fid** | Pointer to **int32** | User identifier (unsigned integer) | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**InteractionCount** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
 ### NewFrameValidateAnalyticsInteractorsInteractorsInner
 
-`func NewFrameValidateAnalyticsInteractorsInteractorsInner(fid int32, username string, interactionCount float32, ) *FrameValidateAnalyticsInteractorsInteractorsInner`
+`func NewFrameValidateAnalyticsInteractorsInteractorsInner() *FrameValidateAnalyticsInteractorsInteractorsInner`
 
 NewFrameValidateAnalyticsInteractorsInteractorsInner instantiates a new FrameValidateAnalyticsInteractorsInteractorsInner object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetFid sets Fid field to given value.
 
+### HasFid
+
+`func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasFid() bool`
+
+HasFid returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetInteractionCount
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetInteractionCount sets InteractionCount field to given value.
 
+### HasInteractionCount
+
+`func (o *FrameValidateAnalyticsInteractorsInteractorsInner) HasInteractionCount() bool`
+
+HasInteractionCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

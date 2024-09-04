@@ -20,10 +20,7 @@ var _ MappedNullable = &DeleteNeynarFrameRequest{}
 // DeleteNeynarFrameRequest struct for DeleteNeynarFrameRequest
 type DeleteNeynarFrameRequest struct {
 	Uuid *string `json:"uuid,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _DeleteNeynarFrameRequest DeleteNeynarFrameRequest
 
 // NewDeleteNeynarFrameRequest instantiates a new DeleteNeynarFrameRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -87,33 +84,7 @@ func (o DeleteNeynarFrameRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Uuid) {
 		toSerialize["uuid"] = o.Uuid
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *DeleteNeynarFrameRequest) UnmarshalJSON(data []byte) (err error) {
-	varDeleteNeynarFrameRequest := _DeleteNeynarFrameRequest{}
-
-	err = json.Unmarshal(data, &varDeleteNeynarFrameRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DeleteNeynarFrameRequest(varDeleteNeynarFrameRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "uuid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableDeleteNeynarFrameRequest struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrameValidateAnalyticsTotalInteractors type satisfies the MappedNullable interface at compile time
@@ -20,19 +19,15 @@ var _ MappedNullable = &FrameValidateAnalyticsTotalInteractors{}
 
 // FrameValidateAnalyticsTotalInteractors struct for FrameValidateAnalyticsTotalInteractors
 type FrameValidateAnalyticsTotalInteractors struct {
-	TotalInteractors float32 `json:"total_interactors"`
-	AdditionalProperties map[string]interface{}
+	TotalInteractors *float32 `json:"total_interactors,omitempty"`
 }
-
-type _FrameValidateAnalyticsTotalInteractors FrameValidateAnalyticsTotalInteractors
 
 // NewFrameValidateAnalyticsTotalInteractors instantiates a new FrameValidateAnalyticsTotalInteractors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrameValidateAnalyticsTotalInteractors(totalInteractors float32) *FrameValidateAnalyticsTotalInteractors {
+func NewFrameValidateAnalyticsTotalInteractors() *FrameValidateAnalyticsTotalInteractors {
 	this := FrameValidateAnalyticsTotalInteractors{}
-	this.TotalInteractors = totalInteractors
 	return &this
 }
 
@@ -44,28 +39,36 @@ func NewFrameValidateAnalyticsTotalInteractorsWithDefaults() *FrameValidateAnaly
 	return &this
 }
 
-// GetTotalInteractors returns the TotalInteractors field value
+// GetTotalInteractors returns the TotalInteractors field value if set, zero value otherwise.
 func (o *FrameValidateAnalyticsTotalInteractors) GetTotalInteractors() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalInteractors) {
 		var ret float32
 		return ret
 	}
-
-	return o.TotalInteractors
+	return *o.TotalInteractors
 }
 
-// GetTotalInteractorsOk returns a tuple with the TotalInteractors field value
+// GetTotalInteractorsOk returns a tuple with the TotalInteractors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FrameValidateAnalyticsTotalInteractors) GetTotalInteractorsOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalInteractors) {
 		return nil, false
 	}
-	return &o.TotalInteractors, true
+	return o.TotalInteractors, true
 }
 
-// SetTotalInteractors sets field value
+// HasTotalInteractors returns a boolean if a field has been set.
+func (o *FrameValidateAnalyticsTotalInteractors) HasTotalInteractors() bool {
+	if o != nil && !IsNil(o.TotalInteractors) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalInteractors gets a reference to the given float32 and assigns it to the TotalInteractors field.
 func (o *FrameValidateAnalyticsTotalInteractors) SetTotalInteractors(v float32) {
-	o.TotalInteractors = v
+	o.TotalInteractors = &v
 }
 
 func (o FrameValidateAnalyticsTotalInteractors) MarshalJSON() ([]byte, error) {
@@ -78,55 +81,10 @@ func (o FrameValidateAnalyticsTotalInteractors) MarshalJSON() ([]byte, error) {
 
 func (o FrameValidateAnalyticsTotalInteractors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["total_interactors"] = o.TotalInteractors
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.TotalInteractors) {
+		toSerialize["total_interactors"] = o.TotalInteractors
 	}
-
 	return toSerialize, nil
-}
-
-func (o *FrameValidateAnalyticsTotalInteractors) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"total_interactors",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFrameValidateAnalyticsTotalInteractors := _FrameValidateAnalyticsTotalInteractors{}
-
-	err = json.Unmarshal(data, &varFrameValidateAnalyticsTotalInteractors)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FrameValidateAnalyticsTotalInteractors(varFrameValidateAnalyticsTotalInteractors)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "total_interactors")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableFrameValidateAnalyticsTotalInteractors struct {

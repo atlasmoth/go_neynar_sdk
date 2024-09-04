@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Signer type satisfies the MappedNullable interface at compile time
@@ -21,27 +20,21 @@ var _ MappedNullable = &Signer{}
 // Signer struct for Signer
 type Signer struct {
 	// UUID of the signer
-	SignerUuid string `json:"signer_uuid"`
+	SignerUuid *string `json:"signer_uuid,omitempty"`
 	// Ed25519 public key
-	PublicKey string `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
-	Status string `json:"status"`
+	PublicKey *string `json:"public_key,omitempty" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
+	Status *string `json:"status,omitempty"`
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
 	// User identifier (unsigned integer)
 	Fid *int32 `json:"fid,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Signer Signer
 
 // NewSigner instantiates a new Signer object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSigner(signerUuid string, publicKey string, status string) *Signer {
+func NewSigner() *Signer {
 	this := Signer{}
-	this.SignerUuid = signerUuid
-	this.PublicKey = publicKey
-	this.Status = status
 	return &this
 }
 
@@ -53,76 +46,100 @@ func NewSignerWithDefaults() *Signer {
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *Signer) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Signer) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *Signer) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *Signer) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
-// GetPublicKey returns the PublicKey field value
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *Signer) GetPublicKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
-
-	return o.PublicKey
+	return *o.PublicKey
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Signer) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
-	return &o.PublicKey, true
+	return o.PublicKey, true
 }
 
-// SetPublicKey sets field value
+// HasPublicKey returns a boolean if a field has been set.
+func (o *Signer) HasPublicKey() bool {
+	if o != nil && !IsNil(o.PublicKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
 func (o *Signer) SetPublicKey(v string) {
-	o.PublicKey = v
+	o.PublicKey = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Signer) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Signer) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *Signer) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *Signer) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
 // GetSignerApprovalUrl returns the SignerApprovalUrl field value if set, zero value otherwise.
@@ -199,69 +216,22 @@ func (o Signer) MarshalJSON() ([]byte, error) {
 
 func (o Signer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
-	toSerialize["public_key"] = o.PublicKey
-	toSerialize["status"] = o.Status
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
+	}
+	if !IsNil(o.PublicKey) {
+		toSerialize["public_key"] = o.PublicKey
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.SignerApprovalUrl) {
 		toSerialize["signer_approval_url"] = o.SignerApprovalUrl
 	}
 	if !IsNil(o.Fid) {
 		toSerialize["fid"] = o.Fid
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *Signer) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-		"public_key",
-		"status",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSigner := _Signer{}
-
-	err = json.Unmarshal(data, &varSigner)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Signer(varSigner)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "signer_uuid")
-		delete(additionalProperties, "public_key")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "signer_approval_url")
-		delete(additionalProperties, "fid")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSigner struct {

@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HubEventMergeMessage type satisfies the MappedNullable interface at compile time
@@ -20,23 +19,17 @@ var _ MappedNullable = &HubEventMergeMessage{}
 
 // HubEventMergeMessage struct for HubEventMergeMessage
 type HubEventMergeMessage struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
-	MergeMessageBody MergeMessageBody `json:"mergeMessageBody"`
-	AdditionalProperties map[string]interface{}
+	Type *string `json:"type,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	MergeMessageBody *MergeMessageBody `json:"mergeMessageBody,omitempty"`
 }
-
-type _HubEventMergeMessage HubEventMergeMessage
 
 // NewHubEventMergeMessage instantiates a new HubEventMergeMessage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHubEventMergeMessage(type_ string, id int32, mergeMessageBody MergeMessageBody) *HubEventMergeMessage {
+func NewHubEventMergeMessage() *HubEventMergeMessage {
 	this := HubEventMergeMessage{}
-	this.Type = type_
-	this.Id = id
-	this.MergeMessageBody = mergeMessageBody
 	return &this
 }
 
@@ -48,76 +41,100 @@ func NewHubEventMergeMessageWithDefaults() *HubEventMergeMessage {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *HubEventMergeMessage) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeMessage) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *HubEventMergeMessage) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *HubEventMergeMessage) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *HubEventMergeMessage) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeMessage) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *HubEventMergeMessage) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HubEventMergeMessage) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetMergeMessageBody returns the MergeMessageBody field value
+// GetMergeMessageBody returns the MergeMessageBody field value if set, zero value otherwise.
 func (o *HubEventMergeMessage) GetMergeMessageBody() MergeMessageBody {
-	if o == nil {
+	if o == nil || IsNil(o.MergeMessageBody) {
 		var ret MergeMessageBody
 		return ret
 	}
-
-	return o.MergeMessageBody
+	return *o.MergeMessageBody
 }
 
-// GetMergeMessageBodyOk returns a tuple with the MergeMessageBody field value
+// GetMergeMessageBodyOk returns a tuple with the MergeMessageBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HubEventMergeMessage) GetMergeMessageBodyOk() (*MergeMessageBody, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MergeMessageBody) {
 		return nil, false
 	}
-	return &o.MergeMessageBody, true
+	return o.MergeMessageBody, true
 }
 
-// SetMergeMessageBody sets field value
+// HasMergeMessageBody returns a boolean if a field has been set.
+func (o *HubEventMergeMessage) HasMergeMessageBody() bool {
+	if o != nil && !IsNil(o.MergeMessageBody) {
+		return true
+	}
+
+	return false
+}
+
+// SetMergeMessageBody gets a reference to the given MergeMessageBody and assigns it to the MergeMessageBody field.
 func (o *HubEventMergeMessage) SetMergeMessageBody(v MergeMessageBody) {
-	o.MergeMessageBody = v
+	o.MergeMessageBody = &v
 }
 
 func (o HubEventMergeMessage) MarshalJSON() ([]byte, error) {
@@ -130,61 +147,16 @@ func (o HubEventMergeMessage) MarshalJSON() ([]byte, error) {
 
 func (o HubEventMergeMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["id"] = o.Id
-	toSerialize["mergeMessageBody"] = o.MergeMessageBody
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.MergeMessageBody) {
+		toSerialize["mergeMessageBody"] = o.MergeMessageBody
+	}
 	return toSerialize, nil
-}
-
-func (o *HubEventMergeMessage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"id",
-		"mergeMessageBody",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHubEventMergeMessage := _HubEventMergeMessage{}
-
-	err = json.Unmarshal(data, &varHubEventMergeMessage)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HubEventMergeMessage(varHubEventMergeMessage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "mergeMessageBody")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableHubEventMergeMessage struct {

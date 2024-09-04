@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StoreType** | [**StoreType**](StoreType.md) |  | [default to STORETYPE_CASTS]
-**Limit** | **int32** |  | 
+**StoreType** | Pointer to [**StoreType**](StoreType.md) |  | [optional] [default to STORETYPE_CASTS]
+**Limit** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewStorageLimit
 
-`func NewStorageLimit(storeType StoreType, limit int32, ) *StorageLimit`
+`func NewStorageLimit() *StorageLimit`
 
 NewStorageLimit instantiates a new StorageLimit object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetStoreType sets StoreType field to given value.
 
+### HasStoreType
+
+`func (o *StorageLimit) HasStoreType() bool`
+
+HasStoreType returns a boolean if a field has been set.
 
 ### GetLimit
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetLimit sets Limit field to given value.
 
+### HasLimit
+
+`func (o *StorageLimit) HasLimit() bool`
+
+HasLimit returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

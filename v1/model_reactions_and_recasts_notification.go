@@ -13,7 +13,6 @@ package openapi
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the ReactionsAndRecastsNotification type satisfies the MappedNullable interface at compile time
@@ -21,40 +20,27 @@ var _ MappedNullable = &ReactionsAndRecastsNotification{}
 
 // ReactionsAndRecastsNotification struct for ReactionsAndRecastsNotification
 type ReactionsAndRecastsNotification struct {
-	Hash string `json:"hash"`
-	ParentHash NullableString `json:"parentHash"`
-	ParentUrl NullableString `json:"parentUrl"`
-	ThreadHash string `json:"threadHash"`
-	ParentAuthor CastParentAuthor `json:"parentAuthor"`
-	MentionedProfiles []User `json:"mentionedProfiles"`
-	Author CastAuthor `json:"author"`
-	Text string `json:"text"`
-	Timestamp time.Time `json:"timestamp"`
-	Embeds []EmbedUrl `json:"embeds"`
+	Hash *string `json:"hash,omitempty"`
+	ParentHash NullableString `json:"parentHash,omitempty"`
+	ParentUrl NullableString `json:"parentUrl,omitempty"`
+	ThreadHash *string `json:"threadHash,omitempty"`
+	ParentAuthor *CastParentAuthor `json:"parentAuthor,omitempty"`
+	MentionedProfiles []User `json:"mentionedProfiles,omitempty"`
+	Author *CastAuthor `json:"author,omitempty"`
+	Text *string `json:"text,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Embeds []EmbedUrl `json:"embeds,omitempty"`
 	Type *CastType `json:"type,omitempty"`
 	Reactors []User `json:"reactors,omitempty"`
 	ReactionType *ReactionType `json:"reactionType,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ReactionsAndRecastsNotification ReactionsAndRecastsNotification
 
 // NewReactionsAndRecastsNotification instantiates a new ReactionsAndRecastsNotification object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReactionsAndRecastsNotification(hash string, parentHash NullableString, parentUrl NullableString, threadHash string, parentAuthor CastParentAuthor, mentionedProfiles []User, author CastAuthor, text string, timestamp time.Time, embeds []EmbedUrl) *ReactionsAndRecastsNotification {
+func NewReactionsAndRecastsNotification() *ReactionsAndRecastsNotification {
 	this := ReactionsAndRecastsNotification{}
-	this.Hash = hash
-	this.ParentHash = parentHash
-	this.ParentUrl = parentUrl
-	this.ThreadHash = threadHash
-	this.ParentAuthor = parentAuthor
-	this.MentionedProfiles = mentionedProfiles
-	this.Author = author
-	this.Text = text
-	this.Timestamp = timestamp
-	this.Embeds = embeds
 	return &this
 }
 
@@ -66,42 +52,48 @@ func NewReactionsAndRecastsNotificationWithDefaults() *ReactionsAndRecastsNotifi
 	return &this
 }
 
-// GetHash returns the Hash field value
+// GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
-
-	return o.Hash
+	return *o.Hash
 }
 
-// GetHashOk returns a tuple with the Hash field value
+// GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
-	return &o.Hash, true
+	return o.Hash, true
 }
 
-// SetHash sets field value
+// HasHash returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasHash() bool {
+	if o != nil && !IsNil(o.Hash) {
+		return true
+	}
+
+	return false
+}
+
+// SetHash gets a reference to the given string and assigns it to the Hash field.
 func (o *ReactionsAndRecastsNotification) SetHash(v string) {
-	o.Hash = v
+	o.Hash = &v
 }
 
-// GetParentHash returns the ParentHash field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetParentHash returns the ParentHash field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactionsAndRecastsNotification) GetParentHash() string {
-	if o == nil || o.ParentHash.Get() == nil {
+	if o == nil || IsNil(o.ParentHash.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.ParentHash.Get()
 }
 
-// GetParentHashOk returns a tuple with the ParentHash field value
+// GetParentHashOk returns a tuple with the ParentHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactionsAndRecastsNotification) GetParentHashOk() (*string, bool) {
@@ -111,23 +103,39 @@ func (o *ReactionsAndRecastsNotification) GetParentHashOk() (*string, bool) {
 	return o.ParentHash.Get(), o.ParentHash.IsSet()
 }
 
-// SetParentHash sets field value
+// HasParentHash returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasParentHash() bool {
+	if o != nil && o.ParentHash.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetParentHash gets a reference to the given NullableString and assigns it to the ParentHash field.
 func (o *ReactionsAndRecastsNotification) SetParentHash(v string) {
 	o.ParentHash.Set(&v)
 }
+// SetParentHashNil sets the value for ParentHash to be an explicit nil
+func (o *ReactionsAndRecastsNotification) SetParentHashNil() {
+	o.ParentHash.Set(nil)
+}
 
-// GetParentUrl returns the ParentUrl field value
-// If the value is explicit nil, the zero value for string will be returned
+// UnsetParentHash ensures that no value is present for ParentHash, not even an explicit nil
+func (o *ReactionsAndRecastsNotification) UnsetParentHash() {
+	o.ParentHash.Unset()
+}
+
+// GetParentUrl returns the ParentUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactionsAndRecastsNotification) GetParentUrl() string {
-	if o == nil || o.ParentUrl.Get() == nil {
+	if o == nil || IsNil(o.ParentUrl.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.ParentUrl.Get()
 }
 
-// GetParentUrlOk returns a tuple with the ParentUrl field value
+// GetParentUrlOk returns a tuple with the ParentUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactionsAndRecastsNotification) GetParentUrlOk() (*string, bool) {
@@ -137,175 +145,249 @@ func (o *ReactionsAndRecastsNotification) GetParentUrlOk() (*string, bool) {
 	return o.ParentUrl.Get(), o.ParentUrl.IsSet()
 }
 
-// SetParentUrl sets field value
+// HasParentUrl returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasParentUrl() bool {
+	if o != nil && o.ParentUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetParentUrl gets a reference to the given NullableString and assigns it to the ParentUrl field.
 func (o *ReactionsAndRecastsNotification) SetParentUrl(v string) {
 	o.ParentUrl.Set(&v)
 }
+// SetParentUrlNil sets the value for ParentUrl to be an explicit nil
+func (o *ReactionsAndRecastsNotification) SetParentUrlNil() {
+	o.ParentUrl.Set(nil)
+}
 
-// GetThreadHash returns the ThreadHash field value
+// UnsetParentUrl ensures that no value is present for ParentUrl, not even an explicit nil
+func (o *ReactionsAndRecastsNotification) UnsetParentUrl() {
+	o.ParentUrl.Unset()
+}
+
+// GetThreadHash returns the ThreadHash field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetThreadHash() string {
-	if o == nil {
+	if o == nil || IsNil(o.ThreadHash) {
 		var ret string
 		return ret
 	}
-
-	return o.ThreadHash
+	return *o.ThreadHash
 }
 
-// GetThreadHashOk returns a tuple with the ThreadHash field value
+// GetThreadHashOk returns a tuple with the ThreadHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetThreadHashOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ThreadHash) {
 		return nil, false
 	}
-	return &o.ThreadHash, true
+	return o.ThreadHash, true
 }
 
-// SetThreadHash sets field value
+// HasThreadHash returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasThreadHash() bool {
+	if o != nil && !IsNil(o.ThreadHash) {
+		return true
+	}
+
+	return false
+}
+
+// SetThreadHash gets a reference to the given string and assigns it to the ThreadHash field.
 func (o *ReactionsAndRecastsNotification) SetThreadHash(v string) {
-	o.ThreadHash = v
+	o.ThreadHash = &v
 }
 
-// GetParentAuthor returns the ParentAuthor field value
+// GetParentAuthor returns the ParentAuthor field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetParentAuthor() CastParentAuthor {
-	if o == nil {
+	if o == nil || IsNil(o.ParentAuthor) {
 		var ret CastParentAuthor
 		return ret
 	}
-
-	return o.ParentAuthor
+	return *o.ParentAuthor
 }
 
-// GetParentAuthorOk returns a tuple with the ParentAuthor field value
+// GetParentAuthorOk returns a tuple with the ParentAuthor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetParentAuthorOk() (*CastParentAuthor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ParentAuthor) {
 		return nil, false
 	}
-	return &o.ParentAuthor, true
+	return o.ParentAuthor, true
 }
 
-// SetParentAuthor sets field value
+// HasParentAuthor returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasParentAuthor() bool {
+	if o != nil && !IsNil(o.ParentAuthor) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentAuthor gets a reference to the given CastParentAuthor and assigns it to the ParentAuthor field.
 func (o *ReactionsAndRecastsNotification) SetParentAuthor(v CastParentAuthor) {
-	o.ParentAuthor = v
+	o.ParentAuthor = &v
 }
 
-// GetMentionedProfiles returns the MentionedProfiles field value
+// GetMentionedProfiles returns the MentionedProfiles field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetMentionedProfiles() []User {
-	if o == nil {
+	if o == nil || IsNil(o.MentionedProfiles) {
 		var ret []User
 		return ret
 	}
-
 	return o.MentionedProfiles
 }
 
-// GetMentionedProfilesOk returns a tuple with the MentionedProfiles field value
+// GetMentionedProfilesOk returns a tuple with the MentionedProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetMentionedProfilesOk() ([]User, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MentionedProfiles) {
 		return nil, false
 	}
 	return o.MentionedProfiles, true
 }
 
-// SetMentionedProfiles sets field value
+// HasMentionedProfiles returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasMentionedProfiles() bool {
+	if o != nil && !IsNil(o.MentionedProfiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetMentionedProfiles gets a reference to the given []User and assigns it to the MentionedProfiles field.
 func (o *ReactionsAndRecastsNotification) SetMentionedProfiles(v []User) {
 	o.MentionedProfiles = v
 }
 
-// GetAuthor returns the Author field value
+// GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetAuthor() CastAuthor {
-	if o == nil {
+	if o == nil || IsNil(o.Author) {
 		var ret CastAuthor
 		return ret
 	}
-
-	return o.Author
+	return *o.Author
 }
 
-// GetAuthorOk returns a tuple with the Author field value
+// GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetAuthorOk() (*CastAuthor, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Author) {
 		return nil, false
 	}
-	return &o.Author, true
+	return o.Author, true
 }
 
-// SetAuthor sets field value
+// HasAuthor returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasAuthor() bool {
+	if o != nil && !IsNil(o.Author) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthor gets a reference to the given CastAuthor and assigns it to the Author field.
 func (o *ReactionsAndRecastsNotification) SetAuthor(v CastAuthor) {
-	o.Author = v
+	o.Author = &v
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetText() string {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Text, true
 }
 
-// SetText sets field value
+// HasText returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
+		return true
+	}
+
+	return false
+}
+
+// SetText gets a reference to the given string and assigns it to the Text field.
 func (o *ReactionsAndRecastsNotification) SetText(v string) {
-	o.Text = v
+	o.Text = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
 func (o *ReactionsAndRecastsNotification) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
-// GetEmbeds returns the Embeds field value
+// GetEmbeds returns the Embeds field value if set, zero value otherwise.
 func (o *ReactionsAndRecastsNotification) GetEmbeds() []EmbedUrl {
-	if o == nil {
+	if o == nil || IsNil(o.Embeds) {
 		var ret []EmbedUrl
 		return ret
 	}
-
 	return o.Embeds
 }
 
-// GetEmbedsOk returns a tuple with the Embeds field value
+// GetEmbedsOk returns a tuple with the Embeds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactionsAndRecastsNotification) GetEmbedsOk() ([]EmbedUrl, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Embeds) {
 		return nil, false
 	}
 	return o.Embeds, true
 }
 
-// SetEmbeds sets field value
+// HasEmbeds returns a boolean if a field has been set.
+func (o *ReactionsAndRecastsNotification) HasEmbeds() bool {
+	if o != nil && !IsNil(o.Embeds) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmbeds gets a reference to the given []EmbedUrl and assigns it to the Embeds field.
 func (o *ReactionsAndRecastsNotification) SetEmbeds(v []EmbedUrl) {
 	o.Embeds = v
 }
@@ -416,16 +498,36 @@ func (o ReactionsAndRecastsNotification) MarshalJSON() ([]byte, error) {
 
 func (o ReactionsAndRecastsNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hash"] = o.Hash
-	toSerialize["parentHash"] = o.ParentHash.Get()
-	toSerialize["parentUrl"] = o.ParentUrl.Get()
-	toSerialize["threadHash"] = o.ThreadHash
-	toSerialize["parentAuthor"] = o.ParentAuthor
-	toSerialize["mentionedProfiles"] = o.MentionedProfiles
-	toSerialize["author"] = o.Author
-	toSerialize["text"] = o.Text
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["embeds"] = o.Embeds
+	if !IsNil(o.Hash) {
+		toSerialize["hash"] = o.Hash
+	}
+	if o.ParentHash.IsSet() {
+		toSerialize["parentHash"] = o.ParentHash.Get()
+	}
+	if o.ParentUrl.IsSet() {
+		toSerialize["parentUrl"] = o.ParentUrl.Get()
+	}
+	if !IsNil(o.ThreadHash) {
+		toSerialize["threadHash"] = o.ThreadHash
+	}
+	if !IsNil(o.ParentAuthor) {
+		toSerialize["parentAuthor"] = o.ParentAuthor
+	}
+	if !IsNil(o.MentionedProfiles) {
+		toSerialize["mentionedProfiles"] = o.MentionedProfiles
+	}
+	if !IsNil(o.Author) {
+		toSerialize["author"] = o.Author
+	}
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
+	}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Embeds) {
+		toSerialize["embeds"] = o.Embeds
+	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
@@ -435,75 +537,7 @@ func (o ReactionsAndRecastsNotification) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.ReactionType) {
 		toSerialize["reactionType"] = o.ReactionType
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *ReactionsAndRecastsNotification) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-		"parentHash",
-		"parentUrl",
-		"threadHash",
-		"parentAuthor",
-		"mentionedProfiles",
-		"author",
-		"text",
-		"timestamp",
-		"embeds",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReactionsAndRecastsNotification := _ReactionsAndRecastsNotification{}
-
-	err = json.Unmarshal(data, &varReactionsAndRecastsNotification)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReactionsAndRecastsNotification(varReactionsAndRecastsNotification)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hash")
-		delete(additionalProperties, "parentHash")
-		delete(additionalProperties, "parentUrl")
-		delete(additionalProperties, "threadHash")
-		delete(additionalProperties, "parentAuthor")
-		delete(additionalProperties, "mentionedProfiles")
-		delete(additionalProperties, "author")
-		delete(additionalProperties, "text")
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "embeds")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "reactors")
-		delete(additionalProperties, "reactionType")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableReactionsAndRecastsNotification struct {
