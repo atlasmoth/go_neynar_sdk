@@ -1,61 +1,37 @@
-# \SubscribersAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                                             | HTTP request                                  | Description                                 |
-| ------------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------- |
-| [**SubscribedTo**](SubscribersAPI.md#SubscribedTo)                 | **Get** /farcaster/user/subscribed_to         | Fetch what a given fid is subscribed to     |
-| [**Subscribers**](SubscribersAPI.md#Subscribers)                   | **Get** /farcaster/user/subscribers           | Fetch subscribers for a given fid           |
-| [**SubscriptionsCreated**](SubscribersAPI.md#SubscriptionsCreated) | **Get** /farcaster/user/subscriptions_created | Fetch created subscriptions for a given fid |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**SubscribedTo**](SubscribersApi.md#SubscribedTo) | **Get** /farcaster/user/subscribed_to | Fetch what a given fid is subscribed to
+[**Subscribers**](SubscribersApi.md#Subscribers) | **Get** /farcaster/user/subscribers | Fetch subscribers for a given fid
+[**SubscriptionsCreated**](SubscribersApi.md#SubscriptionsCreated) | **Get** /farcaster/user/subscriptions_created | Fetch created subscriptions for a given fid
 
-## SubscribedTo
-
-> SubscribedToResponse SubscribedTo(ctx).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
-
+# **SubscribedTo**
+> SubscribedToResponse SubscribedTo(ctx, apiKey, fid, subscriptionProvider, optional)
 Fetch what a given fid is subscribed to
 
-### Example
+Fetch what fids and contracts a fid is subscribed to.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)|  | 
+  **subscriptionProvider** | [**SubscriptionProvider**](.md)|  | 
+ **optional** | ***SubscribersApiSubscribedToOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(3206) // int32 |  (optional)
-	viewerFid := int32(3) // int32 |  (optional)
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |  (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubscribersApiSubscribedToOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.SubscribedTo(context.Background()).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.SubscribedTo``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SubscribedTo`: SubscribedToResponse
-	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.SubscribedTo`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubscribedToRequest struct via the builder pattern
-
-| Name                     | Type                                                | Description                          | Notes                                    |
-| ------------------------ | --------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**               | **string**                                          | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**                  | **int32**                                           |                                      |
-| **viewerFid**            | **int32**                                           |                                      |
-| **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |                                      |
+ **viewerFid** | [**optional.Interface of int32**](.md)|  | 
 
 ### Return type
 
@@ -67,61 +43,35 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## Subscribers
-
-> SubscribersResponse Subscribers(ctx).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
-
+# **Subscribers**
+> SubscribersResponse Subscribers(ctx, apiKey, fid, subscriptionProvider, optional)
 Fetch subscribers for a given fid
 
-### Example
+Fetch subscribers for a given fid's contracts. Doesn't return addresses that don't have an fid.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)|  | 
+  **subscriptionProvider** | [**SubscriptionProviders**](.md)|  | 
+ **optional** | ***SubscribersApiSubscribersOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(3206) // int32 |  (optional)
-	viewerFid := int32(3) // int32 |  (optional)
-	subscriptionProvider := openapiclient.SubscriptionProviders("fabric_stp") // SubscriptionProviders |  (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubscribersApiSubscribersOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.Subscribers(context.Background()).ApiKey(apiKey).Fid(fid).ViewerFid(viewerFid).SubscriptionProvider(subscriptionProvider).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.Subscribers``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `Subscribers`: SubscribersResponse
-	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.Subscribers`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubscribersRequest struct via the builder pattern
-
-| Name                     | Type                                                  | Description                          | Notes                                    |
-| ------------------------ | ----------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**               | **string**                                            | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**                  | **int32**                                             |                                      |
-| **viewerFid**            | **int32**                                             |                                      |
-| **subscriptionProvider** | [**SubscriptionProviders**](SubscriptionProviders.md) |                                      |
+ **viewerFid** | [**optional.Interface of int32**](.md)|  | 
 
 ### Return type
 
@@ -133,59 +83,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## SubscriptionsCreated
-
-> SubscriptionsResponse SubscriptionsCreated(ctx).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).Execute()
-
+# **SubscriptionsCreated**
+> SubscriptionsResponse SubscriptionsCreated(ctx, apiKey, fid, subscriptionProvider)
 Fetch created subscriptions for a given fid
 
-### Example
+Fetch created subscriptions for a given fid's.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(528) // int32 |  (optional)
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.SubscriptionsCreated(context.Background()).ApiKey(apiKey).Fid(fid).SubscriptionProvider(subscriptionProvider).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.SubscriptionsCreated``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SubscriptionsCreated`: SubscriptionsResponse
-	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.SubscriptionsCreated`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubscriptionsCreatedRequest struct via the builder pattern
-
-| Name                     | Type                                                | Description                          | Notes                                    |
-| ------------------------ | --------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**               | **string**                                          | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**                  | **int32**                                           |                                      |
-| **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)|  | 
+  **subscriptionProvider** | [**SubscriptionProvider**](.md)|  | 
 
 ### Return type
 
@@ -197,9 +113,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

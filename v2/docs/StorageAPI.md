@@ -1,57 +1,26 @@
-# \StorageAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                                     | HTTP request                           | Description                                  |
-| ---------------------------------------------------------- | -------------------------------------- | -------------------------------------------- |
-| [**BuyStorage**](StorageAPI.md#BuyStorage)                 | **Post** /farcaster/storage/buy        | Buy storage for an fid                       |
-| [**StorageAllocations**](StorageAPI.md#StorageAllocations) | **Get** /farcaster/storage/allocations | Fetches storage allocations for a given user |
-| [**StorageUsage**](StorageAPI.md#StorageUsage)             | **Get** /farcaster/storage/usage       | Fetches storage usage for a given user       |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**BuyStorage**](StorageApi.md#BuyStorage) | **Post** /farcaster/storage/buy | Buy storage for an fid
+[**StorageAllocations**](StorageApi.md#StorageAllocations) | **Get** /farcaster/storage/allocations | Fetches storage allocations for a given user
+[**StorageUsage**](StorageApi.md#StorageUsage) | **Get** /farcaster/storage/usage | Fetches storage usage for a given user
 
-## BuyStorage
-
-> StorageAllocationsResponse BuyStorage(ctx).ApiKey(apiKey).BuyStorageReqBody(buyStorageReqBody).Execute()
-
+# **BuyStorage**
+> StorageAllocationsResponse BuyStorage(ctx, body, apiKey)
 Buy storage for an fid
 
-### Example
+This api will help you rent units of storage for an year for a specific fid. A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. 
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	buyStorageReqBody := *openapiclient.NewBuyStorageReqBody() // BuyStorageReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.BuyStorage(context.Background()).ApiKey(apiKey).BuyStorageReqBody(buyStorageReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.BuyStorage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `BuyStorage`: StorageAllocationsResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.BuyStorage`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBuyStorageRequest struct via the builder pattern
-
-| Name                  | Type                                          | Description                          | Notes                                    |
-| --------------------- | --------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**            | **string**                                    | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **buyStorageReqBody** | [**BuyStorageReqBody**](BuyStorageReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**BuyStorageReqBody**](BuyStorageReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -63,57 +32,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## StorageAllocations
-
-> StorageAllocationsResponse StorageAllocations(ctx).ApiKey(apiKey).Fid(fid).Execute()
+# **StorageAllocations**
+> StorageAllocationsResponse StorageAllocations(ctx, apiKey, fid)
+Fetches storage allocations for a given user
 
 Fetches storage allocations for a given user
 
-### Example
+### Required Parameters
 
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.StorageAllocations(context.Background()).ApiKey(apiKey).Fid(fid).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.StorageAllocations``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `StorageAllocations`: StorageAllocationsResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.StorageAllocations`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiStorageAllocationsRequest struct via the builder pattern
-
-| Name       | Type       | Description                          | Notes                                    |
-| ---------- | ---------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**  |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)|  | 
 
 ### Return type
 
@@ -125,57 +61,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## StorageUsage
-
-> StorageUsageResponse StorageUsage(ctx).ApiKey(apiKey).Fid(fid).Execute()
+# **StorageUsage**
+> StorageUsageResponse StorageUsage(ctx, apiKey, fid)
+Fetches storage usage for a given user
 
 Fetches storage usage for a given user
 
-### Example
+### Required Parameters
 
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(3) // int32 |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.StorageUsage(context.Background()).ApiKey(apiKey).Fid(fid).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.StorageUsage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `StorageUsage`: StorageUsageResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.StorageUsage`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiStorageUsageRequest struct via the builder pattern
-
-| Name       | Type       | Description                          | Notes                                    |
-| ---------- | ---------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**  |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)|  | 
 
 ### Return type
 
@@ -187,9 +90,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

@@ -1,67 +1,40 @@
-# \UserDataAPI
+# {{classname}}
 
 All URIs are relative to *https://hub-api.neynar.com*
 
-| Method                                                  | HTTP request              | Description             |
-| ------------------------------------------------------- | ------------------------- | ----------------------- |
-| [**GetUserDataByFid**](UserDataAPI.md#GetUserDataByFid) | **Get** /v1/userDataByFid | Get UserData for a FID. |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**GetUserDataByFid**](UserDataApi.md#GetUserDataByFid) | **Get** /v1/userDataByFid | Get UserData for a FID.
 
-## GetUserDataByFid
-
-> GetUserDataByFid200Response GetUserDataByFid(ctx).ApiKey(apiKey).Fid(fid).UserDataType(userDataType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
-
+# **GetUserDataByFid**
+> InlineResponse2003 GetUserDataByFid(ctx, apiKey, fid, optional)
 Get UserData for a FID.
 
-### Example
+**Note:** one of two different response schemas is returned  based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/hub"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | **int32**| The FID that&#x27;s being requested | 
+ **optional** | ***UserDataApiGetUserDataByFidOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The FID that's being requested (optional)
-	userDataType := openapiclient.UserDataType("USER_DATA_TYPE_PFP") // UserDataType | The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned (optional) (default to "USER_DATA_TYPE_PFP")
-	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
-	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
-	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserDataApiGetUserDataByFidOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserDataAPI.GetUserDataByFid(context.Background()).ApiKey(apiKey).Fid(fid).UserDataType(userDataType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserDataAPI.GetUserDataByFid``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetUserDataByFid`: GetUserDataByFid200Response
-	fmt.Fprintf(os.Stdout, "Response from `UserDataAPI.GetUserDataByFid`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetUserDataByFidRequest struct via the builder pattern
-
-| Name             | Type                                | Description                                                                                                                  | Notes                                       |
-| ---------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| **apiKey**       | **string**                          | API key required for authentication.                                                                                         | [default to &quot;NEYNAR_API_DOCS&quot;]    |
-| **fid**          | **int32**                           | The FID that&#39;s being requested                                                                                           |
-| **userDataType** | [**UserDataType**](UserDataType.md) | The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned | [default to &quot;USER_DATA_TYPE_PFP&quot;] |
-| **pageSize**     | **int32**                           | Maximum number of messages to return in a single response                                                                    |
-| **reverse**      | **bool**                            | Reverse the sort order, returning latest messages first                                                                      |
-| **pageToken**    | **string**                          | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page      |
+ **userDataType** | [**optional.Interface of UserDataType**](.md)| The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned | 
+ **pageSize** | **optional.Int32**| Maximum number of messages to return in a single response | 
+ **reverse** | **optional.Bool**| Reverse the sort order, returning latest messages first | 
+ **pageToken** | **optional.String**| The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page | 
 
 ### Return type
 
-[**GetUserDataByFid200Response**](GetUserDataByFid200Response.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -69,9 +42,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

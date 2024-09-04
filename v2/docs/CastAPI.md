@@ -1,65 +1,41 @@
-# \CastAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                              | HTTP request                                  | Description                                    |
-| --------------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
-| [**Cast**](CastAPI.md#Cast)                         | **Get** /farcaster/cast                       | Retrieve cast for a given hash or Warpcast URL |
-| [**CastConversation**](CastAPI.md#CastConversation) | **Get** /farcaster/cast/conversation          | Retrieve the conversation for a given cast     |
-| [**CastSearch**](CastAPI.md#CastSearch)             | **Get** /farcaster/cast/search                | Search for casts                               |
-| [**Casts**](CastAPI.md#Casts)                       | **Get** /farcaster/casts                      | Gets information about an array of casts       |
-| [**ComposerList**](CastAPI.md#ComposerList)         | **Get** /farcaster/cast/composer_actions/list | Fetches all composer actions on Warpcast       |
-| [**DeleteCast**](CastAPI.md#DeleteCast)             | **Delete** /farcaster/cast                    | Delete a cast                                  |
-| [**PostCast**](CastAPI.md#PostCast)                 | **Post** /farcaster/cast                      | Posts a cast                                   |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Cast**](CastApi.md#Cast) | **Get** /farcaster/cast | Retrieve cast for a given hash or Warpcast URL
+[**CastConversation**](CastApi.md#CastConversation) | **Get** /farcaster/cast/conversation | Retrieve the conversation for a given cast
+[**CastSearch**](CastApi.md#CastSearch) | **Get** /farcaster/cast/search | Search for casts
+[**Casts**](CastApi.md#Casts) | **Get** /farcaster/casts | Gets information about an array of casts
+[**ComposerList**](CastApi.md#ComposerList) | **Get** /farcaster/cast/composer_actions/list | Fetches all composer actions on Warpcast
+[**DeleteCast**](CastApi.md#DeleteCast) | **Delete** /farcaster/cast | Delete a cast
+[**PostCast**](CastApi.md#PostCast) | **Post** /farcaster/cast | Posts a cast
 
-## Cast
-
-> CastResponse Cast(ctx).ApiKey(apiKey).Identifier(identifier).Type*(type*).ViewerFid(viewerFid).Execute()
-
+# **Cast**
+> CastResponse Cast(ctx, apiKey, identifier, type_, optional)
 Retrieve cast for a given hash or Warpcast URL
 
-### Example
+Gets information about an individual cast by passing in a Warpcast web URL or cast hash
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **identifier** | **string**| Cast identifier (Its either a url or a hash) | 
+  **type_** | [**CastParamType**](.md)|  | 
+ **optional** | ***CastApiCastOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash) (optional)
-	type_ := openapiclient.CastParamType("url") // CastParamType |  (optional)
-	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a CastApiCastOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.Cast(context.Background()).ApiKey(apiKey).Identifier(identifier).Type_(type_).ViewerFid(viewerFid).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.Cast``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `Cast`: CastResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.Cast`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCastRequest struct via the builder pattern
-
-| Name           | Type                                  | Description                                                                               | Notes                                    |
-| -------------- | ------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**     | **string**                            | API key required for authentication.                                                      | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **identifier** | **string**                            | Cast identifier (Its either a url or a hash)                                              |
-| **type\_**     | [**CastParamType**](CastParamType.md) |                                                                                           |
-| **viewerFid**  | **int32**                             | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. |
+ **viewerFid** | [**optional.Interface of int32**](.md)| adds viewer_context to cast object to show whether viewer has liked or recasted the cast. | 
 
 ### Return type
 
@@ -71,69 +47,39 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## CastConversation
-
-> Conversation CastConversation(ctx).ApiKey(apiKey).Identifier(identifier).Type*(type*).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
-
+# **CastConversation**
+> Conversation CastConversation(ctx, apiKey, identifier, type_, optional)
 Retrieve the conversation for a given cast
 
-### Example
+Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **identifier** | **string**| Cast identifier (Its either a url or a hash) | 
+  **type_** | [**CastParamType**](.md)|  | 
+ **optional** | ***CastApiCastConversationOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash) (optional)
-	type_ := openapiclient.CastParamType("url") // CastParamType |  (optional)
-	replyDepth := int32(56) // int32 | The depth of replies in the conversation that will be returned (default 2) (optional) (default to 2)
-	includeChronologicalParentCasts := true // bool | Include all parent casts in chronological order (optional) (default to false)
-	viewerFid := int32(3) // int32 |  (optional)
-	limit := int32(56) // int32 | Number of results to retrieve (default 20, max 50) (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a CastApiCastConversationOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.CastConversation(context.Background()).ApiKey(apiKey).Identifier(identifier).Type_(type_).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.CastConversation``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CastConversation`: Conversation
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.CastConversation`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCastConversationRequest struct via the builder pattern
-
-| Name                                | Type                                  | Description                                                                | Notes                                    |
-| ----------------------------------- | ------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**                          | **string**                            | API key required for authentication.                                       | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **identifier**                      | **string**                            | Cast identifier (Its either a url or a hash)                               |
-| **type\_**                          | [**CastParamType**](CastParamType.md) |                                                                            |
-| **replyDepth**                      | **int32**                             | The depth of replies in the conversation that will be returned (default 2) | [default to 2]                           |
-| **includeChronologicalParentCasts** | **bool**                              | Include all parent casts in chronological order                            | [default to false]                       |
-| **viewerFid**                       | **int32**                             |                                                                            |
-| **limit**                           | **int32**                             | Number of results to retrieve (default 20, max 50)                         | [default to 20]                          |
-| **cursor**                          | **string**                            | Pagination cursor.                                                         |
+ **replyDepth** | [**optional.Interface of int32**](.md)| The depth of replies in the conversation that will be returned (default 2) | 
+ **includeChronologicalParentCasts** | **optional.Bool**| Include all parent casts in chronological order | [default to false]
+ **viewerFid** | [**optional.Interface of int32**](.md)|  | 
+ **limit** | **optional.Int32**| Number of results to retrieve (default 20, max 50) | [default to 20]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -145,67 +91,38 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## CastSearch
-
-> CastsSearchResponse CastSearch(ctx).ApiKey(apiKey).Q(q).AuthorFid(authorFid).ParentUrl(parentUrl).ChannelId(channelId).Limit(limit).Cursor(cursor).Execute()
-
+# **CastSearch**
+> CastsSearchResponse CastSearch(ctx, apiKey, q, optional)
 Search for casts
 
-### Example
+Search for casts based on a query string, with optional AND filters
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **q** | **string**| Query string to search for casts | 
+ **optional** | ***CastApiCastSearchOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	q := "star wars" // string | Query string to search for casts (optional)
-	authorFid := int32(194) // int32 | Fid of the user whose casts you want to search (optional)
-	parentUrl := "parentUrl_example" // string | Parent URL of the casts you want to search (optional)
-	channelId := "channelId_example" // string | Channel ID of the casts you want to search (optional)
-	limit := int32(25) // int32 |  (optional) (default to 25)
-	cursor := "cursor_example" // string | Pagination cursor (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a CastApiCastSearchOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.CastSearch(context.Background()).ApiKey(apiKey).Q(q).AuthorFid(authorFid).ParentUrl(parentUrl).ChannelId(channelId).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.CastSearch``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CastSearch`: CastsSearchResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.CastSearch`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCastSearchRequest struct via the builder pattern
-
-| Name          | Type       | Description                                    | Notes                                    |
-| ------------- | ---------- | ---------------------------------------------- | ---------------------------------------- |
-| **apiKey**    | **string** | API key required for authentication.           | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **q**         | **string** | Query string to search for casts               |
-| **authorFid** | **int32**  | Fid of the user whose casts you want to search |
-| **parentUrl** | **string** | Parent URL of the casts you want to search     |
-| **channelId** | **string** | Channel ID of the casts you want to search     |
-| **limit**     | **int32**  |                                                | [default to 25]                          |
-| **cursor**    | **string** | Pagination cursor                              |
+ **authorFid** | [**optional.Interface of int32**](.md)| Fid of the user whose casts you want to search | 
+ **viewerFid** | [**optional.Interface of int32**](.md)| Fid of the viewer of the casts, used to show viewer_context | 
+ **parentUrl** | **optional.String**| Parent URL of the casts you want to search | 
+ **channelId** | **optional.String**| Channel ID of the casts you want to search | 
+ **limit** | **optional.Int32**|  | [default to 25]
+ **cursor** | **optional.String**| Pagination cursor | 
 
 ### Return type
 
@@ -217,61 +134,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## Casts
-
-> CastsResponse Casts(ctx).ApiKey(apiKey).Casts(casts).ViewerFid(viewerFid).SortType(sortType).Execute()
-
+# **Casts**
+> CastsResponse Casts(ctx, apiKey, casts, optional)
 Gets information about an array of casts
 
-### Example
+Retrieve multiple casts using their respective hashes.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **casts** | **string**| Hashes of the cast to be retrived (Comma separated) | 
+ **optional** | ***CastApiCastsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	casts := "0xa896906a5e397b4fec247c3ee0e9e4d4990b8004,0x27ff810f7f718afd8c40be236411f017982e0994" // string | Hashes of the cast to be retrived (Comma separated) (optional)
-	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
-	sortType := "sortType_example" // string | Optional parameter to sort the casts based on different criteria (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a CastApiCastsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.Casts(context.Background()).ApiKey(apiKey).Casts(casts).ViewerFid(viewerFid).SortType(sortType).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.Casts``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `Casts`: CastsResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.Casts`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCastsRequest struct via the builder pattern
-
-| Name          | Type       | Description                                                                               | Notes                                    |
-| ------------- | ---------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**    | **string** | API key required for authentication.                                                      | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **casts**     | **string** | Hashes of the cast to be retrived (Comma separated)                                       |
-| **viewerFid** | **int32**  | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. |
-| **sortType**  | **string** | Optional parameter to sort the casts based on different criteria                          |
+ **viewerFid** | [**optional.Interface of int32**](.md)| adds viewer_context to cast object to show whether viewer has liked or recasted the cast. | 
+ **sortType** | **optional.String**| Optional parameter to sort the casts based on different criteria | 
 
 ### Return type
 
@@ -283,61 +173,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ComposerList
-
-> CastComposerActionsListResponse ComposerList(ctx).ApiKey(apiKey).List(list).Limit(limit).Cursor(cursor).Execute()
-
+# **ComposerList**
+> CastComposerActionsListResponse ComposerList(ctx, apiKey, list, optional)
 Fetches all composer actions on Warpcast
 
-### Example
+Fetches all composer actions on Warpcast. You can filter by top or featured.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **list** | [**CastComposerType**](.md)| Type of list to fetch. | 
+ **optional** | ***CastApiComposerListOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	list := openapiclient.CastComposerType("top") // CastComposerType | Type of list to fetch. (optional)
-	limit := int32(25) // int32 | Number of results to retrieve (default 25, max 25). (optional) (default to 25)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a CastApiComposerListOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.ComposerList(context.Background()).ApiKey(apiKey).List(list).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.ComposerList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ComposerList`: CastComposerActionsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.ComposerList`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiComposerListRequest struct via the builder pattern
-
-| Name       | Type                                        | Description                                         | Notes                                    |
-| ---------- | ------------------------------------------- | --------------------------------------------------- | ---------------------------------------- |
-| **apiKey** | **string**                                  | API key required for authentication.                | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **list**   | [**CastComposerType**](CastComposerType.md) | Type of list to fetch.                              |
-| **limit**  | **int32**                                   | Number of results to retrieve (default 25, max 25). | [default to 25]                          |
-| **cursor** | **string**                                  | Pagination cursor.                                  |
+ **limit** | **optional.Int32**| Number of results to retrieve (default 25, max 25). | [default to 25]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -349,57 +212,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## DeleteCast
-
-> OperationResponse DeleteCast(ctx).ApiKey(apiKey).DeleteCastReqBody(deleteCastReqBody).Execute()
-
+# **DeleteCast**
+> OperationResponse DeleteCast(ctx, body, apiKey)
 Delete a cast
 
-### Example
+Delete an existing cast. \\ (In order to delete a cast `signer_uuid` must be approved) 
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	deleteCastReqBody := *openapiclient.NewDeleteCastReqBody() // DeleteCastReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.DeleteCast(context.Background()).ApiKey(apiKey).DeleteCastReqBody(deleteCastReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.DeleteCast``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteCast`: OperationResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.DeleteCast`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCastRequest struct via the builder pattern
-
-| Name                  | Type                                          | Description                          | Notes                                    |
-| --------------------- | --------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**            | **string**                                    | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **deleteCastReqBody** | [**DeleteCastReqBody**](DeleteCastReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**DeleteCastReqBody**](DeleteCastReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -411,57 +241,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## PostCast
-
-> PostCastResponse PostCast(ctx).ApiKey(apiKey).PostCastReqBody(postCastReqBody).Execute()
-
+# **PostCast**
+> PostCastResponse PostCast(ctx, body, apiKey)
 Posts a cast
 
-### Example
+Posts a cast or cast reply. Works with mentions and embeds.   (In order to post a cast `signer_uuid` must be approved) 
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	postCastReqBody := *openapiclient.NewPostCastReqBody() // PostCastReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.PostCast(context.Background()).ApiKey(apiKey).PostCastReqBody(postCastReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.PostCast``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PostCast`: PostCastResponse
-	fmt.Fprintf(os.Stdout, "Response from `CastAPI.PostCast`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPostCastRequest struct via the builder pattern
-
-| Name                | Type                                      | Description                          | Notes                                    |
-| ------------------- | ----------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**          | **string**                                | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **postCastReqBody** | [**PostCastReqBody**](PostCastReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**PostCastReqBody**](PostCastReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -473,9 +270,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

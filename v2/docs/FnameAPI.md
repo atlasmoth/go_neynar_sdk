@@ -1,55 +1,24 @@
-# \FnameAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                                 | HTTP request                          | Description                         |
-| ------------------------------------------------------ | ------------------------------------- | ----------------------------------- |
-| [**FnameAvailability**](FnameAPI.md#FnameAvailability) | **Get** /farcaster/fname/availability | Check if a given fname is available |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**FnameAvailability**](FnameApi.md#FnameAvailability) | **Get** /farcaster/fname/availability | Check if a given fname is available
 
-## FnameAvailability
-
-> FnameAvailabilityResponse FnameAvailability(ctx).ApiKey(apiKey).Fname(fname).Execute()
+# **FnameAvailability**
+> FnameAvailabilityResponse FnameAvailability(ctx, apiKey, fname)
+Check if a given fname is available
 
 Check if a given fname is available
 
-### Example
+### Required Parameters
 
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fname := "farcaster" // string |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FnameAPI.FnameAvailability(context.Background()).ApiKey(apiKey).Fname(fname).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FnameAPI.FnameAvailability``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `FnameAvailability`: FnameAvailabilityResponse
-	fmt.Fprintf(os.Stdout, "Response from `FnameAPI.FnameAvailability`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiFnameAvailabilityRequest struct via the builder pattern
-
-| Name       | Type       | Description                          | Notes                                    |
-| ---------- | ---------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fname**  | **string** |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fname** | **string**|  | 
 
 ### Return type
 
@@ -61,9 +30,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

@@ -4,36 +4,34 @@ All URIs are relative to *https://api.neynar.com/v1*
 
 | Class              | Method                                                                  | HTTP request                             | Description                                             |
 | ------------------ | ----------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------- |
-| _CastAPI_          | [**AllCastsInThread**](docs/CastAPI.md#allcastsinthread)                | **Get** /farcaster/all-casts-in-thread   | DEPRECATED - Retrieve all casts in a given thread hash  |
-| _CastAPI_          | [**Cast**](docs/CastAPI.md#cast)                                        | **Get** /farcaster/cast                  | DEPRECATED - Retrieve cast for a given hash             |
-| _CastAPI_          | [**Casts**](docs/CastAPI.md#casts)                                      | **Get** /farcaster/casts                 | DEPRECATED - Retrieve casts for a given user            |
-| _CastAPI_          | [**RecentCasts**](docs/CastAPI.md#recentcasts)                          | **Get** /farcaster/recent-casts          | Get Recent Casts                                        |
-| _FollowsAPI_       | [**Followers**](docs/FollowsAPI.md#followers)                           | **Get** /farcaster/followers             | Gets all followers for a given FID                      |
-| _FollowsAPI_       | [**Following**](docs/FollowsAPI.md#following)                           | **Get** /farcaster/following             | Gets all following users of a FID                       |
-| _NotificationsAPI_ | [**MentionsAndReplies**](docs/NotificationsAPI.md#mentionsandreplies)   | **Get** /farcaster/mentions-and-replies  | Get mentions and replies                                |
-| _NotificationsAPI_ | [**ReactionsAndRecasts**](docs/NotificationsAPI.md#reactionsandrecasts) | **Get** /farcaster/reactions-and-recasts | Get reactions and recasts                               |
-| _ReactionsAPI_     | [**CastLikes**](docs/ReactionsAPI.md#castlikes)                         | **Get** /farcaster/cast-likes            | DEPRECATED - Get all like reactions for a specific cast |
-| _ReactionsAPI_     | [**CastReactions**](docs/ReactionsAPI.md#castreactions)                 | **Get** /farcaster/cast-reactions        | DEPRECATED - Get all reactions for a specific cast      |
-| _ReactionsAPI_     | [**CastRecasters**](docs/ReactionsAPI.md#castrecasters)                 | **Get** /farcaster/cast-recasters        | DEPRECATED - Get all recasters for a specific cast      |
-| _UserAPI_          | [**CustodyAddress**](docs/UserAPI.md#custodyaddress)                    | **Get** /farcaster/custody-address       | DEPRECATED - Get the custody address for a given FID    |
-| _UserAPI_          | [**RecentUsers**](docs/UserAPI.md#recentusers)                          | **Get** /farcaster/recent-users          | Get Recent Users                                        |
-| _UserAPI_          | [**User**](docs/UserAPI.md#user)                                        | **Get** /farcaster/user                  | DEPRECATED - Get User Information by FID                |
-| _UserAPI_          | [**UserByUsername**](docs/UserAPI.md#userbyusername)                    | **Get** /farcaster/user-by-username      | Get User Information by username                        |
-| _UserAPI_          | [**UserCastLikes**](docs/UserAPI.md#usercastlikes)                      | **Get** /farcaster/user-cast-likes       | DEPRECATED -- Get User Cast Likes                       |
-| _VerificationAPI_  | [**UserByVerification**](docs/VerificationAPI.md#userbyverification)    | **Get** /farcaster/user-by-verification  | DEPRECATED - Retrieve user for a given ethereum address |
-| _VerificationAPI_  | [**Verifications**](docs/VerificationAPI.md#verifications)              | **Get** /farcaster/verifications         | DEPRECATED - Retrieve verifications for a given FID     |
+| _CastApi_          | [**AllCastsInThread**](docs/CastApi.md#allcastsinthread)                | **Get** /farcaster/all-casts-in-thread   | DEPRECATED - Retrieve all casts in a given thread hash  |
+| _CastApi_          | [**Cast**](docs/CastApi.md#cast)                                        | **Get** /farcaster/cast                  | DEPRECATED - Retrieve cast for a given hash             |
+| _CastApi_          | [**Casts**](docs/CastApi.md#casts)                                      | **Get** /farcaster/casts                 | DEPRECATED - Retrieve casts for a given user            |
+| _CastApi_          | [**RecentCasts**](docs/CastApi.md#recentcasts)                          | **Get** /farcaster/recent-casts          | Get Recent Casts                                        |
+| _FollowsApi_       | [**Followers**](docs/FollowsApi.md#followers)                           | **Get** /farcaster/followers             | Gets all followers for a given FID                      |
+| _FollowsApi_       | [**Following**](docs/FollowsApi.md#following)                           | **Get** /farcaster/following             | Gets all following users of a FID                       |
+| _NotificationsApi_ | [**MentionsAndReplies**](docs/NotificationsApi.md#mentionsandreplies)   | **Get** /farcaster/mentions-and-replies  | Get mentions and replies                                |
+| _NotificationsApi_ | [**ReactionsAndRecasts**](docs/NotificationsApi.md#reactionsandrecasts) | **Get** /farcaster/reactions-and-recasts | Get reactions and recasts                               |
+| _ReactionsApi_     | [**CastLikes**](docs/ReactionsApi.md#castlikes)                         | **Get** /farcaster/cast-likes            | DEPRECATED - Get all like reactions for a specific cast |
+| _ReactionsApi_     | [**CastReactions**](docs/ReactionsApi.md#castreactions)                 | **Get** /farcaster/cast-reactions        | DEPRECATED - Get all reactions for a specific cast      |
+| _ReactionsApi_     | [**CastRecasters**](docs/ReactionsApi.md#castrecasters)                 | **Get** /farcaster/cast-recasters        | DEPRECATED - Get all recasters for a specific cast      |
+| _UserApi_          | [**CustodyAddress**](docs/UserApi.md#custodyaddress)                    | **Get** /farcaster/custody-address       | DEPRECATED - Get the custody address for a given FID    |
+| _UserApi_          | [**RecentUsers**](docs/UserApi.md#recentusers)                          | **Get** /farcaster/recent-users          | Get Recent Users                                        |
+| _UserApi_          | [**User**](docs/UserApi.md#user)                                        | **Get** /farcaster/user                  | DEPRECATED - Get User Information by FID                |
+| _UserApi_          | [**UserByUsername**](docs/UserApi.md#userbyusername)                    | **Get** /farcaster/user-by-username      | Get User Information by username                        |
+| _UserApi_          | [**UserCastLikes**](docs/UserApi.md#usercastlikes)                      | **Get** /farcaster/user-cast-likes       | DEPRECATED -- Get User Cast Likes                       |
+| _VerificationApi_  | [**UserByVerification**](docs/VerificationApi.md#userbyverification)    | **Get** /farcaster/user-by-verification  | DEPRECATED - Retrieve user for a given ethereum address |
+| _VerificationApi_  | [**Verifications**](docs/VerificationApi.md#verifications)              | **Get** /farcaster/verifications         | DEPRECATED - Retrieve verifications for a given FID     |
 
 ## Documentation For Models
 
 - [ActiveStatus](docs/ActiveStatus.md)
 - [AllCastsInThreadResponse](docs/AllCastsInThreadResponse.md)
 - [AllCastsInThreadResponseResult](docs/AllCastsInThreadResponseResult.md)
+- [AllOfCastParentAuthor](docs/AllOfCastParentAuthor.md)
 - [Cast](docs/Cast.md)
-- [CastAuthor](docs/CastAuthor.md)
-- [CastAuthorOneOf](docs/CastAuthorOneOf.md)
 - [CastLikesResponse](docs/CastLikesResponse.md)
 - [CastLikesResponseResult](docs/CastLikesResponseResult.md)
-- [CastParentAuthor](docs/CastParentAuthor.md)
 - [CastReactionsResponse](docs/CastReactionsResponse.md)
 - [CastReactionsResponseResult](docs/CastReactionsResponseResult.md)
 - [CastRecasterResponse](docs/CastRecasterResponse.md)
@@ -57,6 +55,7 @@ All URIs are relative to *https://api.neynar.com/v1*
 - [MentionsAndRepliesResponse](docs/MentionsAndRepliesResponse.md)
 - [MentionsAndRepliesResponseResult](docs/MentionsAndRepliesResponseResult.md)
 - [NextCursor](docs/NextCursor.md)
+- [OneOfCastAuthor](docs/OneOfCastAuthor.md)
 - [Reaction](docs/Reaction.md)
 - [ReactionType](docs/ReactionType.md)
 - [ReactionWithCastMeta](docs/ReactionWithCastMeta.md)
@@ -92,18 +91,4 @@ All URIs are relative to *https://api.neynar.com/v1*
 
 Endpoints do not require authorization.
 
-## Documentation for Utility Methods
-
-Due to the fact that model structure members are all pointers, this package contains
-a number of utility functions to easily obtain pointers to values of basic types.
-Each of these functions takes a value of the given basic type and returns a pointer to it:
-
-- `PtrBool`
-- `PtrInt`
-- `PtrInt32`
-- `PtrInt64`
-- `PtrFloat`
-- `PtrFloat32`
-- `PtrFloat64`
-- `PtrString`
-- `PtrTime`
+## Author

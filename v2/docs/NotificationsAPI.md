@@ -1,58 +1,27 @@
-# \NotificationsAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                                                     | HTTP request                                | Description                                            |
-| -------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ |
-| [**MarkNotificationsAsSeen**](NotificationsAPI.md#MarkNotificationsAsSeen) | **Post** /farcaster/notifications/seen      | Mark notifications as seen                             |
-| [**Notifications**](NotificationsAPI.md#Notifications)                     | **Get** /farcaster/notifications            | Retrieve notifications for a given user                |
-| [**NotificationsChannel**](NotificationsAPI.md#NotificationsChannel)       | **Get** /farcaster/notifications/channel    | Retrieve notifications for a user in given channels    |
-| [**NotificationsParentUrl**](NotificationsAPI.md#NotificationsParentUrl)   | **Get** /farcaster/notifications/parent_url | Retrieve notifications for a user in given parent_urls |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**MarkNotificationsAsSeen**](NotificationsApi.md#MarkNotificationsAsSeen) | **Post** /farcaster/notifications/seen | Mark notifications as seen
+[**Notifications**](NotificationsApi.md#Notifications) | **Get** /farcaster/notifications | Retrieve notifications for a given user
+[**NotificationsChannel**](NotificationsApi.md#NotificationsChannel) | **Get** /farcaster/notifications/channel | Retrieve notifications for a user in given channels
+[**NotificationsParentUrl**](NotificationsApi.md#NotificationsParentUrl) | **Get** /farcaster/notifications/parent_url | Retrieve notifications for a user in given parent_urls
 
-## MarkNotificationsAsSeen
-
-> OperationResponse MarkNotificationsAsSeen(ctx).ApiKey(apiKey).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Execute()
+# **MarkNotificationsAsSeen**
+> OperationResponse MarkNotificationsAsSeen(ctx, body, apiKey)
+Mark notifications as seen
 
 Mark notifications as seen
 
-### Example
+### Required Parameters
 
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody() // MarkNotificationsAsSeenReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotificationsAPI.MarkNotificationsAsSeen(context.Background()).ApiKey(apiKey).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NotificationsAPI.MarkNotificationsAsSeen``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `MarkNotificationsAsSeen`: OperationResponse
-	fmt.Fprintf(os.Stdout, "Response from `NotificationsAPI.MarkNotificationsAsSeen`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiMarkNotificationsAsSeenRequest struct via the builder pattern
-
-| Name                               | Type                                                                    | Description                          | Notes                                    |
-| ---------------------------------- | ----------------------------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**                         | **string**                                                              | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **markNotificationsAsSeenReqBody** | [**MarkNotificationsAsSeenReqBody**](MarkNotificationsAsSeenReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**MarkNotificationsAsSeenReqBody**](MarkNotificationsAsSeenReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -64,61 +33,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## Notifications
-
-> NotificationsResponse Notifications(ctx).ApiKey(apiKey).Fid(fid).Type*(type*).Cursor(cursor).Execute()
-
+# **Notifications**
+> NotificationsResponse Notifications(ctx, apiKey, fid, optional)
 Retrieve notifications for a given user
 
-### Example
+Returns a list of notifications for a specific FID.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| FID of the user you you want to fetch notifications for | 
+ **optional** | ***NotificationsApiNotificationsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
-	type_ := openapiclient.NotificationType("follows") // NotificationType | Notification type to fetch. (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a NotificationsApiNotificationsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotificationsAPI.Notifications(context.Background()).ApiKey(apiKey).Fid(fid).Type_(type_).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NotificationsAPI.Notifications``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `Notifications`: NotificationsResponse
-	fmt.Fprintf(os.Stdout, "Response from `NotificationsAPI.Notifications`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiNotificationsRequest struct via the builder pattern
-
-| Name       | Type                                        | Description                                             | Notes                                    |
-| ---------- | ------------------------------------------- | ------------------------------------------------------- | ---------------------------------------- |
-| **apiKey** | **string**                                  | API key required for authentication.                    | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**                                   | FID of the user you you want to fetch notifications for |
-| **type\_** | [**NotificationType**](NotificationType.md) | Notification type to fetch.                             |
-| **cursor** | **string**                                  | Pagination cursor.                                      |
+ **type_** | [**optional.Interface of NotificationType**](.md)| Notification type to fetch. | 
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -130,61 +72,35 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## NotificationsChannel
-
-> NotificationsResponse NotificationsChannel(ctx).ApiKey(apiKey).Fid(fid).ChannelIds(channelIds).Cursor(cursor).Execute()
-
+# **NotificationsChannel**
+> NotificationsResponse NotificationsChannel(ctx, apiKey, fid, channelIds, optional)
 Retrieve notifications for a user in given channels
 
-### Example
+Returns a list of notifications for a user in specific channels
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| FID of the user you you want to fetch notifications for | 
+  **channelIds** | **string**| Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels) | 
+ **optional** | ***NotificationsApiNotificationsChannelOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
-	channelIds := "neynar,farcaster" // string | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels) (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a NotificationsApiNotificationsChannelOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotificationsAPI.NotificationsChannel(context.Background()).ApiKey(apiKey).Fid(fid).ChannelIds(channelIds).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NotificationsAPI.NotificationsChannel``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `NotificationsChannel`: NotificationsResponse
-	fmt.Fprintf(os.Stdout, "Response from `NotificationsAPI.NotificationsChannel`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiNotificationsChannelRequest struct via the builder pattern
-
-| Name           | Type       | Description                                                                                                        | Notes                                    |
-| -------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
-| **apiKey**     | **string** | API key required for authentication.                                                                               | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**        | **int32**  | FID of the user you you want to fetch notifications for                                                            |
-| **channelIds** | **string** | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels) |
-| **cursor**     | **string** | Pagination cursor.                                                                                                 |
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -196,61 +112,35 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## NotificationsParentUrl
-
-> NotificationsResponse NotificationsParentUrl(ctx).ApiKey(apiKey).Fid(fid).ParentUrls(parentUrls).Cursor(cursor).Execute()
-
+# **NotificationsParentUrl**
+> NotificationsResponse NotificationsParentUrl(ctx, apiKey, fid, parentUrls, optional)
 Retrieve notifications for a user in given parent_urls
 
-### Example
+Returns a list of notifications for a user in specific parent_urls
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| FID of the user you you want to fetch notifications for | 
+  **parentUrls** | **string**| Comma separated parent_urls | 
+ **optional** | ***NotificationsApiNotificationsParentUrlOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for (optional)
-	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated parent_urls (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a NotificationsApiNotificationsParentUrlOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotificationsAPI.NotificationsParentUrl(context.Background()).ApiKey(apiKey).Fid(fid).ParentUrls(parentUrls).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NotificationsAPI.NotificationsParentUrl``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `NotificationsParentUrl`: NotificationsResponse
-	fmt.Fprintf(os.Stdout, "Response from `NotificationsAPI.NotificationsParentUrl`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiNotificationsParentUrlRequest struct via the builder pattern
-
-| Name           | Type       | Description                                             | Notes                                    |
-| -------------- | ---------- | ------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**     | **string** | API key required for authentication.                    | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**        | **int32**  | FID of the user you you want to fetch notifications for |
-| **parentUrls** | **string** | Comma separated parent_urls                             |
-| **cursor**     | **string** | Pagination cursor.                                      |
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -262,9 +152,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

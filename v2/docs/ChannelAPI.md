@@ -1,67 +1,42 @@
-# \ChannelAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                                     | HTTP request                         | Description                                    |
-| ---------------------------------------------------------- | ------------------------------------ | ---------------------------------------------- |
-| [**ActiveChannels**](ChannelAPI.md#ActiveChannels)         | **Get** /farcaster/channel/user      | Get channels that a user is active in          |
-| [**ChannelDetails**](ChannelAPI.md#ChannelDetails)         | **Get** /farcaster/channel           | Retrieve channel details by id or parent_url   |
-| [**ChannelDetailsBulk**](ChannelAPI.md#ChannelDetailsBulk) | **Get** /farcaster/channel/bulk      | (Bulk) Retrieve channels by id or parent_url   |
-| [**ChannelFollowers**](ChannelAPI.md#ChannelFollowers)     | **Get** /farcaster/channel/followers | Retrieve followers for a given channel         |
-| [**ChannelUsers**](ChannelAPI.md#ChannelUsers)             | **Get** /farcaster/channel/users     | Retrieve users who are active in a channel     |
-| [**ListAllChannels**](ChannelAPI.md#ListAllChannels)       | **Get** /farcaster/channel/list      | Retrieve all channels with their details       |
-| [**SearchChannels**](ChannelAPI.md#SearchChannels)         | **Get** /farcaster/channel/search    | Search for channels based on id or name        |
-| [**TrendingChannels**](ChannelAPI.md#TrendingChannels)     | **Get** /farcaster/channel/trending  | Retrieve trending channels based on activity   |
-| [**UserChannels**](ChannelAPI.md#UserChannels)             | **Get** /farcaster/user/channels     | Retrieve all channels that a given fid follows |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**ActiveChannels**](ChannelApi.md#ActiveChannels) | **Get** /farcaster/channel/user | Get channels that a user is active in
+[**ChannelDetails**](ChannelApi.md#ChannelDetails) | **Get** /farcaster/channel | Retrieve channel details by id or parent_url
+[**ChannelDetailsBulk**](ChannelApi.md#ChannelDetailsBulk) | **Get** /farcaster/channel/bulk | (Bulk) Retrieve channels by id or parent_url
+[**ChannelFollowers**](ChannelApi.md#ChannelFollowers) | **Get** /farcaster/channel/followers | Retrieve followers for a given channel
+[**ChannelUsers**](ChannelApi.md#ChannelUsers) | **Get** /farcaster/channel/users | Retrieve users who are active in a channel
+[**ListAllChannels**](ChannelApi.md#ListAllChannels) | **Get** /farcaster/channel/list | Retrieve all channels with their details
+[**SearchChannels**](ChannelApi.md#SearchChannels) | **Get** /farcaster/channel/search | Search for channels based on id or name
+[**TrendingChannels**](ChannelApi.md#TrendingChannels) | **Get** /farcaster/channel/trending | Retrieve trending channels based on activity
+[**UserChannels**](ChannelApi.md#UserChannels) | **Get** /farcaster/user/channels | Retrieve all channels that a given fid follows
 
-## ActiveChannels
-
-> UsersActiveChannelsResponse ActiveChannels(ctx).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-
+# **ActiveChannels**
+> UsersActiveChannelsResponse ActiveChannels(ctx, apiKey, fid, optional)
 Get channels that a user is active in
 
-### Example
+Fetches all channels that a user has casted in, in reverse chronological order.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| The user&#x27;s fid (identifier) | 
+ **optional** | ***ChannelApiActiveChannelsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | The user's fid (identifier) (optional)
-	limit := int32(20) // int32 | Number of results to retrieve (default 20, max 100). (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiActiveChannelsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ActiveChannels(context.Background()).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ActiveChannels``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ActiveChannels`: UsersActiveChannelsResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ActiveChannels`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiActiveChannelsRequest struct via the builder pattern
-
-| Name       | Type       | Description                                          | Notes                                    |
-| ---------- | ---------- | ---------------------------------------------------- | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication.                 | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**  | The user&#39;s fid (identifier)                      |
-| **limit**  | **int32**  | Number of results to retrieve (default 20, max 100). | [default to 20]                          |
-| **cursor** | **string** | Pagination cursor.                                   |
+ **limit** | **optional.Int32**| Number of results to retrieve (default 20, max 100). | [default to 20]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -73,61 +48,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ChannelDetails
-
-> ChannelResponse ChannelDetails(ctx).ApiKey(apiKey).Id(id).Type*(type*).ViewerFid(viewerFid).Execute()
-
+# **ChannelDetails**
+> ChannelResponse ChannelDetails(ctx, apiKey, id, optional)
 Retrieve channel details by id or parent_url
 
-### Example
+Returns details of a channel
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **id** | **string**| Channel ID for the channel being queried | 
+ **optional** | ***ChannelApiChannelDetailsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	id := "neynar" // string | Channel ID for the channel being queried (optional)
-	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channel. Defaults to id. (optional)
-	viewerFid := int32(194) // int32 | FID of the user viewing the channel. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiChannelDetailsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ChannelDetails(context.Background()).ApiKey(apiKey).Id(id).Type_(type_).ViewerFid(viewerFid).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ChannelDetails``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ChannelDetails`: ChannelResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ChannelDetails`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiChannelDetailsRequest struct via the builder pattern
-
-| Name          | Type                              | Description                                                         | Notes                                    |
-| ------------- | --------------------------------- | ------------------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**    | **string**                        | API key required for authentication.                                | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **id**        | **string**                        | Channel ID for the channel being queried                            |
-| **type\_**    | [**ChannelType**](ChannelType.md) | Type of identifier being used to query the channel. Defaults to id. |
-| **viewerFid** | **int32**                         | FID of the user viewing the channel.                                |
+ **type_** | [**optional.Interface of ChannelType**](.md)| Type of identifier being used to query the channel. Defaults to id. | 
+ **viewerFid** | [**optional.Interface of int32**](.md)| FID of the user viewing the channel. | 
 
 ### Return type
 
@@ -139,61 +87,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ChannelDetailsBulk
-
-> ChannelResponseBulk ChannelDetailsBulk(ctx).ApiKey(apiKey).Ids(ids).Type*(type*).ViewerFid(viewerFid).Execute()
-
+# **ChannelDetailsBulk**
+> ChannelResponseBulk ChannelDetailsBulk(ctx, apiKey, ids, optional)
 (Bulk) Retrieve channels by id or parent_url
 
-### Example
+Returns details of multiple channels
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **ids** | **string**| Comma separated list of channel IDs or parent_urls, up to 100 at a time | 
+ **optional** | ***ChannelApiChannelDetailsBulkOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	ids := "neynar,warpcast" // string | Comma separated list of channel IDs or parent_urls, up to 100 at a time (optional)
-	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channels. Defaults to id. (optional)
-	viewerFid := int32(194) // int32 | FID of the user viewing the channels. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiChannelDetailsBulkOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ChannelDetailsBulk(context.Background()).ApiKey(apiKey).Ids(ids).Type_(type_).ViewerFid(viewerFid).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ChannelDetailsBulk``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ChannelDetailsBulk`: ChannelResponseBulk
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ChannelDetailsBulk`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiChannelDetailsBulkRequest struct via the builder pattern
-
-| Name          | Type                              | Description                                                             | Notes                                    |
-| ------------- | --------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------- |
-| **apiKey**    | **string**                        | API key required for authentication.                                    | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **ids**       | **string**                        | Comma separated list of channel IDs or parent_urls, up to 100 at a time |
-| **type\_**    | [**ChannelType**](ChannelType.md) | Type of identifier being used to query the channels. Defaults to id.    |
-| **viewerFid** | **int32**                         | FID of the user viewing the channels.                                   |
+ **type_** | [**optional.Interface of ChannelType**](.md)| Type of identifier being used to query the channels. Defaults to id. | 
+ **viewerFid** | [**optional.Interface of int32**](.md)| FID of the user viewing the channels. | 
 
 ### Return type
 
@@ -205,61 +126,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ChannelFollowers
-
-> UsersResponse ChannelFollowers(ctx).ApiKey(apiKey).Id(id).Cursor(cursor).Limit(limit).Execute()
-
+# **ChannelFollowers**
+> UsersResponse ChannelFollowers(ctx, apiKey, id, optional)
 Retrieve followers for a given channel
 
-### Example
+Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **id** | **string**| Channel ID for the channel being queried | 
+ **optional** | ***ChannelApiChannelFollowersOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	id := "founders" // string | Channel ID for the channel being queried (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	limit := int32(56) // int32 | Number of followers to retrieve (default 25, max 1000) (optional) (default to 25)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiChannelFollowersOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ChannelFollowers(context.Background()).ApiKey(apiKey).Id(id).Cursor(cursor).Limit(limit).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ChannelFollowers``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ChannelFollowers`: UsersResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ChannelFollowers`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiChannelFollowersRequest struct via the builder pattern
-
-| Name       | Type       | Description                                            | Notes                                    |
-| ---------- | ---------- | ------------------------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication.                   | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **id**     | **string** | Channel ID for the channel being queried               |
-| **cursor** | **string** | Pagination cursor.                                     |
-| **limit**  | **int32**  | Number of followers to retrieve (default 25, max 1000) | [default to 25]                          |
+ **cursor** | **optional.String**| Pagination cursor. | 
+ **limit** | **optional.Int32**| Number of followers to retrieve (default 25, max 1000) | [default to 25]
 
 ### Return type
 
@@ -271,69 +165,39 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ChannelUsers
-
-> UsersResponse ChannelUsers(ctx).ApiKey(apiKey).Id(id).HasRootCastAuthors(hasRootCastAuthors).HasCastLikers(hasCastLikers).HasCastRecasters(hasCastRecasters).HasReplyAuthors(hasReplyAuthors).Cursor(cursor).Limit(limit).Execute()
-
+# **ChannelUsers**
+> UsersResponse ChannelUsers(ctx, apiKey, id, hasRootCastAuthors, optional)
 Retrieve users who are active in a channel
 
-### Example
+Returns a list of users who are active in a given channel, ordered by ascending FIDs
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **id** | **string**| Channel ID for the channel being queried | 
+  **hasRootCastAuthors** | **bool**| Include users who posted the root cast in the channel | 
+ **optional** | ***ChannelApiChannelUsersOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	id := "neynar" // string | Channel ID for the channel being queried (optional)
-	hasRootCastAuthors := false // bool | Include users who posted the root cast in the channel (optional)
-	hasCastLikers := false // bool | Include users who liked a cast in the channel (optional)
-	hasCastRecasters := false // bool | Include users who recasted a cast in the channel (optional)
-	hasReplyAuthors := false // bool | Include users who replied to a cast in the channel (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	limit := int32(25) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiChannelUsersOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ChannelUsers(context.Background()).ApiKey(apiKey).Id(id).HasRootCastAuthors(hasRootCastAuthors).HasCastLikers(hasCastLikers).HasCastRecasters(hasCastRecasters).HasReplyAuthors(hasReplyAuthors).Cursor(cursor).Limit(limit).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ChannelUsers``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ChannelUsers`: UsersResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ChannelUsers`: %v\n", resp)
-}
-```
 
-### Path Parameters
 
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiChannelUsersRequest struct via the builder pattern
-
-| Name                   | Type       | Description                                           | Notes                                    |
-| ---------------------- | ---------- | ----------------------------------------------------- | ---------------------------------------- |
-| **apiKey**             | **string** | API key required for authentication.                  | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **id**                 | **string** | Channel ID for the channel being queried              |
-| **hasRootCastAuthors** | **bool**   | Include users who posted the root cast in the channel |
-| **hasCastLikers**      | **bool**   | Include users who liked a cast in the channel         |
-| **hasCastRecasters**   | **bool**   | Include users who recasted a cast in the channel      |
-| **hasReplyAuthors**    | **bool**   | Include users who replied to a cast in the channel    |
-| **cursor**             | **string** | Pagination cursor.                                    |
-| **limit**              | **int32**  | Number of results to retrieve (default 25, max 100)   | [default to 25]                          |
+ **hasCastLikers** | **optional.Bool**| Include users who liked a cast in the channel | 
+ **hasCastRecasters** | **optional.Bool**| Include users who recasted a cast in the channel | 
+ **hasReplyAuthors** | **optional.Bool**| Include users who replied to a cast in the channel | 
+ **cursor** | **optional.String**| Pagination cursor. | 
+ **limit** | **optional.Int32**| Number of results to retrieve (default 25, max 100) | [default to 25]
 
 ### Return type
 
@@ -345,59 +209,32 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## ListAllChannels
-
-> ChannelListResponse ListAllChannels(ctx).ApiKey(apiKey).Limit(limit).Cursor(cursor).Execute()
-
+# **ListAllChannels**
+> ChannelListResponse ListAllChannels(ctx, apiKey, optional)
 Retrieve all channels with their details
 
-### Example
+Returns a list of all channels with their details
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+ **optional** | ***ChannelApiListAllChannelsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	limit := int32(56) // int32 | Number of results to retrieve (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiListAllChannelsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.ListAllChannels(context.Background()).ApiKey(apiKey).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.ListAllChannels``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListAllChannels`: ChannelListResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.ListAllChannels`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAllChannelsRequest struct via the builder pattern
-
-| Name       | Type       | Description                          | Notes                                    |
-| ---------- | ---------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **limit**  | **int32**  | Number of results to retrieve        | [default to 20]                          |
-| **cursor** | **string** | Pagination cursor.                   |
+ **limit** | **optional.Int32**| Number of results to retrieve | [default to 20]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -409,61 +246,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## SearchChannels
-
-> ChannelSearchResponse SearchChannels(ctx).ApiKey(apiKey).Q(q).Limit(limit).Cursor(cursor).Execute()
-
+# **SearchChannels**
+> ChannelSearchResponse SearchChannels(ctx, apiKey, q, optional)
 Search for channels based on id or name
 
-### Example
+Returns a list of channels based on id or name
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **q** | **string**| Channel ID or name for the channel being queried | 
+ **optional** | ***ChannelApiSearchChannelsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	q := "neynar" // string | Channel ID or name for the channel being queried (optional)
-	limit := int32(56) // int32 | Number of results to retrieve (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiSearchChannelsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.SearchChannels(context.Background()).ApiKey(apiKey).Q(q).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.SearchChannels``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SearchChannels`: ChannelSearchResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.SearchChannels`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSearchChannelsRequest struct via the builder pattern
-
-| Name       | Type       | Description                                      | Notes                                    |
-| ---------- | ---------- | ------------------------------------------------ | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication.             | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **q**      | **string** | Channel ID or name for the channel being queried |
-| **limit**  | **int32**  | Number of results to retrieve                    | [default to 20]                          |
-| **cursor** | **string** | Pagination cursor.                               |
+ **limit** | **optional.Int32**| Number of results to retrieve | [default to 20]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -475,61 +285,33 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## TrendingChannels
-
-> TrendingChannelResponse TrendingChannels(ctx).ApiKey(apiKey).TimeWindow(timeWindow).Limit(limit).Cursor(cursor).Execute()
-
+# **TrendingChannels**
+> TrendingChannelResponse TrendingChannels(ctx, apiKey, optional)
 Retrieve trending channels based on activity
 
-### Example
+Returns a list of trending channels based on activity
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+ **optional** | ***ChannelApiTrendingChannelsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	timeWindow := "timeWindow_example" // string |  (optional)
-	limit := int32(10) // int32 | Number of results to retrieve (default 10, max 25) (optional) (default to 10)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiTrendingChannelsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.TrendingChannels(context.Background()).ApiKey(apiKey).TimeWindow(timeWindow).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.TrendingChannels``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `TrendingChannels`: TrendingChannelResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.TrendingChannels`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTrendingChannelsRequest struct via the builder pattern
-
-| Name           | Type       | Description                                        | Notes                                    |
-| -------------- | ---------- | -------------------------------------------------- | ---------------------------------------- |
-| **apiKey**     | **string** | API key required for authentication.               | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **timeWindow** | **string** |                                                    |
-| **limit**      | **int32**  | Number of results to retrieve (default 10, max 25) | [default to 10]                          |
-| **cursor**     | **string** | Pagination cursor.                                 |
+ **timeWindow** | **optional.String**|  | 
+ **limit** | **optional.Int32**| Number of results to retrieve (default 10, max 25) | [default to 10]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -541,61 +323,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## UserChannels
-
-> ChannelListResponse UserChannels(ctx).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-
+# **UserChannels**
+> ChannelListResponse UserChannels(ctx, apiKey, fid, optional)
 Retrieve all channels that a given fid follows
 
-### Example
+Returns a list of all channels with their details that a fid follows.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| The fid of the user. | 
+ **optional** | ***ChannelApiUserChannelsOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(56) // int32 | The fid of the user. (optional)
-	limit := int32(56) // int32 | Number of results to retrieve (default 25, max 100) (optional) (default to 25)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a ChannelApiUserChannelsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.UserChannels(context.Background()).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.UserChannels``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UserChannels`: ChannelListResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChannelAPI.UserChannels`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserChannelsRequest struct via the builder pattern
-
-| Name       | Type       | Description                                         | Notes                                    |
-| ---------- | ---------- | --------------------------------------------------- | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication.                | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**  | The fid of the user.                                |
-| **limit**  | **int32**  | Number of results to retrieve (default 25, max 100) | [default to 25]                          |
-| **cursor** | **string** | Pagination cursor.                                  |
+ **limit** | **optional.Int32**| Number of results to retrieve (default 25, max 100) | [default to 25]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -607,9 +362,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

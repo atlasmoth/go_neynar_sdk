@@ -1,57 +1,26 @@
-# \MuteAPI
+# {{classname}}
 
 All URIs are relative to *https://api.neynar.com/v2*
 
-| Method                                  | HTTP request                 | Description                    |
-| --------------------------------------- | ---------------------------- | ------------------------------ |
-| [**AddMute**](MuteAPI.md#AddMute)       | **Post** /farcaster/mute     | Adds a mute for a fid          |
-| [**DeleteMute**](MuteAPI.md#DeleteMute) | **Delete** /farcaster/mute   | Deletes a mute for a fid       |
-| [**MuteList**](MuteAPI.md#MuteList)     | **Get** /farcaster/mute/list | Get fids that a user has muted |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**AddMute**](MuteApi.md#AddMute) | **Post** /farcaster/mute | Adds a mute for a fid
+[**DeleteMute**](MuteApi.md#DeleteMute) | **Delete** /farcaster/mute | Deletes a mute for a fid
+[**MuteList**](MuteApi.md#MuteList) | **Get** /farcaster/mute/list | Get fids that a user has muted
 
-## AddMute
-
-> MuteResponse AddMute(ctx).ApiKey(apiKey).MuteReqBody(muteReqBody).Execute()
-
+# **AddMute**
+> MuteResponse AddMute(ctx, body, apiKey)
 Adds a mute for a fid
 
-### Example
+Adds a mute for a given fid. This is a whitelisted API, reach out if you want access.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	muteReqBody := *openapiclient.NewMuteReqBody() // MuteReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MuteAPI.AddMute(context.Background()).ApiKey(apiKey).MuteReqBody(muteReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MuteAPI.AddMute``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AddMute`: MuteResponse
-	fmt.Fprintf(os.Stdout, "Response from `MuteAPI.AddMute`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddMuteRequest struct via the builder pattern
-
-| Name            | Type                              | Description                          | Notes                                    |
-| --------------- | --------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**      | **string**                        | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **muteReqBody** | [**MuteReqBody**](MuteReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**MuteReqBody**](MuteReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -63,57 +32,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## DeleteMute
-
-> MuteResponse DeleteMute(ctx).ApiKey(apiKey).MuteReqBody(muteReqBody).Execute()
-
+# **DeleteMute**
+> MuteResponse DeleteMute(ctx, body, apiKey)
 Deletes a mute for a fid
 
-### Example
+Deletes a mute for a given fid. This is a whitelisted API, reach out if you want access.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
-
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	muteReqBody := *openapiclient.NewMuteReqBody() // MuteReqBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MuteAPI.DeleteMute(context.Background()).ApiKey(apiKey).MuteReqBody(muteReqBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MuteAPI.DeleteMute``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteMute`: MuteResponse
-	fmt.Fprintf(os.Stdout, "Response from `MuteAPI.DeleteMute`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteMuteRequest struct via the builder pattern
-
-| Name            | Type                              | Description                          | Notes                                    |
-| --------------- | --------------------------------- | ------------------------------------ | ---------------------------------------- |
-| **apiKey**      | **string**                        | API key required for authentication. | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **muteReqBody** | [**MuteReqBody**](MuteReqBody.md) |                                      |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**MuteReqBody**](MuteReqBody.md)|  | 
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
 
 ### Return type
 
@@ -125,61 +61,34 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## MuteList
-
-> MuteListResponse MuteList(ctx).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-
+# **MuteList**
+> MuteListResponse MuteList(ctx, apiKey, fid, optional)
 Get fids that a user has muted
 
-### Example
+Fetches all fids that a user has muted.
 
-```go
-package main
+### Required Parameters
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/atlasmoth/go_neynar_sdk/v2"
-)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **apiKey** | **string**| API key required for authentication. | [default to NEYNAR_API_DOCS]
+  **fid** | [**int32**](.md)| The user&#x27;s fid (identifier) | 
+ **optional** | ***MuteApiMuteListOpts** | optional parameters | nil if no parameters
 
-func main() {
-	apiKey := "apiKey_example" // string | API key required for authentication. (optional) (default to "NEYNAR_API_DOCS")
-	fid := int32(194) // int32 | The user's fid (identifier) (optional)
-	limit := int32(20) // int32 | Number of results to retrieve (default 20, max 100). (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+### Optional Parameters
+Optional parameters are passed through a pointer to a MuteApiMuteListOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MuteAPI.MuteList(context.Background()).ApiKey(apiKey).Fid(fid).Limit(limit).Cursor(cursor).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MuteAPI.MuteList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `MuteList`: MuteListResponse
-	fmt.Fprintf(os.Stdout, "Response from `MuteAPI.MuteList`: %v\n", resp)
-}
-```
 
-### Path Parameters
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiMuteListRequest struct via the builder pattern
-
-| Name       | Type       | Description                                          | Notes                                    |
-| ---------- | ---------- | ---------------------------------------------------- | ---------------------------------------- |
-| **apiKey** | **string** | API key required for authentication.                 | [default to &quot;NEYNAR_API_DOCS&quot;] |
-| **fid**    | **int32**  | The user&#39;s fid (identifier)                      |
-| **limit**  | **int32**  | Number of results to retrieve (default 20, max 100). | [default to 20]                          |
-| **cursor** | **string** | Pagination cursor.                                   |
+ **limit** | **optional.Int32**| Number of results to retrieve (default 20, max 100). | [default to 20]
+ **cursor** | **optional.String**| Pagination cursor. | 
 
 ### Return type
 
@@ -191,9 +100,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

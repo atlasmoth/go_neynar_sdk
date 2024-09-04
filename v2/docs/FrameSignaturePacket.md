@@ -1,82 +1,10 @@
 # FrameSignaturePacket
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UntrustedData** | Pointer to [**FrameSignaturePacketUntrustedData**](FrameSignaturePacketUntrustedData.md) |  | [optional] 
-**TrustedData** | Pointer to [**FrameSignaturePacketTrustedData**](FrameSignaturePacketTrustedData.md) |  | [optional] 
-
-## Methods
-
-### NewFrameSignaturePacket
-
-`func NewFrameSignaturePacket() *FrameSignaturePacket`
-
-NewFrameSignaturePacket instantiates a new FrameSignaturePacket object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
-
-### NewFrameSignaturePacketWithDefaults
-
-`func NewFrameSignaturePacketWithDefaults() *FrameSignaturePacket`
-
-NewFrameSignaturePacketWithDefaults instantiates a new FrameSignaturePacket object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetUntrustedData
-
-`func (o *FrameSignaturePacket) GetUntrustedData() FrameSignaturePacketUntrustedData`
-
-GetUntrustedData returns the UntrustedData field if non-nil, zero value otherwise.
-
-### GetUntrustedDataOk
-
-`func (o *FrameSignaturePacket) GetUntrustedDataOk() (*FrameSignaturePacketUntrustedData, bool)`
-
-GetUntrustedDataOk returns a tuple with the UntrustedData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUntrustedData
-
-`func (o *FrameSignaturePacket) SetUntrustedData(v FrameSignaturePacketUntrustedData)`
-
-SetUntrustedData sets UntrustedData field to given value.
-
-### HasUntrustedData
-
-`func (o *FrameSignaturePacket) HasUntrustedData() bool`
-
-HasUntrustedData returns a boolean if a field has been set.
-
-### GetTrustedData
-
-`func (o *FrameSignaturePacket) GetTrustedData() FrameSignaturePacketTrustedData`
-
-GetTrustedData returns the TrustedData field if non-nil, zero value otherwise.
-
-### GetTrustedDataOk
-
-`func (o *FrameSignaturePacket) GetTrustedDataOk() (*FrameSignaturePacketTrustedData, bool)`
-
-GetTrustedDataOk returns a tuple with the TrustedData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTrustedData
-
-`func (o *FrameSignaturePacket) SetTrustedData(v FrameSignaturePacketTrustedData)`
-
-SetTrustedData sets TrustedData field to given value.
-
-### HasTrustedData
-
-`func (o *FrameSignaturePacket) HasTrustedData() bool`
-
-HasTrustedData returns a boolean if a field has been set.
-
+**UntrustedData** | [***FrameSignaturePacketUntrustedData**](FrameSignaturePacket_untrustedData.md) |  | [default to null]
+**TrustedData** | [***FrameSignaturePacketTrustedData**](FrameSignaturePacket_trustedData.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 
